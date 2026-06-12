@@ -1,0 +1,238 @@
+// Character preview: the APNG render plus body/head rotation, the action
+// picker, and (for animated actions) a play/pause toggle with a frame scrubber.
+// Each action button's icon is a STILL frame of the actual character being
+// built — full-body framed (actionIconCanvas) so head and feet aren't cut —
+// always facing south.
+//
+// Animations come back from ragassets as APNG (which the browser plays on its
+// own). To "pause", we swap the <img> to a single still frame (frame=N). The
+// frame count per action is the static table in core/state.ts. Local playback
+// state (playing / frame) is deliberately NOT part of the shareable build.
+
+import { useEffect, useRef, useState } from "react";
+import {
+  ACTIONS,
+  actionIconCanvas,
+  HEAD_ROTATE_ACTIONS,
+  imageUrl,
+  NO_PLAYBACK_ACTIONS,
+  ACTION_FRAMES,
+} from "../core/state";
+import { t } from "../i18n";
+import { usePreloadedImage } from "../hooks/usePreloadedImage";
+import { useAppState, useDispatch } from "../state/AppStateContext";
+import { TipButton } from "./TipButton";
+import { ChevronLeft, ChevronRight, Expand, Pause, Play } from "./icons";
+
+export function Preview() {
+  const state = useAppState();
+  const dispatch = useDispatch();
+
+  const [playing, setPlaying] = useState(true);
+  const [frame, setFrame] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalSize, setModalSize] = useState<{ w: number; h: number }>();
+
+  // A fresh action starts playing from the top — reset on each action change.
+  // (Storing the previous action in a ref and resetting during render mirrors
+  // the old imperative update() exactly, with no post-paint flash.)
+  const prevAction = useRef(-1);
+  if (prevAction.current !== state.action) {
+    prevAction.current = state.action;
+    setPlaying(true);
+    setFrame(0);
+  }
+
+  // The idle/static poses get no play/pause control (their APNG still plays).
+  const frameCount = NO_PLAYBACK_ACTIONS.has(state.action)
+    ? 1
+    : (ACTION_FRAMES[state.action] ?? 1);
+  const animated = frameCount > 1;
+  const headAllowed = HEAD_ROTATE_ACTIONS.has(state.action);
+
+  // Preload off-screen, then swap once decoded — no blank flash between renders.
+  const sprite = usePreloadedImage(playing ? imageUrl(state) : imageUrl(state, { frame }));
+
+  function stepFrame(delta: number) {
+    setPlaying(false);
+    setFrame((f) => (f + delta + frameCount) % frameCount);
+  }
+
+  // ---- full-sprite modal (uncropped render) ------------------------------
+  const openModal = () => {
+    setModalSize(undefined);
+    setModalOpen(true);
+  };
+  const closeModal = () => setModalOpen(false);
+
+  useEffect(() => {
+    if (!modalOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeModal();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [modalOpen]);
+
+  // Mirror the preview: animate while playing, else lock to the chosen frame.
+  const modalUrl = playing
+    ? imageUrl(state, { canvas: null })
+    : imageUrl(state, { canvas: null, frame });
+
+  // Enlarge the (tiny) sprite to fill the viewport while staying crisp — using
+  // width/height (not transform) so the modal box sizes to it. Capped so a big
+  // costume still fits.
+  const onModalLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    const scale = Math.max(
+      1,
+      Math.min(
+        (window.innerWidth * 0.8) / img.naturalWidth,
+        (window.innerHeight * 0.78) / img.naturalHeight,
+        5,
+      ),
+    );
+    setModalSize({
+      w: Math.round(img.naturalWidth * scale),
+      h: Math.round(img.naturalHeight * scale),
+    });
+  };
+
+  return (
+    <div className="preview">
+      <div className="stage-wrap">
+        <div className="stage">
+          <img
+            className={sprite.src ? "stage-sprite is-loaded" : "stage-sprite"}
+            src={sprite.src}
+            alt=""
+            decoding="async"
+          />
+          <div className="stage-error" hidden={!sprite.error}>
+            {t.previewError}
+          </div>
+        </div>
+
+        {/* Expand button lives on the stage-wrap, not the stage, so its tooltip
+            isn't clipped by the stage's overflow:hidden. */}
+        <TipButton className="stage-expand" tip={t.viewFull} onClick={openModal}>
+          <Expand />
+        </TipButton>
+
+        <StageArrow side="left" rowKind="head" hidden={!headAllowed} onClick={() => dispatch({ type: "rotateHead", delta: -1 })} />
+        <StageArrow side="right" rowKind="head" hidden={!headAllowed} onClick={() => dispatch({ type: "rotateHead", delta: 1 })} />
+        <StageArrow side="left" rowKind="body" onClick={() => dispatch({ type: "rotateBody", delta: -1 })} />
+        <StageArrow side="right" rowKind="body" onClick={() => dispatch({ type: "rotateBody", delta: 1 })} />
+      </div>
+
+      <div className="playback" hidden={!animated}>
+        <TipButton className="play-btn" tip={playing ? t.pause : t.play} onClick={() => setPlaying((p) => !p)}>
+          {playing ? <Pause /> : <Play />}
+        </TipButton>
+        <TipButton className="frame-step" tip={t.framePrev} hidden={playing} onClick={() => stepFrame(-1)}>
+          <ChevronLeft />
+        </TipButton>
+        <input
+          className="frame-slider"
+          type="range"
+          min={0}
+          max={Math.max(0, frameCount - 1)}
+          step={1}
+          value={frame}
+          hidden={playing}
+          aria-label={t.frameLabel}
+          onChange={(e) => {
+            setFrame(Number(e.target.value));
+            setPlaying(false);
+          }}
+        />
+        <TipButton className="frame-step" tip={t.frameNext} hidden={playing} onClick={() => stepFrame(1)}>
+          <ChevronRight />
+        </TipButton>
+      </div>
+
+      <div className="control-block actions-block">
+        <div className="control-label">{t.actionsLabel}</div>
+        <div className="actions-row">
+          {ACTIONS.map((a) => {
+            const selected = state.action === a.type;
+            // Still frame 0, locked to south, full-body framed — stays put while
+            // rotating or scrubbing.
+            const icon = imageUrl(state, {
+              action: a.type,
+              frame: 0,
+              bodyDir: 0,
+              headDir: 0,
+              canvas: actionIconCanvas(a.type),
+            });
+            return (
+              <TipButton
+                key={a.type}
+                className={selected ? "action-btn is-selected" : "action-btn"}
+                tip={t.actions[a.key]}
+                aria-pressed={selected}
+                onClick={() => dispatch({ type: "setAction", action: a.type })}
+              >
+                <span className="action-clip">
+                  <img className="action-icon" src={icon} alt="" loading="lazy" decoding="async" />
+                </span>
+              </TipButton>
+            );
+          })}
+        </div>
+      </div>
+
+      <div
+        className="sprite-modal"
+        hidden={!modalOpen}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) closeModal();
+        }}
+      >
+        <div className="sprite-modal-box">
+          <img
+            className="sprite-modal-img"
+            src={modalOpen ? modalUrl : undefined}
+            alt=""
+            style={modalSize ? { width: modalSize.w, height: modalSize.h } : undefined}
+            onLoad={onModalLoad}
+          />
+          <TipButton className="sprite-modal-close game-close" tip={t.closeModal} onClick={closeModal} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// The rotation arrows (ragassets turn-button sprites) flank the character like
+// the in-game creation screen: the body pair at the character's sides, the head
+// pair at the same x but higher. Head rotation only applies to idle/sit; its
+// arrows are hidden otherwise.
+function StageArrow({
+  side,
+  rowKind,
+  hidden,
+  onClick,
+}: {
+  side: "left" | "right";
+  rowKind: "head" | "body";
+  hidden?: boolean;
+  onClick: () => void;
+}) {
+  const tip =
+    rowKind === "head"
+      ? side === "left"
+        ? t.rotateHeadLeft
+        : t.rotateHeadRight
+      : side === "left"
+        ? t.rotateLeft
+        : t.rotateRight;
+  return (
+    <TipButton
+      className={`stage-arrow arrow-${side} arrow-${rowKind}`}
+      tip={tip}
+      hidden={hidden}
+      onClick={onClick}
+    />
+  );
+}
