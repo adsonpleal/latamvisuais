@@ -1,0 +1,38 @@
+# Builds and deploys to the live Firebase Hosting channel when changes land on main.
+# Requires the FIREBASE_SERVICE_ACCOUNT_LATAM_VISUAIS repository secret (see README).
+name: Deploy to Firebase Hosting on merge
+
+on:
+  push:
+    branches:
+      - main
+  # Allow manual re-deploys from the Actions tab.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # The build:db data is committed (public/db), so CI builds the site from
+      # the checkout alone — no Ragnarok client/GRF needed.
+      - run: npm test
+      - run: npm run build
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_LATAM_VISUAIS }}
+          channelId: live
+          projectId: latam-visuais
