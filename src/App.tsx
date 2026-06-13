@@ -95,7 +95,9 @@ function Simulator({ db }: { db: Db }) {
           {" · " + t.footerAssets + " "}
           <FooterLink href="https://github.com/adsonpleal/ragassets">ragassets</FooterLink>
           {" · "}
-          <FooterLink href="https://github.com/adsonpleal/latamvisuais">MIT</FooterLink>
+          <FooterLink href="https://github.com/adsonpleal/latamvisuais">{t.footerSource}</FooterLink>
+          {" · "}
+          <FooterLink href="https://github.com/adsonpleal/latamvisuais/blob/main/LICENSE">MIT</FooterLink>
         </div>
       </footer>
     </AppStateProvider>

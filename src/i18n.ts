@@ -92,4 +92,5 @@ export const t = {
   footerCopyright: "© Gravity Interactive, Inc. All Rights Reserved.",
   footerInspired: "Inspirado em",
   footerAssets: "Sprites e ícones via",
+  footerSource: "Código no GitHub",
 };
