@@ -31,6 +31,8 @@ export const t = {
   actionsLabel: "Ação",
   viewFull: "Ver sprite completo",
   closeModal: "Fechar",
+  downloadImage: "Baixar imagem",
+  downloadError: "Falha ao baixar. Tente novamente.",
   play: "Reproduzir",
   pause: "Pausar",
   frameLabel: "Quadro",

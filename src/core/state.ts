@@ -131,19 +131,18 @@ export function gearViews(state: State): { headgear: number[]; garment: number |
  *  inputs — the action-picker icons use them to show a still frame (`frame`)
  *  of each animation always facing south (`bodyDir`/`headDir` 0) no matter
  *  how the preview is rotated. */
-export function imageUrl(
-  state: State,
-  overrides: {
-    action?: number;
-    frame?: number;
-    bodyDir?: number;
-    headDir?: number;
-    /** A canvas string, or null to omit the param entirely — ragassets then
-     *  auto-crops to the sprite's true bounds (used by the full-sprite modal,
-     *  where some costumes exceed the fixed preview canvas). */
-    canvas?: string | null;
-  } = {},
-): string {
+export type RenderOverrides = {
+  action?: number;
+  frame?: number;
+  bodyDir?: number;
+  headDir?: number;
+  /** A canvas string, or null to omit the param entirely — ragassets then
+   *  auto-crops to the sprite's true bounds (used by the full-sprite modal,
+   *  where some costumes exceed the fixed preview canvas). */
+  canvas?: string | null;
+};
+
+function renderParams(state: State, overrides: RenderOverrides): URLSearchParams {
   const p = new URLSearchParams();
   p.set("job", String(state.classId));
   p.set("gender", state.gender === "f" ? "female" : "male");
@@ -161,7 +160,18 @@ export function imageUrl(
     : 0;
   p.set("headdir", String(headDir));
   if (overrides.canvas !== null) p.set("canvas", overrides.canvas ?? CANVAS);
-  return `${RAGASSETS_BASE}/image?${p.toString()}`;
+  return p;
+}
+
+export function imageUrl(state: State, overrides: RenderOverrides = {}): string {
+  return `${RAGASSETS_BASE}/image?${renderParams(state, overrides).toString()}`;
+}
+
+/** Same render as imageUrl, but pointed at ragassets' /gif endpoint, which
+ *  converts the rendered PNG/APNG to a GIF (an animated, looping GIF when no
+ *  `frame` is pinned). Used by the full-sprite download for animated poses. */
+export function gifUrl(state: State, overrides: RenderOverrides = {}): string {
+  return `${RAGASSETS_BASE}/gif?${renderParams(state, overrides).toString()}`;
 }
 
 // How far each pose's lowest pixel drops below the origin (the ground point),

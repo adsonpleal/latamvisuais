@@ -13,6 +13,8 @@ import { useEffect, useRef, useState } from "react";
 import {
   ACTIONS,
   actionIconCanvas,
+  classOf,
+  gifUrl,
   HEAD_ROTATE_ACTIONS,
   imageUrl,
   NO_PLAYBACK_ACTIONS,
@@ -20,18 +22,21 @@ import {
 } from "../core/state";
 import { t } from "../i18n";
 import { usePreloadedImage } from "../hooks/usePreloadedImage";
-import { useAppState, useDispatch } from "../state/AppStateContext";
+import { useAppState, useDb, useDispatch } from "../state/AppStateContext";
 import { TipButton } from "./TipButton";
-import { ChevronLeft, ChevronRight, Expand, Pause, Play } from "./icons";
+import { ChevronLeft, ChevronRight, Download, Expand, Pause, Play } from "./icons";
 
 export function Preview() {
   const state = useAppState();
+  const db = useDb();
   const dispatch = useDispatch();
 
   const [playing, setPlaying] = useState(true);
   const [frame, setFrame] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalSize, setModalSize] = useState<{ w: number; h: number }>();
+  const [downloading, setDownloading] = useState(false);
+  const [downloadFailed, setDownloadFailed] = useState(false);
 
   // A fresh action starts playing from the top — reset on each action change.
   // (Storing the previous action in a ref and resetting during render mirrors
@@ -61,6 +66,7 @@ export function Preview() {
   // ---- full-sprite modal (uncropped render) ------------------------------
   const openModal = () => {
     setModalSize(undefined);
+    setDownloadFailed(false);
     setModalOpen(true);
   };
   const closeModal = () => setModalOpen(false);
@@ -78,6 +84,44 @@ export function Preview() {
   const modalUrl = playing
     ? imageUrl(state, { canvas: null })
     : imageUrl(state, { canvas: null, frame });
+
+  // Download exactly what the modal is showing: an animation becomes a GIF
+  // (ragassets' /gif converts the APNG on the fly), a single frame stays a PNG.
+  // ragassets sends Access-Control-Allow-Origin, so we can read the bytes into
+  // a blob and save them with a real filename (the cross-origin `download`
+  // attribute alone is ignored without CORS).
+  const downloadSprite = async () => {
+    if (downloading) return;
+    const asGif = animated && playing;
+    const url = asGif
+      ? gifUrl(state, { canvas: null })
+      : imageUrl(state, { canvas: null, frame: animated ? frame : 0 });
+    const actionKey = ACTIONS.find((a) => a.type === state.action)?.key;
+    const name =
+      `${slug(classOf(db, state)?.name ?? `job${state.classId}`)}` +
+      `-${slug(actionKey ? t.actions[actionKey] : String(state.action))}` +
+      `.${asGif ? "gif" : "png"}`;
+
+    setDownloadFailed(false);
+    setDownloading(true);
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const objUrl = URL.createObjectURL(await res.blob());
+      const a = document.createElement("a");
+      a.href = objUrl;
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(objUrl);
+    } catch (err) {
+      console.error("sprite download failed", err);
+      setDownloadFailed(true);
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   // Enlarge the (tiny) sprite to fill the viewport while staying crisp — using
   // width/height (not transform) so the modal box sizes to it. Capped so a big
@@ -197,10 +241,32 @@ export function Preview() {
             style={modalSize ? { width: modalSize.w, height: modalSize.h } : undefined}
             onLoad={onModalLoad}
           />
+          <TipButton
+            className="sprite-modal-download"
+            tip={downloadFailed ? t.downloadError : t.downloadImage}
+            disabled={downloading}
+            aria-busy={downloading}
+            onClick={downloadSprite}
+          >
+            <Download />
+          </TipButton>
           <TipButton className="sprite-modal-close game-close" tip={t.closeModal} onClick={closeModal} />
         </div>
       </div>
     </div>
+  );
+}
+
+// Filesystem-friendly slug for the download filename: drop accents (pt-BR class
+// names have them), lowercase, and collapse anything else to single hyphens.
+function slug(s: string): string {
+  return (
+    s
+      .normalize("NFD")
+      .replace(/[^\x00-\x7F]/g, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "") || "sprite"
   );
 }
 

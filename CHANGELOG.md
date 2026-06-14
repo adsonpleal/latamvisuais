@@ -8,6 +8,11 @@ while pre-1.0.
 
 ### Added
 
+- **Download button** in the full-sprite viewer — saves exactly what's on screen:
+  an animation becomes an **animated GIF** (converted on the fly by ragassets'
+  `/gif` endpoint), while a single frame (a static pose, or a paused/scrubbed
+  frame) stays a **PNG**. The file is named after the class and pose (e.g.
+  `aprendiz-andar.gif`).
 - **Dark mode** with a theme selector in the top-right corner (Auto / Claro /
   Escuro). "Auto" follows the OS color scheme; the choice is persisted in
   `localStorage` and applied before first paint to avoid a flash.

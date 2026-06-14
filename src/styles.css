@@ -92,6 +92,14 @@
   background: rgba(255, 255, 255, 0.12);
 }
 
+:root[data-theme="dark"] .sprite-modal-download {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+:root[data-theme="dark"] .sprite-modal-download:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+}
+
 :root[data-theme="dark"] .sprite-modal-box {
   background:
     radial-gradient(ellipse 40% 14% at 50% 88%, rgba(0, 0, 0, 0.4), transparent 70%),
@@ -830,6 +838,36 @@ button:disabled {
   position: absolute;
   top: 8px;
   right: 8px;
+}
+
+/* Download-the-sprite button, top-left of the modal — mirrors the close button
+   on the opposite corner, styled like the stage's expand button. */
+.sprite-modal-download {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: background 120ms, border-color 120ms, color 120ms;
+}
+
+.sprite-modal-download:hover:not(:disabled) {
+  background: #fff;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.sprite-modal-download:disabled {
+  cursor: progress;
+  opacity: 0.55;
 }
 
 /* ---- rotation arrows (ragassets turn sprites, flanking the character) ------ */
