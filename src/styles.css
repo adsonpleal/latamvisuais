@@ -10,14 +10,18 @@
   src: url("/fonts/galmuri11-latin.woff2") format("woff2");
 }
 
-/* Light only — the in-game character-creation sprites (gender pills, hair
-   thumbnails, color squares…) are drawn for Ragnarok's light UI and look
-   wrong on dark backgrounds. */
+/* Light is the default theme. Dark mode (see [data-theme="dark"] below) is
+   opt-in via the topbar theme picker — the in-game sprites the controls reuse
+   (gender pills, hair thumbnails, color squares…) carry their own light frames,
+   so they stay legible on a dark panel. `--card` is the white surface those
+   sprite-holding controls sit on; it's the only background that shifts in dark
+   mode, keeping every inner control on one coherent elevated tone. */
 :root {
   color-scheme: light;
   --bg: #fafafa;
   --bg-elev: #ffffff;
   --bg-inset: #f1f0ec;
+  --card: #ffffff;
   --fg: #1c1b19;
   --muted: #6b675f;
   --border: #d9d6cf;
@@ -27,6 +31,95 @@
   --font-pixel: "Galmuri11", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-family: var(--font-pixel);
   font-synthesis: none; /* no faux-bold — it would smear the pixel glyphs */
+}
+
+/* Dark theme. useTheme writes the resolved scheme to <html data-theme>, so this
+   single attribute selector covers both an explicit "Escuro" choice and "Auto"
+   on a dark OS. Mostly a palette swap; the few rules below it re-point the
+   hard-coded light surfaces (pastel panel gradients, the stage, etc.). */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #15141a;
+  --bg-elev: #1e1c24;
+  --bg-inset: #2a2832;
+  --card: #2a2832;
+  --fg: #ededf0;
+  --muted: #a3a0ab;
+  --border: #39363f;
+  --accent: #6f97e6;
+  --accent-soft: color-mix(in srgb, var(--accent) 24%, transparent);
+  --danger: #e0735a;
+}
+
+/* Dark-mode surface fixes — the rules below hold colours baked for the light UI
+   (pastel gradients, the preview stage, and hairline borders set with
+   rgba(0,0,0,…) that disappear on a dark background). Specificity beats the base
+   rules regardless of source order, so they live together here. */
+:root[data-theme="dark"] .panel-appearance,
+:root[data-theme="dark"] .panel-catalog {
+  background:
+    linear-gradient(135deg, #221f2a 0%, #1f1d27 45%, #1d1c25 72%, #211e2a 100%);
+  border-color: var(--border);
+}
+
+:root[data-theme="dark"] .appearance-card,
+:root[data-theme="dark"] .catalog-grid,
+:root[data-theme="dark"] .gender-row,
+:root[data-theme="dark"] .gender-btn + .gender-btn,
+:root[data-theme="dark"] .class-trigger {
+  border-color: var(--border);
+}
+
+:root[data-theme="dark"] .gender-btn {
+  color: var(--muted);
+}
+
+:root[data-theme="dark"] .gender-btn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--card) 84%, #fff);
+}
+
+:root[data-theme="dark"] .stage {
+  background:
+    radial-gradient(ellipse 84px 22px at 50% 80%, rgba(0, 0, 0, 0.45), transparent 70%),
+    linear-gradient(180deg, #2b2935 0%, #211f29 55%, #1a1922 100%);
+}
+
+:root[data-theme="dark"] .stage-expand {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+:root[data-theme="dark"] .stage-expand:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+:root[data-theme="dark"] .sprite-modal-box {
+  background:
+    radial-gradient(ellipse 40% 14% at 50% 88%, rgba(0, 0, 0, 0.4), transparent 70%),
+    linear-gradient(180deg, #2b2935, #1c1b24);
+}
+
+/* Game-frame buttons (hair styles + catalog tiles) — the default ragassets PNG
+   frames are baked for the light UI. In dark mode swap in locally hosted
+   recolours (public/icons/ui/bt_hairstyle_*_dark.png) so the tiles read as dark
+   raised buttons while keeping the gold hover/select cues. */
+:root[data-theme="dark"] .hair-pick,
+:root[data-theme="dark"] .catalog-item {
+  background-image: url("/icons/ui/bt_hairstyle_normal_dark.png");
+}
+
+:root[data-theme="dark"] .hair-pick:hover,
+:root[data-theme="dark"] .catalog-item:hover {
+  background-image: url("/icons/ui/bt_hairstyle_over_dark.png");
+}
+
+:root[data-theme="dark"] .hair-pick:active,
+:root[data-theme="dark"] .catalog-item:active {
+  background-image: url("/icons/ui/bt_hairstyle_press_dark.png");
+}
+
+:root[data-theme="dark"] .hair-pick.is-selected,
+:root[data-theme="dark"] .catalog-item.is-equipped {
+  background-image: url("/icons/ui/bt_hairstyle_select_dark.png");
 }
 
 * {
@@ -54,6 +147,10 @@ body {
 /* ---- header / footer ---------------------------------------------------- */
 
 .topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   padding: 0.9rem 1.25rem;
   border-bottom: 1px solid var(--border);
   background: var(--bg-elev);
@@ -63,6 +160,29 @@ body {
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
+}
+
+/* Theme picker (Auto / Claro / Escuro) — a native dropdown in the top-right
+   corner of the topbar. color-scheme on :root makes the popup follow the theme. */
+.theme-select {
+  flex: none;
+  font: inherit;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-inset);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.theme-select:hover {
+  border-color: var(--accent);
+}
+
+.theme-select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
 }
 
 .topbar h1 {
@@ -205,7 +325,7 @@ body {
 /* White rounded card behind a section's controls (hair styles, the two color
    rows) — matches the in-game panels. */
 .appearance-card {
-  background: #fff;
+  background: var(--card);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 10px;
   padding: 0.5rem;
@@ -320,7 +440,7 @@ button:disabled {
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 8px;
   overflow: hidden;
-  background: #fff;
+  background: var(--card);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
@@ -331,7 +451,7 @@ button:disabled {
   font-weight: 600;
   line-height: 1;
   color: #7c828d;
-  background: #fff;
+  background: var(--card);
   transition: background 120ms, color 120ms;
 }
 
@@ -413,7 +533,7 @@ button:disabled {
   padding: 0.45rem 0.6rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  background: #fff;
+  background: var(--card);
   text-align: left;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
@@ -1091,7 +1211,7 @@ button:disabled {
   border: 1px dashed var(--border);
   border-radius: 8px;
   padding: 0.5rem 0.6rem;
-  background: #fff;
+  background: var(--card);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
@@ -1183,7 +1303,7 @@ button:disabled {
   padding: 0.5rem 0.7rem;
   font: inherit;
   color: inherit;
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 8px;
 }
@@ -1242,7 +1362,7 @@ button:disabled {
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 10px;
   padding: 0.4rem;
-  background: #fff;
+  background: var(--card);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 

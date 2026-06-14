@@ -4,6 +4,18 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [Unreleased]
+
+### Added
+
+- **Dark mode** with a theme selector in the top-right corner (Auto / Claro /
+  Escuro). "Auto" follows the OS color scheme; the choice is persisted in
+  `localStorage` and applied before first paint to avoid a flash.
+- Dark-mode recolours of the hair-style/catalogue game-frame buttons, hosted
+  locally under `public/icons/ui/` — the default ragassets frames are baked for
+  the light UI, so dark mode swaps in dark variants that keep the gold
+  hover/select cues.
+
 ## [0.1.0] — 2026-06-12
 
 Initial public release — a static, client-only costume/visual simulator for

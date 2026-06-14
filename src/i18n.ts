@@ -4,6 +4,11 @@ export const t = {
   appTitle: "Simulador de Visuais",
   appSubtitle: "Ragnarok Online LATAM",
 
+  themeLabel: "Tema",
+  themeAuto: "Auto",
+  themeLight: "Claro",
+  themeDark: "Escuro",
+
   appearanceTitle: "Personagem",
   classLabel: "Classe",
   genderLabel: "Gênero",

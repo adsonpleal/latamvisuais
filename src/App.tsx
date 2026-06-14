@@ -18,6 +18,7 @@ import { Catalog } from "./components/Catalog";
 import { ClassSelect } from "./components/ClassSelect";
 import { Preview } from "./components/Preview";
 import { Slots } from "./components/Slots";
+import { ThemeSelect } from "./components/ThemeSelect";
 import { Wishlist } from "./components/Wishlist";
 
 export default function App() {
@@ -58,6 +59,7 @@ function Simulator({ db }: { db: Db }) {
           <h1>{t.appTitle}</h1>
           <span className="topbar-sub">{t.appSubtitle}</span>
         </div>
+        <ThemeSelect />
       </header>
 
       <main className="layout">

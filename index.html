@@ -8,6 +8,20 @@
       name="description"
       content="Monte o visual do seu personagem do Ragnarok Online LATAM: classe, cabelo, cores e os 4 slots de visual."
     />
+    <!-- Resolve the saved theme before first paint to avoid a flash. Mirrors
+         src/theme.ts: "auto"/missing follows the OS scheme, else it's forced. -->
+    <script>
+      (function () {
+        try {
+          var pref = localStorage.getItem("theme");
+          var dark =
+            pref === "dark" ||
+            ((pref === null || pref === "auto") &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.dataset.theme = dark ? "dark" : "light";
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="app"></div>
