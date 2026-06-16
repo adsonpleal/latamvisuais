@@ -59,7 +59,36 @@ function Simulator({ db }: { db: Db }) {
           <h1>{t.appTitle}</h1>
           <span className="topbar-sub">{t.appSubtitle}</span>
         </div>
-        <ThemeSelect />
+        <div className="topbar-actions">
+          <a
+            className="topbar-action"
+            href="https://forms.gle/T5gvsTYTVBSVF5jH6"
+            target="_blank"
+            rel="noopener noreferrer"
+            title={t.feedbackTitle}
+          >
+            {t.feedbackLink}
+          </a>
+          <a
+            className="topbar-action"
+            href="https://docs.google.com/spreadsheets/d/1IcN9IjWbZvfSZwiI2ginxx4J5g_AxhCNkh8f7pdaXZ4/edit?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            title={t.trackingTitle}
+          >
+            {t.trackingLink}
+          </a>
+          <a
+            className="topbar-action"
+            href="https://discord.gg/S4uEwGqK"
+            target="_blank"
+            rel="noopener noreferrer"
+            title={t.discordTitle}
+          >
+            {t.discordLink}
+          </a>
+          <ThemeSelect />
+        </div>
       </header>
 
       <main className="layout">

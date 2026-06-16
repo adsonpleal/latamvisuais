@@ -8,6 +8,11 @@ while pre-1.0.
 
 ### Added
 
+- **Top-bar links** for feedback and community — a **Reportar** button (Google
+  Form for bug reports and missing-costume requests), an **Acompanhar** link to
+  the public tracking spreadsheet, and a **Discord** invite, sitting next to the
+  theme picker. The bar now wraps so the actions drop onto their own line(s),
+  right-aligned, on narrow screens instead of overflowing.
 - **Download button** in the full-sprite viewer — saves exactly what's on screen:
   an animation becomes an **animated GIF** (converted on the fly by ragassets'
   `/gif` endpoint), while a single frame (a static pose, or a paused/scrubbed

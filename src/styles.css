@@ -158,7 +158,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
   padding: 0.9rem 1.25rem;
   border-bottom: 1px solid var(--border);
   background: var(--bg-elev);
@@ -168,6 +169,46 @@ body {
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
+}
+
+/* Right side of the topbar: the "Reportar" link and the theme picker, kept
+   together so space-between pushes the pair to the corner as one group. */
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  /* When the bar wraps on narrow screens, keep the actions in the corner
+     instead of jumping to the left edge; wrap among themselves if even the
+     action group can't fit on one line. */
+  margin-left: auto;
+}
+
+/* "Reportar" link — styled to match the theme picker so the pair reads as one
+   control cluster. */
+.topbar-action {
+  flex: none;
+  font: inherit;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-inset);
+  color: var(--fg);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.topbar-action:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.topbar-action:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
 }
 
 /* Theme picker (Auto / Claro / Escuro) — a native dropdown in the top-right

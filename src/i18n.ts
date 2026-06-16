@@ -4,6 +4,13 @@ export const t = {
   appTitle: "Simulador de Visuais",
   appSubtitle: "Ragnarok Online LATAM",
 
+  feedbackLink: "Reportar",
+  feedbackTitle: "Reportar bug ou pedir visual",
+  trackingLink: "Acompanhar",
+  trackingTitle: "Acompanhar bugs e pedidos reportados",
+  discordLink: "Discord",
+  discordTitle: "Entre no servidor do Discord",
+
   themeLabel: "Tema",
   themeAuto: "Auto",
   themeLight: "Claro",
