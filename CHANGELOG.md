@@ -8,6 +8,8 @@ while pre-1.0.
 
 ### Added
 
+- **Favicon** — a Novice head sprite rendered by ragassets, downloaded into
+  `public/` so the tab icon doesn't depend on that service being reachable.
 - **Top-bar links** for feedback and community — a **Reportar** button (Google
   Form for bug reports and missing-costume requests), an **Acompanhar** link to
   the public tracking spreadsheet, and a **Discord** invite, sitting next to the
