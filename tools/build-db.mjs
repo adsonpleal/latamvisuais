@@ -33,8 +33,9 @@ import {
   writeFileSync,
 } from "node:fs";
 import { resolve, join, dirname } from "node:path";
+import { pathToFileURL } from "node:url";
 import { inflateSync } from "node:zlib";
-import { runChunk, LuaTable, decodeClientString } from "./lua51.mjs";
+import { runChunk, runChunkInto, LuaTable, decodeClientString } from "./lua51.mjs";
 
 const DEFAULT_GRF = "C:\\Gravity\\Ragnarok\\data.grf";
 
@@ -217,7 +218,8 @@ async function main() {
     const hair = buildHair(grf, scan);
     writeJson(join(outDir, "hair.json"), hair);
 
-    const costumes = buildCostumes(args, grfPath);
+    const resolveView = buildViewResolver(grf);
+    const costumes = buildCostumes(args, grfPath, resolveView);
     writeJson(join(outDir, "costumes.json"), { items: costumes });
 
     console.log("\nDone:");
@@ -258,7 +260,7 @@ function writeJson(path, obj) {
 // (data errors) parse to no visual slot and are dropped.
 // ---------------------------------------------------------------------------
 
-function buildCostumes(args, grfPath) {
+function buildCostumes(args, grfPath, resolveView) {
   const lubPath = resolveItemInfoPath(args, grfPath);
   if (!lubPath) {
     throw new Error("iteminfo_new.lub not found next to the GRF — pass --iteminfo <path>");
@@ -270,6 +272,8 @@ function buildCostumes(args, grfPath) {
   const out = [];
   let flagged = 0;
   let noSlot = 0;
+  let resolved = 0;
+  let effect = 0;
   for (const [id, entry] of tbl.map) {
     if (typeof id !== "number" || !(entry instanceof LuaTable)) continue;
     if (entry.get("costume") !== true) continue;
@@ -283,12 +287,81 @@ function buildCostumes(args, grfPath) {
     }
     const item = { id, name, slots };
     const view = entry.get("ClassNum");
-    if (typeof view === "number" && view > 0) item.view = Math.round(view);
+    if (typeof view === "number" && view > 0) {
+      // iteminfo carries the view: the accessory id for headgear, the robe
+      // sprite id for garments. Trust it (verified to match the sprite tables
+      // for the overwhelming majority).
+      item.view = Math.round(view);
+    } else {
+      // ClassNum = 0 (common on newer costumes): recover the view from the
+      // item's resource name via the client's accessory/robe name tables.
+      const resolvedView = resolveView(slots, entry.get("identifiedResourceName"));
+      if (resolvedView) {
+        item.view = resolvedView;
+        resolved++;
+      }
+    }
+    if (item.view == null) {
+      // No character-sprite view anywhere — these are pure visual EFFECTS (auras,
+      // weather, falling petals, "invisible" costumes) drawn by the game's .str
+      // effect system, not as a body sprite. The 2D character renderer can't show
+      // them, so drop them rather than list a costume that previews blank.
+      effect++;
+      continue;
+    }
     out.push(item);
   }
-  console.log(`  ${flagged} costume-flagged items, ${out.length} kept (${noSlot} without a visual slot)`);
+  console.log(
+    `  ${flagged} costume-flagged items, ${out.length} kept (${noSlot} without a visual slot)` +
+      `\n  ${resolved} views recovered from resource names, ${effect} effect-only costumes dropped`,
+  );
   out.sort((a, b) => a.id - b.id);
   return out;
+}
+
+// Resource-name → view-id resolver. Many newer costumes ship with `ClassNum = 0`
+// in iteminfo even though they have a perfectly renderable sprite; the
+// authoritative link is `identifiedResourceName`, which matches an entry in the
+// client's accessory-name table (headgear) or robe-name table (garments). Build
+// reverse maps once (sprite name → id) so buildCostumes can recover the view
+// when ClassNum is missing. Effect-only costumes (auras, falling petals, etc.)
+// whose name isn't in either table simply stay view-less — zrenderer can't draw
+// them on the character anyway. The id tables (accessoryid/spriterobeid) are run
+// first so the name tables' `[ACCESSORY_IDs.x]` / `[SPRITE_ROBE_IDs.x]` keys
+// resolve to numbers.
+function buildViewResolver(grf) {
+  const tablesFrom = (...bases) => {
+    const g = new LuaTable();
+    for (const base of bases) {
+      const bytes = grfLub(grf, `data/luafiles514/lua files/datainfo/${base}`);
+      if (bytes) runChunkInto(bytes, g);
+    }
+    return g;
+  };
+  const norm = (s) => (typeof s === "string" ? decodeClientString(s).replace(/^_/, "").toLowerCase() : "");
+  const reverse = (...tables) => {
+    const m = new Map();
+    for (const t of tables) {
+      if (!(t instanceof LuaTable)) continue;
+      for (const [k, v] of t.map) {
+        const key = norm(v);
+        if (typeof k !== "number" || k <= 0 || !key) continue;
+        const prev = m.get(key);
+        if (prev == null || k < prev) m.set(key, k); // lowest id wins (deterministic)
+      }
+    }
+    return m;
+  };
+  const accG = tablesFrom("accessoryid", "accname");
+  const robeG = tablesFrom("spriterobeid", "spriterobename");
+  const acc = reverse(accG.get("AccNameTable"));
+  const robe = reverse(robeG.get("RobeNameTable"), robeG.get("RobeNameTable_Eng"));
+  console.log(`  view resolver: ${acc.size} accessory names, ${robe.size} robe names`);
+  return (slots, resourceName) => {
+    const key = norm(resourceName);
+    if (!key) return undefined;
+    return (slots.includes("garment") ? robe : acc).get(key);
+  };
 }
 
 // "Equipa em: ^777777Topo e Meio^000000" → ["top","mid"]. Newer LATAM items
@@ -656,7 +729,7 @@ function hueOf(r, g, b, max, min) {
 // mini-VM anyway: it indexes a `jobtbl` global that lives in npcidentity.lub.)
 // ---------------------------------------------------------------------------
 
-function grfLub(grf, base) {
+export function grfLub(grf, base) {
   const entry = findBestEntry(grf, `${base}.lub`) ?? findBestEntry(grf, `${base}.lua`);
   if (!entry) {
     console.warn(`  ! missing in GRF: ${base}.lub`);
@@ -769,7 +842,7 @@ function parseLuaFunction(ctx) {
 // versions 0x103/0x200 and the 0x300 fork, plus the custom per-entry DES.
 // ---------------------------------------------------------------------------
 
-function openGrf(path) {
+export function openGrf(path) {
   const fd = openSync(path, "r");
   const fileSize = fstatSync(fd).size;
 
@@ -861,7 +934,7 @@ function readFileTableV103(fd, tableStart, fileCount, fileSize) {
   return files;
 }
 
-function findBestEntry(grf, want) {
+export function findBestEntry(grf, want) {
   let best = null;
   const w = normalize(want);
   for (const f of grf.files) {
@@ -884,7 +957,7 @@ function decodeName(bytes) {
   }
 }
 
-function extractFile(grf, entry) {
+export function extractFile(grf, entry) {
   const FILE_BIT = 0x01;
   const ENC_MIXED = 0x02;
   const ENC_HEADER = 0x04;
@@ -896,7 +969,7 @@ function extractFile(grf, entry) {
   return inflateSync(raw);
 }
 
-function closeGrf(grf) {
+export function closeGrf(grf) {
   if (grf?.fd != null) closeSync(grf.fd);
 }
 
@@ -1068,7 +1141,11 @@ function desDecodeHeader(src, length) {
   for (let i = 0; i < 20 && i < count; ++i) desDecryptBlock(src, i * 8);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+// Only run the extractor when invoked directly (so the GRF/lua helpers above can
+// be imported by probe scripts without kicking off a full build).
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

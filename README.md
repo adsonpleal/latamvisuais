@@ -65,14 +65,34 @@ This rewrites `public/db/costumes.json`, `public/db/classes.json` and
 `public/db/hair.json`:
 
 - `costumes.json` — every item flagged `costume = true` in `iteminfo_new.lub`,
-  with its pt-BR name, sprite view id (`ClassNum`) and visual slot(s) parsed
-  from the item description ("Equipa em: Topo / Meio / Baixo / Capa").
+  with its pt-BR name, sprite view id and visual slot(s) parsed from the item
+  description ("Equipa em: Topo / Meio / Baixo / Capa"). The view id is the
+  client's `ClassNum`, or — when that is `0`, as on many newer costumes —
+  recovered from the item's resource name via the client's accessory-name /
+  robe-name tables.
 - `classes.json` — the playable classes (grouped like the iRO simulator), each
   with its clothes-color palette count per gender, enumerated from
   `data/palette/` inside the GRF (`jobname.lub` provides the job id → sprite
   name mapping).
 - `hair.json` — hair styles per gender/race enumerated from the hair sprites,
   and hair/clothes color swatches sampled from the actual `.pal` palette files.
+
+### Dropping effect-only costumes
+
+Some costumes are pure visual **effects** (auras, weather, falling petals, the
+"invisible" costumes) that the game draws with its world-effect system, not as a
+character sprite — zrenderer can't render them on the body, so they're kept out
+of the catalogue. `build:db` already drops the ones with no character-sprite
+view; for the few that resolve a view but still draw nothing, run
+
+```sh
+node tools/verify-previews.mjs
+```
+
+after `build:db`. It renders every remaining costume on the reference character
+against ragassets and **removes** any that draw nothing in idle, sit *and* dead.
+Re-run it whenever `costumes.json` is regenerated (`build:db` can't know what
+zrenderer actually draws). Use `--dry-run` to report without writing.
 
 ## Credits
 

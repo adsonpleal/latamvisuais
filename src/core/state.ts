@@ -8,14 +8,28 @@
 
 import type { ClassInfo, Costume, Db, Slot } from "./db";
 import { t } from "../i18n";
+import { APP_VERSION } from "../changelog";
 
 export const RAGASSETS_BASE = "https://ragassets.duckdns.org";
 
+/** Cache-buster appended to every RENDERED image URL (`&v=`). ragassets serves
+ *  renders with `Cache-Control: immutable` (≈1 year), keyed by the full query —
+ *  so when ragassets ships a render fix, the identical URL would keep serving the
+ *  stale image. Tying the param to the app version means each release mints fresh
+ *  URLs, forcing browsers/CDNs to re-fetch. (Static `/icons/*` are genuine GRF
+ *  extracts that don't change between renders, so they're left uncached-busted.) */
+const CACHE_BUST = APP_VERSION;
+
 /** Fixed render canvas (WxH+anchorX+anchorY), identical for every state and
  *  direction so the sprite's feet stay put when rotating or switching poses:
- *  124px above the origin fits standing bodies + headgear, 45px below fits the
- *  poses that extend under the ground line (sit, dead). */
-export const CANVAS = "200x169+100+124";
+ *  184px above the origin fits standing bodies plus the tall headgear/effect
+ *  costumes (planets, balloons, walls — measured up to ~160px above the feet),
+ *  48px below fits the poses that extend under the ground line (sit, dead), and
+ *  124px each side fits the wide lying "dead" pose and broad wings. The CSS
+ *  stage scales this 1.5× (see styles.css), so the character keeps its on-screen
+ *  size — the larger canvas only adds head/side room. Anything still larger is
+ *  the full-sprite modal's job (it renders uncropped). */
+export const CANVAS = "248x232+124+184";
 
 /** Animation types offered by the simulator. With no weapon equipped the
  *  attack always resolves to ATTACK1 (type 5). Head rotation only applies to
@@ -37,10 +51,6 @@ export const ACTIONS: { type: number; key: keyof typeof t.actions }[] = [
 ];
 
 export const HEAD_ROTATE_ACTIONS = new Set([0, 2]);
-
-/** Actions shown without a play/pause control: the idle-type poses (Parado,
- *  Sentar) and the genuinely static ones (Atordoado, Morto, Congelado). */
-export const NO_PLAYBACK_ACTIONS = new Set([0, 2, 7, 8, 9]);
 
 /** Frame count per animation type. The player body animations are uniform
  *  across every job and gender (verified against ragassets' acTL), so this
@@ -160,6 +170,7 @@ function renderParams(state: State, overrides: RenderOverrides): URLSearchParams
     : 0;
   p.set("headdir", String(headDir));
   if (overrides.canvas !== null) p.set("canvas", overrides.canvas ?? CANVAS);
+  p.set("v", CACHE_BUST);
   return p;
 }
 
@@ -196,6 +207,26 @@ export function itemIconUrl(id: number): string {
   return `${RAGASSETS_BASE}/icons/item/${id}.png`;
 }
 
+/** Fallback catalog thumbnail for the handful of costumes whose static item
+ *  icon is missing from ragassets (404). Renders the item on the reference
+ *  novice, head-framed like the hair thumbnails, so the tile still shows the
+ *  costume instead of a blank square. */
+export function costumeThumbUrl(item: { view?: number; slots: Slot[] }): string {
+  const p = new URLSearchParams();
+  p.set("job", "0");
+  p.set("gender", "male");
+  p.set("head", "1");
+  p.set("action", "0");
+  p.set("frame", "0");
+  if (item.view != null) {
+    if (item.slots.includes("garment")) p.set("garment", String(item.view));
+    else p.set("headgear", String(item.view));
+  }
+  p.set("canvas", "44x40+22+86");
+  p.set("v", CACHE_BUST);
+  return `${RAGASSETS_BASE}/image?${p.toString()}`;
+}
+
 export function jobIconUrl(id: number): string {
   return `${RAGASSETS_BASE}/icons/job/${id}.png`;
 }
@@ -228,6 +259,7 @@ export function hairThumbUrl(race: "human" | "doram", gender: Gender, hairId: nu
   p.set("action", "0");
   p.set("frame", "0");
   p.set("canvas", ref.canvas);
+  p.set("v", CACHE_BUST);
   return `${RAGASSETS_BASE}/image?${p.toString()}`;
 }
 

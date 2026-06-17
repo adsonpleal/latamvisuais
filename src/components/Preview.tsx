@@ -17,7 +17,6 @@ import {
   gifUrl,
   HEAD_ROTATE_ACTIONS,
   imageUrl,
-  NO_PLAYBACK_ACTIONS,
   ACTION_FRAMES,
 } from "../core/state";
 import { t } from "../i18n";
@@ -48,10 +47,11 @@ export function Preview() {
     setFrame(0);
   }
 
-  // The idle/static poses get no play/pause control (their APNG still plays).
-  const frameCount = NO_PLAYBACK_ACTIONS.has(state.action)
-    ? 1
-    : (ACTION_FRAMES[state.action] ?? 1);
+  // Frames in the current pose's animation. The play/pause toggle is always
+  // shown; the frame scrubber/steppers only make sense for multi-frame poses
+  // (`animated`) — the genuinely static ones (Atordoado, Morto, Congelado) have
+  // a single frame.
+  const frameCount = ACTION_FRAMES[state.action] ?? 1;
   const animated = frameCount > 1;
   const headAllowed = HEAD_ROTATE_ACTIONS.has(state.action);
 
@@ -169,11 +169,11 @@ export function Preview() {
         <StageArrow side="right" rowKind="body" onClick={() => dispatch({ type: "rotateBody", delta: 1 })} />
       </div>
 
-      <div className="playback" hidden={!animated}>
+      <div className="playback">
         <TipButton className="play-btn" tip={playing ? t.pause : t.play} onClick={() => setPlaying((p) => !p)}>
           {playing ? <Pause /> : <Play />}
         </TipButton>
-        <TipButton className="frame-step" tip={t.framePrev} hidden={playing} onClick={() => stepFrame(-1)}>
+        <TipButton className="frame-step" tip={t.framePrev} hidden={playing || !animated} onClick={() => stepFrame(-1)}>
           <ChevronLeft />
         </TipButton>
         <input
@@ -183,14 +183,14 @@ export function Preview() {
           max={Math.max(0, frameCount - 1)}
           step={1}
           value={frame}
-          hidden={playing}
+          hidden={playing || !animated}
           aria-label={t.frameLabel}
           onChange={(e) => {
             setFrame(Number(e.target.value));
             setPlaying(false);
           }}
         />
-        <TipButton className="frame-step" tip={t.frameNext} hidden={playing} onClick={() => stepFrame(1)}>
+        <TipButton className="frame-step" tip={t.frameNext} hidden={playing || !animated} onClick={() => stepFrame(1)}>
           <ChevronRight />
         </TipButton>
       </div>

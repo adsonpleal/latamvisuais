@@ -6,7 +6,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SLOTS, type Slot } from "../core/db";
-import { itemIconUrl } from "../core/state";
+import { costumeThumbUrl, itemIconUrl } from "../core/state";
 import { t } from "../i18n";
 import { useAppState, useDb, useDispatch } from "../state/AppStateContext";
 
@@ -101,7 +101,15 @@ export function Catalog({ slotFilter, onSlotFilterChange, pickSignal }: Props) {
                 alt=""
                 loading="lazy"
                 decoding="async"
-                onError={(e) => e.currentTarget.classList.add("is-missing")}
+                onError={(e) => {
+                  // ragassets has no static icon for a few items (404). Swap to a
+                  // rendered head-framed thumbnail once; if that also fails, give
+                  // up and mark the tile so the CSS can show a placeholder.
+                  const img = e.currentTarget;
+                  const fallback = costumeThumbUrl(item);
+                  if (img.src !== fallback) img.src = fallback;
+                  else img.classList.add("is-missing");
+                }}
               />
             </button>
           );

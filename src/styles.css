@@ -418,6 +418,58 @@ h1,
   margin-bottom: 0.4rem;
 }
 
+/* "Visuais" label + its "?" info button on one row. */
+.catalog-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.info-tip {
+  position: relative;
+  display: inline-flex;
+}
+
+.info-tip-btn {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--muted);
+  background: var(--bg-inset);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 120ms, border-color 120ms;
+}
+
+.info-tip-btn:hover,
+.info-tip-btn[aria-expanded="true"] {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.info-tip-pop {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 20;
+  width: max-content;
+  max-width: 260px;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-inset);
+  color: var(--fg);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.4;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
 button {
   font: inherit;
   color: inherit;
@@ -756,8 +808,11 @@ button:disabled {
 
 .stage {
   position: relative;
-  width: 300px;
-  height: 254px;
+  /* 1.5× the render canvas (248x232 in core/state.ts). Keeps the canvas aspect
+     ratio so the sprite never letterboxes, and scales down to fit narrow
+     columns without distorting. */
+  width: 372px;
+  aspect-ratio: 248 / 232;
   max-width: 100%;
   display: flex;
   align-items: center;
@@ -766,14 +821,14 @@ button:disabled {
   border-radius: 10px;
   /* A soft vertical gradient + a grounding shadow under the character. */
   background:
-    radial-gradient(ellipse 84px 22px at 50% 80%, rgba(70, 60, 90, 0.18), transparent 70%),
+    radial-gradient(ellipse 84px 22px at 50% 82%, rgba(70, 60, 90, 0.18), transparent 70%),
     linear-gradient(180deg, #fdfbff 0%, #eef0f8 55%, #e7e4f1 100%);
   overflow: hidden;
 }
 
 .stage-sprite {
-  width: 300px;
-  height: 254px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   image-rendering: pixelated;
   opacity: 0;
@@ -881,6 +936,94 @@ button:disabled {
   right: 8px;
 }
 
+/* ---- "Novidades" (changelog) modal ---------------------------------------- */
+
+.changelog-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(20, 18, 28, 0.66);
+}
+
+.changelog-box {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  text-align: left;
+}
+
+.changelog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.changelog-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.changelog-body {
+  overflow-y: auto;
+  padding: 1.1rem 1.25rem 1.35rem;
+}
+
+.changelog-entry + .changelog-entry {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.changelog-version {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent);
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.changelog-date {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.changelog-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--fg);
+}
+
+.changelog-credit {
+  margin: 0.7rem 0 0;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
 /* Download-the-sprite button, top-left of the modal — mirrors the close button
    on the opposite corner, styled like the stage's expand button. */
 .sprite-modal-download {
@@ -915,7 +1058,10 @@ button:disabled {
 
 .stage-wrap {
   position: relative;
-  width: 300px;
+  /* Match the stage width (1.5× the 248-wide canvas) so the stage isn't clamped
+     back down and the rotation arrows, positioned against this wrapper, stay
+     aligned with the character. */
+  width: 372px;
   max-width: 100%;
 }
 

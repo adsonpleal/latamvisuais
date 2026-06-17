@@ -4,9 +4,50 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
-## [Unreleased]
+## [0.2.0] — 2026-06-16
+
+Most of this release fixes costume-rendering issues surfaced by **kharuuldan**, who
+tested the simulator thoroughly and reported the costumes that didn't show up, the
+ones that were cropped, and the head-direction bug — thank you!
+
+### Fixed
+
+- **Many costumes that "didn't appear" now render.** Newer costumes ship with
+  `ClassNum = 0` in the client's iteminfo, so the build had no sprite view id for
+  them. `tools/build-db.mjs` now recovers the view from the item's resource name
+  via the client's accessory-name / robe-name tables when `ClassNum` is missing —
+  restoring ~30 headgear and garment costumes (Chapéu de Peru, Kafra Bianca,
+  Cartola da Guarda Real, Véu Obscuro, Pelúcia de Lady Tanee, Asa Mecânica,
+  Cruz do Druida Maligno, Laço Pomposo, Capa de Engrenagens, Brasão de Midgard,
+  and more).
+- **Bigger preview canvas** — tall and wide costumes (Balão de MVP, Planeta
+  Terra, Deviruchi Inflável, Muralha, etc.) are no longer cropped in the default
+  view. The render canvas grew from `200x169` to `248x232` (184px of headroom,
+  124px each side); the stage keeps the character at its previous on-screen size
+  and scales down cleanly on narrow columns.
+- **Missing catalogue thumbnails** — the few items whose static item icon 404s on
+  ragassets (the Tiara de Laço trio, Chapéu Pré-Escolar) now fall back to a
+  rendered head-framed thumbnail instead of a blank tile.
 
 ### Added
+
+- **Per-version image cache-busting** — every rendered sprite URL now carries a
+  `&v=<app version>` param (`CACHE_BUST` in `src/core/state.ts`). ragassets serves
+  renders as `immutable` (~1y), so without this a render fix on the ragassets side
+  would keep serving the stale cached image at the identical URL; bumping the app
+  version now mints fresh URLs and forces a re-fetch. Static `/icons/*` (genuine
+  GRF extracts) are intentionally left out so they aren't needlessly re-downloaded.
+- **"Novidades" changelog in the app** — a footer link (next to the version)
+  opens a modal with the user-facing release notes in pt-BR. Its content lives in
+  `src/changelog.ts` (curated for players); this file stays the detailed
+  engineering log.
+- **Effect / 3D costumes are hidden from the catalogue.** Pure visual effects
+  (auras, weather, falling petals, the "invisible" costumes) can't be drawn by
+  the 2D character renderer, so they no longer clutter the list as blank entries:
+  `build-db.mjs` drops the ones with no character-sprite view, and the new
+  `tools/verify-previews.mjs` renders the rest and removes any that still preview
+  blank (1384 → 1310 costumes). A **"?" info button** next to the "Visuais" label
+  explains why some visuals aren't listed.
 
 - **Favicon** — a Novice head sprite rendered by ragassets, downloaded into
   `public/` so the tab icon doesn't depend on that service being reachable.

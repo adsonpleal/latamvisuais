@@ -7,7 +7,8 @@ export const SLOTS: Slot[] = ["top", "mid", "low", "garment"];
 export type Costume = {
   id: number;
   name: string;
-  /** Sprite view id (the client's ClassNum) — absent when the item has none. */
+  /** Sprite view id (the client's ClassNum, or recovered from the resource name
+   *  when ClassNum is 0) — absent when the item has none. */
   view?: number;
   /** Visual slot(s) the item occupies (multi-slot costumes cover several). */
   slots: Slot[];

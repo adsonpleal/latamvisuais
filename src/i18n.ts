@@ -83,6 +83,11 @@ export const t = {
   slotFilterHint: (slot: string) => `Ver visuais de ${slot}`,
 
   catalogTitle: "Visuais",
+  catalogInfoLabel: "Sobre os visuais disponíveis",
+  catalogInfoText:
+    "Alguns visuais não aparecem aqui. O simulador usa apenas os sprites 2D do " +
+    "personagem, então visuais 3D e efeitos (auras, brilhos, climas e afins) não " +
+    "podem ser exibidos e foram omitidos da lista.",
   searchPlaceholder: "Buscar por nome ou ID…",
   allSlots: "Todos",
   itemCount: (n: number) => (n === 1 ? "1 item" : `${n} itens`),
@@ -103,6 +108,8 @@ export const t = {
   loading: "Carregando dados…",
   loadError: "Não foi possível carregar os dados do simulador.",
 
+  footerChangelog: "Novidades",
+  changelogTitle: "Novidades",
   footerCopyright: "© Gravity Interactive, Inc. All Rights Reserved.",
   footerInspired: "Inspirado em",
   footerAssets: "Sprites e ícones via",

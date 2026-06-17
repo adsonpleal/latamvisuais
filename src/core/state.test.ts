@@ -15,15 +15,17 @@ import {
   type State,
 } from "./state";
 import { makeDb } from "../test/fixtures";
+import { APP_VERSION } from "../changelog";
 
 const db = makeDb();
 const BASE = "https://ragassets.duckdns.org";
+const V = `&v=${APP_VERSION}`; // cache-buster appended to every rendered image URL
 const item = (id: number): Costume => db.costumes.find((c) => c.id === id)!;
 
 describe("imageUrl", () => {
   it("builds the default render URL with the fixed canvas", () => {
     expect(imageUrl(initialState(db))).toBe(
-      `${BASE}/image?job=0&gender=male&head=1&action=0&headdir=0&canvas=200x169%2B100%2B124`,
+      `${BASE}/image?job=0&gender=male&head=1&action=0&headdir=0&canvas=248x232%2B124%2B184${V}`,
     );
   });
 
@@ -42,7 +44,7 @@ describe("imageUrl", () => {
     };
     expect(imageUrl(state)).toBe(
       `${BASE}/image?job=4054&gender=female&head=2&headPalette=3&bodyPalette=1` +
-        `&headgear=10%2C20&garment=40&action=13&headdir=0&canvas=200x169%2B100%2B124`,
+        `&headgear=10%2C20&garment=40&action=13&headdir=0&canvas=248x232%2B124%2B184${V}`,
     );
   });
 
@@ -72,13 +74,13 @@ describe("imageUrl", () => {
       canvas: actionIconCanvas(2),
     });
     expect(url).toBe(
-      `${BASE}/image?job=4054&gender=female&head=1&action=16&frame=0&headdir=0&canvas=76x112%2B38%2B93`,
+      `${BASE}/image?job=4054&gender=female&head=1&action=16&frame=0&headdir=0&canvas=76x112%2B38%2B93${V}`,
     );
   });
 
   it("omits the canvas param entirely when canvas is null (modal auto-crop)", () => {
     expect(imageUrl(initialState(db), { canvas: null })).toBe(
-      `${BASE}/image?job=0&gender=male&head=1&action=0&headdir=0`,
+      `${BASE}/image?job=0&gender=male&head=1&action=0&headdir=0${V}`,
     );
   });
 });
@@ -137,10 +139,10 @@ describe("canvas + asset URL builders", () => {
 
   it("renders hair thumbnails against the per-race reference body", () => {
     expect(hairThumbUrl("human", "f", 2)).toBe(
-      `${BASE}/image?job=0&gender=female&head=2&action=0&frame=0&canvas=44x40%2B22%2B86`,
+      `${BASE}/image?job=0&gender=female&head=2&action=0&frame=0&canvas=44x40%2B22%2B86${V}`,
     );
     expect(hairThumbUrl("doram", "m", 1)).toBe(
-      `${BASE}/image?job=4218&gender=male&head=1&action=0&frame=0&canvas=44x40%2B22%2B63`,
+      `${BASE}/image?job=4218&gender=male&head=1&action=0&frame=0&canvas=44x40%2B22%2B63${V}`,
     );
   });
 

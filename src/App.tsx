@@ -5,6 +5,7 @@
 
 import { useEffect, useMemo, useReducer, useState } from "react";
 import type { Db, Slot } from "./core/db";
+import { APP_VERSION } from "./changelog";
 import { clampState } from "./core/clamp";
 import { createAppReducer } from "./core/reducer";
 import { initialState } from "./core/state";
@@ -15,7 +16,9 @@ import { useTooltip } from "./hooks/useTooltip";
 import { AppStateProvider } from "./state/AppStateContext";
 import { AppearancePanel } from "./components/AppearancePanel";
 import { Catalog } from "./components/Catalog";
+import { Changelog } from "./components/Changelog";
 import { ClassSelect } from "./components/ClassSelect";
+import { InfoTip } from "./components/InfoTip";
 import { Preview } from "./components/Preview";
 import { Slots } from "./components/Slots";
 import { ThemeSelect } from "./components/ThemeSelect";
@@ -51,6 +54,8 @@ function Simulator({ db }: { db: Db }) {
     setSlotFilter(slot);
     setPickSignal((n) => n + 1);
   };
+
+  const [changelogOpen, setChangelogOpen] = useState(false);
 
   return (
     <AppStateProvider value={{ db, state, dispatch }}>
@@ -112,13 +117,23 @@ function Simulator({ db }: { db: Db }) {
           </div>
           <Slots onPick={pickSlot} />
           {/* A sub-section label (title case), not an uppercase panel header —
-              "Visuais equipados" already heads this card. */}
-          <div className="control-label">{t.catalogTitle}</div>
+              "Visuais equipados" already heads this card. The "?" explains why
+              effect/3D costumes aren't in the list. */}
+          <div className="control-label catalog-label">
+            {t.catalogTitle}
+            <InfoTip label={t.catalogInfoLabel} text={t.catalogInfoText} />
+          </div>
           <Catalog slotFilter={slotFilter} onSlotFilterChange={setSlotFilter} pickSignal={pickSignal} />
         </section>
       </main>
 
       <footer className="footer">
+        <div className="footer-line">
+          <button type="button" className="footer-link" onClick={() => setChangelogOpen(true)}>
+            {t.footerChangelog}
+          </button>
+          {" · v" + APP_VERSION}
+        </div>
         <div className="footer-line">{t.footerCopyright}</div>
         <div className="footer-credits">
           {t.footerInspired + " "}
@@ -131,6 +146,8 @@ function Simulator({ db }: { db: Db }) {
           <FooterLink href="https://github.com/adsonpleal/latamvisuais/blob/main/LICENSE">MIT</FooterLink>
         </div>
       </footer>
+
+      {changelogOpen && <Changelog onClose={() => setChangelogOpen(false)} />}
     </AppStateProvider>
   );
 }
