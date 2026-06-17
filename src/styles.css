@@ -70,7 +70,7 @@
   border-color: var(--border);
 }
 
-:root[data-theme="dark"] .gender-btn {
+:root[data-theme="dark"] .gender-btn:not(.is-selected) {
   color: var(--muted);
 }
 
@@ -297,10 +297,11 @@ body {
 }
 
 /* From tablet up: pin the app to the viewport so the PAGE doesn't scroll — only
-   inner areas do, chiefly the items grid. Each panel fills its row height; a
-   tall panel (the appearance controls) scrolls internally, and the catalog
-   panel hands its remaining room to the grid. (Below 640px everything stacks in
-   one column and the page scrolls normally — there's no room to pin.) */
+   inner areas do, chiefly the items grid. Each panel fills its row height; the
+   appearance panel keeps its fixed controls (class, gender, colours) in view and
+   lets the long hair-style grid take the leftover room and scroll there, and the
+   catalog panel hands its remaining room to the grid. (Below 640px everything
+   stacks in one column and the page scrolls normally — there's no room to pin.) */
 @media (min-width: 641px) {
   #app {
     height: 100dvh;
@@ -316,8 +317,35 @@ body {
   .panel {
     max-height: 100%;
   }
-  .panel-appearance,
   .panel-preview {
+    overflow-y: auto;
+  }
+  /* The appearance panel itself never scrolls: it's a flex column whose hair
+     grid is the one flexible region — it shrinks and scrolls internally when the
+     window is short, so class/gender/colours stay put. On a tall window the grid
+     shows every style with no scroll. */
+  .panel-appearance {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .panel-appearance .appearance {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  .panel-appearance .hair-block {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    min-height: 0;
+  }
+  .panel-appearance .hair-block .hair-grid {
+    flex: 1 1 auto;
+    /* Keep at least ~two rows visible rather than collapsing to a sliver; in a
+       genuinely tiny panel the whole panel scrolls as a last resort. */
+    min-height: 5rem;
     overflow-y: auto;
   }
   .panel-catalog {
@@ -403,6 +431,18 @@ h1,
 
 .panel-title + .control-block {
   margin-top: 0;
+}
+
+/* "Personagem" title + its "?" save-info button on one row. */
+.panel-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.panel-title-row .panel-title {
+  margin: 0;
 }
 
 /* ---- generic controls ----------------------------------------------------- */
@@ -576,6 +616,38 @@ button:disabled {
 
 .gender-btn:disabled {
   opacity: 0.45;
+}
+
+/* Save-slot switcher — numbered pill buttons sharing the catalog filter-chip
+   style. Equal width (flex: 1) so they fill the row; the active slot is a filled
+   accent pill. Theme variables handle dark mode (no overrides needed). */
+.slot-bar {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.slot-pick {
+  flex: 1;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.28rem 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-inset);
+  color: var(--muted);
+  text-align: center;
+  transition: background 120ms, color 120ms, border-color 120ms;
+}
+
+.slot-pick:hover:not(.is-selected) {
+  border-color: var(--accent);
+  color: var(--fg);
+}
+
+.slot-pick.is-selected {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
 }
 
 /* Clothes color square — the SAME game color-square <img> as the hair colors

@@ -7,7 +7,7 @@
 
 import type { Costume, Db, Slot } from "./db";
 import { clampState } from "./clamp";
-import { toggleEquip, unequipSlot, type Gender, type State } from "./state";
+import { applyBuild, toggleEquip, unequipSlot, type Build, type Gender, type State } from "./state";
 
 export type Action =
   | { type: "setClass"; classId: number }
@@ -19,7 +19,8 @@ export type Action =
   | { type: "rotateHead"; delta: number }
   | { type: "setAction"; action: number }
   | { type: "toggleEquip"; item: Costume }
-  | { type: "unequipSlot"; slot: Slot };
+  | { type: "unequipSlot"; slot: Slot }
+  | { type: "loadBuild"; build: Build };
 
 function reduceRaw(state: State, action: Action): State {
   switch (action.type) {
@@ -52,6 +53,9 @@ function reduceRaw(state: State, action: Action): State {
       unequipSlot(next, action.slot);
       return next;
     }
+    case "loadBuild":
+      // Swap in a saved slot's costume; the view (pose/rotation) is preserved.
+      return applyBuild(state, action.build);
   }
 }
 

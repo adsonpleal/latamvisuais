@@ -70,7 +70,7 @@ export function AppearancePanel() {
         </div>
       </div>
 
-      <div className="control-block">
+      <div className="control-block hair-block">
         <div className="control-label">{t.hairStyleLabel}</div>
         <div className="hair-grid appearance-card">
           {hair.styles.map(({ n }) => {

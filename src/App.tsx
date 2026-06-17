@@ -3,12 +3,13 @@
 // React equivalent of the old main.ts `start()` — same DOM structure and class
 // names, so styles.css applies unchanged.
 
-import { useEffect, useMemo, useReducer, useState } from "react";
+import { useCallback, useEffect, useMemo, useReducer, useState } from "react";
 import type { Db, Slot } from "./core/db";
 import { APP_VERSION } from "./changelog";
 import { clampState } from "./core/clamp";
 import { createAppReducer } from "./core/reducer";
-import { initialState } from "./core/state";
+import { buildOf, initialState } from "./core/state";
+import { buildSignature, loadSlots, saveSlots, SLOT_COUNT } from "./core/slots";
 import { readUrlState, syncUrl } from "./core/url";
 import { t } from "./i18n";
 import { useLoadDb } from "./hooks/useLoadDb";
@@ -20,6 +21,7 @@ import { Changelog } from "./components/Changelog";
 import { ClassSelect } from "./components/ClassSelect";
 import { InfoTip } from "./components/InfoTip";
 import { Preview } from "./components/Preview";
+import { SlotBar } from "./components/SlotBar";
 import { Slots } from "./components/Slots";
 import { ThemeSelect } from "./components/ThemeSelect";
 import { Wishlist } from "./components/Wishlist";
@@ -35,8 +37,48 @@ export default function App() {
 
 function Simulator({ db }: { db: Db }) {
   const reducer = useMemo(() => createAppReducer(db), [db]);
-  const [state, dispatch] = useReducer(reducer, db, (db) =>
-    clampState(db, { ...initialState(db), ...(readUrlState(db) ?? {}) }),
+
+  // Save slots: read every stored build + the active index once, then seed the
+  // reducer from the active slot. A shared ?b= URL still wins for display — it
+  // overrides the active slot's build (and is auto-saved straight back into it).
+  const initialSlots = useMemo(() => loadSlots(db), [db]);
+  const [builds, setBuilds] = useState(initialSlots.builds);
+  const [active, setActive] = useState(initialSlots.active);
+
+  const [state, dispatch] = useReducer(reducer, db, (db) => {
+    const activeBuild = initialSlots.builds[initialSlots.active];
+    return clampState(db, {
+      ...initialState(db),
+      ...(activeBuild ?? {}),
+      ...(readUrlState(db) ?? {}),
+    });
+  });
+
+  // Auto-save: write the current build back to the active slot whenever the
+  // costume changes (keyed on the build signature, so a pure pose/rotation
+  // change doesn't rewrite storage) or the active slot switches.
+  const buildSig = buildSignature(buildOf(state));
+  useEffect(() => {
+    setBuilds((prev) => {
+      const next = [...prev];
+      next[active] = buildOf(state);
+      saveSlots({ builds: next, active });
+      return next;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [buildSig, active]);
+
+  // Switch slots: load the target build (defaults for an untouched slot),
+  // keeping the current pose/rotation. The auto-save effect then re-anchors
+  // persistence onto the new active slot.
+  const selectSlot = useCallback(
+    (index: number) => {
+      if (index === active) return;
+      const build = builds[index] ?? buildOf(initialState(db));
+      setActive(index);
+      dispatch({ type: "loadBuild", build });
+    },
+    [active, builds, db],
   );
 
   // Reflect the current build in the address bar — runs once on mount (the old
@@ -98,7 +140,11 @@ function Simulator({ db }: { db: Db }) {
 
       <main className="layout">
         <section className="panel panel-appearance">
-          <h2 className="panel-title">{t.appearanceTitle}</h2>
+          <div className="panel-title-row">
+            <h2 className="panel-title">{t.appearanceTitle}</h2>
+            <InfoTip label={t.saveInfoLabel} text={t.saveInfoText} />
+          </div>
+          <SlotBar active={active} count={SLOT_COUNT} onSelect={selectSlot} />
           <div className="control-block">
             <div className="control-label">{t.classLabel}</div>
             <ClassSelect />

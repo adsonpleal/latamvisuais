@@ -17,6 +17,13 @@ export const t = {
   themeDark: "Escuro",
 
   appearanceTitle: "Personagem",
+  saveInfoLabel: "Sobre o salvamento automático",
+  saveInfoText:
+    "Tudo é salvo automaticamente. Use os números abaixo para alternar entre personagens " +
+    "salvos — cada número guarda um visual diferente (classe, gênero, cabelo, cores e visuais " +
+    "equipados). Atalho: Alt + número. A pose e a rotação atuais são mantidas ao trocar.",
+  slotBarLabel: "Personagens salvos",
+  slotSwitchTip: (n: number) => `Personagem ${n} (Alt+${n})`,
   classLabel: "Classe",
   genderLabel: "Gênero",
   genderMale: "Masculino",

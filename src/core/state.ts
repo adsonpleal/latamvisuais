@@ -116,6 +116,41 @@ export function initialState(db: Db): State {
   };
 }
 
+/** The "who/what is wearing" portion of a build — everything a save slot stores.
+ *  The remaining State fields (bodyDir, headDir, action) are the *view*: how the
+ *  character is posed and rotated. Switching save slots swaps the Build but keeps
+ *  the view, so you can compare costumes in the same pose. */
+export type Build = Pick<
+  State,
+  "classId" | "gender" | "hairStyle" | "hairColor" | "clothesColor" | "equipped"
+>;
+
+export function buildOf(state: State): Build {
+  return {
+    classId: state.classId,
+    gender: state.gender,
+    hairStyle: state.hairStyle,
+    hairColor: state.hairColor,
+    clothesColor: state.clothesColor,
+    equipped: state.equipped,
+  };
+}
+
+/** Replace the build fields of `state` with `build`, leaving the view (pose and
+ *  rotation) untouched. The equipped map is copied so the slot's stored build is
+ *  never mutated by later edits. */
+export function applyBuild(state: State, build: Build): State {
+  return {
+    ...state,
+    classId: build.classId,
+    gender: build.gender,
+    hairStyle: build.hairStyle,
+    hairColor: build.hairColor,
+    clothesColor: build.clothesColor,
+    equipped: { ...build.equipped },
+  };
+}
+
 export function classOf(db: Db, state: State): ClassInfo | undefined {
   return db.classes.find((c) => c.id === state.classId);
 }

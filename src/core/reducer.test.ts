@@ -53,4 +53,32 @@ describe("createAppReducer", () => {
     const next = reduce(initialState(db), { type: "setHairColor", hairColor: 3 });
     expect(next.hairColor).toBe(3);
   });
+
+  it("loadBuild swaps the costume but keeps the pose and rotation", () => {
+    const start: State = {
+      ...initialState(db),
+      action: 0, // idle — a head-rotating pose, so headDir survives clamp
+      bodyDir: 3,
+      headDir: 2,
+    };
+    const next = reduce(start, {
+      type: "loadBuild",
+      build: {
+        classId: 4054,
+        gender: "f",
+        hairStyle: 2,
+        hairColor: 1,
+        clothesColor: 1,
+        equipped: { top: item(100) },
+      },
+    });
+    // Build fields replaced…
+    expect(next.classId).toBe(4054);
+    expect(next.gender).toBe("f");
+    expect(next.equipped).toEqual({ top: item(100) });
+    // …view preserved.
+    expect(next.action).toBe(0);
+    expect(next.bodyDir).toBe(3);
+    expect(next.headDir).toBe(2);
+  });
 });
