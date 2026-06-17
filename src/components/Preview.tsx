@@ -14,12 +14,14 @@ import {
   ACTIONS,
   actionIconCanvas,
   classOf,
+  frameCountProbeUrl,
   gifUrl,
   HEAD_ROTATE_ACTIONS,
   imageUrl,
   ACTION_FRAMES,
 } from "../core/state";
 import { t } from "../i18n";
+import { useFrameCount } from "../hooks/useFrameCount";
 import { usePreloadedImage } from "../hooks/usePreloadedImage";
 import { useAppState, useDb, useDispatch } from "../state/AppStateContext";
 import { TipButton } from "./TipButton";
@@ -47,13 +49,20 @@ export function Preview() {
     setFrame(0);
   }
 
-  // Frames in the current pose's animation. The play/pause toggle is always
-  // shown; the frame scrubber/steppers only make sense for multi-frame poses
-  // (`animated`) — the genuinely static ones (Atordoado, Morto, Congelado) have
-  // a single frame.
-  const frameCount = ACTION_FRAMES[state.action] ?? 1;
+  // Frames in the current pose's *composited* animation — read from the actual
+  // rendered APNG so an animated costume (e.g. a 24-frame wing garment) exposes
+  // all its frames, not just the body's. ACTION_FRAMES is the fallback until the
+  // probe resolves (and on failure). The play/pause toggle is always shown; the
+  // frame scrubber/steppers only make sense for multi-frame poses (`animated`) —
+  // the genuinely static ones (Atordoado, Morto, Congelado) have a single frame.
+  const probedFrameCount = useFrameCount(frameCountProbeUrl(state));
+  const frameCount = probedFrameCount ?? ACTION_FRAMES[state.action] ?? 1;
   const animated = frameCount > 1;
   const headAllowed = HEAD_ROTATE_ACTIONS.has(state.action);
+
+  // Keep the scrubber in range when a costume change shortens the animation
+  // (e.g. unequipping the wings drops idle from 24 frames back to 3).
+  if (frame >= frameCount) setFrame(frameCount - 1);
 
   // Preload off-screen, then swap once decoded — no blank flash between renders.
   const sprite = usePreloadedImage(playing ? imageUrl(state) : imageUrl(state, { frame }));

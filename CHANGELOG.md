@@ -4,6 +4,21 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.2.1] — 2026-06-17
+
+### Fixed
+
+- **Animated costumes now animate when paused or stepped in idle and sit.** A
+  pose's frame count is read at runtime from the rendered APNG's `acTL` — an
+  animated garment such as the 24-frame Golden Archangel Wings makes idle/sit far
+  longer than the bare body's 3 frames — instead of the static, body-only
+  `ACTION_FRAMES` table, so the frame scrubber covers every costume frame. Pairs
+  with a ragassets renderer fix that makes a single-frame (`&frame=N`) request
+  return exactly the Nth frame of the animation (head pinned to its direction,
+  body retained, costume advanced); previously, stepping frames in idle/sit turned
+  the head and dropped the body past frame 2. The render cache-buster bumps with
+  this release so cached stills refresh.
+
 ## [0.2.0] — 2026-06-16
 
 Most of this release fixes costume-rendering issues surfaced by **kharuuldan**, who

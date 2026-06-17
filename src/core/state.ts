@@ -52,12 +52,15 @@ export const ACTIONS: { type: number; key: keyof typeof t.actions }[] = [
 
 export const HEAD_ROTATE_ACTIONS = new Set([0, 2]);
 
-/** Frame count per animation type. The player body animations are uniform
- *  across every job and gender (verified against ragassets' acTL), so this
- *  static table avoids a runtime metadata fetch — ragassets' /image endpoint
- *  isn't CORS-enabled, so the browser can't read the APNG bytes. Attack is the
- *  unarmed motion (this app never equips weapons). Types with 1 frame are
- *  static, so they get no play/pause. */
+/** Fallback frame count per animation type — the bare *body* animation, uniform
+ *  across every job and gender (verified against ragassets' acTL). This is only a
+ *  fallback: an equipped animated costume makes a pose longer than the body (a
+ *  24-frame wing garment turns 3-frame idle into 24 frames), so the real count is
+ *  read at runtime from the rendered APNG's acTL (see useFrameCount —
+ *  ragassets sends Access-Control-Allow-Origin:* so the bytes are readable). Used
+ *  until that probe resolves and on fetch failure. Attack is the unarmed motion
+ *  (this app never equips weapons). Types with 1 frame are static, so they get no
+ *  play/pause. */
 export const ACTION_FRAMES: Record<number, number> = {
   0: 3, // idle
   1: 8, // walk
@@ -183,6 +186,30 @@ export function imageUrl(state: State, overrides: RenderOverrides = {}): string 
  *  `frame` is pinned). Used by the full-sprite download for animated poses. */
 export function gifUrl(state: State, overrides: RenderOverrides = {}): string {
   return `${RAGASSETS_BASE}/gif?${renderParams(state, overrides).toString()}`;
+}
+
+/** A minimal animated render whose only purpose is to read the composited frame
+ *  count (the APNG's acTL) for the current pose. An animated costume makes a
+ *  pose longer than the bare body — the 24-frame wing garments turn idle/sit
+ *  (a 3-frame body animation) into a 24-frame one — and ACTION_FRAMES only knows
+ *  the body. This is pinned south with a 2px canvas and carries no palette/hair-
+ *  colour params, so the URL (and ragassets' cached render) stays stable across
+ *  rotation and recolouring, changing only with the inputs that actually change
+ *  the frame count: job, gender, hair, action and equipped costumes. Single-frame
+ *  poses come back as a plain PNG (no acTL → one frame). */
+export function frameCountProbeUrl(state: State): string {
+  const p = new URLSearchParams();
+  p.set("job", String(state.classId));
+  p.set("gender", state.gender === "f" ? "female" : "male");
+  p.set("head", String(state.hairStyle));
+  const { headgear, garment } = gearViews(state);
+  if (headgear.length) p.set("headgear", headgear.join(","));
+  if (garment != null) p.set("garment", String(garment));
+  p.set("action", String(state.action * 8)); // bodyDir 0
+  p.set("headdir", "0");
+  p.set("canvas", "2x2+1+1");
+  p.set("v", CACHE_BUST);
+  return `${RAGASSETS_BASE}/image?${p.toString()}`;
 }
 
 // How far each pose's lowest pixel drops below the origin (the ground point),
