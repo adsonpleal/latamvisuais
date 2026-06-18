@@ -43,6 +43,9 @@ export const t = {
   rotateHeadLeft: "Girar a cabeça para a esquerda",
   rotateHeadRight: "Girar a cabeça para a direita",
   actionsLabel: "Ação",
+  mountLabel: "Montaria",
+  mountOn: "Montar",
+  mountOff: "Desmontar",
   viewFull: "Ver sprite completo",
   closeModal: "Fechar",
   downloadImage: "Baixar imagem",
@@ -68,6 +71,17 @@ export const t = {
     frozen: "Atordoado",
     dead: "Morto",
     frozen2: "Congelado",
+  },
+
+  // Mount display names (see core/mounts.ts). "Rédeas" is the universal mount
+  // every class can ride; the others are class-signature mounts.
+  mountNames: {
+    reins: "Rédeas",
+    peco: "Peco Peco",
+    dragon: "Dragão",
+    griffon: "Grifo",
+    wolf: "Worg",
+    madogear: "MECHA",
   },
 
   slotsTitle: "Visuais equipados",

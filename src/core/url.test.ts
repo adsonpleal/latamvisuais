@@ -21,6 +21,7 @@ function sampleState(): State {
       top: db.costumes.find((c) => c.id === 100)!,
       garment: db.costumes.find((c) => c.id === 400)!,
     },
+    mount: null,
   };
 }
 
@@ -33,6 +34,15 @@ describe("encodeState", () => {
     // classId 4054 → "34m"; packed = f|3<<1|1<<4|2<<6 = 151 → "47";
     // hairColor 3 → 4 → "4"; clothesColor 2 → 3 → "3"; items 100,400 → "2s-b4".
     expect(encodeState(sampleState())).toBe("1.34m.47.2.4.3.2s-b4");
+  });
+
+  it("packs the mount index (mountIndex+1) into the packed field, round-tripping", () => {
+    // 4054 has two mounts; mount index 1 → packed gains (1+1)<<10.
+    const state: State = { ...sampleState(), mount: 1 };
+    const decoded = decodeState(encodeState(state), db);
+    expect(clampState(db, { ...initialState(db), ...decoded })).toEqual(state);
+    // The default (unmounted) build stays unchanged — mount adds no bits.
+    expect(decodeState(encodeState(initialState(db)), db)!.mount).toBeNull();
   });
 
   it("lists each multi-slot costume once", () => {

@@ -7,6 +7,7 @@
 //     action = animationType * 8 + bodyDirection   (0=S, 1=SW … 7=SE)
 
 import type { ClassInfo, Costume, Db, Slot } from "./db";
+import { mountsFor } from "./mounts";
 import { t } from "../i18n";
 import { APP_VERSION } from "../changelog";
 
@@ -100,6 +101,9 @@ export type State = {
   hairColor: number | null; // palette index; null = sprite's own palette
   clothesColor: number | null;
   equipped: Partial<Record<Slot, Costume>>;
+  /** Index into the class's mount list (see core/mounts.ts), or null when not
+   *  mounted. Mounting renders an alternate (mounted) job id — see effectiveJob. */
+  mount: number | null;
 };
 
 export function initialState(db: Db): State {
@@ -113,6 +117,7 @@ export function initialState(db: Db): State {
     hairColor: null,
     clothesColor: null,
     equipped: {},
+    mount: null,
   };
 }
 
@@ -122,7 +127,7 @@ export function initialState(db: Db): State {
  *  the view, so you can compare costumes in the same pose. */
 export type Build = Pick<
   State,
-  "classId" | "gender" | "hairStyle" | "hairColor" | "clothesColor" | "equipped"
+  "classId" | "gender" | "hairStyle" | "hairColor" | "clothesColor" | "equipped" | "mount"
 >;
 
 export function buildOf(state: State): Build {
@@ -133,6 +138,7 @@ export function buildOf(state: State): Build {
     hairColor: state.hairColor,
     clothesColor: state.clothesColor,
     equipped: state.equipped,
+    mount: state.mount,
   };
 }
 
@@ -148,7 +154,18 @@ export function applyBuild(state: State, build: Build): State {
     hairColor: build.hairColor,
     clothesColor: build.clothesColor,
     equipped: { ...build.equipped },
+    mount: build.mount,
   };
+}
+
+/** The job id to render for the current state: the mounted job sprite when a
+ *  mount is selected (and valid for the class), otherwise the plain class. */
+export function effectiveJob(state: State): number {
+  if (state.mount != null) {
+    const mount = mountsFor(state.classId)[state.mount];
+    if (mount) return mount.jobId;
+  }
+  return state.classId;
 }
 
 export function classOf(db: Db, state: State): ClassInfo | undefined {
@@ -192,7 +209,7 @@ export type RenderOverrides = {
 
 function renderParams(state: State, overrides: RenderOverrides): URLSearchParams {
   const p = new URLSearchParams();
-  p.set("job", String(state.classId));
+  p.set("job", String(effectiveJob(state)));
   p.set("gender", state.gender === "f" ? "female" : "male");
   p.set("head", String(state.hairStyle));
   if (state.hairColor != null) p.set("headPalette", String(state.hairColor));
@@ -234,7 +251,7 @@ export function gifUrl(state: State, overrides: RenderOverrides = {}): string {
  *  poses come back as a plain PNG (no acTL → one frame). */
 export function frameCountProbeUrl(state: State): string {
   const p = new URLSearchParams();
-  p.set("job", String(state.classId));
+  p.set("job", String(effectiveJob(state)));
   p.set("gender", state.gender === "f" ? "female" : "male");
   p.set("head", String(state.hairStyle));
   const { headgear, garment } = gearViews(state);

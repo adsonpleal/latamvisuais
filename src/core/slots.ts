@@ -45,6 +45,7 @@ function decodeBuild(raw: string, db: Db): Build {
     hairColor: p.hairColor !== undefined ? p.hairColor : def.hairColor,
     clothesColor: p.clothesColor !== undefined ? p.clothesColor : def.clothesColor,
     equipped: p.equipped ?? def.equipped,
+    mount: p.mount !== undefined ? p.mount : def.mount,
   };
 }
 
@@ -98,6 +99,7 @@ export function buildSignature(build: Build): string {
     build.hairStyle,
     build.hairColor,
     build.clothesColor,
+    build.mount,
     items,
   ].join("|");
 }

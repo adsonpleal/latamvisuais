@@ -6,6 +6,7 @@
 // and clothes palette both depend on it.
 
 import type { Db } from "./db";
+import { mountsFor } from "./mounts";
 import {
   classOf,
   hairSetOf,
@@ -34,6 +35,12 @@ export function clampState(db: Db, state: State): State {
     next.clothesColor = null;
   }
   if (!HEAD_ROTATE_ACTIONS.has(next.action)) next.headDir = 0;
+
+  // Drop a mount the new class can't ride (e.g. switching to a class with fewer
+  // or no mounts). The toggle stays off rather than landing on a wrong sprite.
+  if (next.mount != null && next.mount >= mountsFor(next.classId).length) {
+    next.mount = null;
+  }
 
   return next;
 }

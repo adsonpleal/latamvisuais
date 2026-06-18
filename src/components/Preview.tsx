@@ -20,6 +20,7 @@ import {
   imageUrl,
   ACTION_FRAMES,
 } from "../core/state";
+import { mountsFor } from "../core/mounts";
 import { t } from "../i18n";
 import { useFrameCount } from "../hooks/useFrameCount";
 import { usePreloadedImage } from "../hooks/usePreloadedImage";
@@ -59,6 +60,12 @@ export function Preview() {
   const frameCount = probedFrameCount ?? ACTION_FRAMES[state.action] ?? 1;
   const animated = frameCount > 1;
   const headAllowed = HEAD_ROTATE_ACTIONS.has(state.action);
+
+  // Mounts available to the current class (see core/mounts.ts). The toggle is
+  // hidden for classes without any; when mounted and the class has more than one
+  // mount, a small picker lets you choose which.
+  const mounts = mountsFor(state.classId);
+  const mounted = state.mount != null;
 
   // Keep the scrubber in range when a costume change shortens the animation
   // (e.g. unequipping the wings drops idle from 24 frames back to 3).
@@ -234,6 +241,40 @@ export function Preview() {
           })}
         </div>
       </div>
+
+      {mounts.length > 0 && (
+        <div className="control-block mount-block">
+          <div className="control-label">{t.mountLabel}</div>
+          <div className="mount-row">
+            <TipButton
+              className={mounted ? "mount-toggle is-on" : "mount-toggle"}
+              tip={mounted ? t.mountOff : t.mountOn}
+              role="switch"
+              aria-checked={mounted}
+              onClick={() => dispatch({ type: "setMount", mount: mounted ? null : 0 })}
+            >
+              <span className="mount-toggle-track">
+                <span className="mount-toggle-thumb" />
+              </span>
+            </TipButton>
+            {mounted && mounts.length > 1 && (
+              <div className="mount-choices">
+                {mounts.map((m, i) => (
+                  <TipButton
+                    key={i}
+                    className={state.mount === i ? "mount-choice is-selected" : "mount-choice"}
+                    tip={t.mountNames[m.nameKey]}
+                    aria-pressed={state.mount === i}
+                    onClick={() => dispatch({ type: "setMount", mount: i })}
+                  >
+                    {t.mountNames[m.nameKey]}
+                  </TipButton>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       <div
         className="sprite-modal"

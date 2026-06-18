@@ -54,6 +54,16 @@ describe("createAppReducer", () => {
     expect(next.hairColor).toBe(3);
   });
 
+  it("setMount selects a mount, and a class change drops one the class can't ride", () => {
+    // Rune Knight has two mounts (Rédeas + Dragão); index 1 is valid.
+    const rk: State = { ...initialState(db), classId: 4054 };
+    const mounted = reduce(rk, { type: "setMount", mount: 1 });
+    expect(mounted.mount).toBe(1);
+    // Switching to a class with only one mount clamps the now-invalid index off.
+    const switched = reduce(mounted, { type: "setClass", classId: 4021 });
+    expect(switched.mount).toBeNull();
+  });
+
   it("loadBuild swaps the costume but keeps the pose and rotation", () => {
     const start: State = {
       ...initialState(db),
@@ -70,6 +80,7 @@ describe("createAppReducer", () => {
         hairColor: 1,
         clothesColor: 1,
         equipped: { top: item(100) },
+        mount: null,
       },
     });
     // Build fields replaced…

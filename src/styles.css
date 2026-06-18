@@ -1243,6 +1243,98 @@ button:disabled {
   image-rendering: pixelated;
 }
 
+/* ---- mount toggle + picker -------------------------------------------------- */
+
+.mount-block {
+  width: 100%;
+  margin-top: 0.7rem;
+}
+
+.mount-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+/* On/off switch — a pill track with a sliding thumb, accent-filled when on. */
+.mount-toggle {
+  flex: none;
+}
+
+.mount-toggle-track {
+  display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  background: var(--border);
+  transition: background 140ms;
+  vertical-align: middle;
+}
+
+.mount-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition: transform 140ms;
+}
+
+.mount-toggle.is-on .mount-toggle-track {
+  background: var(--accent);
+}
+
+.mount-toggle.is-on .mount-toggle-thumb {
+  transform: translateX(18px);
+}
+
+.mount-toggle:hover .mount-toggle-track {
+  background: color-mix(in srgb, var(--border) 70%, var(--accent));
+}
+
+.mount-toggle.is-on:hover .mount-toggle-track {
+  background: var(--accent);
+}
+
+/* Mount picker — segmented pill row, same shell as the gender switch. */
+.mount-choices {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.mount-choice {
+  padding: 0.4rem 0.75rem;
+  height: 34px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--muted);
+  background: var(--card);
+  transition: background 120ms, color 120ms;
+}
+
+.mount-choice + .mount-choice {
+  border-left: 1px solid var(--border);
+}
+
+.mount-choice:hover:not(.is-selected) {
+  background: var(--accent-soft);
+}
+
+.mount-choice.is-selected {
+  color: #fff;
+  background: var(--accent);
+}
+
 /* ---- playback (play/pause + frame scrubber) -------------------------------- */
 
 .playback {

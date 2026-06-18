@@ -8,7 +8,8 @@
 //       │  │         │        │            │            └ 0 = padrão, else index+1 (base36)
 //       │  │         │        │            └ same encoding as clothes color
 //       │  │         │        └ hair style number, base36
-//       │  │         └ gender | bodyDir<<1 | headDir<<4 | action<<6 (base36, max "mn")
+//       │  │         └ gender | bodyDir<<1 | headDir<<4 | action<<6 | mount<<10
+//       │  │           (base36; mount = 0 none, else mountIndex+1)
 //       │  └ job id, base36 (e.g. 4054 → "34m")
 //       └ format version
 //
@@ -37,7 +38,8 @@ export function encodeState(state: State): string {
     (state.gender === "f" ? 1 : 0) |
     (state.bodyDir << 1) |
     (state.headDir << 4) |
-    (state.action << 6);
+    (state.action << 6) |
+    ((state.mount == null ? 0 : state.mount + 1) << 10);
   const seen = new Set<number>();
   const items: number[] = [];
   for (const slot of SLOTS) {
@@ -74,8 +76,10 @@ export function decodeState(raw: string | null, db: Db): Partial<State> | null {
     out.bodyDir = (packed >> 1) & 7;
     const headDir = (packed >> 4) & 3;
     if (headDir <= 2) out.headDir = headDir as 0 | 1 | 2;
-    const action = packed >> 6;
+    const action = (packed >> 6) & 15;
     if (ACTIONS.some((a) => a.type === action)) out.action = action;
+    const mountBits = (packed >> 10) & 3;
+    out.mount = mountBits === 0 ? null : mountBits - 1;
   }
 
   const hairStyle = parse36(f[3]);

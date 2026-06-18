@@ -25,6 +25,7 @@ describe("save slots", () => {
       hairColor: 3,
       clothesColor: 2,
       equipped: { top: item(100), garment: item(400) },
+      mount: 1, // a saved mount must survive the round-trip
     };
     const builds = Array<Build | null>(SLOT_COUNT).fill(null);
     builds[2] = build;
@@ -59,5 +60,7 @@ describe("save slots", () => {
     expect(buildSignature(buildOf({ ...base, action: 2, bodyDir: 4, headDir: 1 }))).toBe(sig);
     // A costume change → different signature.
     expect(buildSignature(buildOf({ ...base, hairStyle: 2 }))).not.toBe(sig);
+    // Mounting is part of the build → different signature (so it auto-saves).
+    expect(buildSignature(buildOf({ ...base, mount: 0 }))).not.toBe(sig);
   });
 });

@@ -4,6 +4,24 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.3.0] — 2026-06-18
+
+### Added
+
+- **Mount toggle below "Ação".** A `Montaria` switch puts the character on a
+  mount; classes with more than one mount get a picker to choose between them.
+  Mounts aren't an extra sprite layer — in Ragnarok a mounted character is a
+  distinct mounted *job sprite*, so this renders by swapping the `job` parameter
+  to the mounted job id (see `effectiveJob` in `core/state.ts`). Every class can
+  ride the universal **Rédeas** (an archetype-themed creature — Poring/Alpaca/
+  Raposa/Avestruz/Javali/Cérbero/Leão for 1st–3rd jobs, the class's own
+  `*_RIDING` sprite for 4th jobs); some classes also have a signature mount (Peco
+  Peco, Dragão, Grifo, Worg, MECHA). The per-class mount job ids live
+  in `core/mounts.ts`, derived from ragassets' authoritative id→sprite-name table
+  and verified to render. The selected mount is part of the saved build: it is
+  packed into the shareable-URL codec (2 bits above `action`) and restored from
+  save slots. No ragassets change is required.
+
 ## [0.2.1] — 2026-06-17
 
 ### Fixed

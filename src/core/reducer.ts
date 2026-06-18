@@ -18,6 +18,7 @@ export type Action =
   | { type: "rotateBody"; delta: number }
   | { type: "rotateHead"; delta: number }
   | { type: "setAction"; action: number }
+  | { type: "setMount"; mount: number | null }
   | { type: "toggleEquip"; item: Costume }
   | { type: "unequipSlot"; slot: Slot }
   | { type: "loadBuild"; build: Build };
@@ -43,6 +44,8 @@ function reduceRaw(state: State, action: Action): State {
       };
     case "setAction":
       return { ...state, action: action.action };
+    case "setMount":
+      return { ...state, mount: action.mount };
     case "toggleEquip": {
       const next: State = { ...state, equipped: { ...state.equipped } };
       toggleEquip(next, action.item);
