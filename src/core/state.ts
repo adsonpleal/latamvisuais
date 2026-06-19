@@ -11,7 +11,7 @@ import { mountsFor } from "./mounts";
 import { t } from "../i18n";
 import { APP_VERSION } from "../changelog";
 
-export const RAGASSETS_BASE = "https://ragassets.duckdns.org";
+export const RAGASSETS_BASE = "https://assets.latam-tools.com.br";
 
 /** Cache-buster appended to every RENDERED image URL (`&v=`). ragassets serves
  *  renders with `Cache-Control: immutable` (≈1 year), keyed by the full query —
@@ -248,8 +248,9 @@ export function gifUrl(state: State, overrides: RenderOverrides = {}): string {
  *  colour params, so the URL (and ragassets' cached render) stays stable across
  *  rotation and recolouring, changing only with the inputs that actually change
  *  the frame count: job, gender, hair, action and equipped costumes. Single-frame
- *  poses come back as a plain PNG (no acTL → one frame). */
-export function frameCountProbeUrl(state: State): string {
+ *  poses come back as a plain PNG (no acTL → one frame). `action` defaults to the
+ *  current pose; the map sim passes it explicitly to probe each pose it can show. */
+export function frameCountProbeUrl(state: State, action: number = state.action): string {
   const p = new URLSearchParams();
   p.set("job", String(effectiveJob(state)));
   p.set("gender", state.gender === "f" ? "female" : "male");
@@ -257,7 +258,7 @@ export function frameCountProbeUrl(state: State): string {
   const { headgear, garment } = gearViews(state);
   if (headgear.length) p.set("headgear", headgear.join(","));
   if (garment != null) p.set("garment", String(garment));
-  p.set("action", String(state.action * 8)); // bodyDir 0
+  p.set("action", String(action * 8)); // bodyDir 0
   p.set("headdir", "0");
   p.set("canvas", "2x2+1+1");
   p.set("v", CACHE_BUST);

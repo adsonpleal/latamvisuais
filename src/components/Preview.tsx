@@ -26,9 +26,9 @@ import { useFrameCount } from "../hooks/useFrameCount";
 import { usePreloadedImage } from "../hooks/usePreloadedImage";
 import { useAppState, useDb, useDispatch } from "../state/AppStateContext";
 import { TipButton } from "./TipButton";
-import { ChevronLeft, ChevronRight, Download, Expand, Pause, Play } from "./icons";
+import { ChevronLeft, ChevronRight, Download, Expand, Map, Pause, Play } from "./icons";
 
-export function Preview() {
+export function Preview({ onPlay }: { onPlay: () => void }) {
   const state = useAppState();
   const db = useDb();
   const dispatch = useDispatch();
@@ -173,8 +173,11 @@ export function Preview() {
           </div>
         </div>
 
-        {/* Expand button lives on the stage-wrap, not the stage, so its tooltip
-            isn't clipped by the stage's overflow:hidden. */}
+        {/* Explore-map (top-left) and expand (top-right) live on the stage-wrap,
+            not the stage, so their tooltips aren't clipped by overflow:hidden. */}
+        <TipButton className="stage-play" tip={t.playTitle} onClick={onPlay}>
+          <Map />
+        </TipButton>
         <TipButton className="stage-expand" tip={t.viewFull} onClick={openModal}>
           <Expand />
         </TipButton>

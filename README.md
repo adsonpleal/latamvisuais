@@ -13,7 +13,7 @@ The UI is in Portuguese (pt-BR), matching the LATAM server.
 ## How it works
 
 - **Sprites & icons** are served by [ragassets](https://github.com/adsonpleal/ragassets)
-  (public instance at `https://ragassets.duckdns.org/`), a caching HTTP gateway
+  (public instance at `https://assets.latam-tools.com.br/`), a caching HTTP gateway
   that renders Ragnarok sprites (via zrenderer) as PNG/APNG. The character
   preview is a single `<img>` pointed at `/image?...` — animations come back as
   APNG that the browser plays natively.
@@ -21,6 +21,34 @@ The UI is in Portuguese (pt-BR), matching the LATAM server.
   is extracted at build time from the official LATAM client by
   `tools/build-db.mjs` into static JSON under `public/db/`. Nothing is fetched
   from the game at runtime.
+
+## Map simulation (experimental)
+
+The **"Explorar mapa"** button (top bar) opens a bare-minimum playable view of a
+single field, **tra_fild**: the real 3D map — textured ground, animated water,
+3D objects (trees, the bridge, the Prontera wall) and lighting — rendered
+client-side with [three.js](https://threejs.org/), with your current character
+walking it by **click-to-move** (A\* over the map's walkability grid, with the
+matching 8-direction walk animation from ragassets). **Right-drag** rotates the
+camera and the **wheel** zooms; the character is a constant-size billboard whose
+facing follows the camera (`(camera.direction + entity.direction) % 8`), like the
+client. Inspired by
+[roBrowser](https://github.com/vthibault/roBrowser); the binary-format parsers
+under [src/sim/format/](src/sim/format/) are ports of roBrowser / roBrowserLegacy
+loaders (`.gat` altitude, `.gnd` ground, `.rsw` world, `.rsm` models).
+
+It's loaded lazily (its own bundle), so three.js and the map assets only download
+when you open it. The map assets are extracted from the client GRF by
+`tools/build-map.mjs` into `public/maps/tra_fild/` (raw `.gat`/`.gnd`/`.rsw`, the
+referenced `.rsm` models, and every texture converted BMP/TGA → transparent PNG,
+plus a `manifest.json` mapping in-file resource names to the emitted files):
+
+```sh
+npm run build:map -- --grf "C:\Gravity\Ragnarok\data.grf"
+```
+
+The simulation entry is gated behind the `#play` URL hash, kept separate from the
+`?b=` build codec so it's shareable and refresh-safe without disturbing a build URL.
 
 ## Development
 

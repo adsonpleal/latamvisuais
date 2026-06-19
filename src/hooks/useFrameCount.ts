@@ -11,27 +11,7 @@
 // null, keeping the static fallback.
 
 import { useEffect, useState } from "react";
-
-/** Frame count from an (A)PNG's acTL chunk; a plain PNG (no acTL) is one frame. */
-function parseApngFrameCount(buf: ArrayBuffer): number {
-  const b = new DataView(buf);
-  if (b.byteLength < 8) return 1;
-  // 8-byte signature, then a chain of length(4) + type(4) + data + crc(4).
-  let i = 8;
-  while (i + 8 <= b.byteLength) {
-    const len = b.getUint32(i);
-    const type = String.fromCharCode(
-      b.getUint8(i + 4),
-      b.getUint8(i + 5),
-      b.getUint8(i + 6),
-      b.getUint8(i + 7),
-    );
-    if (type === "acTL") return b.getUint32(i + 8); // num_frames is acTL's first field
-    if (type === "IEND") break;
-    i += 12 + len;
-  }
-  return 1;
-}
+import { parseApng } from "../core/apng";
 
 export function useFrameCount(url: string): number | null {
   const [count, setCount] = useState<number | null>(null);
@@ -42,7 +22,7 @@ export function useFrameCount(url: string): number | null {
     fetch(url)
       .then((r) => (r.ok ? r.arrayBuffer() : Promise.reject(new Error(`HTTP ${r.status}`))))
       .then((buf) => {
-        if (active) setCount(parseApngFrameCount(buf));
+        if (active) setCount(parseApng(buf).count);
       })
       .catch(() => {
         if (active) setCount(null);

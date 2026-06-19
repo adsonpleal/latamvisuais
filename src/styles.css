@@ -92,6 +92,14 @@
   background: rgba(255, 255, 255, 0.12);
 }
 
+:root[data-theme="dark"] .stage-play {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+:root[data-theme="dark"] .stage-play:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
 :root[data-theme="dark"] .sprite-modal-download {
   background: rgba(255, 255, 255, 0.06);
 }
@@ -804,7 +812,7 @@ button:disabled {
 .hair-pick {
   aspect-ratio: 1 / 1;
   position: relative;
-  background: url("https://ragassets.duckdns.org/icons/ui/bt_hairstyle_normal.png") no-repeat center / 100% 100%;
+  background: url("https://assets.latam-tools.com.br/icons/ui/bt_hairstyle_normal.png") no-repeat center / 100% 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -814,15 +822,15 @@ button:disabled {
 }
 
 .hair-pick:hover {
-  background-image: url("https://ragassets.duckdns.org/icons/ui/bt_hairstyle_over.png");
+  background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_hairstyle_over.png");
 }
 
 .hair-pick:active {
-  background-image: url("https://ragassets.duckdns.org/icons/ui/bt_hairstyle_press.png");
+  background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_hairstyle_press.png");
 }
 
 .hair-pick.is-selected {
-  background-image: url("https://ragassets.duckdns.org/icons/ui/bt_hairstyle_select.png");
+  background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_hairstyle_select.png");
 }
 
 /* The rendered head thumbnail (44x40 canvas) sits inside the game frame. */
@@ -944,6 +952,31 @@ button:disabled {
   color: var(--accent);
 }
 
+/* "Explore map" button — mirrors .stage-expand at the top-left of the stage. */
+.stage-play {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--muted);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: background 120ms, border-color 120ms, color 120ms;
+}
+
+.stage-play:hover {
+  background: #fff;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 /* ---- full-sprite modal ----------------------------------------------------- */
 
 .sprite-modal {
@@ -991,15 +1024,15 @@ button:disabled {
   width: 22px;
   height: 22px;
   background: no-repeat center / 17px 16px;
-  background-image: url("https://ragassets.duckdns.org/icons/ui/bt_close_normal.png");
+  background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_close_normal.png");
 }
 
 .game-close:hover {
-  background-image: url("https://ragassets.duckdns.org/icons/ui/bt_close_over.png");
+  background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_close_over.png");
 }
 
 .game-close:active {
-  background-image: url("https://ragassets.duckdns.org/icons/ui/bt_close_press.png");
+  background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_close_press.png");
 }
 
 .sprite-modal-close {
@@ -1160,20 +1193,20 @@ button:disabled {
 
 .arrow-left {
   left: 8px;
-  background-image: url("https://ragassets.duckdns.org/icons/ui/bt_leftturn_normal.png");
+  background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_leftturn_normal.png");
 }
 
 .arrow-left:active {
-  background-image: url("https://ragassets.duckdns.org/icons/ui/bt_leftturn_press.png");
+  background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_leftturn_press.png");
 }
 
 .arrow-right {
   right: 8px;
-  background-image: url("https://ragassets.duckdns.org/icons/ui/bt_rightturn_normal.png");
+  background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_rightturn_normal.png");
 }
 
 .arrow-right:active {
-  background-image: url("https://ragassets.duckdns.org/icons/ui/bt_rightturn_press.png");
+  background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_rightturn_press.png");
 }
 
 /* Body pair at the character's middle; head pair higher, near the head. */
@@ -1757,7 +1790,7 @@ button:disabled {
 
 .catalog-item {
   position: relative;
-  background: url("https://ragassets.duckdns.org/icons/ui/bt_hairstyle_normal.png") no-repeat center / 100% 100%;
+  background: url("https://assets.latam-tools.com.br/icons/ui/bt_hairstyle_normal.png") no-repeat center / 100% 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1772,15 +1805,15 @@ button:disabled {
 }
 
 .catalog-item:hover {
-  background-image: url("https://ragassets.duckdns.org/icons/ui/bt_hairstyle_over.png");
+  background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_hairstyle_over.png");
 }
 
 .catalog-item:active {
-  background-image: url("https://ragassets.duckdns.org/icons/ui/bt_hairstyle_press.png");
+  background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_hairstyle_press.png");
 }
 
 .catalog-item.is-equipped {
-  background-image: url("https://ragassets.duckdns.org/icons/ui/bt_hairstyle_select.png");
+  background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_hairstyle_select.png");
 }
 
 .catalog-icon {
@@ -1800,4 +1833,109 @@ button:disabled {
   color: var(--muted);
   font-size: 0.85rem;
   padding: 1rem 0;
+}
+
+/* ---- Map simulation (tra_fild) -------------------------------------------- */
+
+.sim-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  overflow: hidden;
+  background: #6b8cae;
+}
+
+.sim-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* The RO cursor is applied here in JS (Simulator); no CSS cursor so it isn't
+     overridden. Fallback before the sprite loads is the OS arrow. */
+  cursor: default;
+}
+
+
+.sim-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+}
+
+.sim-status {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+/* Beta badge, top-centre of the play screen (top-left = pose controls,
+   top-right = close), flagging the simulation as a work in progress. */
+.sim-beta {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  padding: 4px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(214, 158, 46, 0.92);
+  color: #2b1d00;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  pointer-events: none;
+  user-select: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* "Inspired by roBrowser" credit, bottom-centre of the play screen. */
+.sim-credit {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.75rem;
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+.sim-credit:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Pose controls (sit / dead), bottom-left of the play screen. */
+.sim-controls {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.sim-btn {
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+.sim-btn:hover {
+  background: rgba(0, 0, 0, 0.65);
+}
+.sim-btn.is-active {
+  background: rgba(80, 140, 220, 0.85);
+  border-color: rgba(255, 255, 255, 0.5);
 }

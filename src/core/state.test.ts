@@ -18,7 +18,7 @@ import { makeDb } from "../test/fixtures";
 import { APP_VERSION } from "../changelog";
 
 const db = makeDb();
-const BASE = "https://ragassets.duckdns.org";
+const BASE = "https://assets.latam-tools.com.br";
 const V = `&v=${APP_VERSION}`; // cache-buster appended to every rendered image URL
 const item = (id: number): Costume => db.costumes.find((c) => c.id === id)!;
 

@@ -3,7 +3,7 @@
 // React equivalent of the old main.ts `start()` — same DOM structure and class
 // names, so styles.css applies unchanged.
 
-import { useCallback, useEffect, useMemo, useReducer, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo, useReducer, useState } from "react";
 import type { Db, Slot } from "./core/db";
 import { APP_VERSION } from "./changelog";
 import { clampState } from "./core/clamp";
@@ -26,11 +26,21 @@ import { Slots } from "./components/Slots";
 import { ThemeSelect } from "./components/ThemeSelect";
 import { Wishlist } from "./components/Wishlist";
 
+// The map simulation pulls in three.js + the tra_fild assets, so it's split into
+// its own chunk and only loaded when the player opens it.
+const MapSim = lazy(() => import("./sim/Simulator"));
+
 export default function App() {
   useTooltip();
   const db = useLoadDb();
 
-  if (db.status === "loading") return <div className="boot-message">{t.loading}</div>;
+  // Opening the play page directly: show the map loader straight away (matching
+  // the sim's own loading overlay) instead of flashing the generic data loader,
+  // so there's a single continuous "Carregando o mapa…" screen.
+  if (db.status === "loading") {
+    if (location.hash === "#play") return <div className="sim-overlay sim-status">{t.simLoading}</div>;
+    return <div className="boot-message">{t.loading}</div>;
+  }
   if (db.status === "error") return <div className="boot-message">{t.loadError}</div>;
   return <Simulator db={db.db} />;
 }
@@ -99,6 +109,24 @@ function Simulator({ db }: { db: Db }) {
 
   const [changelogOpen, setChangelogOpen] = useState(false);
 
+  // The map simulation is a full-screen overlay toggled by the "#play" hash, so
+  // it survives a refresh and is shareable without disturbing the ?b= build URL
+  // (syncUrl only touches the query string).
+  const [playing, setPlaying] = useState(() => location.hash === "#play");
+  useEffect(() => {
+    const onHash = () => setPlaying(location.hash === "#play");
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, []);
+  const openPlay = () => {
+    history.replaceState(null, "", "#play");
+    setPlaying(true);
+  };
+  const closePlay = () => {
+    history.replaceState(null, "", location.pathname + location.search);
+    setPlaying(false);
+  };
+
   return (
     <AppStateProvider value={{ db, state, dispatch }}>
       <header className="topbar">
@@ -153,7 +181,7 @@ function Simulator({ db }: { db: Db }) {
         </section>
 
         <section className="panel panel-preview">
-          <Preview />
+          <Preview onPlay={openPlay} />
         </section>
 
         <section className="panel panel-catalog">
@@ -194,6 +222,12 @@ function Simulator({ db }: { db: Db }) {
       </footer>
 
       {changelogOpen && <Changelog onClose={() => setChangelogOpen(false)} />}
+
+      {playing && (
+        <Suspense fallback={<div className="sim-overlay sim-status">{t.simLoading}</div>}>
+          <MapSim onClose={closePlay} />
+        </Suspense>
+      )}
     </AppStateProvider>
   );
 }

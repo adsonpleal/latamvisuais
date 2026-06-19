@@ -11,6 +11,16 @@ export const t = {
   discordLink: "Discord",
   discordTitle: "Entre no servidor do Discord",
 
+  playLink: "Explorar mapa",
+  playTitle: "Caminhe com seu personagem no campo de treinamento (experimental)",
+  simLoading: "Carregando o mapa…",
+  simError: "Não foi possível carregar o mapa.",
+  simClose: "Fechar (Esc)",
+  simInspired: "Inspirado no roBrowser",
+  simSit: "Sentar (Insert)",
+  simDead: "Morrer",
+  simBeta: "Beta — em desenvolvimento",
+
   themeLabel: "Tema",
   themeAuto: "Auto",
   themeLight: "Claro",

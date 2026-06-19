@@ -21,7 +21,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
 
-const BASE = process.env.RAGASSETS_BASE ?? "https://ragassets.duckdns.org";
+const BASE = process.env.RAGASSETS_BASE ?? "https://assets.latam-tools.com.br";
 const REF = "job=0&gender=male&head=1"; // Aprendiz / male / hair 1
 const CANVAS = "248x232+124+184"; // must match core/state.ts CANVAS
 const POSES = { idle: 0, sit: 16, dead: 64 };
