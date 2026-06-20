@@ -4,6 +4,41 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.4.0] — 2026-06-19
+
+### Added
+
+- **Playable 3D map (beta).** A bare-minimum, walkable Ragnarok map — `tra_fild`,
+  inspired by roBrowser — is now reachable from a **map button** in the preview
+  (and the `#play` hash route, with a beta banner). The character is the *same*
+  ragassets sprite as the costume paper-doll, now walking a real three.js scene:
+  click-to-move with **A\* pathfinding**, 8-direction walk/idle facing, sit/dead
+  poses (with the RO sit head-turn), the mount toggle, and animated RO mouse
+  cursors. The scene draws GND lightmap-shadowed ground, water, and 3D models,
+  with a follow camera (smooth zoom + drag-rotate) and a GAT-altitude cell
+  picker. The map is **lazy-loaded** so the costume simulator pays nothing for it
+  until opened. In-browser GAT/GND/RSW/RSM parsers live under `src/sim/format`
+  and the assets are baked offline (`tools/build-map.mjs` et al.) into
+  `public/maps/tra_fild`. Sprite frames are driven manually from ragassets, with
+  the composited frame count and per-frame delays probed from the APNG
+  (`src/core/apng`) so animated costumes play in full at the paper-doll's native
+  speed.
+- **Auto-saved character slots.** Six numbered slots above the class picker each
+  persist a full build — class, gender, hair, colours, and equipped visuais — to
+  `localStorage`, switched with a click or **Alt+number** while keeping the
+  current pose and rotation. Auto-save only fires on a real costume change (a
+  build signature gates it). The codec reuses the share-URL packer (`core/slots`),
+  with a new `Build` type plus `buildOf`/`applyBuild` in `core/state` and a
+  `loadBuild` reducer action that swaps the costume while preserving the view
+  fields. A `SlotBar` component (chip-styled pills) and an `InfoTip` on the
+  "Personagem" title explain the auto-save. The Appearance panel no longer scrolls
+  as a whole — the hair-style grid now takes the leftover room and scrolls
+  internally instead.
+
+### Fixed
+
+- Selected gender button text colour in dark mode.
+
 ## [0.3.0] — 2026-06-18
 
 ### Added
