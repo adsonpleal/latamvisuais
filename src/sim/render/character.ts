@@ -22,10 +22,7 @@ import {
   SRGBColorSpace,
   Vector3,
 } from "three";
-import { SPRITE } from "../sprite";
-
-// roBrowser: _size = size / 175 * xSize, with xSize (and ySize) defaulting to 5.
-const UNITS_PER_PX = 5 / 175;
+import { SPRITE, UNITS_PER_PX } from "../sprite";
 const WORLD_W = SPRITE.w * UNITS_PER_PX;
 const WORLD_H = SPRITE.h * UNITS_PER_PX;
 // The feet anchor (canvas row anchorY) sits this far below the plane's centre,

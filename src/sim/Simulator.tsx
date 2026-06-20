@@ -8,9 +8,12 @@ import { Vector3 } from "three";
 import { t } from "../i18n";
 import { effectiveJob, frameCountProbeUrl, type State } from "../core/state";
 import { mountsFor } from "../core/mounts";
+import { SLOTS } from "../core/db";
 import { useAppState, useDispatch } from "../state/AppStateContext";
 import { Engine } from "./render/engine";
 import { Character } from "./render/character";
+import { EffectBillboard } from "./render/effect";
+import { loadEffect } from "./effect";
 import { CursorAnimator } from "./cursor";
 import { loadImage } from "./imageCache";
 import { buildWorld, type MapManifest, type World } from "./render/scene";
@@ -94,6 +97,7 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
     let walker: Walker | null = null;
     let character: Character | null = null;
     let cursor: CursorAnimator | null = null;
+    let disposeEffects: (() => void) | null = null;
     let disposed = false;
     // Each pose's composited frame count + per-frame delays (probed at load, and
     // re-probed when the mount swaps the rendered sprite — see the loop below).
@@ -170,12 +174,56 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
           frames = Array.from({ length: aInfo.count }, (_, f) => loadImage(spriteUrl(st, action, dir, f, headdir)));
         };
 
+        // World-effect costumes (auras, falling petals — the "effect-only"
+        // costumes the paper-doll can't draw). Rebuild the in-scene billboards
+        // whenever the equipped effects change; each loads its assets async.
+        let effects: EffectBillboard[] = [];
+        let effectKeys = "";
+        let lastState: State | null = null;
+        let effectToken = 0;
+        const clearEffects = () => {
+          for (const e of effects) e.dispose();
+          effects = [];
+        };
+        const desiredEffectKeys = (st: State): string[] => {
+          const keys: string[] = [];
+          for (const slot of SLOTS) {
+            const key = st.equipped[slot]?.effect;
+            if (key && !keys.includes(key)) keys.push(key);
+          }
+          return keys;
+        };
+        const syncEffects = (st: State) => {
+          // State only changes on dispatch; skip the per-frame recompute while the
+          // build is unchanged (the walker/camera don't touch React state).
+          if (st === lastState) return;
+          lastState = st;
+          const keys = desiredEffectKeys(st);
+          const joined = keys.join(",");
+          if (joined === effectKeys) return;
+          effectKeys = joined;
+          clearEffects();
+          const token = ++effectToken;
+          for (const key of keys) {
+            loadEffect(key)
+              .then((loaded) => {
+                if (disposed || token !== effectToken) return;
+                effects.push(new EffectBillboard(engine!.scene, loaded));
+              })
+              .catch((err) => console.error("[sim] effect load failed", key, err));
+          }
+        };
+        disposeEffects = clearEffects;
+
         const charWorld = new Vector3();
+        let effectClock = 0; // monotonic; drives effect playback independent of pose
         engine!.start((dt) => {
           cursor?.update(dt);
           engine!.cam.tickZoom(dt); // ease the zoom toward its target each frame
           if (!walker || !world || !character) return;
           world.update(dt);
+          syncEffects(stateRef.current);
+          effectClock += dt;
           // Mount changed → re-probe the new sprite's frame info, then reset the
           // animator cache so it rebuilds frames with the correct counts.
           const curJob = effectiveJob(stateRef.current);
@@ -208,6 +256,7 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
           if (frame && frame.complete && frame.naturalWidth) {
             character.update(frame, charWorld, engine!.cam.camera);
           }
+          for (const e of effects) e.update(effectClock, charWorld, engine!.cam.camera);
           // Re-pin the selector to the cursor whenever the camera moved (follow,
           // zoom-ease or rotate) — a still cursor then points at a new cell. When
           // nothing moved we skip the raycast (mousemove handles cursor changes).
@@ -360,6 +409,7 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
       window.removeEventListener("mouseup", onPointerUp);
       canvas.removeEventListener("contextmenu", onContextMenu);
       window.removeEventListener("keydown", onKey);
+      disposeEffects?.();
       character?.dispose();
       engine?.dispose();
     };

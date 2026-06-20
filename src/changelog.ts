@@ -14,6 +14,13 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.5.0",
+    date: "2026-06-20",
+    changes: [
+      "Visuais de efeito (auras, pétalas, holofotes, círculos mágicos e afins) voltaram à lista! O personagem não consegue desenhá-los na pré-visualização 2D, então agora eles aparecem ao seu redor no modo mapa (3D). Um ícone de mapa nos espaços equipados marca os visuais que só aparecem por lá.",
+    ],
+  },
+  {
     version: "0.4.0",
     date: "2026-06-19",
     changes: [

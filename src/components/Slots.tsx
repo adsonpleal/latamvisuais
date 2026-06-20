@@ -7,7 +7,7 @@ import { SLOTS, type Costume, type Slot } from "../core/db";
 import { itemIconUrl } from "../core/state";
 import { t } from "../i18n";
 import { useAppState, useDispatch } from "../state/AppStateContext";
-import { ClearX } from "./icons";
+import { ClearX, Map } from "./icons";
 
 export function Slots({ onPick }: { onPick: (slot: Slot) => void }) {
   const state = useAppState();
@@ -32,6 +32,11 @@ export function Slots({ onPick }: { onPick: (slot: Slot) => void }) {
               <div className="slot-name" data-tip={item ? `${item.name} (${item.id})` : undefined}>
                 {item ? item.name : t.slotEmpty}
               </div>
+              {item?.effect && (
+                <span className="slot-effect" data-tip={t.effectOnlyNote} aria-label={t.effectOnlyNote}>
+                  <Map />
+                </span>
+              )}
               <button
                 type="button"
                 className="slot-clear"

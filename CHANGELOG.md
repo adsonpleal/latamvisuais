@@ -4,6 +4,27 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.5.0] — 2026-06-20
+
+### Added
+
+- **Effect-only costumes render in the 3D map.** Auras, falling petals, spotlights,
+  magic circles and other costumes the client draws with its `.str` world-effect
+  system (they have no character sprite, so the 2D paper-doll can't show them and
+  they were dropped from the list) are back, rendered in the playable map attached
+  to the character. ragassets parses each `.str` offline and serves `effect.json`
+  (parsed keyframes) + `tex_N.png` at `/effects/<key>/`, with a catalogue at
+  `/effects/index.json` that `loadDb` merges into the costume list (view-less, so
+  the paper-doll skips them). The sim composites each effect's keyframed layers into
+  camera-facing billboards — a NormalBlending plane for straight-alpha layers and an
+  additive plane for glow layers — with the canvas sized to the effect's own content
+  bounds and the STR `(320,240)` ground line anchored at the character's feet
+  (`src/sim/effect.ts`, `src/sim/render/effect.ts`). Equipped effect costumes are
+  flagged with a small map icon in their slot, and the catalog's "?" note explains
+  they only appear in the map view. The shared sprite-pixel→world scale now lives in
+  `src/sim/sprite.ts` (`UNITS_PER_PX`), used by both the character and effect
+  billboards.
+
 ## [0.4.0] — 2026-06-19
 
 ### Added

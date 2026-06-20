@@ -116,9 +116,10 @@ export const t = {
   catalogTitle: "Visuais",
   catalogInfoLabel: "Sobre os visuais disponíveis",
   catalogInfoText:
-    "Alguns visuais não aparecem aqui. O simulador usa apenas os sprites 2D do " +
-    "personagem, então visuais 3D e efeitos (auras, brilhos, climas e afins) não " +
-    "podem ser exibidos e foram omitidos da lista.",
+    "Visuais de efeito (auras, brilhos, climas e afins) não usam o sprite 2D do " +
+    "personagem. Eles aparecem na lista, mas só são exibidos na visão de mapa, " +
+    "não na pré-visualização.",
+  effectOnlyNote: "Só aparece no mapa",
   searchPlaceholder: "Buscar por nome ou ID…",
   allSlots: "Todos",
   itemCount: (n: number) => (n === 1 ? "1 item" : `${n} itens`),

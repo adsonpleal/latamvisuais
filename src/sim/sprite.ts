@@ -20,6 +20,10 @@ export const SPRITE_FRAMES = (action: number): number => ACTION_FRAMES[action] ?
 export const SPRITE = { w: 208, h: 210, anchorX: 104, anchorY: 152 } as const;
 const SPRITE_CANVAS = `${SPRITE.w}x${SPRITE.h}+${SPRITE.anchorX}+${SPRITE.anchorY}`;
 
+/** Sprite-pixel → world scale, shared by the in-scene billboards (character +
+ *  effects). roBrowser SpriteRenderer: _size = size / 175 * xSize, xSize = 5. */
+export const UNITS_PER_PX = 5 / 175;
+
 export const SPRITE_IDLE = 0;
 export const SPRITE_WALK = 1;
 export const SPRITE_SIT = 2;

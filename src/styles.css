@@ -1692,6 +1692,22 @@ button:disabled {
   color: var(--fg);
 }
 
+/* Marks an equipped effect costume (aura, petals, …): it has no character sprite,
+   so it only renders in the map view, not the 2D preview. A small map glyph with
+   a "Só aparece no mapa" tooltip. */
+.slot-effect {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+}
+
+.slot-effect svg {
+  width: 15px;
+  height: 15px;
+}
+
 .slot-clear {
   flex: none;
   width: 20px;
