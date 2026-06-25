@@ -40,9 +40,3 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_LATAM_VISUAIS }}
           channelId: live
           projectId: latam-visuais
-          # Pinned: firebase-tools 'latest' (15.22.2) regressed the deploy auth —
-          # the service-account token fetch fails with "Premature close" at
-          # oauth2/v4/token (the secret itself is unchanged and worked on 15.x
-          # before). 15.18.0 is the last version confirmed working. Revisit once
-          # a newer release fixes it.
-          firebaseToolsVersion: "15.18.0"
