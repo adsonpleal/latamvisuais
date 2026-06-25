@@ -20,7 +20,11 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          # Pinned to the last patch the deploy succeeded on. Node 22.23.0
+          # regressed the service-account token fetch (undici drops the
+          # oauth2/v4/token connection — "Premature close"); 22.22.3 is the
+          # version that last deployed cleanly. Revisit when a newer Node fixes it.
+          node-version: 22.22.3
           cache: npm
 
       - run: npm ci
