@@ -7,11 +7,16 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { SLOTS, type Costume } from "../core/db";
+import { SLOTS } from "../core/db";
 import { itemIconUrl } from "../core/state";
+import { PETS } from "../sim/pets";
 import { t } from "../i18n";
 import { useAppState } from "../state/AppStateContext";
 import { Cart } from "./icons";
+
+// A wishlist line only needs an item id (icon + Divine-Pride link) and a name
+// (display + market search) — satisfied by both costumes and the pet egg.
+type WishItem = { id: number; name: string };
 
 const SERVERS = ["FREYA", "NIDHOGG"] as const;
 type Server = (typeof SERVERS)[number];
@@ -29,10 +34,10 @@ const slugify = (name: string) =>
 // tag (matches how the market lists items).
 const marketName = (name: string) => name.replace(/^\s*\[[^\]]*\]\s*/, "").trim();
 
-const divinePrideUrl = (item: Costume) =>
+const divinePrideUrl = (item: WishItem) =>
   `https://www.divine-pride.net/database/item/${item.id}/${slugify(item.name)}`;
 
-const marketUrl = (item: Costume, server: Server) =>
+const marketUrl = (item: WishItem, server: Server) =>
   "https://ro.gnjoylatam.com/pt/intro/shop-search/trading?" +
   new URLSearchParams({
     storeType: "BUY",
@@ -50,15 +55,20 @@ export function Wishlist() {
   const [open, setOpen] = useState(false);
   const [server, setServer] = useState<Server>(loadServer);
 
-  // Distinct equipped costumes (a multi-slot piece is listed once).
-  const items: Costume[] = [];
+  // Distinct equipped costumes (a multi-slot piece is listed once), plus the
+  // selected pet's egg (its own item) so the list doubles as a shopping list.
+  const items: WishItem[] = [];
   const seen = new Set<number>();
   for (const slot of SLOTS) {
     const it = state.equipped[slot];
     if (it && !seen.has(it.id)) {
       seen.add(it.id);
-      items.push(it);
+      items.push({ id: it.id, name: it.name });
     }
+  }
+  if (state.pet != null) {
+    const pet = PETS.find((p) => p.mob === state.pet);
+    if (pet) items.push({ id: pet.egg, name: pet.eggName });
   }
 
   useEffect(() => {
@@ -124,7 +134,7 @@ export function Wishlist() {
   );
 }
 
-function WishlistRows({ items, server }: { items: Costume[]; server: Server }) {
+function WishlistRows({ items, server }: { items: WishItem[]; server: Server }) {
   if (!items.length) return <div className="wishlist-empty">{t.wishlistEmpty}</div>;
   return (
     <>

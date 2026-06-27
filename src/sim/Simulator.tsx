@@ -12,6 +12,8 @@ import { SLOTS } from "../core/db";
 import { useAppState, useDispatch } from "../state/AppStateContext";
 import { Engine } from "./render/engine";
 import { Character } from "./render/character";
+import { Pet } from "./pet";
+import PetDialog from "./PetDialog";
 import { EffectBillboard } from "./render/effect";
 import { loadEffect } from "./effect";
 import { CursorAnimator } from "./cursor";
@@ -78,6 +80,13 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
   const mounts = mountsFor(state.classId);
   const toggleMount = (i: number) => dispatch({ type: "setMount", mount: state.mount === i ? null : i });
 
+  // Pet companion (mascote): a monster that walks the field with the player. The
+  // selection is part of the build (state.pet) so it saves to slots and travels in
+  // the share URL; the render loop reads it through stateRef. Only the dialog's
+  // open/closed flag is sim-local. `null` = no pet.
+  const setPet = (pet: number | null) => dispatch({ type: "setPet", pet });
+  const [petOpen, setPetOpen] = useState(false);
+
   // Latest build, read by the render loop without re-running setup.
   const stateRef = useRef(state);
   stateRef.current = state;
@@ -97,6 +106,7 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
     let walker: Walker | null = null;
     let character: Character | null = null;
     let cursor: CursorAnimator | null = null;
+    let petEntity: Pet | null = null;
     let disposeEffects: (() => void) | null = null;
     let disposed = false;
     // Each pose's composited frame count + per-frame delays (probed at load, and
@@ -256,6 +266,18 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
           if (frame && frame.complete && frame.naturalWidth) {
             character.update(frame, charWorld, engine!.cam.camera);
           }
+
+          // Pet companion: lazily spawned on first selection, then follows the
+          // player each frame. setMob is a no-op when unchanged and hides the
+          // billboard when cleared, so it's safe to call every frame.
+          const ownerCell = { gx: walker.cellX, gy: walker.cellY };
+          const petMob = stateRef.current.pet;
+          if (petMob != null && !petEntity) petEntity = new Pet(engine!.scene, world);
+          if (petEntity) {
+            petEntity.setMob(petMob, ownerCell);
+            petEntity.update(dt, ownerCell, engine!.cam.direction, engine!.cam.camera);
+          }
+
           for (const e of effects) e.update(effectClock, charWorld, engine!.cam.camera);
           // Re-pin the selector to the cursor whenever the camera moved (follow,
           // zoom-ease or rotate) — a still cursor then points at a new cell. When
@@ -410,6 +432,7 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
       canvas.removeEventListener("contextmenu", onContextMenu);
       window.removeEventListener("keydown", onKey);
       disposeEffects?.();
+      petEntity?.dispose();
       character?.dispose();
       engine?.dispose();
     };
@@ -443,7 +466,20 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
               {t.mountNames[m.nameKey]}
             </button>
           ))}
+          <button type="button" className={`sim-btn${state.pet != null ? " is-active" : ""}`} onClick={() => setPetOpen(true)}>
+            {t.petsButton}
+          </button>
         </div>
+      )}
+      {petOpen && (
+        <PetDialog
+          current={state.pet}
+          onSelect={(mob) => {
+            setPet(mob);
+            setPetOpen(false);
+          }}
+          onClose={() => setPetOpen(false)}
+        />
       )}
       <a className="sim-credit" href="https://github.com/vthibault/roBrowser" target="_blank" rel="noreferrer">
         {t.simInspired}

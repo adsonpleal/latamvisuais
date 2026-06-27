@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.7.0",
+    date: "2026-06-27",
+    changes: [
+      "Mascotes no modo mapa! O novo botão “Mascotes” (abaixo da Montaria) abre uma grade com todos os bichinhos de estimação — escolha um e ele aparece ao seu lado e te acompanha andando pelo mapa, como no jogo.",
+      "A mascote escolhida fica salva no personagem e vai junto no link de compartilhamento; o ovo dela também aparece na sua Lista de desejos.",
+    ],
+  },
+  {
     version: "0.6.0",
     date: "2026-06-27",
     changes: [

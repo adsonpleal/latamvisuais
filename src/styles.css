@@ -1955,3 +1955,143 @@ button:disabled {
   background: rgba(80, 140, 220, 0.85);
   border-color: rgba(255, 255, 255, 0.5);
 }
+
+/* "Mascotes" picker — a modal grid of animated monster previews, stacked above
+   the sim overlay (z-index 200). Themed via the app's CSS vars so it follows
+   light/dark like the other modals. */
+.pet-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(20, 18, 28, 0.66);
+}
+
+.pet-box {
+  position: relative;
+  width: min(700px, 100%);
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  text-align: left;
+}
+
+.pet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.pet-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.pet-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.pet-remove {
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-inset);
+  color: var(--fg);
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+.pet-remove:hover {
+  background: color-mix(in srgb, var(--bg-inset) 82%, var(--fg));
+}
+
+.pet-search {
+  margin: 0.85rem 1.25rem 0;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-inset);
+  color: var(--fg);
+  font-size: 0.85rem;
+}
+
+.pet-grid {
+  overflow-y: auto;
+  padding: 0.85rem 1.25rem 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(98px, 1fr));
+  gap: 0.6rem;
+  align-content: start;
+}
+
+.pet-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.3rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-inset);
+  color: var(--fg);
+  cursor: pointer;
+  transition: background 120ms, border-color 120ms;
+}
+.pet-tile:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--bg-inset) 86%, var(--accent));
+}
+.pet-tile.is-active {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+/* Fixed-height stage. The thumbnail is auto-cropped to the monster's true bounds
+   (see petThumbUrl), so object-fit: contain scales each one to fill the tile and
+   centres it — every pet is fully framed, none clipped, whatever its native size. */
+.pet-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 104px;
+  overflow: hidden;
+}
+.pet-thumb img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.pet-name {
+  font-size: 0.72rem;
+  line-height: 1.15;
+  text-align: center;
+  color: var(--fg);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pet-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--muted);
+  padding: 1rem;
+}

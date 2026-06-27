@@ -64,6 +64,12 @@ describe("createAppReducer", () => {
     expect(switched.mount).toBeNull();
   });
 
+  it("setPet selects and clears the pet companion", () => {
+    const withPet = reduce(initialState(db), { type: "setPet", pet: 1002 });
+    expect(withPet.pet).toBe(1002);
+    expect(reduce(withPet, { type: "setPet", pet: null }).pet).toBeNull();
+  });
+
   it("loadBuild swaps the costume but keeps the pose and rotation", () => {
     const start: State = {
       ...initialState(db),
@@ -81,6 +87,7 @@ describe("createAppReducer", () => {
         clothesColor: 1,
         equipped: { top: item(100) },
         mount: null,
+        pet: null,
       },
     });
     // Build fields replaced…

@@ -1,10 +1,15 @@
 // Shareable-URL codec. The whole build lives in a single compact query param:
 //
-//   ?b=1.<classId>.<packed>.<hairStyle>.<hairColor>.<clothesColor>.<items>
+//   ?b=1.<classId>.<packed>.<hairStyle>.<hairColor>.<clothesColor>.<items>.<pet>
+//       │  │         │        │            │            │            │       └ pet monster
+//       │  │         │        │            │            │            │         id, base36
+//       │  │         │        │            │            │            │         (omitted when
+//       │  │         │        │            │            │            │         no pet)
 //       │  │         │        │            │            │            └ distinct equipped
 //       │  │         │        │            │            │              item ids, base36,
-//       │  │         │        │            │            │              "-"-joined (omitted
-//       │  │         │        │            │            │              when nothing equipped)
+//       │  │         │        │            │            │              "-"-joined (empty
+//       │  │         │        │            │            │              when nothing equipped
+//       │  │         │        │            │            │              but a pet follows)
 //       │  │         │        │            │            └ 0 = padrão, else index+1 (base36)
 //       │  │         │        │            └ same encoding as clothes color
 //       │  │         │        └ hair style number, base36
@@ -12,6 +17,10 @@
 //       │  │           (base36; mount = 0 none, else mountIndex+1)
 //       │  └ job id, base36 (e.g. 4054 → "34m")
 //       └ format version
+//
+// The pet trails the items field (rather than packing into <packed>) because a
+// monster id is a large arbitrary number, and trailing keeps older ?b= links —
+// which never had a 8th field — decoding to "no pet".
 //
 // Worst case ≈ 25 chars, alphabet [0-9a-z.-] only — never percent-encoded.
 // The decoder is forgiving: malformed fields keep their defaults, unknown item
@@ -57,7 +66,14 @@ export function encodeState(state: State): string {
     b36(state.hairColor == null ? 0 : state.hairColor + 1),
     b36(state.clothesColor == null ? 0 : state.clothesColor + 1),
   ];
-  if (items.length) fields.push(items.map(b36).join("-"));
+  const itemsField = items.map(b36).join("-");
+  // The pet trails the items field, so when a pet is set the items field is always
+  // emitted (empty string if nothing is equipped) to keep the pet positional.
+  if (state.pet != null) {
+    fields.push(itemsField, b36(state.pet));
+  } else if (itemsField) {
+    fields.push(itemsField);
+  }
   return fields.join(".");
 }
 
@@ -100,6 +116,13 @@ export function decodeState(raw: string | null, db: Db): Partial<State> | null {
       if (item) equipInto(equipped, item);
     }
     out.equipped = equipped;
+  }
+
+  // Pet is the 8th field. Present (even if invalid → no pet); absent on older
+  // links, which then keep the default (no pet) via the caller's merge.
+  if (f[7] !== undefined) {
+    const pet = parse36(f[7]);
+    out.pet = pet != null && pet > 0 ? pet : null;
   }
 
   return out;

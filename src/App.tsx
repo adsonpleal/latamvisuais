@@ -206,7 +206,8 @@ function Simulator({ db }: { db: Db }) {
           <button type="button" className="footer-link" onClick={() => setChangelogOpen(true)}>
             {t.footerChangelog}
           </button>
-          {" · v" + APP_VERSION}
+          {" · v" + APP_VERSION + " · "}
+          <FooterLink href="https://latam-tools.com.br/">{t.footerTools}</FooterLink>
         </div>
         <div className="footer-line">{t.footerCopyright}</div>
         <div className="footer-credits">

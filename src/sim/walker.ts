@@ -38,6 +38,9 @@ export class Walker {
     private gat: Gat,
     private cellSize: number,
     spawn: Cell,
+    // Cells per second. Defaults to the player's brisk pace; the pet follower
+    // walks a touch faster (see sim/pet.ts) so it can close the gap when trailing.
+    private speed: number = SPEED,
   ) {
     this.px = spawn.gx + 0.5;
     this.py = spawn.gy + 0.5;
@@ -79,7 +82,7 @@ export class Walker {
       this.moving = false;
       return false;
     }
-    let budget = SPEED * dt;
+    let budget = this.speed * dt;
     while (budget > 0 && this.path.length) {
       const next = this.path[0];
       const tx = next.gx + 0.5;

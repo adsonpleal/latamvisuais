@@ -4,6 +4,36 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.7.0] — 2026-06-27
+
+### Added
+
+- **Pet companions in the map sim ("Mascotes").** A new button below the mount
+  toggle opens a searchable grid of all 107 browiki pets, each an animated monster
+  preview (auto-cropped to its true bounds so nothing clips). The chosen pet spawns
+  beside the player and follows it around the field roBrowser-style: its own
+  `Walker` + A\* path, trailing the owner with start/stop hysteresis, and a
+  teleport-snap when it falls too far behind. Pet sprites reuse the ragassets
+  gateway unchanged (`job=<mobId>`, idle/walk); the in-scene billboard is the same
+  camera-facing sprite plane as the character (now parameterised by sprite metrics).
+- **Pet is part of the build.** `state.pet` (the monster id) saves to slots and
+  encodes in the share URL as a trailing 8th field — older links without it decode
+  to "no pet", so existing `?b=` links are unaffected.
+- **Pet egg in the wishlist.** The selected pet's egg is listed as its own item,
+  with its in-game pt-BR name extracted from the client's `iteminfo` via the new
+  `tools/extract-pet-eggs.mjs` (the same source costume names use), so it reads
+  exactly as the client labels it ("Gaiola do Zumbichano", "Ovo do Atirador de
+  Pedras", …). The one egg absent from the client (Zangão Gigante) falls back to a
+  derived "Ovo de \<monster\>" name.
+- **"Outras ferramentas" footer link** to latam-tools.com.br.
+
+### Data
+
+- `src/sim/pets.ts` — the pet roster: monster render id + pt-BR name (from
+  ragassets/mobs.json), pet-egg item id, and the egg's in-game name. Egg→mob
+  resolved through rAthena `pet_db.yml` + `item_db_equip.yml`, cross-referenced
+  with the browiki pet list.
+
 ## [0.6.0] — 2026-06-27
 
 ### Added

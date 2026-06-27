@@ -37,6 +37,21 @@ describe("Wishlist", () => {
     );
   });
 
+  it("includes the selected pet's egg as its own item", async () => {
+    const user = userEvent.setup();
+    render(
+      <StateHarness db={db} init={{ pet: 1002 }}>
+        <Wishlist />
+      </StateHarness>,
+    );
+    await user.click(screen.getByRole("button", { name: /Lista de desejos/ }));
+    const link = screen.getByRole("link", { name: "Ovo de Poring" });
+    expect(link).toHaveAttribute(
+      "href",
+      "https://www.divine-pride.net/database/item/9001/ovo-de-poring",
+    );
+  });
+
   it("routes market links through the selected server and remembers it", async () => {
     const user = userEvent.setup();
     renderWishlist();

@@ -104,6 +104,10 @@ export type State = {
   /** Index into the class's mount list (see core/mounts.ts), or null when not
    *  mounted. Mounting renders an alternate (mounted) job id — see effectiveJob. */
   mount: number | null;
+  /** Selected pet companion's monster id (see sim/pets.ts), or null. Only the map
+   *  sim renders it (a follower monster sprite); it's part of the build so it
+   *  saves to slots and travels in the share URL like the mount. */
+  pet: number | null;
 };
 
 export function initialState(db: Db): State {
@@ -118,6 +122,7 @@ export function initialState(db: Db): State {
     clothesColor: null,
     equipped: {},
     mount: null,
+    pet: null,
   };
 }
 
@@ -127,7 +132,7 @@ export function initialState(db: Db): State {
  *  the view, so you can compare costumes in the same pose. */
 export type Build = Pick<
   State,
-  "classId" | "gender" | "hairStyle" | "hairColor" | "clothesColor" | "equipped" | "mount"
+  "classId" | "gender" | "hairStyle" | "hairColor" | "clothesColor" | "equipped" | "mount" | "pet"
 >;
 
 export function buildOf(state: State): Build {
@@ -139,6 +144,7 @@ export function buildOf(state: State): Build {
     clothesColor: state.clothesColor,
     equipped: state.equipped,
     mount: state.mount,
+    pet: state.pet,
   };
 }
 
@@ -155,6 +161,7 @@ export function applyBuild(state: State, build: Build): State {
     clothesColor: build.clothesColor,
     equipped: { ...build.equipped },
     mount: build.mount,
+    pet: build.pet,
   };
 }
 

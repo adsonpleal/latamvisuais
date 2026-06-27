@@ -22,6 +22,7 @@ function sampleState(): State {
       garment: db.costumes.find((c) => c.id === 400)!,
     },
     mount: null,
+    pet: null,
   };
 }
 
@@ -43,6 +44,19 @@ describe("encodeState", () => {
     expect(clampState(db, { ...initialState(db), ...decoded })).toEqual(state);
     // The default (unmounted) build stays unchanged — mount adds no bits.
     expect(decodeState(encodeState(initialState(db)), db)!.mount).toBeNull();
+  });
+
+  it("appends the pet id as a trailing field, round-tripping", () => {
+    const state: State = { ...sampleState(), pet: 1002 };
+    expect(encodeState(state)).toBe("1.34m.47.2.4.3.2s-b4.ru"); // 1002 → "ru"
+    const decoded = decodeState(encodeState(state), db);
+    expect(clampState(db, { ...initialState(db), ...decoded })).toEqual(state);
+  });
+
+  it("emits an empty items field so a pet-only build keeps the pet positional", () => {
+    const state: State = { ...initialState(db), pet: 1002 };
+    expect(encodeState(state)).toBe("1.0.0.1.0.0..ru");
+    expect(decodeState(encodeState(state), db)!.pet).toBe(1002);
   });
 
   it("lists each multi-slot costume once", () => {
@@ -91,6 +105,11 @@ describe("decodeState", () => {
     // "2s" = 100 (known), "zzzz" = unknown → only the chapéu survives.
     const out = decodeState("1.0.0.1.0.0.2s-zzzz", db);
     expect(out!.equipped).toEqual({ top: db.costumes.find((c) => c.id === 100) });
+  });
+
+  it("decodes older links (no 8th field) as having no pet", () => {
+    const out = decodeState("1.34m.47.2.4.3.2s-b4", db);
+    expect(out).not.toHaveProperty("pet");
   });
 
   it("decodes a Padrão (null) colour as null, not 0", () => {

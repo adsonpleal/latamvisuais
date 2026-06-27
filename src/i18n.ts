@@ -21,6 +21,12 @@ export const t = {
   simDead: "Morrer",
   simBeta: "Beta — em desenvolvimento",
 
+  // Pet companion (browiki "Mascotes"): a monster that follows you on the map.
+  petsButton: "Mascotes",
+  petsTitle: "Mascotes",
+  petsRemove: "Remover mascote",
+  petsSearch: "Buscar mascote…",
+
   themeLabel: "Tema",
   themeAuto: "Auto",
   themeLight: "Claro",
@@ -140,6 +146,7 @@ export const t = {
   loading: "Carregando dados…",
   loadError: "Não foi possível carregar os dados do simulador.",
 
+  footerTools: "Outras ferramentas",
   footerChangelog: "Novidades",
   changelogTitle: "Novidades",
   footerCopyright: "© Gravity Interactive, Inc. All Rights Reserved.",

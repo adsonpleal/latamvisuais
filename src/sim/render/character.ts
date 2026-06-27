@@ -23,11 +23,12 @@ import {
   Vector3,
 } from "three";
 import { SPRITE, UNITS_PER_PX } from "../sprite";
-const WORLD_W = SPRITE.w * UNITS_PER_PX;
-const WORLD_H = SPRITE.h * UNITS_PER_PX;
-// The feet anchor (canvas row anchorY) sits this far below the plane's centre,
-// in world units along the billboard's up axis.
-const ANCHOR_OFFSET = (SPRITE.anchorY / SPRITE.h - 0.5) * WORLD_H;
+
+/** The render-canvas metrics a billboard needs: the sprite sheet's pixel size and
+ *  the origin (ground/feet point) within it. The character uses SPRITE; the pet
+ *  passes its own (larger) PET_SPRITE — see sim/pets.ts. */
+export type SpriteMetrics = { w: number; h: number; anchorX: number; anchorY: number };
+
 // The flat sprite shares the feet's depth, so the ground tiles in front of the
 // feet (nearer the camera) would overdraw its lower edge (boots sit just below
 // the anchor). Nudge the whole sprite toward the camera *along the line of sight*
@@ -42,11 +43,22 @@ export class Character {
   private texture: CanvasTexture;
   private up = new Vector3();
   private toCam = new Vector3();
+  private metrics: SpriteMetrics;
+  private anchorOffset: number;
 
-  constructor(private scene: Scene) {
+  constructor(
+    private scene: Scene,
+    metrics: SpriteMetrics = SPRITE,
+  ) {
+    this.metrics = metrics;
+    const worldW = metrics.w * UNITS_PER_PX;
+    const worldH = metrics.h * UNITS_PER_PX;
+    // The feet anchor (canvas row anchorY) sits this far below the plane's centre,
+    // in world units along the billboard's up axis.
+    this.anchorOffset = (metrics.anchorY / metrics.h - 0.5) * worldH;
     this.canvas = document.createElement("canvas");
-    this.canvas.width = SPRITE.w;
-    this.canvas.height = SPRITE.h;
+    this.canvas.width = metrics.w;
+    this.canvas.height = metrics.h;
     this.ctx = this.canvas.getContext("2d")!;
     this.texture = new CanvasTexture(this.canvas);
     this.texture.colorSpace = SRGBColorSpace;
@@ -58,7 +70,7 @@ export class Character {
       depthTest: true,
       depthWrite: true,
     });
-    this.mesh = new Mesh(new PlaneGeometry(WORLD_W, WORLD_H), material);
+    this.mesh = new Mesh(new PlaneGeometry(worldW, worldH), material);
     this.mesh.renderOrder = 1;
     scene.add(this.mesh);
   }
@@ -67,15 +79,15 @@ export class Character {
    *  `feet` is the ground point in world space; the plane faces `camera`. */
   update(img: HTMLImageElement, feet: Vector3, camera: PerspectiveCamera): void {
     if (img.complete && img.naturalWidth) {
-      this.ctx.clearRect(0, 0, SPRITE.w, SPRITE.h);
-      this.ctx.drawImage(img, 0, 0, SPRITE.w, SPRITE.h);
+      this.ctx.clearRect(0, 0, this.metrics.w, this.metrics.h);
+      this.ctx.drawImage(img, 0, 0, this.metrics.w, this.metrics.h);
       this.texture.needsUpdate = true;
     }
     // Face the camera fully (image-plane-aligned): a single-depth flat sprite.
     this.mesh.quaternion.copy(camera.quaternion);
     // Offset along the billboard's up axis so the feet anchor lands on the ground.
     this.up.set(0, 1, 0).applyQuaternion(camera.quaternion);
-    this.mesh.position.copy(feet).addScaledVector(this.up, ANCHOR_OFFSET);
+    this.mesh.position.copy(feet).addScaledVector(this.up, this.anchorOffset);
     // Pull toward the camera along the line of sight so nearby ground can't clip
     // the lower edge (depth-only nudge; the on-screen position is unchanged).
     this.toCam.copy(camera.position).sub(this.mesh.position).normalize();
