@@ -4,6 +4,34 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.6.0] — 2026-06-27
+
+### Added
+
+- **Expanded-branch 4th classes in the picker.** Sky Emperor, Soul Ascetic,
+  Shinkiro, Shiranui, Night Watch and Hyper Novice now appear (with clothes-color
+  palettes and the Rédeas mount toggle). They ship sprites/palettes in the LATAM
+  GRF but have no party icon or final pt-BR name yet, so `build-db.mjs`
+  (`SHOW_UNLOCALIZED`) force-surfaces them under iRO English placeholder names and
+  suppresses the `unreleased` flag. Spirit Handler is intentionally omitted — the
+  GRF has no doram body sprite for it, so ragassets can't render it.
+
+### Fixed
+
+- **These classes no longer render permanently mounted.** ragassets/zrenderer
+  index them in their own id space (`job_names.txt`, offset by `advancedJobIndex`):
+  standing sprite at 4302–4307, `*_RIDING` at the client's kRO ids 4309–4314. The
+  build was emitting the kRO id (the riding sprite); a `RENDER_ID` override now
+  pins the standing id, and `core/mounts.ts` gives each a Rédeas mount mapping
+  standing → riding.
+
+### Notes
+
+- ragassets has no party emblem for these ids (the `icon_jobs_*` bitmaps aren't in
+  the LATAM client and aren't published elsewhere yet), so `jobIconUrl` falls back
+  to a head-framed sprite render — the same approach `costumeThumbUrl` uses for
+  missing item icons.
+
 ## [0.5.0] — 2026-06-20
 
 ### Added

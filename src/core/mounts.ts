@@ -111,6 +111,14 @@ export const MOUNTS: Record<number, Mount[]> = {
   4046: [reins(4155)], // Taekwon — Poring
   4047: [reins(4123)], // Mestre Taekwon (Star Gladiator) — Poring
   4049: [reins(4117)], // Espiritualista (Soul Linker) — Sapo
+  // expanded 4th jobs (Rédeas = the class's own *_RIDING sprite; ids are the
+  // ragassets render ids — standing 4302-4307, riding 4309-4314)
+  4302: [reins(4309)], // Sky Emperor
+  4303: [reins(4310)], // Soul Ascetic
+  4304: [reins(4311)], // Shinkiro
+  4305: [reins(4312)], // Shiranui
+  4306: [reins(4313)], // Night Watch
+  4307: [reins(4314)], // Hyper Novice
   // --- doram ---
   4218: [reins(4219)], // Invocador (Summoner) — Carrinho
 };

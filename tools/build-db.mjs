@@ -142,6 +142,24 @@ const CLASS_CATALOG = [
   ["doram", "JT_SUMMONER", 4218],
 ];
 
+// zrenderer/ragassets index the newest expanded 4th classes in their OWN id
+// space (resolver job_names.txt), offset from the client's kRO job ids: the
+// STANDING sprite sits at 4302-4307 and the *_RIDING (mount) sprite at the kRO
+// id 4309-4314. `id` is what we send ragassets as `job=`, so it must be the
+// standing render id — the client's pcidentity id (4309…) renders the
+// always-mounted sprite. The matching Rédeas mount uses the riding id (see
+// core/mounts.ts). Spirit Handler (standing 4308 / riding 4315) is deliberately
+// absent: the LATAM GRF ships no doram body sprite for it yet, so ragassets
+// can't render it.
+const RENDER_ID = {
+  JT_SKY_EMPEROR: 4302,
+  JT_SOUL_ASCETIC: 4303,
+  JT_SHINKIRO: 4304,
+  JT_SHIRANUI: 4305,
+  JT_NIGHT_WATCH: 4306,
+  JT_HYPER_NOVICE: 4307,
+};
+
 // Clothes-color palette file basename per class (data/palette/몸/<name>_<남|여>_<n>.pal,
 // doram under data/palette/도람족/body/). Player sprite names are hardcoded in
 // the client (jobname.lub only covers NPCs/mobs), so this table is maintained
@@ -186,6 +204,21 @@ const PAL_NAMES = {
   JT_SOUL_REAPER: "소울리퍼", JT_SOUL_ASCETIC: "soul_ascetic",
   JT_NIGHT_WATCH: "night_watch",
   JT_SUMMONER: "묘족",
+};
+
+// Expanded-branch 4th jobs LATAM has shipped the sprites/palettes for but not
+// yet a party icon or a localized name. We surface them anyway (so they show in
+// the picker) with iRO's English names as placeholders — the build would
+// otherwise hide them as `unreleased` and the client's provisional pt-BR labels
+// aren't final. Drop an entry from here once LATAM publishes its pt-BR name (the
+// name then resolves from the client and the icon check flags release on its own).
+const SHOW_UNLOCALIZED = {
+  JT_SKY_EMPEROR: "Sky Emperor",
+  JT_SOUL_ASCETIC: "Soul Ascetic",
+  JT_SHINKIRO: "Shinkiro",
+  JT_SHIRANUI: "Shiranui",
+  JT_NIGHT_WATCH: "Night Watch",
+  JT_HYPER_NOVICE: "Hyper Novice",
 };
 
 // ---------------------------------------------------------------------------
@@ -407,7 +440,7 @@ function resolveItemInfoPath(args, grfPath) {
 function buildClasses(grf, { jtIds, jtNames, jobMsg, scan }) {
   const classes = [];
   for (const [group, jt, fallbackId] of CLASS_CATALOG) {
-    const id = jtIds.get(jt) ?? fallbackId;
+    const id = RENDER_ID[jt] ?? jtIds.get(jt) ?? fallbackId;
     const name = resolveName(jt, jobMsg, jtNames);
     const race = group === "doram" ? "doram" : "human";
     const palettes = {};
@@ -421,7 +454,8 @@ function buildClasses(grf, { jtIds, jtNames, jobMsg, scan }) {
     const cls = { id, jt, name, group, race, palettes };
     // Classes whose party icon isn't in the client are unreleased on LATAM —
     // flagged so the UI can hide them (same source ragassets serves icons from).
-    if (!findBestEntry(grf, `유저인터페이스/renewalparty/icon_jobs_${id}.bmp`)) {
+    // SHOW_UNLOCALIZED classes are force-surfaced ahead of their icon/name.
+    if (!SHOW_UNLOCALIZED[jt] && !findBestEntry(grf, `유저인터페이스/renewalparty/icon_jobs_${id}.bmp`)) {
       cls.unreleased = true;
     }
     classes.push(cls);
@@ -468,6 +502,7 @@ const NAME_ALIAS = {
 function resolveName(jt, jobMsg, jtNames) {
   const suffix = NAME_ALIAS[jt] ?? jt.replace(/^JT_/, "");
   return (
+    SHOW_UNLOCALIZED[jt] ??
     NAME_OVERRIDE[jt] ??
     jobMsg.get(suffix) ??
     ptName(jtNames, `JT_${suffix}`) ??

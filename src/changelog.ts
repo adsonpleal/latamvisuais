@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.6.0",
+    date: "2026-06-27",
+    changes: [
+      "Novas classes na lista! As classes expandidas de 4ª — Sky Emperor, Soul Ascetic, Shinkiro, Shiranui, Night Watch e Hyper Novice — já aparecem no seletor, com troca de cor de roupa e o botão de montaria.",
+      "Como o LATAM ainda não tem o nome em pt-BR dessas classes, usamos os nomes do iRO (em inglês) por enquanto — serão atualizados assim que saírem por aqui.",
+    ],
+  },
+  {
     version: "0.5.0",
     date: "2026-06-20",
     changes: [
