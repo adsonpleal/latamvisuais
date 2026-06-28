@@ -24,9 +24,10 @@ The UI is in Portuguese (pt-BR), matching the LATAM server.
 
 ## Map simulation (experimental)
 
-The **"Explorar mapa"** button (top bar) opens a bare-minimum playable view of a
-single field, **tra_fild**: the real 3D map — textured ground, animated water,
-3D objects (trees, the bridge, the Prontera wall) and lighting — rendered
+The **"Explorar mapa"** button (top bar) opens a bare-minimum playable view of
+any RO map (a searchable picker lists all ~922 worlds, defaulting to the
+training field **tra_fild**): the real 3D map — textured ground, animated water,
+3D objects (trees, bridges, city walls) and lighting — rendered
 client-side with [three.js](https://threejs.org/), with your current character
 walking it by **click-to-move** (A\* over the map's walkability grid, with the
 matching 8-direction walk animation from ragassets). **Right-drag** rotates the
@@ -38,14 +39,13 @@ under [src/sim/format/](src/sim/format/) are ports of roBrowser / roBrowserLegac
 loaders (`.gat` altitude, `.gnd` ground, `.rsw` world, `.rsm` models).
 
 It's loaded lazily (its own bundle), so three.js and the map assets only download
-when you open it. The map assets are extracted from the client GRF by
-`tools/build-map.mjs` into `public/maps/tra_fild/` (raw `.gat`/`.gnd`/`.rsw`, the
-referenced `.rsm` models, and every texture converted BMP/TGA → transparent PNG,
-plus a `manifest.json` mapping in-file resource names to the emitted files):
-
-```sh
-npm run build:map -- --grf "C:\Gravity\Ragnarok\data.grf"
-```
+when you open it. Maps are fetched at runtime from the ragassets asset server
+(`https://assets.latam-tools.com.br/maps/`): a `<map>/manifest.json` (mapping the
+in-file resource names to the emitted files) plus the raw `.gat`/`.gnd`/`.rsw`,
+the referenced `.rsm` models, and every texture as a transparent PNG. Shared
+models/textures/water/UI are content-addressed and de-duplicated across maps. The
+extractor lives in the ragassets repo (`extract-grf.mjs --maps`); point the
+simulator at a different server with the `VITE_MAPS_URL` env var (see `.env`).
 
 The simulation entry is gated behind the `#play` URL hash, kept separate from the
 `?b=` build codec so it's shareable and refresh-safe without disturbing a build URL.

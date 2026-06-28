@@ -14,6 +14,13 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.8.0",
+    date: "2026-06-28",
+    changes: [
+      "Explore qualquer mapa! A exploração não fica mais presa ao campo de treinamento: um seletor com busca (no canto da tela) lista todos os mapas de Ragnarok — escolha qualquer um e caminhe por ele com seu personagem e sua mascote.",
+    ],
+  },
+  {
     version: "0.7.0",
     date: "2026-06-27",
     changes: [

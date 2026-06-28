@@ -94,6 +94,12 @@ export class Character {
     this.mesh.position.addScaledVector(this.toCam, FRONT_BIAS);
   }
 
+  /** Show/hide the billboard — used to keep the previous map's character from
+   *  lingering in the scene while the next map loads. */
+  setVisible(visible: boolean): void {
+    this.mesh.visible = visible;
+  }
+
   dispose(): void {
     this.scene.remove(this.mesh);
     this.mesh.geometry.dispose();

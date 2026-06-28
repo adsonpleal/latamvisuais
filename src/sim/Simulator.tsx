@@ -1,9 +1,11 @@
-// Full-screen tra_fild simulation: a three.js world (ground + models + water,
-// built from the extracted GRF assets) with the player's character — the same
-// ragassets sprite as the costume preview — walking it by click-to-move. Loaded
-// lazily (its own chunk) so three.js + map assets only download when opened.
+// Full-screen map simulation: a three.js world (ground + models + water, built
+// from GRF assets the ragassets server streams per map) with the player's
+// character — the same ragassets sprite as the costume preview — walking it by
+// click-to-move. A picker switches between all ~922 maps; each switch rebuilds
+// the world (disposing the previous one) while the engine and character persist.
+// Loaded lazily (its own chunk) so three.js + map assets only download when opened.
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Vector3 } from "three";
 import { t } from "../i18n";
 import { effectiveJob, frameCountProbeUrl, type State } from "../core/state";
@@ -24,7 +26,12 @@ import { SPRITE_DEAD, SPRITE_FRAMES, SPRITE_IDLE, SPRITE_SIT, SPRITE_WALK, sprit
 import { fetchApngInfo, frameAt, type ApngInfo } from "./apng";
 import { Walker } from "./walker";
 
-const BASE = `${import.meta.env.BASE_URL}maps/tra_fild/`;
+// Every world is fetched from the ragassets asset server (922 maps, extracted +
+// served in the same manifest+raw-binary shape the old local tools/build-map.mjs
+// produced — so the browser parsers in sim/format/* and the scene builder need no
+// change). Override the base for local testing via the VITE_MAPS_URL env var.
+const MAPS_ROOT = import.meta.env.VITE_MAPS_URL ?? "https://assets.latam-tools.com.br/maps/";
+const DEFAULT_MAP = "tra_fild"; // the training field — the sim's starting map
 
 // The poses the sim can show. Their composited frame counts + delays are probed
 // from ragassets at load (see sim/apng.ts) so an animated costume plays in full,
@@ -66,6 +73,41 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const [phase, setPhase] = useState<Phase>("loading");
+
+  // Map selection. The catalogue (every available map name) is fetched from the
+  // server once to populate the picker; `mapName` is the world currently loaded.
+  // Switching it rebuilds only the world (the engine/character/effects persist).
+  const [maps, setMaps] = useState<string[]>([]);
+  const [mapName, setMapName] = useState(DEFAULT_MAP);
+  // Searchable-dropdown state: the typed filter, whether the menu is open, and the
+  // keyboard-highlighted row. Matches are filtered case-insensitively; the menu
+  // scrolls, so every match is reachable (no cap).
+  const [query, setQuery] = useState(DEFAULT_MAP);
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [pickerActive, setPickerActive] = useState(0);
+  const filteredMaps = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return q ? maps.filter((m) => m.includes(q)) : maps;
+  }, [maps, query]);
+  // Commit a picked map: sync the input text, close the menu, and (if changed)
+  // trigger the world reload via the mapName effect.
+  const selectMap = (name: string) => {
+    setQuery(name);
+    setPickerOpen(false);
+    if (name !== mapName) setMapName(name);
+  };
+
+  // loadMap is defined inside the engine effect (it closes over the engine and
+  // the world-scoped holders the render loop reads); the map-selection effect
+  // calls it through this ref so a new map rebuilds the world without tearing
+  // down the engine and render loop.
+  const loadMapRef = useRef<((name: string) => void) | null>(null);
+
+  // "Asa de Mosca" (Fly Wing): teleport to a random walkable cell. Defined inside
+  // the engine effect (it needs the live world/walker); the button calls it
+  // through this ref, the Space shortcut calls it directly.
+  const flyWingRef = useRef<(() => void) | null>(null);
+
   // Player pose: stand walks normally; sit/dead can't move but turn to face the
   // clicked cell. Mirrored into a ref the render loop / handlers read.
   const [pose, setPose] = useState<Pose>("stand");
@@ -126,175 +168,206 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
     const ro = new ResizeObserver(onResize);
     ro.observe(wrap);
 
-    (async () => {
-      try {
-        // Probe each pose's real (composited) frame count + delays first, so the
-        // preload warms every frame (not just the body's) and playback runs at
-        // the APNG's native speed. The map binaries load in parallel meanwhile.
-        const manifestP = fetch(BASE + "manifest.json").then((r) => r.json()) as Promise<MapManifest>;
-        await probeFrameInfo(stateRef.current);
-        if (disposed) return;
-        // Now warm every character frame (real counts) in parallel with the map.
-        const framesReady = preloadCharFrames(stateRef.current, (a) => infoFor(a).count);
-        const manifest = await manifestP;
-        world = await buildWorld(BASE, manifest);
-        if (disposed) return;
-        engine!.add(world.root);
-
-        // RO mouse cursors (cursors.spr/.act): the animated default arrow and the
-        // two-curvy-arrows rotate cursor, cycled by CursorAnimator from the loop.
-        cursor = new CursorAnimator(canvas, BASE);
-        cursor.add("default", manifest.ui?.cursor);
-        cursor.add("rotate", manifest.ui?.cursorRotate);
-        cursor.set("default");
-        walker = new Walker(world.gat, world.cellSize, world.spawn);
-        character = new Character(engine!.scene);
-        await framesReady; // all char frames warm before play — no on-the-fly loads
-        if (disposed) return;
-        setPhase("ready");
-
-        // Dev-only handle: lets the preview harness step frames + introspect the
-        // scene even when requestAnimationFrame is throttled (hidden tab).
-        if (import.meta.env.DEV) {
-          (window as unknown as { __sim?: unknown }).__sim = { engine, world, walker };
-        }
-
-        // Frame-by-frame sprite animator. A covered/hidden APNG <img> has its
-        // animation paused by the browser, so we preload each frame from
-        // ragassets (frame=N) and cycle them ourselves into the billboard.
-        let aAction = -1;
-        let aDir = -1;
-        let aState: State | null = null;
-        let aHeaddir = -1;
-        let aClock = 0;
-        let frames: HTMLImageElement[] = [];
-        let aInfo: ApngInfo = { count: 1, delays: [] };
-        // Rendered job currently reflected in frameInfo. A mount swaps the job
-        // sprite (effectiveJob), which has its own frame counts/delays, so when it
-        // changes we re-probe and force the animator to rebuild with fresh counts.
-        let aJob = effectiveJob(stateRef.current);
-        const ensureFrames = (action: number, dir: number, st: State, headdir: number) => {
-          if (action === aAction && dir === aDir && st === aState && headdir === aHeaddir) return;
-          aAction = action;
-          aDir = dir;
-          aState = st;
-          aHeaddir = headdir;
-          aClock = 0;
-          aInfo = infoFor(action);
-          frames = Array.from({ length: aInfo.count }, (_, f) => loadImage(spriteUrl(st, action, dir, f, headdir)));
-        };
-
-        // World-effect costumes (auras, falling petals — the "effect-only"
-        // costumes the paper-doll can't draw). Rebuild the in-scene billboards
-        // whenever the equipped effects change; each loads its assets async.
-        let effects: EffectBillboard[] = [];
-        let effectKeys = "";
-        let lastState: State | null = null;
-        let effectToken = 0;
-        const clearEffects = () => {
-          for (const e of effects) e.dispose();
-          effects = [];
-        };
-        const desiredEffectKeys = (st: State): string[] => {
-          const keys: string[] = [];
-          for (const slot of SLOTS) {
-            const key = st.equipped[slot]?.effect;
-            if (key && !keys.includes(key)) keys.push(key);
-          }
-          return keys;
-        };
-        const syncEffects = (st: State) => {
-          // State only changes on dispatch; skip the per-frame recompute while the
-          // build is unchanged (the walker/camera don't touch React state).
-          if (st === lastState) return;
-          lastState = st;
-          const keys = desiredEffectKeys(st);
-          const joined = keys.join(",");
-          if (joined === effectKeys) return;
-          effectKeys = joined;
-          clearEffects();
-          const token = ++effectToken;
-          for (const key of keys) {
-            loadEffect(key)
-              .then((loaded) => {
-                if (disposed || token !== effectToken) return;
-                effects.push(new EffectBillboard(engine!.scene, loaded));
-              })
-              .catch((err) => console.error("[sim] effect load failed", key, err));
-          }
-        };
-        disposeEffects = clearEffects;
-
-        const charWorld = new Vector3();
-        let effectClock = 0; // monotonic; drives effect playback independent of pose
-        engine!.start((dt) => {
-          cursor?.update(dt);
-          engine!.cam.tickZoom(dt); // ease the zoom toward its target each frame
-          if (!walker || !world || !character) return;
-          world.update(dt);
-          syncEffects(stateRef.current);
-          effectClock += dt;
-          // Mount changed → re-probe the new sprite's frame info, then reset the
-          // animator cache so it rebuilds frames with the correct counts.
-          const curJob = effectiveJob(stateRef.current);
-          if (curJob !== aJob) {
-            aJob = curJob;
-            probeFrameInfo(stateRef.current).then(() => {
-              if (!disposed) aState = null;
-            });
-          }
-          if (poseRef.current !== "stand") walker.stop(); // sit/dead can't move
-          walker.update(dt);
-          // X is negated to match the scene's mirrored (RO) X axis.
-          charWorld.set(-walker.worldX(), -walker.worldY(), walker.worldZ());
-          engine!.cam.setTarget(charWorld);
-
-          // Displayed frame = (camera facing + entity facing) % 8, so the
-          // character faces its travel direction and turns as the camera rotates.
-          const action =
-            poseRef.current === "sit" ? SPRITE_SIT : poseRef.current === "dead" ? SPRITE_DEAD : walker.moving ? SPRITE_WALK : SPRITE_IDLE;
-          const dir = (engine!.cam.direction + walker.dir) % 8;
-          // Head turn only while sitting; otherwise the head stays with the body.
-          // headdir 2/1 = head turned toward the clockwise/counter-clockwise side.
-          if (poseRef.current !== "sit") headOffset = 0;
-          const headdir = headOffset > 0 ? 2 : headOffset < 0 ? 1 : 0;
-          ensureFrames(action, dir, stateRef.current, headdir);
-
-          aClock += dt;
-          const fi = frames.length ? frameAt(aClock, aInfo) : 0;
-          const frame = frames[fi];
-          if (frame && frame.complete && frame.naturalWidth) {
-            character.update(frame, charWorld, engine!.cam.camera);
-          }
-
-          // Pet companion: lazily spawned on first selection, then follows the
-          // player each frame. setMob is a no-op when unchanged and hides the
-          // billboard when cleared, so it's safe to call every frame.
-          const ownerCell = { gx: walker.cellX, gy: walker.cellY };
-          const petMob = stateRef.current.pet;
-          if (petMob != null && !petEntity) petEntity = new Pet(engine!.scene, world);
-          if (petEntity) {
-            petEntity.setMob(petMob, ownerCell);
-            petEntity.update(dt, ownerCell, engine!.cam.direction, engine!.cam.camera);
-          }
-
-          for (const e of effects) e.update(effectClock, charWorld, engine!.cam.camera);
-          // Re-pin the selector to the cursor whenever the camera moved (follow,
-          // zoom-ease or rotate) — a still cursor then points at a new cell. When
-          // nothing moved we skip the raycast (mousemove handles cursor changes).
-          const cp = engine!.cam.camera.position;
-          if (Math.abs(cp.x - lastCamX) > 0.05 || Math.abs(cp.y - lastCamY) > 0.05 || Math.abs(cp.z - lastCamZ) > 0.05) {
-            lastCamX = cp.x;
-            lastCamY = cp.y;
-            lastCamZ = cp.z;
-            updateHover();
-          }
-        });
-      } catch (err) {
-        console.error("[sim] failed to load map", err);
-        if (!disposed) setPhase("error");
-      }
+    // Probe each pose's real (composited) frame count + delays, then warm every
+    // character frame into the shared image cache. Both depend on the build, not
+    // the map, so they run once here (and are re-probed on a mount swap by the
+    // loop below). loadMap awaits this before revealing a world, so no frame
+    // streams in mid-play — on the first map or after a switch.
+    const framesReadyP = (async () => {
+      await probeFrameInfo(stateRef.current);
+      if (disposed) return;
+      await preloadCharFrames(stateRef.current, (a) => infoFor(a).count);
     })();
+    character = new Character(engine.scene);
+
+    // Frame-by-frame sprite animator. A covered/hidden APNG <img> has its
+    // animation paused by the browser, so we preload each frame from
+    // ragassets (frame=N) and cycle them ourselves into the billboard.
+    let aAction = -1;
+    let aDir = -1;
+    let aState: State | null = null;
+    let aHeaddir = -1;
+    let aClock = 0;
+    let frames: HTMLImageElement[] = [];
+    let aInfo: ApngInfo = { count: 1, delays: [] };
+    // Rendered job currently reflected in frameInfo. A mount swaps the job
+    // sprite (effectiveJob), which has its own frame counts/delays, so when it
+    // changes we re-probe and force the animator to rebuild with fresh counts.
+    let aJob = effectiveJob(stateRef.current);
+    const ensureFrames = (action: number, dir: number, st: State, headdir: number) => {
+      if (action === aAction && dir === aDir && st === aState && headdir === aHeaddir) return;
+      aAction = action;
+      aDir = dir;
+      aState = st;
+      aHeaddir = headdir;
+      aClock = 0;
+      aInfo = infoFor(action);
+      frames = Array.from({ length: aInfo.count }, (_, f) => loadImage(spriteUrl(st, action, dir, f, headdir)));
+    };
+
+    // World-effect costumes (auras, falling petals — the "effect-only"
+    // costumes the paper-doll can't draw). Rebuild the in-scene billboards
+    // whenever the equipped effects change; each loads its assets async.
+    let effects: EffectBillboard[] = [];
+    let effectKeys = "";
+    let lastState: State | null = null;
+    let effectToken = 0;
+    const clearEffects = () => {
+      for (const e of effects) e.dispose();
+      effects = [];
+    };
+    const desiredEffectKeys = (st: State): string[] => {
+      const keys: string[] = [];
+      for (const slot of SLOTS) {
+        const key = st.equipped[slot]?.effect;
+        if (key && !keys.includes(key)) keys.push(key);
+      }
+      return keys;
+    };
+    const syncEffects = (st: State) => {
+      // State only changes on dispatch; skip the per-frame recompute while the
+      // build is unchanged (the walker/camera don't touch React state).
+      if (st === lastState) return;
+      lastState = st;
+      const keys = desiredEffectKeys(st);
+      const joined = keys.join(",");
+      if (joined === effectKeys) return;
+      effectKeys = joined;
+      clearEffects();
+      const token = ++effectToken;
+      for (const key of keys) {
+        loadEffect(key)
+          .then((loaded) => {
+            if (disposed || token !== effectToken) return;
+            effects.push(new EffectBillboard(engine!.scene, loaded));
+          })
+          .catch((err) => console.error("[sim] effect load failed", key, err));
+      }
+    };
+    disposeEffects = clearEffects;
+
+    const charWorld = new Vector3();
+    let effectClock = 0; // monotonic; drives effect playback independent of pose
+    engine.start((dt) => {
+      cursor?.update(dt);
+      engine!.cam.tickZoom(dt); // ease the zoom toward its target each frame
+      if (!walker || !world || !character) return;
+      world.update(dt);
+      syncEffects(stateRef.current);
+      effectClock += dt;
+      // Mount changed → re-probe the new sprite's frame info, then reset the
+      // animator cache so it rebuilds frames with the correct counts.
+      const curJob = effectiveJob(stateRef.current);
+      if (curJob !== aJob) {
+        aJob = curJob;
+        probeFrameInfo(stateRef.current).then(() => {
+          if (!disposed) aState = null;
+        });
+      }
+      if (poseRef.current !== "stand") walker.stop(); // sit/dead can't move
+      walker.update(dt);
+      // X is negated to match the scene's mirrored (RO) X axis.
+      charWorld.set(-walker.worldX(), -walker.worldY(), walker.worldZ());
+      engine!.cam.setTarget(charWorld);
+
+      // Displayed frame = (camera facing + entity facing) % 8, so the
+      // character faces its travel direction and turns as the camera rotates.
+      const action =
+        poseRef.current === "sit" ? SPRITE_SIT : poseRef.current === "dead" ? SPRITE_DEAD : walker.moving ? SPRITE_WALK : SPRITE_IDLE;
+      const dir = (engine!.cam.direction + walker.dir) % 8;
+      // Head turn only while sitting; otherwise the head stays with the body.
+      // headdir 2/1 = head turned toward the clockwise/counter-clockwise side.
+      if (poseRef.current !== "sit") headOffset = 0;
+      const headdir = headOffset > 0 ? 2 : headOffset < 0 ? 1 : 0;
+      ensureFrames(action, dir, stateRef.current, headdir);
+
+      aClock += dt;
+      const fi = frames.length ? frameAt(aClock, aInfo) : 0;
+      const frame = frames[fi];
+      if (frame && frame.complete && frame.naturalWidth) {
+        character.update(frame, charWorld, engine!.cam.camera);
+      }
+
+      // Pet companion: lazily spawned on first selection, then follows the
+      // player each frame. setMob is a no-op when unchanged and hides the
+      // billboard when cleared, so it's safe to call every frame.
+      const ownerCell = { gx: walker.cellX, gy: walker.cellY };
+      const petMob = stateRef.current.pet;
+      if (petMob != null && !petEntity) petEntity = new Pet(engine!.scene, world);
+      if (petEntity) {
+        petEntity.setMob(petMob, ownerCell);
+        petEntity.update(dt, ownerCell, engine!.cam.direction, engine!.cam.camera);
+      }
+
+      for (const e of effects) e.update(effectClock, charWorld, engine!.cam.camera);
+      // Re-pin the selector to the cursor whenever the camera moved (follow,
+      // zoom-ease or rotate) — a still cursor then points at a new cell. When
+      // nothing moved we skip the raycast (mousemove handles cursor changes).
+      const cp = engine!.cam.camera.position;
+      if (Math.abs(cp.x - lastCamX) > 0.05 || Math.abs(cp.y - lastCamY) > 0.05 || Math.abs(cp.z - lastCamZ) > 0.05) {
+        lastCamX = cp.x;
+        lastCamY = cp.y;
+        lastCamZ = cp.z;
+        updateHover();
+      }
+    });
+
+    // Load (or switch to) a map. Tears down the previous world (its scene meshes
+    // + GPU textures), walker, cursor and pet, then builds the new one from the
+    // remote base and re-adds it — the engine, character billboard and world
+    // effects persist across maps. A token guards against a newer switch (or an
+    // unmount) superseding an in-flight load.
+    let loadToken = 0;
+    const loadMap = (name: string) => {
+      const base = `${MAPS_ROOT}${name}/`;
+      const token = ++loadToken;
+      setPhase("loading");
+      if (world) {
+        engine!.scene.remove(world.root);
+        world.dispose();
+        world = null;
+      }
+      walker = null;
+      cursor = null;
+      petEntity?.dispose();
+      petEntity = null;
+      character?.setVisible(false); // don't leave the old map's character floating while loading
+      lastTarget = ""; // drop the previous map's target cell
+      aState = null; // force the animator to rebuild against the new spawn
+      (async () => {
+        try {
+          const manifest = (await fetch(base + "manifest.json").then((r) => r.json())) as MapManifest;
+          if (disposed || token !== loadToken) return;
+          const built = await buildWorld(base, manifest);
+          if (disposed || token !== loadToken) {
+            built.dispose(); // a newer switch (or unmount) won the race — drop it
+            return;
+          }
+          world = built;
+          engine!.add(world.root);
+          // RO mouse cursors (cursors.spr/.act): the animated default arrow and
+          // the two-curvy-arrows rotate cursor, cycled by CursorAnimator.
+          cursor = new CursorAnimator(canvas, base);
+          cursor.add("default", manifest.ui?.cursor);
+          cursor.add("rotate", manifest.ui?.cursorRotate);
+          cursor.set("default");
+          walker = new Walker(world.gat, world.cellSize, world.spawn);
+          await framesReadyP; // all char frames warm before play
+          if (disposed || token !== loadToken) return;
+          character?.setVisible(true); // reveal it again, repositioned at the new spawn
+          setPhase("ready");
+          // Dev-only handle: lets the preview harness step frames + introspect
+          // the scene even when requestAnimationFrame is throttled (hidden tab).
+          if (import.meta.env.DEV) {
+            (window as unknown as { __sim?: unknown }).__sim = { engine, world, walker, character };
+          }
+        } catch (err) {
+          console.error("[sim] failed to load map", name, err);
+          if (!disposed && token === loadToken) setPhase("error");
+        }
+      })();
+    };
+    loadMapRef.current = loadMap;
 
     // Raycast a client point to a GAT cell (X negated for the mirrored scene).
     // Picks against the invisible GAT-altitude mesh, so cells are right on the
@@ -416,9 +489,39 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
     window.addEventListener("mouseup", onPointerUp);
     canvas.addEventListener("contextmenu", onContextMenu);
 
+    // Fly Wing: jump to a random walkable cell (rejection-sample the GAT). Stands
+    // the character up; the pet auto-snaps next to it via its teleport-follow.
+    const flyWing = () => {
+      if (!world || !walker) return;
+      const gat = world.gat;
+      let cell: { gx: number; gy: number } | null = null;
+      for (let i = 0; i < 2000; i++) {
+        const gx = Math.floor(Math.random() * gat.width);
+        const gy = Math.floor(Math.random() * gat.height);
+        if (gat.isWalkable(gx, gy)) {
+          cell = { gx, gy };
+          break;
+        }
+      }
+      if (!cell) return;
+      walker.stop();
+      walker.px = cell.gx + 0.5;
+      walker.py = cell.gy + 0.5;
+      lastTarget = ""; // forget the previous click target
+      setPose("stand"); // fly wing stands you up
+    };
+    flyWingRef.current = flyWing;
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onCloseRef.current();
       else if (e.key === "Insert") setPose((cur) => (cur === "sit" ? "stand" : "sit"));
+      else if (e.key === " ") {
+        // Space = Fly Wing. Ignore while typing in the map picker; otherwise stop
+        // the page from scrolling / a focused button from re-firing.
+        if (e.target instanceof HTMLElement && e.target.tagName === "INPUT") return;
+        e.preventDefault();
+        flyWing();
+      }
     };
     window.addEventListener("keydown", onKey);
 
@@ -434,43 +537,144 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
       disposeEffects?.();
       petEntity?.dispose();
       character?.dispose();
+      world?.dispose();
+      loadMapRef.current = null;
+      flyWingRef.current = null;
       engine?.dispose();
     };
-    // Set up once: the engine, map load and render loop must not be torn down on
-    // every build change. Live state is read through refs (stateRef/onCloseRef).
+    // Set up once: the engine and render loop must not be torn down on every
+    // build change. Live state is read through refs (stateRef/onCloseRef); the
+    // map is (re)loaded by the map-selection effect below via loadMapRef.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Fetch the catalogue of every available map once, to populate the picker.
+  useEffect(() => {
+    let cancelled = false;
+    fetch(MAPS_ROOT + "index.json")
+      .then((r) => r.json() as Promise<{ maps: string[] }>)
+      .then((d) => {
+        if (!cancelled) setMaps(d.maps ?? []);
+      })
+      .catch((err) => console.error("[sim] failed to load map index", err));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // (Re)load the selected map. Runs on mount (after the engine effect has set
+  // loadMapRef) and whenever the picker changes mapName — loadMap disposes the
+  // previous world before building the new one, so switching never leaks.
+  useEffect(() => {
+    loadMapRef.current?.(mapName);
+  }, [mapName]);
 
   return (
     <div className="sim-overlay" ref={wrapRef}>
       <canvas className="sim-canvas" ref={canvasRef} />
-      <div className="sim-beta">{t.simBeta}</div>
       {phase === "loading" && <div className="sim-status">{t.simLoading}</div>}
       {phase === "error" && <div className="sim-status">{t.simError}</div>}
       <button type="button" className="sim-close game-close" title={t.simClose} onClick={onClose} />
-      {phase === "ready" && (
-        <div className="sim-controls">
-          <button type="button" className={`sim-btn${pose === "sit" ? " is-active" : ""}`} onClick={() => togglePose("sit")}>
-            {t.simSit}
-          </button>
-          <button type="button" className={`sim-btn${pose === "dead" ? " is-active" : ""}`} onClick={() => togglePose("dead")}>
-            {t.simDead}
-          </button>
-          {mounts.map((m, i) => (
-            <button
-              key={i}
-              type="button"
-              className={`sim-btn${state.mount === i ? " is-active" : ""}`}
-              onClick={() => toggleMount(i)}
-            >
-              {t.mountNames[m.nameKey]}
-            </button>
-          ))}
-          <button type="button" className={`sim-btn${state.pet != null ? " is-active" : ""}`} onClick={() => setPetOpen(true)}>
-            {t.petsButton}
-          </button>
+      <div className="sim-controls">
+        {/* Map picker: a searchable dropdown over all 922 maps — type to filter,
+            click or arrow+Enter to pick. Always available, so the map can be
+            switched while one is loading or after a load error. Selecting on
+            onMouseDown (before the input's onBlur fires) keeps the menu usable. */}
+        <div className="sim-map-field">
+          <span className="sim-map-label">{t.simMapLabel}</span>
+          <input
+            className="sim-map-input"
+            type="text"
+            role="combobox"
+            aria-expanded={pickerOpen}
+            aria-controls="sim-map-menu"
+            value={query}
+            placeholder={t.simMapLabel}
+            aria-label={t.simMapLabel}
+            spellCheck={false}
+            autoComplete="off"
+            onFocus={() => {
+              setQuery("");
+              setPickerOpen(true);
+              setPickerActive(0);
+            }}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setPickerOpen(true);
+              setPickerActive(0);
+            }}
+            onBlur={() => {
+              setPickerOpen(false);
+              setQuery(mapName); // restore the loaded map's name if nothing was picked
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "ArrowDown") {
+                e.preventDefault();
+                setPickerOpen(true);
+                setPickerActive((i) => Math.min(i + 1, filteredMaps.length - 1));
+              } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                setPickerActive((i) => Math.max(i - 1, 0));
+              } else if (e.key === "Enter") {
+                const pick = filteredMaps[pickerActive];
+                if (pick) {
+                  e.preventDefault();
+                  selectMap(pick);
+                  e.currentTarget.blur();
+                }
+              } else if (e.key === "Escape") {
+                e.stopPropagation(); // don't let the sim's Esc handler close the whole sim
+                e.currentTarget.blur();
+              }
+            }}
+          />
+          {pickerOpen && filteredMaps.length > 0 && (
+            <ul className="sim-map-menu" id="sim-map-menu" role="listbox">
+              {filteredMaps.map((m, i) => (
+                <li
+                  key={m}
+                  role="option"
+                  aria-selected={m === mapName}
+                  className={`sim-map-option${i === pickerActive ? " is-active" : ""}${m === mapName ? " is-current" : ""}`}
+                  onMouseDown={(e) => {
+                    e.preventDefault(); // keep focus so onBlur doesn't pre-empt the pick
+                    selectMap(m);
+                  }}
+                  onMouseEnter={() => setPickerActive(i)}
+                >
+                  {m}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-      )}
+        {phase === "ready" && (
+          <>
+            <button type="button" className={`sim-btn${pose === "sit" ? " is-active" : ""}`} onClick={() => togglePose("sit")}>
+              {t.simSit}
+            </button>
+            <button type="button" className="sim-btn" onClick={() => flyWingRef.current?.()}>
+              {t.simFlyWing}
+            </button>
+            <button type="button" className={`sim-btn${pose === "dead" ? " is-active" : ""}`} onClick={() => togglePose("dead")}>
+              {t.simDead}
+            </button>
+            {mounts.map((m, i) => (
+              <button
+                key={i}
+                type="button"
+                className={`sim-btn${state.mount === i ? " is-active" : ""}`}
+                onClick={() => toggleMount(i)}
+              >
+                {t.mountNames[m.nameKey]}
+              </button>
+            ))}
+            <button type="button" className={`sim-btn${state.pet != null ? " is-active" : ""}`} onClick={() => setPetOpen(true)}>
+              {t.petsButton}
+            </button>
+          </>
+        )}
+      </div>
       {petOpen && (
         <PetDialog
           current={state.pet}

@@ -12,14 +12,15 @@ export const t = {
   discordTitle: "Entre no servidor do Discord",
 
   playLink: "Explorar mapa",
-  playTitle: "Caminhe com seu personagem no campo de treinamento (experimental)",
+  playTitle: "Caminhe com seu personagem por qualquer mapa de Ragnarok (experimental)",
   simLoading: "Carregando o mapa…",
   simError: "Não foi possível carregar o mapa.",
   simClose: "Fechar (Esc)",
   simInspired: "Inspirado no roBrowser",
   simSit: "Sentar (Insert)",
   simDead: "Morrer",
-  simBeta: "Beta — em desenvolvimento",
+  simFlyWing: "Asa de Mosca (Espaço)",
+  simMapLabel: "Mapa",
 
   // Pet companion (browiki "Mascotes"): a monster that follows you on the map.
   petsButton: "Mascotes",

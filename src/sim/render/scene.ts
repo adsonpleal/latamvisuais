@@ -66,6 +66,10 @@ export interface World {
   setSelector(gx: number, gy: number): void;
   /** Hide the cell selector (pointer left the ground). */
   hideSelector(): void;
+  /** Free every GPU resource (geometries, materials, textures) this world owns.
+   *  Call after removing `root` from the scene when switching maps, so nothing
+   *  leaks. The world is unusable afterwards. */
+  dispose(): void;
 }
 
 async function fetchBuffer(url: string): Promise<ArrayBuffer> {
@@ -368,5 +372,22 @@ export async function buildWorld(baseUrl: string, manifest: MapManifest): Promis
     selectorMesh.visible = false;
   };
 
-  return { root: out, gat, picker, cellSize, spawn, update, setSelector, hideSelector };
+  // Release every GPU resource on map switch. Geometries + materials are disposed
+  // by walking the scene graph; the textures (which Material.dispose() does NOT
+  // free) are disposed from the collections that own them. Texture.dispose() is
+  // safe to call once per texture even though several materials share one.
+  const dispose = () => {
+    out.traverse((obj) => {
+      const mesh = obj as Mesh;
+      mesh.geometry?.dispose();
+      const mat = mesh.material;
+      if (mat) for (const m of Array.isArray(mat) ? mat : [mat]) m.dispose();
+    });
+    for (const tex of textures.values()) tex?.dispose();
+    for (const tex of waterFrames) tex.dispose();
+    lightMap?.dispose();
+    selectorTex?.dispose();
+  };
+
+  return { root: out, gat, picker, cellSize, spawn, update, setSelector, hideSelector, dispose };
 }

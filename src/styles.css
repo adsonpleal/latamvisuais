@@ -1890,28 +1890,6 @@ button:disabled {
   pointer-events: none;
 }
 
-/* Beta badge, top-centre of the play screen (top-left = pose controls,
-   top-right = close), flagging the simulation as a work in progress. */
-.sim-beta {
-  position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  padding: 4px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 999px;
-  background: rgba(214, 158, 46, 0.92);
-  color: #2b1d00;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  pointer-events: none;
-  user-select: none;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
-}
-
 /* "Inspired by roBrowser" credit, bottom-centre of the play screen. */
 .sim-credit {
   position: absolute;
@@ -1954,6 +1932,86 @@ button:disabled {
 .sim-btn.is-active {
   background: rgba(80, 140, 220, 0.85);
   border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Map picker — a labelled, searchable dropdown over all maps, top of the controls
+   column. The menu is absolutely positioned under the input so it overlays the
+   pose buttons below rather than shoving them down. */
+.sim-map-field {
+  position: relative; /* positioning context for the absolute dropdown menu */
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sim-map-label {
+  padding-left: 2px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+.sim-map-input {
+  width: 100%;
+  box-sizing: border-box;
+  /* Match the pose buttons exactly: same padding, border and font metrics. An
+     <input> doesn't inherit the page font, so without font-family: inherit its
+     line-height (and thus height) would differ from the buttons'. */
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.8rem;
+}
+.sim-map-input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+.sim-map-input:focus {
+  outline: none;
+  border-color: rgba(120, 170, 240, 0.9);
+  background: rgba(0, 0, 0, 0.7);
+}
+.sim-map-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 4;
+  max-height: 260px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  background: rgba(12, 14, 20, 0.96);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+.sim-map-option {
+  padding: 5px 8px;
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.78rem;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sim-map-option.is-active {
+  background: rgba(80, 140, 220, 0.85);
+  color: #fff;
+}
+.sim-map-option.is-current {
+  font-weight: 700;
+}
+.sim-map-option.is-current::after {
+  content: "•";
+  margin-left: 6px;
+  color: rgba(120, 200, 140, 0.95);
 }
 
 /* "Mascotes" picker — a modal grid of animated monster previews, stacked above

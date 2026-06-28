@@ -4,6 +4,30 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.8.0] — 2026-06-28
+
+### Changed
+
+- **The map sim now streams every world from ragassets, not one bundled map.**
+  Instead of the single `tra_fild` baked into `public/maps/`, the simulator
+  fetches maps at runtime from the ragassets asset server (922 worlds, served in
+  the same `manifest.json` + raw-binary shape as before, with shared
+  models/textures/water/UI content-addressed and de-duplicated across maps). A
+  **searchable map picker** (top-left of the play screen) lists every map and
+  defaults to the training field **tra_fild**; switching maps disposes the previous world's GPU
+  resources before building the new one, so the engine, character and effects
+  persist with no leak. The base URL is overridable via the `VITE_MAPS_URL` env
+  var (see `.env`). The browser parsers (`src/sim/format/*`) and scene builder
+  needed no change — only the base URL and map selection.
+
+### Removed
+
+- **The offline single-map extractor.** `tools/build-map.mjs` and its
+  map-only helpers (`roformat.mjs`, `bmp.mjs`, `spr.mjs`, `act.mjs`), the
+  `build:map` npm script, and the bundled `public/maps/tra_fild/` (~5.5 MB) are
+  gone — superseded by ragassets' `extract-grf.mjs --maps`, which extracts and
+  serves all maps. (`tools/build-db.mjs`, `lua51.mjs`, etc. are unaffected.)
+
 ## [0.7.0] — 2026-06-27
 
 ### Added
