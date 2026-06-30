@@ -38,7 +38,7 @@ export default function App() {
   // the sim's own loading overlay) instead of flashing the generic data loader,
   // so there's a single continuous "Carregando o mapa…" screen.
   if (db.status === "loading") {
-    if (location.hash === "#play") return <div className="sim-overlay sim-status">{t.simLoading}</div>;
+    if (location.hash.startsWith("#play")) return <div className="sim-overlay sim-status">{t.simLoading}</div>;
     return <div className="boot-message">{t.loading}</div>;
   }
   if (db.status === "error") return <div className="boot-message">{t.loadError}</div>;
@@ -109,12 +109,13 @@ function Simulator({ db }: { db: Db }) {
 
   const [changelogOpen, setChangelogOpen] = useState(false);
 
-  // The map simulation is a full-screen overlay toggled by the "#play" hash, so
-  // it survives a refresh and is shareable without disturbing the ?b= build URL
-  // (syncUrl only touches the query string).
-  const [playing, setPlaying] = useState(() => location.hash === "#play");
+  // The map simulation is a full-screen overlay toggled by the "#play" hash (with
+  // an optional "/<map>" suffix the sim itself manages), so it survives a refresh
+  // and is shareable without disturbing the ?b= build URL (syncUrl only touches the
+  // query string).
+  const [playing, setPlaying] = useState(() => location.hash.startsWith("#play"));
   useEffect(() => {
-    const onHash = () => setPlaying(location.hash === "#play");
+    const onHash = () => setPlaying(location.hash.startsWith("#play"));
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
   }, []);

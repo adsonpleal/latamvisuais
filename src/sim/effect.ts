@@ -10,7 +10,7 @@
 //     value = snapshot + velocity * (keyIndex - snapshot.frame)
 // so position/size/alpha/angle drift linearly between snapshots.
 
-import { RAGASSETS_BASE } from "../core/state";
+import { CACHE_BUST, RAGASSETS_BASE } from "../core/state";
 import { loadImage } from "./imageCache";
 
 const BASE = `${RAGASSETS_BASE}/effects/`;
@@ -58,7 +58,8 @@ export interface LayerSample {
 
 export async function loadEffect(key: string): Promise<LoadedEffect> {
   const dir = `${BASE}${key}/`;
-  const res = await fetch(`${dir}effect.json`);
+  // ?v=CACHE_BUST so a reshipped effect.json isn't pinned by the immutable cache.
+  const res = await fetch(`${dir}effect.json?v=${CACHE_BUST}`);
   if (!res.ok) throw new Error(`effect ${key}: HTTP ${res.status}`);
   const json = (await res.json()) as EffectJson;
   const layers: EffectLayer[] = json.layers.map((ly) => ({

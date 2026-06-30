@@ -19,7 +19,7 @@ export const RAGASSETS_BASE = "https://assets.latam-tools.com.br";
  *  stale image. Tying the param to the app version means each release mints fresh
  *  URLs, forcing browsers/CDNs to re-fetch. (Static `/icons/*` are genuine GRF
  *  extracts that don't change between renders, so they're left uncached-busted.) */
-const CACHE_BUST = APP_VERSION;
+export const CACHE_BUST = APP_VERSION;
 
 /** Fixed render canvas (WxH+anchorX+anchorY), identical for every state and
  *  direction so the sprite's feet stay put when rotating or switching poses:

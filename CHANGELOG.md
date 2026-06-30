@@ -4,6 +4,41 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.9.0] — 2026-06-30
+
+### Added
+
+- **Per-map ambience: background music, fog, and in-world effects.** Maps now
+  look and sound like the official client. **BGM** streams per map from the
+  ragassets `bgm/` dir (a map→track table + looping `<audio>`, with a mute toggle
+  persisted to `localStorage`). **Fog** comes from `fogparametertable.txt` (folded
+  into each `manifest.json`) and tints the horizon so the ground fades into the
+  sky. **In-world effects** placed by each map's `.rsw` are rendered and
+  proximity-culled to the player: `.str` effects (underwater bubbles, …) via the
+  existing billboard, plus new renderers for `EF_TORCH` flames, `EF_FIREFLY`
+  (procedural wandering motes), `EF_SMOKE` puffs, `EF_BANJJAKII`, and the modern
+  `EF_EMITTER` particle family (a CPU particle sim → `THREE.Points`).
+- **The selected map is part of the share URL.** The play overlay's hash now
+  carries the map (`#play/<map>`), so a specific map is shareable and survives a
+  refresh — coexisting with the `?b=` build param (the app owns the `#play`
+  toggle, the sim owns the `/<map>` suffix).
+
+### Fixed
+
+- **The ground lightmap's colour channel is no longer discarded.** `gnd.ts` now
+  packs the lightmap as `A` = baked shadow, `RGB` = baked coloured light (lamp/
+  torch pools), and the ground shader applies roBrowser's
+  `base × mapLight × shadow + colouredLight` formula via `onBeforeCompile` —
+  replacing the old flat `×2.5` brightening that washed dungeons out and dropped
+  every coloured light pool.
+- **Sprite-effect billboards stay glued to their anchor under camera rotation.**
+  Torch flames are anchored at the model's bowl (world-up) with their float done
+  in screen space (camera-up), and the depth bias rides the camera view axis — so
+  a flame no longer swings in a circle or drifts sideways as the camera yaws.
+- **Versioned descriptor fetches** (`manifest.json`, `index.json`, `effect.json`,
+  `sprite.json` now carry `?v=APP_VERSION`) so a re-shipped map isn't pinned to a
+  stale copy by the CDN's immutable cache.
+
 ## [0.8.0] — 2026-06-28
 
 ### Changed

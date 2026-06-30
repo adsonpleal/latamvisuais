@@ -8,9 +8,11 @@ import {
   AmbientLight,
   BufferGeometry,
   DataTexture,
+  Color,
   DirectionalLight,
   DoubleSide,
   Float32BufferAttribute,
+  Fog,
   Group,
   LinearFilter,
   Mesh,
@@ -22,6 +24,7 @@ import {
   SRGBColorSpace,
   Texture,
   TextureLoader,
+  Vector3,
 } from "three";
 import { Gat } from "../format/gat";
 import { Gnd, GROUND_STRIDE } from "../format/gnd";
@@ -49,6 +52,69 @@ export interface MapManifest {
     cursor?: CursorAnim;
     cursorRotate?: CursorAnim;
   };
+  /** Per-map distance fog, from the client's fogparametertable.txt (keyed by map).
+   *  near/far are the table's raw floats; color is RGB in 0..1 (parsed from the
+   *  table's hex). Absent when the map has no fog entry. (factor is carried for
+   *  completeness; the linear THREE.Fog we apply doesn't use it.) */
+  fog?: { near: number; far: number; color: [number, number, number]; factor?: number };
+  /** In-world ".str" effects placed by the .rsw (extract-grf.mjs parses the type-4
+   *  effect objects). One entry per placed instance — e.g. iz_dun03's 312 rising
+   *  bubbles (id 109). `pos` is ÷5 world units in the RSW (map-centre-relative)
+   *  frame; `str` is the id's resolved set of /effects/<key>/ bundles (the client
+   *  picks one at random per instance). Absent when the map has no effects. */
+  effects?: MapEffect[];
+}
+
+export interface MapEffect {
+  /** The .rsw effect id (EffectConst). render/worldEffects maps it to a renderer:
+   *  STR ids (109 bubble, …) animate `str`; 47/165 play `sprite`; 44 emits smoke
+   *  from `sprite`; 45 is the procedural firefly (no asset). */
+  id: number;
+  pos: [number, number, number];
+  delay: number;
+  param: [number, number, number, number];
+  /** STR-type ids: the resolved /effects/<key>/ bundles (client picks one/instance). */
+  str?: string[];
+  /** Sprite-type ids (torch 47, smoke 44, banjjakii 165): the /effects/sprites/<key>/
+   *  frame bundle to play. */
+  sprite?: string;
+  /** Parametric particle emitters (EF_EMITTER 974, …): the RO 2D-emitter config,
+   *  baked inline by ragassets. `texture` is a map-relative PNG path. */
+  emitter?: EmitterConfig;
+}
+
+/** RO 2D particle-emitter parameters (the .str-less effect system). Ranges are
+ *  [min, max] sampled per particle; vectors are per-axis in the .rsw (÷5) frame.
+ *  Single-value fields come as 1-element arrays from the source format. */
+export interface EmitterConfig {
+  dir1: [number, number, number]; // velocity lower bound per axis
+  dir2: [number, number, number]; // velocity upper bound per axis
+  gravity: [number, number, number]; // constant acceleration per axis
+  radius: [number, number, number]; // spawn jitter per axis
+  color: [number, number, number, number]; // rgba 0..255 (a = base alpha)
+  rate: [number, number]; // emission rate range
+  size: [number, number]; // particle size range
+  life: [number, number]; // particle lifetime range
+  texture: string; // map-relative PNG path (resolved at prepare time)
+  speed: [number]; // velocity magnitude scale (carried for format parity; unused — dir1/dir2 already encode velocity)
+  srcmode: [number]; // D3D src blend (informational; we render additive)
+  destmode: [number]; // D3D dst blend (2 = ONE → additive)
+  maxcount: [number]; // max live particles
+  zenable: [number]; // depth test flag (carried for format parity; unused)
+}
+
+/** A map's in-world effect placement, converted to a three.js world-space anchor
+ *  (the render/worldEffects manager spawns the right renderer per `id`). `str`/
+ *  `sprite` carry the id's asset choice; `delay` is the raw .rsw spawn delay. */
+export interface PreparedEffect {
+  id: number;
+  pos: Vector3;
+  delay: number;
+  str?: string[];
+  sprite?: string;
+  /** Emitter config with its texture resolved to a full URL (raw ranges kept;
+   *  the renderer applies the RO→three axis flip to the vectors). */
+  emitter?: EmitterConfig;
 }
 
 export interface World {
@@ -60,6 +126,11 @@ export interface World {
   /** GND→GAT cell scale: a GAT cell spans this many world units. */
   cellSize: number;
   spawn: { gx: number; gy: number };
+  /** This map's distance fog, ready to assign to scene.fog (null if none). */
+  fog: Fog | null;
+  /** In-world .str effects (bubbles, …) anchored in three.js world space. Driven
+   *  by render/worldEffects.ts; empty when the map has none. */
+  effects: PreparedEffect[];
   /** Advance time-based animation (water frames). */
   update(dt: number): void;
   /** Show the hovered-cell selector at GAT cell (gx, gy). */
@@ -162,17 +233,47 @@ export async function buildWorld(baseUrl: string, manifest: MapManifest): Promis
   root.scale.set(-1, -1, 1);
 
   // --- Ground ---------------------------------------------------------------
-  // RO bakes per-pixel shadows (incl. those cast by the 3D objects) into the GND
-  // lightmap. Feed it to the material's lightMap (sampled via uv1) so it darkens
-  // shadowed ground — the same effect as roBrowser, but via three's lightMap.
+  // RO bakes its map lighting into the GND lightmap: A = per-pixel shadow (incl.
+  // shadows cast by the 3D objects), RGB = coloured light (torch/lamp pools, tinted
+  // ambience). roBrowser's ground shader does `base *= lightmap.a; base += lightmap.rgb`
+  // — three's stock lightMap only multiplies, so it can't add the coloured pools.
+  // We reproduce roBrowser's formula via a shader injection (attachLightmap below),
+  // sampling the atlas through the geometry's uv1.
   const lmAtlas = gnd.lightmapAtlas();
   let lightMap: DataTexture | null = null;
   if (lmAtlas) {
     lightMap = new DataTexture(lmAtlas.data as Uint8Array<ArrayBuffer>, lmAtlas.width, lmAtlas.height, RGBAFormat);
     lightMap.minFilter = lightMap.magFilter = LinearFilter;
-    lightMap.channel = 1; // sample via the uv1 attribute, not the texture uv
     lightMap.needsUpdate = true;
   }
+  // RO dims the ground texture by the map's global light (ambient + ~half the
+  // diffuse, clamped ≤1) before the lightmap; the baked coloured light (lm.rgb)
+  // then supplies the lit brightness. We fold that global term into one scalar so
+  // lit ground isn't blown out and shadowed ground stays dim.
+  const amb = rsw.light.ambient;
+  const dif = rsw.light.diffuse;
+  const MAP_LIGHT = Math.min(
+    1,
+    (amb[0] + amb[1] + amb[2]) / 3 + ((dif[0] + dif[1] + dif[2]) / 3) * 0.55,
+  );
+  const attachLightmap = (mat: MeshBasicMaterial) => {
+    if (!lightMap || mat.userData.lmAttached) return;
+    mat.userData.lmAttached = true;
+    mat.onBeforeCompile = (shader) => {
+      shader.uniforms.uLM = { value: lightMap };
+      shader.vertexShader = shader.vertexShader
+        .replace("#include <common>", "#include <common>\nattribute vec2 uv1;\nvarying vec2 vLmUv;")
+        .replace("#include <begin_vertex>", "#include <begin_vertex>\n\tvLmUv = uv1;");
+      shader.fragmentShader = shader.fragmentShader
+        .replace("#include <common>", "#include <common>\nuniform sampler2D uLM;\nvarying vec2 vLmUv;")
+        // Before fog (gl_FragColor is the lit ground colour): RO's
+        // `base × mapLight × shadow(.a) + colouredLight(.rgb)`. Fog then mixes it.
+        .replace(
+          "#include <fog_fragment>",
+          `{ vec4 lm = texture2D(uLM, vLmUv); gl_FragColor.rgb = gl_FragColor.rgb * ${MAP_LIGHT.toFixed(3)} * lm.a + lm.rgb; }\n#include <fog_fragment>`,
+        );
+    };
+  };
 
   const { ground, water } = gnd.compile(rsw.water.level, rsw.water.waveHeight);
   for (const grp of ground) {
@@ -199,12 +300,7 @@ export async function buildWorld(baseUrl: string, manifest: MapManifest): Promis
     // colour too (avg ~0.79) just dimmed everything. Drop it when we have a
     // lightmap; fall back to it otherwise.
     const mat = material(groundMatCache, grp.texture, !lightMap, false);
-    if (lightMap) {
-      mat.lightMap = lightMap;
-      // >1 so lit ground reads bright (mimics RO's ambient+diffuse multiplier,
-      // which exceeds 1); shadowed cells stay relatively darker.
-      mat.lightMapIntensity = 2.5;
-    }
+    attachLightmap(mat as MeshBasicMaterial);
     const mesh = new Mesh(geo, mat);
     root.add(mesh);
   }
@@ -278,6 +374,39 @@ export async function buildWorld(baseUrl: string, manifest: MapManifest): Promis
 
   const spawn = findSpawn(gat);
   const cellSize = (gnd.width * 2) / gat.width;
+
+  // --- Fog (from the client's fogparametertable.txt, served per map) ---------
+  // roBrowser scales the table's near/far by 240 before comparing them against
+  // view-space depth (the same /5 world units our scene uses). The official client
+  // fogs much denser than roBrowser at the same table values — its blue dungeon
+  // haze tints nearly the whole view (cf. iz_dun00 in-game) — so we use a much
+  // smaller factor to saturate the fog far closer. Tuning knob.
+  const FOG_DEPTH = 120;
+  let fog: Fog | null = null;
+  if (manifest.fog) {
+    const [fr, fg, fb] = manifest.fog.color;
+    // The table's colour is an sRGB display value (parsed from its hex); tag it
+    // so three doesn't treat the components as linear and wash the haze out.
+    const color = new Color().setRGB(fr, fg, fb, SRGBColorSpace);
+    fog = new Fog(color, manifest.fog.near * FOG_DEPTH, manifest.fog.far * FOG_DEPTH);
+  }
+
+  // --- In-world .str effects (bubbles, …) -----------------------------------
+  // The .rsw effect placements (manifest.effects) live in the same ÷5,
+  // map-centre-relative frame as the models, so anchor them with the model
+  // transform (model.ts: position + gnd.width/height), then map into three's
+  // flipped world space — X and Y negated, like the character (cf. Simulator's
+  // charWorld). render/worldEffects spawns a billboard at each anchor.
+  const effects: PreparedEffect[] = (manifest.effects ?? []).map((e) => ({
+    id: e.id,
+    pos: new Vector3(-(e.pos[0] + gnd.width), -e.pos[1], e.pos[2] + gnd.height),
+    str: e.str,
+    sprite: e.sprite,
+    // Resolve the emitter's map-relative texture against the map base (same as the
+    // map's other textures: baseUrl + "../_t/<hash>.png").
+    emitter: e.emitter ? { ...e.emitter, texture: baseUrl + e.emitter.texture } : undefined,
+    delay: e.delay,
+  }));
 
   // --- Pick mesh (invisible GAT altitude surface) ---------------------------
   // One quad per GAT cell at its walkable height. Picking against this instead of
@@ -389,5 +518,5 @@ export async function buildWorld(baseUrl: string, manifest: MapManifest): Promis
     selectorTex?.dispose();
   };
 
-  return { root: out, gat, picker, cellSize, spawn, update, setSelector, hideSelector, dispose };
+  return { root: out, gat, picker, cellSize, spawn, fog, effects, update, setSelector, hideSelector, dispose };
 }

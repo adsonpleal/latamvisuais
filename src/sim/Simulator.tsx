@@ -8,7 +8,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Vector3 } from "three";
 import { t } from "../i18n";
-import { effectiveJob, frameCountProbeUrl, type State } from "../core/state";
+import { CACHE_BUST, effectiveJob, frameCountProbeUrl, type State } from "../core/state";
 import { mountsFor } from "../core/mounts";
 import { SLOTS } from "../core/db";
 import { useAppState, useDispatch } from "../state/AppStateContext";
@@ -17,6 +17,7 @@ import { Character } from "./render/character";
 import { Pet } from "./pet";
 import PetDialog from "./PetDialog";
 import { EffectBillboard } from "./render/effect";
+import { WorldEffects } from "./render/worldEffects";
 import { loadEffect } from "./effect";
 import { CursorAnimator } from "./cursor";
 import { loadImage } from "./imageCache";
@@ -25,6 +26,7 @@ import { findPath } from "./pathfind";
 import { SPRITE_DEAD, SPRITE_FRAMES, SPRITE_IDLE, SPRITE_SIT, SPRITE_WALK, spriteUrl } from "./sprite";
 import { fetchApngInfo, frameAt, type ApngInfo } from "./apng";
 import { Walker } from "./walker";
+import { BgmPlayer } from "./bgm";
 
 // Every world is fetched from the ragassets asset server (922 maps, extracted +
 // served in the same manifest+raw-binary shape the old local tools/build-map.mjs
@@ -32,6 +34,21 @@ import { Walker } from "./walker";
 // change). Override the base for local testing via the VITE_MAPS_URL env var.
 const MAPS_ROOT = import.meta.env.VITE_MAPS_URL ?? "https://assets.latam-tools.com.br/maps/";
 const DEFAULT_MAP = "tra_fild"; // the training field — the sim's starting map
+
+// The open sim and its current map live in the URL hash as `#play` (default map)
+// or `#play/<map>` — so a map is shareable and survives a refresh, without touching
+// the ?b= build query (App owns the `#play` toggle; the sim owns the `/<map>` part).
+const PLAY_HASH = "#play";
+const mapFromHash = (): string => {
+  const rest = location.hash.startsWith(PLAY_HASH) ? location.hash.slice(PLAY_HASH.length).replace(/^\//, "") : "";
+  return rest || DEFAULT_MAP;
+};
+const hashForMap = (map: string): string => (map === DEFAULT_MAP ? PLAY_HASH : `${PLAY_HASH}/${map}`);
+
+// Per-map background music lives in a sibling `bgm/` dir on the same asset
+// server: a map→track table at bgm/index.json and the audio at bgm/<NN.mp3>
+// (see sim/bgm.ts). Derived from MAPS_ROOT so VITE_MAPS_URL overrides both.
+const BGM_ROOT = new URL("../bgm/", MAPS_ROOT).href;
 
 // The poses the sim can show. Their composited frame counts + delays are probed
 // from ragassets at load (see sim/apng.ts) so an animated costume plays in full,
@@ -78,11 +95,11 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
   // server once to populate the picker; `mapName` is the world currently loaded.
   // Switching it rebuilds only the world (the engine/character/effects persist).
   const [maps, setMaps] = useState<string[]>([]);
-  const [mapName, setMapName] = useState(DEFAULT_MAP);
+  const [mapName, setMapName] = useState(mapFromHash);
   // Searchable-dropdown state: the typed filter, whether the menu is open, and the
   // keyboard-highlighted row. Matches are filtered case-insensitively; the menu
   // scrolls, so every match is reachable (no cap).
-  const [query, setQuery] = useState(DEFAULT_MAP);
+  const [query, setQuery] = useState(mapName);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [pickerActive, setPickerActive] = useState(0);
   const filteredMaps = useMemo(() => {
@@ -107,6 +124,13 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
   // the engine effect (it needs the live world/walker); the button calls it
   // through this ref, the Space shortcut calls it directly.
   const flyWingRef = useRef<(() => void) | null>(null);
+
+  // Per-map background music. The player (one looping <audio>) lives in a ref so
+  // it persists across map switches; `musicMuted` mirrors its persisted state to
+  // drive the toggle button's label.
+  const bgmRef = useRef<BgmPlayer | null>(null);
+  const [musicMuted, setMusicMuted] = useState(false);
+  const toggleMusic = () => setMusicMuted(bgmRef.current?.toggleMute() ?? false);
 
   // Player pose: stand walks normally; sit/dead can't move but turn to face the
   // clicked cell. Mirrored into a ref the render loop / handlers read.
@@ -149,6 +173,7 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
     let character: Character | null = null;
     let cursor: CursorAnimator | null = null;
     let petEntity: Pet | null = null;
+    let worldEffects: WorldEffects | null = null;
     let disposeEffects: (() => void) | null = null;
     let disposed = false;
     // Each pose's composited frame count + per-frame delays (probed at load, and
@@ -163,6 +188,12 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
 
     engine = new Engine(canvas);
     engine.resize(wrap.clientWidth, wrap.clientHeight);
+
+    // Background music player (persists across map switches; the map-selection
+    // effect drives it via bgmRef). Sync the button to its restored mute state.
+    const bgm = new BgmPlayer(BGM_ROOT);
+    bgmRef.current = bgm;
+    setMusicMuted(bgm.isMuted);
 
     const onResize = () => engine?.resize(wrap.clientWidth, wrap.clientHeight);
     const ro = new ResizeObserver(onResize);
@@ -300,6 +331,9 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
       }
 
       for (const e of effects) e.update(effectClock, charWorld, engine!.cam.camera);
+      // In-world .str effects (bubbles, …) placed by the map's .rsw, proximity-
+      // culled to the player so only the on-screen handful animate.
+      worldEffects?.update(dt, effectClock, charWorld, engine!.cam.camera);
       // Re-pin the selector to the cursor whenever the camera moved (follow,
       // zoom-ease or rotate) — a still cursor then points at a new cell. When
       // nothing moved we skip the raycast (mousemove handles cursor changes).
@@ -327,6 +361,9 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
         world.dispose();
         world = null;
       }
+      worldEffects?.dispose(); // retire the old map's in-world effects + their billboards
+      worldEffects = null;
+      engine!.setFog(null); // clear the old map's fog while the next one loads
       walker = null;
       cursor = null;
       petEntity?.dispose();
@@ -336,7 +373,13 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
       aState = null; // force the animator to rebuild against the new spawn
       (async () => {
         try {
-          const manifest = (await fetch(base + "manifest.json").then((r) => r.json())) as MapManifest;
+          // Version the manifest URL (?v=) like the rendered images: ragassets
+          // serves it `immutable` for ~1 year, but its content changes when a map
+          // is re-extracted (fog, in-world effects, …), so without this an existing
+          // visitor stays pinned to a pre-effects manifest. The referenced binaries
+          // /textures are content-addressed (genuinely immutable), so only the small
+          // JSON re-downloads per release.
+          const manifest = (await fetch(`${base}manifest.json?v=${CACHE_BUST}`).then((r) => r.json())) as MapManifest;
           if (disposed || token !== loadToken) return;
           const built = await buildWorld(base, manifest);
           if (disposed || token !== loadToken) {
@@ -345,6 +388,8 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
           }
           world = built;
           engine!.add(world.root);
+          worldEffects = new WorldEffects(engine!.scene, built.effects);
+          engine!.setFog(world.fog); // tints the horizon to match; null = clear sky
           // RO mouse cursors (cursors.spr/.act): the animated default arrow and
           // the two-curvy-arrows rotate cursor, cycled by CursorAnimator.
           cursor = new CursorAnimator(canvas, base);
@@ -359,7 +404,7 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
           // Dev-only handle: lets the preview harness step frames + introspect
           // the scene even when requestAnimationFrame is throttled (hidden tab).
           if (import.meta.env.DEV) {
-            (window as unknown as { __sim?: unknown }).__sim = { engine, world, walker, character };
+            (window as unknown as { __sim?: unknown }).__sim = { engine, world, walker, character, bgm, worldEffects };
           }
         } catch (err) {
           console.error("[sim] failed to load map", name, err);
@@ -535,9 +580,12 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
       canvas.removeEventListener("contextmenu", onContextMenu);
       window.removeEventListener("keydown", onKey);
       disposeEffects?.();
+      worldEffects?.dispose();
       petEntity?.dispose();
       character?.dispose();
       world?.dispose();
+      bgm.dispose();
+      bgmRef.current = null;
       loadMapRef.current = null;
       flyWingRef.current = null;
       engine?.dispose();
@@ -551,7 +599,7 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
   // Fetch the catalogue of every available map once, to populate the picker.
   useEffect(() => {
     let cancelled = false;
-    fetch(MAPS_ROOT + "index.json")
+    fetch(`${MAPS_ROOT}index.json?v=${CACHE_BUST}`)
       .then((r) => r.json() as Promise<{ maps: string[] }>)
       .then((d) => {
         if (!cancelled) setMaps(d.maps ?? []);
@@ -562,11 +610,32 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
     };
   }, []);
 
+  // Fetch the map→track table once, to drive per-map background music. The
+  // player resolves the current map again as soon as the table lands, so music
+  // starts even if this resolves after the first map has loaded.
+  useEffect(() => {
+    let cancelled = false;
+    fetch(BGM_ROOT + "index.json")
+      .then((r) => r.json() as Promise<{ maps: Record<string, string> }>)
+      .then((d) => {
+        if (!cancelled) bgmRef.current?.setTable(d.maps ?? {});
+      })
+      .catch((err) => console.error("[sim] failed to load bgm index", err));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   // (Re)load the selected map. Runs on mount (after the engine effect has set
   // loadMapRef) and whenever the picker changes mapName — loadMap disposes the
-  // previous world before building the new one, so switching never leaks.
+  // previous world before building the new one, so switching never leaks. The
+  // BGM swaps in lockstep (no-op when the new map shares the same track), and the
+  // hash reflects the map (replaceState so map-hopping doesn't flood history; the
+  // relative "#…" keeps the ?b= build query intact).
   useEffect(() => {
     loadMapRef.current?.(mapName);
+    bgmRef.current?.setMap(mapName);
+    history.replaceState(null, "", hashForMap(mapName));
   }, [mapName]);
 
   return (
@@ -648,6 +717,11 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
             </ul>
           )}
         </div>
+        {/* Music toggle — always available (music plays during loading too), so
+            the player can silence it independent of the map's load state. */}
+        <button type="button" className={`sim-btn${musicMuted ? "" : " is-active"}`} title={t.simMusicTitle} onClick={toggleMusic}>
+          {musicMuted ? t.simMusicOff : t.simMusicOn}
+        </button>
         {phase === "ready" && (
           <>
             <button type="button" className={`sim-btn${pose === "sit" ? " is-active" : ""}`} onClick={() => togglePose("sit")}>

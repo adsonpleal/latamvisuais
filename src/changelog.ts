@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.9.0",
+    date: "2026-06-30",
+    changes: [
+      "Os mapas ganharam vida! Agora cada um toca a própria música e mostra os efeitos do cenário como no jogo — tochas acesas, vaga-lumes, bolhas embaixo d'água, fumaça e a névoa de cada lugar.",
+      "O mapa que você está explorando agora faz parte do link: compartilhe ou salve o endereço e ele abre direto naquele mapa.",
+    ],
+  },
+  {
     version: "0.8.0",
     date: "2026-06-28",
     changes: [

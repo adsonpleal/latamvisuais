@@ -121,10 +121,15 @@ export class EffectBillboard {
       tex.minFilter = tex.magFilter = LinearFilter; // no mipmaps (NPOT canvas) + smooth glow
     }
 
+    // fog:false on both — effects are foreground particles RO never fogs. It also
+    // fixes a real artifact: with scene.fog on, the additive plane's shader mixes
+    // the WHOLE quad toward the fog colour and adds it (src=ONE) even where the
+    // texture is transparent, painting solid fog-coloured rectangles (e.g. the
+    // blue boxes around iz_dun03's bubbles).
     const geo = new PlaneGeometry(this.cw * UNITS_PER_PX, this.ch * UNITS_PER_PX);
     this.normMesh = new Mesh(
       geo,
-      new MeshBasicMaterial({ map: this.normTex, transparent: true, depthWrite: false, blending: NormalBlending }),
+      new MeshBasicMaterial({ map: this.normTex, transparent: true, depthWrite: false, blending: NormalBlending, fog: false }),
     );
     // Additive glow: add the canvas RGB to the scene (src=ONE,dst=ONE), so the
     // black background of the glow textures contributes nothing.
@@ -138,6 +143,7 @@ export class EffectBillboard {
         blendSrc: OneFactor,
         blendDst: OneFactor,
         blendEquation: AddEquation,
+        fog: false,
       }),
     );
     // The character billboard is renderOrder 1, so it draws over these (default 0).

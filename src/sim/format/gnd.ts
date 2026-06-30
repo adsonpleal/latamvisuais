@@ -37,10 +37,13 @@ export interface WaterMesh {
   vertices: Float32Array; // interleaved [x,y,z,u,v]
 }
 
-/** The baked lightmap as an RGBA atlas: each 8×8 cell's pixels hold the shadow
- *  brightness (RGB, so a multiply darkens shadowed ground). */
+/** The baked lightmap as an RGBA atlas. Each RO lightmap cell is 8×8 with 64
+ *  brightness bytes (the shadow map) then 64×3 colour bytes (the baked coloured
+ *  light — torches, lamps, coloured ambience). We pack A = brightness (shadow,
+ *  multiplied) and RGB = colour (added), so the shader can reproduce RO's
+ *  `ground = base × lightmap.a + lightmap.rgb` (see render/scene.ts). */
 export interface Lightmap {
-  data: Uint8Array; // RGBA, width*height*4
+  data: Uint8Array; // RGBA, width*height*4 — A = shadow, RGB = coloured light
   width: number;
   height: number;
 }
@@ -128,26 +131,29 @@ export class Gnd {
     return { lu: [u1, u2, u1, u2], lv: [v1, v1, v2, v2] };
   }
 
-  /** The lightmap as an RGBA atlas (RGB = brightness), or null if the map has
-   *  none. Cell `i` occupies pixels [col*8…][row*8…] in a cols×rows grid. */
+  /** The lightmap as an RGBA atlas (A = shadow brightness, RGB = baked coloured
+   *  light), or null if the map has none. Cell `i` occupies pixels [col*8…]
+   *  [row*8…] in a cols×rows grid. Per cell: 64 brightness bytes, then 64×3 RGB. */
   lightmapAtlas(): Lightmap | null {
     if (!this.lm) return null;
     const { raw, count, cols, rows } = this.lm;
     const width = cols * LM_CELL;
     const height = rows * LM_CELL;
     const data = new Uint8Array(width * height * 4);
+    const COLOR_OFF = LM_CELL * LM_CELL; // colour bytes follow the 64 brightness bytes
     for (let i = 0; i < count; i++) {
       const cx = (i % cols) * LM_CELL;
       const cy = Math.floor(i / cols) * LM_CELL;
-      const src = i * LM_CELL * LM_CELL * 4; // 256 bytes per cell
+      const src = i * LM_CELL * LM_CELL * 4; // 256 bytes per cell (64 + 64×3)
       for (let py = 0; py < LM_CELL; py++) {
         for (let px = 0; px < LM_CELL; px++) {
-          const bright = raw[src + px + py * LM_CELL]; // brightness (shadow) byte
+          const texel = px + py * LM_CELL;
+          const c = src + COLOR_OFF + texel * 3;
           const o = ((cy + py) * width + (cx + px)) * 4;
-          data[o] = bright;
-          data[o + 1] = bright;
-          data[o + 2] = bright;
-          data[o + 3] = 255;
+          data[o] = raw[c]; // R \
+          data[o + 1] = raw[c + 1]; // G  } baked coloured light (added)
+          data[o + 2] = raw[c + 2]; // B /
+          data[o + 3] = raw[src + texel]; // A = brightness / shadow (multiplied)
         }
       }
     }

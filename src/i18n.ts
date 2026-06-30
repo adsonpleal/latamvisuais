@@ -21,6 +21,9 @@ export const t = {
   simDead: "Morrer",
   simFlyWing: "Asa de Mosca (Espaço)",
   simMapLabel: "Mapa",
+  simMusicOn: "Música: ligada",
+  simMusicOff: "Música: desligada",
+  simMusicTitle: "Ligar/desligar a música do mapa",
 
   // Pet companion (browiki "Mascotes"): a monster that follows you on the map.
   petsButton: "Mascotes",

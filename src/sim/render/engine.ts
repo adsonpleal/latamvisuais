@@ -1,8 +1,10 @@
 // WebGL engine: owns the renderer, scene, follow camera and the render loop, and
 // turns a canvas click into a ground-intersection point (for click-to-move).
 
-import { Color, Object3D, Raycaster, Scene, Vector2, Vector3, WebGLRenderer, Mesh } from "three";
+import { Color, type Fog, Object3D, Raycaster, Scene, Vector2, Vector3, WebGLRenderer, Mesh } from "three";
 import { FollowCamera } from "./camera";
+
+const SKY = 0x6b8cae; // default clear-sky background, restored when a map has no fog
 
 export class Engine {
   readonly renderer: WebGLRenderer;
@@ -18,13 +20,22 @@ export class Engine {
     this.renderer = new WebGLRenderer({ canvas, antialias: true });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.scene = new Scene();
-    this.scene.background = new Color(0x6b8cae); // sky
+    this.scene.background = new Color(SKY);
     this.cam = new FollowCamera(canvas.clientWidth / Math.max(1, canvas.clientHeight));
     this.resize(canvas.clientWidth, canvas.clientHeight);
   }
 
   add(obj: Object3D): void {
     this.scene.add(obj);
+  }
+
+  /** Apply a map's distance fog (or clear it). The far horizon is tinted to the
+   *  fog colour so the ground fades into the sky instead of meeting a hard edge;
+   *  with no fog we restore the default sky background. Materials respect
+   *  scene.fog by default, so the ground/models/water fade with no shader work. */
+  setFog(fog: Fog | null): void {
+    this.scene.fog = fog;
+    (this.scene.background as Color).set(fog ? fog.color : SKY);
   }
 
   resize(width: number, height: number): void {
