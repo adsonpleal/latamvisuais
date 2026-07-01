@@ -182,8 +182,8 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
           <Expand />
         </TipButton>
 
-        <StageArrow side="left" rowKind="head" hidden={!headAllowed} onClick={() => dispatch({ type: "rotateHead", delta: 1 })} />
-        <StageArrow side="right" rowKind="head" hidden={!headAllowed} onClick={() => dispatch({ type: "rotateHead", delta: -1 })} />
+        <StageArrow side="left" rowKind="head" hidden={!headAllowed} onClick={() => dispatch({ type: "rotateHead", delta: -1 })} />
+        <StageArrow side="right" rowKind="head" hidden={!headAllowed} onClick={() => dispatch({ type: "rotateHead", delta: 1 })} />
         <StageArrow side="left" rowKind="body" onClick={() => dispatch({ type: "rotateBody", delta: 1 })} />
         <StageArrow side="right" rowKind="body" onClick={() => dispatch({ type: "rotateBody", delta: -1 })} />
       </div>
@@ -294,8 +294,8 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
             style={modalSize ? { width: modalSize.w, height: modalSize.h } : undefined}
             onLoad={onModalLoad}
           />
-          <StageArrow side="left" rowKind="head" hidden={!headAllowed} onClick={() => dispatch({ type: "rotateHead", delta: 1 })} />
-          <StageArrow side="right" rowKind="head" hidden={!headAllowed} onClick={() => dispatch({ type: "rotateHead", delta: -1 })} />
+          <StageArrow side="left" rowKind="head" hidden={!headAllowed} onClick={() => dispatch({ type: "rotateHead", delta: -1 })} />
+          <StageArrow side="right" rowKind="head" hidden={!headAllowed} onClick={() => dispatch({ type: "rotateHead", delta: 1 })} />
           <StageArrow side="left" rowKind="body" onClick={() => dispatch({ type: "rotateBody", delta: 1 })} />
           <StageArrow side="right" rowKind="body" onClick={() => dispatch({ type: "rotateBody", delta: -1 })} />
           <TipButton
