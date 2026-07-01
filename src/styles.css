@@ -1007,6 +1007,10 @@ button:disabled {
   /* Extra horizontal padding leaves room for the rotation arrows flanking the
      sprite without letting them overlap it. */
   padding: 1.5rem 3.75rem;
+  /* Sized explicitly (JS sets width/height to the max sprite bbox × scale so
+     rotation doesn't jump the frame); read those values as content-only so the
+     padding stays additive and the sprite has its full computed area. */
+  box-sizing: content-box;
   display: flex;
   align-items: center;
   justify-content: center;

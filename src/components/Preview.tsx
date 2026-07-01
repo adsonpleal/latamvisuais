@@ -36,7 +36,13 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
   const [playing, setPlaying] = useState(true);
   const [frame, setFrame] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalSize, setModalSize] = useState<{ w: number; h: number }>();
+  // The currently-displayed sprite's *natural* dimensions; multiplied by the
+  // locked scale to derive on-screen size. Stored separately from modalBox so
+  // rotating swaps this (new sprite bbox) while modalBox stays fixed.
+  const [modalNatural, setModalNatural] = useState<{ w: number; h: number }>();
+  // Locked box dimensions (scale × max sprite bbox across all body/head dirs) so
+  // the modal doesn't jump size on each rotation. Computed once per modal open.
+  const [modalBox, setModalBox] = useState<{ w: number; h: number; scale: number }>();
   const [downloading, setDownloading] = useState(false);
   const [downloadFailed, setDownloadFailed] = useState(false);
 
@@ -81,7 +87,8 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
 
   // ---- full-sprite modal (uncropped render) ------------------------------
   const openModal = () => {
-    setModalSize(undefined);
+    setModalNatural(undefined);
+    setModalBox(undefined);
     setDownloadFailed(false);
     setModalOpen(true);
   };
@@ -95,6 +102,53 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [modalOpen]);
+
+  // Preload every body/head-direction sprite for the current action once the
+  // modal opens, take the max width/height across them all, and lock the box to
+  // that size. The individual sprite still renders at its own natural × scale
+  // (flex-centered in the box), so rotation swaps sprites but the frame stays
+  // put instead of jumping to each variant's tight bbox.
+  useEffect(() => {
+    if (!modalOpen) return;
+    let cancelled = false;
+    const headDirs = headAllowed ? [0, 1, 2] : [state.headDir];
+    const sizes: Promise<{ w: number; h: number }>[] = [];
+    for (let bodyDir = 0; bodyDir < 8; bodyDir++) {
+      for (const headDir of headDirs) {
+        const url = imageUrl(state, { canvas: null, bodyDir, headDir });
+        sizes.push(
+          new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve({ w: img.naturalWidth, h: img.naturalHeight });
+            img.onerror = () => resolve({ w: 0, h: 0 });
+            img.src = url;
+          }),
+        );
+      }
+    }
+    Promise.all(sizes).then((all) => {
+      if (cancelled) return;
+      const maxW = Math.max(0, ...all.map((s) => s.w));
+      const maxH = Math.max(0, ...all.map((s) => s.h));
+      if (!maxW || !maxH) return;
+      const scale = Math.max(
+        1,
+        Math.min(
+          (window.innerWidth * 0.8) / maxW,
+          (window.innerHeight * 0.78) / maxH,
+          5,
+        ),
+      );
+      setModalBox({ w: Math.round(maxW * scale), h: Math.round(maxH * scale), scale });
+    });
+    return () => {
+      cancelled = true;
+    };
+    // Depend on `state` wholesale: rotating (bodyDir/headDir) also triggers
+    // this, but the URLs are cached and the recomputed max is identical, so
+    // it's a no-op re-set. Anything that *does* change the sprite bbox
+    // (costume, action, mount, class, colours…) correctly reruns.
+  }, [modalOpen, state, headAllowed]);
 
   // Mirror the preview: animate while playing, else lock to the chosen frame.
   const modalUrl = playing
@@ -139,24 +193,37 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
     }
   };
 
-  // Enlarge the (tiny) sprite to fill the viewport while staying crisp — using
-  // width/height (not transform) so the modal box sizes to it. Capped so a big
-  // costume still fits.
+  // Record the sprite's natural bbox — the display size falls out of
+  // (natural × modalBox.scale), so once modalBox lands the current sprite
+  // rescales in-place without waiting for the next onLoad.
   const onModalLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
-    const scale = Math.max(
-      1,
-      Math.min(
-        (window.innerWidth * 0.8) / img.naturalWidth,
-        (window.innerHeight * 0.78) / img.naturalHeight,
-        5,
-      ),
-    );
-    setModalSize({
-      w: Math.round(img.naturalWidth * scale),
-      h: Math.round(img.naturalHeight * scale),
-    });
+    setModalNatural({ w: img.naturalWidth, h: img.naturalHeight });
   };
+
+  // Fallback scale for the *very first* load, before modalBox resolves — fits
+  // the current sprite to the viewport the same way the old code did. Once
+  // modalBox arrives it overrides this and every rotation renders at the same
+  // zoom.
+  const displayScale =
+    modalBox?.scale ??
+    (modalNatural
+      ? Math.max(
+          1,
+          Math.min(
+            (window.innerWidth * 0.8) / modalNatural.w,
+            (window.innerHeight * 0.78) / modalNatural.h,
+            5,
+          ),
+        )
+      : undefined);
+  const modalSize =
+    modalNatural && displayScale
+      ? {
+          w: Math.round(modalNatural.w * displayScale),
+          h: Math.round(modalNatural.h * displayScale),
+        }
+      : undefined;
 
   return (
     <div className="preview">
@@ -286,7 +353,10 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
           if (e.target === e.currentTarget) closeModal();
         }}
       >
-        <div className="sprite-modal-box">
+        <div
+          className="sprite-modal-box"
+          style={modalBox ? { width: modalBox.w, height: modalBox.h } : undefined}
+        >
           <img
             className="sprite-modal-img"
             src={modalOpen ? modalUrl : undefined}
