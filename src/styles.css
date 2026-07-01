@@ -1039,6 +1039,28 @@ button:disabled {
   display: block;
 }
 
+/* Hide the cursor while the loupe is up — the lens itself marks the focus. */
+.sprite-modal-img.is-magnifying {
+  cursor: none;
+}
+
+/* Magnifier loupe: a circular popover that follows the cursor over the modal
+   sprite, showing that region magnified further (the background image is the
+   same sprite, scaled up and offset so the pixels line up under the cursor).
+   pointer-events:none so mousemove keeps firing on the sprite underneath. */
+.sprite-loupe {
+  position: fixed;
+  z-index: 110;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  background-color: #fdfbff;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+
 /* Modal close — the game's close-button sprite (17x16), with its own over/press
    states, shared by both modals. */
 .game-close {

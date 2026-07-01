@@ -45,6 +45,11 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
   const [modalBox, setModalBox] = useState<{ w: number; h: number; scale: number }>();
   const [downloading, setDownloading] = useState(false);
   const [downloadFailed, setDownloadFailed] = useState(false);
+  // Magnifier loupe: while the cursor is over the modal sprite, a small circular
+  // popover follows it showing that region magnified further. `x`/`y` are viewport
+  // coords (the loupe is position:fixed, centred on the cursor); `bgX`/`bgY` are
+  // the background offset that lines the magnified pixels up under the cursor.
+  const [loupe, setLoupe] = useState<{ x: number; y: number; bgX: number; bgY: number }>();
 
   // A fresh action starts playing from the top — reset on each action change.
   // (Storing the previous action in a ref and resetting during render mirrors
@@ -92,7 +97,33 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
     setDownloadFailed(false);
     setModalOpen(true);
   };
-  const closeModal = () => setModalOpen(false);
+  const closeModal = () => {
+    setLoupe(undefined);
+    setModalOpen(false);
+  };
+
+  // Loupe geometry: a LOUPE_SIZE circle magnifying the *displayed* sprite by
+  // LOUPE_ZOOM. Because the sprite is already pixel-scaled, this is a further
+  // zoom on top — handy for inspecting fine costume detail.
+  const LOUPE_SIZE = 200;
+  const LOUPE_ZOOM = 2.5;
+  const onModalMove = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (!modalSize) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const cx = e.clientX - rect.left; // cursor within the displayed sprite
+    const cy = e.clientY - rect.top;
+    if (cx < 0 || cy < 0 || cx > rect.width || cy > rect.height) {
+      setLoupe(undefined);
+      return;
+    }
+    // Place the magnified point (cx·zoom, cy·zoom) under the loupe's centre.
+    setLoupe({
+      x: e.clientX,
+      y: e.clientY,
+      bgX: LOUPE_SIZE / 2 - cx * LOUPE_ZOOM,
+      bgY: LOUPE_SIZE / 2 - cy * LOUPE_ZOOM,
+    });
+  };
 
   useEffect(() => {
     if (!modalOpen) return;
@@ -358,12 +389,28 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
           style={modalBox ? { width: modalBox.w, height: modalBox.h } : undefined}
         >
           <img
-            className="sprite-modal-img"
+            className={loupe ? "sprite-modal-img is-magnifying" : "sprite-modal-img"}
             src={modalOpen ? modalUrl : undefined}
             alt=""
             style={modalSize ? { width: modalSize.w, height: modalSize.h } : undefined}
             onLoad={onModalLoad}
+            onMouseMove={onModalMove}
+            onMouseLeave={() => setLoupe(undefined)}
           />
+          {loupe && modalSize && (
+            <div
+              className="sprite-loupe"
+              style={{
+                left: loupe.x,
+                top: loupe.y,
+                width: LOUPE_SIZE,
+                height: LOUPE_SIZE,
+                backgroundImage: `url("${modalUrl}")`,
+                backgroundSize: `${modalSize.w * LOUPE_ZOOM}px ${modalSize.h * LOUPE_ZOOM}px`,
+                backgroundPosition: `${loupe.bgX}px ${loupe.bgY}px`,
+              }}
+            />
+          )}
           <StageArrow side="left" rowKind="head" hidden={!headAllowed} onClick={() => dispatch({ type: "rotateHead", delta: -1 })} />
           <StageArrow side="right" rowKind="head" hidden={!headAllowed} onClick={() => dispatch({ type: "rotateHead", delta: 1 })} />
           <StageArrow side="left" rowKind="body" onClick={() => dispatch({ type: "rotateBody", delta: 1 })} />
