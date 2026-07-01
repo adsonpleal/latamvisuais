@@ -4,6 +4,18 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.9.1] — 2026-06-30
+
+### Added
+
+- **Rotation arrows in the full-sprite modal.** The four turn buttons that flank
+  the main stage (body left/right, head left/right) are now rendered inside
+  `.sprite-modal-box` too, so the character can be rotated without closing the
+  enlarged view. Reuses the existing `StageArrow` and its ragassets turn
+  sprites; the modal-box picks up extra horizontal padding (`1.5rem 3.75rem`)
+  and modal-scoped top/left/right overrides so the arrows sit in the gutter,
+  clear of the sprite.
+
 ## [0.9.0] — 2026-06-30
 
 ### Added

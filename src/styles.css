@@ -1004,10 +1004,28 @@ button:disabled {
     linear-gradient(180deg, #fdfbff, #ebe8f3);
   border-radius: 12px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-  padding: 1.5rem;
+  /* Extra horizontal padding leaves room for the rotation arrows flanking the
+     sprite without letting them overlap it. */
+  padding: 1.5rem 3.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Rotation arrows in the full-sprite modal: same sprites as the stage, but
+   re-anchored to the modal-box (which sizes to the sprite) so they sit in the
+   left/right gutters instead of the stage's fixed 372px frame. */
+.sprite-modal-box .arrow-left {
+  left: 14px;
+}
+.sprite-modal-box .arrow-right {
+  right: 14px;
+}
+.sprite-modal-box .arrow-body {
+  top: 52%;
+}
+.sprite-modal-box .arrow-head {
+  top: 24%;
 }
 
 .sprite-modal-img {

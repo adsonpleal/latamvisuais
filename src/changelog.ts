@@ -14,6 +14,13 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.9.1",
+    date: "2026-06-30",
+    changes: [
+      "As setas de girar agora aparecem também na tela cheia do personagem — dá pra rodar o corpo e a cabeça sem fechar o zoom.",
+    ],
+  },
+  {
     version: "0.9.0",
     date: "2026-06-30",
     changes: [
