@@ -156,7 +156,7 @@ function Simulator({ db }: { db: Db }) {
           </a>
           <a
             className="topbar-action"
-            href="https://discord.gg/S4uEwGqK"
+            href="https://discord.gg/JCXTqqWq9Q"
             target="_blank"
             rel="noopener noreferrer"
             title={t.discordTitle}
