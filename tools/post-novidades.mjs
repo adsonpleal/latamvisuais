@@ -28,7 +28,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
 const PROJECT_NAME = "Simulador de Visuais";
-const SITE_URL = "https://latam-visuais.web.app";
+const SITE_URL = "https://visuais.latam-tools.com.br/";
 const DEFAULT_CHANNEL_ID = "1524025278471471295"; // #novidades (shared LATAM tools)
 const EMBED_COLOR = 0x3f6cd1; // --accent (blue), matches the app theme
 const DISCORD_DESC_LIMIT = 4096;
@@ -92,7 +92,7 @@ function buildEmbed({ version, date, changes, credit }) {
   if (description.length > DISCORD_DESC_LIMIT) {
     description = description.slice(0, DISCORD_DESC_LIMIT - 1) + "…";
   }
-  const host = SITE_URL.replace("https://", "");
+  const host = SITE_URL.replace("https://", "").replace(/\/$/, "");
   return {
     title: `${PROJECT_NAME} — v${version}`,
     url: SITE_URL,
