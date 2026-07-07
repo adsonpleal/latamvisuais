@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://visuais.latam-tools.com.br/sitemap.xml

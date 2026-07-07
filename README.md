@@ -4,7 +4,7 @@ Simulador de visuais (costume builder) para o **Ragnarok Online LATAM** — mont
 visual do seu personagem no navegador: classe, gênero, cabelo, cores e os 4
 slots de visual (Topo, Meio, Baixo e Capa).
 
-**▶ Live at [latam-visuais.web.app](https://latam-visuais.web.app).**
+**▶ Live at [visuais.latam-tools.com.br](https://visuais.latam-tools.com.br).**
 
 Heavily inspired by the excellent [iRO Wiki Character Sprite Simulator](https://costume.irowiki.org/).
 

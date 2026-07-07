@@ -6,11 +6,56 @@
     <!-- Favicon: a Novice head sprite rendered by ragassets, downloaded into
          public/ so the icon doesn't depend on that service being reachable. -->
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <title>Simulador de Visuais — Ragnarok LATAM</title>
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <title>Simulador de Visuais — Ragnarok Online LATAM | Monte o visual do seu personagem</title>
     <meta
       name="description"
-      content="Monte o visual do seu personagem do Ragnarok Online LATAM: classe, cabelo, cores e os 4 slots de visual."
+      content="Simulador de visuais do Ragnarok Online LATAM: monte o visual do seu personagem no navegador — classe, gênero, cabelo, cores e os 4 slots de visual (Topo, Meio, Baixo e Capa)."
     />
+    <meta name="theme-color" content="#15141a" />
+    <!-- Canonical: the app is a single page; share/build state lives in the
+         query string (?b=…) and the map view in the hash (#play), so point every
+         crawled variant back at the root to avoid duplicate-URL dilution. -->
+    <link rel="canonical" href="https://visuais.latam-tools.com.br/" />
+
+    <!-- Open Graph / Twitter: renders a rich preview when the site is shared on
+         Discord, WhatsApp, Facebook, etc. URLs must be absolute. og-image.png is
+         a 1200×630 card in public/. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Simulador de Visuais — Ragnarok Online LATAM" />
+    <meta property="og:title" content="Simulador de Visuais — Ragnarok Online LATAM" />
+    <meta
+      property="og:description"
+      content="Monte o visual do seu personagem do Ragnarok Online LATAM: classe, gênero, cabelo, cores e os 4 slots de visual."
+    />
+    <meta property="og:url" content="https://visuais.latam-tools.com.br/" />
+    <meta property="og:image" content="https://visuais.latam-tools.com.br/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Simulador de Visuais — Ragnarok Online LATAM" />
+    <meta
+      name="twitter:description"
+      content="Monte o visual do seu personagem do Ragnarok Online LATAM: classe, gênero, cabelo, cores e os 4 slots de visual."
+    />
+    <meta name="twitter:image" content="https://visuais.latam-tools.com.br/og-image.png" />
+
+    <!-- Structured data: tells search engines this is a free web app. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Simulador de Visuais — Ragnarok Online LATAM",
+        "url": "https://visuais.latam-tools.com.br/",
+        "description": "Simulador de visuais do Ragnarok Online LATAM: monte o visual do seu personagem — classe, gênero, cabelo, cores e os 4 slots de visual.",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "pt-BR",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" }
+      }
+    </script>
     <!-- Resolve the saved theme before first paint to avoid a flash. Mirrors
          src/theme.ts: "auto"/missing follows the OS scheme, else it's forced. -->
     <script>
@@ -27,7 +72,23 @@
     </script>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- Static content for crawlers and no-JS clients: the React app replaces
+           #app on mount, so this is only ever seen before hydration.
+           The SEO_PRERENDER marker below is filled at build time by
+           tools/prerender-seo.mjs with the class + costume catalogue (real,
+           crawlable text) read from public/db. -->
+      <noscript>
+        <p>
+          Monte o visual do seu personagem do Ragnarok Online LATAM diretamente no
+          navegador: escolha a classe, o gênero, o estilo e a cor do cabelo, a cor
+          da roupa e os 4 slots de visual (Topo, Meio, Baixo e Capa). Compartilhe o
+          visual montado por link e explore os mapas do jogo.
+        </p>
+        <p>Este simulador precisa de JavaScript para funcionar.</p>
+      </noscript>
+      <!--SEO_PRERENDER-->
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && node tools/prerender-seo.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
