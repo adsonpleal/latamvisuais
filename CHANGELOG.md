@@ -4,6 +4,44 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.9.2] — 2026-07-07
+
+### Added
+
+- **New costumes from the refreshed LATAM client GRF.** Regenerated
+  `public/db/costumes.json` with `tools/build-db.mjs` against the updated
+  `data.grf`, adding 12 visual items: Boneco de Betelgeuse, Cabelos de Freya,
+  Consecrate Fides (+ Vermelha), the four Piscadela variants (Sangrenta,
+  Florestal, Cósmica, Chocolate), Cabelo de Miriam, and the Asas de Letícia,
+  Mochila de Vinha and Asas Caídas de Freya garments. Catalogue: 1335 → 1330
+  (net, after the costume-filter cleanup below).
+- **Discord release announcements.** `tools/post-novidades.mjs` posts the top
+  `src/changelog.ts` entry as an embed to the shared #novidades channel after a
+  successful deploy. Wired into `firebase-hosting-merge.yml` and gated on a
+  change to the top changelog version (`package.json` deliberately lags, so it is
+  not the trigger). Requires the `DISCORD_BOT_TOKEN` repository secret.
+
+### Changed
+
+- **Costume catalogue now reflects what actually renders, not just GRF presence.**
+  Audited every costume `tools/verify-previews.mjs` drops by (a) extracting and
+  decoding the actual `.spr` from `data.grf` and (b) rendering it against
+  ragassets across idle/walk/sit/dead. Confirmed a class of effect-type accessory
+  sprites (Chuva Dourada, Folhas Outonais, Aura de Amatsu, Rastro de Gatinho,
+  Ilusões do Tempo, Cristal Exuberante, Coelho Elegante, Parafuso de Corda) that
+  exist in the GRF *and* in ragassets' extracted `resources/` yet never composite
+  onto any player frame — so GRF presence alone is not a valid keep signal; the
+  render-based filter is authoritative. These stay dropped. Kept Valsa da
+  Primavera, which does render (on the walk action). Net removals vs 0.9.1: 17
+  (8 with no sprite in the GRF at all, 9 present-but-non-rendering).
+- Capacete de Dullahan's GRF sprite is a 1×1 single-pixel stub (nothing to draw).
+
+### Known issues
+
+- `tools/build-db.mjs` resolves both Chuva Dourada (31091) and Chapéu do Coelho
+  Elegante (31092) to the same accessory view 1528 (`_C골드샤워`); at least the
+  latter is mis-mapped. To revisit in the view resolver.
+
 ## [0.9.1] — 2026-06-30
 
 ### Added

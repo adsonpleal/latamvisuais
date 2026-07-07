@@ -17,6 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # full history so the post-deploy step can compare src/changelog.ts
+          # against the pre-push commit (github.event.before) to detect a bump
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -40,3 +44,32 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_LATAM_VISUAIS }}
           channelId: live
           projectId: latam-visuais
+
+      # Announce the release in Discord — only when this push actually bumped the
+      # app version (so routine main pushes don't spam #novidades). The version
+      # that matters here is the top entry of src/changelog.ts (APP_VERSION);
+      # package.json lags and is not the app's real version. Runs after a
+      # successful deploy; a missing DISCORD_BOT_TOKEN secret is a no-op.
+      - name: Detect version bump
+        id: ver
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          topver() { LC_ALL=C sed -n 's/[[:space:]]*version:[[:space:]]*"\([^"]*\)".*/\1/p' | head -n1; }
+          NEW=$(topver < src/changelog.ts)
+          OLD=""
+          if [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] && git cat-file -e "$BEFORE:src/changelog.ts" 2>/dev/null; then
+            OLD=$(git show "$BEFORE:src/changelog.ts" | topver)
+          fi
+          echo "New version: $NEW / previous: ${OLD:-<none>}"
+          if [ "$NEW" != "$OLD" ]; then echo "changed=true" >> "$GITHUB_OUTPUT"; else echo "changed=false" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Post novidades to Discord
+        if: steps.ver.outputs.changed == 'true'
+        # best-effort: the deploy already shipped, so a Discord hiccup (perms,
+        # outage) shouldn't fail the run — it's still logged as a failed step.
+        continue-on-error: true
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_CHANNEL_ID: "1524025278471471295"
+        run: node tools/post-novidades.mjs

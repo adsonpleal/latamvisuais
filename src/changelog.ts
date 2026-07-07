@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.9.2",
+    date: "2026-07-07",
+    changes: [
+      "Novos visuais na lista! Os itens que chegaram na última atualização do jogo — como o Boneco de Betelgeuse, os Cabelos de Freya, as Asas de Letícia, as Asas Caídas de Freya e as novas Piscadelas — já aparecem no simulador.",
+      "Faxina na lista: tiramos alguns visuais que não apareciam no personagem, pra o catálogo mostrar só o que dá pra ver de verdade.",
+    ],
+  },
+  {
     version: "0.9.1",
     date: "2026-06-30",
     changes: [
