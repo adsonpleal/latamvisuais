@@ -14,6 +14,15 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.9.3",
+    date: "2026-07-12",
+    changes: [
+      "Mais visuais na lista! Vários itens que o jogo esqueceu de marcar como visual — e por isso não apareciam no simulador — voltaram ao catálogo, como o Quepe do Capitão, o Chapéu de Praia, a Tiara de Randgris e muitos outros.",
+    ],
+    credit:
+      "Obrigado Shummuy, que reportou o [Visual] Quepe do Capitão faltando na lista.",
+  },
+  {
     version: "0.9.2",
     date: "2026-07-07",
     changes: [

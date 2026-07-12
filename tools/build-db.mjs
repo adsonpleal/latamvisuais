@@ -304,13 +304,24 @@ function buildCostumes(args, grfPath, resolveView) {
 
   const out = [];
   let flagged = 0;
+  let byDesc = 0;
   let noSlot = 0;
   let resolved = 0;
   let effect = 0;
   for (const [id, entry] of tbl.map) {
     if (typeof id !== "number" || !(entry instanceof LuaTable)) continue;
-    if (entry.get("costume") !== true) continue;
-    flagged++;
+    // A costume is either flagged `costume = true` in iteminfo, or self-declares
+    // "Tipo: Visual" / "Classe: Equipamento Visual" in its description — the
+    // client-side equivalent of item_db's costume Loc bits. Gravity ships some
+    // genuine costumes (e.g. 19657 "[Visual] Quepe do Capitão") without the
+    // boolean flag, so we union both signals. The description signal is NOT a
+    // superset of the flag (older/garment costumes word the type differently),
+    // hence the union rather than a swap. Non-costume equipment never declares
+    // "Tipo: Visual", and the slot + view gates below drop anything unrenderable.
+    const flag = entry.get("costume") === true;
+    if (!flag && !isVisualDesc(entry.get("identifiedDescriptionName"))) continue;
+    if (flag) flagged++;
+    else byDesc++;
     const name = decodeClientString(entry.get("identifiedDisplayName"));
     if (!name) continue;
     const slots = parseSlots(entry.get("identifiedDescriptionName"));
@@ -345,7 +356,7 @@ function buildCostumes(args, grfPath, resolveView) {
     out.push(item);
   }
   console.log(
-    `  ${flagged} costume-flagged items, ${out.length} kept (${noSlot} without a visual slot)` +
+    `  ${flagged} costume-flagged + ${byDesc} visual-by-description items, ${out.length} kept (${noSlot} without a visual slot)` +
       `\n  ${resolved} views recovered from resource names, ${effect} effect-only costumes dropped`,
   );
   out.sort((a, b) => a.id - b.id);
@@ -419,6 +430,21 @@ function parseSlots(desc) {
     return slots;
   }
   return [];
+}
+
+// Costume detection fallback for entries missing the `costume = true` flag: the
+// description's structured type line, "Tipo: Visual" or "Classe: Equipamento
+// Visual". Regular equipment reports its real slot type here ("Tipo: Cabeça"),
+// so this matches only genuine visual items. Color codes (^RRGGBB) are stripped
+// first, like parseSlots, so broken markup still matches.
+function isVisualDesc(desc) {
+  if (!(desc instanceof LuaTable)) return false;
+  for (const line of desc.map.values()) {
+    if (typeof line !== "string") continue;
+    const s = decodeClientString(line).replace(/\^[0-9a-fA-F]{6}/g, "");
+    if (/Tipo\s*:\s*Visual\b/i.test(s) || /Classe\s*:\s*Equipamento Visual\b/i.test(s)) return true;
+  }
+  return false;
 }
 
 // System/iteminfo_new.lub sits next to data.grf. Skip the tiny stub variants.

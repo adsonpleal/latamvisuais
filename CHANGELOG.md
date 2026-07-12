@@ -4,6 +4,24 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.9.3] — 2026-07-12
+
+### Changed
+
+- **Costume gate now unions the `costume` flag with a description-type signal.**
+  `tools/build-db.mjs` kept only items flagged `costume = true` in the client's
+  `iteminfo_new.lub`, but Gravity ships some genuine visuals without that boolean
+  (server `item_db` tags them costume via `Loc`; the client GRF carries no `Loc`
+  field). We now also admit items whose description declares `Tipo: Visual` /
+  `Classe: Equipamento Visual` — the client-side equivalent of the costume `Loc`
+  bits — via a new `isVisualDesc()` helper. It is a *union*, not a swap: 724
+  flagged costumes word their type differently and would otherwise be lost. The
+  existing slot + view gates still run, so nothing unrenderable leaks in.
+  Isolated on the current GRF, this recovers **155 costumes** (1348 → 1503; 3 of
+  the 158 description-only matches were correctly dropped for lacking a slot or
+  view), including 19657 `[Visual] Quepe do Capitão` (valid `ClassNum = 236`,
+  Topo) — reported missing by Shummuy. Verified rendering in-app.
+
 ## [0.9.2] — 2026-07-07
 
 ### Added
