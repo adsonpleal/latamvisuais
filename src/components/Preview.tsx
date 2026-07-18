@@ -327,17 +327,20 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
               canvas: actionIconCanvas(a.type),
             });
             return (
-              <TipButton
+              // No tooltip here: the caption below the render already names the
+              // action, and it doubles as the button's accessible name.
+              <button
                 key={a.type}
+                type="button"
                 className={selected ? "action-btn is-selected" : "action-btn"}
-                tip={t.actions[a.key]}
                 aria-pressed={selected}
                 onClick={() => dispatch({ type: "setAction", action: a.type })}
               >
                 <span className="action-clip">
                   <img className="action-icon" src={icon} alt="" loading="lazy" decoding="async" />
                 </span>
-              </TipButton>
+                <span className="action-name">{t.actions[a.key]}</span>
+              </button>
             );
           })}
         </div>

@@ -328,32 +328,40 @@ body {
   .panel-preview {
     overflow-y: auto;
   }
-  /* The appearance panel itself never scrolls: it's a flex column whose hair
-     grid is the one flexible region — it shrinks and scrolls internally when the
-     window is short, so class/gender/colours stay put. On a tall window the grid
-     shows every style with no scroll. */
+  /* The appearance panel is a flex column whose hair grid is the one flexible
+     region — it shrinks and scrolls internally when the window is short, so
+     class/gender/colours stay put. On a tall window the grid shows every style
+     with no scroll. Once the grid has shrunk to its floor (~two rows) there's
+     nothing left to give, so the panel itself takes over and scrolls as a
+     whole rather than squeezing blocks into each other. */
   .panel-appearance {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow-y: auto;
   }
   .panel-appearance .appearance {
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
+    /* Shrinks with the panel so the hair grid below is driven down to its
+       floor first. Past that the blocks overflow this box — the panel's own
+       scrollbar picks them up. */
     min-height: 0;
   }
   .panel-appearance .hair-block {
     display: flex;
     flex-direction: column;
     flex: 0 1 auto;
-    min-height: 0;
+    /* The floor lives here, not on the grid: it's the label plus ~two rows of
+       thumbnails. A floor on the grid alone can't stop this block shrinking to
+       nothing (its min-content counts the grid's FULL height, so the block
+       either refuses to shrink at all or collapses and lets the grid spill
+       over the colour rows below). */
+    min-height: 6.5rem;
   }
   .panel-appearance .hair-block .hair-grid {
     flex: 1 1 auto;
-    /* Keep at least ~two rows visible rather than collapsing to a sliver; in a
-       genuinely tiny panel the whole panel scrolls as a last resort. */
-    min-height: 5rem;
+    min-height: 0;
     overflow-y: auto;
   }
   .panel-catalog {
@@ -807,6 +815,9 @@ button:disabled {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 0.25rem;
+  /* Rows keep their square size instead of being stretched apart when the grid
+     is taller than its content (it scrolls when shorter — see .hair-block). */
+  align-content: start;
 }
 
 .hair-pick {
@@ -818,7 +829,12 @@ button:disabled {
   justify-content: center;
   /* Extra bottom padding lifts the head off the frame's lower border line. */
   padding: 2px 2px 5px;
-  overflow: hidden;
+  /* Clips the head to the frame. Deliberately NOT `overflow: hidden`: that
+     zeroes the button's automatic minimum size, so the auto-sized grid rows
+     collapse to the padding while `aspect-ratio` keeps the button square —
+     the rows then overlap in a short viewport. clip-path clips identically
+     without touching layout. */
+  clip-path: inset(0);
 }
 
 .hair-pick:hover {
@@ -1279,12 +1295,14 @@ button:disabled {
 }
 
 .action-btn {
-  width: 44px;
-  height: 64px;
+  /* Wide enough for the longest caption ("Conjurando") at .action-name's size. */
+  width: 72px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--bg-inset);
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
   transition: border-color 120ms, background 120ms, transform 100ms;
 }
 
@@ -1305,11 +1323,30 @@ button:disabled {
    bottom-aligned (the canvas already puts the feet near the image bottom) so
    the character stands on the button floor and nothing is cut. */
 .action-clip {
-  position: absolute;
-  inset: 2px;
+  height: 60px;
   overflow: hidden;
   border-radius: 5px;
   pointer-events: none;
+}
+
+/* Caption under the render. Names are short enough to fit at this size; the
+   longest ("Conjurando") ellipsizes rather than wrapping, and every button
+   keeps its [data-tip] with the full name. */
+.action-name {
+  font-size: 0.625rem;
+  line-height: 1.25;
+  padding: 1px 1px 2px;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+.action-btn:hover .action-name,
+.action-btn.is-selected .action-name {
+  color: var(--fg);
 }
 
 .action-icon {

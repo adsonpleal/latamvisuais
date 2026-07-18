@@ -4,6 +4,44 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.9.4] — 2026-07-18
+
+### Added
+
+- **Visible captions on the action picker.** Each `.action-btn` now renders the
+  action name under the sprite instead of only exposing it as a `[data-tip]`
+  tooltip. The button became a flex column (72px wide — set by the longest
+  caption, "Conjurando", measured at 64px; anything narrower ellipsized it) and
+  `.action-clip` a plain 60px block rather than `position: absolute`. The sprite
+  keeps its previous scale: `object-fit: contain` on the 76×112 canvas is
+  height-bound in both the old 40×60 and the new 66×60 clip box. `TipButton` was
+  swapped for a plain `<button>`, dropping the now-redundant `data-tip` and
+  `aria-label` — the visible caption is the accessible name.
+
+### Fixed
+
+- **Hair-style thumbnails stacked on top of each other in a short window.**
+  `.hair-pick` used `overflow: hidden`, which zeroes an element's automatic
+  minimum size; the auto-sized grid rows therefore sized to the button's content
+  contribution (7px of padding) while `aspect-ratio: 1/1` still gave each button
+  its full 41px square. A tall window hid this because `align-content: stretch`
+  padded the rows back out. Clipping now uses `clip-path: inset(0)` — visually
+  identical, but it doesn't suppress the min size — and `.hair-grid` gets
+  `align-content: start` so rows stay tight instead of being stretched apart.
+  Measured with all 42 thumbnails loaded: 7px rows → 41px rows.
+- **Hair grid spilling over the colour rows below it.** Separate failure, same
+  area: the shrink floor sat on `.hair-grid` (`min-height: 5rem`) while
+  `.hair-block` carried `min-height: 0`, so the block was free to collapse to 0px
+  around a grid that refused to go below 80px — and the overflow painted over
+  "Cor do cabelo". The floor moved onto `.hair-block` (`min-height: 6.5rem` =
+  label + ~two rows) with the grid free to shrink inside it. Dropping the
+  `min-height: 0` from both instead does *not* work: the block's min-content
+  counts the grid's full height, so it stops shrinking altogether. Once the grid
+  is out of give, `.panel-appearance` (now `overflow-y: auto`, was
+  `overflow: hidden`) scrolls as a whole. Verified at 1000/780/560/450px tall:
+  grid 299 → 140 → 81 → 81px, internal scroll then panel scroll, no overlap at
+  any height.
+
 ## [0.9.3] — 2026-07-12
 
 ### Changed

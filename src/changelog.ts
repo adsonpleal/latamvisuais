@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.9.4",
+    date: "2026-07-18",
+    changes: [
+      "Cada ação agora mostra o nome embaixo do bonequinho — não precisa mais passar o mouse pra descobrir qual é qual.",
+      "Arrumamos a lista de estilos de cabelo em telas baixas: os cabelos ficavam um por cima do outro e invadiam as cores logo abaixo. Agora a lista encolhe até um tamanho mínimo e, se ainda faltar espaço, o painel inteiro rola.",
+    ],
+  },
+  {
     version: "0.9.3",
     date: "2026-07-12",
     changes: [
