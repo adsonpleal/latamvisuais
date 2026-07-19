@@ -4,6 +4,22 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.9.5] — 2026-07-18
+
+### Changed
+
+- **Bigger, gentler loupe in the full-sprite modal.** `LOUPE_SIZE` 200 → 400 and
+  `LOUPE_ZOOM` 2.5 → 1.5 in `Preview.tsx`. Both are single-source constants: the
+  size sets the element's width/height and feeds the `bgX`/`bgY` centring math in
+  `onModalMove`, the zoom feeds `backgroundSize`; `.sprite-loupe` hardcodes no
+  dimensions (only `border-radius: 50%` and `translate(-50%, -50%)`), so no CSS
+  change was needed. Net effect is a wider aperture at lower magnification — the
+  400px circle now covers ~267px of the displayed sprite, against 80px before.
+  Verified in the running app by hovering the sprite's midpoint: circle 400×400,
+  `backgroundSize` 285×697.5px (= 190×1.5, 465×1.5) and `backgroundPosition`
+  57.5/−148.75px, matching `LOUPE_SIZE/2 − c·LOUPE_ZOOM` — the point under the
+  cursor stays centred.
+
 ## [0.9.4] — 2026-07-18
 
 ### Added

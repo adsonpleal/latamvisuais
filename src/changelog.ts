@@ -14,6 +14,13 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.9.5",
+    date: "2026-07-18",
+    changes: [
+      "A lupa da tela cheia ficou com o dobro do tamanho e uma ampliação mais suave — dá pra ver uma parte bem maior do personagem de uma vez, sem aquele efeito exagerado de perto demais.",
+    ],
+  },
+  {
     version: "0.9.4",
     date: "2026-07-18",
     changes: [

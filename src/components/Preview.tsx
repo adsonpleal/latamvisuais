@@ -105,8 +105,8 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
   // Loupe geometry: a LOUPE_SIZE circle magnifying the *displayed* sprite by
   // LOUPE_ZOOM. Because the sprite is already pixel-scaled, this is a further
   // zoom on top — handy for inspecting fine costume detail.
-  const LOUPE_SIZE = 200;
-  const LOUPE_ZOOM = 2.5;
+  const LOUPE_SIZE = 400;
+  const LOUPE_ZOOM = 1.5;
   const onModalMove = (e: React.MouseEvent<HTMLImageElement>) => {
     if (!modalSize) return;
     const rect = e.currentTarget.getBoundingClientRect();
