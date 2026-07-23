@@ -4,6 +4,39 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.9.6] — 2026-07-23
+
+### Added
+
+- **Animista (Spirit Handler) — the doram 4th class.** The updated LATAM GRF now
+  ships its doram body sprite (`spirit_handler_남/여`) and clothes palettes
+  (`data/palette/도람족/body/spirit_handler_*`, 8 per gender), and ragassets
+  renders both the standing body (`job=4308`) and its Rédeas mount (`job=4315`).
+  Added to `build-db.mjs`: catalog entry in the doram group,
+  `RENDER_ID.JT_SPIRIT_HANDLER = 4308` (standing render id; client/riding id 4315,
+  mirroring the expanded-4th scheme), `PAL_NAMES` → `spirit_handler`, and
+  `NAME_OVERRIDE` → "Animista" (the client ships no localized name yet). `mounts.ts`
+  gets `4308: [reins(4315)]`. `classes.json`: 84 → 85.
+- **New costumes from the GRF update.** 11 new costume-flagged items; 9 kept after
+  preview verification (Óculos Alados, Tiara de Rosas Espinhosas, Leque de
+  Veraneio, Elmo de Detardeurus, Festa Macarrônica, Capuz de Drops, Boina de
+  Marin, Sopra-Poporing de Sabão, Peruca de Petal). Tao Gunka Flutuante / Escudo
+  Petulante resolve a garment view but render blank — effect-only, correctly
+  dropped by `verify-previews`.
+
+### Changed
+
+- **Real ragassets emblems for the expanded 4th jobs.** ragassets now serves
+  `/icons/job/<id>.png` for 4302–4307 (Sky Emperor … Hyper Novice) and 4308
+  (Animista), so `jobIconUrl` in `state.ts` dropped the `JOB_ICON_FALLBACK`
+  head-framed sprite-render hack and is a plain icon URL again. Unit test updated
+  to expect `/icons/job/4302.png` / `/icons/job/4308.png`.
+- **Regenerated game data** from the updated `data.grf`. Hair styles 33–42 (both
+  genders) gained their clothes-color palettes (`colors` 0 → 9);
+  `verify-previews` re-pruned `costumes.json` to 1491. The version bump also busts
+  the ragassets asset cache (`CACHE_BUST = APP_VERSION`), so the new icons/sprites
+  show without a stale cache.
+
 ## [0.9.5] — 2026-07-18
 
 ### Changed

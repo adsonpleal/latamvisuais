@@ -314,35 +314,13 @@ export function costumeThumbUrl(item: { view?: number; slots: Slot[] }): string 
   return `${RAGASSETS_BASE}/image?${p.toString()}`;
 }
 
-// ragassets serves the 25x25 party emblem at /icons/job/<id>.png, but only for
-// classes whose icon_jobs bitmap ships in the client. The newest expanded 4th
-// jobs aren't in the LATAM client yet — and the emblem isn't published anywhere
-// else — so for those ids we fall back to a head-framed sprite render (the same
-// trick costumeThumbUrl uses for missing item icons) instead of a broken image.
-// Shinkiro/Shiranui are gender-locked, so each is rendered in its only gender.
-const JOB_ICON_FALLBACK: Record<number, "male" | "female"> = {
-  4302: "male", // Sky Emperor
-  4303: "male", // Soul Ascetic
-  4304: "male", // Shinkiro (male-locked)
-  4305: "female", // Shiranui (female-locked)
-  4306: "male", // Night Watch
-  4307: "male", // Hyper Novice
-};
-
+// ragassets serves the 25x25 party emblem at /icons/job/<id>.png. It now ships a
+// custom emblem for every class we surface — including the newest expanded 4th
+// jobs (standing render ids 4302-4307) and Animista (4308), which the LATAM
+// client lacks a party icon for — so a single icon URL covers them all. (Earlier
+// these ids had no emblem anywhere and fell back to a head-framed sprite render;
+// that hack is gone now that the real icons exist.)
 export function jobIconUrl(id: number): string {
-  const gender = JOB_ICON_FALLBACK[id];
-  if (gender) {
-    const p = new URLSearchParams();
-    p.set("job", String(id));
-    p.set("gender", gender);
-    p.set("head", "1");
-    p.set("action", "0");
-    p.set("frame", "0");
-    p.set("headdir", "0");
-    p.set("canvas", "44x40+22+86");
-    p.set("v", CACHE_BUST);
-    return `${RAGASSETS_BASE}/image?${p.toString()}`;
-  }
   return `${RAGASSETS_BASE}/icons/job/${id}.png`;
 }
 

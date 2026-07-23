@@ -149,12 +149,11 @@ describe("canvas + asset URL builders", () => {
   it("builds the icon/ui asset URLs", () => {
     expect(itemIconUrl(100)).toBe(`${BASE}/icons/item/100.png`);
     expect(jobIconUrl(4054)).toBe(`${BASE}/icons/job/4054.png`);
-    // Expanded 4th jobs with no ragassets emblem fall back to a head-framed
-    // sprite render (gender-locked classes in their only gender).
-    expect(jobIconUrl(4302)).toBe(
-      `${BASE}/image?job=4302&gender=male&head=1&action=0&frame=0&headdir=0&canvas=44x40%2B22%2B86${V}`,
-    );
-    expect(jobIconUrl(4305)).toContain("job=4305&gender=female");
+    // ragassets now ships a custom emblem for the expanded 4th jobs and Animista
+    // too, so every class resolves to a plain /icons/job/<id>.png (the old
+    // head-framed sprite-render fallback is gone).
+    expect(jobIconUrl(4302)).toBe(`${BASE}/icons/job/4302.png`);
+    expect(jobIconUrl(4308)).toBe(`${BASE}/icons/job/4308.png`);
     expect(uiIconUrl("color05_off")).toBe(`${BASE}/icons/ui/color05_off.png`);
   });
 });

@@ -121,6 +121,7 @@ export const MOUNTS: Record<number, Mount[]> = {
   4307: [reins(4314)], // Hyper Novice
   // --- doram ---
   4218: [reins(4219)], // Invocador (Summoner) — Carrinho
+  4308: [reins(4315)], // Animista (Spirit Handler) — Rédeas (own *_RIDING sprite)
 };
 
 export function mountsFor(classId: number): Mount[] {

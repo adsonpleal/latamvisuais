@@ -140,6 +140,7 @@ const CLASS_CATALOG = [
   ["expanded", "JT_NIGHT_WATCH", 4313],
 
   ["doram", "JT_SUMMONER", 4218],
+  ["doram", "JT_SPIRIT_HANDLER", 4315],
 ];
 
 // zrenderer/ragassets index the newest expanded 4th classes in their OWN id
@@ -148,9 +149,9 @@ const CLASS_CATALOG = [
 // id 4309-4314. `id` is what we send ragassets as `job=`, so it must be the
 // standing render id — the client's pcidentity id (4309…) renders the
 // always-mounted sprite. The matching Rédeas mount uses the riding id (see
-// core/mounts.ts). Spirit Handler (standing 4308 / riding 4315) is deliberately
-// absent: the LATAM GRF ships no doram body sprite for it yet, so ragassets
-// can't render it.
+// core/mounts.ts). Spirit Handler / Animista follows the same scheme (standing
+// 4308, client/riding id 4315) — the LATAM GRF now ships its doram body sprite
+// and palettes, so ragassets renders it like the rest.
 const RENDER_ID = {
   JT_SKY_EMPEROR: 4302,
   JT_SOUL_ASCETIC: 4303,
@@ -158,6 +159,7 @@ const RENDER_ID = {
   JT_SHIRANUI: 4305,
   JT_NIGHT_WATCH: 4306,
   JT_HYPER_NOVICE: 4307,
+  JT_SPIRIT_HANDLER: 4308,
 };
 
 // Clothes-color palette file basename per class (data/palette/몸/<name>_<남|여>_<n>.pal,
@@ -203,7 +205,7 @@ const PAL_NAMES = {
   JT_SKY_EMPEROR: "sky_emperor", JT_SOUL_LINKER: "소울링커",
   JT_SOUL_REAPER: "소울리퍼", JT_SOUL_ASCETIC: "soul_ascetic",
   JT_NIGHT_WATCH: "night_watch",
-  JT_SUMMONER: "묘족",
+  JT_SUMMONER: "묘족", JT_SPIRIT_HANDLER: "spirit_handler",
 };
 
 // Expanded-branch 4th jobs LATAM has shipped the sprites/palettes for but not
@@ -509,6 +511,7 @@ const NAME_OVERRIDE = {
   JT_WINDHAWK: "Falcão do Vento",
   JT_TROUBADOUR: "Maestro",
   JT_TROUVERE: "Diva",
+  JT_SPIRIT_HANDLER: "Animista",
 };
 
 // A few catalogue JTs spell the job differently than the client's name tables

@@ -14,6 +14,16 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.9.6",
+    date: "2026-07-23",
+    changes: [
+      "Nova classe: a Animista, a 4ª classe dos Dorams, já aparece no seletor — com troca de cor de roupa e a montaria de Rédeas, como no jogo.",
+      "Novos visuais na lista! Os itens que chegaram na última atualização do jogo — como os Óculos Alados, o Leque de Veraneio, o Elmo de Detardeurus, o Capuz de Drops e a Peruca de Petal — já dá pra provar no simulador.",
+      "As classes expandidas de 4ª (Sky Emperor, Hyper Novice e companhia) agora mostram o ícone oficial de cada uma no seletor, no lugar do bonequinho que aparecia antes.",
+      "Os estilos de cabelo mais novos (do 33 ao 42) agora aceitam todas as cores de tintura, e não só a cor padrão.",
+    ],
+  },
+  {
     version: "0.9.5",
     date: "2026-07-18",
     changes: [
