@@ -209,19 +209,18 @@ const PAL_NAMES = {
 };
 
 // Expanded-branch 4th jobs LATAM has shipped the sprites/palettes for but not
-// yet a party icon or a localized name. We surface them anyway (so they show in
-// the picker) with iRO's English names as placeholders — the build would
-// otherwise hide them as `unreleased` and the client's provisional pt-BR labels
-// aren't final. Drop an entry from here once LATAM publishes its pt-BR name (the
-// name then resolves from the client and the icon check flags release on its own).
-const SHOW_UNLOCALIZED = {
-  JT_SKY_EMPEROR: "Sky Emperor",
-  JT_SOUL_ASCETIC: "Soul Ascetic",
-  JT_SHINKIRO: "Shinkiro",
-  JT_SHIRANUI: "Shiranui",
-  JT_NIGHT_WATCH: "Night Watch",
-  JT_HYPER_NOVICE: "Hyper Novice",
-};
+// yet a party icon. We surface them anyway (so they show in the picker) — the
+// build would otherwise hide them as `unreleased`. Their display names come from
+// NAME_OVERRIDE like the other 4th classes. Drop an entry from here once LATAM
+// ships the icon (the icon check then flags release on its own).
+const FORCE_SHOW = new Set([
+  "JT_SKY_EMPEROR",
+  "JT_SOUL_ASCETIC",
+  "JT_SHINKIRO",
+  "JT_SHIRANUI",
+  "JT_NIGHT_WATCH",
+  "JT_HYPER_NOVICE",
+]);
 
 // ---------------------------------------------------------------------------
 // main
@@ -482,8 +481,8 @@ function buildClasses(grf, { jtIds, jtNames, jobMsg, scan }) {
     const cls = { id, jt, name, group, race, palettes };
     // Classes whose party icon isn't in the client are unreleased on LATAM —
     // flagged so the UI can hide them (same source ragassets serves icons from).
-    // SHOW_UNLOCALIZED classes are force-surfaced ahead of their icon/name.
-    if (!SHOW_UNLOCALIZED[jt] && !findBestEntry(grf, `유저인터페이스/renewalparty/icon_jobs_${id}.bmp`)) {
+    // FORCE_SHOW classes are surfaced ahead of their icon.
+    if (!FORCE_SHOW.has(jt) && !findBestEntry(grf, `유저인터페이스/renewalparty/icon_jobs_${id}.bmp`)) {
       cls.unreleased = true;
     }
     classes.push(cls);
@@ -492,11 +491,12 @@ function buildClasses(grf, { jtIds, jtNames, jobMsg, scan }) {
 }
 
 // 4th-job display names, pinned from bROWiki's "Classe 4" column
-// (https://browiki.org/wiki/Classes). The client's own tables are unreliable for
-// these — pcjobnamegender.lub predates renames (it still says "Arquimágico",
-// "Assassino", "Poeta") and msgstringtable_ml.csv omits most of them — so the
-// authoritative pt-BR names are listed here and take priority. (Unreleased 4th
-// jobs are hidden anyway and have no localized name yet.)
+// (https://browiki.org/wiki/Classes), singularised from the wiki's plural column
+// to match the rest of the catalogue ("Mestre Estelar", not "Mestres Estelares").
+// The client's own tables are unreliable for these — pcjobnamegender.lub predates
+// renames (it still says "Arquimágico", "Assassino", "Poeta") and
+// msgstringtable_ml.csv omits most of them — so the authoritative pt-BR names are
+// listed here and take priority.
 const NAME_OVERRIDE = {
   JT_DRAGON_KNIGHT: "Cavaleiro Draconiano",
   JT_IMPERIAL_GUARD: "Guardião Imperial",
@@ -512,6 +512,15 @@ const NAME_OVERRIDE = {
   JT_TROUBADOUR: "Maestro",
   JT_TROUVERE: "Diva",
   JT_SPIRIT_HANDLER: "Animista",
+  // Expanded branch (bROWiki "Classes Expandidas"). Shinkiro/Shiranui keep
+  // their Japanese names in pt-BR, listed here so they don't depend on the
+  // title-cased-JT fallback.
+  JT_SKY_EMPEROR: "Mestre Celestial",
+  JT_SOUL_ASCETIC: "Asceta das Almas",
+  JT_NIGHT_WATCH: "Guerrilheiro",
+  JT_HYPER_NOVICE: "Hiperaprendiz",
+  JT_SHINKIRO: "Shinkiro",
+  JT_SHIRANUI: "Shiranui",
 };
 
 // A few catalogue JTs spell the job differently than the client's name tables
@@ -531,7 +540,6 @@ const NAME_ALIAS = {
 function resolveName(jt, jobMsg, jtNames) {
   const suffix = NAME_ALIAS[jt] ?? jt.replace(/^JT_/, "");
   return (
-    SHOW_UNLOCALIZED[jt] ??
     NAME_OVERRIDE[jt] ??
     jobMsg.get(suffix) ??
     ptName(jtNames, `JT_${suffix}`) ??

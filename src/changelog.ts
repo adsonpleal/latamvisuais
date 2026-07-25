@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.9.7",
+    date: "2026-07-24",
+    changes: [
+      "As classes expandidas de 4ª agora aparecem com o nome em português: Mestre Celestial, Asceta das Almas, Guerrilheiro e Hiperaprendiz — no lugar dos nomes em inglês que estavam ali de reserva. Shinkiro e Shiranui continuam com o nome original, como no jogo.",
+      "Mais um visual na lista: os Cabelos de Betelgeuse já dá pra provar no simulador.",
+    ],
+  },
+  {
     version: "0.9.6",
     date: "2026-07-23",
     changes: [

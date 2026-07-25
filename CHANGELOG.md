@@ -4,6 +4,28 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.9.7] — 2026-07-24
+
+### Changed
+
+- **pt-BR names for the expanded 4th classes.** `SHOW_UNLOCALIZED` in
+  `build-db.mjs` conflated two jobs — force-surfacing a class whose party icon
+  isn't in the client, and supplying an iRO English placeholder name that
+  short-circuited `resolveName` ahead of `NAME_OVERRIDE`. Split them: the set is
+  now `FORCE_SHOW` (visibility only) and the names moved into `NAME_OVERRIDE`
+  alongside the other 4th classes, pinned from bROWiki's "Classes Expandidas"
+  table and singularised to match the catalogue — Sky Emperor → "Mestre
+  Celestial", Soul Ascetic → "Asceta das Almas", Night Watch → "Guerrilheiro",
+  Hyper Novice → "Hiperaprendiz". Shinkiro/Shiranui keep their Japanese names in
+  pt-BR but are listed explicitly rather than relying on the title-cased-JT
+  fallback. `resolveName` lost its `SHOW_UNLOCALIZED` branch, so the client's
+  msgstringtable stays the preferred source for everything else.
+- **Regenerated `classes.json` / `costumes.json`** from the same `data.grf`.
+  `build-db` emits 1514 raw costumes; `verify-previews` dropped 22 that render
+  blank (1491 → 1492). The one net addition is 400148 "[Visual] Cabelos de
+  Betelgeuse" (low, view 2115) — previously pruned as blank, now drawn by
+  ragassets.
+
 ## [0.9.6] — 2026-07-23
 
 ### Added
