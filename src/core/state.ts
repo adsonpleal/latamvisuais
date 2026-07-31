@@ -6,7 +6,7 @@
 // zrenderer encodes body direction AND animation type into one number:
 //     action = animationType * 8 + bodyDirection   (0=S, 1=SW … 7=SE)
 
-import type { ClassInfo, Costume, Db, Slot } from "./db";
+import { viewKindOf, type ClassInfo, type Costume, type Db, type Slot } from "./db";
 import { mountsFor } from "./mounts";
 import { t } from "../i18n";
 import { APP_VERSION } from "../changelog";
@@ -185,18 +185,32 @@ export function hairSetOf(db: Db, state: State) {
 }
 
 /** Headgear view ids (top → low order, deduped, max 3 — multi-slot costumes
- *  appear once) and the garment view for the current equips. */
+ *  appear once) and the garment view for the current equips.
+ *
+ *  Which list a costume lands in follows its sprite (`viewKindOf`), not its
+ *  slot: a handful of items equip in Capa but carry an accessory sprite, or the
+ *  reverse. The head slots are read first so a Capa item that renders as
+ *  headgear is the one dropped when the renderer's 3-id limit bites, and the
+ *  garment slot is read first for the garment view so a real Capa costume wins
+ *  over a head-slot item that happens to carry a robe sprite. */
 export function gearViews(state: State): { headgear: number[]; garment: number | null } {
   const seen = new Set<number>();
   const headgear: number[] = [];
-  for (const slot of ["top", "mid", "low"] as Slot[]) {
-    const view = state.equipped[slot]?.view;
-    if (view && !seen.has(view)) {
-      seen.add(view);
-      headgear.push(view);
-    }
+  let garment: number | null = null;
+  const order: Slot[] = ["top", "mid", "low", "garment"];
+  for (const slot of ["garment", "top", "mid", "low"] as Slot[]) {
+    const item = state.equipped[slot];
+    if (!item?.view || viewKindOf(item) !== "garment") continue;
+    garment = item.view;
+    break;
   }
-  return { headgear: headgear.slice(0, 3), garment: state.equipped.garment?.view ?? null };
+  for (const slot of order) {
+    const item = state.equipped[slot];
+    if (!item?.view || viewKindOf(item) !== "headgear" || seen.has(item.view)) continue;
+    seen.add(item.view);
+    headgear.push(item.view);
+  }
+  return { headgear: headgear.slice(0, 3), garment };
 }
 
 /** Render URL for the current character. Overrides pin individual render
@@ -298,17 +312,14 @@ export function itemIconUrl(id: number): string {
  *  icon is missing from ragassets (404). Renders the item on the reference
  *  novice, head-framed like the hair thumbnails, so the tile still shows the
  *  costume instead of a blank square. */
-export function costumeThumbUrl(item: { view?: number; slots: Slot[] }): string {
+export function costumeThumbUrl(item: Pick<Costume, "view" | "slots" | "viewKind">): string {
   const p = new URLSearchParams();
   p.set("job", "0");
   p.set("gender", "male");
   p.set("head", "1");
   p.set("action", "0");
   p.set("frame", "0");
-  if (item.view != null) {
-    if (item.slots.includes("garment")) p.set("garment", String(item.view));
-    else p.set("headgear", String(item.view));
-  }
+  if (item.view != null) p.set(viewKindOf(item), String(item.view));
   p.set("canvas", "44x40+22+86");
   p.set("v", CACHE_BUST);
   return `${RAGASSETS_BASE}/image?${p.toString()}`;

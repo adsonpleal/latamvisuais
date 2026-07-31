@@ -81,6 +81,9 @@ export function makeDb(): Db {
       { id: 400, name: "Capa D", view: 40, slots: ["garment"] },
       { id: 500, name: "Conjunto Topo+Meio", view: 50, slots: ["top", "mid"] },
       { id: 600, name: "Sem Sprite", slots: ["low"] }, // no view id
+      // Slot and sprite table disagree, both ways (see viewKindOf).
+      { id: 700, name: "Capa com Sprite de Acessório", view: 70, slots: ["garment"], viewKind: "headgear" },
+      { id: 800, name: "Baixo com Sprite de Capa", view: 80, slots: ["low"], viewKind: "garment" },
     ],
   };
 }

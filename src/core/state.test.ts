@@ -101,6 +101,31 @@ describe("gearViews", () => {
     };
     expect(gearViews(state)).toEqual({ headgear: [], garment: 40 });
   });
+
+  it("routes by the sprite table, not the slot, when the two disagree", () => {
+    const state: State = {
+      ...initialState(db),
+      equipped: { top: item(100), low: item(800), garment: item(700) },
+    };
+    // 700 sits in Capa but is an accessory sprite; 800 sits in Baixo but is a robe.
+    expect(gearViews(state)).toEqual({ headgear: [10, 70], garment: 80 });
+  });
+
+  it("a real Capa costume wins the garment view over a head-slot robe sprite", () => {
+    const state: State = {
+      ...initialState(db),
+      equipped: { low: item(800), garment: item(400) },
+    };
+    expect(gearViews(state)).toEqual({ headgear: [], garment: 40 });
+  });
+
+  it("drops the Capa-worn accessory first when the 3-headgear limit bites", () => {
+    const state: State = {
+      ...initialState(db),
+      equipped: { top: item(100), mid: item(200), low: item(300), garment: item(700) },
+    };
+    expect(gearViews(state)).toEqual({ headgear: [10, 20, 30], garment: null });
+  });
 });
 
 describe("equip helpers", () => {

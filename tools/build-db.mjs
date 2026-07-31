@@ -252,8 +252,8 @@ async function main() {
     const hair = buildHair(grf, scan);
     writeJson(join(outDir, "hair.json"), hair);
 
-    const resolveView = buildViewResolver(grf);
-    const costumes = buildCostumes(args, grfPath, resolveView);
+    const { resolveView, spriteKind } = buildViewResolver(grf);
+    const costumes = buildCostumes(args, grfPath, resolveView, spriteKind);
     writeJson(join(outDir, "costumes.json"), { items: costumes });
 
     console.log("\nDone:");
@@ -294,7 +294,7 @@ function writeJson(path, obj) {
 // (data errors) parse to no visual slot and are dropped.
 // ---------------------------------------------------------------------------
 
-function buildCostumes(args, grfPath, resolveView) {
+function buildCostumes(args, grfPath, resolveView, spriteKind) {
   const lubPath = resolveItemInfoPath(args, grfPath);
   if (!lubPath) {
     throw new Error("iteminfo_new.lub not found next to the GRF — pass --iteminfo <path>");
@@ -309,6 +309,7 @@ function buildCostumes(args, grfPath, resolveView) {
   let noSlot = 0;
   let resolved = 0;
   let effect = 0;
+  let misrouted = 0;
   for (const [id, entry] of tbl.map) {
     if (typeof id !== "number" || !(entry instanceof LuaTable)) continue;
     // A costume is either flagged `costume = true` in iteminfo, or self-declares
@@ -354,11 +355,23 @@ function buildCostumes(args, grfPath, resolveView) {
       effect++;
       continue;
     }
+    // Which sprite table the view really lives in. Normally it follows the slot
+    // (robe for Capa, accessory for the head slots), but a few items' description
+    // slot disagrees with their sprite — see spriteKind. Recorded only when it
+    // differs, so the common case costs nothing in the JSON.
+    const kind = spriteKind(item.view, entry.get("identifiedResourceName"));
+    const slotKind = slots.includes("garment") ? "garment" : "headgear";
+    if (kind && kind !== slotKind) {
+      item.viewKind = kind;
+      misrouted++;
+      console.log(`  ! ${id} ${name}: slot says ${slotKind}, sprite is a ${kind} (view ${item.view})`);
+    }
     out.push(item);
   }
   console.log(
     `  ${flagged} costume-flagged + ${byDesc} visual-by-description items, ${out.length} kept (${noSlot} without a visual slot)` +
-      `\n  ${resolved} views recovered from resource names, ${effect} effect-only costumes dropped`,
+      `\n  ${resolved} views recovered from resource names, ${effect} effect-only costumes dropped,` +
+      ` ${misrouted} rendered against the other sprite table`,
   );
   out.sort((a, b) => a.id - b.id);
   return out;
@@ -402,11 +415,28 @@ function buildViewResolver(grf) {
   const acc = reverse(accG.get("AccNameTable"));
   const robe = reverse(robeG.get("RobeNameTable"), robeG.get("RobeNameTable_Eng"));
   console.log(`  view resolver: ${acc.size} accessory names, ${robe.size} robe names`);
-  return (slots, resourceName) => {
+  const resolveView = (slots, resourceName) => {
     const key = norm(resourceName);
     if (!key) return undefined;
     return (slots.includes("garment") ? robe : acc).get(key);
   };
+  // Which table a view id really belongs to, cross-checked against the item's own
+  // resource name (the id alone is ambiguous — the two tables share the low ids).
+  // Gravity's description slot and its ClassNum disagree on a handful of items:
+  // "[Visual] Escudo Petulante" equips in Capa but its 2827 is an ACCESSORY id
+  // (the robe table stops at 328), and "Buquê Gigantesco" says Baixo while its
+  // 128 is the C_Clutch_Bouquet ROBE — asking for the wrong one renders nothing,
+  // or worse, someone else's sprite. Undefined when the name is in neither table
+  // (nothing to correct) or in both at that id (ambiguous — keep the slot's).
+  const spriteKind = (view, resourceName) => {
+    const key = norm(resourceName);
+    if (!key || view == null) return undefined;
+    const isAcc = acc.get(key) === view;
+    const isRobe = robe.get(key) === view;
+    if (isAcc === isRobe) return undefined;
+    return isAcc ? "headgear" : "garment";
+  };
+  return { resolveView, spriteKind };
 }
 
 // "Equipa em: ^777777Topo e Meio^000000" → ["top","mid"]. Newer LATAM items

@@ -4,6 +4,44 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.9.8] — 2026-07-30
+
+### Fixed
+
+- **Costumes whose equip slot disagrees with their sprite table.** The view id was
+  routed by slot alone — Capa → `garment=`, head slots → `headgear=` — but
+  Gravity's description slot and its `ClassNum` don't always agree on where the
+  sprite lives. `build-db.mjs`'s view resolver now also exposes
+  `spriteKind(view, resourceName)`, which cross-checks the item's own
+  `identifiedResourceName` against both name tables (undefined when the name is in
+  neither, or in both at that id, so the slot's default stands). A disagreement is
+  logged and recorded as `viewKind` on the item; `viewKindOf()` in `core/db.ts` is
+  the single place the ragassets param is decided, used by `gearViews`,
+  `costumeThumbUrl` and `verify-previews.mjs`. Exactly three items in the current
+  client are affected:
+  - 480802 "[Visual] Tao Gunka Flutuante" (view 2827) and 480807 "[Visual] Escudo
+    Petulante" (view 2828) equip in Capa but carry **accessory** ids —
+    `RobeNameTable` stops at 328, while `AccNameTable[2827/2828]` is exactly their
+    `C_Joyful_Taogunka` / `C_Cynic_Guard`. `garment=2827` renders nothing, so
+    `verify-previews` had pruned both; 0.9.6 wrote them off as effect-only, which
+    was wrong — `headgear=2827/2828` draws them fine.
+  - 480177 "Buquê Gigantesco" says Baixo but its `C_Clutch_Bouquet` is **robe**
+    128; it was rendering `headgear=128`, i.e. `오페라유령가면`, the Phantom of the
+    Opera mask.
+- **`gearViews` ordering, now that a slot can cross over.** Head slots are read
+  first, so a Capa-worn accessory is the one dropped when ragassets' 3-id
+  `headgear` limit bites (a 4th id is silently ignored); the garment view is read
+  from the Capa slot first, so a real garment beats a head-slot item carrying a
+  robe sprite. Three tests cover both misroute directions, the tie-break and the
+  cap.
+
+### Changed
+
+- **Regenerated `costumes.json`.** `build-db` emits 1514 raw costumes;
+  `verify-previews` dropped 20 blanks (1492 → **1494**). The catalogue diff is the
+  two re-admitted items above plus `viewKind` on 480177; nothing was removed.
+  `classes.json` / `hair.json` are byte-identical to 0.9.7.
+
 ## [0.9.7] — 2026-07-24
 
 ### Changed

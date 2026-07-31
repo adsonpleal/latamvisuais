@@ -45,8 +45,12 @@ async function fetchBuf(u, tries = 5) {
   throw new Error("failed: " + u);
 }
 
+// Mirrors viewKindOf() in src/core/db.ts: the slot picks the param, unless
+// build-db found the view id in the other sprite table and said so.
 const equipFrag = (item) =>
-  item.view == null ? null : item.slots.includes("garment") ? `&garment=${item.view}` : `&headgear=${item.view}`;
+  item.view == null
+    ? null
+    : `&${item.viewKind ?? (item.slots.includes("garment") ? "garment" : "headgear")}=${item.view}`;
 
 const doc = JSON.parse(readFileSync(DB, "utf8"));
 const items = doc.items;
@@ -82,10 +86,11 @@ for (const item of items) {
   const renders = (results.get(item.id) ?? []).length > 0;
   (renders ? kept : dropped).push(item);
 }
-// stable field order: id, name, slots, view
+// stable field order: id, name, slots, view, viewKind
 const norm = kept.map((i) => ({
   id: i.id, name: i.name, slots: i.slots,
   ...(i.view != null ? { view: i.view } : {}),
+  ...(i.viewKind ? { viewKind: i.viewKind } : {}),
 }));
 
 console.error(`\n${dropped.length}/${items.length} costumes render blank — removed from the catalogue:`);

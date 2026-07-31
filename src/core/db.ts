@@ -14,11 +14,22 @@ export type Costume = {
   view?: number;
   /** Visual slot(s) the item occupies (multi-slot costumes cover several). */
   slots: Slot[];
+  /** Which ragassets param the view id must be sent as, when that disagrees with
+   *  the slot. Absent (the norm) means the slot decides: `garment` for Capa,
+   *  `headgear` for the head slots. A few items' description slot doesn't match
+   *  the sprite table their ClassNum lives in — see tools/build-db.mjs. */
+  viewKind?: "headgear" | "garment";
   /** World-effect key (a ".str" aura / falling-petals etc.) for costumes the
    *  character renderer can't draw — rendered in the map sim instead. Assets are
    *  served by ragassets at /effects/<effect>/ (see sim/effect.ts). View-less. */
   effect?: string;
 };
+
+/** How a costume's view id must be rendered — its `viewKind` when present, else
+ *  the slot's default. */
+export function viewKindOf(item: Pick<Costume, "slots" | "viewKind">): "headgear" | "garment" {
+  return item.viewKind ?? (item.slots.includes("garment") ? "garment" : "headgear");
+}
 
 export type PaletteInfo = {
   count: number;

@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.9.8",
+    date: "2026-07-30",
+    changes: [
+      "Dois visuais que sumiram da lista voltaram: o Tao Gunka Flutuante e o Escudo Petulante. Eles equipam na Capa, mas o desenho deles é do tipo que o jogo usa nos chapéus — o simulador pedia do jeito errado e não vinha nada, então achávamos que eram efeitos e tiramos da lista.",
+      "O Buquê Gigantesco agora mostra o buquê de verdade: no lugar dele aparecia a Máscara do Fantasma da Ópera, por causa da mesma confusão de desenhos.",
+    ],
+  },
+  {
     version: "0.9.7",
     date: "2026-07-24",
     changes: [
