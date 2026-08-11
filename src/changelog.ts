@@ -14,6 +14,17 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.10.0",
+    date: "2026-08-10",
+    changes: [
+      "O catálogo agora sabe o que dá para comprar. Em Filtros você escolhe ver só os visuais que já apareceram no mercado alguma vez, ou só os que estão à venda neste momento. Passe o mouse por cada opção para ver a diferença entre as duas.",
+      "Nova visão em lista (o botão ao lado da contagem): cada visual em uma linha, com o nome inteiro, a posição e o preço — por quanto está saindo e em quantas lojas, ou a média do que já foi vendido quando ninguém está vendendo agora. Clique em qualquer parte da linha para provar o visual.",
+      "O ID de cada visual virou link para o Divine-Pride, e o carrinho leva direto para a página do item no nosso mercado (mercado.latam-tools.com.br), pelo ID. Antes o carrinho caía numa busca por nome no site oficial, que errava sempre que os nomes não batiam.",
+      "Os filtros de posição (Topo, Meio, Baixo, Capa) saíram da linha de botões e foram para dentro do Filtros, junto com a escolha de servidor — sobrou mais espaço para a lista de visuais.",
+      "Nome comprido cortado na lista? Passe o mouse para ler ele inteiro.",
+    ],
+  },
+  {
     version: "0.9.8",
     date: "2026-07-30",
     changes: [

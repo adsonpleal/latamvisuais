@@ -63,7 +63,7 @@
 }
 
 :root[data-theme="dark"] .appearance-card,
-:root[data-theme="dark"] .catalog-grid,
+:root[data-theme="dark"] .catalog-scroll,
 :root[data-theme="dark"] .gender-row,
 :root[data-theme="dark"] .gender-btn + .gender-btn,
 :root[data-theme="dark"] .class-trigger {
@@ -136,6 +136,17 @@
 :root[data-theme="dark"] .hair-pick.is-selected,
 :root[data-theme="dark"] .catalog-item.is-equipped {
   background-image: url("/icons/ui/bt_hairstyle_select_dark.png");
+}
+
+/* The list rows wear the same frame, but through `border-image` (see
+   .catalog-row). Handed over as a variable rather than set on the row directly:
+   a theme rule outranks a state rule, so setting the image here would beat
+   `.catalog-row.is-equipped`'s `border-image: none` and put the frame back under
+   a selected row. With a variable, the theme picks the art and the state rules
+   decide whether any is drawn. Rows have no hover/pressed frame — both states
+   are the accent colour now. */
+:root[data-theme="dark"] {
+  --row-frame: url("/icons/ui/bt_hairstyle_normal_dark.png");
 }
 
 * {
@@ -373,10 +384,19 @@ body {
     flex: 1;
     min-height: 0;
   }
-  .panel-catalog .catalog-grid {
+  /* The card takes the panel's leftover height; the scroller inside fills it.
+     `max-height: inherit` on the inner box resolves to `none` here, so the two
+     stay one box however the panel is sized. */
+  .panel-catalog .catalog-scroll {
     flex: 1;
     min-height: 0;
     max-height: none;
+    display: flex;
+  }
+  .panel-catalog .catalog-grid,
+  .panel-catalog .catalog-list {
+    flex: 1;
+    min-height: 0;
   }
 }
 
@@ -552,11 +572,16 @@ button:disabled {
   position: fixed;
   z-index: 1000;
   pointer-events: none;
-  white-space: nowrap;
+  /* Wraps instead of running off-screen: some tips are a sentence (the market
+     filters explaining themselves), and a long item name was already wider than
+     a phone. The width cap is what makes the wrap happen; `place()` measures
+     after the text is set, so a two-line box still lands square on its
+     trigger. */
+  max-width: min(280px, calc(100vw - 16px));
   background: var(--fg);
   color: var(--bg);
   font-size: 0.72rem;
-  line-height: 1;
+  line-height: 1.35;
   padding: 0.35rem 0.5rem;
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
@@ -1602,7 +1627,8 @@ button:disabled {
   color: var(--muted);
 }
 
-.wishlist-server-select {
+/* The Freya/Nidhogg picker, wherever it appears (wishlist header, filter panel). */
+.server-select {
   font: inherit;
   font-size: 0.82rem;
   padding: 0.25rem 0.4rem;
@@ -1838,7 +1864,8 @@ button:disabled {
   gap: 0.3rem;
 }
 
-.catalog-filter {
+.catalog-filter,
+.catalog-filter-btn {
   font-size: 0.78rem;
   font-weight: 600;
   padding: 0.28rem 0.7rem;
@@ -1860,9 +1887,155 @@ button:disabled {
   color: #fff;
 }
 
-.catalog-count {
+/* One row for everything that isn't the search box: the filters (behind a
+   single button, because slot + market + server laid out flat would take more
+   room than the grid they filter), the count, and the view toggle. */
+.catalog-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.catalog-filter-menu {
+  position: relative;
+  flex: none;
+}
+
+/* A pill like the chips it opens (see .catalog-filter), but on the card surface
+   and keeping its text colour — it's a trigger, not a selection. */
+.catalog-filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.6rem;
+  background: var(--card);
+  color: var(--fg);
+}
+
+.catalog-filter-btn:hover,
+.catalog-filter-btn.is-active {
+  border-color: var(--accent);
+}
+
+.catalog-filter-badge {
+  min-width: 1.1rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.68rem;
+  line-height: 1.1rem;
+  text-align: center;
+}
+
+/* In <body>, fixed to the viewport: the catalogue column clips what spills out
+   of it, so an absolutely-positioned panel lost its bottom in short windows.
+   CatalogFilters computes top/left/width/max-height against the trigger. */
+.catalog-filter-pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  max-height: 60vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.65rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  z-index: 40;
+}
+
+.catalog-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.catalog-filter-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+}
+
+.catalog-filter-clear {
+  align-self: flex-end;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+}
+
+.catalog-filter-clear:hover:not(:disabled) {
+  color: var(--fg);
+  background: var(--accent-soft);
+}
+
+.catalog-filter-clear:disabled {
+  opacity: 0.45;
+}
+
+/* The count sits in the toolbar row; the note (market loading / unavailable) is
+   the same small muted line, on its own below it. */
+.catalog-count,
+.catalog-note {
   font-size: 0.75rem;
   color: var(--muted);
+}
+
+.catalog-count {
+  flex: 1;
+}
+
+.catalog-view {
+  display: flex;
+  gap: 0.2rem;
+  flex: none;
+}
+
+.catalog-view-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 26px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card);
+  color: var(--muted);
+}
+
+.catalog-view-btn:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+}
+
+.catalog-view-btn.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* The card both views sit in. It owns the frame and, crucially, the clipping:
+   a scroller can't round off its own scrollbar — Chrome paints the bar inside
+   the padding box but ignores the border-radius, so the track's square corner
+   cut across the rounded card. Scrolling one box in and clipping it here rounds
+   the bar off with everything else. */
+.catalog-scroll {
+  overflow: hidden;
+  max-height: 56vh;
+  /* White card matching the hair-style panel (.appearance-card), so the icons
+     read clearly against the panel gradient. */
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  background: var(--card);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 /* Item grid — game-frame tiles, the same container as the hair styles. */
@@ -1874,15 +2047,9 @@ button:disabled {
      rows reliably and they collapse. */
   grid-auto-rows: 48px;
   gap: 0.25rem;
-  max-height: 56vh;
+  max-height: inherit;
   overflow-y: auto;
-  /* White card matching the hair-style panel (.appearance-card), so the icons
-     read clearly against the panel gradient. */
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 10px;
   padding: 0.4rem;
-  background: var(--card);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .catalog-item {
@@ -1930,6 +2097,173 @@ button:disabled {
   color: var(--muted);
   font-size: 0.85rem;
   padding: 1rem 0;
+}
+
+/* List view — the same card as the grid, one row per item: full name, id, slot
+   and what it costs on the market, with a link to its page there. */
+.catalog-list {
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+  overflow-y: auto;
+  padding: 0.35rem;
+}
+
+/* The whole tile is the target: the frame and its hover/selected states cover it
+   end to end, cart included, and the pick button underneath catches clicks
+   anywhere that isn't one of the two links.
+
+   Same game frame the grid tiles wear (bt_hairstyle_*), but 9-sliced instead of
+   stretched: the art is 36×37 and a row is ~340 wide, so scaling it whole would
+   fatten its 1px side lines into 9px slabs. `border-image` holds the corners and
+   the line at native thickness and stretches only the flat middle. */
+:root {
+  --row-frame: url("https://assets.latam-tools.com.br/icons/ui/bt_hairstyle_normal.png");
+}
+
+.catalog-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  /* A touch more air than the grid needs: every row carries its own frame, and
+     touching frames read as one long box. Margin rather than the list's flex
+     `gap` because the list is windowed — its two spacer divs stand in for the
+     unmounted rows, and a `gap` would add itself around them too. CatalogList
+     measures the resulting pitch rather than assuming this number. */
+  margin-bottom: 4px;
+  /* 4px of that padding is now the frame itself. */
+  padding: 0.1rem 0.25rem;
+  border: 4px solid transparent;
+  border-image: var(--row-frame) 4 fill stretch;
+  /* The frame paints its own corners over this, but the states that drop it —
+     hover and selection — round their tint and ring by it. */
+  border-radius: 8px;
+}
+
+.catalog-row[hidden] {
+  display: none;
+}
+
+/* Hover and selection are the same accent, so pointing at a row previews what
+   picking it will look like. `:active` reaches here from the pick button inside
+   the row, so pressing anywhere on it deepens the tint. */
+.catalog-row:hover,
+.catalog-row.is-equipped {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.catalog-row:active {
+  background: var(--accent-soft);
+}
+
+/* Selection diverges from the grid on purpose. The game's `select` frame is a
+   gold plate: fine behind a 46px icon, but at row width it floods the tile and
+   the name, id and price have to be read off it. The accent tint says the same
+   thing and leaves the text alone. Border stays 4px and transparent so the row
+   keeps its height — the list is windowed and its spacers assume one pitch. */
+.catalog-row.is-equipped {
+  border-image: none;
+  border-color: transparent;
+  background: var(--accent-soft);
+}
+
+.catalog-row.is-equipped:hover {
+  background: color-mix(in srgb, var(--accent) 34%, transparent);
+}
+
+.catalog-row-pick {
+  position: absolute;
+  /* Out to the frame's outer edge, so no part of the tile is dead. */
+  inset: -4px;
+}
+
+.catalog-row-pick:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* Above the stretched button so they stay legible, but transparent to the
+   pointer so a click on the name or the price still equips. The links below
+   take their clicks back. */
+.catalog-row-icon,
+.catalog-row-text {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.catalog-row-icon {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.catalog-row-icon.is-missing {
+  visibility: hidden;
+}
+
+.catalog-row-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.catalog-row-name {
+  font-size: 0.85rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.catalog-row-meta {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+/* The id reads as what it is — a link to the item's Divine-Pride page. */
+.catalog-row-id {
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+.catalog-row-id:hover {
+  color: var(--accent);
+  text-decoration-style: solid;
+}
+
+.catalog-row-price {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.catalog-row-market {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  color: var(--muted);
+}
+
+/* The row is already tinted underneath, so the cart marks itself out with the
+   accent colour rather than a second, darker plate. */
+.catalog-row-market:hover {
+  color: var(--accent);
 }
 
 /* ---- Map simulation (tra_fild) -------------------------------------------- */

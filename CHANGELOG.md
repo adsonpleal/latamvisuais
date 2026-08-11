@@ -4,6 +4,75 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.10.0] — 2026-08-10
+
+### Added
+
+- **Market-aware catalogue filters.** "Já visto no mercado" and "À venda agora" —
+  two different questions, and the market answers them separately: an item can
+  have sold before with nobody selling now, and the reverse. Both come from one
+  request to a new route in the sibling latam-market project,
+  `GET /api/v1/ids?server=`, which returns the two id sets raw (`inMarket`,
+  `forSale`) with the same `nextTradingAt` the batch price route publishes. The
+  alternative was ~37 pages of `/items?limit=100`, each row carrying prices and
+  links the catalogue doesn't use. `core/market.ts` caches the sets per server in
+  memory and in `sessionStorage` (`latamvisuais.market.ids.<server>`) until that
+  crawl lands. Nothing is fetched until the filter panel is opened or a market
+  filter is picked — someone only dressing a character pays nothing.
+  - ⚠ Needs latam-market ≥ 0.7.0 deployed: `visuais.latam-tools.com.br` had to
+    join `ALLOWED_ORIGINS`, or the browser gets a hard 403. Until then the filters
+    degrade to a "mercado indisponível" note with the catalogue intact.
+- **List view.** `CatalogList.tsx`, toggled beside the item count and remembered
+  in `localStorage` (`latamvisuais.catalogView`). One row per costume: icon, full
+  name, `#id` linking to Divine-Pride, slot, and a price line — cheapest live
+  offer and store count, falling back to the published average and units sold,
+  then "sem ofertas agora" / "nunca visto no mercado". Prices come from
+  `/api/v1/prices` in the API's 100-id chunks, only for the chunk the scroll
+  window sits in.
+  - **Windowed**: only the rows near the viewport are mounted, with spacer divs
+    standing in for the rest so the scrollbar still measures the whole list. A
+    tile is 2 nodes and the grid can afford to keep all 1517 mounted; a row is 13,
+    and mounting the lot cost a ~450 ms long task on every switch to build 19,721
+    nodes for the ~5 on screen. Now 13 rows / 171 nodes and no long task at all.
+    Row pitch is measured from a live row rather than assumed, since row height
+    follows the font.
+  - The whole tile is the hit target: an empty `.catalog-row-pick` is stretched
+    over the row (a `<button>` may not contain the two links), with the text
+    `pointer-events: none` so clicks fall through and only the id and cart links
+    take their own.
+- **Explanatory tooltips** on the market filters, and the full name on hover for
+  rows whose name is ellipsised — measured on `pointerover`, since whether a name
+  fits depends on the panel width. `.tooltip` gained a `max-width` and wraps
+  instead of running off-screen.
+
+### Changed
+
+- **Market links point at our own market**, `mercado.latam-tools.com.br/mercado?item=<id>`,
+  replacing the gnjoylatam name search that broke on every naming difference
+  between the two catalogues. `core/links.ts` now holds `marketItemUrl` and
+  `divinePrideUrl` (lifted out of `Wishlist.tsx`), with the host overridable via
+  `VITE_MARKET_URL` for developing against a local API. The market page keeps its
+  own server choice, so the deep link can't pin one.
+- **Filters moved behind one button.** Slot chips, the market filters and the
+  Freya/Nidhogg picker live in a popover with a count badge, freeing the toolbar
+  for the item count and the view toggle. It portals to `<body>` and is positioned
+  against its trigger, flipping above it in a short window — anchored inside the
+  catalogue column, which clips what spills out of it, its bottom was cut off.
+- **The server choice is shared.** `core/server.ts` holds it in a module store
+  (same `latamvisuais.server` key), read by both the wishlist header and the
+  catalogue's market filters, which need it because prices and stock are per
+  server.
+- **Both views scroll inside a card wrapper** (`.catalog-scroll`). A scroller
+  can't round off its own scrollbar — Chrome paints the bar inside the padding box
+  and ignores the element's `border-radius` — so the track's square corner cut
+  across the rounded card. The wrapper owns the frame and clips.
+- **List rows wear the game frame** (`bt_hairstyle_*`) like grid tiles, but
+  9-sliced through `border-image`: the art is 36×37 and a row is ~340 wide, so
+  stretching it whole fattened its 1px side lines into 9px slabs. Selection
+  deliberately diverges from the grid — the gold `select` plate flooded a
+  row-width tile and its text — and is the accent tint plus a 2px accent ring,
+  which hover now previews in the same colour.
+
 ## [0.9.8] — 2026-07-30
 
 ### Fixed

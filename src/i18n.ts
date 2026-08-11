@@ -108,10 +108,10 @@ export const t = {
   wishlistButton: "Lista de desejos",
   wishlistTitle: "Lista de desejos",
   wishlistEmpty: "Equipe visuais para vê-los aqui.",
-  wishlistHint: "Toque no nome para ver no Divine-Pride; no carrinho para buscar no mercado.",
+  wishlistHint: "Toque no nome para ver no Divine-Pride; no carrinho para ver no mercado.",
   serverLabel: "Servidor",
   divineLink: "Ver no Divine-Pride",
-  marketSearch: "Buscar no mercado",
+  marketSearch: "Ver no mercado",
   wishlistCount: (n: number) => `(${n})`,
   slotNames: {
     top: "Topo",
@@ -135,6 +135,34 @@ export const t = {
   itemCount: (n: number) => (n === 1 ? "1 item" : `${n} itens`),
   noResults: "Nenhum visual encontrado.",
   equippedBadge: "Equipado",
+
+  filtersButton: "Filtros",
+  filtersTitle: "Filtrar visuais",
+  filtersClear: "Limpar",
+  filtersActive: (n: number) => `${n} filtro${n === 1 ? "" : "s"} ativo${n === 1 ? "" : "s"}`,
+  slotFilterLabel: "Posição",
+  marketFilterLabel: "Mercado",
+  marketAll: "Todos",
+  marketSeen: "Já visto no mercado",
+  marketSelling: "À venda agora",
+  marketAllTip: "Todos os visuais, tenham passado pelo mercado ou não.",
+  marketSeenTip:
+    "Só os visuais que já apareceram em alguma coleta do mercado — mesmo que ninguém esteja vendendo agora.",
+  marketSellingTip:
+    "Só os visuais com pelo menos uma loja vendendo neste momento, na última coleta do mercado.",
+  marketLoading: "Consultando o mercado…",
+  marketError: "Mercado indisponível — filtro de mercado ignorado.",
+  viewGrid: "Grade",
+  viewList: "Lista",
+  // The cheapest open shop is *the* price — spelling out "a partir de" only
+  // padded every row with words that said nothing extra.
+  priceFrom: (price: string, stores: number) =>
+    `${price} z · ${stores} ${stores === 1 ? "loja" : "lojas"}`,
+  priceAvg: (price: string, sold: number) =>
+    `Média ${price} z · ${sold} vendido${sold === 1 ? "" : "s"}`,
+  priceNoOffers: "Sem ofertas agora",
+  priceNeverSeen: "Nunca visto no mercado",
+  priceUnavailable: "Preço indisponível",
 
   groups: {
     novice: "Aprendiz",

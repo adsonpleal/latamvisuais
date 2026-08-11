@@ -82,7 +82,8 @@ export async function loadDb(): Promise<Db> {
   return { classes: released, hair, costumes: items };
 }
 
-async function fetchJson<T>(path: string): Promise<T> {
+/** Shared by every JSON read in core/ (the DBs here, the market in market.ts). */
+export async function fetchJson<T>(path: string): Promise<T> {
   const res = await fetch(path);
   if (!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
   return res.json() as Promise<T>;
