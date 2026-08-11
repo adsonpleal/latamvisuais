@@ -343,8 +343,40 @@ body {
   .panel {
     max-height: 100%;
   }
+  /* Pinned to the viewport here, the preview panel hands its slack to the stage
+     — the one part that can give — so a short window shrinks the character
+     instead of scrolling the whole panel. The stage keeps its aspect ratio while
+     shrinking (the wrapper drives the width, so the rotation arrows pinned to it
+     stay aligned). Only once the stage hits its floor does the panel scroll, as
+     it did before. */
   .panel-preview {
     overflow-y: auto;
+  }
+  .panel-preview .preview {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  /* Everything below the stage keeps its natural height — shrinking the action
+     picker or the mount toggle would clip them, not scale them. */
+  .panel-preview .preview > * {
+    flex: none;
+  }
+  .panel-preview .stage-wrap {
+    /* Basis = the natural stage height (372px wide at the canvas' 248:232). */
+    flex: 0 1 348px;
+    /* Floor = the render canvas' own 232px height, i.e. 1× instead of the 1.5×
+       the stage normally shows. Shrinking to there only undoes the upscale;
+       going below it would resample the sprite under its native resolution, so
+       past this point the panel scrolls instead. */
+    min-height: 232px;
+    aspect-ratio: 248 / 232;
+    width: auto;
+    max-width: 372px;
+  }
+  .panel-preview .stage {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
   }
   /* The appearance panel is a flex column whose hair grid is the one flexible
      region — it shrinks and scrolls internally when the window is short, so
