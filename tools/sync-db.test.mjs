@@ -10,7 +10,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
-import { buildClasses, buildCostumes, buildHair, stalePins, titleFromJt } from "./sync-db.mjs";
+import { buildClasses, buildCostumes, buildHair, titleFromJt } from "./sync-db.mjs";
 
 const FIXTURES = join(dirname(fileURLToPath(import.meta.url)), "fixtures");
 const fixture = (name) => JSON.parse(readFileSync(join(FIXTURES, `${name}.json`), "utf8"));
@@ -118,7 +118,7 @@ describe("buildCostumes", () => {
   });
 
   it("drops rows it can't put on a character", () => {
-    expect(byId[5979]).toBeUndefined(); // no view — a .str world effect, served by /effects
+    expect(byId[5979]).toBeUndefined(); // no spriteView — a .str world effect, served by /effects
     expect(byId[5981]).toBeUndefined(); // no name
     expect(byId[15280]).toBeUndefined(); // no visual slot (its "Posição" is Armadura)
   });
@@ -130,26 +130,24 @@ describe("buildCostumes", () => {
     expect(byId[480807].slots).toEqual(["garment"]);
   });
 
-  it("recovers the view of costumes whose ClassNum is 0", () => {
+  it("reads spriteView, so costumes whose ClassNum is 0 keep their view", () => {
+    // 20330 and 19920 ship with ClassNum 0; ragassets recovered their view from
+    // the resource name. Reading `view` here would drop both from the catalogue.
     expect(rawItems.find((i) => i.id === 20330).view).toBe(0);
     expect(byId[20330].view).toBe(151);
+    expect(rawItems.find((i) => i.id === 19920).view).toBe(0);
     expect(byId[19920].view).toBe(458);
-    expect(byId[31379].view).toBe(1335); // carried by the client, no fallback needed
-  });
-
-  it("lets upstream override a pin, and reports the pin as stale", () => {
-    // The day ragassets resolves these itself, its view wins and the pin is
-    // flagged for deletion rather than quietly shadowing upstream forever.
-    const resolved = rawItems.map((i) => (i.id === 20330 ? { ...i, view: 999 } : i));
-    expect(buildCostumes(resolved).find((i) => i.id === 20330).view).toBe(999);
-    expect(stalePins(resolved)).toContain(20330);
-    expect(stalePins(rawItems)).not.toContain(20330);
+    expect(byId[31379].view).toBe(1335); // ClassNum was set; spriteView matches it
   });
 
   it("records viewKind only where the sprite table disagrees with the slot", () => {
     expect(byId[480177].viewKind).toBe("garment"); // slot is Baixo, sprite is a robe
     expect(byId[480807].viewKind).toBe("headgear"); // slot is Capa, sprite is an accessory
+    // Upstream reports "headgear" for these too, but that's what the slot already
+    // implies — recording it would be noise.
+    expect(rawItems.find((i) => i.id === 5105).viewKind).toBe("headgear");
     expect(byId[5105]).not.toHaveProperty("viewKind");
+    expect(byId[19424]).not.toHaveProperty("viewKind");
   });
 
   it("emits fields in the order verify-previews writes them back", () => {

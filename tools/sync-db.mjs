@@ -225,88 +225,37 @@ export function buildHair(rawHair) {
 // flag (older/garment costumes word the type differently), hence the union.
 //
 // It then needs a visual slot (ragassets parses "Equipa em:"/"Posição:" into
-// `equipSlots`) and a sprite view. Items with no view are pure world EFFECTS —
-// auras, weather, falling petals, "invisible" costumes — drawn by the client's
-// .str system rather than as a body sprite; they're dropped here and served
-// separately by ragassets' /effects/index.json, which src/core/db.ts merges in
-// at runtime.
+// `equipSlots`) and a sprite view. Items with no view at all are pure world
+// EFFECTS — auras, weather, falling petals, "invisible" costumes — drawn by the
+// client's .str system rather than as a body sprite; they're dropped here and
+// served separately by ragassets' /effects/index.json, which src/core/db.ts
+// merges in at runtime.
 // ---------------------------------------------------------------------------
-
-// Costumes whose iteminfo `ClassNum` is 0 and whose view therefore has to be
-// recovered from the item's resource name via the client's accessory-name /
-// robe-name tables. ragassets doesn't publish those tables (its items.json
-// reports `view: 0` for these), so the recovered ids are pinned here — used only
-// when upstream has no view, and the sync warns about pins it no longer needed.
-// Drop the table once /raw/items.json carries the resolved view itself.
-export const VIEW_FALLBACK = {
-  19617: 199, //  Orelhas de Filhote
-  19920: 458, //  Máscara de Sussurro Assustador
-  20070: 1234, // Capuz de Alpaca Fofinha
-  20201: 959, //  Espírito da Banshee
-  20202: 1082, // Balão de Deviruchi
-  20329: 1084, // [Visual] Bonequinha Preguiçosa
-  20330: 151, //  [Visual] Chapéu de Solita
-  20399: 1287, // [Visual] Fantasia do Tengu Corvo
-  20582: 60, //   [Visual] Mochila do Pimpão
-  20589: 66, //   [Visual] Asa Mecânica
-  20594: 76, //   [Visual] Laço Pomposo
-  31372: 358, //  Kafra Bianca
-  31602: 1807, // [Visual] Brasão de Midgard
-  31617: 1815, // Pelúcia de Lady Tanee
-  31641: 1838, // Penteado Longo Preto
-  31789: 1932, // [Visual] Chapéu de Peru
-  31842: 1759, // Protetor do Almirante
-  31844: 1568, // [Visual] Lenço de Rosto (Preto)
-  31845: 991, //  Cartola da Guarda Real
-  31846: 1944, // [Visual] Penteado Duplo Laço
-  31848: 1946, // Gorro de Rosas
-  31911: 1830, // Jardim Miniatura
-  31912: 1173, // Véu Obscuro
-  31915: 1987, // Peruca Espiralizada
-  31957: 2061, // Aura Venenosa
-  400073: 1999, //Pétalas de Rosa
-  400174: 1079, //Chapéu de Sorveja
-  480097: 100, // [Visual] Aura Nevada
-};
-
-// Which sprite table the view really lives in, when that disagrees with the
-// slot. Normally the slot decides (robe for Capa, accessory for the head slots),
-// but Gravity's description slot and its ClassNum disagree on these three:
-// "[Visual] Escudo Petulante" equips in Capa yet its 2828 is an ACCESSORY id
-// (the robe table stops at 328), and "Buquê Gigantesco" says Baixo while its 128
-// is the C_Clutch_Bouquet ROBE — asking for the wrong one renders nothing, or
-// worse, someone else's sprite. Same provenance (and same caveat) as
-// VIEW_FALLBACK above.
-export const VIEW_KIND = {
-  480177: "garment",
-  480802: "headgear",
-  480807: "headgear",
-};
 
 export function buildCostumes(rawItems) {
   const out = [];
   for (const it of rawItems) {
     if (!it.costume && !isVisualDesc(it.description)) continue;
     if (!it.name || !it.equipSlots?.length) continue;
-    // Upstream wins when it has a view, so the pins retire themselves the day
-    // ragassets starts resolving these.
-    const view = it.view > 0 ? it.view : (VIEW_FALLBACK[it.id] ?? null);
-    if (view == null) continue;
-    const item = { id: it.id, name: it.name, slots: it.equipSlots, view };
-    if (VIEW_KIND[it.id]) item.viewKind = VIEW_KIND[it.id];
+    // `spriteView`, not `view`: the latter is the literal `ClassNum`, which many
+    // newer costumes ship as 0. ragassets recovers those from the item's
+    // resource name via the client's accessory/robe name tables and publishes
+    // the result here, so this is the field the renderer can actually draw with.
+    if (!(it.spriteView > 0)) continue;
+    const item = { id: it.id, name: it.name, slots: it.equipSlots, view: it.spriteView };
+    // Which of the two sprite tables the view really lives in. Normally it
+    // follows the slot (robe for Capa, accessory for the head slots), so record
+    // it only where upstream disagrees: "[Visual] Escudo Petulante" equips in
+    // Capa yet its 2828 is an ACCESSORY id (the robe table stops at 328), and
+    // "Buquê Gigantesco" says Baixo while its 128 is the C_Clutch_Bouquet ROBE —
+    // asking for the wrong one renders nothing, or worse, someone else's sprite.
+    // Upstream sends null when both tables or neither claim the id: nothing to
+    // say, so the slot decides.
+    const slotKind = it.equipSlots.includes("garment") ? "garment" : "headgear";
+    if (it.viewKind && it.viewKind !== slotKind) item.viewKind = it.viewKind;
     out.push(item);
   }
   return out.sort((a, b) => a.id - b.id);
-}
-
-// Pins that no longer earn their place: the item is gone from the client, or
-// ragassets now publishes a view for it. Reported by the sync so VIEW_FALLBACK
-// can actually be pruned instead of accumulating forever.
-export function stalePins(rawItems) {
-  const byId = new Map(rawItems.map((it) => [it.id, it]));
-  return Object.keys(VIEW_FALLBACK)
-    .map(Number)
-    .filter((id) => !byId.has(id) || byId.get(id).view > 0);
 }
 
 // The description's structured type line, for entries missing the `costume`
@@ -348,12 +297,6 @@ async function main(argv) {
   console.log(`  classes.json  — ${classes.length} classes`);
   console.log(`  hair.json     — ${styleCounts} styles`);
   console.log(`  costumes.json — ${costumes.length} costumes (before verify-previews)`);
-
-  const stale = stalePins(rawItems);
-  if (stale.length) {
-    console.log(`\n  ! ${stale.length} VIEW_FALLBACK pin(s) no longer needed — ragassets resolves them now:`);
-    console.log(`    ${stale.join(", ")}\n    Delete them from tools/sync-db.mjs.`);
-  }
   console.log("\nNow run: node tools/verify-previews.mjs");
 }
 

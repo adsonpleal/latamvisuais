@@ -28,13 +28,11 @@ while pre-1.0.
     it needs live renders to find the costumes that draw nothing, which no data
     table can tell it. The workflow is documented in
     `.claude/skills/sync-with-ragassets/`.
-  - Known gap: ragassets' `items.json` reports `view: 0` for costumes whose
-    `ClassNum` is 0 (the client recovers those from the resource name via its
-    accessory/robe name tables, which ragassets doesn't publish). The affected
-    ids — plus the few whose sprite table disagrees with their slot — are pinned
-    in `sync-db.mjs` as `VIEW_FALLBACK` / `VIEW_KIND`. Upstream wins whenever it
-    does carry a view, and the sync reports pins that became redundant, so the
-    tables shrink to nothing once ragassets applies its own resolver.
+  - Costume views read ragassets' `spriteView` — the client's `ClassNum`, or the
+    view recovered from the item's resource name when `ClassNum` is 0 (228 items
+    in the current client) — and its `viewKind`, which this repo records only
+    where it disagrees with the slot, exactly as `build-db`'s `spriteKind` did.
+    Nothing about the view resolution lives here anymore.
 
 ## [0.11.0] — 2026-08-10
 

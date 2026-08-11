@@ -101,9 +101,9 @@ The three files it rewrites:
 - `costumes.json` — every visual item, with its pt-BR name, sprite view id and
   visual slot(s) ("Equipa em: Topo / Meio / Baixo / Capa"). An item counts as a
   costume when the client flags it as one *or* its description says "Tipo:
-  Visual". The view id is the client's `ClassNum`; costumes that ship with `0`
-  are pinned in `VIEW_FALLBACK` (see the script) until ragassets resolves them
-  upstream.
+  Visual". The view id comes from ragassets' `spriteView` — the client's
+  `ClassNum`, or, when that is `0` as on many newer costumes, the view ragassets
+  recovered from the item's resource name.
 - `classes.json` — the playable classes, each with its clothes-color palette
   count and swatches per gender, plus its **alternative outfits** (the extra
   body sprites the client ships for the 3rd classes and a few 4th ones, each

@@ -65,7 +65,9 @@ tools honour it.
 - **`NAME_OVERRIDE`** — pt-BR job names pinned from bROWiki. The client's own
   tables predate the 4th-job renames (they still say "Arquimágico", "Druida"),
   so these win over the upstream name.
-- **`VIEW_FALLBACK` / `VIEW_KIND`** — see the gotchas below.
+
+Everything else — including recovering the view of costumes the client ships
+with `ClassNum = 0` — happens upstream.
 
 ## Gotchas
 
@@ -75,18 +77,21 @@ expanded 4th classes in its own id space: the *standing* sprite sits at
 variant. `public/db/classes.json` must carry the standing id, because that is
 what goes out as `job=`. The mount uses the client id — see `src/core/mounts.ts`.
 
-**`VIEW_FALLBACK` is a stopgap and will rot.** Many newer costumes ship with
-`ClassNum = 0`; the client recovers their view from the item's resource name via
-its accessory-name / robe-name tables. ragassets doesn't publish those tables, so
-its `items.json` reports `view: 0` and the affected ids are pinned by hand in
-`tools/sync-db.mjs` (as is `VIEW_KIND`, for items whose description slot
-disagrees with the sprite table their view lives in — same provenance, read the
-comments there). **A game update that adds ClassNum-0 costumes will silently
-leave them out of the catalogue**, so if a new costume is reported missing, that
-is the first place to look. Pins that upstream has since resolved are reported
-by `sync:db` and should be deleted. The real fix is upstream: have ragassets
-apply its own resource-name resolver (it already has one, for the `--effects`
-mode) when it builds `items.json`, then drop both tables here.
+**Read `spriteView`, never `view`.** `view` is the literal `ClassNum`, which many
+newer costumes ship as `0` — 228 items in the current client. `spriteView` is
+`ClassNum` when set, and otherwise the view ragassets recovered from the item's
+resource name via the client's accessory-name / robe-name tables, so it is the
+one the renderer can actually draw with. Reading `view` would silently drop every
+ClassNum-0 costume from the catalogue.
+
+**`viewKind` is a raw fact upstream, a presentation choice here.** ragassets
+reports which of the two sprite tables `spriteView` lives in — `"headgear"`,
+`"garment"`, or `null` when both tables or neither claim the id. Most of the time
+that just restates the slot, so `sync-db.mjs` records it **only where it
+disagrees**: three items today, e.g. "[Visual] Escudo Petulante" equips in Capa
+yet its 2828 is an accessory id. Copying the field through unconditionally would
+bloat the file; ignoring it renders those three as nothing, or as someone else's
+sprite.
 
 **A costume is a union of two signals.** `costume = true` *or* a description
 saying "Tipo: Visual" / "Classe: Equipamento Visual". Neither is a superset —
