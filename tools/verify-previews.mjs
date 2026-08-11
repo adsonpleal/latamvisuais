@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Preview verification — the second-stage costume filter. build-db already drops
+// Preview verification — the second-stage costume filter. sync-db already drops
 // costumes with no character-sprite view (pure .str effects). A handful of others
 // DO resolve a view yet still render nothing: effect costumes whose accessory/robe
 // id has no real body sprite, or items zrenderer's resources can't draw. This tool
@@ -15,8 +15,8 @@
 //   node tools/verify-previews.mjs            # verify + drop blank costumes
 //   node tools/verify-previews.mjs --dry-run  # report only, don't touch the db
 //
-// Run this AFTER `npm run build:db` (which regenerates costumes.json from the
-// client and can't itself know which costumes zrenderer actually draws).
+// Run this AFTER `npm run sync:db` (which regenerates costumes.json from
+// ragassets' item table and can't itself know which costumes zrenderer draws).
 
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
@@ -46,7 +46,7 @@ async function fetchBuf(u, tries = 5) {
 }
 
 // Mirrors viewKindOf() in src/core/db.ts: the slot picks the param, unless
-// build-db found the view id in the other sprite table and said so.
+// sync-db said the view id lives in the other sprite table.
 const equipFrag = (item) =>
   item.view == null
     ? null

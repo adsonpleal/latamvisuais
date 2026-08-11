@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "build:db": "node tools/build-db.mjs",
+    "sync:db": "node tools/sync-db.mjs",
     "deploy": "npm run build && firebase deploy --only hosting"
   },
   "devDependencies": {

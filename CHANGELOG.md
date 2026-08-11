@@ -4,6 +4,38 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.11.1] — 2026-08-11
+
+### Changed
+
+- **The game data now comes from ragassets** instead of being extracted here.
+  `tools/build-db.mjs` (1354 lines: a GRF reader with the custom DES, a Lua 5.1
+  bytecode VM, the palette scanner, the msgstringtable parser) and
+  `tools/lua51.mjs` are **deleted**, along with `PAL_NAMES`, `SPR_NAMES`,
+  `RENDER_ID`, `FORCE_SHOW` and `NAME_ALIAS`. ragassets extracts the client once
+  and publishes the tables at `/raw/{classes,hair,items}.json`; the new
+  `tools/sync-db.mjs` (`npm run sync:db`) downloads and reshapes them into the
+  same `public/db/` files. Regenerating the data no longer needs an installed
+  LATAM client, a GRF or Windows.
+  - `public/db/{classes,hair,costumes}.json` are **byte-identical** to what the
+    old extractor produced — this is a source change, not a data change.
+  - What stays here is only what upstream can't know: `CLASS_CATALOG` (which
+    classes are listed and how the dropdown groups them) and `NAME_OVERRIDE`
+    (the pt-BR 4th-job names pinned from bROWiki).
+  - `tools/extract-pet-eggs.mjs` reads `/raw/items.json` too, instead of
+    `System/iteminfo_new.lub`; `src/sim/pets.ts` round-trips unchanged.
+  - `tools/verify-previews.mjs` is unchanged and still runs **after** the sync —
+    it needs live renders to find the costumes that draw nothing, which no data
+    table can tell it. The workflow is documented in
+    `.claude/skills/sync-with-ragassets/`.
+  - Known gap: ragassets' `items.json` reports `view: 0` for costumes whose
+    `ClassNum` is 0 (the client recovers those from the resource name via its
+    accessory/robe name tables, which ragassets doesn't publish). The affected
+    ids — plus the few whose sprite table disagrees with their slot — are pinned
+    in `sync-db.mjs` as `VIEW_FALLBACK` / `VIEW_KIND`. Upstream wins whenever it
+    does carry a view, and the sync reports pins that became redundant, so the
+    tables shrink to nothing once ragassets applies its own resolver.
+
 ## [0.11.0] — 2026-08-10
 
 ### Added
