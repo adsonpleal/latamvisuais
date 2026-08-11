@@ -1,0 +1,198 @@
+[
+  {
+    "id": 0,
+    "renderId": 0,
+    "jt": "JT_NOVICE",
+    "name": "Aprendiz",
+    "race": "human",
+    "sprite": "초보자",
+    "palette": "초보자",
+    "palettes": {
+      "m": {
+        "count": 9,
+        "swatches": [
+          "#ca9982",
+          "#c0978c"
+        ]
+      },
+      "f": {
+        "count": 9,
+        "swatches": [
+          "#cd9983",
+          "#9187a3"
+        ]
+      }
+    },
+    "outfits": [],
+    "unreleased": false
+  },
+  {
+    "id": 4054,
+    "renderId": 4054,
+    "jt": "JT_RUNE_KNIGHT",
+    "name": "Cavaleiro Rúnico",
+    "race": "human",
+    "sprite": "룬나이트",
+    "palette": "룬나이트",
+    "palettes": {
+      "m": {
+        "count": 8,
+        "swatches": [
+          "#c7917d",
+          "#c7917d"
+        ]
+      },
+      "f": {
+        "count": 8,
+        "swatches": [
+          "#c7917d",
+          "#c7917d"
+        ]
+      }
+    },
+    "outfits": [
+      {
+        "n": 1,
+        "palettes": {
+          "m": {
+            "count": 8,
+            "swatches": [
+              "#d79d87",
+              "#d79d87"
+            ]
+          },
+          "f": {
+            "count": 8,
+            "swatches": [
+              "#cd9680",
+              "#cd9680"
+            ]
+          }
+        }
+      }
+    ],
+    "unreleased": false
+  },
+  {
+    "id": 4255,
+    "renderId": 4255,
+    "jt": "JT_ARCH_MAGE",
+    "name": "Arquimágico",
+    "race": "human",
+    "sprite": "arch_mage",
+    "palette": "arch_mage",
+    "palettes": {
+      "m": {
+        "count": 8,
+        "swatches": [
+          "#c78f7a",
+          "#c78f7a"
+        ]
+      },
+      "f": {
+        "count": 8,
+        "swatches": [
+          "#c7947e",
+          "#c7947e"
+        ]
+      }
+    },
+    "outfits": [
+      {
+        "n": 1,
+        "palettes": {
+          "m": {
+            "count": 0,
+            "swatches": []
+          },
+          "f": {
+            "count": 0,
+            "swatches": []
+          }
+        }
+      }
+    ],
+    "unreleased": false
+  },
+  {
+    "id": 4309,
+    "renderId": 4302,
+    "jt": "JT_SKY_EMPEROR",
+    "name": "Mestre Celestial",
+    "race": "human",
+    "sprite": "sky_emperor",
+    "palette": "sky_emperor",
+    "palettes": {
+      "m": {
+        "count": 8,
+        "swatches": [
+          "#ca988a",
+          "#ca988a"
+        ]
+      },
+      "f": {
+        "count": 8,
+        "swatches": [
+          "#ca988a",
+          "#ca988a"
+        ]
+      }
+    },
+    "outfits": [],
+    "unreleased": false
+  },
+  {
+    "id": 4240,
+    "renderId": 4240,
+    "jt": "JT_SOUL_REAPER",
+    "name": null,
+    "race": "human",
+    "sprite": "소울리퍼",
+    "palette": "소울리퍼",
+    "palettes": {
+      "m": {
+        "count": 8,
+        "swatches": [
+          "#a0474d",
+          "#a0474d"
+        ]
+      },
+      "f": {
+        "count": 8,
+        "swatches": [
+          "#a0474d",
+          "#a0474d"
+        ]
+      }
+    },
+    "outfits": [],
+    "unreleased": true
+  },
+  {
+    "id": 4315,
+    "renderId": 4308,
+    "jt": "JT_SPIRIT_HANDLER",
+    "name": "Druida",
+    "race": "doram",
+    "sprite": "spirit_handler",
+    "palette": "spirit_handler",
+    "palettes": {
+      "m": {
+        "count": 8,
+        "swatches": [
+          "#cd9075",
+          "#cd9075"
+        ]
+      },
+      "f": {
+        "count": 8,
+        "swatches": [
+          "#cc8c72",
+          "#cc8c72"
+        ]
+      }
+    },
+    "outfits": [],
+    "unreleased": false
+  }
+]

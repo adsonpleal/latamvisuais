@@ -18,9 +18,10 @@ The UI is in Portuguese (pt-BR), matching the LATAM server.
   preview is a single `<img>` pointed at `/image?...` — animations come back as
   APNG that the browser plays natively.
 - **Game data** (costume list, class clothes-color counts, hair styles/colors)
-  is extracted at build time from the official LATAM client by
-  `tools/build-db.mjs` into static JSON under `public/db/`. Nothing is fetched
-  from the game at runtime.
+  comes from that same ragassets instance, which extracts the official LATAM
+  client's data tables once and publishes them at `/raw/*.json`.
+  `tools/sync-db.mjs` reshapes those into the static JSON under `public/db/`,
+  which is committed — nothing is fetched from the game at runtime.
 
 ## Map simulation (experimental)
 
@@ -82,57 +83,58 @@ npm run deploy   # builds and deploys to the latam-visuais project
 
 ## Regenerating the game data
 
-Point the extractor at an installed LATAM client (it reads `data.grf` and
-`System/iteminfo_new.lub` next to it):
+After a game update, resync from ragassets — no client install, no GRF, nothing
+to extract here:
 
 ```sh
-npm run build:db -- --grf "C:\Gravity\Ragnarok\data.grf"
+npm run sync:db              # rewrite public/db from https://assets.latam-tools.com.br/raw
+node tools/verify-previews.mjs
 ```
 
-This rewrites `public/db/costumes.json`, `public/db/classes.json` and
-`public/db/hair.json`:
+`sync:db` also takes `--input <dir>` to read the three tables from a local
+ragassets checkout, and `--url <base>` to point at another instance. The full
+workflow (including what to check in the diff) is in
+[.claude/skills/sync-with-ragassets/](.claude/skills/sync-with-ragassets/SKILL.md).
 
-- `costumes.json` — every item flagged `costume = true` in `iteminfo_new.lub`,
-  with its pt-BR name, sprite view id and visual slot(s) parsed from the item
-  description ("Equipa em: Topo / Meio / Baixo / Capa"). The view id is the
-  client's `ClassNum`, or — when that is `0`, as on many newer costumes —
-  recovered from the item's resource name via the client's accessory-name /
-  robe-name tables.
-- `classes.json` — the playable classes (grouped like the iRO simulator), each
-  with its clothes-color palette count per gender, enumerated from
-  `data/palette/` inside the GRF (`jobname.lub` provides the job id → sprite
-  name mapping), plus the class's **alternative outfits**: the extra body
-  sprites the client keeps under `몸통/<gender>/costume_<N>/`, each with its own
-  clothes palettes. Only outfits whose sprite actually differs from the normal
-  body count — a few jobs ship a `costume_1` folder holding a byte-identical
-  copy.
-- `hair.json` — hair styles per gender/race enumerated from the hair sprites,
-  and hair/clothes color swatches sampled from the actual `.pal` palette files.
+The three files it rewrites:
+
+- `costumes.json` — every visual item, with its pt-BR name, sprite view id and
+  visual slot(s) ("Equipa em: Topo / Meio / Baixo / Capa"). An item counts as a
+  costume when the client flags it as one *or* its description says "Tipo:
+  Visual". The view id comes from ragassets' `spriteView` — the client's
+  `ClassNum`, or, when that is `0` as on many newer costumes, the view ragassets
+  recovered from the item's resource name.
+- `classes.json` — the playable classes, each with its clothes-color palette
+  count and swatches per gender, plus its **alternative outfits** (the extra
+  body sprites the client ships for the 3rd classes and a few 4th ones, each
+  with its own palettes). Which classes are listed and how the dropdown groups
+  them is this repo's choice (`CLASS_CATALOG`), as are the pinned 4th-job pt-BR
+  names (`NAME_OVERRIDE`); everything else comes from ragassets.
+- `hair.json` — hair styles per gender/race, and the hair-color swatches.
 
 ### Dropping effect-only costumes
 
 Some costumes are pure visual **effects** (auras, weather, falling petals, the
 "invisible" costumes) that the game draws with its world-effect system, not as a
 character sprite — zrenderer can't render them on the body, so they're kept out
-of the catalogue. `build:db` already drops the ones with no character-sprite
+of the catalogue. `sync:db` already drops the ones with no character-sprite
 view; for the few that resolve a view but still draw nothing, run
 
 ```sh
 node tools/verify-previews.mjs
 ```
 
-after `build:db`. It renders every remaining costume on the reference character
+after `sync:db`. It renders every remaining costume on the reference character
 against ragassets and **removes** any that draw nothing in idle, sit *and* dead.
-Re-run it whenever `costumes.json` is regenerated (`build:db` can't know what
+Re-run it whenever `costumes.json` is regenerated (`sync:db` can't know what
 zrenderer actually draws). Use `--dry-run` to report without writing.
 
 ## Credits
 
 - Inspired by [costume.irowiki.org](https://costume.irowiki.org/) (iRO Wiki).
-- Sprites rendered by [ragassets](https://github.com/adsonpleal/ragassets) /
+- Sprites rendered and game data extracted by
+  [ragassets](https://github.com/adsonpleal/ragassets) /
   [zrenderer](https://github.com/zhad3/zrenderer).
-- GRF reading and Lua 5.1 bytecode parsing adapted from
-  [ragreplaystats](https://github.com/adsonpleal) tooling.
 
 ## License
 

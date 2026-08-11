@@ -14,6 +14,13 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.11.1",
+    date: "2026-08-11",
+    changes: [
+      "Os nomes, as posições e as cores de tudo o que aparece aqui — visuais, classes e cabelos — passaram a vir de uma fonte só, a mesma que desenha os personagens na tela. Nada muda no que você vê hoje: é o catálogo ficando em dia mais rápido a cada atualização do jogo.",
+    ],
+  },
+  {
     version: "0.11.0",
     date: "2026-08-10",
     changes: [

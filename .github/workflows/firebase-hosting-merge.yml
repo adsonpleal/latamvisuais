@@ -33,8 +33,9 @@ jobs:
 
       - run: npm ci
 
-      # The build:db data is committed (public/db), so CI builds the site from
-      # the checkout alone — no Ragnarok client/GRF needed.
+      # The game data is committed (public/db), so CI builds the site from the
+      # checkout alone — nothing is fetched from ragassets at build time.
+      # `npm run sync:db` is a manual step, run after a game update.
       - run: npm test
       - run: npm run build
 

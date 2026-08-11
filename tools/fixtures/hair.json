@@ -1,0 +1,74 @@
+[
+  {
+    "race": "human",
+    "gender": "m",
+    "styles": [
+      {
+        "n": 1,
+        "colors": 9
+      },
+      {
+        "n": 2,
+        "colors": 9
+      }
+    ],
+    "swatches": [
+      "#ae4a52",
+      "#e7a374"
+    ]
+  },
+  {
+    "race": "human",
+    "gender": "f",
+    "styles": [
+      {
+        "n": 1,
+        "colors": 9
+      },
+      {
+        "n": 2,
+        "colors": 9
+      }
+    ],
+    "swatches": [
+      "#ae4a52",
+      "#d79875"
+    ]
+  },
+  {
+    "race": "doram",
+    "gender": "m",
+    "styles": [
+      {
+        "n": 1,
+        "colors": 9
+      },
+      {
+        "n": 2,
+        "colors": 9
+      }
+    ],
+    "swatches": [
+      "#dbafa5",
+      "#d19070"
+    ]
+  },
+  {
+    "race": "doram",
+    "gender": "f",
+    "styles": [
+      {
+        "n": 1,
+        "colors": 9
+      },
+      {
+        "n": 2,
+        "colors": 9
+      }
+    ],
+    "swatches": [
+      "#dbafa5",
+      "#d19070"
+    ]
+  }
+]

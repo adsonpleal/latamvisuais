@@ -1,0 +1,164 @@
+[
+  {
+    "id": 501,
+    "name": "Poção Vermelha",
+    "slots": 0,
+    "aegisName": null,
+    "resourceName": "빨간포션",
+    "description": "",
+    "view": 0,
+    "spriteView": 0,
+    "viewKind": null,
+    "equipSlots": [],
+    "costume": false
+  },
+  {
+    "id": 5105,
+    "name": "2º Aniversário",
+    "slots": 0,
+    "aegisName": null,
+    "resourceName": "케이크모자",
+    "description": "Tipo: ^777777Equip. para Cabeça^000000\nEquipa em: ^777777Topo^000000",
+    "view": 109,
+    "spriteView": 109,
+    "viewKind": "headgear",
+    "equipSlots": [
+      "top"
+    ],
+    "costume": true
+  },
+  {
+    "id": 5979,
+    "name": "[Visual] Penas Encantadas",
+    "slots": 0,
+    "aegisName": "C_Angel_Fluttering",
+    "resourceName": "C흩날리는천사의날개",
+    "description": "Tipo: ^777777Visual^000000\nEquipa em: ^777777Baixo^000000",
+    "view": 0,
+    "spriteView": 0,
+    "viewKind": null,
+    "equipSlots": [
+      "low"
+    ],
+    "costume": true
+  },
+  {
+    "id": 5981,
+    "name": null,
+    "slots": 0,
+    "aegisName": null,
+    "resourceName": "사타닉체인",
+    "description": "",
+    "view": 382,
+    "spriteView": 382,
+    "viewKind": "headgear",
+    "equipSlots": [],
+    "costume": true
+  },
+  {
+    "id": 15280,
+    "name": "Malha Sombria do Ataque Crítico",
+    "slots": 0,
+    "aegisName": "S_CriticalHit_Armor",
+    "resourceName": "아머쉐도우3",
+    "description": "Tipo: ^777777Equip. Sombrio^000000\nPosição: ^777777Armadura^000000",
+    "view": 0,
+    "spriteView": 0,
+    "viewKind": null,
+    "equipSlots": [],
+    "costume": true
+  },
+  {
+    "id": 19424,
+    "name": "[Visual] Crânio de Esqueleão",
+    "slots": 0,
+    "aegisName": "C_Master_Cat",
+    "resourceName": "Master_Cat",
+    "description": "Tipo: ^777777Visual^000000\nEquipa em: ^777777Meio e Baixo^000000",
+    "view": 1806,
+    "spriteView": 1806,
+    "viewKind": "headgear",
+    "equipSlots": [
+      "mid",
+      "low"
+    ],
+    "costume": true
+  },
+  {
+    "id": 19920,
+    "name": "Máscara de Sussurro Assustador",
+    "slots": 0,
+    "aegisName": null,
+    "resourceName": "진화된위스퍼마스크",
+    "description": "Tipo: ^777777Visual^000000\nEquipa em: ^777777Topo, Meio e Baixo^000000",
+    "view": 0,
+    "spriteView": 458,
+    "viewKind": "headgear",
+    "equipSlots": [
+      "top",
+      "mid",
+      "low"
+    ],
+    "costume": false
+  },
+  {
+    "id": 20330,
+    "name": "[Visual] Chapéu de Solita",
+    "slots": 0,
+    "aegisName": "C_Sombrero",
+    "resourceName": "솜브레로",
+    "description": "Tipo: ^777777Visual^000000\nEquipa em: ^777777Topo^000000",
+    "view": 0,
+    "spriteView": 151,
+    "viewKind": "headgear",
+    "equipSlots": [
+      "top"
+    ],
+    "costume": false
+  },
+  {
+    "id": 31379,
+    "name": "Gira-Cocuruto",
+    "slots": 0,
+    "aegisName": "C_Drama_Clockwork",
+    "resourceName": "연극용태엽키",
+    "description": "Tipo: ^777777Visual^000000\nEquipa em: ^777777Topo^000000",
+    "view": 1335,
+    "spriteView": 1335,
+    "viewKind": "headgear",
+    "equipSlots": [
+      "top"
+    ],
+    "costume": true
+  },
+  {
+    "id": 480177,
+    "name": "Buquê Gigantesco",
+    "slots": 0,
+    "aegisName": "C_Clutch_Bouquet",
+    "resourceName": "C_Clutch_Bouquet",
+    "description": "Tipo: ^777777Visual ^000000\nEquipa em: ^777777Baixo^000000",
+    "view": 128,
+    "spriteView": 128,
+    "viewKind": "garment",
+    "equipSlots": [
+      "low"
+    ],
+    "costume": true
+  },
+  {
+    "id": 480807,
+    "name": "[Visual] Escudo Petulante",
+    "slots": 0,
+    "aegisName": "C_Cynic_Guard_CP",
+    "resourceName": "C_Cynic_Guard",
+    "description": "Tipo: ^777777Visual^000000\nEquipa em: ^777777Capa^000000",
+    "view": 2828,
+    "spriteView": 2828,
+    "viewKind": "headgear",
+    "equipSlots": [
+      "garment"
+    ],
+    "costume": true
+  }
+]

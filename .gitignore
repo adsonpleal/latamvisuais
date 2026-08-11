@@ -3,5 +3,8 @@ dist/
 *.local
 .DS_Store
 .firebase/
-.claude/
+# Local Claude Code state (launch.json, settings.local.json, worktrees) stays
+# out; the skills are project documentation and are committed.
+.claude/*
+!.claude/skills/
 tmp-sweep/
