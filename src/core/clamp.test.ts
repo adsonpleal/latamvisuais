@@ -51,6 +51,22 @@ describe("clampState", () => {
     expect(next.clothesColor).toBe(3);
   });
 
+  it("drops an alternative outfit the class does not have", () => {
+    expect(clampState(db, base({ classId: 4054, outfit: 1 })).outfit).toBe(1);
+    expect(clampState(db, base({ classId: 0, outfit: 1 })).outfit).toBeNull(); // Aprendiz has none
+    expect(clampState(db, base({ classId: 4054, outfit: 2 })).outfit).toBeNull(); // only outfit 1 exists
+  });
+
+  it("clamps the clothes colour against the selected outfit's own palettes", () => {
+    // Rune Knight male: 5 normal palettes, but only 3 on the alternative outfit.
+    expect(clampState(db, base({ classId: 4054, clothesColor: 4 })).clothesColor).toBe(4);
+    expect(clampState(db, base({ classId: 4054, outfit: 1, clothesColor: 4 })).clothesColor).toBeNull();
+    expect(clampState(db, base({ classId: 4054, outfit: 1, clothesColor: 2 })).clothesColor).toBe(2);
+    // Female has the outfit but no palettes for it — every colour index is out.
+    const f = base({ classId: 4054, gender: "f", outfit: 1, clothesColor: 1 });
+    expect(clampState(db, f)).toMatchObject({ outfit: 1, clothesColor: null });
+  });
+
   it("does not mutate the input state", () => {
     const state = base({ classId: 4021, gender: "m" });
     const snapshot = JSON.parse(JSON.stringify(state));

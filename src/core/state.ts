@@ -101,6 +101,10 @@ export type State = {
   hairColor: number | null; // palette index; null = sprite's own palette
   clothesColor: number | null;
   equipped: Partial<Record<Slot, Costume>>;
+  /** Alternative-outfit number for the class (ClassInfo.outfits[].n), or null for
+   *  the normal body. Rendered as ragassets' `outfit=` param; the outfit has its
+   *  own clothes palettes, so clothesColor is read against it (see palettesOf). */
+  outfit: number | null;
   /** Index into the class's mount list (see core/mounts.ts), or null when not
    *  mounted. Mounting renders an alternate (mounted) job id — see effectiveJob. */
   mount: number | null;
@@ -121,6 +125,7 @@ export function initialState(db: Db): State {
     hairColor: null,
     clothesColor: null,
     equipped: {},
+    outfit: null,
     mount: null,
     pet: null,
   };
@@ -132,7 +137,15 @@ export function initialState(db: Db): State {
  *  the view, so you can compare costumes in the same pose. */
 export type Build = Pick<
   State,
-  "classId" | "gender" | "hairStyle" | "hairColor" | "clothesColor" | "equipped" | "mount" | "pet"
+  | "classId"
+  | "gender"
+  | "hairStyle"
+  | "hairColor"
+  | "clothesColor"
+  | "equipped"
+  | "outfit"
+  | "mount"
+  | "pet"
 >;
 
 export function buildOf(state: State): Build {
@@ -143,6 +156,7 @@ export function buildOf(state: State): Build {
     hairColor: state.hairColor,
     clothesColor: state.clothesColor,
     equipped: state.equipped,
+    outfit: state.outfit,
     mount: state.mount,
     pet: state.pet,
   };
@@ -160,6 +174,7 @@ export function applyBuild(state: State, build: Build): State {
     hairColor: build.hairColor,
     clothesColor: build.clothesColor,
     equipped: { ...build.equipped },
+    outfit: build.outfit,
     mount: build.mount,
     pet: build.pet,
   };
@@ -182,6 +197,25 @@ export function classOf(db: Db, state: State): ClassInfo | undefined {
 export function hairSetOf(db: Db, state: State) {
   const race = classOf(db, state)?.race ?? "human";
   return db.hair[race][state.gender];
+}
+
+/** The alternative outfits available to the current class AND gender. A class
+ *  can ship an outfit for one gender only, so the gender filter matters. */
+export function outfitsOf(db: Db, state: State) {
+  return (classOf(db, state)?.outfits ?? []).filter((o) => o.palettes[state.gender]);
+}
+
+/** The clothes-color palettes in force: the selected alternative outfit's own
+ *  set when one is on, otherwise the normal body's. An outfit with no palette
+ *  files of its own (Cardeal, Inquisidor, Magus) reports count 0 — it renders
+ *  only in its built-in colors. */
+export function clothesPalettesOf(db: Db, state: State) {
+  const cls = classOf(db, state);
+  if (state.outfit != null) {
+    const outfit = cls?.outfits?.find((o) => o.n === state.outfit);
+    if (outfit) return outfit.palettes[state.gender];
+  }
+  return cls?.palettes[state.gender];
 }
 
 /** Headgear view ids (top → low order, deduped, max 3 — multi-slot costumes
@@ -235,6 +269,7 @@ function renderParams(state: State, overrides: RenderOverrides): URLSearchParams
   p.set("head", String(state.hairStyle));
   if (state.hairColor != null) p.set("headPalette", String(state.hairColor));
   if (state.clothesColor != null) p.set("bodyPalette", String(state.clothesColor));
+  if (state.outfit != null) p.set("outfit", String(state.outfit));
   const { headgear, garment } = gearViews(state);
   if (headgear.length) p.set("headgear", headgear.join(","));
   if (garment != null) p.set("garment", String(garment));
@@ -276,6 +311,9 @@ export function frameCountProbeUrl(state: State, action: number = state.action):
   p.set("job", String(effectiveJob(state)));
   p.set("gender", state.gender === "f" ? "female" : "male");
   p.set("head", String(state.hairStyle));
+  // The alternative outfit is its own .act, so it can time a pose differently
+  // from the normal body — part of the probe's identity, unlike the palettes.
+  if (state.outfit != null) p.set("outfit", String(state.outfit));
   const { headgear, garment } = gearViews(state);
   if (headgear.length) p.set("headgear", headgear.join(","));
   if (garment != null) p.set("garment", String(garment));

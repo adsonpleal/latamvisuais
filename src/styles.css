@@ -264,18 +264,25 @@ body {
   font-size: 0.9rem;
 }
 
+/* Deliberately compact: the footer is credits/housekeeping, and every pixel it
+   takes is one the catalogue and the character preview don't get. Two short
+   lines — the links, then the copyright — of dot-separated items. */
 .footer {
   margin-top: auto;
-  padding: 1rem 1.25rem 1.25rem;
+  padding: 0.4rem 1.25rem 0.5rem;
   border-top: 1px solid var(--border);
   background: var(--bg-elev);
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  line-height: 1.55;
   color: var(--muted);
 }
 
-.footer-line {
-  margin-bottom: 0.25rem;
+/* The dot separators between footer items, emitted as their own spans so the
+   line can wrap between items instead of mid-separator. */
+.footer-sep {
+  padding: 0 0.35em;
+  opacity: 0.6;
 }
 
 .footer-link {
@@ -494,6 +501,36 @@ h1,
   margin-bottom: 0.4rem;
 }
 
+/* Two labelled controls sharing one block's height (gender + outfit style).
+   A fixed two-column grid rather than a flex row, so "Gênero" keeps the same
+   half-width column on the classes that have no alternative outfit — its pills
+   don't stretch across the panel just because the second column is missing. */
+.control-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem 0.7rem;
+}
+
+.control-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.control-row .gender-row,
+.control-row .segmented {
+  display: flex;
+}
+
+.control-row .gender-btn,
+.control-row .segmented-choice {
+  flex: 1;
+  padding-left: 0.35rem;
+  padding-right: 0.35rem;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
 /* "Visuais" label + its "?" info button on one row. */
 .catalog-label {
   display: flex;
@@ -689,6 +726,34 @@ button:disabled {
   background: var(--accent);
   border-color: var(--accent);
   color: #fff;
+}
+
+/* "Empty this character" — same pill as the slot numbers but icon-only and
+   never flex-grown, so it reads as an action closing the row rather than a
+   seventh slot. Disabled (and dimmed) while the slot is already empty. */
+.slot-wipe {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  padding: 0.28rem 0;
+  margin-left: 0.15rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-inset);
+  color: var(--muted);
+  transition: background 120ms, color 120ms, border-color 120ms;
+}
+
+.slot-wipe:hover:not(:disabled) {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.slot-wipe:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
 
 /* Clothes color square — the SAME game color-square <img> as the hair colors
@@ -1441,7 +1506,11 @@ button:disabled {
 }
 
 /* Mount picker — segmented pill row, same shell as the gender switch. */
-.mount-choices {
+/* Segmented pill group. Shared by the mount picker (Preview) and the
+   alternative-outfit picker (AppearancePanel) so the two read as one control
+   family; `.segmented` is the general name, `.mount-choices` the original. */
+.mount-choices,
+.segmented {
   display: inline-flex;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -1450,7 +1519,8 @@ button:disabled {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.mount-choice {
+.mount-choice,
+.segmented-choice {
   padding: 0.4rem 0.75rem;
   height: 34px;
   font-size: 0.84rem;
@@ -1461,15 +1531,18 @@ button:disabled {
   transition: background 120ms, color 120ms;
 }
 
-.mount-choice + .mount-choice {
+.mount-choice + .mount-choice,
+.segmented-choice + .segmented-choice {
   border-left: 1px solid var(--border);
 }
 
-.mount-choice:hover:not(.is-selected) {
+.mount-choice:hover:not(.is-selected),
+.segmented-choice:hover:not(.is-selected) {
   background: var(--accent-soft);
 }
 
-.mount-choice.is-selected {
+.mount-choice.is-selected,
+.segmented-choice.is-selected {
   color: #fff;
   background: var(--accent);
 }

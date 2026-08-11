@@ -15,7 +15,7 @@
 
 import type { CSSProperties } from "react";
 import type { Gender } from "../core/state";
-import { classOf, hairSetOf, hairThumbUrl, uiIconUrl } from "../core/state";
+import { classOf, clothesPalettesOf, hairSetOf, hairThumbUrl, outfitsOf, uiIconUrl } from "../core/state";
 import { t } from "../i18n";
 import { useAppState, useDb, useDispatch } from "../state/AppStateContext";
 
@@ -39,35 +39,79 @@ export function AppearancePanel() {
   const styleInfo = hair.styles.find((s) => s.n === state.hairStyle);
   const hairTotal = Math.max(1, styleInfo?.colors ?? 0);
 
+  // Alternative outfits — the class's extra body sprites ("estilo de roupa"),
+  // shown only for the classes that have one (the 3rd classes plus Cardeal,
+  // Inquisidor and Magus).
+  const outfits = outfitsOf(db, state);
+
   // Clothes colors — same square style as hair. Index 0 is the Padrão square;
-  // 1..n reuse a color-square asset tinted to each palette's sampled color.
-  const pal = cls?.palettes[state.gender];
-  const clothesCount = pal?.count ?? 0;
+  // 1..n reuse a color-square asset tinted to each palette's sampled color. The
+  // palettes follow the selected outfit, which has its own (see
+  // clothesPalettesOf); an outfit with none at all still offers Padrão.
+  const pal = clothesPalettesOf(db, state);
+  const clothesCount = Math.max(1, pal?.count ?? 0);
 
   return (
     <div className="appearance">
-      <div className="control-block">
-        <div className="control-label">{t.genderLabel}</div>
-        <div className="gender-row">
-          {(["m", "f"] as const).map((g) => {
-            const label = g === "m" ? t.genderMale : t.genderFemale;
-            const selected = state.gender === g;
-            return (
-              <button
-                key={g}
-                type="button"
-                className={`gender-btn gender-${g}${selected ? " is-selected" : ""}`}
-                data-tip={label}
-                aria-label={label}
-                aria-pressed={selected}
-                disabled={locked != null && locked !== g}
-                onClick={() => dispatch({ type: "setGender", gender: g })}
-              >
-                {label}
-              </button>
-            );
-          })}
+      {/* Gender and the outfit picker share one row: both are short segmented
+          controls, and side by side they cost the height of one block instead
+          of two. The outfit half is simply absent for the classes without one. */}
+      <div className="control-block control-row">
+        <div className="control-col">
+          <div className="control-label">{t.genderLabel}</div>
+          <div className="gender-row">
+            {(["m", "f"] as const).map((g) => {
+              const label = g === "m" ? t.genderMale : t.genderFemale;
+              const selected = state.gender === g;
+              return (
+                <button
+                  key={g}
+                  type="button"
+                  className={`gender-btn gender-${g}${selected ? " is-selected" : ""}`}
+                  data-tip={label}
+                  aria-label={label}
+                  aria-pressed={selected}
+                  disabled={locked != null && locked !== g}
+                  onClick={() => dispatch({ type: "setGender", gender: g })}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
         </div>
+
+        {outfits.length > 0 && (
+          <div className="control-col">
+            <div className="control-label">{t.outfitLabel}</div>
+            <div className="segmented">
+              <button
+                type="button"
+                className={state.outfit == null ? "segmented-choice is-selected" : "segmented-choice"}
+                data-tip={t.outfitDefaultTip}
+                aria-pressed={state.outfit == null}
+                onClick={() => dispatch({ type: "setOutfit", outfit: null })}
+              >
+                {t.outfitDefault}
+              </button>
+              {outfits.map((o, i) => {
+                const label = outfits.length > 1 ? t.outfitAltN(i + 1) : t.outfitAlt;
+                return (
+                  <button
+                    key={o.n}
+                    type="button"
+                    className={state.outfit === o.n ? "segmented-choice is-selected" : "segmented-choice"}
+                    data-tip={t.outfitAltTip}
+                    aria-pressed={state.outfit === o.n}
+                    onClick={() => dispatch({ type: "setOutfit", outfit: o.n })}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="control-block hair-block">

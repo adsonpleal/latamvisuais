@@ -1,22 +1,30 @@
 // The save-slot switcher: a segmented row of numbered buttons (1..count) above
-// the class picker. The active slot is highlighted; clicking another switches to
-// it. Alt + number does the same from the keyboard — the listener is mounted
-// once and reads the latest handler through a ref so it never re-subscribes on
-// every build edit. We use e.code (Digit1..Digit9) so the binding holds across
-// keyboard layouts, and preventDefault stops the browser's own Alt+digit
-// behaviour (access keys) when the combo is one of ours.
+// the class picker, closed by a button that empties the active slot. The active
+// slot is highlighted; clicking another switches to it. Alt + number does the
+// same from the keyboard — the listener is mounted once and reads the latest
+// handler through a ref so it never re-subscribes on every build edit. We use
+// e.code (Digit1..Digit9) so the binding holds across keyboard layouts, and
+// preventDefault stops the browser's own Alt+digit behaviour (access keys) when
+// the combo is one of ours.
 
 import { useEffect, useRef } from "react";
 import { t } from "../i18n";
+import { ClearX } from "./icons";
 
 export function SlotBar({
   active,
   count,
   onSelect,
+  onClear,
+  canClear,
 }: {
   active: number;
   count: number;
   onSelect: (index: number) => void;
+  /** Reset the active slot to a brand-new character. */
+  onClear: () => void;
+  /** False when the slot already holds the default build — nothing to clear. */
+  canClear: boolean;
 }) {
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
@@ -53,6 +61,16 @@ export function SlotBar({
           </button>
         );
       })}
+      <button
+        type="button"
+        className="slot-wipe"
+        data-tip={t.slotWipeTip}
+        aria-label={t.slotWipeTip}
+        disabled={!canClear}
+        onClick={onClear}
+      >
+        <ClearX />
+      </button>
     </div>
   );
 }

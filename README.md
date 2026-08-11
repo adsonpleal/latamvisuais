@@ -101,7 +101,11 @@ This rewrites `public/db/costumes.json`, `public/db/classes.json` and
 - `classes.json` — the playable classes (grouped like the iRO simulator), each
   with its clothes-color palette count per gender, enumerated from
   `data/palette/` inside the GRF (`jobname.lub` provides the job id → sprite
-  name mapping).
+  name mapping), plus the class's **alternative outfits**: the extra body
+  sprites the client keeps under `몸통/<gender>/costume_<N>/`, each with its own
+  clothes palettes. Only outfits whose sprite actually differs from the normal
+  body count — a few jobs ship a `costume_1` folder holding a byte-identical
+  copy.
 - `hair.json` — hair styles per gender/race enumerated from the hair sprites,
   and hair/clothes color swatches sampled from the actual `.pal` palette files.
 

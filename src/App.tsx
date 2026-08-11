@@ -91,6 +91,15 @@ function Simulator({ db }: { db: Db }) {
     [active, builds, db],
   );
 
+  // Empty the active slot: load the default build over it, which the auto-save
+  // effect then writes back. Everything picked goes — class, gender, hair,
+  // colours, costumes, mount and pet — leaving a fresh character; the pose and
+  // rotation are the view, not the build, so they stay.
+  const defaultSig = useMemo(() => buildSignature(buildOf(initialState(db))), [db]);
+  const clearSlot = useCallback(() => {
+    dispatch({ type: "loadBuild", build: buildOf(initialState(db)) });
+  }, [db]);
+
   // Reflect the current build in the address bar — runs once on mount (the old
   // "re-sync immediately") and after every change.
   useEffect(() => {
@@ -173,7 +182,13 @@ function Simulator({ db }: { db: Db }) {
             <h2 className="panel-title">{t.appearanceTitle}</h2>
             <InfoTip label={t.saveInfoLabel} text={t.saveInfoText} />
           </div>
-          <SlotBar active={active} count={SLOT_COUNT} onSelect={selectSlot} />
+          <SlotBar
+            active={active}
+            count={SLOT_COUNT}
+            onSelect={selectSlot}
+            onClear={clearSlot}
+            canClear={buildSig !== defaultSig}
+          />
           <div className="control-block">
             <div className="control-label">{t.classLabel}</div>
             <ClassSelect />
@@ -202,25 +217,24 @@ function Simulator({ db }: { db: Db }) {
         </section>
       </main>
 
+      {/* Two lines of small print — the links, then the copyright. A deliberate
+          break reads better than letting one long line wrap wherever it lands;
+          see .footer in styles.css for why the whole thing is kept this tight.
+          The iRO-simulator inspiration, the ragassets credit and the MIT licence
+          live in the README and the LICENSE file — the footer keeps only what
+          someone actually navigates to. */}
       <footer className="footer">
         <div className="footer-line">
           <button type="button" className="footer-link" onClick={() => setChangelogOpen(true)}>
             {t.footerChangelog}
           </button>
-          {" · v" + APP_VERSION + " · "}
+          <Sep />v{APP_VERSION}
+          <Sep />
           <FooterLink href="https://latam-tools.com.br/">{t.footerTools}</FooterLink>
+          <Sep />
+          <FooterLink href="https://github.com/adsonpleal/latamvisuais">{t.footerSource}</FooterLink>
         </div>
         <div className="footer-line">{t.footerCopyright}</div>
-        <div className="footer-credits">
-          {t.footerInspired + " "}
-          <FooterLink href="https://costume.irowiki.org/">costume.irowiki.org</FooterLink>
-          {" · " + t.footerAssets + " "}
-          <FooterLink href="https://github.com/adsonpleal/ragassets">ragassets</FooterLink>
-          {" · "}
-          <FooterLink href="https://github.com/adsonpleal/latamvisuais">{t.footerSource}</FooterLink>
-          {" · "}
-          <FooterLink href="https://github.com/adsonpleal/latamvisuais/blob/main/LICENSE">MIT</FooterLink>
-        </div>
       </footer>
 
       {changelogOpen && <Changelog onClose={() => setChangelogOpen(false)} />}
@@ -232,6 +246,10 @@ function Simulator({ db }: { db: Db }) {
       )}
     </AppStateProvider>
   );
+}
+
+function Sep() {
+  return <span className="footer-sep">·</span>;
 }
 
 function FooterLink({ href, children }: { href: string; children: string }) {

@@ -86,6 +86,7 @@ describe("createAppReducer", () => {
         hairColor: 1,
         clothesColor: 1,
         equipped: { top: item(100) },
+        outfit: null,
         mount: null,
         pet: null,
       },

@@ -4,6 +4,58 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.11.0] — 2026-08-10
+
+### Added
+
+- **Alternative outfits** (`outfit=` on ragassets) — the client's `costume_N`
+  body sprites, a second look for the same class. Which classes have one is read
+  from the GRF rather than hardcoded: `build-db.mjs` indexes every
+  `몸통/<gender>/costume_<N>/` sprite, resolves each class's sprite basename
+  (`SPR_NAMES` lists only the handful where it differs from the palette
+  basename — Royal Guard is 가드 as a sprite but 로얄가드 as a palette, Ranger is
+  레인져/레인저) and keeps an outfit only when **both** its `.act` and `.spr` exist
+  *and* the `.spr` differs from the normal body's. That last test matters:
+  Gravity ships stub `costume_1` folders for Aprendiz, Kagerou and Oboro whose
+  sprite is a byte-for-byte copy, so they would have offered a toggle that
+  changes nothing. What survives is the 13 third classes plus Cardeal,
+  Inquisidor and Magus, verified to render differently on the live ragassets.
+  - Each outfit carries **its own clothes palettes** in `classes.json`
+    (`outfits[].palettes`), a different set from the normal body's — the
+    fourth-class three have none at all, so they render only in their built-in
+    colors. `clothesPalettesOf()` picks the set in force and `clampState` drops a
+    now-out-of-range colour; the swatch row always keeps its Padrão square.
+  - Carried in the build: `State.outfit` packs into the `?b=` codec's packed
+    field at `<<12`, bits that were always 0 before, so older links decode to
+    "normal body" with no version bump. It saves to slots and reaches the map sim
+    for free (the sim routes through `imageUrl`), and joins
+    `frameCountProbeUrl`'s identity since the outfit has its own `.act`.
+  - The picker sits beside the gender pills in a fixed two-column grid, so
+    "Gênero" keeps the same half-width column on the classes with no outfit
+    rather than stretching across the panel.
+- **Clear the active character slot** — a button closing the slot row that loads
+  the default build over the current one (class, gender, hair, colours,
+  costumes, mount and pet), disabled while the slot already holds it. The pose
+  and rotation are the view, not the build, so they stay.
+
+### Changed
+
+- **The footer is roughly half its former height** (~90 px → 50 px): two lines
+  at 0.7rem — dot-separated links, then the copyright — instead of three at
+  0.8rem, with the iRO-simulator inspiration, the ragassets credit and the MIT
+  link dropped (they live in the README and LICENSE). It sits below a
+  fixed-height layout, so every pixel it gave back is one the preview and the
+  catalogue get.
+- **Game data re-extracted** from the 2026-08-10 client. One new renderable
+  costume (480801 Mochila de Hatii) and two slot corrections (20162/20163 Gorro
+  de Carneirinho are Topo/Meio/Baixo, not Topo alone). Twenty of the twenty-one
+  newly costume-flagged items are effect-only or ship placeholder sprites — the
+  client itself has no art for 유치원생의모자 / 배틀온라인, and `c_dullahan_mask` and
+  부유하는현자의돌 are ~1 KB stubs — so `verify-previews.mjs` dropped them, as designed.
+- Item **480069** (Asas Esvoaçantes de Arcanjo) drew in the wrong position; fixed
+  on the ragassets side. The version bump re-mints the `&v=` cache-buster, so the
+  corrected render reaches browsers holding the old immutable one.
+
 ## [0.10.0] — 2026-08-10
 
 ### Added

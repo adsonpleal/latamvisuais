@@ -21,6 +21,7 @@ function sampleState(): State {
       top: db.costumes.find((c) => c.id === 100)!,
       garment: db.costumes.find((c) => c.id === 400)!,
     },
+    outfit: null,
     mount: null,
     pet: null,
   };
@@ -44,6 +45,16 @@ describe("encodeState", () => {
     expect(clampState(db, { ...initialState(db), ...decoded })).toEqual(state);
     // The default (unmounted) build stays unchanged — mount adds no bits.
     expect(decodeState(encodeState(initialState(db)), db)!.mount).toBeNull();
+  });
+
+  it("packs the alternative outfit into the packed field, round-tripping", () => {
+    // Male, because the sample's female Rune Knight has no palettes on the
+    // alternative outfit and clamp would drop her clothes colour.
+    const state: State = { ...sampleState(), gender: "m", outfit: 1, clothesColor: 2 };
+    const decoded = decodeState(encodeState(state), db);
+    expect(clampState(db, { ...initialState(db), ...decoded })).toEqual(state);
+    // Links written before outfits existed have those bits at 0 → normal body.
+    expect(decodeState("1.34m.47.2.4.3.2s-b4", db)!.outfit).toBeNull();
   });
 
   it("appends the pet id as a trailing field, round-tripping", () => {

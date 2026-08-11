@@ -25,6 +25,7 @@ describe("save slots", () => {
       hairColor: 3,
       clothesColor: 2,
       equipped: { top: item(100), garment: item(400) },
+      outfit: null,
       mount: 1, // a saved mount must survive the round-trip
       pet: 1002, // …as must a saved pet
     };

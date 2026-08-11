@@ -14,6 +14,20 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.11.0",
+    date: "2026-08-10",
+    changes: [
+      "As classes de 3ª agora podem vestir a roupa alternativa, aquela segunda versão do traje que existe no jogo. O botão “Estilo da roupa” fica ao lado do Gênero, nas classes que têm uma: as treze de 3ª, mais Cardeal, Inquisidor e Magus. As cores mudam junto com o estilo — cada traje tem a sua paleta, e os três de 4ª só vêm nas cores originais mesmo.",
+      "Novo botão de limpar ao lado dos números dos personagens: tira tudo o que você escolheu de uma vez (classe, gênero, cabelo, cores, visuais, montaria e mascote) e devolve o espaço em branco. Ele fica apagado quando não há nada para limpar.",
+      "As Asas Esvoaçantes de Arcanjo estavam desenhadas fora do lugar no personagem. Já foi corrigido.",
+      "O rodapé encolheu quase pela metade: letra menor, duas linhas no lugar de três e só os links que alguém realmente usa. Sobrou mais altura para o personagem e para a lista de visuais.",
+      "Dados atualizados com a última versão do jogo: a Mochila de Hatii entrou na lista, e os dois Gorros de Carneirinho agora aparecem também nos filtros de Meio e Baixo, que é onde eles equipam de verdade.",
+    ],
+    // Uma única string literal: o post-novidades.mjs lê o primeiro literal do
+    // campo, então uma concatenação com "+" perderia o resto dos créditos.
+    credit: "Obrigado a Kurohitsugi e V, que reportaram as Asas Esvoaçantes de Arcanjo fora de posição; a Gabmid, que pediu o botão de limpar; e a rflazv, que lembrou das roupas alternativas.",
+  },
+  {
     version: "0.10.0",
     date: "2026-08-10",
     changes: [

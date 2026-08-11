@@ -1,7 +1,8 @@
 // A small, hand-built DB for the pure-logic tests. Mirrors the shape of the
 // real public/db/*.json but stays tiny and predictable so expectations are
-// obvious: one ordinary human class, a gender-locked (female-only) class, a
-// doram-race class, and a mix of single- and multi-slot costumes.
+// obvious: one ordinary human class, one with an alternative outfit, a
+// gender-locked (female-only) class, a doram-race class, and a mix of single-
+// and multi-slot costumes.
 
 import type { Db } from "../core/db";
 
@@ -29,6 +30,17 @@ export function makeDb(): Db {
           m: { count: 5, swatches: [null, "#111", "#222", "#333", "#444"] },
           f: { count: 5, swatches: [null, "#111", "#222", "#333", "#444"] },
         },
+        // An alternative outfit with a SMALLER palette set than the normal body,
+        // and none at all for female — both cases the real data has.
+        outfits: [
+          {
+            n: 1,
+            palettes: {
+              m: { count: 3, swatches: [null, "#555", "#666"] },
+              f: { count: 0, swatches: [] },
+            },
+          },
+        ],
       },
       {
         // Gender-locked: only female palette data exists (like Musa/Trovador).

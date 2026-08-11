@@ -9,8 +9,10 @@ import type { Db } from "./db";
 import { mountsFor } from "./mounts";
 import {
   classOf,
+  clothesPalettesOf,
   hairSetOf,
   HEAD_ROTATE_ACTIONS,
+  outfitsOf,
   type Gender,
   type State,
 } from "./state";
@@ -30,7 +32,12 @@ export function clampState(db: Db, state: State): State {
   if (next.hairColor != null && next.hairColor >= (style?.colors ?? 0)) {
     next.hairColor = null;
   }
-  const pal = cls?.palettes[next.gender];
+  // The alternative outfit is settled before the clothes color, because the
+  // outfit brings its own (usually smaller, sometimes empty) palette set.
+  if (next.outfit != null && !outfitsOf(db, next).some((o) => o.n === next.outfit)) {
+    next.outfit = null;
+  }
+  const pal = clothesPalettesOf(db, next);
   if (next.clothesColor != null && next.clothesColor >= (pal?.count ?? 0)) {
     next.clothesColor = null;
   }

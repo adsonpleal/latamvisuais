@@ -18,6 +18,7 @@ export type Action =
   | { type: "rotateBody"; delta: number }
   | { type: "rotateHead"; delta: number }
   | { type: "setAction"; action: number }
+  | { type: "setOutfit"; outfit: number | null }
   | { type: "setMount"; mount: number | null }
   | { type: "setPet"; pet: number | null }
   | { type: "toggleEquip"; item: Costume }
@@ -45,6 +46,8 @@ function reduceRaw(state: State, action: Action): State {
       };
     case "setAction":
       return { ...state, action: action.action };
+    case "setOutfit":
+      return { ...state, outfit: action.outfit };
     case "setMount":
       return { ...state, mount: action.mount };
     case "setPet":

@@ -46,6 +46,12 @@ export type ClassInfo = {
   /** Clothes-color palettes per gender; a missing gender has no palette files
    *  (gender-locked classes like Trovador/Musa have exactly one entry). */
   palettes: Partial<Record<"m" | "f", PaletteInfo>>;
+  /** Alternative outfits ("estilo de roupa"): the extra body sprites the client
+   *  ships for the 3rd classes and a few 4th ones, selected with ragassets'
+   *  `outfit=` param. Each carries its OWN clothes palettes — a different set
+   *  from the normal body's, sometimes empty (the outfit then has no dyes).
+   *  Absent for the classes with no alternative outfit (most of them). */
+  outfits?: { n: number; palettes: Partial<Record<"m" | "f", PaletteInfo>> }[];
   /** True when the class has no party icon in the client — unreleased on LATAM. */
   unreleased?: boolean;
 };

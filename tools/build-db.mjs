@@ -21,6 +21,7 @@
 // Defaults to the standard LATAM install at C:\Gravity\Ragnarok\data.grf;
 // iteminfo_new.lub is found in the System/ folder next to the GRF.
 
+import { createHash } from "node:crypto";
 import {
   closeSync,
   existsSync,
@@ -206,6 +207,20 @@ const PAL_NAMES = {
   JT_SOUL_REAPER: "소울리퍼", JT_SOUL_ASCETIC: "soul_ascetic",
   JT_NIGHT_WATCH: "night_watch",
   JT_SUMMONER: "묘족", JT_SPIRIT_HANDLER: "spirit_handler",
+};
+
+// Body SPRITE basename per class, for the classes where it differs from the
+// palette basename above (data/sprite/<race>/몸통/<남|여>/<name>_<남|여>.spr).
+// Gravity spells a handful of jobs differently in the two folders — Royal Guard
+// is 가드 as a sprite but 로얄가드 as a palette, Ranger is 레인져/레인저 (ㅕ vs ㅓ),
+// Crusader the reverse of the palette's abbreviation — so only the exceptions are
+// listed; everything else reuses PAL_NAMES. Used to find each class's
+// alternative-outfit ("costume_N") sprites; the build warns when a name resolves
+// to no sprite in the GRF, which is how a wrong entry here surfaces.
+const SPR_NAMES = {
+  JT_CRUSADER: "크루세이더", JT_DANCER: "무희", JT_PRIEST_H: "하이프리",
+  JT_BARD_H: "클라운", JT_ASSASSIN_H: "어쌔신크로스", JT_ROYAL_GUARD: "가드",
+  JT_RANGER: "레인져", JT_REBELLION: "rebellion", JT_SUMMONER: "summoner",
 };
 
 // Expanded-branch 4th jobs LATAM has shipped the sprites/palettes for but not
@@ -509,6 +524,8 @@ function buildClasses(grf, { jtIds, jtNames, jobMsg, scan }) {
       console.warn(`  ! ${jt} (${PAL_NAMES[jt] ?? "?"}): no clothes palettes found`);
     }
     const cls = { id, jt, name, group, race, palettes };
+    const outfits = altOutfits(grf, scan, race, jt, palettes);
+    if (outfits.length) cls.outfits = outfits;
     // Classes whose party icon isn't in the client are unreleased on LATAM —
     // flagged so the UI can hide them (same source ragassets serves icons from).
     // FORCE_SHOW classes are surfaced ahead of their icon.
@@ -632,7 +649,10 @@ function titleFromJt(jt) {
 function paletteInfo(grf, scan, race, sprite, gender) {
   if (!sprite) return null;
   const byName = race === "doram" ? scan.doramBodyPal : scan.bodyPal;
-  const rec = byName.get(`${sprite}|${gender}`);
+  return paletteFromRecord(grf, byName.get(`${sprite}|${gender}`));
+}
+
+function paletteFromRecord(grf, rec) {
   if (!rec) return null;
   const count = rec.max + 1;
   const pals = [];
@@ -641,6 +661,59 @@ function paletteInfo(grf, scan, race, sprite, gender) {
     pals.push(entry ? extractFile(grf, entry) : null);
   }
   return { count, swatches: swatchRow(pals) };
+}
+
+// Alternative outfits ("estilo de roupa" / body style): a parallel set of body
+// sprites the client ships under 몸통/<gender>/costume_<N>/, which the renderer
+// draws instead of the normal body when asked for outfit N. The 3rd classes are
+// the well-known ones, but the client also has them for a few others (Aprendiz,
+// Cardeal, Inquisidor, Magus, Kagerou/Oboro) — so the set is read from the GRF
+// rather than hardcoded. An outfit counts only when both its .act and .spr exist
+// (that's the renderer's own test) AND the .spr differs from the normal body's:
+// Gravity ships stub costume_1 folders for a few jobs (Aprendiz, Kagerou, Oboro)
+// whose sprite is a byte-for-byte copy of the base one, so the "alternative"
+// outfit would render exactly the same character. Its clothes-color palettes live
+// in a matching palette/몸/costume_<N>/ folder and are a DIFFERENT set from the
+// normal body's (sometimes fewer, sometimes none at all), so each carries its own.
+function altOutfits(grf, scan, race, jt, palettes) {
+  const sprite = SPR_NAMES[jt] ?? PAL_NAMES[jt];
+  if (!sprite) return [];
+  const key = (g) => `${sprite.toLowerCase()}|${g}|${race}`;
+  if (!scan.body.has(key("m")) && !scan.body.has(key("f"))) {
+    console.warn(`  ! ${jt} (${sprite}): no body sprite under that name — outfits not checked`);
+    return [];
+  }
+  const out = [];
+  for (let n = 1; n <= 8; n++) {
+    const outfitPalettes = {};
+    // Gender-locked classes ship an outfit sprite for the gender they can't be
+    // (Kagerou has a female costume_1 body), so follow the normal palettes — the
+    // same source the UI locks the gender pills from.
+    for (const g of Object.keys(palettes)) {
+      const files = scan.altBody.get(`${key(g)}|${n}`);
+      const base = scan.body.get(key(g));
+      if (!files?.spr || !files.act || !base) continue;
+      if (sameFile(grf, base, files.spr)) {
+        console.log(`  · ${jt} ${g}: outfit ${n} is a copy of the normal body — skipped`);
+        continue;
+      }
+      // The palette name can differ from the sprite name (Royal Guard is 가드 as a
+      // sprite, 로얄가드 as a palette); no palettes at all means this outfit only
+      // renders in its own colors.
+      const pal = paletteFromRecord(grf, scan.altBodyPal.get(`${PAL_NAMES[jt]?.toLowerCase()}|${g}|${n}`));
+      outfitPalettes[g] = pal ?? { count: 0, swatches: [] };
+    }
+    if (Object.keys(outfitPalettes).length) out.push({ n, palettes: outfitPalettes });
+  }
+  return out;
+}
+
+/** Do two GRF entries hold the same bytes? Sizes are compared first so the
+ *  (expensive) extraction only runs for the plausible duplicates. */
+function sameFile(grf, a, b) {
+  if (a.uncompSize !== b.uncompSize) return false;
+  const digest = (e) => createHash("md5").update(extractFile(grf, e)).digest("hex");
+  return digest(a) === digest(b);
 }
 
 // ---------------------------------------------------------------------------
@@ -693,6 +766,9 @@ function scanGrfTable(grf) {
   const doramHairPal = new Map();
   const humanHair = new Map(); // "m"|"f" -> Set<styleNumber>
   const doramHair = new Map();
+  const altBodyPal = new Map(); // "<sprite>|<m|f>|<outfit>" -> same as bodyPal
+  const altBody = new Map(); //   "<sprite>|<m|f>|<race>|<outfit>" -> { spr, act } entries
+  const body = new Map(); //      "<sprite>|<m|f>|<race>" -> the base .spr entry
 
   const record = (map, key, idx, f) => {
     let rec = map.get(key);
@@ -717,7 +793,31 @@ function scanGrfTable(grf) {
       if (m) { record(doramBodyPal, `${m[1]}|${g2(m[2])}`, +m[3], f); continue; }
       m = rel.match(/^도람족\/(?:hair|머리)\/(?:머리)?(\d+)_(남|여)_(\d+)\.pal$/);
       if (m) { record(doramHairPal, `${m[1]}|${g2(m[2])}`, +m[3], f); continue; }
+      // Alternative-outfit clothes palettes, a parallel set per outfit:
+      // 몸/costume_1/<sprite>_<남|여>_<idx>_1.pal (doram under 도람족/body/).
+      m = rel.match(/^(?:몸|도람족\/body)\/costume_(\d+)\/(.+)_(남|여)_(\d+)_(\d+)\.pal$/);
+      if (m && m[1] === m[5]) record(altBodyPal, `${m[2]}|${g2(m[3])}|${m[1]}`, +m[4], f);
       continue;
+    }
+
+    // Body sprites, base and alternative-outfit. Both the .act and the .spr must
+    // exist for the renderer to use an outfit, so each extension is recorded.
+    {
+      const m = n.match(
+        /^data\/sprite\/(인간족|도람족)\/몸통\/(남|여)\/(?:costume_(\d+)\/)?(.+?)_(남|여)(?:_(\d+))?\.(spr|act)$/,
+      );
+      if (m) {
+        const race = m[1] === "인간족" ? "human" : "doram";
+        const key = `${m[4]}|${g2(m[2])}|${race}`;
+        if (!m[3]) {
+          if (m[7] === "spr" && !m[6]) body.set(key, f);
+        } else if (m[6] === m[3]) {
+          const k = `${key}|${m[3]}`;
+          if (!altBody.has(k)) altBody.set(k, {});
+          altBody.get(k)[m[7]] = f;
+        }
+        continue;
+      }
     }
 
     if (n.endsWith(".spr")) {
@@ -738,9 +838,10 @@ function scanGrfTable(grf) {
   }
   console.log(
     `GRF scan: ${bodyPal.size} body-palette keys, ${hairPal.size} hair-palette keys, ` +
-      `${doramBodyPal.size} doram body keys, ${doramHairPal.size} doram hair keys`,
+      `${doramBodyPal.size} doram body keys, ${doramHairPal.size} doram hair keys, ` +
+      `${altBody.size} alternative-outfit body sprites`,
   );
-  return { bodyPal, hairPal, doramBodyPal, doramHairPal, humanHair, doramHair };
+  return { bodyPal, hairPal, doramBodyPal, doramHairPal, humanHair, doramHair, altBodyPal, altBody, body };
 }
 
 

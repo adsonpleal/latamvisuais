@@ -28,6 +28,45 @@ describe("AppearancePanel", () => {
     expect(screen.getByRole("button", { name: "Feminino" })).toBeEnabled();
   });
 
+  it("offers the alternative outfit only for the classes that have one", () => {
+    const { unmount } = render(
+      <StateHarness>
+        <AppearancePanel />
+      </StateHarness>,
+    );
+    expect(screen.queryByRole("button", { name: "Alternativo" })).toBeNull();
+    unmount();
+
+    render(
+      <StateHarness init={{ classId: 4054 }}>
+        <AppearancePanel />
+      </StateHarness>,
+    );
+    expect(screen.getByRole("button", { name: "Alternativo" })).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
+    expect(screen.getByRole("button", { name: "Original" })).toHaveAttribute("aria-pressed", "true");
+  });
+
+  it("swaps in the outfit's own clothes colours when it is picked", async () => {
+    const user = userEvent.setup();
+    render(
+      <StateHarness init={{ classId: 4054 }}>
+        <AppearancePanel />
+      </StateHarness>,
+    );
+
+    // Two rows offer "Cor N" squares: hair (8 dyes) and clothes. Rune Knight
+    // male has 5 clothes palettes normally — Padrão + Cor 1..4 — so "Cor 4"
+    // appears in both rows…
+    expect(screen.getAllByRole("button", { name: "Cor 4" })).toHaveLength(2);
+    await user.click(screen.getByRole("button", { name: "Alternativo" }));
+    // …and only 3 on the alternative outfit, leaving "Cor 4" to hair alone.
+    expect(screen.getAllByRole("button", { name: "Cor 4" })).toHaveLength(1);
+    expect(screen.getAllByRole("button", { name: "Cor 2" })).toHaveLength(2);
+  });
+
   it("defaults to the Padrão swatch and moves the selection on click", async () => {
     const user = userEvent.setup();
     render(
