@@ -147,7 +147,7 @@ function Simulator({ db }: { db: Db }) {
         <div className="topbar-actions">
           <a
             className="topbar-action"
-            href="https://forms.gle/T5gvsTYTVBSVF5jH6"
+            href="https://issues.latam-tools.com.br/novo?projeto=visuais"
             target="_blank"
             rel="noopener noreferrer"
             title={t.feedbackTitle}
@@ -156,7 +156,7 @@ function Simulator({ db }: { db: Db }) {
           </a>
           <a
             className="topbar-action"
-            href="https://docs.google.com/spreadsheets/d/1IcN9IjWbZvfSZwiI2ginxx4J5g_AxhCNkh8f7pdaXZ4/edit?usp=sharing"
+            href="https://issues.latam-tools.com.br/?projeto=visuais"
             target="_blank"
             rel="noopener noreferrer"
             title={t.trackingTitle}

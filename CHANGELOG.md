@@ -4,6 +4,19 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.11.2] — 2026-08-16
+
+### Changed
+
+- **The topbar's "Reportar" and "Acompanhar" links now point at the unified
+  issue tracker** (`issues.latam-tools.com.br`), pre-filtered to this project:
+  `/novo?projeto=visuais` for reporting and `/?projeto=visuais` for the board.
+  They replace the Google Form and the response spreadsheet, whose five rows
+  were already migrated (all resolved). Markup, classes and labels are
+  unchanged — only the two `href`s in `src/App.tsx` moved. The Form and the
+  spreadsheet stay in Drive so the old links keep resolving; nothing links to
+  them anymore.
+
 ## [0.11.1] — 2026-08-11
 
 ### Changed
