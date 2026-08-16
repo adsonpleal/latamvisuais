@@ -14,6 +14,13 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.11.2",
+    date: "2026-08-16",
+    changes: [
+      "“Reportar” e “Acompanhar”, no topo da página, agora levam ao novo rastreador de issues das ferramentas do RO LATAM, já filtrado neste projeto. No lugar do formulário e da planilha, você envia o pedido por ali e acompanha o andamento dele na mesma tela — do que ainda não foi visto até o que já está resolvido. O que já tinha sido reportado antes foi migrado para lá.",
+    ],
+  },
+  {
     version: "0.11.1",
     date: "2026-08-11",
     changes: [
