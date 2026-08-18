@@ -4,6 +4,31 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.11.3] — 2026-08-18
+
+### Changed
+
+- **`public/db` re-synced against the 2026-08-18 client** (`npm run sync:db` +
+  `verify-previews.mjs`). `costumes.json` goes 1495 → 1189: **313 removed**, 7
+  added, 9 renamed. `classes.json` and `hair.json` are byte-identical — this
+  patch only moved the item table.
+- The 313 removals are items the client dropped in this update. Upstream they
+  survive in `/raw/items.json` as rows with `costume: true` and a live `view`
+  but `name: null` and an empty description — the pt-BR
+  `identifiedDisplayName` / `identifiedDescriptionName` are gone, while
+  `resourceName` still decodes (Korean). `sync-db.mjs` needs a name, so they
+  drop out. For reference, the same rows resolved fine against the June client
+  table, and the count of nameless rows in `/raw/items.json` went ~640 → 3100
+  (402 of them costumes).
+- `verify-previews.mjs` pruned **17** of the 24 costumes that survived step 1 as
+  new. All 17 carry a `view` and none appear in `/effects/index.json`, so they
+  are not effect-only — the render side has no drawable sprite for them yet.
+  Re-run the step once ragassets re-extracts sprites for this client; they
+  should come back without any change here.
+- `src/sim/pets.ts` refreshed from the same table (107 eggs, 0 fallbacks). One
+  real rename: egg 9132, "O Ovo do Cavaleiro do Abismo" → "Ovo de Cavaleiro do
+  Abismo".
+
 ## [0.11.2] — 2026-08-16
 
 ### Changed

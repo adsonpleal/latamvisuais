@@ -14,6 +14,15 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.11.3",
+    date: "2026-08-18",
+    changes: [
+      "Catálogo atualizado com a versão do jogo de 18 de agosto. Entraram sete visuais novos — entre eles o Ramo de Cerejeira, a Coroa de Mil Rosas e as Asas de Cupido Rosa — e nove tiveram o nome corrigido para o que o jogo mostra hoje: o Chapéu Floral de Druida, por exemplo, agora é Chapéu Floral de Bruxa.",
+      "313 visuais antigos saíram da lista. Não é falha daqui: essa atualização removeu esses itens do jogo, e o que não existe mais no cliente também não aparece mais no catálogo.",
+      "O ovo do Cavaleiro do Abismo passou a se chamar Ovo de Cavaleiro do Abismo, como está no jogo.",
+    ],
+  },
+  {
     version: "0.11.2",
     date: "2026-08-16",
     changes: [

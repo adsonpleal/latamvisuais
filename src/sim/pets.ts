@@ -36,7 +36,7 @@ export const PETS: Pet[] = [
   { mob: 1167, egg: 9009, name: "Bebê Selvagem", eggName: "Ovo de Bebê Selvagem" },
   { mob: 3636, egg: 9090, name: "Bebê Ísis", eggName: "Ovo de Bebê Ísis" },
   { mob: 1188, egg: 9025, name: "Bongun", eggName: "Ovo de Bongun" },
-  { mob: 1219, egg: 9132, name: "Cavaleiro do Abismo", eggName: "O Ovo do Cavaleiro do Abismo" },
+  { mob: 1219, egg: 9132, name: "Cavaleiro do Abismo", eggName: "Ovo de Cavaleiro do Abismo" },
   { mob: 20574, egg: 9133, name: "Cavaleiro Mutante", eggName: "Ovo de Cavaleiro Mutante" },
   { mob: 1214, egg: 9091, name: "Choco", eggName: "Ovo de Choco" },
   { mob: 1011, egg: 9006, name: "ChonChon", eggName: "Ovo de Chonchon" },
