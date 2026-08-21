@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.11.4",
+    date: "2026-08-21",
+    changes: [
+      "O visual Fúria dos Shuras entrou no catálogo. Ele faltava porque o jogo desenha esse item de um jeito diferente dos outros: a peça em si é invisível, e o que você vê são as ondas de energia vermelha, animadas à parte. Agora elas aparecem também na prévia daqui.",
+    ],
+    credit: "Obrigado a Ronjero, que reportou a falta do visual.",
+  },
+  {
     version: "0.11.3",
     date: "2026-08-18",
     changes: [

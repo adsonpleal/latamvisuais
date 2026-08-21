@@ -4,6 +4,49 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.11.4] — 2026-08-21
+
+### Added
+
+- **`31089 [Visual] Fúria dos Shuras` is in the catalogue** (`costumes.json`
+  1189 → 1190, view 1500, slot Meio). The only diff — nothing else was added,
+  removed or renamed. Reported at
+  [ULECrxZAL3GSeXVKAAta](https://issues.latam-tools.com.br/t/ULECrxZAL3GSeXVKAAta).
+
+### Changed
+
+- Nothing in this repo, beyond the re-synced `public/db`. The item was missing
+  because of three separate upstream defects, all fixed in ragassets:
+  - `decodeClientString` only tried EUC-KR on strings with **no ASCII letters**,
+    so an `AccNameTable` value like `_C홍염의폭렬파동` fell through to CP1252 and
+    decoded to `_CÈ«¿°ÀÇÆø·ÄÆÄµ¿`. The item's own `resourceName` decodes fine
+    (the patched `iteminfo_new.lub` is UTF-8), so the reverse lookup never
+    matched and `/raw/items.json` published `spriteView: 0`. That made
+    `sync-db.mjs` drop it as an effect-only costume while `/effects/index.json`
+    didn't carry it either, so it vanished from both catalogues. 94 of 3513
+    name-table strings decoded differently once fixed; 3 costumes gained a view
+    and none regressed.
+  - Its accessory `.act` is **entirely alpha-0** (456 layers, versus 255 for a
+    normal headgear), so the renderer composited nothing. That turns out to be
+    the client's way of saying "the visual is a hat effect, not a sprite";
+    ragassets now detects it and mines `HatEffectInfo.lub` for the real effect,
+    which also took `/effects/index.json` from 18 to 24 entries.
+  - Its effect is a **SPR-type hat effect**, not a `.str` — a third visual kind.
+    `HAT_EF_BAKURETSU_HADOU` → `hatEffectID 1130` → `type: 'SPR'`, `head: true`,
+    `yOffset: -50`, with the frames shipping as
+    `data/sprite/아이템/c홍염의폭렬파동_이펙트`. `/image` composites that sprite
+    now, so `headgear=1500` finally draws.
+- `/raw/items.json` gained a **`spriteBlank`** flag (10 items) meaning the sprite
+  draws nothing *and* has no hat effect behind it. It follows the observable
+  render rather than the `.act`, so `31089` is correctly not flagged.
+  `sync-db.mjs` does not read it yet — `verify-previews.mjs` still decides by
+  rendering.
+- `verify-previews.mjs` pruned 19 of 1209 (was 17 of 1206). The six costumes
+  that ragassets began serving as `.str` effects — Penas Encantadas, Folhas
+  Outonais, Aura de Amatsu, Penas Coloridas, Chuva Dourada, Chapéu do Coelho
+  Elegante — are among the pruned: they have no drawable body sprite, and the
+  app picks them up from `/effects/index.json` at runtime instead.
+
 ## [0.11.3] — 2026-08-18
 
 ### Changed
