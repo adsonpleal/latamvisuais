@@ -21,6 +21,7 @@ export type Action =
   | { type: "setOutfit"; outfit: number | null }
   | { type: "setMount"; mount: number | null }
   | { type: "setPet"; pet: number | null }
+  | { type: "setSkin"; skin: number | string | null }
   | { type: "toggleEquip"; item: Costume }
   | { type: "unequipSlot"; slot: Slot }
   | { type: "loadBuild"; build: Build };
@@ -52,6 +53,8 @@ function reduceRaw(state: State, action: Action): State {
       return { ...state, mount: action.mount };
     case "setPet":
       return { ...state, pet: action.pet };
+    case "setSkin":
+      return { ...state, skin: action.skin };
     case "toggleEquip": {
       const next: State = { ...state, equipped: { ...state.equipped } };
       toggleEquip(next, action.item);

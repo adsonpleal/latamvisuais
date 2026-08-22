@@ -1,6 +1,11 @@
 // Shareable-URL codec. The whole build lives in a single compact query param:
 //
-//   ?b=1.<classId>.<packed>.<hairStyle>.<hairColor>.<clothesColor>.<items>.<pet>
+//   ?b=1.<classId>.<packed>.<hairStyle>.<hairColor>.<clothesColor>.<items>.<pet>.<skinColor>
+//       │  │         │        │            │            │            │       │     └ custom skin
+//       │  │         │        │            │            │            │       │       colour, plain
+//       │  │         │        │            │            │            │       │       rrggbb (only
+//       │  │         │        │            │            │            │       │       when the skin
+//       │  │         │        │            │            │            │       │       code is 5)
 //       │  │         │        │            │            │            │       └ pet monster
 //       │  │         │        │            │            │            │         id, base36
 //       │  │         │        │            │            │            │         (omitted when
@@ -14,14 +19,21 @@
 //       │  │         │        │            └ same encoding as clothes color
 //       │  │         │        └ hair style number, base36
 //       │  │         └ gender | bodyDir<<1 | headDir<<4 | action<<6 | mount<<10
-//       │  │           | outfit<<12 (base36; mount = 0 none, else mountIndex+1;
-//       │  │           outfit = the alternative-outfit number, 0 = normal body)
+//       │  │           | outfit<<12 | skin<<16 (base36; mount = 0 none, else
+//       │  │           mountIndex+1; outfit = the alternative-outfit number,
+//       │  │           0 = normal body; skin = 0/1 original, 2-4 a fan-made
+//       │  │           tone preset, 5 "custom, read the 9th field")
 //       │  └ job id, base36 (e.g. 4054 → "34m")
 //       └ format version
 //
 // The pet trails the items field (rather than packing into <packed>) because a
 // monster id is a large arbitrary number, and trailing keeps older ?b= links —
-// which never had a 8th field — decoding to "no pet".
+// which never had a 8th field — decoding to "no pet". A custom skin colour
+// trails the pet for the same reason (24 bits of arbitrary colour don't belong
+// in <packed>), which is why setting one forces the pet field to be emitted —
+// as "0" when there is no pet, since the decoder already reads a pet of 0 as
+// "none". A tone preset needs no extra field at all, so the common case costs
+// nothing.
 //
 // Worst case ≈ 25 chars, alphabet [0-9a-z.-] only — never percent-encoded.
 // The decoder is forgiving: malformed fields keep their defaults, unknown item
@@ -30,7 +42,7 @@
 // hair/color ranges.
 
 import { SLOTS, type Db } from "./db";
-import { ACTIONS, equipInto, initialState, type State } from "./state";
+import { ACTIONS, equipInto, initialState, SKIN_COLOR_RE, type State } from "./state";
 
 const PARAM = "b";
 const VERSION = "1";
@@ -43,6 +55,16 @@ function parse36(s: string | undefined): number | null {
   return Number.isSafeInteger(n) ? n : null;
 }
 
+/** The skin code that goes in packed bits 16-18: 0 = original, 2-4 = a tone
+ *  preset, 5 = "custom, the colour is in the trailing field". 1 is never
+ *  emitted — clampState normalises tone 1 to null, since it is the original. */
+const SKIN_CUSTOM = 5;
+
+function skinCode(skin: State["skin"]): number {
+  if (typeof skin === "string") return SKIN_CUSTOM;
+  return skin ?? 0;
+}
+
 export function encodeState(state: State): string {
   const packed =
     (state.gender === "f" ? 1 : 0) |
@@ -50,7 +72,8 @@ export function encodeState(state: State): string {
     (state.headDir << 4) |
     (state.action << 6) |
     ((state.mount == null ? 0 : state.mount + 1) << 10) |
-    ((state.outfit ?? 0) << 12);
+    ((state.outfit ?? 0) << 12) |
+    (skinCode(state.skin) << 16);
   const seen = new Set<number>();
   const items: number[] = [];
   for (const slot of SLOTS) {
@@ -69,9 +92,13 @@ export function encodeState(state: State): string {
     b36(state.clothesColor == null ? 0 : state.clothesColor + 1),
   ];
   const itemsField = items.map(b36).join("-");
-  // The pet trails the items field, so when a pet is set the items field is always
-  // emitted (empty string if nothing is equipped) to keep the pet positional.
-  if (state.pet != null) {
+  // Trailing fields are positional, so each one forces the ones before it to be
+  // emitted: a pet needs the items field (empty when nothing is equipped), and a
+  // custom skin colour needs both — with "0" standing in for "no pet", which the
+  // decoder already reads as none.
+  if (typeof state.skin === "string") {
+    fields.push(itemsField, b36(state.pet ?? 0), state.skin);
+  } else if (state.pet != null) {
     fields.push(itemsField, b36(state.pet));
   } else if (itemsField) {
     fields.push(itemsField);
@@ -103,6 +130,17 @@ export function decodeState(raw: string | null, db: Db): Partial<State> | null {
     // outfit the class doesn't have.
     const outfit = (packed >> 12) & 15;
     out.outfit = outfit === 0 ? null : outfit;
+    // Skin, also in bits that were always 0 before it shipped. Code 5 means the
+    // colour trails as the 9th field; anything malformed there (or a 9th field
+    // on a link that isn't code 5) falls back to the original skin rather than
+    // reaching renderParams, where ragassets would answer 400.
+    const skin = (packed >> 16) & 7;
+    if (skin === SKIN_CUSTOM) {
+      const hex = f[8];
+      out.skin = hex && SKIN_COLOR_RE.test(hex) ? hex : null;
+    } else {
+      out.skin = skin <= 1 ? null : skin;
+    }
   }
 
   const hairStyle = parse36(f[3]);

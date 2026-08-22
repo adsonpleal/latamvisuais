@@ -5,17 +5,20 @@ import { StateHarness } from "../test/StateHarness";
 import { AppearancePanel } from "./AppearancePanel";
 
 describe("AppearancePanel", () => {
-  it("locks gender for a gender-locked class", () => {
-    // Musa (id 4021) is female-only; clampState forces female and the male
-    // pill is disabled.
+  it("hides the gender control for a gender-locked class", () => {
+    // Musa (id 4021) is female-only. clampState has already forced the state to
+    // female, so there is nothing left to choose — the control is dropped
+    // rather than shown with one pill permanently disabled.
     render(
       <StateHarness init={{ classId: 4021 }}>
         <AppearancePanel />
       </StateHarness>,
     );
 
-    expect(screen.getByRole("button", { name: "Feminino" })).toHaveAttribute("aria-pressed", "true");
-    expect(screen.getByRole("button", { name: "Masculino" })).toBeDisabled();
+    expect(screen.queryByRole("button", { name: "Feminino" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Masculino" })).toBeNull();
+    // The rest of the panel is unaffected.
+    expect(screen.getByRole("button", { name: "Pele original" })).toBeInTheDocument();
   });
 
   it("leaves both genders selectable for an ordinary class", () => {
@@ -47,6 +50,36 @@ describe("AppearancePanel", () => {
       "false",
     );
     expect(screen.getByRole("button", { name: "Original" })).toHaveAttribute("aria-pressed", "true");
+  });
+
+  it("offers four skin tones plus a custom colour, and moves the selection", async () => {
+    const user = userEvent.setup();
+    render(
+      <StateHarness>
+        <AppearancePanel />
+      </StateHarness>,
+    );
+
+    const original = screen.getByRole("button", { name: "Pele original" });
+    expect(original).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: "Tom 4" })).toHaveAttribute("aria-pressed", "false");
+    // Tones 2-4 are pickable; tone 1 is the original, so it is the default.
+    expect(screen.queryByRole("button", { name: "Tom 1" })).toBeNull();
+    expect(screen.getByLabelText("Cor personalizada")).toHaveAttribute("type", "color");
+
+    await user.click(screen.getByRole("button", { name: "Tom 3" }));
+    expect(screen.getByRole("button", { name: "Tom 3" })).toHaveAttribute("aria-pressed", "true");
+    expect(original).toHaveAttribute("aria-pressed", "false");
+  });
+
+  it("hides the skin tones for Doram, whose sprites ragassets can't tone", () => {
+    render(
+      <StateHarness init={{ classId: 4218 }}>
+        <AppearancePanel />
+      </StateHarness>,
+    );
+    expect(screen.queryByRole("button", { name: "Pele original" })).toBeNull();
+    expect(screen.queryByLabelText("Cor personalizada")).toBeNull();
   });
 
   it("swaps in the outfit's own clothes colours when it is picked", async () => {

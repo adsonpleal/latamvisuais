@@ -7,9 +7,41 @@ const db = makeDb();
 const base = (over: Partial<State>): State => ({ ...initialState(db), ...over });
 
 describe("clampState", () => {
+  it("drops a skin tone Doram can't wear", () => {
+    // Doram sprites have no skin ramp in ragassets' baked table, so the render
+    // parameter is ignored there — keeping it would show a control that does
+    // nothing and put a lie in the share URL.
+    expect(clampState(db, base({ classId: 4218, skin: 3 })).skin).toBeNull();
+  });
+
+  it("normalises tone 1 to null — it IS the original skin", () => {
+    expect(clampState(db, base({ skin: 1 })).skin).toBeNull();
+  });
+
+  it("drops a skin value ragassets would reject with a 400", () => {
+    expect(clampState(db, base({ skin: 9 })).skin).toBeNull();
+    expect(clampState(db, base({ skin: 0 })).skin).toBeNull();
+    expect(clampState(db, base({ skin: "#8a5a3b" })).skin).toBeNull();
+    expect(clampState(db, base({ skin: "8A5A3B" })).skin).toBeNull();
+    expect(clampState(db, base({ skin: "nothex" })).skin).toBeNull();
+  });
+
+  it("keeps a valid preset and a valid custom colour", () => {
+    expect(clampState(db, base({ skin: 4 })).skin).toBe(4);
+    expect(clampState(db, base({ skin: "8a5a3b" })).skin).toBe("8a5a3b");
+  });
+
   it("leaves a valid state untouched", () => {
     const state = base({ classId: 4054, gender: "f", hairStyle: 2, hairColor: 3 });
     expect(clampState(db, state)).toEqual(state);
+  });
+
+  it("forces the gender on a class the game locks but the data doesn't", () => {
+    // Bardo (19) is male-only and Odalisca (20) female-only in game, yet the
+    // client ships body palettes for BOTH genders on each — so the lock has to
+    // come from GENDER_LOCK, not from the extracted palette data.
+    expect(clampState(db, base({ classId: 19, gender: "f" })).gender).toBe("m");
+    expect(clampState(db, base({ classId: 20, gender: "m" })).gender).toBe("f");
   });
 
   it("forces the only available gender for a gender-locked class", () => {

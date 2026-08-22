@@ -14,6 +14,18 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.12.0",
+    date: "2026-08-22",
+    changes: [
+      "Novo: tom de pele. Antes de mais nada, isto é uma adição feita por fãs — o Ragnarok não tem essa opção. Não existe escolha de tom de pele no jogo, e nenhum sprite oficial vem em mais de um tom: as cores são geradas aqui, a partir da paleta de cada sprite. Dá para ver como ficaria, mas o seu personagem no jogo continua com a pele de sempre.",
+      "São quatro tons prontos mais um seletor de cor livre, no painel Personagem, logo abaixo da cor da roupa. A escolha vai junto no link que você compartilha e fica salva no personagem, como todo o resto. Um detalhe: várias cores de roupa do jogo tingem a pele junto com a roupa — escolhendo um tom, quem manda passa a ser o tom. Ainda não funciona para Doram.",
+      "A lista de classes agora tem busca: abra o seletor e comece a digitar. Acentos não atrapalham (“runico” acha o Cavaleiro Rúnico), o número da classe também serve, e sobrando uma só o Enter escolhe.",
+      "Nas classes que só existem em um gênero — Bardo, Odalisca, Menestrel, Cigana, Trovador, Musa, Kagerou, Oboro e companhia — o seletor de gênero saiu de cena em vez de aparecer com metade desabilitada. O gênero certo já vem escolhido.",
+      "O Mestre Estelar e o Ceifador de Almas ganharam a montaria que faltava: os dois montam o Haetae, o leão mítico.",
+      "O painel Personagem ficou mais enxuto e sobrou espaço para mais linhas de estilos de cabelo, sem precisar rolar a lista. As explicações do “?” também pararam de sair cortadas na borda do painel.",
+    ],
+  },
+  {
     version: "0.11.4",
     date: "2026-08-21",
     changes: [

@@ -13,9 +13,13 @@
 // The job ids were derived from ragassets' authoritative id→sprite-name table
 // (gateway/internal/render/resolve/data/job_names.txt) and verified to render on
 // the live instance. Each list is ordered [Rédeas first, then signature]; a few
-// classes (Espadachim/Justiceiro/Insurgente) only have the Peco sprite, and a
-// couple (Mestre Estelar, Ceifador de Almas) have no mount sprite at all and are
-// simply absent — the toggle is hidden for them.
+// classes (Espadachim/Justiceiro/Insurgente) only have the Peco sprite.
+//
+// Read the ids off ragassets' table rather than guessing from a render: job
+// names come from data/job_names.txt indexed by `jobID - 3950` for ids above
+// 4000 (see resolve.JobSpriteName), which is what distinguishes a real mount
+// (해태성제, Star Emperor on a Haetae) from a same-sized lookalike (성제융합, its
+// union form).
 
 export type MountNameKey =
   | "reins"
@@ -110,6 +114,12 @@ export const MOUNTS: Record<number, Mount[]> = {
   4212: [reins(4214)], // Oboro — Sapo
   4046: [reins(4155)], // Taekwon — Poring
   4047: [reins(4123)], // Mestre Taekwon (Star Gladiator) — Poring
+  // Both ride the 해태 (Haetae), the lion-like creature — the same archetype as
+  // the "Leão" the knight classes get. Careful with the neighbouring ids: 4243
+  // is 성제융합, the Star Emperor's *union* form (융합 = fusion), not a mount, and
+  // it renders as the plain standing figure.
+  4239: [reins(4245)], // Mestre Estelar (Star Emperor) — Haetae
+  4240: [reins(4246)], // Ceifador de Almas (Soul Reaper) — Haetae
   4049: [reins(4117)], // Espiritualista (Soul Linker) — Sapo
   // expanded 4th jobs (Rédeas = the class's own *_RIDING sprite; ids are the
   // ragassets render ids — standing 4302-4307, riding 4309-4314)

@@ -70,6 +70,15 @@ describe("createAppReducer", () => {
     expect(reduce(withPet, { type: "setPet", pet: null }).pet).toBeNull();
   });
 
+  it("setSkin takes a preset or a custom colour, and clamps what ragassets rejects", () => {
+    const toned = reduce(initialState(db), { type: "setSkin", skin: 3 });
+    expect(toned.skin).toBe(3);
+    expect(reduce(toned, { type: "setSkin", skin: "8a5a3b" }).skin).toBe("8a5a3b");
+    expect(reduce(toned, { type: "setSkin", skin: null }).skin).toBeNull();
+    // Every action re-clamps, so switching to Doram drops the tone with it.
+    expect(reduce(toned, { type: "setClass", classId: 4218 }).skin).toBeNull();
+  });
+
   it("loadBuild swaps the costume but keeps the pose and rotation", () => {
     const start: State = {
       ...initialState(db),
@@ -89,6 +98,7 @@ describe("createAppReducer", () => {
         outfit: null,
         mount: null,
         pet: null,
+        skin: null,
       },
     });
     // Build fields replaced…

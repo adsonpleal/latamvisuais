@@ -5,6 +5,7 @@ import {
   equipInto,
   gearViews,
   hairThumbUrl,
+  frameCountProbeUrl,
   imageUrl,
   initialState,
   itemIconUrl,
@@ -82,6 +83,28 @@ describe("imageUrl", () => {
     expect(imageUrl(initialState(db), { canvas: null })).toBe(
       `${BASE}/image?job=0&gender=male&head=1&action=0&headdir=0${V}`,
     );
+  });
+});
+
+describe("skin tone (fan-made)", () => {
+  it("sends skinTone for a preset and skinColor for a custom colour, never both", () => {
+    expect(imageUrl({ ...initialState(db), skin: 3 })).toContain("&skinTone=3");
+    const custom = imageUrl({ ...initialState(db), skin: "8a5a3b" });
+    expect(custom).toContain("&skinColor=8a5a3b");
+    // The gateway answers skinTone+skinColor with a 400; holding the two as one
+    // State field is what makes sending both impossible.
+    expect(custom).not.toContain("skinTone");
+  });
+
+  it("sends no skin parameter for the original skin", () => {
+    // skinTone=1 renders identically but is its own cache entry on the gateway.
+    expect(imageUrl(initialState(db))).not.toContain("skin");
+  });
+
+  it("keeps skin out of the frame-count probe", () => {
+    // The probe exists to read an APNG's frame count. Skin can't change that,
+    // and every param it carries splinters ragassets' cache for no reason.
+    expect(frameCountProbeUrl({ ...initialState(db), skin: "8a5a3b" })).not.toContain("skin");
   });
 });
 

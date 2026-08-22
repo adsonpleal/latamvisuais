@@ -209,7 +209,7 @@ function Simulator({ db }: { db: Db }) {
           {/* A sub-section label (title case), not an uppercase panel header —
               "Visuais equipados" already heads this card. The "?" explains why
               effect/3D costumes aren't in the list. */}
-          <div className="control-label catalog-label">
+          <div className="control-label label-with-tip">
             {t.catalogTitle}
             <InfoTip label={t.catalogInfoLabel} text={t.catalogInfoText} />
           </div>

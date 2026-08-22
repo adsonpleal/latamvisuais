@@ -10,10 +10,12 @@ import { mountsFor } from "./mounts";
 import {
   classOf,
   clothesPalettesOf,
+  genderLockOf,
   hairSetOf,
   HEAD_ROTATE_ACTIONS,
   outfitsOf,
-  type Gender,
+  SKIN_COLOR_RE,
+  SKIN_TONES,
   type State,
 } from "./state";
 
@@ -21,8 +23,8 @@ export function clampState(db: Db, state: State): State {
   const next: State = { ...state, equipped: { ...state.equipped } };
 
   const cls = classOf(db, next);
-  const genders = cls ? (Object.keys(cls.palettes) as Gender[]) : [];
-  if (genders.length === 1 && next.gender !== genders[0]) next.gender = genders[0];
+  const lockedGender = genderLockOf(cls);
+  if (lockedGender && next.gender !== lockedGender) next.gender = lockedGender;
 
   const hair = hairSetOf(db, next);
   if (!hair.styles.some((s) => s.n === next.hairStyle)) {
@@ -47,6 +49,24 @@ export function clampState(db: Db, state: State): State {
   // or no mounts). The toggle stays off rather than landing on a wrong sprite.
   if (next.mount != null && next.mount >= mountsFor(next.classId).length) {
     next.mount = null;
+  }
+
+  // Skin tone. Everything invalid collapses to null (the sprite's own skin)
+  // rather than being passed through, because ragassets answers a bad skinTone
+  // or skinColor with a 400 — a hand-edited ?b= would otherwise break the whole
+  // preview. Tone 1 normalises to null too: it renders identically, but as a
+  // distinct value it would round-trip asymmetrically through the URL codec and
+  // cost a separate render on the gateway.
+  if (next.skin != null) {
+    const doram = (cls?.race ?? "human") === "doram";
+    const valid =
+      typeof next.skin === "string"
+        ? SKIN_COLOR_RE.test(next.skin)
+        : Number.isInteger(next.skin) && next.skin >= 2 && next.skin <= SKIN_TONES.length;
+    // Doram sprites have no skin ramp in the baked table, so ragassets ignores
+    // the parameter there — keeping it set would show a control that does
+    // nothing and travel in the share URL as a lie.
+    if (doram || !valid) next.skin = null;
   }
 
   return next;

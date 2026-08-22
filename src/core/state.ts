@@ -53,6 +53,32 @@ export const ACTIONS: { type: number; key: keyof typeof t.actions }[] = [
 
 export const HEAD_ROTATE_ACTIONS = new Set([0, 2]);
 
+/** The four fan-made skin tones, as the colour each one turns most of the skin
+ *  into — ragassets' ramp step `MidIndex` (3), the dominant lit midtone and the
+ *  same step a custom `skinColor` is anchored to. Tone 1 is the sprite's own
+ *  untouched skin.
+ *
+ *  These are BAKED from ragassets, not chosen here: the presets live there as
+ *  Oklab parameters (gateway/internal/render/skin/tone.go, `presets`), not as
+ *  hex, so the only way a swatch can be honest about what will render is to
+ *  evaluate their ramps. Re-derive with a throwaway main package inside that
+ *  module (internal packages aren't importable from outside it) printing
+ *  `skin.Preset(n).Ramp()[skin.MidIndex]` for n = 1..skin.PresetCount. */
+export const SKIN_TONES = ["f6ae9f", "d7937d", "b07960", "885f47"] as const;
+
+/** A custom skin colour, as stored in `State.skin` and in the share URL:
+ *  lowercase `rrggbb`, no `#`. Both constraints matter — the `?b=` codec
+ *  promises the alphabet `[0-9a-z.-]` (a `#` would percent-encode), and the
+ *  gateway 400s on anything it can't parse. */
+export const SKIN_COLOR_RE = /^[0-9a-f]{6}$/;
+
+/** Normalise whatever a colour input hands us ("#A0B1C2") into the stored form,
+ *  or null when it isn't a colour at all. */
+export function normalizeSkinColor(raw: string): string | null {
+  const hex = raw.trim().replace(/^#/, "").toLowerCase();
+  return SKIN_COLOR_RE.test(hex) ? hex : null;
+}
+
 /** Fallback frame count per animation type — the bare *body* animation, uniform
  *  across every job and gender (verified against ragassets' acTL). This is only a
  *  fallback: an equipped animated costume makes a pose longer than the body (a
@@ -112,6 +138,16 @@ export type State = {
    *  sim renders it (a follower monster sprite); it's part of the build so it
    *  saves to slots and travels in the share URL like the mount. */
   pet: number | null;
+  /** Fan-made skin tone — the game has no such setting; ragassets generates the
+   *  ramps from the sprites' own palettes (see the panel's "?").
+   *
+   *  null = the sprite's untouched skin, 2..4 = a ragassets preset, a "rrggbb"
+   *  string = a custom colour. ONE field rather than a tone plus a colour,
+   *  because the gateway rejects `skinTone` and `skinColor` together (400) —
+   *  held as a single value, the invalid combination can't be represented.
+   *  Tone 1 IS the untouched original, so it is stored as null and sends no
+   *  parameter: `skinTone=1` renders identically but is its own cache key. */
+  skin: number | string | null;
 };
 
 export function initialState(db: Db): State {
@@ -128,6 +164,7 @@ export function initialState(db: Db): State {
     outfit: null,
     mount: null,
     pet: null,
+    skin: null,
   };
 }
 
@@ -146,6 +183,7 @@ export type Build = Pick<
   | "outfit"
   | "mount"
   | "pet"
+  | "skin"
 >;
 
 export function buildOf(state: State): Build {
@@ -159,6 +197,7 @@ export function buildOf(state: State): Build {
     outfit: state.outfit,
     mount: state.mount,
     pet: state.pet,
+    skin: state.skin,
   };
 }
 
@@ -177,6 +216,7 @@ export function applyBuild(state: State, build: Build): State {
     outfit: build.outfit,
     mount: build.mount,
     pet: build.pet,
+    skin: build.skin,
   };
 }
 
@@ -192,6 +232,30 @@ export function effectiveJob(state: State): number {
 
 export function classOf(db: Db, state: State): ClassInfo | undefined {
   return db.classes.find((c) => c.id === state.classId);
+}
+
+/** Classes the GAME locks to one gender even though the client ships body
+ *  palettes for both, so the extracted data can't say so on its own: the
+ *  Bardo/Odalisca line and its transcendent Menestrel/Cigana. (Their 3rd- and
+ *  4th-job continuations — Trovador/Musa, Maestro/Diva — do ship a single
+ *  gender, as do Kagerou/Oboro and Shinkiro/Shiranui, and are detected below
+ *  without needing an entry here.) */
+const GENDER_LOCK: Record<number, Gender> = {
+  19: "m", // Bardo
+  20: "f", // Odalisca
+  4020: "m", // Menestrel
+  4021: "f", // Cigana
+};
+
+/** The only gender a class can be, or null when both are playable. Read by
+ *  clampState (which forces it) and by the panel (which then hides the gender
+ *  control entirely — there is nothing to pick). */
+export function genderLockOf(cls: ClassInfo | undefined): Gender | null {
+  if (!cls) return null;
+  const locked = GENDER_LOCK[cls.id];
+  if (locked) return locked;
+  const available = Object.keys(cls.palettes) as Gender[];
+  return available.length === 1 ? available[0] : null;
 }
 
 export function hairSetOf(db: Db, state: State) {
@@ -269,6 +333,10 @@ function renderParams(state: State, overrides: RenderOverrides): URLSearchParams
   p.set("head", String(state.hairStyle));
   if (state.hairColor != null) p.set("headPalette", String(state.hairColor));
   if (state.clothesColor != null) p.set("bodyPalette", String(state.clothesColor));
+  // Exactly one of the two, never both — ragassets 400s on the pair. `skin`
+  // being a single value is what guarantees that here.
+  if (typeof state.skin === "string") p.set("skinColor", state.skin);
+  else if (state.skin != null) p.set("skinTone", String(state.skin));
   if (state.outfit != null) p.set("outfit", String(state.outfit));
   const { headgear, garment } = gearViews(state);
   if (headgear.length) p.set("headgear", headgear.join(","));
@@ -301,8 +369,8 @@ export function gifUrl(state: State, overrides: RenderOverrides = {}): string {
  *  pose longer than the bare body — the 24-frame wing garments turn idle/sit
  *  (a 3-frame body animation) into a 24-frame one — and ACTION_FRAMES only knows
  *  the body. This is pinned south with a 2px canvas and carries no palette/hair-
- *  colour params, so the URL (and ragassets' cached render) stays stable across
- *  rotation and recolouring, changing only with the inputs that actually change
+ *  colour/skin-tone params, so the URL (and ragassets' cached render) stays stable
+ *  across rotation and recolouring, changing only with the inputs that actually change
  *  the frame count: job, gender, hair, action and equipped costumes. Single-frame
  *  poses come back as a plain PNG (no acTL → one frame). `action` defaults to the
  *  current pose; the map sim passes it explicitly to probe each pose it can show. */

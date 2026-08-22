@@ -1,4 +1,5 @@
-// Appearance controls: gender, hair style, hair color and clothes color.
+// Appearance controls: gender, hair style, hair color, clothes color and the
+// fan-made skin tone.
 // The controls reuse the game's own character-creation sprites served by
 // ragassets (/icons/ui/<name>.png): gender pills, hair-style thumbnails in
 // their frame buttons, and the 9 hair-color squares. Color options are
@@ -13,11 +14,21 @@
 // free: stable keys mean the <img> nodes are reused (only their src/--tint
 // change on selection), never recreated.
 
-import type { CSSProperties } from "react";
-import type { Gender } from "../core/state";
-import { classOf, clothesPalettesOf, hairSetOf, hairThumbUrl, outfitsOf, uiIconUrl } from "../core/state";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import {
+  classOf,
+  clothesPalettesOf,
+  genderLockOf,
+  hairSetOf,
+  hairThumbUrl,
+  normalizeSkinColor,
+  outfitsOf,
+  SKIN_TONES,
+  uiIconUrl,
+} from "../core/state";
 import { t } from "../i18n";
 import { useAppState, useDb, useDispatch } from "../state/AppStateContext";
+import { InfoTip } from "./InfoTip";
 
 export function AppearancePanel() {
   const db = useDb();
@@ -28,10 +39,11 @@ export function AppearancePanel() {
   const race = cls?.race ?? "human";
   const hair = hairSetOf(db, state);
 
-  // Gender — lock to the only gender that has sprite data when the class is
-  // gender-locked (Trovador/Musa, Kagerou/Oboro…).
-  const available = cls ? (Object.keys(cls.palettes) as Gender[]) : [];
-  const locked = available.length === 1 ? available[0] : null;
+  // Gender — a class locked to one gender (Bardo/Odalisca, Trovador/Musa,
+  // Kagerou/Oboro…) has nothing to choose, so the control is hidden rather than
+  // shown with one pill disabled. clampState has already forced the state to
+  // that gender, so nothing else has to know.
+  const genderLocked = genderLockOf(cls) != null;
 
   // Hair colors — index 0 is the "none" square = Padrão (no recolor); 1..n are
   // the dye palettes. A style with no dye variants still shows the Padrão option
@@ -55,8 +67,12 @@ export function AppearancePanel() {
     <div className="appearance">
       {/* Gender and the outfit picker share one row: both are short segmented
           controls, and side by side they cost the height of one block instead
-          of two. The outfit half is simply absent for the classes without one. */}
+          of two. Either half can be absent — gender on a gender-locked class,
+          the outfit on the classes without one — and when both are, the row
+          isn't rendered at all rather than left as an empty gap. */}
+      {(!genderLocked || outfits.length > 0) && (
       <div className="control-block control-row">
+        {!genderLocked && (
         <div className="control-col">
           <div className="control-label">{t.genderLabel}</div>
           <div className="gender-row">
@@ -71,7 +87,6 @@ export function AppearancePanel() {
                   data-tip={label}
                   aria-label={label}
                   aria-pressed={selected}
-                  disabled={locked != null && locked !== g}
                   onClick={() => dispatch({ type: "setGender", gender: g })}
                 >
                   {label}
@@ -80,6 +95,7 @@ export function AppearancePanel() {
             })}
           </div>
         </div>
+        )}
 
         {outfits.length > 0 && (
           <div className="control-col">
@@ -113,6 +129,7 @@ export function AppearancePanel() {
           </div>
         )}
       </div>
+      )}
 
       <div className="control-block hair-block">
         <div className="control-label">{t.hairStyleLabel}</div>
@@ -172,7 +189,115 @@ export function AppearancePanel() {
           })}
         </div>
       </div>
+
+      {/* Skin tone — absent for Doram, whose sprites have no skin ramp in
+          ragassets' baked table (the render params are ignored there), so the
+          row would be four squares that do nothing. */}
+      {race !== "doram" && <SkinToneRow />}
     </div>
+  );
+}
+
+// Skin tone — the one control here that isn't a game feature at all (ragassets
+// generates the ramps; see the "?"). Four presets plus a custom colour, in the
+// same square chrome as the colour rows above. Tone 1 is the sprite's untouched
+// skin and is stored as null, so it sends no render parameter.
+function SkinToneRow() {
+  const state = useAppState();
+  const dispatch = useDispatch();
+  const custom = typeof state.skin === "string" ? state.skin : null;
+
+  return (
+    <div className="control-block">
+      <div className="control-label label-with-tip">
+        {t.skinLabel}
+        <InfoTip label={t.skinInfoLabel} text={t.skinInfoText} />
+      </div>
+      <div className="swatch-row appearance-card">
+        {SKIN_TONES.map((hex, i) => {
+          // Tone 1 is the original, kept as null so the default build still has
+          // a clean URL and no render parameter.
+          const value = i === 0 ? null : i + 1;
+          return (
+            <SkinSwatch
+              key={hex}
+              color={`#${hex}`}
+              tip={i === 0 ? t.skinDefault : t.skinToneTip(i + 1)}
+              selected={state.skin === value}
+              onClick={() => dispatch({ type: "setSkin", skin: value })}
+            />
+          );
+        })}
+        <CustomSkinSwatch
+          value={custom}
+          onChange={(skin) => dispatch({ type: "setSkin", skin })}
+        />
+      </div>
+    </div>
+  );
+}
+
+// The custom colour. Two things make this more than an <input type="color">:
+//
+// 1. The input itself is invisible and stretched over a normal swatch, so the
+//    control matches its four neighbours instead of rendering the browser's own
+//    colour well.
+// 2. Chrome fires `input` (React's onChange) continuously while the OS picker is
+//    dragged. Each one would re-render the preview against an uncached ragassets
+//    render, call history.replaceState (which WebKit rate-limits) and rewrite the
+//    save slot. So the live value is local, and only `change` — one event, when
+//    the picker commits — is dispatched, with a debounce as a backstop for
+//    browsers that fire `change` continuously too.
+function CustomSkinSwatch({
+  value,
+  onChange,
+}: {
+  value: string | null;
+  onChange: (skin: string | null) => void;
+}) {
+  const [draft, setDraft] = useState(value);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Resync when the skin changes from outside (slot switch, "clear slot", a
+  // shared link) and drop any pending commit, which would otherwise fire after
+  // the new build has loaded and write the old colour back over it.
+  useEffect(() => {
+    setDraft(value);
+    if (timer.current) clearTimeout(timer.current);
+  }, [value]);
+
+  useEffect(() => () => void (timer.current && clearTimeout(timer.current)), []);
+
+  const commit = (raw: string) => {
+    if (timer.current) clearTimeout(timer.current);
+    onChange(normalizeSkinColor(raw));
+  };
+
+  const shown = draft ?? value;
+  return (
+    <span
+      className={`skin-swatch skin-swatch-custom${shown ? "" : " is-empty"}${
+        value ? " is-selected" : ""
+      }`}
+      style={{ "--tint": shown ? `#${shown}` : undefined } as CSSProperties}
+    >
+      <img src={uiIconUrl("color05_off")} alt="" decoding="async" />
+      <input
+        type="color"
+        // The original midtone, so opening the picker with nothing chosen starts
+        // at a skin colour rather than black.
+        value={`#${shown ?? SKIN_TONES[0]}`}
+        data-tip={t.skinCustom}
+        aria-label={t.skinCustom}
+        onChange={(e) => {
+          const raw = e.target.value;
+          setDraft(normalizeSkinColor(raw));
+          if (timer.current) clearTimeout(timer.current);
+          timer.current = setTimeout(() => onChange(normalizeSkinColor(raw)), 400);
+        }}
+        onBlur={(e) => commit(e.target.value)}
+      />
+    </span>
   );
 }
 
@@ -200,6 +325,17 @@ function TintSwatch({ color, ...rest }: SwatchProps & { color: string | null }) 
       {...rest}
     >
       <img src={uiIconUrl(`color05_${rest.selected ? "on" : "off"}`)} alt="" decoding="async" />
+    </SwatchButton>
+  );
+}
+
+// A skin tone: the same game square as TintSwatch, but painted opaque rather
+// than blended (see .skin-swatch) — the four tones differ by lightness, which a
+// `mix-blend-mode: color` overlay would throw away.
+function SkinSwatch({ color, ...rest }: SwatchProps & { color: string }) {
+  return (
+    <SwatchButton className="skin-swatch" style={{ "--tint": color } as CSSProperties} {...rest}>
+      <img src={uiIconUrl("color05_off")} alt="" decoding="async" />
     </SwatchButton>
   );
 }

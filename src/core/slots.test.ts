@@ -28,6 +28,7 @@ describe("save slots", () => {
       outfit: null,
       mount: 1, // a saved mount must survive the round-trip
       pet: 1002, // …as must a saved pet
+      skin: "8a5a3b", // …and a custom skin colour, which trails the pet field
     };
     const builds = Array<Build | null>(SLOT_COUNT).fill(null);
     builds[2] = build;
@@ -66,5 +67,9 @@ describe("save slots", () => {
     expect(buildSignature(buildOf({ ...base, mount: 0 }))).not.toBe(sig);
     // Picking a pet is part of the build too → different signature.
     expect(buildSignature(buildOf({ ...base, pet: 1002 }))).not.toBe(sig);
+    // …and so is the skin tone, preset or custom — without it in the signature
+    // the auto-save effect never fires on a skin change.
+    expect(buildSignature(buildOf({ ...base, skin: 3 }))).not.toBe(sig);
+    expect(buildSignature(buildOf({ ...base, skin: "8a5a3b" }))).not.toBe(sig);
   });
 });

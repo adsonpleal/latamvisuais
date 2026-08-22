@@ -46,6 +46,8 @@ export const t = {
   slotSwitchTip: (n: number) => `Personagem ${n} (Alt+${n})`,
   slotWipeTip: "Limpar este personagem (tira tudo o que foi escolhido)",
   classLabel: "Classe",
+  classSearch: "Buscar classe…",
+  classSearchEmpty: "Nenhuma classe encontrada.",
   genderLabel: "Gênero",
   genderMale: "Masculino",
   genderFemale: "Feminino",
@@ -61,6 +63,18 @@ export const t = {
   defaultColor: "Padrão",
   colorTooltip: (n: number) => `Cor ${n}`,
   styleTooltip: (n: number) => `Estilo ${n}`,
+
+  skinLabel: "Tom de pele",
+  skinDefault: "Pele original",
+  skinToneTip: (n: number) => `Tom ${n}`,
+  skinCustom: "Cor personalizada",
+  skinInfoLabel: "Sobre o tom de pele",
+  skinInfoText:
+    "Isto é uma adição feita por fãs. O Ragnarok não tem opção de tom de pele: não " +
+    "existe essa escolha no jogo, e nenhum sprite oficial vem em mais de um tom. As cores são " +
+    "geradas aqui, a partir da própria paleta de cada sprite, então o seu personagem não vai " +
+    "aparecer assim no jogo. Não funciona para Doram. Ao escolher um tom, a cor da roupa deixa " +
+    "de tingir a pele junto.",
 
   previewError: "Não foi possível carregar o sprite.",
   bodyDirLabel: "Corpo",

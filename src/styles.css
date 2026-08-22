@@ -480,7 +480,7 @@ body {
   background: var(--card);
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 10px;
-  padding: 0.5rem;
+  padding: 0.35rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
@@ -522,15 +522,18 @@ h1,
 
 /* ---- generic controls ----------------------------------------------------- */
 
+/* Deliberately tight. Every pixel these four rules give up goes to the hair
+   grid, which is the panel's one flexible region (see .panel-appearance) — the
+   difference between it showing two rows of styles and four. */
 .control-block {
-  margin-top: 1rem;
+  margin-top: 0.6rem;
 }
 
 .control-label {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--muted);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.25rem;
 }
 
 /* Two labelled controls sharing one block's height (gender + outfit style).
@@ -563,8 +566,10 @@ h1,
   white-space: nowrap;
 }
 
-/* "Visuais" label + its "?" info button on one row. */
-.catalog-label {
+/* A section label + its "?" info button on one row ("Visuais", "Tom de pele").
+   .control-label is not flex on its own, so the "?" would otherwise sit on the
+   next line. */
+.label-with-tip {
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -597,11 +602,12 @@ h1,
   border-color: var(--accent);
 }
 
+/* Portalled into <body> and placed by InfoTip itself (top/left come from the
+   component) — the panels that host these are scroll/overflow containers that
+   would otherwise clip the popover at their edge. */
 .info-tip-pop {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 0;
-  z-index: 20;
+  position: fixed;
+  z-index: 60;
   width: max-content;
   max-width: 260px;
   padding: 0.55rem 0.7rem;
@@ -696,8 +702,8 @@ button:disabled {
 }
 
 .gender-btn {
-  padding: 0.45rem 0.9rem;
-  height: 34px;
+  padding: 0.35rem 0.9rem;
+  height: 30px;
   font-size: 0.88rem;
   font-weight: 600;
   line-height: 1;
@@ -877,19 +883,63 @@ button:disabled {
   visibility: hidden;
 }
 
+/* The search box is pinned and the options scroll under it, so the scroller is
+   .class-list rather than the popup — otherwise typing would scroll the input
+   out of view. */
 .class-popup {
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
   right: 0;
+  display: flex;
+  flex-direction: column;
   max-height: 380px;
-  overflow-y: auto;
   background: var(--bg-elev);
   border: 1px solid var(--border);
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   z-index: 20;
   padding: 0 0.25rem 0.25rem;
+}
+
+.class-popup[hidden] {
+  display: none;
+}
+
+.class-search {
+  position: sticky;
+  top: 0;
+  padding: 0.35rem 0.1rem;
+  background: var(--bg-elev);
+}
+
+.class-search-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.35rem 0.5rem;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--fg);
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.class-search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.class-list {
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.class-empty {
+  padding: 0.6rem 0.5rem;
+  font-size: 0.82rem;
+  color: var(--muted);
 }
 
 /* Sticky while its group scrolls by. Bleeds over the popup's side padding
@@ -985,29 +1035,75 @@ button:disabled {
   gap: 0.35rem;
 }
 
-.swatch {
+/* ---- skin tone swatches ---------------------------------------------------- */
+
+/* The fan-made skin tones (see core/state.ts SKIN_TONES). Same game color-square
+   chrome and geometry as .tint-swatch, with one difference that matters: the
+   fill is OPAQUE instead of `mix-blend-mode: color`. That blend keeps the
+   backdrop's lightness, which is right for clothes dyes (they differ by hue) and
+   useless here — the four tones differ almost entirely IN lightness, so blended
+   they would render as four identical squares.
+
+   An opaque fill also covers the sprite's own `_on` checkmark, so selection is
+   an accent ring instead. */
+.skin-swatch {
+  position: relative;
   width: 26px;
   height: 26px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  background: var(--swatch, #888);
-  transition: transform 100ms, border-color 120ms, box-shadow 120ms;
+  border-radius: 4px;
+  isolation: isolate;
+  transition: box-shadow 120ms;
 }
 
-.swatch:hover {
-  transform: scale(1.12);
-  border-color: var(--accent);
+.skin-swatch img {
+  width: 26px;
+  height: 26px;
+  image-rendering: pixelated;
+  display: block;
 }
 
-.swatch.is-selected {
-  border-color: var(--accent);
+/* ::before, not ::after — same reason as .tint-swatch. `inset: 1.5px` leaves the
+   asset's gray border and rounded corners showing, so the swatch still reads as
+   one of the game squares. */
+.skin-swatch::before {
+  content: "";
+  position: absolute;
+  inset: 1.5px;
+  border-radius: 2px;
+  background: var(--tint);
+  pointer-events: none;
+  transition: background 100ms;
+}
+
+.skin-swatch:hover::before {
+  background: color-mix(in srgb, var(--tint) 88%, white);
+}
+
+.skin-swatch.is-selected {
   box-shadow: 0 0 0 3px var(--accent-soft);
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
 }
 
-.swatch-default {
-  background:
-    linear-gradient(135deg, transparent 46%, var(--muted) 46%, var(--muted) 54%, transparent 54%),
-    var(--bg-inset);
+/* The custom-colour swatch: the same square, with the native colour input laid
+   invisibly over it so the OS picker opens on click while the game chrome stays
+   visible. With no custom colour picked yet there is nothing to show, so the
+   square advertises what it does with a hue wheel. The hover rule is repeated
+   because the shared one color-mixes --tint, which isn't a colour here. */
+.skin-swatch-custom.is-empty::before,
+.skin-swatch-custom.is-empty:hover::before {
+  background: conic-gradient(from 0.25turn, #e06c6c, #e0c96c, #6ce07a, #6cc9e0, #a66ce0, #e06c6c);
+}
+
+.skin-swatch-custom input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
 }
 
 /* ---- preview --------------------------------------------------------------- */
@@ -1553,8 +1649,8 @@ button:disabled {
 
 .mount-choice,
 .segmented-choice {
-  padding: 0.4rem 0.75rem;
-  height: 34px;
+  padding: 0.3rem 0.75rem;
+  height: 30px;
   font-size: 0.84rem;
   font-weight: 600;
   line-height: 1;

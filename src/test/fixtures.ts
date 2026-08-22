@@ -1,8 +1,9 @@
 // A small, hand-built DB for the pure-logic tests. Mirrors the shape of the
 // real public/db/*.json but stays tiny and predictable so expectations are
 // obvious: one ordinary human class, one with an alternative outfit, a
-// gender-locked (female-only) class, a doram-race class, and a mix of single-
-// and multi-slot costumes.
+// gender-locked (female-only) class, a pair the GAME locks though their data
+// carries both genders (Bardo/Odalisca), a doram-race class, and a mix of
+// single- and multi-slot costumes.
 
 import type { Db } from "../core/db";
 
@@ -50,6 +51,31 @@ export function makeDb(): Db {
         group: "second",
         race: "human",
         palettes: { f: { count: 4, swatches: [null, "#1", "#2", "#3"] } },
+      },
+      {
+        // Gender-locked by the GAME, not by the data: the client ships body
+        // palettes for both genders, but Bardo is male-only (see GENDER_LOCK).
+        id: 19,
+        jt: "bard",
+        name: "Bardo",
+        group: "second",
+        race: "human",
+        palettes: {
+          m: { count: 5, swatches: [null, "#1", "#2", "#3", "#4"] },
+          f: { count: 4, swatches: [null, "#1", "#2", "#3"] },
+        },
+      },
+      {
+        // The same, mirrored: Odalisca is female-only.
+        id: 20,
+        jt: "dancer2",
+        name: "Odalisca",
+        group: "second",
+        race: "human",
+        palettes: {
+          m: { count: 4, swatches: [null, "#1", "#2", "#3"] },
+          f: { count: 5, swatches: [null, "#1", "#2", "#3", "#4"] },
+        },
       },
       {
         id: 4218,

@@ -24,6 +24,7 @@ function sampleState(): State {
     outfit: null,
     mount: null,
     pet: null,
+    skin: null,
   };
 }
 
@@ -70,6 +71,33 @@ describe("encodeState", () => {
     expect(decodeState(encodeState(state), db)!.pet).toBe(1002);
   });
 
+  it("packs a skin-tone preset into the packed field, round-tripping", () => {
+    const state: State = { ...sampleState(), skin: 3 };
+    // packed gains 3<<16 = 196608 → 196759 → "47tj".
+    expect(encodeState(state)).toBe("1.34m.47tj.2.4.3.2s-b4");
+    const decoded = decodeState(encodeState(state), db);
+    expect(clampState(db, { ...initialState(db), ...decoded })).toEqual(state);
+    // A preset costs no extra field, so a link written before skin tones
+    // existed decodes to the original skin.
+    expect(decodeState("1.34m.47.2.4.3.2s-b4", db)!.skin).toBeNull();
+  });
+
+  it("trails a custom skin colour after the pet, round-tripping", () => {
+    const state: State = { ...sampleState(), pet: 1002, skin: "8a5a3b" };
+    // Skin code 5 → packed 5<<16 = 327680 → 327831 → "70yf".
+    expect(encodeState(state)).toBe("1.34m.70yf.2.4.3.2s-b4.ru.8a5a3b");
+    const decoded = decodeState(encodeState(state), db);
+    expect(clampState(db, { ...initialState(db), ...decoded })).toEqual(state);
+  });
+
+  it("emits a '0' pet placeholder so a custom colour stays positional", () => {
+    const state: State = { ...initialState(db), skin: "8a5a3b" };
+    expect(encodeState(state)).toBe("1.0.70u8.1.0.0..0.8a5a3b");
+    const decoded = decodeState(encodeState(state), db)!;
+    expect(decoded.skin).toBe("8a5a3b");
+    expect(decoded.pet).toBeNull();
+  });
+
   it("lists each multi-slot costume once", () => {
     const state: State = {
       ...initialState(db),
@@ -89,6 +117,17 @@ describe("decodeState", () => {
     const decoded = decodeState(encodeState(state), db);
     const restored = clampState(db, { ...initialState(db), ...decoded });
     expect(restored).toEqual(state);
+  });
+
+  it("falls back to the original skin when the custom colour is unusable", () => {
+    // Code 5 promises a 9th field. Missing, or not a plain lowercase rrggbb,
+    // it must not reach renderParams — ragassets answers a bad skinColor with
+    // a 400, which would break the whole preview.
+    expect(decodeState("1.0.70u8.1.0.0..0", db)!.skin).toBeNull();
+    expect(decodeState("1.0.70u8.1.0.0..0.nothex", db)!.skin).toBeNull();
+    expect(decodeState("1.0.70u8.1.0.0..0.8A5A3B", db)!.skin).toBeNull();
+    // …and a 9th field on a link that isn't code 5 is ignored, not adopted.
+    expect(decodeState("1.0.0.1.0.0..0.8a5a3b", db)!.skin).toBeNull();
   });
 
   it("returns null for a version mismatch (whole param discarded)", () => {
