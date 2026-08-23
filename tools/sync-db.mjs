@@ -232,9 +232,65 @@ export function buildHair(rawHair) {
 // merges in at runtime.
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Pinned item text — for rows the client itself blanked.
+//
+// Patch 1421 (2026-08-18) shipped 480237 with a null name and an empty
+// description. That also empties `equipSlots`, which ragassets parses out of
+// the description, so buildCostumes drops the row on two counts and the costume
+// vanishes from the catalogue. The text below is what the client carried at
+// 2026-07-23 (patch 1379), read out of the sibling latam-database-extractor's
+// history (`change` log, type 'item', locale ptbr).
+//
+// Applied per field and ONLY where upstream is empty: the day Gravity puts the
+// text back, the client's new name/description win over these and the entry
+// goes quiet on its own — at which point it can be deleted.
+// ---------------------------------------------------------------------------
+
+export const ITEM_TEXT_OVERRIDE = {
+  // "Katanas do Mestre Tengu" (C_Katana_TenguMaster)
+  480237: {
+    name: "Katanas do Mestre Tengu",
+    description: "Katanas forjadas pelo grande mestre forjador Goblin Tengu. Dizem que se você for merecedor, as katanas irão cuidar de você! E não se assuste: a máscara vermelha com cara de brava é para manter os maus espíritos longe e trazer boa sorte ao seu mestre!\n-------------------------\nTipo: ^777777Visual ^000000\nEquipa em: ^777777Capa^000000\nPeso: ^7777770^000000\nNível Necessário: ^7777771 ^000000\nClasses: ^777777Todas ^000000",
+  },
+};
+
+/** A raw item with any blank name/description filled in from
+ *  ITEM_TEXT_OVERRIDE, and `equipSlots` re-derived from the substituted
+ *  description — upstream could only parse those out of a description it didn't
+ *  have. Rows with nothing pinned are returned untouched. */
+export function applyItemTextOverride(it) {
+  const pin = ITEM_TEXT_OVERRIDE[it.id];
+  if (!pin) return it;
+  const out = { ...it };
+  if (!out.name) out.name = pin.name;
+  if (!out.description) out.description = pin.description;
+  if (!out.equipSlots?.length) out.equipSlots = slotsFromDesc(out.description);
+  return out;
+}
+
+// "Equipa em: ^777777Capa^000000" → ["garment"]. A trimmed port of ragassets'
+// own parseSlots (extract-grf.mjs), reading the same two labels off the same
+// line format. It runs for pinned descriptions only — every other row arrives
+// with equipSlots already parsed upstream.
+export function slotsFromDesc(desc) {
+  const s = String(desc ?? "").replace(/\^[0-9a-fA-F]{6}/g, "");
+  const m = s.match(/(?:Equipa em|Posi[çc][ãa]o)\s*:\s*(.+)/i);
+  if (!m) return [];
+  // Some rows pack the next field onto the same line ("Posição: Topo Peso: 0").
+  const t = m[1].split(/\s+\S+\s*:/)[0].toLowerCase();
+  const slots = [];
+  if (t.includes("topo")) slots.push("top");
+  if (t.includes("meio")) slots.push("mid");
+  if (t.includes("baixo")) slots.push("low");
+  if (t.includes("capa")) slots.push("garment");
+  return slots;
+}
+
 export function buildCostumes(rawItems) {
   const out = [];
-  for (const it of rawItems) {
+  for (const raw of rawItems) {
+    const it = applyItemTextOverride(raw);
     if (!it.costume && !isVisualDesc(it.description)) continue;
     if (!it.name || !it.equipSlots?.length) continue;
     // `spriteView`, not `view`: the latter is the literal `ClassNum`, which many

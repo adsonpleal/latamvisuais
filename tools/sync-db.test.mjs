@@ -10,7 +10,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
-import { buildClasses, buildCostumes, buildHair, titleFromJt } from "./sync-db.mjs";
+import { buildClasses, buildCostumes, buildHair, slotsFromDesc, titleFromJt } from "./sync-db.mjs";
 
 const FIXTURES = join(dirname(fileURLToPath(import.meta.url)), "fixtures");
 const fixture = (name) => JSON.parse(readFileSync(join(FIXTURES, `${name}.json`), "utf8"));
@@ -108,7 +108,7 @@ describe("buildCostumes", () => {
   const byId = Object.fromEntries(items.map((i) => [i.id, i]));
 
   it("keeps only renderable visual items, sorted by id", () => {
-    expect(items.map((i) => i.id)).toEqual([5105, 19424, 19920, 20330, 31379, 480177, 480807]);
+    expect(items.map((i) => i.id)).toEqual([5105, 19424, 19920, 20330, 31379, 480177, 480237, 480807]);
   });
 
   it("takes items flagged as costumes and items that only say so in the description", () => {
@@ -148,6 +148,36 @@ describe("buildCostumes", () => {
     expect(rawItems.find((i) => i.id === 5105).viewKind).toBe("headgear");
     expect(byId[5105]).not.toHaveProperty("viewKind");
     expect(byId[19424]).not.toHaveProperty("viewKind");
+  });
+
+  it("pins the text of an item the client blanked, slots included", () => {
+    // 480237 arrives with a null name and an empty description (the client
+    // blanked it in the 18/08 patch), which also leaves equipSlots empty — so
+    // without the pin it fails two of the drop checks above.
+    const raw = rawItems.find((i) => i.id === 480237);
+    expect(raw.name).toBeNull();
+    expect(raw.equipSlots).toEqual([]);
+    expect(byId[480237].name).toBe("Katanas do Mestre Tengu");
+    expect(byId[480237].slots).toEqual(["garment"]);
+  });
+
+  it("lets the client's own text win the moment it comes back", () => {
+    const back = rawItems.map((i) =>
+      i.id === 480237
+        ? { ...i, name: "Katanas do Mestre Tengu II", description: "Equipa em: Topo", equipSlots: ["top"] }
+        : i,
+    );
+    const item = buildCostumes(back).find((i) => i.id === 480237);
+    expect(item.name).toBe("Katanas do Mestre Tengu II");
+    expect(item.slots).toEqual(["top"]);
+  });
+
+  it("reads the pinned description's slot line the way ragassets does", () => {
+    expect(slotsFromDesc("Equipa em: ^777777Capa^000000")).toEqual(["garment"]);
+    expect(slotsFromDesc("Posição: ^777777Topo, Meio e Baixo^000000")).toEqual(["top", "mid", "low"]);
+    expect(slotsFromDesc("Posição: Topo Peso: 0")).toEqual(["top"]); // next field on the same line
+    expect(slotsFromDesc("Tipo: Visual")).toEqual([]);
+    expect(slotsFromDesc(null)).toEqual([]);
   });
 
   it("emits fields in the order verify-previews writes them back", () => {

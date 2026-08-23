@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.12.1",
+    date: "2026-08-23",
+    changes: [
+      "O visual Katanas do Mestre Tengu voltou ao catálogo. Ele tinha sumido na atualização de 18 de agosto: o jogo apagou o nome e a descrição desse item, mas manteve o desenho — e uma lista que se monta pelos nomes não tem como mostrar um item sem nome.",
+      "O nome e a descrição que ele tinha até 23 de julho ficaram guardados aqui, e valem só enquanto o jogo não os devolve. No dia em que devolver — com esse nome ou com outro —, é o do jogo que aparece.",
+    ],
+  },
+  {
     version: "0.12.0",
     date: "2026-08-22",
     changes: [

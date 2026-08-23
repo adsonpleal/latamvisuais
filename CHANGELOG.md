@@ -4,6 +4,53 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.12.1] — 2026-08-23
+
+### Fixed
+
+- **`480237 Katanas do Mestre Tengu` is back in the catalogue** (`costumes.json`
+  1190 → 1191, view 158, slot Capa). It went out with the 313 of 0.11.3 and for
+  the reason recorded there: patch **1421 (2026-08-18)** blanked the client's
+  pt-BR `name` and `description` while leaving the sprite alone. It fails *two*
+  of `buildCostumes`' drop checks, not one — a blank description also empties
+  `equipSlots`, which ragassets parses out of that description.
+
+### Added
+
+- **`ITEM_TEXT_OVERRIDE` in `tools/sync-db.mjs`** — pinned pt-BR text for rows
+  the client itself blanked. Applied **per field and only where upstream is
+  empty**, which is the whole point: a pin that always won would quietly freeze
+  a stale name past the day Gravity renames the item. The moment the client
+  carries text again, its name/description win and the entry goes inert — at
+  which point it can be deleted.
+- 480237's pair is what the client carried at **2026-07-23 (patch 1379)**, read
+  out of the sibling `latam-database-extractor`'s `change` log (`type='item'`,
+  `locale='ptbr'`) rather than transcribed from a screenshot or a fan wiki. The
+  description is kept verbatim, `^RRGGBB` codes included.
+- `slotsFromDesc()` re-derives `equipSlots` from a substituted description — a
+  trimmed port of ragassets' own `parseSlots` (`extract-grf.mjs`), reading the
+  same two labels (`Equipa em:` / `Posição:`) off the same line format. It runs
+  for pinned rows only; every other item still uses the slots upstream parsed.
+
+### Notes
+
+- `public/db/costumes.json` got the **single row re-inserted**, not a full
+  re-sync. Live `/raw/items.json` now yields 1210 costumes against this repo's
+  1190, and those ~20 newcomers need `verify-previews.mjs` to rule on them. The
+  inserted entry is byte-identical both to what `buildCostumes` emits against
+  live upstream and to what the file held before `b9d00bb`.
+- **`tools/sync-db.test.mjs` has not been running.** Vite serves `.mjs`
+  untransformed, so `sync-db.mjs`'s `#!/usr/bin/env node` shebang reaches the
+  loader as an invalid token and the whole suite dies at import with
+  `SyntaxError`. `npm test` reads green because vitest counts that as a failed
+  *suite*, not failed tests. It predates this change (it fails on a clean
+  `main`). The three cases added here — the pin fires, the client's text wins
+  once it returns, `slotsFromDesc` parity — were verified against a
+  shebang-less copy: 20 passed. Left unfixed, since every script in `tools/`
+  carries that shebang and dropping one is a call for the repo owner.
+- No entry was written for **0.12.0** (`6765234`); it bumped `package.json` and
+  `src/changelog.ts` only. The gap is left as-is rather than backfilled here.
+
 ## [0.11.4] — 2026-08-21
 
 ### Added

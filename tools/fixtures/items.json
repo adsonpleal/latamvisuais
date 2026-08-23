@@ -147,6 +147,20 @@
     "costume": true
   },
   {
+    "id": 480237,
+    "name": null,
+    "slots": 0,
+    "aegisName": "C_Katana_TenguMaster",
+    "resourceName": "C_Katana_TenguMaster",
+    "description": "",
+    "view": 158,
+    "spriteView": 158,
+    "spriteBlank": false,
+    "viewKind": "garment",
+    "equipSlots": [],
+    "costume": true
+  },
+  {
     "id": 480807,
     "name": "[Visual] Escudo Petulante",
     "slots": 0,
