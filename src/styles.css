@@ -100,11 +100,13 @@
   background: rgba(255, 255, 255, 0.12);
 }
 
-:root[data-theme="dark"] .sprite-modal-download {
+:root[data-theme="dark"] .sprite-modal-download,
+:root[data-theme="dark"] .sprite-modal-detach {
   background: rgba(255, 255, 255, 0.06);
 }
 
-:root[data-theme="dark"] .sprite-modal-download:hover:not(:disabled) {
+:root[data-theme="dark"] .sprite-modal-download:hover:not(:disabled),
+:root[data-theme="dark"] .sprite-modal-detach:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.12);
 }
 
@@ -112,6 +114,18 @@
   background:
     radial-gradient(ellipse 40% 14% at 50% 88%, rgba(0, 0, 0, 0.4), transparent 70%),
     linear-gradient(180deg, #2b2935, #1c1b24);
+}
+
+/* The floating window's grip and resize corner are drawn in ink against the
+   light box; against the dark one they need to be light. */
+:root[data-theme="dark"] .sprite-window-grip::before {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+:root[data-theme="dark"] .sprite-window-resize {
+  background:
+    linear-gradient(-45deg, transparent 22%, rgba(255, 255, 255, 0.32) 22%, rgba(255, 255, 255, 0.32) 30%, transparent 30%),
+    linear-gradient(-45deg, transparent 42%, rgba(255, 255, 255, 0.32) 42%, rgba(255, 255, 255, 0.32) 50%, transparent 50%);
 }
 
 /* Game-frame buttons (hair styles + catalog tiles) — the default ragassets PNG
@@ -1317,7 +1331,84 @@ button:disabled {
   position: absolute;
   top: 8px;
   right: 8px;
+  /* Above .sprite-window-grip, which spans the full width underneath it. */
+  z-index: 3;
 }
+
+/* ---- detached ("picture-in-picture") window -------------------------------
+
+   Same box, popped out of the modal. The full-screen layer stays put and keeps
+   its fixed positioning — it just stops painting and stops taking the pointer,
+   so the catalogue underneath is clickable while the window follows the build.
+   The box then positions itself absolutely inside that layer, which (being
+   `inset: 0`) makes left/top plain viewport coordinates. */
+
+.sprite-modal.is-detached {
+  background: none;
+  padding: 0;
+  pointer-events: none;
+}
+
+.sprite-modal.is-detached .sprite-modal-box {
+  position: absolute;
+  /* The window's size is the user's now, including bigger than the screen. The
+     grip spans the whole top edge and the position is clamped to keep some of
+     it reachable, so an oversized window can still be dragged around to bring
+     each corner into view. */
+  max-width: none;
+  max-height: none;
+  pointer-events: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  /* Nothing to scroll: the sprite is scaled to fit the window instead. */
+  overflow: hidden;
+}
+
+/* Drag handle: the strip of top padding across the window. It spans the full
+   width — its bar reads as the window's centre line, not as something centred
+   in the gap between the corner buttons — and sits *below* those buttons in the
+   stack, so they keep their clicks while the handle takes the rest. No hover
+   state: the move cursor and the tooltip already say what it is, and a strip
+   lighting up over a window that is mostly sprite only draws the eye. */
+.sprite-window-grip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 26px;
+  z-index: 1;
+  cursor: move;
+  touch-action: none;
+}
+
+.sprite-window-grip::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  width: 34px;
+  height: 4px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  background: rgba(70, 60, 90, 0.28);
+}
+
+/* Two diagonal ticks, the usual corner grip: the short one nearest the corner,
+   the longer one behind it. (0% of a -45deg gradient is the bottom-right
+   corner, so the tick nearer the corner is the one at the lower stop.) */
+.sprite-window-resize {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 18px;
+  height: 18px;
+  z-index: 3;
+  cursor: nwse-resize;
+  touch-action: none;
+  background:
+    linear-gradient(-45deg, transparent 22%, rgba(70, 60, 90, 0.38) 22%, rgba(70, 60, 90, 0.38) 30%, transparent 30%),
+    linear-gradient(-45deg, transparent 42%, rgba(70, 60, 90, 0.38) 42%, rgba(70, 60, 90, 0.38) 50%, transparent 50%);
+}
+
 
 /* ---- "Novidades" (changelog) modal ---------------------------------------- */
 
@@ -1409,10 +1500,10 @@ button:disabled {
 
 /* Download-the-sprite button, top-left of the modal — mirrors the close button
    on the opposite corner, styled like the stage's expand button. */
-.sprite-modal-download {
+.sprite-modal-download,
+.sprite-modal-detach {
   position: absolute;
   top: 8px;
-  left: 8px;
   width: 26px;
   height: 26px;
   border: 1px solid var(--border);
@@ -1426,15 +1517,40 @@ button:disabled {
   transition: background 120ms, border-color 120ms, color 120ms;
 }
 
-.sprite-modal-download:hover:not(:disabled) {
+.sprite-modal-download {
+  left: 8px;
+}
+
+.sprite-modal-detach {
+  left: 40px;
+}
+
+.sprite-modal-download:hover:not(:disabled),
+.sprite-modal-detach:hover:not(:disabled) {
   background: #fff;
   border-color: var(--accent);
   color: var(--accent);
 }
 
+/* On while the window is out — the button is the way back to full screen. */
+.sprite-modal-detach[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.sprite-modal-download:disabled,
+.sprite-modal-detach:disabled {
+  opacity: 0.55;
+}
+
+/* The download is working, not unavailable; detach is simply not ready until
+   the box has been measured. */
 .sprite-modal-download:disabled {
   cursor: progress;
-  opacity: 0.55;
+}
+
+.sprite-modal-detach:disabled {
+  cursor: default;
 }
 
 /* ---- rotation arrows (ragassets turn sprites, flanking the character) ------ */
@@ -2162,6 +2278,30 @@ button:disabled {
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--muted);
+}
+
+/* The one filter that isn't a chip. The chips pick one position out of five;
+   this narrows whichever they picked, so it reads as a modifier under them
+   rather than a sixth option beside them. It's a direct child of the group, so
+   the group's own gap spaces it off the chip row. */
+.catalog-filter-check {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--fg);
+  cursor: pointer;
+  /* Line the text up with the chips' own text inset, not the panel edge. */
+  padding: 0.1rem 0.1rem 0;
+}
+
+.catalog-filter-check input {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--accent);
 }
 
 .catalog-filter-clear {

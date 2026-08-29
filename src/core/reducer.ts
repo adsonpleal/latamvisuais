@@ -7,7 +7,7 @@
 
 import type { Costume, Db, Slot } from "./db";
 import { clampState } from "./clamp";
-import { applyBuild, toggleEquip, unequipSlot, type Build, type Gender, type State } from "./state";
+import { applyBuild, equipInto, toggleEquip, unequipSlot, type Build, type Gender, type State } from "./state";
 
 export type Action =
   | { type: "setClass"; classId: number }
@@ -23,6 +23,7 @@ export type Action =
   | { type: "setPet"; pet: number | null }
   | { type: "setSkin"; skin: number | string | null }
   | { type: "toggleEquip"; item: Costume }
+  | { type: "equip"; item: Costume }
   | { type: "unequipSlot"; slot: Slot }
   | { type: "loadBuild"; build: Build };
 
@@ -58,6 +59,14 @@ function reduceRaw(state: State, action: Action): State {
     case "toggleEquip": {
       const next: State = { ...state, equipped: { ...state.equipped } };
       toggleEquip(next, action.item);
+      return next;
+    }
+    // Unconditional equip, unlike toggleEquip: keyboard navigation walks over
+    // items that may already be equipped, and toggling there would take the
+    // costume *off* instead of moving to it.
+    case "equip": {
+      const next: State = { ...state, equipped: { ...state.equipped } };
+      equipInto(next.equipped, action.item);
       return next;
     }
     case "unequipSlot": {

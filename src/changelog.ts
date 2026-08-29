@@ -14,6 +14,18 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.13.0",
+    date: "2026-08-29",
+    changes: [
+      "A prévia ampliada agora pode sair para uma janela flutuante, que fica por cima do site sem prender o resto. No botão de destacar, ao lado do de baixar, a tela para de escurecer e o resto do site volta a funcionar por baixo: dá para trocar de visual e ver o resultado com zoom na hora, sem abrir e fechar a cada peça. A janela se arrasta pela barrinha do topo e se redimensiona pelo canto de baixo, do tamanho que você quiser — inclusive maior que a prévia em tela cheia, se for para olhar de perto.",
+      "O catálogo passou a andar com as setas do teclado. Clique em um visual e depois use as setas: na grade valem as quatro (esquerda e direita andam um item, cima e baixo pulam uma linha inteira); na lista, cima e baixo. Cada seta já veste o visual em que ela para, então dá para percorrer a lista inteira sem tirar a mão do teclado. Enquanto você estiver digitando na busca, as setas continuam sendo suas.",
+      "As duas coisas juntas são o que dá: destaque a prévia, segure a seta e veja um visual atrás do outro, ampliados, sem clicar mais nada.",
+      "Novo filtro: “Só visuais de uma posição”, embaixo dos botões de posição. Alguns visuais ocupam duas posições ao mesmo tempo — um conjunto de Topo + Meio, por exemplo — e equipar um deles tira o que estiver nas outras. Marcando a caixa, eles somem da lista e sobra só o que você combina livremente.",
+    ],
+    credit:
+      "Obrigado a Pazzolino, que sugeriu a janela flutuante e a navegação pelas setas.",
+  },
+  {
     version: "0.12.1",
     date: "2026-08-23",
     changes: [

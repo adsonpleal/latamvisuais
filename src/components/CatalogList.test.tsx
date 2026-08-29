@@ -4,6 +4,7 @@
 
 import { useState } from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { Db, Slot } from "../core/db";
 import { makeDb } from "../test/fixtures";
@@ -28,7 +29,14 @@ const db: Db = {
 
 function CatalogHost() {
   const [slotFilter, setSlotFilter] = useState<Slot | null>(null);
-  return <Catalog slotFilter={slotFilter} onSlotFilterChange={setSlotFilter} pickSignal={0} />;
+  return (
+    <Catalog
+      slotFilter={slotFilter}
+      onSlotFilterChange={setSlotFilter}
+      pickSignal={0}
+      keyboardEnabled
+    />
+  );
 }
 
 /** The scroller, with the layout jsdom won't compute. */
@@ -44,6 +52,11 @@ const scrollTo = async (px: number) => {
   fireEvent.scroll(el);
   await waitFor(() => expect(rowNames()[0]).not.toBe("Visual 0"));
 };
+
+/** The arrow keys' current row. Marked by aria-current, not by a highlight —
+ *  the equipped row already carries one. */
+const cursorName = () =>
+  document.querySelector("[aria-current] .catalog-row-name")?.textContent;
 
 const rowNames = () =>
   [...document.querySelectorAll(".catalog-row-name")].map((n) => n.textContent);
@@ -116,5 +129,37 @@ describe("CatalogList windowing", () => {
 
     expect(rowNames().at(-1)).toBe(`Visual ${COUNT - 1}`);
     expect(spacers()[1]).toBe(0);
+  });
+});
+
+describe("CatalogList keyboard cursor", () => {
+  it("moves on up/down only, and scrolls the row it lands on into view", async () => {
+    const user = userEvent.setup();
+    scroller(); // pin the viewport height jsdom won't compute
+
+    await user.click(screen.getByRole("button", { name: "Visual 0 (#1000)" }));
+    expect(cursorName()).toBe("Visual 0");
+
+    // A row is the full width of the list, so sideways has nowhere to go and
+    // the keys stay with the page.
+    await user.keyboard("{ArrowRight}{ArrowLeft}");
+    expect(cursorName()).toBe("Visual 0");
+
+    await user.keyboard("{ArrowDown>6/}");
+    expect(cursorName()).toBe("Visual 6");
+    // Scrolled by exactly enough to bring row 6's bottom edge into the viewport,
+    // computed from the pitch because the row may not have been mounted.
+    expect(scroller().scrollTop).toBe(7 * PITCH - VIEWPORT);
+  });
+
+  it("follows the cursor onto rows the window hasn't mounted", async () => {
+    const user = userEvent.setup();
+    scroller();
+
+    await user.click(screen.getByRole("button", { name: "Visual 0 (#1000)" }));
+    await user.keyboard("{ArrowDown>20/}");
+
+    expect(cursorName()).toBe("Visual 20");
+    expect(scroller().scrollTop).toBe(21 * PITCH - VIEWPORT);
   });
 });

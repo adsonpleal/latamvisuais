@@ -91,6 +91,10 @@ export const t = {
   closeModal: "Fechar",
   downloadImage: "Baixar imagem",
   downloadError: "Falha ao baixar. Tente novamente.",
+  detachPreview: "Destacar em janela flutuante",
+  attachPreview: "Voltar para tela cheia",
+  dragWindow: "Arraste para mover",
+  resizeWindow: "Arraste para redimensionar",
   play: "Reproduzir",
   pause: "Pausar",
   frameLabel: "Quadro",
@@ -162,6 +166,9 @@ export const t = {
   filtersClear: "Limpar",
   filtersActive: (n: number) => `${n} filtro${n === 1 ? "" : "s"} ativo${n === 1 ? "" : "s"}`,
   slotFilterLabel: "Posição",
+  singleSlotLabel: "Só visuais de uma posição",
+  singleSlotTip:
+    "Esconde os visuais que ocupam mais de uma posição ao mesmo tempo (um conjunto de Topo + Meio, por exemplo), que ao equipar tiram o que estiver nas outras.",
   marketFilterLabel: "Mercado",
   marketAll: "Todos",
   marketSeen: "Já visto no mercado",
@@ -175,6 +182,12 @@ export const t = {
   marketError: "Mercado indisponível — filtro de mercado ignorado.",
   viewGrid: "Grade",
   viewList: "Lista",
+
+  // Discovery hints: shown on their own the first few times, and silenced for
+  // good once the feature is actually used (see core/hints.ts).
+  hintDetach: "Dica: destaque a prévia para trocar de visual sem fechar",
+  hintArrowsGrid: "Dica: use ↑ ↓ ← → para ir para o próximo visual",
+  hintArrowsList: "Dica: use ↑ ↓ para ir para o próximo visual",
   // The cheapest open shop is *the* price — spelling out "a partir de" only
   // padded every row with words that said nothing extra.
   priceFrom: (price: string, stores: number) =>

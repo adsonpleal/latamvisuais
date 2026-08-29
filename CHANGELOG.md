@@ -4,6 +4,96 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.13.0] — 2026-08-29
+
+Both halves of [issues gJlUZhCjswimVssz9KZl](https://issues.latam-tools.com.br/t/gJlUZhCjswimVssz9KZl)
+(Pazzolino): the full-sprite viewer is modal, so browsing head costumes meant
+open → look → close → click for every item.
+
+### Added
+
+- **Detached ("picture-in-picture") full-sprite viewer.** A third button in
+  `.sprite-modal-box`, beside the download, drops the backdrop
+  (`.sprite-modal.is-detached` → `pointer-events: none`) and absolutely
+  positions the box inside the still-`fixed` layer, so `left`/`top` are viewport
+  coordinates and no portal is needed. Dragged by `.sprite-window-grip`, resized
+  proportionally from `.sprite-window-resize` — `MIN_ZOOM` 0.35 and **no
+  maximum**: past the full-screen size is still a size someone might want, and
+  one drag can only grow it as far as the pointer reaches. An oversized window
+  stays usable because the grip spans the whole top edge and `clampWin` keeps
+  part of it on screen, so it can be panned to bring each corner into view.
+  Both handles use pointer capture. Escape and backdrop-click stop closing while detached — it isn't a
+  modal any more. Detached state, position and zoom survive close/reopen but not
+  a reload, by design.
+- **Arrow-key navigation in the catalogue.** Clicking an item sets a cursor;
+  the arrows then walk `visibleItems` — four ways in the grid (`columnsOf` reads
+  the resolved `grid-template-columns`, since it's `auto-fill`), up/down in the
+  list — equipping each item they land on. The cursor is stored as an **item id,
+  not an index**, so a filter, search or view change can't silently repoint it.
+  Listener is on `document` (SlotBar's ref pattern), stands down for
+  editable targets and for `keyboardEnabled={false}` while the map sim is up.
+  The cursor gets **no highlight of its own** — the equipped tile already wears
+  the game's select frame, and a second marker over it only competed. It is
+  marked with `aria-current` instead, which is what it honestly is: the current
+  item of the set. That is also the hook the keyboard tests assert on.
+  Moving the cursor also **releases the focus** left on whatever was clicked to
+  arm it: the browser flips that element to `:focus-visible` on the first key,
+  so it would wear a ring — the UA default in the grid, `.catalog-row-pick`'s
+  accent outline in the list — while the cursor walked away from it.
+- `Action.equip` — `toggleEquip` would take a costume *off* when the cursor
+  stepped onto one already worn. Reuses the existing `equipInto`.
+- `flashTip()` in `hooks/useTooltip.ts` and `core/hints.ts`: hints that show
+  themselves in the shared bubble and retire permanently once the feature is
+  used (`SHOW_LIMIT` 3 as a backstop), one localStorage key each via `persisted`.
+- `dismissTip()` — takes the bubble down mid-gesture. A drag keeps the pointer
+  on its own handle for its whole duration, so nothing else ever fires to clear
+  the label and it rides along over the window being moved.
+- **"Só visuais de uma posição" filter** (`singleSlotOnly`, default off), a
+  checkbox under the slot chips in the POSIÇÃO group — `item.slots.length === 1`.
+  It narrows whatever the chips picked rather than replacing it, counts toward
+  the trigger's badge, and is reset by "Limpar". Deliberately not a chip: the
+  chips choose one position out of five, this modifies that choice.
+
+### Changed
+
+- `Catalog` now owns the filtered array (`visibleItems`) and passes it to
+  `CatalogList`, which used to recompute the same `filter` itself. Its `visible`
+  count is renamed `visibleCount` to stop the two meanings colliding.
+- **The `modalBox` measurement is debounced (`BOX_SETTLE_MS`) and skipped
+  entirely while detached.** It preloads 8–24 sprites per run and fired on every
+  `state` change; holding an arrow key would have made that a request storm, and
+  a window that resized itself per costume. Measured: 15 presses → 15 images.
+  It also bails when the recomputed numbers match, sparing a render per rotation.
+- Detached sprites scale *down* to fit a window sized around a shorter costume,
+  rather than overflowing it — the window never moves or resizes on its own.
+- Detaching now resets `zoom`, so popping out never changes the size on screen:
+  the click moves the view, and resizing is the user's next move rather than
+  this one's. A zoom left over from an earlier detach is dropped, not re-applied.
+- The drag grip lost its hover tint — the `move` cursor and the tooltip already
+  say what it is, and a strip lighting up over a mostly-sprite window pulls the
+  eye. The resize ticks were flipped: short one nearest the corner, longer
+  behind it.
+- `TipButton` takes `ComponentProps<"button">` so `ref` passes through.
+
+### Notes
+
+- **The resize is driven by both axes, projected onto the corner's travel.**
+  Taking the scale factor from the horizontal drag alone tracks the pointer
+  exactly in width — and, because the box is ~2.2× taller than wide, moves the
+  bottom edge 2.2× as far, so the corner tears away downward. Projecting
+  `(dx·w + dy·h) / (w² + h²)` puts the corner at the nearest point on the ray a
+  locked aspect ratio confines it to, which is as close as a single factor can
+  follow a diagonal drag. Measured: a (−120, −120) drag moved the corner
+  (−65, −145) instead of (−120, −266).
+- The drag grip spans the **full width** at `z-index: 1`, under the corner
+  buttons (`.sprite-modal-close` gained a `z-index` for this) — its bar then
+  centres on the window rather than on the gap between those buttons, and all
+  three buttons still hit-test through it.
+- The hint dismissal listens on **`pointerdown`, not `click`**. React listens
+  inside the root, so a hint raised from a click handler exists *before* that
+  click reaches `document` — unpinning there would take down the hint the click
+  just asked for. Pointerdown has already been and gone by then.
+
 ## [0.12.1] — 2026-08-23
 
 ### Fixed

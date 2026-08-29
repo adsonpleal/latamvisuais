@@ -56,6 +56,15 @@ export const Download = () => (
   </svg>
 );
 
+// Picture-in-picture: the frame with a smaller pane docked in its corner. Marks
+// the button that pops the full-sprite view out into a floating window.
+export const Detach = () => (
+  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M21 11V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h5" />
+    <rect x="12" y="12" width="10" height="8" rx="1.5" />
+  </svg>
+);
+
 // Feather "x" — the slot remove button.
 export const ClearX = () => (
   <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

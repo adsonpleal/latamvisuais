@@ -4,12 +4,19 @@
 // built — full-body framed (actionIconCanvas) so head and feet aren't cut —
 // always facing south.
 //
+// The full-sprite view has two modes. Full screen is a modal over a dimmed
+// backdrop. "Detached" pops the same box out into a floating picture-in-picture
+// window — no backdrop, so the catalogue underneath stays clickable and the
+// window keeps following the build while costumes are swapped behind it. The
+// window is dragged by the grip along its top and resized proportionally from
+// its bottom-right corner, never past the size the full-screen view computed.
+//
 // Animations come back from ragassets as APNG (which the browser plays on its
 // own). To "pause", we swap the <img> to a single still frame (frame=N). The
 // frame count per action is the static table in core/state.ts. Local playback
 // state (playing / frame) is deliberately NOT part of the shareable build.
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import {
   ACTIONS,
   actionIconCanvas,
@@ -20,13 +27,30 @@ import {
   imageUrl,
   ACTION_FRAMES,
 } from "../core/state";
+import { hint } from "../core/hints";
 import { mountsFor } from "../core/mounts";
 import { t } from "../i18n";
+import { dismissTip } from "../hooks/useTooltip";
 import { useFrameCount } from "../hooks/useFrameCount";
 import { usePreloadedImage } from "../hooks/usePreloadedImage";
 import { useAppState, useDb, useDispatch } from "../state/AppStateContext";
 import { TipButton } from "./TipButton";
-import { ChevronLeft, ChevronRight, Download, Expand, Map, Pause, Play } from "./icons";
+import { ChevronLeft, ChevronRight, Detach, Download, Expand, Map, Pause, Play } from "./icons";
+
+/** Smallest the floating window goes, as a fraction of the full-screen box.
+ *  There is no matching maximum — how big the window should be is the user's
+ *  call, and the drag can only grow it as far as they can reach anyway. */
+const MIN_ZOOM = 0.35;
+
+/** Pixels of the floating window that must stay on screen while dragging. */
+const DRAG_MARGIN = 48;
+
+/** How long the sprite has to settle before recomputing the locked box. Holding
+ *  an arrow key in the catalogue changes the build every few frames, and each
+ *  recompute preloads two dozen sprites. */
+const BOX_SETTLE_MS = 150;
+
+const detachHint = hint("detach");
 
 export function Preview({ onPlay }: { onPlay: () => void }) {
   const state = useAppState();
@@ -50,6 +74,15 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
   // coords (the loupe is position:fixed, centred on the cursor); `bgX`/`bgY` are
   // the background offset that lines the magnified pixels up under the cursor.
   const [loupe, setLoupe] = useState<{ x: number; y: number; bgX: number; bgY: number }>();
+  // Floating ("detached") window: whether we're in it, where it sits in the
+  // viewport, and how much of the full-screen box size it takes (capped at 1 —
+  // the full-screen size is the maximum). Deliberately survives closeModal, so
+  // reopening the viewer lands back in the window you left.
+  const [detached, setDetached] = useState(false);
+  const [winPos, setWinPos] = useState<{ x: number; y: number }>();
+  const [zoom, setZoom] = useState(1);
+  const boxRef = useRef<HTMLDivElement>(null);
+  const detachRef = useRef<HTMLButtonElement>(null);
 
   // A fresh action starts playing from the top — reset on each action change.
   // (Storing the previous action in a ref and resetting during render mirrors
@@ -93,7 +126,10 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
   // ---- full-sprite modal (uncropped render) ------------------------------
   const openModal = () => {
     setModalNatural(undefined);
-    setModalBox(undefined);
+    // The detached window keeps its size across a close/reopen; clearing the
+    // box would leave it with none, since the recompute is skipped while
+    // detached (see the effect below).
+    if (!detached) setModalBox(undefined);
     setDownloadFailed(false);
     setModalOpen(true);
   };
@@ -125,14 +161,17 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
     });
   };
 
+  // Only while it *is* a modal: the floating window is an ordinary piece of the
+  // page, and swallowing Escape there would close it out from under someone
+  // dismissing something else.
   useEffect(() => {
-    if (!modalOpen) return;
+    if (!modalOpen || detached) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeModal();
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [modalOpen]);
+  }, [modalOpen, detached]);
 
   // Preload every body/head-direction sprite for the current action once the
   // modal opens, take the max width/height across them all, and lock the box to
@@ -140,46 +179,64 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
   // (flex-centered in the box), so rotation swaps sprites but the frame stays
   // put instead of jumping to each variant's tight bbox.
   useEffect(() => {
-    if (!modalOpen) return;
+    // Once detached the box is the user's: they sized the window, so it must
+    // not resize itself under their hands as costumes change — and skipping
+    // this also spares two dozen preloads per costume while arrow-navigating.
+    // (A sprite bigger than the window scrolls; the box is overflow:auto.)
+    // Detaching is gated on a box already existing, so this can't strand the
+    // window without a size.
+    if (!modalOpen || detached) return;
     let cancelled = false;
-    const headDirs = headAllowed ? [0, 1, 2] : [state.headDir];
-    const sizes: Promise<{ w: number; h: number }>[] = [];
-    for (let bodyDir = 0; bodyDir < 8; bodyDir++) {
-      for (const headDir of headDirs) {
-        const url = imageUrl(state, { canvas: null, bodyDir, headDir });
-        sizes.push(
-          new Promise((resolve) => {
-            const img = new Image();
-            img.onload = () => resolve({ w: img.naturalWidth, h: img.naturalHeight });
-            img.onerror = () => resolve({ w: 0, h: 0 });
-            img.src = url;
-          }),
-        );
+    const measure = () => {
+      const headDirs = headAllowed ? [0, 1, 2] : [state.headDir];
+      const sizes: Promise<{ w: number; h: number }>[] = [];
+      for (let bodyDir = 0; bodyDir < 8; bodyDir++) {
+        for (const headDir of headDirs) {
+          const url = imageUrl(state, { canvas: null, bodyDir, headDir });
+          sizes.push(
+            new Promise((resolve) => {
+              const img = new Image();
+              img.onload = () => resolve({ w: img.naturalWidth, h: img.naturalHeight });
+              img.onerror = () => resolve({ w: 0, h: 0 });
+              img.src = url;
+            }),
+          );
+        }
       }
-    }
-    Promise.all(sizes).then((all) => {
-      if (cancelled) return;
-      const maxW = Math.max(0, ...all.map((s) => s.w));
-      const maxH = Math.max(0, ...all.map((s) => s.h));
-      if (!maxW || !maxH) return;
-      const scale = Math.max(
-        1,
-        Math.min(
-          (window.innerWidth * 0.8) / maxW,
-          (window.innerHeight * 0.78) / maxH,
-          5,
-        ),
-      );
-      setModalBox({ w: Math.round(maxW * scale), h: Math.round(maxH * scale), scale });
-    });
+      Promise.all(sizes).then((all) => {
+        if (cancelled) return;
+        const maxW = Math.max(0, ...all.map((s) => s.w));
+        const maxH = Math.max(0, ...all.map((s) => s.h));
+        if (!maxW || !maxH) return;
+        const scale = Math.max(
+          1,
+          Math.min(
+            (window.innerWidth * 0.8) / maxW,
+            (window.innerHeight * 0.78) / maxH,
+            5,
+          ),
+        );
+        const w = Math.round(maxW * scale);
+        const h = Math.round(maxH * scale);
+        // Rotating re-measures to the same numbers; keeping the old object
+        // spares a render (and, now that this is debounced, a wasted pass).
+        setModalBox((prev) =>
+          prev && prev.w === w && prev.h === h && prev.scale === scale ? prev : { w, h, scale },
+        );
+      });
+    };
+    // Settle first: keyboard navigation walks the catalogue faster than these
+    // requests come back, and every intermediate costume would fire its own set.
+    const timer = setTimeout(measure, BOX_SETTLE_MS);
     return () => {
       cancelled = true;
+      clearTimeout(timer);
     };
     // Depend on `state` wholesale: rotating (bodyDir/headDir) also triggers
     // this, but the URLs are cached and the recomputed max is identical, so
     // it's a no-op re-set. Anything that *does* change the sprite bbox
     // (costume, action, mount, class, colours…) correctly reruns.
-  }, [modalOpen, state, headAllowed]);
+  }, [modalOpen, state, headAllowed, detached]);
 
   // Mirror the preview: animate while playing, else lock to the chosen frame.
   const modalUrl = playing
@@ -236,8 +293,17 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
   // the current sprite to the viewport the same way the old code did. Once
   // modalBox arrives it overrides this and every rotation renders at the same
   // zoom.
+  //
+  // `zoom` belongs to the floating window: full screen always renders at 1, so
+  // that path is unchanged and re-attaching a window you had resized comes back
+  // full size (the zoom is dropped on the next detach, not applied here).
+  // Resizing scales the box and the sprite by the same factor, which keeps a
+  // small costume small relative to a big one instead of every sprite
+  // stretching to fill the window.
+  const activeZoom = detached ? zoom : 1;
+  const pinnedScale = modalBox && modalBox.scale * activeZoom;
   const displayScale =
-    modalBox?.scale ??
+    pinnedScale ??
     (modalNatural
       ? Math.max(
           1,
@@ -248,13 +314,124 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
           ),
         )
       : undefined);
+  const boxSize = modalBox
+    ? { w: Math.round(modalBox.w * activeZoom), h: Math.round(modalBox.h * activeZoom) }
+    : undefined;
+  // The detached window doesn't resize itself, so a costume taller than the one
+  // it was sized around has to give: shrink that sprite to fit rather than clip
+  // it. Only ever downwards — everything that already fits keeps its scale, so
+  // costumes stay comparable to each other.
+  const fittedScale =
+    detached && pinnedScale && modalNatural && boxSize
+      ? Math.min(pinnedScale, boxSize.w / modalNatural.w, boxSize.h / modalNatural.h)
+      : displayScale;
   const modalSize =
-    modalNatural && displayScale
+    modalNatural && fittedScale
       ? {
-          w: Math.round(modalNatural.w * displayScale),
-          h: Math.round(modalNatural.h * displayScale),
+          w: Math.round(modalNatural.w * fittedScale),
+          h: Math.round(modalNatural.h * fittedScale),
         }
       : undefined;
+
+  // ---- floating window: detach, drag, resize -----------------------------
+
+  // Detach in place: the box is centred by flexbox until now, so seed the
+  // window at the rect it already occupies and nothing jumps.
+  const toggleDetached = () => {
+    detachHint.spend();
+    setLoupe(undefined);
+    if (!detached) {
+      // Pop out in place and at the size already on screen: the click changes
+      // where the view lives, nothing about how it looks. Resizing is the
+      // user's next move, not this one's — so a zoom left over from a previous
+      // detach is dropped rather than re-applied.
+      const r = boxRef.current?.getBoundingClientRect();
+      if (r?.width) setWinPos(clampWin(r.left, r.top, r.width));
+      setZoom(1);
+    }
+    setDetached((d) => !d);
+  };
+
+  // Point the hint at the button once the viewer has settled. It retires itself
+  // the first time the button is actually pressed (see hint.spend above).
+  useEffect(() => {
+    if (!modalOpen || detached) return;
+    const id = setTimeout(() => detachHint.show(detachRef.current, t.hintDetach), 600);
+    return () => clearTimeout(id);
+  }, [modalOpen, detached]);
+
+  // Both handles use pointer capture, so a fast drag that outruns the cursor
+  // keeps delivering moves to the handle instead of falling off it.
+  const dragRef = useRef<{ dx: number; dy: number }>(null);
+  const resizeRef = useRef<{ x: number; y: number; boxW: number; boxH: number; zoom: number }>(
+    null,
+  );
+
+  const startDrag = (e: ReactPointerEvent<HTMLDivElement>) => {
+    const r = boxRef.current?.getBoundingClientRect();
+    if (!r) return;
+    dragRef.current = { dx: e.clientX - r.left, dy: e.clientY - r.top };
+    e.currentTarget.setPointerCapture(e.pointerId);
+    // The pointer stays on the handle for the whole drag, so nothing else would
+    // clear its label — and it would ride along over the window being moved.
+    dismissTip();
+    e.preventDefault();
+  };
+  const onDrag = (e: ReactPointerEvent<HTMLDivElement>) => {
+    const d = dragRef.current;
+    const box = boxRef.current;
+    if (!d || !box) return;
+    setWinPos(clampWin(e.clientX - d.dx, e.clientY - d.dy, box.offsetWidth));
+  };
+  const endDrag = (e: ReactPointerEvent<HTMLDivElement>) => {
+    dragRef.current = null;
+    e.currentTarget.releasePointerCapture?.(e.pointerId);
+  };
+
+  const startResize = (e: ReactPointerEvent<HTMLDivElement>) => {
+    if (!modalBox) return;
+    resizeRef.current = { x: e.clientX, y: e.clientY, boxW: modalBox.w, boxH: modalBox.h, zoom };
+    e.currentTarget.setPointerCapture(e.pointerId);
+    dismissTip();
+    e.preventDefault();
+  };
+  /**
+   * Proportional resize — free width/height would distort the pixel art or
+   * letterbox it. Only the floor is fixed: past the full-screen size is still a
+   * size someone might want, and a sprite blown up further is exactly what a
+   * pixel-art viewer is for.
+   *
+   * The one scale factor is read off *both* axes, projected onto the direction
+   * the corner actually travels. Taking it from the horizontal drag alone looks
+   * right until you notice the box is twice as tall as it is wide, at which
+   * point every pixel sideways moves the bottom edge two, and the corner tears
+   * away from the cursor. Projecting is the closest a single factor can track a
+   * diagonal drag.
+   */
+  const onResize = (e: ReactPointerEvent<HTMLDivElement>) => {
+    const r = resizeRef.current;
+    if (!r) return;
+    const travel = r.boxW * r.boxW + r.boxH * r.boxH;
+    const next = r.zoom + ((e.clientX - r.x) * r.boxW + (e.clientY - r.y) * r.boxH) / travel;
+    setZoom(Math.max(MIN_ZOOM, next));
+  };
+  const endResize = (e: ReactPointerEvent<HTMLDivElement>) => {
+    resizeRef.current = null;
+    e.currentTarget.releasePointerCapture?.(e.pointerId);
+  };
+
+  // A shrinking viewport can strand the window off-screen with no handle left
+  // to drag it back, so pull it into range whenever the window resizes.
+  useEffect(() => {
+    if (!detached || !modalOpen) return;
+    const onResizeWindow = () => {
+      const box = boxRef.current;
+      if (!box) return;
+      setWinPos((prev) => (prev ? clampWin(prev.x, prev.y, box.offsetWidth) : prev));
+    };
+    window.addEventListener("resize", onResizeWindow);
+    return () => window.removeEventListener("resize", onResizeWindow);
+  }, [detached, modalOpen]);
 
   return (
     <div className="preview">
@@ -381,15 +558,21 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
       )}
 
       <div
-        className="sprite-modal"
+        className={detached ? "sprite-modal is-detached" : "sprite-modal"}
         hidden={!modalOpen}
         onClick={(e) => {
-          if (e.target === e.currentTarget) closeModal();
+          // The detached layer is pointer-events:none, so this can't fire there
+          // — but a floating window shouldn't close on a stray click regardless.
+          if (!detached && e.target === e.currentTarget) closeModal();
         }}
       >
         <div
           className="sprite-modal-box"
-          style={modalBox ? { width: modalBox.w, height: modalBox.h } : undefined}
+          ref={boxRef}
+          style={{
+            ...(boxSize ? { width: boxSize.w, height: boxSize.h } : null),
+            ...(detached && winPos ? { left: winPos.x, top: winPos.y } : null),
+          }}
         >
           <img
             className={loupe ? "sprite-modal-img is-magnifying" : "sprite-modal-img"}
@@ -418,6 +601,29 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
           <StageArrow side="right" rowKind="head" hidden={!headAllowed} onClick={() => dispatch({ type: "rotateHead", delta: 1 })} />
           <StageArrow side="left" rowKind="body" onClick={() => dispatch({ type: "rotateBody", delta: 1 })} />
           <StageArrow side="right" rowKind="body" onClick={() => dispatch({ type: "rotateBody", delta: -1 })} />
+          {detached && (
+            <>
+              {/* Plain divs, not buttons: these are window chrome, driven by
+                  dragging rather than activation, and a keyboard user has
+                  nothing to do with them. */}
+              <div
+                className="sprite-window-grip"
+                data-tip={t.dragWindow}
+                onPointerDown={startDrag}
+                onPointerMove={onDrag}
+                onPointerUp={endDrag}
+                onPointerCancel={endDrag}
+              />
+              <div
+                className="sprite-window-resize"
+                data-tip={t.resizeWindow}
+                onPointerDown={startResize}
+                onPointerMove={onResize}
+                onPointerUp={endResize}
+                onPointerCancel={endResize}
+              />
+            </>
+          )}
           <TipButton
             className="sprite-modal-download"
             tip={downloadFailed ? t.downloadError : t.downloadImage}
@@ -427,11 +633,41 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
           >
             <Download />
           </TipButton>
+          {/* Gated on the box: detaching before it lands would leave a window
+              with no size, since the recompute is skipped once detached. */}
+          <TipButton
+            ref={detachRef}
+            className="sprite-modal-detach"
+            tip={detached ? t.attachPreview : t.detachPreview}
+            aria-pressed={detached}
+            disabled={!modalBox}
+            onClick={toggleDetached}
+          >
+            {detached ? <Expand /> : <Detach />}
+          </TipButton>
           <TipButton className="sprite-modal-close game-close" tip={t.closeModal} onClick={closeModal} />
         </div>
       </div>
     </div>
   );
+}
+
+/**
+ * Keep the floating window grabbable.
+ *
+ * The drag grip runs along the top of the window, inset from both corners, so
+ * "some pixels still visible" isn't enough — a window pushed far enough off the
+ * left takes the grip with it and can never be dragged back. Left is therefore
+ * held at the edge, and only allowed past it by however much the window is
+ * wider than the viewport (otherwise its right half would be unreachable
+ * instead). Top and bottom keep DRAG_MARGIN of the window on screen.
+ */
+function clampWin(x: number, y: number, width: number): { x: number; y: number } {
+  const minX = Math.min(0, window.innerWidth - width);
+  return {
+    x: Math.round(Math.min(Math.max(x, minX), Math.max(minX, window.innerWidth - DRAG_MARGIN))),
+    y: Math.round(Math.min(Math.max(y, 0), Math.max(0, window.innerHeight - DRAG_MARGIN))),
+  };
 }
 
 // Filesystem-friendly slug for the download filename: drop accents (pt-BR class

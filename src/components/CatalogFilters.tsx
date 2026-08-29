@@ -71,6 +71,9 @@ type Props = {
   onSlotFilterChange: (slot: Slot | null) => void;
   marketFilter: MarketFilter;
   onMarketFilterChange: (filter: MarketFilter) => void;
+  /** Hide costumes that take more than one slot at a time. */
+  singleSlotOnly: boolean;
+  onSingleSlotOnlyChange: (only: boolean) => void;
 };
 
 export function CatalogFilters({
@@ -80,6 +83,8 @@ export function CatalogFilters({
   onSlotFilterChange,
   marketFilter,
   onMarketFilterChange,
+  singleSlotOnly,
+  onSingleSlotOnlyChange,
 }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const popRef = useRef<HTMLDivElement>(null);
@@ -122,7 +127,8 @@ export function CatalogFilters({
     };
   }, [open, onOpenChange]);
 
-  const active = (slotFilter ? 1 : 0) + (marketFilter === "all" ? 0 : 1);
+  const active =
+    (slotFilter ? 1 : 0) + (marketFilter === "all" ? 0 : 1) + (singleSlotOnly ? 1 : 0);
 
   return (
     <div className="catalog-filter-menu" ref={rootRef}>
@@ -167,6 +173,16 @@ export function CatalogFilters({
                   />
                 ))}
               </div>
+              {/* Not a chip: the chips pick one position out of five, this one
+                  narrows whatever they picked, and it has to look like it. */}
+              <label className="catalog-filter-check" data-tip={t.singleSlotTip}>
+                <input
+                  type="checkbox"
+                  checked={singleSlotOnly}
+                  onChange={(e) => onSingleSlotOnlyChange(e.target.checked)}
+                />
+                {t.singleSlotLabel}
+              </label>
             </div>
 
             <div className="catalog-filter-group">
@@ -200,6 +216,7 @@ export function CatalogFilters({
               onClick={() => {
                 onSlotFilterChange(null);
                 onMarketFilterChange("all");
+                onSingleSlotOnlyChange(false);
               }}
             >
               {t.filtersClear}

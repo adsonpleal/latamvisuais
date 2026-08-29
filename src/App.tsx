@@ -213,7 +213,12 @@ function Simulator({ db }: { db: Db }) {
             {t.catalogTitle}
             <InfoTip label={t.catalogInfoLabel} text={t.catalogInfoText} />
           </div>
-          <Catalog slotFilter={slotFilter} onSlotFilterChange={setSlotFilter} pickSignal={pickSignal} />
+          <Catalog
+            slotFilter={slotFilter}
+            onSlotFilterChange={setSlotFilter}
+            pickSignal={pickSignal}
+            keyboardEnabled={!playing}
+          />
         </section>
       </main>
 

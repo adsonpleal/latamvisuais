@@ -8,15 +8,22 @@ import { Catalog } from "./Catalog";
 
 // The catalogue's slot filter is owned by App; this host mirrors that wiring so
 // the chips and the equip toggling behave as they do in the real tree.
-function CatalogHost() {
+function CatalogHost({ keyboardEnabled = true }: { keyboardEnabled?: boolean }) {
   const [slotFilter, setSlotFilter] = useState<Slot | null>(null);
-  return <Catalog slotFilter={slotFilter} onSlotFilterChange={setSlotFilter} pickSignal={0} />;
+  return (
+    <Catalog
+      slotFilter={slotFilter}
+      onSlotFilterChange={setSlotFilter}
+      pickSignal={0}
+      keyboardEnabled={keyboardEnabled}
+    />
+  );
 }
 
-function renderCatalog() {
+function renderCatalog(props: { keyboardEnabled?: boolean } = {}) {
   return render(
     <StateHarness>
-      <CatalogHost />
+      <CatalogHost {...props} />
     </StateHarness>,
   );
 }
@@ -120,6 +127,28 @@ describe("Catalog", () => {
     expect(tile("Capa D (#400)")).not.toBeVisible();
   });
 
+  it("hides multi-position costumes when asked", async () => {
+    const user = userEvent.setup();
+    renderCatalog();
+
+    await openFilters(user);
+    await user.click(screen.getByRole("checkbox", { name: /uma posição/i }));
+
+    // Conjunto Topo+Meio is the fixture's only two-slot costume.
+    expect(tile("Conjunto Topo+Meio (#500)")).not.toBeVisible();
+    expect(tile("Chapéu A (#100)")).toBeVisible();
+
+    // It narrows the chips rather than replacing them: both still apply.
+    await user.click(
+      within(screen.getByRole("group", { name: "Posição" })).getByRole("button", { name: "Meio" }),
+    );
+    expect(tile("Máscara B (#200)")).toBeVisible();
+    expect(tile("Conjunto Topo+Meio (#500)")).not.toBeVisible();
+
+    await user.click(screen.getByRole("button", { name: "Limpar" }));
+    expect(tile("Conjunto Topo+Meio (#500)")).toBeVisible();
+  });
+
   it("toggles the equipped highlight on click", async () => {
     const user = userEvent.setup();
     renderCatalog();
@@ -132,6 +161,116 @@ describe("Catalog", () => {
 
     await user.click(tile("Chapéu A (#100)"));
     expect(tile("Chapéu A (#100)")).not.toHaveClass("is-equipped");
+  });
+
+  // The fixture's costumes are in array order: Chapéu A, Máscara B, Boca C,
+  // Capa D, Conjunto Topo+Meio, Sem Sprite, Capa com Sprite, Baixo com Sprite.
+  //
+  // jsdom lays out no grid, so `columnsOf` reads one column and up/down are a
+  // single step there — the four keys are all exercised, just not the multi-
+  // column stride, which has no layout to be right about in these tests.
+  describe("arrow keys", () => {
+    // The cursor carries no highlight of its own — the equipped tile already
+    // wears the game's frame — so aria-current is what marks it.
+    const cursor = () => document.querySelector("[aria-current]")?.getAttribute("aria-label");
+
+    it("walks the catalogue from the last clicked item", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await user.click(tile("Chapéu A (#100)"));
+      expect(cursor()).toBe("Chapéu A (#100)");
+
+      await user.keyboard("{ArrowRight}");
+      expect(cursor()).toBe("Máscara B (#200)");
+      expect(tile("Máscara B (#200)")).toHaveClass("is-equipped");
+
+      await user.keyboard("{ArrowDown}");
+      expect(cursor()).toBe("Boca C (#300)");
+      expect(tile("Boca C (#300)")).toHaveClass("is-equipped");
+
+      await user.keyboard("{ArrowLeft}");
+      expect(cursor()).toBe("Máscara B (#200)");
+    });
+
+    it("stops at both ends instead of wrapping", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await user.click(tile("Chapéu A (#100)"));
+      await user.keyboard("{ArrowUp}{ArrowUp}");
+      expect(cursor()).toBe("Chapéu A (#100)");
+
+      await user.keyboard("{ArrowDown>8/}");
+      expect(cursor()).toBe("Baixo com Sprite de Capa (#800)");
+    });
+
+    // The regression a plain toggleEquip would cause: stepping onto something
+    // already worn would take it off instead of moving to it.
+    it("keeps an already-equipped item on when the cursor lands back on it", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      // Two different slots, so both stay on: top, then mid.
+      await user.click(tile("Chapéu A (#100)"));
+      await user.keyboard("{ArrowRight}");
+      expect(tile("Chapéu A (#100)")).toHaveClass("is-equipped");
+      expect(tile("Máscara B (#200)")).toHaveClass("is-equipped");
+
+      await user.keyboard("{ArrowLeft}");
+      expect(tile("Chapéu A (#100)")).toHaveClass("is-equipped");
+    });
+
+    it("steps over what the filter hides", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      // "Capa" matches Capa D and Capa com Sprite de Acessório, nothing between.
+      await user.type(screen.getByRole("searchbox"), "capa");
+      await user.click(tile("Capa D (#400)"));
+      await user.keyboard("{ArrowRight}");
+
+      expect(cursor()).toBe("Capa com Sprite de Acessório (#700)");
+    });
+
+    it("leaves the caret keys to the search box", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await user.click(tile("Chapéu A (#100)"));
+      await user.click(screen.getByRole("searchbox"));
+      await user.keyboard("{ArrowRight}{ArrowDown}");
+
+      expect(cursor()).toBe("Chapéu A (#100)");
+      expect(tile("Máscara B (#200)")).not.toHaveClass("is-equipped");
+    });
+
+    // A click leaves focus on the tile, and the browser marks it focus-visible
+    // as soon as a key is pressed — so it would wear a ring while the cursor
+    // walked away from it. The arrows are bound to the document, not to it.
+    it("lets go of the clicked tile's focus once the cursor moves on", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await user.click(tile("Chapéu A (#100)"));
+      expect(document.activeElement).toBe(tile("Chapéu A (#100)"));
+
+      await user.keyboard("{ArrowRight}");
+      expect(cursor()).toBe("Máscara B (#200)");
+      expect(document.activeElement).not.toBe(tile("Chapéu A (#100)"));
+      expect(document.activeElement).toBe(document.body);
+    });
+
+    it("stays out of the way while the map sim is up", async () => {
+      const user = userEvent.setup();
+      renderCatalog({ keyboardEnabled: false });
+
+      await user.click(tile("Chapéu A (#100)"));
+      await user.keyboard("{ArrowRight}");
+
+      expect(cursor()).toBe("Chapéu A (#100)");
+      expect(tile("Máscara B (#200)")).not.toHaveClass("is-equipped");
+    });
   });
 
   it("shows the empty message only when nothing matches", async () => {

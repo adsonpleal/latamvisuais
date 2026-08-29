@@ -9,6 +9,10 @@
 // scrollbar still measures the whole list.
 //
 // Prices follow the same window, rounded out to the API's 100-id chunks.
+//
+// The filtered array arrives ready-made from Catalog, which also owns the
+// keyboard cursor; all this view adds is scrolling that cursor back into range,
+// which it has to do arithmetically because the target row may not be mounted.
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import type { Costume } from "../core/db";
@@ -16,7 +20,7 @@ import { divinePrideUrl, marketItemUrl } from "../core/links";
 import { CHUNK, formatZeny, type PriceState } from "../core/market";
 import { useRowPrices } from "../hooks/useRowPrices";
 import { t } from "../i18n";
-import { useAppState, useDispatch } from "../state/AppStateContext";
+import { useAppState } from "../state/AppStateContext";
 import { CostumeIcon } from "./CostumeIcon";
 import { Cart } from "./icons";
 
@@ -27,15 +31,17 @@ const OVERSCAN = 4;
 const ROW_PITCH = 64;
 
 type Props = {
+  /** The filtered items in display order — the window indexes this. */
   items: Costume[];
-  shown: boolean[];
+  /** Id of the row the arrow keys move from, or null before anything is picked. */
+  cursorId: number | null;
+  onPick: (item: Costume, el: HTMLElement) => void;
   /** Bumps when a slot card opened the catalogue: scroll back to the top. */
   pickSignal: number;
 };
 
-export function CatalogList({ items, shown, pickSignal }: Props) {
+export function CatalogList({ items, cursorId, onPick, pickSignal }: Props) {
   const state = useAppState();
-  const dispatch = useDispatch();
   const listRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef(0);
   // The window's own coordinates, not the scroller's: `scrollTop` changes every
@@ -45,9 +51,7 @@ export function CatalogList({ items, shown, pickSignal }: Props) {
   const [count, setCount] = useState(OVERSCAN * 2);
   const [pitch, setPitch] = useState(ROW_PITCH);
 
-  // The rows that pass the filters, in display order — the window indexes this.
-  const visible = useMemo(() => items.filter((_, i) => shown[i]), [items, shown]);
-  const total = visible.length;
+  const total = items.length;
   const start = Math.min(first, Math.max(0, total - count));
   const end = Math.min(total, start + count);
 
@@ -56,10 +60,10 @@ export function CatalogList({ items, shown, pickSignal }: Props) {
   const priceOf = useRowPrices(
     useMemo(
       () =>
-        visible
+        items
           .slice(Math.floor(start / CHUNK) * CHUNK, Math.ceil(end / CHUNK) * CHUNK)
           .map((item) => item.id),
-      [visible, start, end],
+      [items, start, end],
     ),
   );
 
@@ -105,6 +109,30 @@ export function CatalogList({ items, shown, pickSignal }: Props) {
     if (listRef.current) listRef.current.scrollTop = 0;
   }, [pickSignal]);
 
+  // Keep the keyboard cursor in view. Computed from the pitch rather than by
+  // scrolling to the element, because the row the cursor just moved to is very
+  // often one of the ones this view hasn't mounted. Only moves the scroller when
+  // the row is actually outside it, so walking down the middle doesn't jump.
+  useEffect(() => {
+    const el = listRef.current;
+    if (!el || cursorId === null) return;
+    const index = items.findIndex((item) => item.id === cursorId);
+    if (index < 0) return;
+    const top = index * pitch;
+    if (top < el.scrollTop) el.scrollTop = top;
+    else if (top + pitch > el.scrollTop + el.clientHeight) {
+      el.scrollTop = top + pitch - el.clientHeight;
+    } else return;
+    // Move the window to match instead of waiting for the scroll event our own
+    // assignment will raise: the row being navigated to is often one that isn't
+    // mounted, and it should exist by the time the cursor lands on it.
+    sync();
+    // `items`/`pitch` are read, not watched: a filter change repositions through
+    // the effect above, and re-running here on every price tick would fight the
+    // user's own scrolling.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cursorId]);
+
   // Rows are uniform, so the distance between two of them places every spacer.
   // Measured rather than assumed because the height comes from the font and the
   // gap from CSS — reading it here is what keeps the two from having to agree by
@@ -144,7 +172,7 @@ export function CatalogList({ items, shown, pickSignal }: Props) {
             load-bearing: an empty flex item with no content shrinks to nothing,
             which collapsed the whole scroll extent. */}
         <div style={{ height: start * pitch, flexShrink: 0 }} aria-hidden="true" />
-        {visible.slice(start, end).map((item) => {
+        {items.slice(start, end).map((item) => {
           const equipped = item.slots.every((s) => state.equipped[s]?.id === item.id);
           const price: PriceState = priceOf(item.id);
           return (
@@ -152,6 +180,9 @@ export function CatalogList({ items, shown, pickSignal }: Props) {
               key={item.id}
               className={equipped ? "catalog-row is-equipped" : "catalog-row"}
               role="listitem"
+              // The arrow keys' current row — marked, not highlighted; see the
+              // matching tile in Catalog.
+              aria-current={item.id === cursorId ? true : undefined}
               onPointerOver={nameTip}
             >
               {/* Empty and stretched over the whole row, so any part of the tile
@@ -164,7 +195,7 @@ export function CatalogList({ items, shown, pickSignal }: Props) {
                 className="catalog-row-pick"
                 aria-pressed={equipped}
                 aria-label={`${item.name} (#${item.id})`}
-                onClick={() => dispatch({ type: "toggleEquip", item })}
+                onClick={(e) => onPick(item, e.currentTarget)}
               />
               <CostumeIcon item={item} className="catalog-row-icon" />
               <span className="catalog-row-text">
