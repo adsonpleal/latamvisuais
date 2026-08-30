@@ -7,6 +7,9 @@
 //   https://assets.latam-tools.com.br/raw/classes.json
 //   https://assets.latam-tools.com.br/raw/hair.json
 //   https://assets.latam-tools.com.br/raw/items.json
+// plus the effect-costume catalogue it publishes next to those, read here only
+// to know which items to leave to it:
+//   https://assets.latam-tools.com.br/effects/index.json
 // That replaces the old in-repo extractor (tools/build-db.mjs + tools/lua51.mjs,
 // now removed) — no GRF reader, no Lua 5.1 VM and no installed client here.
 //
@@ -230,6 +233,14 @@ export function buildHair(rawHair) {
 // client's .str system rather than as a body sprite; they're dropped here and
 // served separately by ragassets' /effects/index.json, which src/core/db.ts
 // merges in at runtime.
+//
+// A missing view is not the only way to be an effect, though: "[Visual] Aura
+// Nevada" (480097) is served as the c_snow_powder .str AND carries robe view
+// 100, because Gravity's robe table names that folder even though it holds no
+// usable sprite (no folder-root .spr — only per-job leftovers from the template
+// it was copied from). Keeping it here put the costume in the catalogue twice,
+// once as an effect and once as an entry that renders nothing. So the effects
+// index gets the final say: anything it claims is dropped here, view or not.
 // ---------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------
@@ -287,12 +298,14 @@ export function slotsFromDesc(desc) {
   return slots;
 }
 
-export function buildCostumes(rawItems) {
+export function buildCostumes(rawItems, effectIds = new Set()) {
   const out = [];
   for (const raw of rawItems) {
     const it = applyItemTextOverride(raw);
     if (!it.costume && !isVisualDesc(it.description)) continue;
     if (!it.name || !it.equipSlots?.length) continue;
+    // Served by /effects/index.json instead — see the note above.
+    if (effectIds.has(it.id)) continue;
     // `spriteView`, not `view`: the latter is the literal `ClassNum`, which many
     // newer costumes ship as 0. ragassets recovers those from the item's
     // resource name via the client's accessory/robe name tables and publishes
@@ -333,13 +346,14 @@ async function main(argv) {
   const outDir = resolve(args.out ?? DEFAULT_OUT);
   mkdirSync(outDir, { recursive: true });
 
-  const [rawClasses, rawHair, rawItems] = await Promise.all(
-    ["classes", "hair", "items"].map((n) => loadTable(n, args)),
-  );
+  const [rawClasses, rawHair, rawItems, effectIds] = await Promise.all([
+    ...["classes", "hair", "items"].map((n) => loadTable(n, args)),
+    loadEffectIds(args),
+  ]);
 
   const classes = buildClasses(rawClasses, CLASS_CATALOG);
   const hair = buildHair(rawHair);
-  const costumes = buildCostumes(rawItems);
+  const costumes = buildCostumes(rawItems, effectIds);
 
   // Compact JSON (no pretty-print) keeps the bundled files small.
   for (const [name, doc] of [["classes", { classes }], ["hair", hair], ["costumes", { items: costumes }]]) {
@@ -391,6 +405,35 @@ export async function loadTable(name, args) {
     process.exit(1);
   }
   return res.json();
+}
+
+// The ids of the effect-only costumes, so buildCostumes can leave them to
+// /effects/index.json. It sits next to /raw rather than inside it, in both
+// layouts: over HTTP it's a sibling path, and `--input <resources>/raw` means
+// the file is `<resources>/effects/index.json`. Failing loud beats shipping a
+// catalogue with an item in it twice.
+export async function loadEffectIds(args) {
+  const at = args.input
+    ? join(resolve(args.input), "..", "effects", "index.json")
+    : new URL("../effects/index.json", `${args.url ?? `${RAGASSETS_BASE}/raw`}/`).href;
+  let doc;
+  if (args.input) {
+    if (!existsSync(at)) {
+      console.error(`not found: ${at}`);
+      process.exit(1);
+    }
+    console.log(`Reading ${at}`);
+    doc = JSON.parse(readFileSync(at, "utf8"));
+  } else {
+    console.log(`Fetching ${at}`);
+    const res = await fetch(at);
+    if (!res.ok) {
+      console.error(`HTTP ${res.status} fetching ${at}`);
+      process.exit(1);
+    }
+    doc = await res.json();
+  }
+  return new Set((doc.items ?? []).map((i) => i.id));
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

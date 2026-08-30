@@ -51,6 +51,10 @@ npm run sync:db -- --input C:/Users/adson/dev/ragassets/resources/raw
 node tools/extract-pet-eggs.mjs --input C:/Users/adson/dev/ragassets/resources/raw
 ```
 
+`--input` also reaches the effects index next door, at
+`<dir>/../effects/index.json` — so point it at `resources/raw`, not somewhere the
+two have been separated.
+
 `--url <base>` points at a different `/raw` instead. To move the whole pipeline
 — tables *and* renders — to another instance, set `RAGASSETS_BASE`; all three
 tools honour it.
@@ -104,6 +108,13 @@ world-effect system, never as a body sprite. `sync:db` drops them here on
 purpose; `src/core/db.ts` merges them back at *runtime* from ragassets'
 `/effects/index.json` for the map simulator. Don't try to re-add them to
 `costumes.json`.
+
+A missing view isn't the only way in, though, so `sync:db` reads that same
+`/effects/index.json` and drops **every id it lists**, view or not. "[Visual]
+Aura Nevada" (480097) is the reason: it's the `c_snow_powder` effect *and*
+carries robe view 100, so it used to land in both lists and show up twice in the
+picker. If the effects index is unreachable the sync fails loudly rather than
+shipping a catalogue with duplicates.
 
 **`npm run sync:db -- --input …`** — the `--` matters, otherwise npm eats the
 flag.

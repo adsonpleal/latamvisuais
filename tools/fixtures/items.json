@@ -132,6 +132,22 @@
     "costume": true
   },
   {
+    "id": 480097,
+    "name": "[Visual] Aura Nevada",
+    "slots": 0,
+    "aegisName": "C_Snow_Powder",
+    "resourceName": "C_Snow_Powder",
+    "description": "Tipo: ^777777Visual^000000\nEquipa em: ^777777Capa^000000",
+    "view": 0,
+    "spriteView": 100,
+    "spriteBlank": false,
+    "viewKind": "garment",
+    "equipSlots": [
+      "garment"
+    ],
+    "costume": true
+  },
+  {
     "id": 480177,
     "name": "Buquê Gigantesco",
     "slots": 0,

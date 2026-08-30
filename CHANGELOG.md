@@ -4,6 +4,79 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.13.1] — 2026-08-30
+
+[Issue a48SVvjRCkmnyoSDTril](https://issues.latam-tools.com.br/t/a48SVvjRCkmnyoSDTril)
+(reported anonymously — no `autor` on the card, so no credit line in
+`changelog.ts`): "Visual Cetro da Realeza mostra a Mochila da Aventura nas
+costas do personagem".
+
+### Fixed
+
+- **The wrong-sprite garments, fixed upstream in ragassets.** Nothing in this
+  repo — recorded here because it closes a class of report that had been filed
+  three times. Gravity builds each `로브/<garment>/` folder by copying the
+  모험가배낭 (Adventurer's Backpack) folder, replacing every per-job `.act` and
+  the folder-root `.spr` but leaving the per-job `.spr` files as backpack
+  leftovers; the client pairs the per-job act with the root spr and never reads
+  them. `GarmentCandidates` offered `{per-job act, per-job spr}` before
+  `{per-job act, root spr}`, so it composited the leftover. The 4th classes were
+  the only ones rendering correctly, because their folder entries are act-only
+  and fell through to the root spr. Verified against the GRF with
+  `extract-grf.mjs --dump`: extraction was byte-faithful, the leftovers are
+  really shipped. The backpack spr (md5 `a10ff3de…`, 5084 B, identical to
+  `모험가배낭/모험가배낭.spr`) held **1564** per-job slots across the 218 robe
+  folders; six garments were wrecked — `c_scepter` (view 97), `c_evil_scythe`
+  (79), `c_sakura_wing` (83), `c_snow_powder` (100), `c_giantcatbag_jp_bl` (80),
+  `c_ice_wing` (71) — of which the first four are in this catalogue. The
+  remaining 11 folders had 2–5 stale slots each, all cart/bag/pet job variants
+  the simulator doesn't offer. This also explains the older "Foice Maligna"
+  report and the reason-3 note in the triage list.
+- **`480097 [Visual] Aura Nevada` is no longer in the catalogue twice**
+  (`costumes.json` 1191 → 1190). It is the `c_snow_powder` `.str` effect *and*
+  carries robe view 100, because Gravity's robe table names that folder even
+  though it holds no usable sprite — no folder-root `.spr`, only the per-job
+  leftovers above. So `buildCostumes` kept it while `/effects/index.json` also
+  listed it, and `core/db.ts` concatenates the two. The duplicate was invisible
+  until now: the sprite entry used to render a backpack rather than nothing.
+
+### Changed
+
+- **`buildCostumes(rawItems, effectIds)`** drops every id `/effects/index.json`
+  lists, view or not. A missing view was only ever a *proxy* for "this is an
+  effect"; the effects index is the actual answer, and it now has the final say.
+  New `loadEffectIds()` reads it as a sibling of `/raw` in both layouts — over
+  HTTP, and under `--input <resources>/raw` as `<resources>/effects/index.json`
+  — and exits non-zero if it can't, since silently proceeding reintroduces the
+  duplicate.
+- **`core/db.ts` versions the effects-index fetch** (`?v=${CACHE_BUST}`), the
+  same trick the map manifests use. ragassets serves that file with
+  `max-age=31536000, immutable` while its content changes; caught live, where a
+  plain `fetch` returned the 24-item index and `cache: "reload"` returned 25.
+  Harmless before, lossy now: `sync-db` removes those ids from `costumes.json`,
+  so a browser pinned to a stale index would lose every effect costume added
+  since, with nothing else listing them.
+- **`tools/sync-db.test.mjs` runs again** — 21 tests, having been dead since it
+  was written. A `strip-shebang` Vite plugin (`enforce: "pre"`) blanks the
+  leading `#!` line of `.mjs` at transform time, which Vite otherwise hands to
+  the loader verbatim. Replaced with an empty line rather than deleted, so line
+  numbers survive into stack traces. This is the fix 0.12.1's notes left to the
+  repo owner; the alternative — dropping the shebang from `sync-db.mjs` — would
+  have singled out one of the five scripts in `tools/` that carry one.
+
+### Notes
+
+- `public/db/costumes.json` is a full re-sync (`sync:db --input` against the
+  local ragassets checkout, then `verify-previews.mjs`), not a hand edit. The
+  diff is exactly the one removed row: no other item added, removed or changed,
+  and the 13 blank costumes `verify-previews` prunes are still pruned.
+- The garment fix was verified by rendering **all 135** garment costumes ×
+  jobs 1 / 4008 / 4252 back-facing and hashing the PNGs: zero render as the
+  backpack, zero HTTP errors, and the garments with legitimately per-job image
+  banks (`c_giant_white_rabbit`, `c_niflheim_key`, `c_samba_carnival`,
+  `c_hooked_straw_hat`) are untouched — the upstream rule didn't over-reach into
+  the 201 healthy folders.
+
 ## [0.13.0] — 2026-08-29
 
 Both halves of [issues gJlUZhCjswimVssz9KZl](https://issues.latam-tools.com.br/t/gJlUZhCjswimVssz9KZl)

@@ -14,6 +14,15 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.13.1",
+    date: "2026-08-30",
+    changes: [
+      "Três visuais de Capa apareciam como uma Mochila da Aventura nas costas do personagem, em vez do desenho deles: Cetro da Realeza, Foice Maligna e Asas de Sakura. Agora aparecem certos, em qualquer classe.",
+      "O motivo era do lado do jogo: cada visual de Capa tem um desenho para cada classe, e o jogo monta esses arquivos copiando os de um visual que já existe — no caso, o da Mochila da Aventura. Nesses três, algumas cópias ficaram para trás sem serem trocadas pelo desenho novo. O jogo ignora as sobras; quem desenha os personagens aqui é que estava pegando as sobras em vez do desenho certo.",
+      "A Aura Nevada aparecia duas vezes na lista, e uma delas não mostrava nada na prévia. Ficou só a certa — a que aparece no simulador de mapas, que é onde esse tipo de aura é desenhado.",
+    ],
+  },
+  {
     version: "0.13.0",
     date: "2026-08-29",
     changes: [

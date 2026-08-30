@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "id": 5979,
+      "name": "[Visual] Penas Encantadas",
+      "slots": ["low"],
+      "effect": "angel_fluttering"
+    },
+    {
+      "id": 480097,
+      "name": "[Visual] Aura Nevada",
+      "slots": ["garment"],
+      "effect": "c_snow_powder"
+    }
+  ]
+}

@@ -104,7 +104,8 @@ describe("buildHair", () => {
 
 describe("buildCostumes", () => {
   const rawItems = fixture("items");
-  const items = buildCostumes(rawItems);
+  const effectIds = new Set(fixture("effects").items.map((i) => i.id));
+  const items = buildCostumes(rawItems, effectIds);
   const byId = Object.fromEntries(items.map((i) => [i.id, i]));
 
   it("keeps only renderable visual items, sorted by id", () => {
@@ -121,6 +122,17 @@ describe("buildCostumes", () => {
     expect(byId[5979]).toBeUndefined(); // no spriteView — a .str world effect, served by /effects
     expect(byId[5981]).toBeUndefined(); // no name
     expect(byId[15280]).toBeUndefined(); // no visual slot (its "Posição" is Armadura)
+  });
+
+  it("leaves an effect costume to /effects even when it kept a view", () => {
+    // 480097 "Aura Nevada" is the c_snow_powder .str, but the robe table names
+    // that folder, so it arrives with spriteView 100 and passes every other
+    // check. Keeping it would list the costume twice in the catalogue — once as
+    // the effect src/core/db.ts merges in, once as an entry that draws nothing.
+    expect(rawItems.find((i) => i.id === 480097).spriteView).toBe(100);
+    expect(byId[480097]).toBeUndefined();
+    // And without the index it would still be there, so the drop is this rule's.
+    expect(buildCostumes(rawItems).some((i) => i.id === 480097)).toBe(true);
   });
 
   it("maps equipSlots onto slots, including multi-slot costumes", () => {
