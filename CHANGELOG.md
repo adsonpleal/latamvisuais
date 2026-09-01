@@ -4,6 +4,32 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.13.2] — 2026-09-01
+
+Routine `public/db` re-sync against ragassets. `classes.json` and `hair.json`
+came out byte-identical; the whole game-data diff is three costume entries.
+
+### Added
+
+- **`480252 [Visual] Asas Colossais`** (`C_Mystical_Wing`, garment view 156,
+  slot Capa). `costumes.json` 1190 → 1191.
+
+### Changed
+
+- **Two costumes moved slot upstream**, matching their own item descriptions
+  ("Equipa em:"): `31473 [Visual] Bebum` Meio → Baixo, and
+  `31480 [Visual] Gioia Dorminhoco` Baixo → Meio. Both keep their views (1724,
+  1730) — only `equipSlots` changed in `/raw/items.json`.
+- `verify-previews.mjs` pruned the same 13 of 1204 as last run; nothing was
+  removed or renamed relative to `0.13.1`.
+- `extract-pet-eggs.mjs` reports **no change** as success. It compared the
+  rewritten source against the original and exited 1 with "No PETS entries
+  matched" whenever they were equal — which is the expected outcome of any sync
+  that doesn't rename an egg, so the documented three-command workflow ended in
+  a spurious failure. It now fails only on *zero* regex matches (the real
+  format-drift signal) and skips the write when the content is unchanged. All
+  107 entries matched and resolved against `/raw/items.json`, 0 fallbacks.
+
 ## [0.13.1] — 2026-08-30
 
 [Issue a48SVvjRCkmnyoSDTril](https://issues.latam-tools.com.br/t/a48SVvjRCkmnyoSDTril)

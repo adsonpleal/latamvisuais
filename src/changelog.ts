@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.13.2",
+    date: "2026-09-01",
+    changes: [
+      "Catálogo atualizado com a versão mais recente do jogo. Entrou um visual novo: as Asas Colossais, de Capa.",
+      "Dois visuais trocaram de posição, acompanhando o jogo: o Bebum saiu de Meio para Baixo, e o Gioia Dorminhoco saiu de Baixo para Meio. Nada mais mudou — nenhum visual saiu da lista e nenhum nome foi corrigido.",
+    ],
+  },
+  {
     version: "0.13.1",
     date: "2026-08-30",
     changes: [

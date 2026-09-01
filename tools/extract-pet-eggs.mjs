@@ -40,9 +40,14 @@ const out = src.replace(line, (_m, mob, egg, name) => {
   const esc = finalName.replace(/"/g, '\\"');
   return `{ mob: ${mob}, egg: ${egg}, name: "${name}", eggName: "${esc}" },`;
 });
-if (out === src) {
+// An unchanged file is the normal outcome of a routine sync; only *zero matches*
+// means the array format drifted away from the regex.
+if (total === 0) {
   console.error("No PETS entries matched — check the array format in src/sim/pets.ts");
   process.exit(1);
 }
-writeFileSync(PETS_TS, out);
-console.log(`Updated ${total} pet egg names (${missing} fell back to "Ovo de <monster>").`);
+if (out !== src) writeFileSync(PETS_TS, out);
+console.log(
+  `${out === src ? "Checked" : "Updated"} ${total} pet egg names ` +
+    `(${missing} fell back to "Ovo de <monster>").`,
+);
