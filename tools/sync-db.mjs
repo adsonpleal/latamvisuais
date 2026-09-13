@@ -266,6 +266,18 @@ export const ITEM_TEXT_OVERRIDE = {
   },
 };
 
+// ---------------------------------------------------------------------------
+// Costumes the client ships but the catalogue must not offer.
+//
+// 31052 "[Visual] Máscara do Alquimista" (C_Alchemist_Mask) says "Topo, Meio e
+// Baixo", which is wrong: the mask players actually get is 31578
+// (C_Alchemist_Mask_V, "Meio e Baixo", same view 1497), and listing both put an
+// identical tile in the grid that swallowed the Topo slot (issue
+// IMWcnEBqBgcIQWyTnQ86).
+// ---------------------------------------------------------------------------
+
+export const HIDDEN_COSTUMES = new Set([31052]);
+
 /** A raw item with any blank name/description filled in from
  *  ITEM_TEXT_OVERRIDE, and `equipSlots` re-derived from the substituted
  *  description — upstream could only parse those out of a description it didn't
@@ -304,6 +316,7 @@ export function buildCostumes(rawItems, effectIds = new Set()) {
     const it = applyItemTextOverride(raw);
     if (!it.costume && !isVisualDesc(it.description)) continue;
     if (!it.name || !it.equipSlots?.length) continue;
+    if (HIDDEN_COSTUMES.has(it.id)) continue;
     // Served by /effects/index.json instead — see the note above.
     if (effectIds.has(it.id)) continue;
     // `spriteView`, not `view`: the latter is the literal `ClassNum`, which many

@@ -14,6 +14,16 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.15.1",
+    date: "2026-09-13",
+    changes: [
+      "A Cesta de Pitaya Vermelha voltou a ser vermelha no personagem — ela aparecia com a cesta verde em quase todas as classes.",
+      "Pelo mesmo motivo, a Prancha de Surf Azul mostrava a Prancha de Surf Poring em algumas classes femininas. Também corrigido.",
+      "A Máscara do Alquimista aparecia duas vezes no catálogo, e uma delas ocupava também o Topo. Ficou só a certa, que ocupa Meio e Baixo.",
+    ],
+    credit: "Obrigado a Tasso, que reportou a Máscara do Alquimista.",
+  },
+  {
     version: "0.15.0",
     date: "2026-09-09",
     changes: [

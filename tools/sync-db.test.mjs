@@ -142,6 +142,19 @@ describe("buildCostumes", () => {
     expect(buildCostumes(rawItems).some((i) => i.id === 480097)).toBe(true);
   });
 
+  it("drops the costumes pinned as hidden", () => {
+    // 31052 is the wrong-slotted twin of 31578 "[Visual] Máscara do Alquimista".
+    const mask = (id, equipSlots) => ({
+      id,
+      name: "[Visual] Máscara do Alquimista",
+      costume: true,
+      equipSlots,
+      spriteView: 1497,
+    });
+    const out = buildCostumes([mask(31052, ["top", "mid", "low"]), mask(31578, ["mid", "low"])]);
+    expect(out.map((i) => i.id)).toEqual([31578]);
+  });
+
   it("maps equipSlots onto slots, including multi-slot costumes", () => {
     expect(byId[5105].slots).toEqual(["top"]);
     expect(byId[19424].slots).toEqual(["mid", "low"]);

@@ -4,6 +4,45 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.15.1] — 2026-09-13
+
+[Issue HX3o1UWThsq827hxGHhg](https://issues.latam-tools.com.br/t/HX3o1UWThsq827hxGHhg)
+(reported anonymously — no author on the card, so no credit line in
+`changelog.ts`): "Cesta de Pitaya Vermelha está com o sprite da Cesta de Pitaya
+Verde quando equipada no personagem".
+
+### Fixed
+
+- **Garments that rendered as a sibling garment, fixed upstream in ragassets.**
+  Nothing in this repo changes but the version, which is the point: renders are
+  served `immutable`, so `CACHE_BUST` has to move for browsers to fetch the
+  corrected images. The catalogue was already right — 20627 carries view 245 and
+  480181 view 129 — but `garment=245` returned bytes identical to `garment=129`.
+
+  Same class as 0.13.1's backpack leftovers, with a donor too rare for that rule:
+  Gravity built `로브/c_pitaya_r_bag/` by copying `c_pitaya_g_bag/` and replacing
+  only the folder-root `.spr`, so 343 of its 355 per-job sprites are the green
+  basket (only the alitea/druid/karnos bodies were red). ragassets'
+  `--prune-robes` now also removes a per-job sprite when the folder has its own
+  root `.spr` and that slot matches a different garment's artwork. In this
+  catalogue it also fixes 480321 Prancha de Surf Azul (view 180; 21 female
+  2nd/3rd-job slots drew the Poring board) and 480058 Asas Áureas de Arcanjo
+  (view 75; two mounted slots). Outside it: 480278 Asas de Garuda (160) drew
+  Angel Ribbon's white wings instead of its red ones.
+
+- **31052 [Visual] Máscara do Alquimista is hidden from the catalogue**
+  (`costumes.json` 1191 → 1190).
+  [Issue IMWcnEBqBgcIQWyTnQ86](https://issues.latam-tools.com.br/t/IMWcnEBqBgcIQWyTnQ86)
+  (Tasso): "Esse visual só é meio e baixo". The client ships two items with that
+  exact name and view 1497: 31052 `C_Alchemist_Mask` claiming Topo, Meio e
+  Baixo, and 31578 `C_Alchemist_Mask_V` in Meio e Baixo — the one players
+  have. 31052 is wrong, and in the icon grid the two tiles were identical, so
+  picking it also took the Topo slot. New `HIDDEN_COSTUMES` set in
+  `tools/sync-db.mjs` drops it on every sync; `costumes.json` is a full
+  re-sync + `verify-previews`, and the diff is exactly that row. A saved build
+  or share link holding 31052 just loses the mask (unknown ids are skipped on
+  decode).
+
 ## [0.15.0] — 2026-09-09
 
 World effects on the 2D character preview. Auras, falling petals and the
