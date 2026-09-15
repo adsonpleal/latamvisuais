@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.15.2",
+    date: "2026-09-15",
+    changes: [
+      "Catálogo atualizado com a versão mais recente do jogo. Entraram três visuais novos: os Cetros do Mau-Olhado e o Poring Enfermeiro, de Meio, e a Pipoqueira Ornamental, de Capa.",
+      "Alguns nomes foram corrigidos, acompanhando o jogo: a Naga Tailandesa agora se chama Naga de Ayothaya, e a Mochila do Doram Aventureiro, as Asas Amaldiçoadas de Valquíria e a Fênix Gloriosa ganharam o \"[Visual]\" no nome, como os demais.",
+    ],
+  },
+  {
     version: "0.15.1",
     date: "2026-09-13",
     changes: [

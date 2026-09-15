@@ -4,6 +4,31 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.15.2] — 2026-09-15
+
+Routine `public/db` re-sync against ragassets (`sync:db`, then
+`verify-previews.mjs`, then `extract-pet-eggs.mjs`). `classes.json`,
+`hair.json`, `stones.json` and `src/sim/pets.ts` came out unchanged; the whole
+game-data diff is `costumes.json`.
+
+### Added
+
+- **Three costumes.** `costumes.json` 1190 → 1193.
+  - `410286 [Visual] Cetros do Mau-Olhado` — mid, view 2450
+  - `410582 [Visual] Poring Enfermeiro` — mid, view 2817
+  - `480659 [Visual] Pipoqueira Ornamental` — garment, view 290
+
+### Changed
+
+- **Five names corrected upstream** (views and slots unchanged):
+  - `15952` Naga Tailandesa → `[Visual] Naga de Ayothaya`
+  - `20618` `[Visual] Mochila de Coelho Angorá ` lost its trailing space
+  - `480110`, `480189`, `480318` gained the `[Visual]` prefix (Mochila do
+    Doram Aventureiro, Asas Amaldiçoadas de Valquíria, Fênix Gloriosa)
+- `verify-previews.mjs` pruned 30 of 1223 — the same set as before (every
+  previously kept costume survived; the three additions all render).
+  107 pet eggs matched, 0 fallbacks.
+
 ## [0.15.1] — 2026-09-13
 
 [Issue HX3o1UWThsq827hxGHhg](https://issues.latam-tools.com.br/t/HX3o1UWThsq827hxGHhg)
