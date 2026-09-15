@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.16.0",
+    date: "2026-09-15",
+    changes: [
+      "Chegou o MECHA alternativo: Mecânico e Engenheiro ganharam uma terceira opção de montaria, a armadura que se veste no corpo em vez do robô. Ligue a Montaria e escolha entre Rédeas, MECHA e MECHA alternativo — ele aparece na prévia, nos ícones de ação, no download e na visão de mapa.",
+      "Os botões de Ação ficaram um pouco mais baixos. Com a montaria ligada, o painel da prévia rolava em telas de 1080p com a escala do Windows em 125%; agora tudo cabe sem rolar.",
+    ],
+  },
+  {
     version: "0.15.2",
     date: "2026-09-15",
     changes: [

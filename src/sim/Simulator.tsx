@@ -8,7 +8,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Vector3 } from "three";
 import { t } from "../i18n";
-import { CACHE_BUST, effectiveJob, frameCountProbeUrl, type State } from "../core/state";
+import { CACHE_BUST, frameCountProbeUrl, renderBodyKey, type State } from "../core/state";
 import { mountsFor } from "../core/mounts";
 import { SLOTS, type BuiltinEffect, type FootprintSteps } from "../core/db";
 import { useAppState, useDispatch } from "../state/AppStateContext";
@@ -154,7 +154,7 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
 
   // Mounts the current class can ride (see core/mounts.ts). Each gets a toggle
   // button: clicking the active mount dismounts, clicking another switches to it.
-  // Dispatching swaps the rendered job sprite (effectiveJob), which the loop
+  // Dispatching swaps the rendered body sprite (renderBodyKey), which the loop
   // detects and re-probes for the new sprite's frame counts.
   const mounts = mountsFor(state.classId);
   const toggleMount = (i: number) => dispatch({ type: "setMount", mount: state.mount === i ? null : i });
@@ -236,10 +236,11 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
     let aClock = 0;
     let frames: HTMLImageElement[] = [];
     let aInfo: ApngInfo = { count: 1, delays: [] };
-    // Rendered job currently reflected in frameInfo. A mount swaps the job
-    // sprite (effectiveJob), which has its own frame counts/delays, so when it
-    // changes we re-probe and force the animator to rebuild with fresh counts.
-    let aJob = effectiveJob(stateRef.current);
+    // Rendered body sprite currently reflected in frameInfo. A mount swaps the
+    // sprite (renderBodyKey — a job, or the Mado Suit on the same job), which
+    // has its own frame counts/delays, so when it changes we re-probe and force
+    // the animator to rebuild with fresh counts.
+    let aJob = renderBodyKey(stateRef.current);
     const ensureFrames = (action: number, dir: number, st: State, headdir: number) => {
       if (action === aAction && dir === aDir && st === aState && headdir === aHeaddir) return;
       aAction = action;
@@ -395,7 +396,7 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
       effectClock += dt;
       // Mount changed → re-probe the new sprite's frame info, then reset the
       // animator cache so it rebuilds frames with the correct counts.
-      const curJob = effectiveJob(stateRef.current);
+      const curJob = renderBodyKey(stateRef.current);
       if (curJob !== aJob) {
         aJob = curJob;
         probeFrameInfo(stateRef.current).then(() => {

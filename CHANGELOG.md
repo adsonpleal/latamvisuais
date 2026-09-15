@@ -4,6 +4,31 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.16.0] — 2026-09-15
+
+### Added
+
+- **Mado Suit ("MECHA alternativo") mount** for Mecânico (4058) and Engenheiro
+  (4253), as a third entry after Rédeas and MECHA. It is not its own job id:
+  ragassets draws it from the same madogear job (4112 / 4279) with
+  `madogearType=suit` (마도아머 / `meister_madogear2`). `Mount` gained an
+  optional `madogear: "suit"` flag; `state.ts` sets the param on both the
+  render URL and the frame-count probe.
+- `renderBodyKey(state)` — job id plus the suit flag. The map sim re-probes
+  frame counts when this changes; comparing `effectiveJob` alone missed a
+  robot ↔ suit swap, since both share the job id.
+- Share links need no format change: mount index 2 packs as 3, the last value
+  the 2-bit mount field holds.
+
+### Changed
+
+- **Action picker shorter** so the preview panel stops scrolling at
+  1536×864 (1080p @ 125%, fullscreen) with a mount picker showing — it
+  overflowed by 51px. `.action-clip` 60 → 44px, `.actions-row` row gap
+  0.35 → 0.25rem, and `.mount-block` drops its 0.7rem top margin (the
+  `.preview` flex gap already spaces it, as `.actions-block` does). ~11px to
+  spare now.
+
 ## [0.15.2] — 2026-09-15
 
 Routine `public/db` re-sync against ragassets (`sync:db`, then

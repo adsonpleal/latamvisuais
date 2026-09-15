@@ -20,6 +20,12 @@
 // 4000 (see resolve.JobSpriteName), which is what distinguishes a real mount
 // (해태성제, Star Emperor on a Haetae) from a same-sized lookalike (성제융합, its
 // union form).
+//
+// The MECHA has a second body: the Mado Suit (마도아머 / meister_madogear2), a
+// wearable armour instead of the robot. It is NOT its own job id — ragassets
+// draws it from the same madogear job with `madogearType=suit` — so a mount can
+// carry that flag, and anything keyed on the rendered sprite must read
+// renderBodyKey (state.ts), not the job id alone.
 
 export type MountNameKey =
   | "reins"
@@ -27,11 +33,18 @@ export type MountNameKey =
   | "dragon"
   | "griffon"
   | "wolf"
-  | "madogear";
+  | "madogear"
+  | "madosuit";
 
-export type Mount = { jobId: number; nameKey: MountNameKey };
+export type Mount = {
+  jobId: number;
+  nameKey: MountNameKey;
+  /** Render the madogear job as the Mado Suit rather than the robot. */
+  madogear?: "suit";
+};
 
 const reins = (jobId: number): Mount => ({ jobId, nameKey: "reins" });
+const madoSuit = (jobId: number): Mount => ({ jobId, nameKey: "madosuit", madogear: "suit" });
 
 export const MOUNTS: Record<number, Mount[]> = {
   // --- 1st ---
@@ -87,7 +100,7 @@ export const MOUNTS: Record<number, Mount[]> = {
   4056: [reins(4198), { jobId: 4111, nameKey: "wolf" }], // Sentinela — Avestruz / Lobo
   4068: [reins(4148)], // Trovador (Minstrel)
   4069: [reins(4151)], // Musa (Wanderer)
-  4058: [reins(4197), { jobId: 4112, nameKey: "madogear" }], // Mecânico — Javali / Madogear
+  4058: [reins(4197), { jobId: 4112, nameKey: "madogear" }, madoSuit(4112)], // Mecânico — Javali / Madogear / Mado Suit
   4071: [reins(4120)], // Bioquímico (Genetic)
   4059: [reins(4140)], // Sicário (Guillotine Cross)
   4072: [reins(4143)], // Renegado (Shadow Chaser)
@@ -101,7 +114,7 @@ export const MOUNTS: Record<number, Mount[]> = {
   4257: [reins(4270), { jobId: 4278, nameKey: "wolf" }], // Falcão do Vento — / Lobo
   4263: [reins(4276)], // Maestro (Troubadour)
   4264: [reins(4277)], // Diva (Trouvère)
-  4253: [reins(4266), { jobId: 4279, nameKey: "madogear" }], // Engenheiro — / Madogear
+  4253: [reins(4266), { jobId: 4279, nameKey: "madogear" }, madoSuit(4279)], // Engenheiro — / Madogear / Mado Suit
   4259: [reins(4272)], // Cientista (Biolo)
   4254: [reins(4267)], // Executor (Shadow Cross)
   4260: [reins(4273)], // Mandraque (Abyss Chaser)

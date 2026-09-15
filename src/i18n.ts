@@ -131,6 +131,7 @@ export const t = {
     griffon: "Grifo",
     wolf: "Worg",
     madogear: "MECHA",
+    madosuit: "MECHA alternativo",
   },
 
   slotsTitle: "Visuais equipados",

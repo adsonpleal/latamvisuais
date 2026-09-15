@@ -9,6 +9,7 @@ import {
   imageUrl,
   initialState,
   itemIconUrl,
+  renderBodyKey,
   jobIconUrl,
   toggleEquip,
   uiIconUrl,
@@ -83,6 +84,20 @@ describe("imageUrl", () => {
     expect(imageUrl(initialState(db), { canvas: null })).toBe(
       `${BASE}/image?job=0&gender=male&head=1&action=0&headdir=0${V}`,
     );
+  });
+});
+
+describe("mounts", () => {
+  it("renders the Mado Suit as the madogear job plus madogearType=suit", () => {
+    const base: State = { ...initialState(db), classId: 4058 }; // Mecânico
+    const robot = { ...base, mount: 1 };
+    const suit = { ...base, mount: 2 };
+    expect(imageUrl(robot)).toContain("job=4112&");
+    expect(imageUrl(robot)).not.toContain("madogearType");
+    expect(imageUrl(suit)).toContain("job=4112&madogearType=suit&");
+    expect(frameCountProbeUrl(suit)).toContain("job=4112&madogearType=suit&");
+    // Same job, different sprite — the sim keys its frame re-probe on this.
+    expect(renderBodyKey(robot)).not.toBe(renderBodyKey(suit));
   });
 });
 

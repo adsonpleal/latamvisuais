@@ -269,11 +269,27 @@ export function applyBuild(state: State, build: Build): State {
 /** The job id to render for the current state: the mounted job sprite when a
  *  mount is selected (and valid for the class), otherwise the plain class. */
 export function effectiveJob(state: State): number {
-  if (state.mount != null) {
-    const mount = mountsFor(state.classId)[state.mount];
-    if (mount) return mount.jobId;
-  }
-  return state.classId;
+  return mountOf(state)?.jobId ?? state.classId;
+}
+
+/** The selected mount, when one is set and valid for the class. */
+function mountOf(state: State) {
+  return state.mount != null ? mountsFor(state.classId)[state.mount] : undefined;
+}
+
+/** Identity of the rendered body sprite: the job id, plus the Mado Suit flag,
+ *  which draws a different sprite (with its own frame timings) from the same
+ *  madogear job. Compare this, not effectiveJob, to notice a sprite swap. */
+export function renderBodyKey(state: State): string {
+  const madogear = mountOf(state)?.madogear;
+  return madogear ? `${effectiveJob(state)}:${madogear}` : String(effectiveJob(state));
+}
+
+/** Sets the job — plus the Mado Suit flag when that mount is on — on a render. */
+function setBody(p: URLSearchParams, state: State): void {
+  p.set("job", String(effectiveJob(state)));
+  const madogear = mountOf(state)?.madogear;
+  if (madogear) p.set("madogearType", madogear);
 }
 
 export function classOf(db: Db, state: State): ClassInfo | undefined {
@@ -376,7 +392,7 @@ export type RenderOverrides = {
 
 function renderParams(state: State, overrides: RenderOverrides): URLSearchParams {
   const p = new URLSearchParams();
-  p.set("job", String(effectiveJob(state)));
+  setBody(p, state);
   p.set("gender", state.gender === "f" ? "female" : "male");
   p.set("head", String(state.hairStyle));
   if (state.hairColor != null) p.set("headPalette", String(state.hairColor));
@@ -427,7 +443,7 @@ export function gifUrl(state: State, overrides: RenderOverrides = {}): string {
  *  current pose; the map sim passes it explicitly to probe each pose it can show. */
 export function frameCountProbeUrl(state: State, action: number = state.action): string {
   const p = new URLSearchParams();
-  p.set("job", String(effectiveJob(state)));
+  setBody(p, state);
   p.set("gender", state.gender === "f" ? "female" : "male");
   p.set("head", String(state.hairStyle));
   // The alternative outfit is its own .act, so it can time a pose differently
