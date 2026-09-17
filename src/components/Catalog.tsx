@@ -1,6 +1,5 @@
 // Costume catalogue: case- and accent-insensitive search over every costume
-// extracted from the client (name or item id), narrowed by kind, by slot and by
-// what our market knows about the item.
+// extracted from the client (name or item id), narrowed by kind and by slot.
 //
 // "Kind" is costumes vs graphic stones ("Pedras Gráficas"). Both are items you
 // look up, search and buy the same way, so they share one grid and one search
@@ -8,7 +7,7 @@
 // slot, a stone into that slot's enchant (see core/state.ts).
 //
 // Two views share the filtering: a grid of game-frame tiles (icons only, the
-// compact default) and a list of rows with the full name and the current price.
+// compact default) and a list of rows with the full name, id and slot.
 //
 // Items are a grid of game-frame tiles showing each item's icon, with the name +
 // id in the shared tooltip. Clicking a tile equips/unequips it. Tiles stay
@@ -26,10 +25,9 @@ import type { Costume, Slot, Stone } from "../core/db";
 import { hint } from "../core/hints";
 import { persisted } from "../core/prefs";
 import { fold } from "../core/text";
-import { useMarketIds } from "../hooks/useMarketIds";
 import { t } from "../i18n";
 import { useAppState, useDb, useDispatch } from "../state/AppStateContext";
-import { CatalogFilters, type KindFilter, type MarketFilter } from "./CatalogFilters";
+import { CatalogFilters, type KindFilter } from "./CatalogFilters";
 import { CatalogList } from "./CatalogList";
 import { CostumeIcon } from "./CostumeIcon";
 import { Grid, List } from "./icons";
@@ -38,9 +36,6 @@ const VIEWS = ["grid", "list"] as const;
 const viewPref = persisted("latamvisuais.catalogView", VIEWS, "grid");
 
 const arrowHint = hint("arrows");
-
-/** Empty stand-in while the market answer is on its way, so nothing matches. */
-const NONE: ReadonlySet<number> = new Set();
 
 type Props = {
   slotFilter: Slot | null;
@@ -66,20 +61,12 @@ export function Catalog({
   const state = useAppState();
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
-  const [marketFilter, setMarketFilter] = useState<MarketFilter>("all");
   const [singleSlotOnly, setSingleSlotOnly] = useState(false);
-  const [filtersOpen, setFiltersOpen] = useState(false);
   const [view, setView] = viewPref.use();
   const gridRef = useRef<HTMLDivElement>(null);
   // The item the arrow keys move from — set by clicking one. Held as an id so a
   // filter change can't silently repoint it at whatever slid into that index.
   const [cursorId, setCursorId] = useState<number | null>(null);
-
-  // The market request waits for a reason to exist: a filter that needs it, or
-  // the panel being opened (so picking one lands on data that's already there).
-  // Latched, because closing the panel shouldn't throw the answer away.
-  const [marketWanted, setMarketWanted] = useState(false);
-  const market = useMarketIds(marketWanted);
 
   // One array over both kinds, in the order the grid shows them: costumes first,
   // then the stones. Concatenating rather than interleaving keeps the costume
@@ -94,22 +81,9 @@ export function Catalog({
   const haystacks = useMemo(() => all.map((item) => `${fold(item.name)} ${item.id}`), [all]);
 
   const q = fold(query.trim());
-  // The one set the filter asks about, or `null` for "don't ask". A market filter
-  // with no data yet can't answer: while it loads nothing matches (better than
-  // flashing the unfiltered list), and if the service is down the filter stands
-  // aside rather than hiding the whole catalogue.
-  const marketSet =
-    marketFilter === "all" || market.status === "error"
-      ? null
-      : market.status === "ready"
-        ? marketFilter === "seen"
-          ? market.ids.inMarket
-          : market.ids.forSale
-        : NONE;
-
-  // Memoized because it's 1500 items wide and feeds the list's own memos: an
-  // equip (which re-renders through the app state) must not refilter everything
-  // and then invalidate the window and price ids downstream.
+  // Memoized because it's 1500 items wide and feeds `visibleItems`, which the
+  // list windows over: an equip (which re-renders through the app state) must
+  // not refilter everything and hand the list a fresh array.
   const shown = useMemo(
     () =>
       all.map(
@@ -119,10 +93,9 @@ export function Catalog({
           (!slotFilter || item.slots.includes(slotFilter)) &&
           // A stone only ever holds one position, so "só de uma posição" can
           // never exclude one — it exists to hide the Topo+Meio costume sets.
-          (!singleSlotOnly || item.slots.length === 1) &&
-          (!marketSet || marketSet.has(item.id)),
+          (!singleSlotOnly || item.slots.length === 1),
       ),
-    [all, haystacks, q, kindFilter, slotFilter, singleSlotOnly, marketSet],
+    [all, haystacks, q, kindFilter, slotFilter, singleSlotOnly],
   );
   // The filtered items in display order. The list view windows over this, and
   // the arrow keys step through it; both need the same array, so it's built
@@ -224,11 +197,6 @@ export function Catalog({
       ? state.enchants[item.slot]?.id === item.id
       : item.slots.every((s) => state.equipped[s]?.id === item.id);
 
-  // Only while a market filter is on: with none, a failed lookup changes nothing
-  // on screen, and list rows say "preço indisponível" for themselves.
-  const NOTES = { loading: t.marketLoading, error: t.marketError, idle: null, ready: null };
-  const marketNote = marketFilter === "all" ? null : NOTES[market.status];
-
   return (
     <div className="catalog">
       <input
@@ -242,20 +210,10 @@ export function Catalog({
 
       <div className="catalog-toolbar">
         <CatalogFilters
-          open={filtersOpen}
-          onOpenChange={(open) => {
-            setFiltersOpen(open);
-            if (open) setMarketWanted(true);
-          }}
           slotFilter={slotFilter}
           onSlotFilterChange={onSlotFilterChange}
           kindFilter={kindFilter}
           onKindFilterChange={onKindFilterChange}
-          marketFilter={marketFilter}
-          onMarketFilterChange={(filter) => {
-            setMarketFilter(filter);
-            if (filter !== "all") setMarketWanted(true);
-          }}
           singleSlotOnly={singleSlotOnly}
           onSingleSlotOnlyChange={setSingleSlotOnly}
         />
@@ -285,8 +243,6 @@ export function Catalog({
           </button>
         </div>
       </div>
-
-      {marketNote && <div className="catalog-note">{marketNote}</div>}
 
       {view === "list" ? (
         <CatalogList

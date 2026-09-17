@@ -138,10 +138,10 @@ export const t = {
   wishlistButton: "Lista de desejos",
   wishlistTitle: "Lista de desejos",
   wishlistEmpty: "Equipe visuais para vê-los aqui.",
-  wishlistHint: "Toque no nome para ver no Divine-Pride; no carrinho para ver no mercado.",
+  wishlistHint: "Toque no nome para ver no Divine-Pride; no carrinho para buscar no mercado.",
   serverLabel: "Servidor",
   divineLink: "Ver no Divine-Pride",
-  marketSearch: "Ver no mercado",
+  marketSearch: "Buscar no mercado",
   wishlistCount: (n: number) => `(${n})`,
   slotNames: {
     top: "Topo",
@@ -194,17 +194,6 @@ export const t = {
   singleSlotLabel: "Só visuais de uma posição",
   singleSlotTip:
     "Esconde os visuais que ocupam mais de uma posição ao mesmo tempo (um conjunto de Topo + Meio, por exemplo), que ao equipar tiram o que estiver nas outras.",
-  marketFilterLabel: "Mercado",
-  marketAll: "Todos",
-  marketSeen: "Já visto no mercado",
-  marketSelling: "À venda agora",
-  marketAllTip: "Todos os visuais, tenham passado pelo mercado ou não.",
-  marketSeenTip:
-    "Só os visuais que já apareceram em alguma coleta do mercado — mesmo que ninguém esteja vendendo agora.",
-  marketSellingTip:
-    "Só os visuais com pelo menos uma loja vendendo neste momento, na última coleta do mercado.",
-  marketLoading: "Consultando o mercado…",
-  marketError: "Mercado indisponível — filtro de mercado ignorado.",
   viewGrid: "Grade",
   viewList: "Lista",
 
@@ -213,15 +202,6 @@ export const t = {
   hintDetach: "Dica: destaque a prévia para trocar de visual sem fechar",
   hintArrowsGrid: "Dica: use ↑ ↓ ← → para ir para o próximo visual",
   hintArrowsList: "Dica: use ↑ ↓ para ir para o próximo visual",
-  // The cheapest open shop is *the* price — spelling out "a partir de" only
-  // padded every row with words that said nothing extra.
-  priceFrom: (price: string, stores: number) =>
-    `${price} z · ${stores} ${stores === 1 ? "loja" : "lojas"}`,
-  priceAvg: (price: string, sold: number) =>
-    `Média ${price} z · ${sold} vendido${sold === 1 ? "" : "s"}`,
-  priceNoOffers: "Sem ofertas agora",
-  priceNeverSeen: "Nunca visto no mercado",
-  priceUnavailable: "Preço indisponível",
 
   groups: {
     novice: "Aprendiz",

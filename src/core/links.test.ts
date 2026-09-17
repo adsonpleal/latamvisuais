@@ -1,15 +1,20 @@
 import { describe, expect, it } from "vitest";
-import { divinePrideUrl, marketItemUrl, MARKET_BASE } from "./links";
+import { divinePrideUrl, marketUrl } from "./links";
 
-describe("marketItemUrl", () => {
-  it("points at the item's page on our market, by id", () => {
-    // `?item=` over the market's own tab route: it opens the item on any of
-    // them, and an id can't be misread the way a name search could.
-    expect(marketItemUrl(502)).toBe(`${MARKET_BASE}/mercado?item=502`);
+describe("marketUrl", () => {
+  it("searches the official market by name, on the chosen server", () => {
+    const url = new URL(marketUrl({ name: "Chapéu A" }, "NIDHOGG"));
+    expect(url.origin + url.pathname).toBe(
+      "https://ro.gnjoylatam.com/pt/intro/shop-search/trading",
+    );
+    expect(url.searchParams.get("storeType")).toBe("BUY");
+    expect(url.searchParams.get("serverType")).toBe("NIDHOGG");
+    expect(url.searchParams.get("searchWord")).toBe("Chapéu A");
   });
 
-  it("has no trailing slash to double up", () => {
-    expect(MARKET_BASE.endsWith("/")).toBe(false);
+  it("drops the leading bracket tag, as the market lists items without it", () => {
+    const url = new URL(marketUrl({ name: "[Visual] Cartola Recheada" }, "FREYA"));
+    expect(url.searchParams.get("searchWord")).toBe("Cartola Recheada");
   });
 });
 

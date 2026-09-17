@@ -1,21 +1,21 @@
 // Wishlist modal — a shopping list for the current build. Lists the equipped
 // costumes and the graphic stones enchanted into them, with their icon, id and
-// name; the name links to the item's Divine-Pride page, and a cart button opens
-// the item on our own market. A server picker (Freya/Nidhogg) is shared with the
-// catalogue's market filters and remembered between sessions. The modal renders
+// name; the name links to the item's Divine-Pride page, and a cart button searches
+// the official LATAM market (gnjoylatam) for it. A server picker (Freya/Nidhogg)
+// routes the market links and is remembered between sessions. The modal renders
 // into <body> (a portal) so its fixed overlay isn't clipped by the catalogue
 // panel.
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { SLOTS } from "../core/db";
-import { divinePrideUrl, marketItemUrl } from "../core/links";
+import { divinePrideUrl, marketUrl } from "../core/links";
+import { SERVERS, serverLabel, useServer, type Server } from "../core/server";
 import { itemIconUrl } from "../core/state";
 import { PETS } from "../sim/pets";
 import { t } from "../i18n";
 import { useAppState } from "../state/AppStateContext";
 import { Cart } from "./icons";
-import { ServerSelect } from "./ServerSelect";
 
 // A wishlist line only needs an item id (icon + links) and a name (display) —
 // satisfied by costumes, graphic stones and the pet egg alike.
@@ -24,6 +24,7 @@ type WishItem = { id: number; name: string };
 export function Wishlist() {
   const state = useAppState();
   const [open, setOpen] = useState(false);
+  const [server, setServer] = useServer();
 
   // Distinct equipped costumes (a multi-slot piece is listed once), plus the
   // selected pet's egg (its own item) so the list doubles as a shopping list.
@@ -76,7 +77,17 @@ export function Wishlist() {
               <h3 className="wishlist-title">{t.wishlistTitle}</h3>
               <label className="wishlist-server">
                 <span className="wishlist-server-label">{`${t.serverLabel}:`}</span>
-                <ServerSelect />
+                <select
+                  className="server-select"
+                  value={server}
+                  onChange={(e) => setServer(e.target.value as Server)}
+                >
+                  {SERVERS.map((s) => (
+                    <option key={s} value={s}>
+                      {serverLabel(s)}
+                    </option>
+                  ))}
+                </select>
               </label>
               <button
                 type="button"
@@ -86,7 +97,7 @@ export function Wishlist() {
                 onClick={() => setOpen(false)}
               />
             </div>
-            <div className="wishlist-list">{open && <WishlistRows items={items} />}</div>
+            <div className="wishlist-list">{open && <WishlistRows items={items} server={server} />}</div>
           </div>
         </div>,
         document.body,
@@ -95,10 +106,7 @@ export function Wishlist() {
   );
 }
 
-// The rows don't take a server: the market link is by item id, and the market
-// site keeps its own server choice. The picker above still matters — it's what
-// the catalogue's market filters read.
-function WishlistRows({ items }: { items: WishItem[] }) {
+function WishlistRows({ items, server }: { items: WishItem[]; server: Server }) {
   if (!items.length) return <div className="wishlist-empty">{t.wishlistEmpty}</div>;
   return (
     <>
@@ -127,7 +135,7 @@ function WishlistRows({ items }: { items: WishItem[] }) {
           </div>
           <a
             className="wishlist-market"
-            href={marketItemUrl(item.id)}
+            href={marketUrl(item, server)}
             target="_blank"
             rel="noopener noreferrer"
             data-tip={t.marketSearch}

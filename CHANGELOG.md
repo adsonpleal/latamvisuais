@@ -4,6 +4,35 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.16.1] — 2026-09-16
+
+The latam-market service (`mercado.latam-tools.com.br`) is gone, so everything
+built on it in 0.10.0 comes out.
+
+### Removed
+
+- **Market filters** ("Já visto no mercado" / "À venda agora") from the
+  catalogue's filter panel, along with the "consultando / indisponível" note
+  under the toolbar. The panel keeps Tipo and Posição; the server picker left
+  it too, since it no longer drives any filter.
+- **Prices in the list view** (`catalog-row-price`). Rows show name, id and
+  slot; the windowing is unchanged and re-measures the shorter row pitch.
+- `core/market.ts`, `hooks/useMarketIds.ts`, `hooks/useRowPrices.ts`, the
+  `VITE_MARKET_URL` env var and the price / market-filter strings.
+- `ServerSelect` (inlined back into the wishlist, its only user), the unused
+  `getServer`/`setServer` exports, and the lifted `filtersOpen` state —
+  `CatalogFilters` owns its open state again.
+
+### Changed
+
+- **Cart links go back to the official market**: `marketUrl(item, server)` in
+  `core/links.ts` is the pre-0.10.0 name search on
+  `ro.gnjoylatam.com/pt/intro/shop-search/trading` (bracket tag stripped,
+  `serverType` from the stored server), replacing `marketItemUrl(id)`. Used by
+  both the wishlist and the list view; the server picker lives in the wishlist
+  and the list rows follow the same stored choice. Label back to "Buscar no
+  mercado".
+
 ## [0.16.0] — 2026-09-15
 
 ### Added

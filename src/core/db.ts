@@ -101,7 +101,7 @@ export function canPreview(stone: Stone): boolean {
  *  of its own: a character wears a Topo costume *and* has a Topo stone enchanted
  *  into it, so stones live in their own build layer (`State.enchants`).
  *
- *  Shaped as a Costume so the catalogue's tiles, rows, icons and market lookups
+ *  Shaped as a Costume so the catalogue's tiles, rows, icons and market links
  *  take one without changes — `stone: true` is what tells the two apart at the
  *  points where the behaviour differs (equipping, and the slot cards). `slots`
  *  always holds exactly the one position the stone is locked to; `slot` is that
@@ -201,8 +201,7 @@ export async function loadDb(): Promise<Db> {
   return { classes: released, hair, costumes: items, stones: stoneItems };
 }
 
-/** Shared by every JSON read in core/ (the DBs here, the market in market.ts). */
-export async function fetchJson<T>(path: string): Promise<T> {
+async function fetchJson<T>(path: string): Promise<T> {
   const res = await fetch(path);
   if (!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
   return res.json() as Promise<T>;

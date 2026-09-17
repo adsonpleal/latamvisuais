@@ -5,7 +5,7 @@
 import { useState } from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import type { Db, Slot } from "../core/db";
 import { makeDb } from "../test/fixtures";
 import { StateHarness } from "../test/StateHarness";
@@ -76,10 +76,6 @@ const spacers = () =>
 
 beforeEach(() => {
   localStorage.setItem("latamvisuais.catalogView", "list");
-  vi.stubGlobal(
-    "fetch",
-    vi.fn(async () => ({ ok: true, json: async () => ({ prices: [], missing: [] }) }) as Response),
-  );
   render(
     <StateHarness db={db}>
       <CatalogHost />
@@ -88,25 +84,10 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  vi.unstubAllGlobals();
   localStorage.clear();
 });
 
 describe("CatalogList windowing", () => {
-  // First on purpose: prices are cached per id for the session, so this is the
-  // render that can still be seen asking for them.
-  it("asks for prices only in the chunk the window sits in", async () => {
-    await scrollTo(20 * PITCH);
-
-    const asked = (fetch as ReturnType<typeof vi.fn>).mock.calls.flatMap(([url]) =>
-      new URL(url as string).searchParams.get("items")!.split(",").map(Number),
-    );
-    // The 60 fixtures are one chunk, so the ids stay inside it — what's pinned
-    // here is that the request is bounded by the chunk, not by the catalogue.
-    expect(asked.length).toBeLessThanOrEqual(100);
-    expect(asked).toContain(1020);
-  });
-
   it("mounts a screenful plus slack, not the whole catalogue", async () => {
     fireEvent.scroll(scroller());
     // ceil(320 / 64) = 5 on screen, plus 4 of overscan either side.

@@ -1,5 +1,5 @@
-// The catalogue as rows instead of tiles: full name, id, slot and what the item
-// costs on our market, with a link straight to its page there.
+// The catalogue as rows instead of tiles: full name, id and slot, with a link to
+// search the item on the official market.
 //
 // Unlike the grid, only the rows near the viewport exist. A tile is two nodes, so
 // keeping all 1500 mounted (the grid's trick for not refetching lazy icons while
@@ -8,17 +8,14 @@
 // stand in for the rows above and below, sized from a uniform row pitch, so the
 // scrollbar still measures the whole list.
 //
-// Prices follow the same window, rounded out to the API's 100-id chunks.
-//
 // The filtered array arrives ready-made from Catalog, which also owns the
 // keyboard cursor; all this view adds is scrolling that cursor back into range,
 // which it has to do arithmetically because the target row may not be mounted.
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type PointerEvent } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from "react";
 import { canPreview, type Costume, type Stone } from "../core/db";
-import { divinePrideUrl, marketItemUrl } from "../core/links";
-import { CHUNK, formatZeny, type PriceState } from "../core/market";
-import { useRowPrices } from "../hooks/useRowPrices";
+import { divinePrideUrl, marketUrl } from "../core/links";
+import { useServer } from "../core/server";
 import { t } from "../i18n";
 import { CostumeIcon } from "./CostumeIcon";
 import { Cart } from "./icons";
@@ -52,22 +49,12 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
   const [first, setFirst] = useState(0);
   const [count, setCount] = useState(OVERSCAN * 2);
   const [pitch, setPitch] = useState(ROW_PITCH);
+  // Read, not picked, here: the server picker lives in the wishlist.
+  const [server] = useServer();
 
   const total = items.length;
   const start = Math.min(first, Math.max(0, total - count));
   const end = Math.min(total, start + count);
-
-  // Whole chunks around the window: `ensurePrices` skips what it already has, so
-  // scrolling back over a stretch costs nothing and a jump fetches one chunk.
-  const priceOf = useRowPrices(
-    useMemo(
-      () =>
-        items
-          .slice(Math.floor(start / CHUNK) * CHUNK, Math.ceil(end / CHUNK) * CHUNK)
-          .map((item) => item.id),
-      [items, start, end],
-    ),
-  );
 
   const sync = () => {
     const el = listRef.current;
@@ -130,7 +117,7 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
     // mounted, and it should exist by the time the cursor lands on it.
     sync();
     // `items`/`pitch` are read, not watched: a filter change repositions through
-    // the effect above, and re-running here on every price tick would fight the
+    // the effect above, and re-running here on every re-render would fight the
     // user's own scrolling.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cursorId]);
@@ -176,7 +163,6 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
         <div style={{ height: start * pitch, flexShrink: 0 }} aria-hidden="true" />
         {items.slice(start, end).map((item) => {
           const equipped = isOn(item);
-          const price: PriceState = priceOf(item.id);
           return (
             <div
               key={item.id}
@@ -188,7 +174,7 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
               onPointerOver={nameTip}
             >
               {/* Empty and stretched over the whole row, so any part of the tile
-                equips — the icon, the name, the price, the gap around the cart.
+                equips — the icon, the name, the gap around the cart.
                 It can't wrap the content instead: a button may not contain the
                 links. The content sits above it but lets clicks through, and
                 only the two links take their own. */}
@@ -219,11 +205,10 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
                     ? ` · ${t.stoneLabel}${stoneNote(item)}`
                     : ` · ${item.slots.map((s) => t.slotNames[s]).join(" + ")}`}
                 </span>
-                <span className="catalog-row-price">{priceLine(price)}</span>
               </span>
               <a
                 className="catalog-row-market"
-                href={marketItemUrl(item.id)}
+                href={marketUrl(item, server)}
                 target="_blank"
                 rel="noopener noreferrer"
                 data-tip={t.marketSearch}
@@ -241,25 +226,6 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
       </div>
     </div>
   );
-}
-
-/**
- * One line answering "can I buy this, and for how much".
- *
- * Live offers win over the published history: the history says what the item has
- * been worth, the offers say what it costs today. When there are none, saying so
- * is the answer — and "never seen" is a different, more useful statement than an
- * empty price.
- */
-function priceLine(state: PriceState): string {
-  if (state.status === "loading") return "…";
-  if (state.status === "error") return t.priceUnavailable;
-
-  const price = state.price;
-  if (!price) return t.priceNeverSeen;
-  if (price.offers) return t.priceFrom(formatZeny(price.offers.min), price.offers.stores);
-  if (price.market) return t.priceAvg(formatZeny(price.market.avg), price.market.totalSold);
-  return price.inMarket ? t.priceNoOffers : t.priceNeverSeen;
 }
 
 /** The trailing note on a stone's row: what kind it is when that changes how it

@@ -53,28 +53,21 @@ describe("Wishlist", () => {
     );
   });
 
-  it("links the cart to the item's page on our market, by id", async () => {
+  it("routes market links through the selected server and remembers it", async () => {
     const user = userEvent.setup();
     renderWishlist();
     await user.click(screen.getByRole("button", { name: /Lista de desejos/ }));
 
-    // By id, not by name: the old link was a name search on the official site,
-    // which broke on every naming difference between the two catalogues. The
-    // host follows VITE_MARKET_URL, so the route is what's pinned here.
-    expect(screen.getAllByRole("link", { name: "Ver no mercado" })[0]).toHaveAttribute(
-      "href",
-      expect.stringMatching(/\/mercado\?item=100$/),
-    );
-  });
-
-  it("remembers the chosen server", async () => {
-    const user = userEvent.setup();
-    renderWishlist();
-    await user.click(screen.getByRole("button", { name: /Lista de desejos/ }));
+    const market = screen.getAllByRole("link", { name: "Buscar no mercado" })[0];
+    expect(market).toHaveAttribute("href", expect.stringContaining("ro.gnjoylatam.com"));
+    expect(market).toHaveAttribute("href", expect.stringContaining("serverType=FREYA"));
 
     await user.selectOptions(screen.getByRole("combobox"), "NIDHOGG");
     expect(localStorage.getItem("latamvisuais.server")).toBe("NIDHOGG");
-    expect(screen.getByRole("combobox")).toHaveValue("NIDHOGG");
+    expect(screen.getAllByRole("link", { name: "Buscar no mercado" })[0]).toHaveAttribute(
+      "href",
+      expect.stringContaining("serverType=NIDHOGG"),
+    );
   });
 
   // A stone is bought like anything else on the list, so it belongs on it —

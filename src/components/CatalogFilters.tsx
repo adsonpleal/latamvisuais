@@ -1,31 +1,18 @@
 // The catalogue's filters, behind one button.
 //
-// Slot, market and server together are a dozen controls; laid out flat they'd
-// take more of the panel than the item grid does. Behind a trigger they cost one
+// Kind and slot together are a dozen controls; laid out flat they'd take more of
+// the panel than the item grid does. Behind a trigger they cost one
 // button, and the badge keeps what's active visible while they're closed.
 //
 // The panel renders into <body> (a portal) and is placed against the trigger by
 // hand, because the catalogue column clips what spills out of it — anchored
-// inside the toolbar, a short window simply cut the market chips off the bottom.
+// inside the toolbar, a short window simply cut the last chips off the bottom.
 // Same reason the wishlist modal portals out.
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { SLOTS, type Slot } from "../core/db";
 import { t } from "../i18n";
-import { ServerSelect } from "./ServerSelect";
-
-// One list, so a new filter is one edit: the order, the labels and the type all
-// come from here. "Já visto" and "à venda" sound like the same thing until
-// you've been bitten by the difference, so each chip carries the sentence that
-// tells them apart.
-const MARKET_CHIPS = [
-  { key: "all", label: t.marketAll, tip: t.marketAllTip },
-  { key: "seen", label: t.marketSeen, tip: t.marketSeenTip },
-  { key: "selling", label: t.marketSelling, tip: t.marketSellingTip },
-] as const;
-
-export type MarketFilter = (typeof MARKET_CHIPS)[number]["key"];
 
 /** Costumes and graphic stones share the grid, so the first thing the panel
  *  offers is which of the two you're looking at. "Todos" is the default: the 29
@@ -77,33 +64,26 @@ const same = (a: Placement, b: Placement) =>
   a.top === b.top && a.left === b.left && a.width === b.width && a.maxHeight === b.maxHeight;
 
 type Props = {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
   slotFilter: Slot | null;
   onSlotFilterChange: (slot: Slot | null) => void;
   kindFilter: KindFilter;
   onKindFilterChange: (kind: KindFilter) => void;
-  marketFilter: MarketFilter;
-  onMarketFilterChange: (filter: MarketFilter) => void;
   /** Hide costumes that take more than one slot at a time. */
   singleSlotOnly: boolean;
   onSingleSlotOnlyChange: (only: boolean) => void;
 };
 
 export function CatalogFilters({
-  open,
-  onOpenChange,
   slotFilter,
   onSlotFilterChange,
   kindFilter,
   onKindFilterChange,
-  marketFilter,
-  onMarketFilterChange,
   singleSlotOnly,
   onSingleSlotOnlyChange,
 }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const popRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
   const [place, setPlace] = useState<Placement | null>(null);
 
   // Everything that only applies while the panel is up, in one place: dismissal
@@ -117,10 +97,10 @@ export function CatalogFilters({
     const onDocClick = (e: MouseEvent) => {
       const target = e.target as Node;
       if (rootRef.current?.contains(target) || popRef.current?.contains(target)) return;
-      onOpenChange(false);
+      setOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onOpenChange(false);
+      if (e.key === "Escape") setOpen(false);
     };
     // Same place, same object: scroll fires far more often than the panel
     // actually moves, and a fresh object would re-render every chip each time.
@@ -141,12 +121,11 @@ export function CatalogFilters({
       window.removeEventListener("resize", put);
       window.removeEventListener("scroll", put, true);
     };
-  }, [open, onOpenChange]);
+  }, [open]);
 
   const active =
     (slotFilter ? 1 : 0) +
     (kindFilter === "all" ? 0 : 1) +
-    (marketFilter === "all" ? 0 : 1) +
     (singleSlotOnly ? 1 : 0);
 
   return (
@@ -156,7 +135,7 @@ export function CatalogFilters({
         className={active ? "catalog-filter-btn is-active" : "catalog-filter-btn"}
         aria-haspopup="dialog"
         aria-expanded={open}
-        onClick={() => onOpenChange(!open)}
+        onClick={() => setOpen(!open)}
       >
         <span>{t.filtersButton}</span>
         {active > 0 && (
@@ -219,30 +198,6 @@ export function CatalogFilters({
               </label>
             </div>
 
-            <div className="catalog-filter-group">
-              <div className="catalog-filter-label">{t.marketFilterLabel}</div>
-              <div className="catalog-filters" role="group" aria-label={t.marketFilterLabel}>
-                {MARKET_CHIPS.map(({ key, label, tip }) => (
-                  <Chip
-                    key={key}
-                    label={label}
-                    tip={tip}
-                    active={key === marketFilter}
-                    onClick={() => onMarketFilterChange(key)}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="catalog-filter-group">
-              {/* Prices and stock are per server, so the market filters read the
-                  same choice the wishlist links use. */}
-              <label className="catalog-filter-label" htmlFor="catalog-server">
-                {t.serverLabel}
-              </label>
-              <ServerSelect id="catalog-server" />
-            </div>
-
             <button
               type="button"
               className="catalog-filter-clear"
@@ -250,7 +205,6 @@ export function CatalogFilters({
               onClick={() => {
                 onSlotFilterChange(null);
                 onKindFilterChange("all");
-                onMarketFilterChange("all");
                 onSingleSlotOnlyChange(false);
               }}
             >

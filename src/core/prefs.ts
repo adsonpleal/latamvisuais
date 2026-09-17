@@ -1,7 +1,7 @@
 // A remembered choice, shared by whoever asks for it.
 //
-// Two of these exist (the market server, the catalogue's grid/list view) and both
-// want the same three things: survive a reload, be readable outside the component
+// Several of these exist (the market server, the catalogue's grid/list view, the
+// discovery hints) and all want the same three things: survive a reload, be readable outside the component
 // that sets it, and keep every reader in step. Doing that by hand twice meant two
 // copies of the localStorage try/catch and a preference trapped in a component.
 //

@@ -645,8 +645,8 @@ button:disabled {
   position: fixed;
   z-index: 1000;
   pointer-events: none;
-  /* Wraps instead of running off-screen: some tips are a sentence (the market
-     filters explaining themselves), and a long item name was already wider than
+  /* Wraps instead of running off-screen: some tips are a sentence (the filter
+     chips explaining themselves), and a long item name was already wider than
      a phone. The width cap is what makes the wrap happen; `place()` measures
      after the text is set, so a two-line box still lands square on its
      trigger. */
@@ -2026,7 +2026,7 @@ button:disabled {
   color: var(--muted);
 }
 
-/* The Freya/Nidhogg picker, wherever it appears (wishlist header, filter panel). */
+/* The Freya/Nidhogg picker in the wishlist header. */
 .server-select {
   font: inherit;
   font-size: 0.82rem;
@@ -2338,7 +2338,7 @@ button:disabled {
 }
 
 /* One row for everything that isn't the search box: the filters (behind a
-   single button, because slot + market + server laid out flat would take more
+   single button, because kind + slot laid out flat would take more
    room than the grid they filter), the count, and the view toggle. */
 .catalog-toolbar {
   display: flex;
@@ -2455,16 +2455,10 @@ button:disabled {
   opacity: 0.45;
 }
 
-/* The count sits in the toolbar row; the note (market loading / unavailable) is
-   the same small muted line, on its own below it. */
-.catalog-count,
-.catalog-note {
-  font-size: 0.75rem;
-  color: var(--muted);
-}
-
 .catalog-count {
   flex: 1;
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 
 .catalog-view {
@@ -2588,8 +2582,8 @@ button:disabled {
   padding: 1rem 0;
 }
 
-/* List view — the same card as the grid, one row per item: full name, id, slot
-   and what it costs on the market, with a link to its page there. */
+/* List view — the same card as the grid, one row per item: full name, id and
+   slot, with a link to search it on the market. */
 .catalog-list {
   display: flex;
   flex-direction: column;
@@ -2649,7 +2643,7 @@ button:disabled {
 
 /* Selection diverges from the grid on purpose. The game's `select` frame is a
    gold plate: fine behind a 46px icon, but at row width it floods the tile and
-   the name, id and price have to be read off it. The accent tint says the same
+   the name and id have to be read off it. The accent tint says the same
    thing and leaves the text alone. Border stays 4px and transparent so the row
    keeps its height — the list is windowed and its spacers assume one pitch. */
 .catalog-row.is-equipped {
@@ -2674,7 +2668,7 @@ button:disabled {
 }
 
 /* Above the stretched button so they stay legible, but transparent to the
-   pointer so a click on the name or the price still equips. The links below
+   pointer so a click on the name still equips. The links below
    take their clicks back. */
 .catalog-row-icon,
 .catalog-row-text {
@@ -2728,12 +2722,6 @@ button:disabled {
 .catalog-row-id:hover {
   color: var(--accent);
   text-decoration-style: solid;
-}
-
-.catalog-row-price {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--muted);
 }
 
 .catalog-row-market {

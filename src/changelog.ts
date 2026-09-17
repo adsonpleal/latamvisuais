@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.16.1",
+    date: "2026-09-16",
+    changes: [
+      "O serviço de mercado que alimentava os filtros e os preços saiu do ar. Por isso os filtros “Já visto no mercado” e “À venda agora” e os preços da visão em lista foram removidos — a lista continua lá, com nome, ID e posição.",
+      "O carrinho voltou a buscar o visual no mercado oficial (ro.gnjoylatam.com), no servidor escolhido na Lista de desejos.",
+    ],
+  },
+  {
     version: "0.16.0",
     date: "2026-09-15",
     changes: [
