@@ -4,6 +4,15 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.16.2] — 2026-09-22
+
+### Added
+
+- Synced ragassets' current item table and verified every costume preview. The
+  catalogue grows from 1193 to 1210 items: 12 Baby Shark event visuals (head,
+  family hoods, Mini Baby Shark and family backpacks) plus five other costumes.
+- Pet egg names checked against the same table; all 107 names remain unchanged.
+
 ## [0.16.1] — 2026-09-16
 
 The latam-market service (`mercado.latam-tools.com.br`) is gone, so everything

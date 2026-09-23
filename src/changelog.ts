@@ -14,6 +14,15 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.16.2",
+    date: "2026-09-22",
+    changes: [
+      "Catálogo atualizado com os novos visuais do evento Baby Shark: cabeça, capuzes, Mini Baby Shark e mochilas da família Tubarão.",
+      "Também entraram cinco outros visuais recentes do jogo.",
+    ],
+    credit: "Leite Murphy",
+  },
+  {
     version: "0.16.1",
     date: "2026-09-16",
     changes: [
