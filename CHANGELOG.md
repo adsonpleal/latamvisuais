@@ -4,6 +4,22 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.16.3] — 2026-09-30
+
+### Added
+
+- Synced ragassets' current item table and verified every costume preview. The
+  catalogue grows from 1210 to 1232 costumes, adding 22 visuals. No existing
+  costume was removed.
+- Restored the Pegadas do Banguela graphic stone, whose current client name is
+  missing a closing parenthesis. All 29 stones and six footprint trails remain.
+
+### Changed
+
+- Updated 17 costume entries from the client table: 14 names and three
+  multi-slot Touca de Galo variants.
+- Checked all 107 pet egg names against the same item table; none changed.
+
 ## [0.16.2] — 2026-09-22
 
 ### Added

@@ -357,14 +357,13 @@ export function buildCostumes(rawItems, effectIds = new Set()) {
 // Telling a graphic stone apart from the ~200 STAT enchant stones that share the
 // suffix ("Pedra de FOR (Topo)") takes two signals, because neither covers the
 // whole set on its own:
-//   - the "Pedra Gráfica:" / "Pedra de Pegada:" name prefix — which the three
-//     oddly-named rows lack ("Gráfico: Espírito de Influência (Meio)",
-//     "Pegadas do Banguela (Capa)", "Pulinhos do Banguela (Capa)"), and
+//   - the "Pedra Gráfica:" / "Pedra de Pegada:" name prefix — which the
+//     oddly-named "Gráfico: Espírito de Influência (Meio)" lacks, and
 //   - the description's graphic-effect note ("pode ser desligado com /effect",
 //     or "para aplicar este efeito") — which Miniatura and Operação Ave de Fogo
 //     word differently and so miss.
-// Their union is exactly the 29 stones the wiki lists (Miniatura ships two, one
-// per slot); either signal alone loses rows.
+// Their union is the 29 stones the wiki lists (Miniatura ships two, one per
+// slot); either signal alone loses rows. One footprint's name is missing ")".
 //
 // The stone's own item id is what's emitted — that's the tradeable item people
 // look up on the market, not the "Gráfico: X" enchant it turns into.
@@ -398,7 +397,8 @@ export const BUILTIN_EFFECT = {
 };
 
 const STONE_SLOT = { topo: "top", meio: "mid", baixo: "low", capa: "garment" };
-const STONE_SUFFIX = /\((Topo|Meio|Baixo|Capa)\)\s*$/i;
+// The client currently spells one footprint as "(Capa" without the closing ")".
+const STONE_SUFFIX = /\((Topo|Meio|Baixo|Capa)\)?\s*$/i;
 const STONE_PREFIX = /^Pedra (Gr[áa]fica|de Pegada)\s*:/i;
 const STONE_NOTE = /(desligado|desativado) com \/effect|para aplicar este efeito/i;
 
@@ -413,7 +413,11 @@ export function buildStones(rawItems, effects = new Map(), footprints = new Map(
     const m = name.match(STONE_SUFFIX);
     if (!m) continue;
     if (!STONE_PREFIX.test(name) && !STONE_NOTE.test(it.description ?? "")) continue;
-    const stone = { id: it.id, name, slot: STONE_SLOT[m[1].toLowerCase()] };
+    const stone = {
+      id: it.id,
+      name: m[0].includes(")") ? name : `${name.trimEnd()})`,
+      slot: STONE_SLOT[m[1].toLowerCase()],
+    };
     const effect = effects.get(it.id);
     if (effect) stone.effect = effect;
     // The "Pegadas": drawn per footstep rather than as one effect on the body.
