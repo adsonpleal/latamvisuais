@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.16.3",
+    date: "2026-09-30",
+    changes: [
+      "O catálogo ganhou 22 visuais, incluindo peças de Halloween, acessórios clássicos e novas capas.",
+      "Nomes e posições de alguns visuais foram atualizados conforme o jogo. A pedra Pegadas do Banguela voltou ao catálogo.",
+    ],
+  },
+  {
     version: "0.16.2",
     date: "2026-09-22",
     changes: [

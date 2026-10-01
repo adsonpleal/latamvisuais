@@ -235,6 +235,17 @@ describe("buildStones", () => {
     ]);
   });
 
+  it("keeps a footprint when the client omits the closing parenthesis", () => {
+    const malformed = rawItems.map((item) => item.id === 1002239
+      ? { ...item, name: "Pedra de Pegada: Pegadas do Banguela (Capa" }
+      : item);
+    const stone = buildStones(malformed).find((item) => item.id === 1002239);
+    expect(stone).toMatchObject({
+      name: "Pedra de Pegada: Pegadas do Banguela (Capa)",
+      slot: "garment",
+    });
+  });
+
   // Neither signal covers the set on its own — this is what the union buys.
   it("takes stones the name prefix marks and stones only the description marks", () => {
     // Miniatura's description words its effect without the "/effect" note, so
