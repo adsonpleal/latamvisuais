@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.16.4",
+    date: "2026-10-02",
+    changes: [
+      "A ordem dos visuais na prévia foi corrigida: asas e capas agora cobrem cachecóis quando o personagem está de costas, conforme as camadas do jogo.",
+      "Acessórios que devem aparecer sobre a montaria também voltaram a respeitar a ordem do jogo.",
+    ],
+  },
+  {
     version: "0.16.3",
     date: "2026-09-30",
     changes: [
