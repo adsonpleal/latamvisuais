@@ -4,6 +4,16 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.16.4] — 2026-10-02
+
+### Fixed
+
+- Refreshed rendered-image URLs for the ragassets equipment-layer correction.
+  The existing version-based cache buster now uses `0.16.4`, so previews, action
+  icons, map sprites and downloads request fresh renders instead of keeping the
+  images cached under `0.16.3`. Wings and garments correctly cover scarves when
+  facing away, and accessories respect the client's riding exceptions.
+
 ## [0.16.3] — 2026-09-30
 
 ### Added
