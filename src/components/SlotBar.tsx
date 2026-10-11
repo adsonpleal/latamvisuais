@@ -18,7 +18,8 @@ export function SlotBar({
   onClear,
   canClear,
 }: {
-  active: number;
+  /** null while displaying an unsaved character from a shared link. */
+  active: number | null;
   count: number;
   onSelect: (index: number) => void;
   /** Reset the active slot to a brand-new character. */

@@ -39,9 +39,16 @@ export const t = {
   appearanceTitle: "Personagem",
   saveInfoLabel: "Sobre o salvamento automático",
   saveInfoText:
-    "Tudo é salvo automaticamente. Use os números abaixo para alternar entre personagens " +
+    "Seus personagens são salvos automaticamente. Use os números abaixo para alternar entre personagens " +
     "salvos — cada número guarda um visual diferente (classe, gênero, cabelo, cores e visuais " +
-    "equipados). Atalho: Alt + número. A pose e a rotação atuais são mantidas ao trocar.",
+    "equipados). Atalho: Alt + número. A pose e a rotação atuais são mantidas ao trocar. " +
+    "Um visual diferente aberto por link só é salvo quando você escolhe Salvar ou Substituir.",
+  sharedBuildTitle: "Visual do link",
+  sharedBuildNotice: "Ainda não salvo. Escolha onde guardar este visual ou use os números acima para voltar aos seus personagens.",
+  sharedBuildTarget: "Salvar no personagem",
+  characterNumber: (n: number) => `Personagem ${n}`,
+  sharedBuildSave: "Salvar",
+  sharedBuildReplace: "Substituir",
   slotBarLabel: "Personagens salvos",
   slotSwitchTip: (n: number) => `Personagem ${n} (Alt+${n})`,
   slotWipeTip: "Limpar este personagem (tira tudo o que foi escolhido)",
