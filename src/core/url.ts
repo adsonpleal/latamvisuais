@@ -21,10 +21,10 @@
 //       │  │         │        │            └ same encoding as clothes color
 //       │  │         │        └ hair style number, base36
 //       │  │         └ gender | bodyDir<<1 | headDir<<4 | action<<6 | mount<<10
-//       │  │           | outfit<<12 | skin<<16 (base36; mount = 0 none, else
+//       │  │           | outfit<<12 | skin<<16 | flying<<19 (base36; mount = 0 none, else
 //       │  │           mountIndex+1; outfit = the alternative-outfit number,
 //       │  │           0 = normal body; skin = 0/1 original, 2-4 a fan-made
-//       │  │           tone preset, 5 "custom, read the 9th field")
+//       │  │           tone preset, 5 "custom, read the 9th field"; flying = 0/1)
 //       │  └ job id, base36 (e.g. 4054 → "34m")
 //       └ format version
 //
@@ -83,7 +83,8 @@ export function encodeState(state: State): string {
     (state.action << 6) |
     ((state.mount == null ? 0 : state.mount + 1) << 10) |
     ((state.outfit ?? 0) << 12) |
-    (skinCode(state.skin) << 16);
+    (skinCode(state.skin) << 16) |
+    (state.flying ? 1 << 19 : 0);
   const seen = new Set<number>();
   const items: number[] = [];
   for (const slot of SLOTS) {
@@ -141,6 +142,7 @@ export function decodeState(raw: string | null, db: Db): Partial<State> | null {
     if (ACTIONS.some((a) => a.type === action)) out.action = action;
     const mountBits = (packed >> 10) & 3;
     out.mount = mountBits === 0 ? null : mountBits - 1;
+    out.flying = !!(packed & (1 << 19));
     // Added after the format shipped, in bits that were always 0 before — older
     // links decode to "normal body" without a version bump. clampState drops an
     // outfit the class doesn't have.

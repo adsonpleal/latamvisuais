@@ -10,6 +10,7 @@ import { Vector3 } from "three";
 import { t } from "../i18n";
 import { CACHE_BUST, frameCountProbeUrl, renderBodyKey, type State } from "../core/state";
 import { mountsFor } from "../core/mounts";
+import { flyingJobFor } from "../core/flight";
 import { SLOTS, type BuiltinEffect, type FootprintSteps } from "../core/db";
 import { useAppState, useDispatch } from "../state/AppStateContext";
 import { Engine } from "./render/engine";
@@ -892,6 +893,16 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
                 {t.mountNames[m.nameKey]}
               </button>
             ))}
+            {flyingJobFor(state.classId) != null && (
+              <button
+                type="button"
+                className={`sim-btn${state.flying ? " is-active" : ""}`}
+                aria-pressed={state.flying}
+                onClick={() => dispatch({ type: "setFlying", flying: !state.flying })}
+              >
+                {t.flightLabel}
+              </button>
+            )}
             <button type="button" className={`sim-btn${state.pet != null ? " is-active" : ""}`} onClick={() => setPetOpen(true)}>
               {t.petsButton}
             </button>

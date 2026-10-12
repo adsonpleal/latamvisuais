@@ -28,6 +28,7 @@ describe("save slots", () => {
       equipped: { top: item(100), garment: item(400) },
       outfit: null,
       mount: 1, // a saved mount must survive the round-trip
+      flying: false,
       pet: 1002, // …as must a saved pet
       skin: "8a5a3b", // …and a custom skin colour, which trails the pet field
     };
@@ -39,6 +40,13 @@ describe("save slots", () => {
     expect(store.active).toBe(2);
     expect(store.builds[0]).toBeNull();
     expect(store.builds[2]).toEqual(build);
+  });
+
+  it("saves and restores a flying build", () => {
+    const build = buildOf({ ...initialState(db), classId: 4047, flying: true });
+    saveSlots({ builds: [build, ...Array(SLOT_COUNT - 1).fill(null)], active: 0 });
+    expect(loadSlots(db).builds[0]).toEqual(build);
+    expect(buildSignature(build)).not.toBe(buildSignature({ ...build, flying: false }));
   });
 
   it("ignores corrupt storage and falls back to empty", () => {

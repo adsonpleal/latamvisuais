@@ -71,6 +71,17 @@ describe("createAppReducer", () => {
     expect(reduce(withPet, { type: "setPet", pet: null }).pet).toBeNull();
   });
 
+  it("switches between flying and riding, and drops flight on unsupported classes", () => {
+    const start: State = { ...initialState(db), classId: 4047, mount: 0 };
+    const flying = reduce(start, { type: "setFlying", flying: true });
+    expect(flying).toMatchObject({ mount: null, flying: true });
+    expect(reduce(flying, { type: "setFlying", flying: false })).toMatchObject({ mount: null, flying: false });
+    expect(reduce(flying, { type: "setMount", mount: 0 })).toMatchObject({ mount: 0, flying: false });
+    expect(reduce(flying, { type: "setClass", classId: 4239 }).flying).toBe(true);
+    expect(reduce(flying, { type: "setClass", classId: 0 }).flying).toBe(false);
+    expect(reduce(initialState(db), { type: "setFlying", flying: true }).flying).toBe(false);
+  });
+
   it("setSkin takes a preset or a custom colour, and clamps what ragassets rejects", () => {
     const toned = reduce(initialState(db), { type: "setSkin", skin: 3 });
     expect(toned.skin).toBe(3);
@@ -99,6 +110,7 @@ describe("createAppReducer", () => {
         enchants: {},
         outfit: null,
         mount: null,
+        flying: false,
         pet: null,
         skin: null,
       },

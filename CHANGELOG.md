@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.17.0] — 2026-10-12
+
+### Added
+
+- Voo toggle beside Montaria for Mestre Taekwon, Mestre Estelar and Sky Emperor,
+  using their União Solar, Lunar e Estelar sprites in previews, action icons,
+  downloads and the map view. Flight is saved with each character and shared in
+  build links; flying and riding switch each other off.
+- Added the pt-BR Novidades entry, crediting Zant- for the suggestion, and
+  aligned package metadata and the app version at `0.17.0`.
+
 ## [0.16.4] — 2026-10-02
 
 ### Fixed

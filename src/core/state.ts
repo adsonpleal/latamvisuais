@@ -8,6 +8,7 @@
 
 import { viewKindOf, type ClassInfo, type Costume, type Db, type Slot, type Stone } from "./db";
 import { mountsFor } from "./mounts";
+import { flyingJobFor } from "./flight";
 import { t } from "../i18n";
 import { APP_VERSION } from "../changelog";
 
@@ -176,6 +177,8 @@ export type State = {
   /** Index into the class's mount list (see core/mounts.ts), or null when not
    *  mounted. Mounting renders an alternate (mounted) job id — see effectiveJob. */
   mount: number | null;
+  /** União Solar, Lunar e Estelar's flying body; mutually exclusive with riding. */
+  flying: boolean;
   /** Selected pet companion's monster id (see sim/pets.ts), or null. Only the map
    *  sim renders it (a follower monster sprite); it's part of the build so it
    *  saves to slots and travels in the share URL like the mount. */
@@ -206,6 +209,7 @@ export function initialState(db: Db): State {
     enchants: {},
     outfit: null,
     mount: null,
+    flying: false,
     pet: null,
     skin: null,
   };
@@ -226,6 +230,7 @@ export type Build = Pick<
   | "enchants"
   | "outfit"
   | "mount"
+  | "flying"
   | "pet"
   | "skin"
 >;
@@ -241,6 +246,7 @@ export function buildOf(state: State): Build {
     enchants: state.enchants,
     outfit: state.outfit,
     mount: state.mount,
+    flying: state.flying,
     pet: state.pet,
     skin: state.skin,
   };
@@ -261,15 +267,15 @@ export function applyBuild(state: State, build: Build): State {
     enchants: { ...build.enchants },
     outfit: build.outfit,
     mount: build.mount,
+    flying: build.flying,
     pet: build.pet,
     skin: build.skin,
   };
 }
 
-/** The job id to render for the current state: the mounted job sprite when a
- *  mount is selected (and valid for the class), otherwise the plain class. */
+/** The mounted or flying body when selected and supported, otherwise the class. */
 export function effectiveJob(state: State): number {
-  return mountOf(state)?.jobId ?? state.classId;
+  return mountOf(state)?.jobId ?? (state.flying ? flyingJobFor(state.classId) : undefined) ?? state.classId;
 }
 
 /** The selected mount, when one is set and valid for the class. */

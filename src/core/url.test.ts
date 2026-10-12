@@ -24,6 +24,7 @@ function sampleState(): State {
     enchants: {},
     outfit: null,
     mount: null,
+    flying: false,
     pet: null,
     skin: null,
   };
@@ -47,6 +48,13 @@ describe("encodeState", () => {
     expect(clampState(db, { ...initialState(db), ...decoded })).toEqual(state);
     // The default (unmounted) build stays unchanged — mount adds no bits.
     expect(decodeState(encodeState(initialState(db)), db)!.mount).toBeNull();
+  });
+
+  it("round-trips flight alongside pose, skin and gear, keeping older links grounded", () => {
+    const state: State = { ...sampleState(), classId: 4047, hairColor: 1, flying: true, skin: "8a5a3b" };
+    const decoded = decodeState(encodeState(state), db);
+    expect(clampState(db, { ...initialState(db), ...decoded })).toEqual(state);
+    expect(decodeState("1.34m.47.2.4.3.2s-b4", db)!.flying).toBe(false);
   });
 
   it("packs the alternative outfit into the packed field, round-tripping", () => {

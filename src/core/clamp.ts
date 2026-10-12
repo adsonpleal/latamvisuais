@@ -7,6 +7,7 @@
 
 import type { Db } from "./db";
 import { mountsFor } from "./mounts";
+import { flyingJobFor } from "./flight";
 import {
   classOf,
   clothesPalettesOf,
@@ -50,6 +51,8 @@ export function clampState(db: Db, state: State): State {
   if (next.mount != null && next.mount >= mountsFor(next.classId).length) {
     next.mount = null;
   }
+  // Old links default to grounded; unsupported classes and riding cannot fly.
+  next.flying = !!next.flying && flyingJobFor(next.classId) != null && next.mount == null;
 
   // Skin tone. Everything invalid collapses to null (the sprite's own skin)
   // rather than being passed through, because ragassets answers a bad skinTone

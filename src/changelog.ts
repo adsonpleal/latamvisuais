@@ -14,6 +14,15 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.17.0",
+    date: "2026-10-12",
+    changes: [
+      "Agora dá para voar com Mestre Taekwon, Mestre Estelar e Sky Emperor! O botão “Voo”, ao lado de “Montaria”, mostra o sprite da União Solar, Lunar e Estelar na prévia, nas ações, no download e na visão de mapa.",
+      "O voo fica salvo com cada personagem e acompanha o link de compartilhamento. Ligar a montaria desliga o voo, e vice-versa.",
+    ],
+    credit: "Zant-",
+  },
+  {
     version: "0.16.4",
     date: "2026-10-02",
     changes: [
