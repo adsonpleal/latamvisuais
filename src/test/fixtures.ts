@@ -2,7 +2,8 @@
 // real public/db/*.json but stays tiny and predictable so expectations are
 // obvious: one ordinary human class, one with an alternative outfit, a
 // gender-locked (female-only) class, a pair the GAME locks though their data
-// carries both genders (Bardo/Odalisca), a doram-race class, and a mix of
+// carries both genders (Bardo/Odalisca), a doram-race class, the flying Taekwon
+// evolutions, and a mix of
 // single- and multi-slot costumes, plus a graphic stone per position (one of
 // them without an effect bundle, the state the real data ships in until
 // ragassets extracts it).
@@ -90,6 +91,19 @@ export function makeDb(): Db {
           f: { count: 2, swatches: [null, "#abc"] },
         },
       },
+      ...[
+        { id: 4047, jt: "star", name: "Mestre Taekwon" },
+        { id: 4239, jt: "star_emperor", name: "Mestre Estelar" },
+        { id: 4302, jt: "sky_emperor", name: "Sky Emperor" },
+      ].map((cls) => ({
+        ...cls,
+        group: "expanded",
+        race: "human" as const,
+        palettes: {
+          m: { count: 3, swatches: [null, "#111", "#222"] },
+          f: { count: 3, swatches: [null, "#111", "#222"] },
+        },
+      })),
     ],
     hair: {
       human: {

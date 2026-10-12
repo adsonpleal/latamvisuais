@@ -48,6 +48,7 @@ function decodeBuild(raw: string, db: Db): Build {
     enchants: p.enchants ?? def.enchants,
     outfit: p.outfit !== undefined ? p.outfit : def.outfit,
     mount: p.mount !== undefined ? p.mount : def.mount,
+    flying: p.flying ?? def.flying,
     pet: p.pet !== undefined ? p.pet : def.pet,
     skin: p.skin !== undefined ? p.skin : def.skin,
   };
@@ -106,6 +107,7 @@ export function buildSignature(build: Build): string {
     build.clothesColor,
     build.outfit,
     build.mount,
+    build.flying,
     build.pet,
     build.skin,
     items,

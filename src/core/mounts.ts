@@ -130,7 +130,7 @@ export const MOUNTS: Record<number, Mount[]> = {
   // Both ride the 해태 (Haetae), the lion-like creature — the same archetype as
   // the "Leão" the knight classes get. Careful with the neighbouring ids: 4243
   // is 성제융합, the Star Emperor's *union* form (융합 = fusion), not a mount, and
-  // it renders as the plain standing figure.
+  // it is selected separately by the Voo toggle (see core/flight.ts).
   4239: [reins(4245)], // Mestre Estelar (Star Emperor) — Haetae
   4240: [reins(4246)], // Ceifador de Almas (Soul Reaper) — Haetae
   4049: [reins(4117)], // Espiritualista (Soul Linker) — Sapo

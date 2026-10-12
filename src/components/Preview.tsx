@@ -50,6 +50,7 @@ import {
 import { alphaBounds, touchesEdge, type Bounds } from "../core/alphaBounds";
 import { hint } from "../core/hints";
 import { mountsFor } from "../core/mounts";
+import { flyingJobFor } from "../core/flight";
 import { SLOTS } from "../core/db";
 import { builtinOf, drawsEffects, effectKeys } from "../sim/equipped";
 import { t } from "../i18n";
@@ -165,6 +166,7 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
   // mount, a small picker lets you choose which.
   const mounts = mountsFor(state.classId);
   const mounted = state.mount != null;
+  const canFly = flyingJobFor(state.classId) != null;
 
   // Keep the scrubber in range when a costume change shortens the animation
   // (e.g. unequipping the wings drops idle from 24 frames back to 3).
@@ -708,37 +710,58 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
         </div>
       </div>
 
-      {mounts.length > 0 && (
-        <div className="control-block mount-block">
-          <div className="control-label">{t.mountLabel}</div>
-          <div className="mount-row">
-            <TipButton
-              className={mounted ? "mount-toggle is-on" : "mount-toggle"}
-              tip={mounted ? t.mountOff : t.mountOn}
-              role="switch"
-              aria-checked={mounted}
-              onClick={() => dispatch({ type: "setMount", mount: mounted ? null : 0 })}
-            >
-              <span className="mount-toggle-track">
-                <span className="mount-toggle-thumb" />
-              </span>
-            </TipButton>
-            {mounted && mounts.length > 1 && (
-              <div className="mount-choices">
-                {mounts.map((m, i) => (
-                  <TipButton
-                    key={i}
-                    className={state.mount === i ? "mount-choice is-selected" : "mount-choice"}
-                    tip={t.mountNames[m.nameKey]}
-                    aria-pressed={state.mount === i}
-                    onClick={() => dispatch({ type: "setMount", mount: i })}
-                  >
-                    {t.mountNames[m.nameKey]}
-                  </TipButton>
-                ))}
+      {(mounts.length > 0 || canFly) && (
+        <div className="body-options">
+          {mounts.length > 0 && (
+            <div className="control-block mount-block">
+              <div className="control-label">{t.mountLabel}</div>
+              <div className="mount-row">
+                <TipButton
+                  className={mounted ? "mount-toggle is-on" : "mount-toggle"}
+                  tip={mounted ? t.mountOff : t.mountOn}
+                  role="switch"
+                  aria-checked={mounted}
+                  onClick={() => dispatch({ type: "setMount", mount: mounted ? null : 0 })}
+                >
+                  <span className="mount-toggle-track">
+                    <span className="mount-toggle-thumb" />
+                  </span>
+                </TipButton>
+                {mounted && mounts.length > 1 && (
+                  <div className="mount-choices">
+                    {mounts.map((m, i) => (
+                      <TipButton
+                        key={i}
+                        className={state.mount === i ? "mount-choice is-selected" : "mount-choice"}
+                        tip={t.mountNames[m.nameKey]}
+                        aria-pressed={state.mount === i}
+                        onClick={() => dispatch({ type: "setMount", mount: i })}
+                      >
+                        {t.mountNames[m.nameKey]}
+                      </TipButton>
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
+            </div>
+          )}
+          {canFly && (
+            <div className="control-block flight-block">
+              <div className="control-label">{t.flightLabel}</div>
+              <TipButton
+                className={state.flying ? "mount-toggle is-on" : "mount-toggle"}
+                tip={state.flying ? t.flightOff : t.flightOn}
+                role="switch"
+                aria-label={t.flightLabel}
+                aria-checked={state.flying}
+                onClick={() => dispatch({ type: "setFlying", flying: !state.flying })}
+              >
+                <span className="mount-toggle-track">
+                  <span className="mount-toggle-thumb" />
+                </span>
+              </TipButton>
+            </div>
+          )}
         </div>
       )}
 

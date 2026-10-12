@@ -1799,8 +1799,16 @@ button:disabled {
 
 /* ---- mount toggle + picker -------------------------------------------------- */
 
-.mount-block {
+.body-options {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.mount-block,
+.flight-block {
   /* Like .actions-block: the .preview flex gap already spaces it. */
   margin-top: 0;
 }

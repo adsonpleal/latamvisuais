@@ -6,6 +6,7 @@ import {
   gearViews,
   hairThumbUrl,
   frameCountProbeUrl,
+  gifUrl,
   imageUrl,
   initialState,
   itemIconUrl,
@@ -98,6 +99,26 @@ describe("mounts", () => {
     expect(frameCountProbeUrl(suit)).toContain("job=4112&madogearType=suit&");
     // Same job, different sprite — the sim keys its frame re-probe on this.
     expect(renderBodyKey(robot)).not.toBe(renderBodyKey(suit));
+  });
+});
+
+describe("flight", () => {
+  it.each([
+    [4047, 4048],
+    [4239, 4243],
+    [4302, 4316],
+  ])("uses class %i's flying body %i in every render", (classId, flyingJob) => {
+    const grounded = { ...initialState(db), classId };
+    const flying = { ...grounded, flying: true };
+    for (const url of [imageUrl(flying), gifUrl(flying), frameCountProbeUrl(flying)]) {
+      expect(new URL(url).searchParams.get("job")).toBe(String(flyingJob));
+    }
+    expect(renderBodyKey(flying)).not.toBe(renderBodyKey(grounded));
+    expect(new URL(imageUrl(grounded)).searchParams.get("job")).toBe(String(classId));
+  });
+
+  it("keeps unsupported classes on their normal body", () => {
+    expect(new URL(imageUrl({ ...initialState(db), flying: true })).searchParams.get("job")).toBe("0");
   });
 });
 
