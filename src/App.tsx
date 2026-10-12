@@ -21,6 +21,7 @@ import { Changelog } from "./components/Changelog";
 import { ClassSelect } from "./components/ClassSelect";
 import { InfoTip } from "./components/InfoTip";
 import { Preview } from "./components/Preview";
+import { Select } from "./components/Select";
 import { SlotBar } from "./components/SlotBar";
 import { Slots, type PickKind } from "./components/Slots";
 import type { KindFilter } from "./components/CatalogFilters";
@@ -214,15 +215,15 @@ function Simulator({ db }: { db: Db }) {
                 {t.sharedBuildNotice}
               </p>
               <div className="shared-build-actions">
-                <select
-                  aria-label={t.sharedBuildTarget}
+                <Select
+                  label={t.sharedBuildTarget}
                   value={saveTarget}
-                  onChange={(e) => setSaveTarget(Number(e.target.value))}
-                >
-                  {Array.from({ length: SLOT_COUNT }, (_, i) => (
-                    <option key={i} value={i}>{t.characterNumber(i + 1)}</option>
-                  ))}
-                </select>
+                  onChange={setSaveTarget}
+                  options={Array.from({ length: SLOT_COUNT }, (_, i) => ({
+                    value: i,
+                    label: t.characterNumber(i + 1),
+                  }))}
+                />
                 <button type="button" onClick={() => setActive(saveTarget)}>
                   {replacing ? t.sharedBuildReplace : t.sharedBuildSave}
                 </button>

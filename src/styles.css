@@ -793,6 +793,7 @@ button:disabled {
 }
 
 .shared-build {
+  margin-top: 0.6rem;
   padding: 0.6rem;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -815,23 +816,16 @@ button:disabled {
   gap: 0.4rem;
 }
 
-.shared-build-actions select {
+.shared-build-actions .class-select {
   flex: 1;
   min-width: 0;
 }
 
-.shared-build-actions select,
-.shared-build-actions button {
+.shared-build-actions > button {
   padding: 0.3rem 0.5rem;
-  border: 1px solid var(--border);
+  border: 1px solid var(--accent);
   border-radius: 6px;
-  background: var(--bg-elev);
-  color: var(--fg);
   font: inherit;
-}
-
-.shared-build-actions button {
-  border-color: var(--accent);
   background: var(--accent);
   color: #fff;
 }
