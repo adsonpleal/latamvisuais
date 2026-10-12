@@ -93,7 +93,7 @@ describe("saved characters and shared links", () => {
     seed();
     visit(linked);
 
-    expect(within(preview()).getByRole("combobox")).toHaveValue("0");
+    expect(within(preview()).getByRole("button", { name: "Salvar no personagem" })).toHaveTextContent("Personagem 1");
     await user.click(screen.getByRole("button", { name: "Estilo 1" }));
     await user.click(within(preview()).getByRole("button", { name: "Salvar" }));
 
@@ -113,9 +113,10 @@ describe("saved characters and shared links", () => {
     const before = localStorage.getItem(storageKey);
     visit(linked);
 
-    expect(within(preview()).getByRole("combobox")).toHaveValue("2");
+    expect(within(preview()).getByRole("button", { name: "Salvar no personagem" })).toHaveTextContent("Personagem 3");
     expect(localStorage.getItem(storageKey)).toBe(before);
-    await user.selectOptions(within(preview()).getByRole("combobox"), "4");
+    await user.click(within(preview()).getByRole("button", { name: "Salvar no personagem" }));
+    await user.click(screen.getByRole("option", { name: "Personagem 5" }));
     expect(localStorage.getItem(storageKey)).toBe(before);
     await user.click(within(preview()).getByRole("button", { name: "Substituir" }));
 
@@ -123,6 +124,18 @@ describe("saved characters and shared links", () => {
     expect(stored.active).toBe(4);
     expect(stored.builds[4]).toEqual(buildOf(linked));
     expect(stored.builds.filter((_, i) => i !== 4)).toEqual(builds.filter((_, i) => i !== 4));
+  });
+
+  it("does not change costumes while navigating the destination dropdown", async () => {
+    const user = userEvent.setup();
+    seed();
+    visit(linked);
+    await user.click(screen.getByLabelText("Chapéu A (#100)"));
+    const before = location.search;
+    await user.click(within(preview()).getByRole("button", { name: "Salvar no personagem" }));
+    await user.keyboard("{ArrowDown}{Enter}");
+    expect(location.search).toBe(before);
+    expect(within(preview()).getByRole("button", { name: "Salvar no personagem" })).toHaveTextContent("Personagem 2");
   });
 
   it("does not inherit costumes, stones or a pet omitted from a shared link", () => {
@@ -143,7 +156,7 @@ describe("saved characters and shared links", () => {
   it("treats a cleared slot as an empty destination for a shared character", () => {
     seed([buildOf(defaults), buildOf(saved)]);
     visit(linked);
-    expect(within(preview()).getByRole("combobox")).toHaveValue("0");
+    expect(within(preview()).getByRole("button", { name: "Salvar no personagem" })).toHaveTextContent("Personagem 1");
     expect(within(preview()).getByRole("button", { name: "Salvar" })).toBeInTheDocument();
   });
 
