@@ -79,6 +79,12 @@ item ids in base36, ~25 chars worst case). Copy the address bar at any moment
 to share or bookmark the exact build; the default build keeps a clean URL. The
 codec lives in [src/core/url.ts](src/core/url.ts).
 
+Opening a link that differs from your saved characters shows an **unsaved
+preview**. Choose a destination and **Salvar** (or **Substituir** for an occupied
+slot) to keep it; opening or editing the preview never overwrites saved slots.
+Click a character number to return to its saved build. Links matching a saved
+character select that slot directly, so refreshing keeps normal auto-save.
+
 A skin-tone *preset* rides in bits that were always zero before it shipped, so it
 costs no extra characters and older links keep decoding; only a **custom** skin
 colour lengthens the URL, trailing the pet field as a plain `rrggbb`.

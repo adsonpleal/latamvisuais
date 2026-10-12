@@ -792,6 +792,50 @@ button:disabled {
   cursor: default;
 }
 
+.shared-build {
+  padding: 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-inset);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.shared-build p {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+}
+
+.shared-build strong {
+  color: var(--fg);
+}
+
+.shared-build-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.shared-build-actions select {
+  flex: 1;
+  min-width: 0;
+}
+
+.shared-build-actions select,
+.shared-build-actions button {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-elev);
+  color: var(--fg);
+  font: inherit;
+}
+
+.shared-build-actions button {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
 /* Clothes color square — the SAME game color-square <img> as the hair colors
    (identical border/corners/checkmark), with only the inner fill recolored:
    the ::after overlay carries the palette tint and `mix-blend-mode: color`

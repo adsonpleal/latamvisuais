@@ -49,27 +49,38 @@ export default function App() {
 function Simulator({ db }: { db: Db }) {
   const reducer = useMemo(() => createAppReducer(db), [db]);
 
-  // Save slots: read every stored build + the active index once, then seed the
-  // reducer from the active slot. A shared ?b= URL still wins for display — it
-  // overrides the active slot's build (and is auto-saved straight back into it).
-  const initialSlots = useMemo(() => loadSlots(db), [db]);
+  const defaultSig = useMemo(() => buildSignature(buildOf(initialState(db))), [db]);
+  // A link can display a different character without replacing a saved one.
+  // Matching links (including refreshes) stay attached to their saved slot;
+  // otherwise active=null marks an unsaved preview until explicitly saved.
+  const initialSlots = useMemo(() => {
+    const slots = loadSlots(db);
+    const defaults = initialState(db);
+    const savedState = clampState(db, { ...defaults, ...(slots.builds[slots.active] ?? {}) });
+    const urlState = readUrlState(db);
+    // Missing fields in an older link mean defaults, not the saved character's
+    // costumes, stones or pet.
+    const state = urlState ? clampState(db, { ...defaults, ...urlState }) : savedState;
+    const signature = buildSignature(buildOf(state));
+    let active: number | null = slots.active;
+    if (urlState && signature !== buildSignature(buildOf(savedState))) {
+      const match = slots.builds.findIndex((build) => build && buildSignature(build) === signature);
+      active = match === -1 ? null : match;
+    }
+    const empty = slots.builds.findIndex((build) => !build || buildSignature(build) === defaultSig);
+    return { ...slots, active, state, saveTarget: empty === -1 ? slots.active : empty };
+  }, [db, defaultSig]);
   const [builds, setBuilds] = useState(initialSlots.builds);
   const [active, setActive] = useState(initialSlots.active);
-
-  const [state, dispatch] = useReducer(reducer, db, (db) => {
-    const activeBuild = initialSlots.builds[initialSlots.active];
-    return clampState(db, {
-      ...initialState(db),
-      ...(activeBuild ?? {}),
-      ...(readUrlState(db) ?? {}),
-    });
-  });
+  const [saveTarget, setSaveTarget] = useState(initialSlots.saveTarget);
+  const [state, dispatch] = useReducer(reducer, initialSlots.state);
 
   // Auto-save: write the current build back to the active slot whenever the
   // costume changes (keyed on the build signature, so a pure pose/rotation
   // change doesn't rewrite storage) or the active slot switches.
   const buildSig = buildSignature(buildOf(state));
   useEffect(() => {
+    if (active === null) return;
     setBuilds((prev) => {
       const next = [...prev];
       next[active] = buildOf(state);
@@ -96,10 +107,10 @@ function Simulator({ db }: { db: Db }) {
   // effect then writes back. Everything picked goes — class, gender, hair,
   // colours, costumes, mount and pet — leaving a fresh character; the pose and
   // rotation are the view, not the build, so they stay.
-  const defaultSig = useMemo(() => buildSignature(buildOf(initialState(db))), [db]);
   const clearSlot = useCallback(() => {
     dispatch({ type: "loadBuild", build: buildOf(initialState(db)) });
   }, [db]);
+  const replacing = builds[saveTarget] != null && buildSignature(builds[saveTarget]) !== defaultSig;
 
   // Reflect the current build in the address bar — runs once on mount (the old
   // "re-sync immediately") and after every change.
@@ -196,6 +207,28 @@ function Simulator({ db }: { db: Db }) {
             onClear={clearSlot}
             canClear={buildSig !== defaultSig}
           />
+          {active === null && (
+            <div className="shared-build" role="region" aria-label={t.sharedBuildTitle}>
+              <p>
+                <strong>{t.sharedBuildTitle}</strong><br />
+                {t.sharedBuildNotice}
+              </p>
+              <div className="shared-build-actions">
+                <select
+                  aria-label={t.sharedBuildTarget}
+                  value={saveTarget}
+                  onChange={(e) => setSaveTarget(Number(e.target.value))}
+                >
+                  {Array.from({ length: SLOT_COUNT }, (_, i) => (
+                    <option key={i} value={i}>{t.characterNumber(i + 1)}</option>
+                  ))}
+                </select>
+                <button type="button" onClick={() => setActive(saveTarget)}>
+                  {replacing ? t.sharedBuildReplace : t.sharedBuildSave}
+                </button>
+              </div>
+            </div>
+          )}
           <div className="control-block">
             <div className="control-label">{t.classLabel}</div>
             <ClassSelect />
