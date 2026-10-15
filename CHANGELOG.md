@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.17.1] — 2026-10-15
+
+### Added
+
+- Synced ragassets' current item table and verified all 1247 candidate costume
+  previews, excluding 13 blank renders. The catalogue grows from 1232 to 1234
+  costumes with Véu da Llorona (Top) and Batata-doce na Boca (Low). No existing
+  costume was removed or changed.
+- Checked classes, hair, all 29 graphic stones and all 107 pet egg names against
+  the published tables; none changed.
+
 ## [0.17.0] — 2026-10-12
 
 ### Added
