@@ -14,6 +14,13 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.17.1",
+    date: "2026-10-15",
+    changes: [
+      "O catálogo ganhou dois visuais: Véu da Llorona, de Topo, e Batata-doce na Boca, de Baixo.",
+    ],
+  },
+  {
     version: "0.17.0",
     date: "2026-10-12",
     changes: [
