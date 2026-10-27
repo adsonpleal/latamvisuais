@@ -24,7 +24,6 @@ import {
 } from "three";
 import type { CanvasMetrics } from "../../core/state";
 import { SPRITE, UNITS_PER_PX } from "../sprite";
-import { measureTopOffset } from "./measureTop";
 
 // The flat sprite shares the feet's depth, so the ground tiles in front of the
 // feet (nearer the camera) would overdraw its lower edge (boots sit just below
@@ -48,12 +47,6 @@ export class Character {
    *  `update` scales the anchor offset with it and the character stays on the
    *  ground. */
   private sizeScale = 1;
-  /** Where the drawn sprite's TOP edge sits above the feet, in world units, for
-   *  whatever frame is on screen — what a head-anchored effect attaches to.
-   *  Measured from the sprite's own opaque pixels rather than assumed, and cached
-   *  per frame image, since a tall hat moves it. */
-  private topByFrame = new Map<string, number>();
-  private topOffset = 0;
 
   constructor(
     private scene: Scene,
@@ -91,7 +84,6 @@ export class Character {
       this.ctx.clearRect(0, 0, this.metrics.w, this.metrics.h);
       this.ctx.drawImage(img, 0, 0, this.metrics.w, this.metrics.h);
       this.texture.needsUpdate = true;
-      this.topOffset = this.measureTop(img.src);
     }
     // Face the camera fully (image-plane-aligned): a single-depth flat sprite.
     this.mesh.quaternion.copy(camera.quaternion);
@@ -110,24 +102,6 @@ export class Character {
     if (scale === this.sizeScale) return;
     this.sizeScale = scale;
     this.mesh.scale.setScalar(scale);
-  }
-
-  /** World-up distance from the feet to the top of the drawn sprite, for the
-   *  current frame and current size — where a head-anchored effect goes. */
-  headOffset(): number {
-    return this.topOffset * this.sizeScale;
-  }
-
-  /** The topmost opaque row of a frame, as a world-up offset from the feet.
-   *  Read once per distinct frame image and cached: the scan is a sync
-   *  `getImageData` readback, far too slow to run every frame, but a given
-   *  frame's silhouette never changes. */
-  private measureTop(key: string): number {
-    const hit = this.topByFrame.get(key);
-    if (hit !== undefined) return hit;
-    const offset = measureTopOffset(this.ctx, this.metrics);
-    this.topByFrame.set(key, offset);
-    return offset;
   }
 
   /** Show/hide the billboard — used to keep the previous map's character from

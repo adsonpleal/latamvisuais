@@ -11,7 +11,7 @@ import { t } from "../i18n";
 import { CACHE_BUST, frameCountProbeUrl, renderBodyKey, type State } from "../core/state";
 import { mountsFor } from "../core/mounts";
 import { flyingJobFor } from "../core/flight";
-import { SLOTS, type BuiltinEffect, type FootprintSteps } from "../core/db";
+import { builtinRisePx, SLOTS, type BuiltinEffect, type FootprintSteps } from "../core/db";
 import { useAppState, useDispatch } from "../state/AppStateContext";
 import { Engine } from "./render/engine";
 import { Character } from "./render/character";
@@ -354,12 +354,13 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
     };
     const syncBuiltin = (st: State) => {
       builtin = builtinOf(st);
-      const key = builtin?.kind === "sprite" ? builtin.key : "";
+      const played = builtin?.kind === "sprite" ? builtin : null;
+      const key = played?.key ?? "";
       if (key === builtinKey) return;
       builtinKey = key;
       clearBuiltinSprite();
       const token = ++builtinToken;
-      if (!key) return;
+      if (!played) return;
       loadSpriteBundle(key)
         .then((bundle) => {
           if (disposed || token !== builtinToken) return;
@@ -367,12 +368,12 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
           // Straight alpha, not additive: ragassets composites these frames with
           // a real alpha channel (84% / 44% transparent), so they are cut-out art
           // — adding them would blow out the lit parts and box the rest.
-          // The offsets are applied per frame through `rise`, since the head
-          // anchor moves with the pose and with whatever hat is on.
+          // The table's offset is a fixed screen-up float, which is exactly what
+          // `lift` is, so it is set here rather than re-derived every frame.
           builtinSprite = new SpriteBillboard(engine!.scene, bundle, {
             scale: 1,
             additive: false,
-            lift: 0,
+            lift: builtinRisePx(played) * UNITS_PER_PX,
             anchorH: 0,
           });
         })
@@ -382,9 +383,6 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
 
     const charWorld = new Vector3();
     const printPos = new Vector3(); // reused per stamped footprint
-    // Reused each frame: SpriteBillboard reads it synchronously, so one mutable
-    // object beats allocating per frame (same trick as worldEffects' SMOKE_DYN).
-    const spriteDyn = { alpha: 1, scaleMul: 1, rise: 0 };
     let effectClock = 0; // monotonic; drives effect playback independent of pose
     engine.start((dt) => {
       cursor?.update(dt);
@@ -451,16 +449,9 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
       if (frame && frame.complete && frame.naturalWidth) {
         character.update(frame, charWorld, engine!.cam.camera);
       }
-      // …and the attached .spr effects, placed after the character so they can
-      // anchor to the frame it has just measured. `head` sits the effect on top
-      // of the drawn sprite (a tall hat moves it); the table's yOffset is RO
-      // screen space, where negative is up. Both ride `rise`, which is the
-      // camera-up axis — the one a screen-space offset belongs on.
-      if (builtinSprite && builtin?.kind === "sprite") {
-        spriteDyn.rise =
-          (builtin.head ? character.headOffset() : 0) - (builtin.yOffset ?? 0) * UNITS_PER_PX;
-        builtinSprite.update(effectClock, charWorld, engine!.cam.camera, spriteDyn);
-      }
+      // …and the attached .spr effect, already placed by the `lift` it was built
+      // with (see syncBuiltin).
+      builtinSprite?.update(effectClock, charWorld, engine!.cam.camera);
 
       // Pet companion: lazily spawned on first selection, then follows the
       // player each frame. setMob is a no-op when unchanged and hides the

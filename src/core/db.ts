@@ -72,20 +72,37 @@ export type FootprintSteps = {
  *    xSize/ySize to 2.5 against a default of 5, i.e. exactly half).
  *  - `sprite` — it plays a looping .spr/.act attached to the character, which
  *    ragassets already bundles at /effects/sprites/<key>/. */
-export type BuiltinEffect =
-  | { kind: "scale"; scale: number }
-  | {
-      kind: "sprite";
-      /** Bundle key under /effects/sprites/ (see sim/spriteEffect.ts). */
-      key: string;
-      /** Play at the top of the sprite rather than at the feet (`head: true`). */
-      head?: boolean;
-      /** The effect's own screen-up offset, in sprite pixels (RO y is down, so
-       *  the table's negative values lift it). */
-      yOffset?: number;
-      /** Draw behind the character (`renderBeforeEntities`). */
-      behind?: boolean;
-    };
+export type BuiltinEffect = { kind: "scale"; scale: number } | BuiltinSprite;
+
+export type BuiltinSprite = {
+  kind: "sprite";
+  /** Bundle key under /effects/sprites/ (see sim/spriteEffect.ts). */
+  key: string;
+  /** Anchor at head height rather than at the feet — see `builtinRisePx`. */
+  head?: boolean;
+  /** The effect's own screen-up offset, in sprite pixels — see `builtinRisePx`. */
+  yOffset?: number;
+  /** Draw behind the character (`renderBeforeEntities`). */
+  behind?: boolean;
+};
+
+/** What `head: true` lifts by on its own. Nothing is measured for it: the client
+ *  steps the attachment up by this much and no further. */
+const HEAD_RISE_PX = 100;
+
+/** How far above the feet a built-in sprite effect plays, in sprite pixels of
+ *  screen-up lift.
+ *
+ *  The client's attachment carries ONE screen offset, not two: an explicit
+ *  `yOffset` *replaces* the head anchor instead of stacking on it (roBrowser
+ *  `EntityAttachments`: `position[1] = head ? -100 : 0`, reached only when the
+ *  row gave no offset of its own). Adding the two is what put Raios Vermelhos —
+ *  the one row that declares both — a whole body above the sprite. */
+export function builtinRisePx(builtin: BuiltinSprite): number {
+  // RO screen y points down, so the table's negative offsets are the ones that lift.
+  if (builtin.yOffset !== undefined) return -builtin.yOffset;
+  return builtin.head ? HEAD_RISE_PX : 0;
+}
 
 /** Whether anything will actually be drawn for this stone. Three different
  *  mechanisms can supply it — a ".str" bundle, a footprint trail, or the client's

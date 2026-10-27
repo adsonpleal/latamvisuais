@@ -15,14 +15,12 @@
 // with an orthographic camera (see stageLayout.ts) and no background at all.
 
 import { OrthographicCamera, Scene, Vector3, WebGLRenderer } from "three";
-import type { CanvasMetrics } from "../../core/state";
-import type { BuiltinEffect } from "../../core/db";
+import { builtinRisePx, type BuiltinEffect } from "../../core/db";
 import { loopLength } from "../apng";
 import { loadEffect } from "../effect";
 import { disposeBundle, loadSpriteBundle, type SpriteBundle } from "../spriteEffect";
 import { UNITS_PER_PX } from "../sprite";
 import { EffectBillboard } from "./effect";
-import { topOffsetOf } from "./measureTop";
 import { SpriteBillboard } from "./spriteBillboard";
 import { stageFrustum } from "./stageLayout";
 
@@ -51,18 +49,12 @@ export class StageEffects {
 
   private sprite: SpriteBillboard | null = null;
   private bundle: SpriteBundle | null = null;
-  private builtin: BuiltinEffect | null = null;
   private builtinKey = "";
   private builtinToken = 0;
-  private headOffset = 0;
-  private spriteUrl: string | undefined;
   /** Loop length in seconds: one per ".str" in play, plus the built-in sprite's. */
   private effectLoops = new Map<string, number>();
   private builtinLoop = 0;
   private duration = 0;
-  // Reused each frame — SpriteBillboard reads it synchronously, so one mutable
-  // object beats allocating per frame (the same trick the simulator uses).
-  private dyn = { alpha: 1, scaleMul: 1, rise: 0 };
 
   private opts: StageEffectsOptions;
   private layoutKey = "";
@@ -139,16 +131,13 @@ export class StageEffects {
    *  anything here — `scale` resizes the character, which on this surface is the
    *  paper-doll image's business, not the overlay's. */
   setBuiltin(builtin: BuiltinEffect | null): void {
-    this.builtin = builtin;
-    const key = builtin?.kind === "sprite" ? builtin.key : "";
+    const played = builtin?.kind === "sprite" ? builtin : null;
+    const key = played?.key ?? "";
     if (key === this.builtinKey) return;
     this.builtinKey = key;
-    // A newly head-anchored effect has to measure the sprite it is landing on,
-    // which setSprite skips while nothing needs it.
-    this.spriteUrl = undefined;
     this.clearBuiltin();
     const token = ++this.builtinToken;
-    if (!key) return;
+    if (!played) return;
     loadSpriteBundle(key)
       .then((bundle) => {
         if (this.disposed || token !== this.builtinToken) return;
@@ -156,44 +145,17 @@ export class StageEffects {
         // The bundle's delays are milliseconds; every other loop here is seconds.
         this.builtinLoop = loopLength(bundle.info) / 1000;
         this.reportDuration();
+        // The table's offset is a fixed screen-up float, which is exactly what
+        // `lift` is, so it is set here rather than re-derived every frame.
         this.sprite = new SpriteBillboard(this.scene, bundle, {
           scale: 1,
           additive: false,
-          lift: 0,
+          lift: builtinRisePx(played) * UNITS_PER_PX,
           anchorH: 0,
         });
         this.wake();
       })
       .catch((err) => console.error("[preview] builtin effect load failed", key, err));
-  }
-
-  /**
-   * The paper-doll currently on screen, so a head-anchored effect can sit on
-   * top of it — a tall hat moves that point, so it is measured from the drawn
-   * pixels rather than assumed (the same reading the map's character billboard
-   * takes of its own frames).
-   *
-   * Only ever read for the two head-anchored built-in stones: the scan is a
-   * synchronous pixel readback and a cross-origin fetch of its own, neither of
-   * which any other build should pay for.
-   */
-  setSprite(url: string | undefined, metrics: CanvasMetrics): void {
-    if (!url || !this.needsHeadOffset()) return;
-    if (url === this.spriteUrl) return;
-    this.spriteUrl = url;
-    // A plain Image, not the sim's session-lifetime cache: that cache is sized
-    // for the map's fixed set of character frames, while this url space is the
-    // whole catalogue crossed with every direction and frame. The render is in
-    // the HTTP cache either way, so nothing re-hits the network.
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.decoding = "async";
-    const read = () => {
-      if (this.disposed || this.spriteUrl !== url) return;
-      this.applyHeadOffset(topOffsetOf(img, metrics));
-    };
-    img.addEventListener("load", read, { once: true });
-    img.src = url;
   }
 
   /** Follow the preview's play/pause. Paused freezes the effect where it is
@@ -274,13 +236,7 @@ export class StageEffects {
 
   private draw(): void {
     for (const e of this.effects) e.update(this.clock, FEET, this.camera);
-    if (this.sprite && this.builtin?.kind === "sprite") {
-      // `head` sits the effect on top of the drawn sprite (a tall hat moves it);
-      // the table's yOffset is RO screen space, where negative is up.
-      this.dyn.rise =
-        (this.builtin.head ? this.headOffset : 0) - (this.builtin.yOffset ?? 0) * UNITS_PER_PX;
-      this.sprite.update(this.clock, FEET, this.camera, this.dyn);
-    }
+    this.sprite?.update(this.clock, FEET, this.camera);
     this.renderer.render(this.scene, this.camera);
   }
 
@@ -299,16 +255,6 @@ export class StageEffects {
     for (const e of this.effects) e.dispose();
     this.effects = [];
     this.effectLoops.clear();
-  }
-
-  private needsHeadOffset(): boolean {
-    return this.builtin?.kind === "sprite" && !!this.builtin.head;
-  }
-
-  private applyHeadOffset(offset: number): void {
-    if (offset === this.headOffset) return;
-    this.headOffset = offset;
-    this.wake();
   }
 
   private clearBuiltin(): void {

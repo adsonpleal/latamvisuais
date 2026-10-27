@@ -4,6 +4,29 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.17.1] — 2026-10-27
+
+### Fixed
+
+- **Raios Vermelhos (stone 25225) sat a whole body above the sprite.** Its
+  `HatEffectInfo` row carries both `head: true` and `yOffset: -50`, and both
+  renderers were adding them — the measured top of the drawn sprite *plus*
+  another 50px of lift. The client takes one offset, not two: roBrowser's
+  `EntityAttachments` builds the attachment's screen offset as
+  `position[1] = head ? -100 : 0` and lets an explicit `xOffset`/`yOffset`
+  **replace** that anchor rather than stack on it. That precedence now lives in
+  one place, `builtinRise` (`sim/equipped.ts`), which both the 2D preview
+  overlay and the map loop call — so the effect plays centred on the body at
+  50px up, in every class, gender and mount. Espaço Digital (1002585) declares
+  neither field and is unchanged; the two Miniatura stones only resize.
+
+- With `head` now a flat step rather than a measurement, the pipeline that read
+  it is gone: `sim/render/measureTop.ts`, `Character.headOffset`,
+  `StageEffects.setSprite` and the `spriteUrl`/`metrics` plumbing that carried
+  the paper-doll's URL from `Preview` through `useStageEffects`. That also
+  retires a synchronous `getImageData` readback and a cross-origin re-fetch of
+  the current render, both of which only ever ran for this one stone.
+
 ## [0.17.0] — 2026-10-12
 
 ### Added
