@@ -4,7 +4,7 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
-## [0.17.1] — 2026-10-27
+## [0.17.2] — 2026-10-27
 
 ### Fixed
 
@@ -13,12 +13,14 @@ while pre-1.0.
   renderers were adding them — the measured top of the drawn sprite *plus*
   another 50px of lift. The client takes one offset, not two: roBrowser's
   `EntityAttachments` builds the attachment's screen offset as
-  `position[1] = head ? -100 : 0` and lets an explicit `xOffset`/`yOffset`
-  **replace** that anchor rather than stack on it. That precedence now lives in
-  one place, `builtinRise` (`sim/equipped.ts`), which both the 2D preview
-  overlay and the map loop call — so the effect plays centred on the body at
-  50px up, in every class, gender and mount. Espaço Digital (1002585) declares
-  neither field and is unchanged; the two Miniatura stones only resize.
+  `position[1] = head ? -100 : 0` and reaches that head anchor only when the row
+  gave no `xOffset`/`yOffset` of its own. That precedence now lives in one
+  place, `builtinRisePx` (`core/db.ts`), beside the `BuiltinEffect` type it
+  reads; both the 2D preview overlay and the map loop apply it once as the
+  billboard's `lift` instead of re-deriving a `rise` every frame. The effect
+  plays centred on the body at 50px up, in every class, gender and mount.
+  Espaço Digital (1002585) declares neither field and is unchanged; the two
+  Miniatura stones only resize.
 
 - With `head` now a flat step rather than a measurement, the pipeline that read
   it is gone: `sim/render/measureTop.ts`, `Character.headOffset`,
@@ -26,6 +28,17 @@ while pre-1.0.
   the paper-doll's URL from `Preview` through `useStageEffects`. That also
   retires a synchronous `getImageData` readback and a cross-origin re-fetch of
   the current render, both of which only ever ran for this one stone.
+
+## [0.17.1] — 2026-10-15
+
+### Added
+
+- Synced ragassets' current item table and verified all 1247 candidate costume
+  previews, excluding 13 blank renders. The catalogue grows from 1232 to 1234
+  costumes with Véu da Llorona (Top) and Batata-doce na Boca (Low). No existing
+  costume was removed or changed.
+- Checked classes, hair, all 29 graphic stones and all 107 pet egg names against
+  the published tables; none changed.
 
 ## [0.17.0] — 2026-10-12
 
