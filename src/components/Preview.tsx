@@ -18,10 +18,13 @@
 //
 // Effect costumes and graphic stones (auras, petals, ki spirits) are drawn by
 // the game's world-effect system, never by a character sprite, so they can't be
-// part of that render at all. They come from a transparent WebGL canvas behind
+// part of that render at all. They come from transparent WebGL canvases around
 // the paper-doll instead — the same billboards the map view plays, anchored on
-// the character's feet (sim/render/stageEffects). It only exists while a build
-// actually has one, so three.js stays out of the first load.
+// the character's feet (sim/render/stageEffects). Around, because the auras go
+// behind the character and a built-in effect the client attaches to the body
+// goes over it (core/db.ts's builtinInFront), with the <img> between the two.
+// They exist only while a build actually has one, so three.js stays out of the
+// first load — and the front canvas only for the builds that need it.
 
 import {
   useEffect,
@@ -53,6 +56,7 @@ import { mountsFor } from "../core/mounts";
 import { flyingJobFor } from "../core/flight";
 import { SLOTS } from "../core/db";
 import { builtinOf, drawsEffects, effectKeys } from "../sim/equipped";
+import { builtinInFront } from "../core/db";
 import { t } from "../i18n";
 import { dismissTip } from "../hooks/useTooltip";
 import { useFrameCount } from "../hooks/useFrameCount";
@@ -211,9 +215,15 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
   // they stay on the ground, exactly as the map scales its billboard — and a
   // build carrying only Miniatura therefore needs no canvas at all.
   const charScale = builtin?.kind === "scale" ? builtin.scale : 1;
+  // A built-in effect the client attaches over the body (Raios Vermelhos) needs
+  // a canvas on the other side of the <img>; everything else — every ".str", and
+  // Espaço Digital's `renderBeforeEntities` — stays on the one behind it.
+  const hasFrontFx = builtinInFront(builtin);
 
   const [stageFx, setStageFx] = useState<HTMLCanvasElement | null>(null);
+  const [stageFxFront, setStageFxFront] = useState<HTMLCanvasElement | null>(null);
   const [modalFx, setModalFx] = useState<HTMLCanvasElement | null>(null);
+  const [modalFxFront, setModalFxFront] = useState<HTMLCanvasElement | null>(null);
   // Where the effects are parked while paused, in seconds. Undefined means the
   // overlays are running their own clocks — which is every moment except a
   // pause, so the scrubber is the only thing that ever sets it.
@@ -237,6 +247,7 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
 
   const stageEffects = useStageEffects({
     canvas: stageFx,
+    frontCanvas: stageFxFront,
     active: hasFx && !!stageLayout,
     keys: fxKeys,
     builtin,
@@ -473,6 +484,7 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
 
   const modalEffects = useStageEffects({
     canvas: modalFx,
+    frontCanvas: modalFxFront,
     active: modalOpen && hasFx && boxReady,
     keys: fxKeys,
     builtin,
@@ -586,7 +598,7 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
       <div className="stage-wrap">
         <div className="stage" ref={stageRef}>
           {/* Behind the character, like the map draws it: the character
-              billboard there is renderOrder 1 over every effect. */}
+              billboard there is renderOrder 1 over the .str planes. */}
           {hasFx && <canvas className="stage-fx" ref={setStageFx} />}
           <img
             className={sprite.src ? "stage-sprite is-loaded" : "stage-sprite"}
@@ -599,6 +611,9 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
                 : { transform: `scale(${charScale})`, transformOrigin: feetOrigin(CANVAS_METRICS) }
             }
           />
+          {/* …and over it, for the built-in effect the client attaches to the
+              body rather than drawing before the entities. */}
+          {hasFrontFx && <canvas className="stage-fx stage-fx-front" ref={setStageFxFront} />}
           <div className="stage-error" hidden={!sprite.error}>
             {t.previewError}
           </div>
@@ -788,6 +803,10 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
               aura is not cut off at the edge of the character's own window —
               zoom out and the rest of it comes into view. */}
           {hasFx && <canvas className="sprite-modal-fx" ref={setModalFx} />}
+          {/* The front layer spans the same box — see .stage-fx-front. */}
+          {hasFrontFx && (
+            <canvas className="sprite-modal-fx sprite-modal-fx-front" ref={setModalFxFront} />
+          )}
           {/* The frame the character is drawn into. It holds its size while the
               content scales inside it, which is what makes zooming out reveal
               anything. */}

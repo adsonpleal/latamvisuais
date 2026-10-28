@@ -4,6 +4,42 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.17.3] — 2026-10-27
+
+### Fixed
+
+- **Built-in effects the client attaches to the body were all drawn behind the
+  character.** `BuiltinSprite.behind` (`core/db.ts`) mirrors the client's
+  `renderBeforeEntities`, and nothing read it: every built-in effect went into
+  the layer the ".str" auras use. roBrowser's
+  `EntityAttachments.renderAttachment` gives an attachment
+  `zIdx = attachment.renderBefore ? 1 : 500` with the entity between the two, so
+  the default is OVER the body and `behind` is the exception. The rule is now
+  one pure function, `builtinInFront` (`core/db.ts`, beside `builtinRisePx`),
+  read by both surfaces: Raios Vermelhos (25225, no `behind`) wraps around the
+  character and Espaço Digital (1002585, `behind`) stays under it. Worst on a
+  Mecânico in the MECHA, where the mount hid nearly all of Raios Vermelhos.
+
+- The two surfaces differ in how they get there. The map view
+  (`sim/Simulator.tsx`) keeps one scene, so a front effect takes a later
+  `renderOrder` and a nearer `frontBias` than the character billboard — both,
+  because the character writes depth and a later draw at the effects' own bias
+  is discarded behind it anyway. Those two numbers are now exported from
+  `sim/render/character.ts` (`CHARACTER_RENDER_ORDER`, `CHARACTER_FRONT_BIAS`)
+  and derived from, rather than copied beside, the character's own; the
+  `SpriteBillboard` options that take them default to what every world effect
+  (a torch, an emitter) already used.
+
+- In the 2D preview the character is a DOM `<img>` between the two layers, so
+  `sim/render/stageEffects.ts` now holds up to two canvases — one renderer and
+  scene each, sharing the one camera — stacked by CSS around the image, on the
+  stage, in the full-screen viewer and in the detached window. The front one is
+  built only while a build actually has an effect for it (`setFrontCanvas`):
+  a WebGL context is scarce, and today exactly one stone asks for one.
+
+- No ".str" effect changed layer. Auras, falling petals and the stones with an
+  `effect` are still drawn behind the character, as 0.15.0 announced.
+
 ## [0.17.2] — 2026-10-27
 
 ### Fixed

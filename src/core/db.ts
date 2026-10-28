@@ -104,6 +104,23 @@ export function builtinRisePx(builtin: BuiltinSprite): number {
   return builtin.head ? HEAD_RISE_PX : 0;
 }
 
+/** Whether a built-in sprite effect draws in FRONT of the character, which is
+ *  the client's default — only a row that asks to go behind it does.
+ *
+ *  roBrowser's `EntityAttachments.renderAttachment` gives the attachment
+ *  `zIdx = attachment.renderBefore ? 1 : 500`, and the entity itself sits
+ *  between the two: a plain attachment is drawn over the body, and
+ *  `renderBeforeEntities` (this type's `behind`) is what moves it under. So
+ *  Raios Vermelhos (25225) wraps around the character and Espaço Digital
+ *  (1002585) stays behind it.
+ *
+ *  Takes the whole `BuiltinEffect` rather than a `BuiltinSprite`, because both
+ *  surfaces hold the broad shape and a `scale` built-in — which draws nothing
+ *  of its own — has no layer to ask about. */
+export function builtinInFront(builtin: BuiltinEffect | null | undefined): boolean {
+  return builtin?.kind === "sprite" && !builtin.behind;
+}
+
 /** Whether anything will actually be drawn for this stone. Three different
  *  mechanisms can supply it — a ".str" bundle, a footprint trail, or the client's
  *  own built-in effect table — and every caller wants the same answer, so it

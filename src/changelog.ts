@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.17.3",
+    date: "2026-10-27",
+    changes: [
+      "A Pedra Gráfica: Raios Vermelhos agora passa na frente do personagem, envolvendo o corpo, em vez de ficar escondida atrás dele. A diferença é enorme em quem ocupa muito espaço na tela: no Mecânico com o MECHA, a montaria tapava quase todo o efeito.",
+      "É assim que o jogo desenha: esse tipo de efeito fica preso ao corpo e aparece por cima. A Pedra Gráfica: Espaço Digital, que o jogo manda para trás do personagem, continua atrás — e as auras e pétalas também, exatamente como antes. Vale na prévia, na tela cheia, na janelinha e na visão de mapa.",
+    ],
+  },
+  {
     version: "0.17.2",
     date: "2026-10-27",
     changes: [
