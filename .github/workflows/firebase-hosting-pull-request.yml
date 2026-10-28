@@ -32,3 +32,10 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_LATAM_VISUAIS }}
           projectId: latam-visuais
+          # Pinned: firebase-tools 15.34.1 added an API-enabled check to the
+          # hosting deploy (lib/deploy/hosting/prepare.js calls ensure() on
+          # firebasehosting.googleapis.com), and the CI service account can
+          # read the Hosting API but not Service Usage, so the deploy dies on
+          # "403 Permission denied to get service". Unpin once the account has
+          # roles/serviceusage.serviceUsageConsumer on latam-visuais.
+          firebaseToolsVersion: 15.34.0
