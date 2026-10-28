@@ -24,6 +24,11 @@ export type StageLayout = {
 
 export type StageEffectsInput = {
   canvas: HTMLCanvasElement | null;
+  /** The canvas over the paper-doll, for a built-in effect the client draws in
+   *  front of the character — null when the build has none. A second WebGL
+   *  context, so the surface only renders the element while something needs it
+   *  (see stageEffects' setFrontCanvas). */
+  frontCanvas?: HTMLCanvasElement | null;
   /** Whether this surface should be drawing at all — visible, and with
    *  something to draw. */
   active: boolean;
@@ -57,7 +62,7 @@ if (import.meta.env.DEV) {
 }
 
 export function useStageEffects(input: StageEffectsInput): StageEffectsHandle {
-  const { canvas, active, keys, builtin, playing, layout, time } = input;
+  const { canvas, frontCanvas, active, keys, builtin, playing, layout, time } = input;
   // The instance itself is the state, so the effect below can depend on it —
   // it is built asynchronously, and a ref cannot be a dependency.
   const [fx, setFx] = useState<StageEffects | null>(null);
@@ -92,12 +97,13 @@ export function useStageEffects(input: StageEffectsInput): StageEffectsHandle {
     if (!fx) return;
     fx.setEffects(keys);
     fx.setBuiltin(builtin);
+    fx.setFrontCanvas(frontCanvas ?? null);
     fx.setPlaying(playing);
     if (layout) {
       fx.setLayout(layout.cssW, layout.cssH, layout.groundX, layout.groundY, layout.scale);
     }
     if (time !== undefined) fx.seek(time);
-  }, [fx, keys, builtin, playing, layout, time]);
+  }, [fx, frontCanvas, keys, builtin, playing, layout, time]);
 
   return {
     duration,

@@ -30,7 +30,17 @@ import { SPRITE, UNITS_PER_PX } from "../sprite";
 // the anchor). Nudge the whole sprite toward the camera *along the line of sight*
 // (no on-screen shift) so it clears the surrounding ground; it's > one tile's
 // depth step, but small enough that taller models still occlude it.
-const FRONT_BIAS = 2.5;
+//
+// Exported because the character is what everything attached to it is layered
+// against: an effect that must draw OVER the body needs both a later
+// renderOrder and a nearer depth than these, and deriving them from the
+// character's own numbers is what keeps the two sides from drifting apart (see
+// Simulator's syncBuiltin and core/db.ts's builtinInFront).
+export const CHARACTER_FRONT_BIAS = 2.5;
+
+/** The character draws after the effects that sit behind it (footprints at -1,
+ *  the .str planes at the default 0) and before anything layered over it. */
+export const CHARACTER_RENDER_ORDER = 1;
 
 export class Character {
   readonly mesh: Mesh;
@@ -73,7 +83,7 @@ export class Character {
       depthWrite: true,
     });
     this.mesh = new Mesh(new PlaneGeometry(worldW, worldH), material);
-    this.mesh.renderOrder = 1;
+    this.mesh.renderOrder = CHARACTER_RENDER_ORDER;
     scene.add(this.mesh);
   }
 
@@ -93,7 +103,7 @@ export class Character {
     // Pull toward the camera along the line of sight so nearby ground can't clip
     // the lower edge (depth-only nudge; the on-screen position is unchanged).
     this.toCam.copy(camera.position).sub(this.mesh.position).normalize();
-    this.mesh.position.addScaledVector(this.toCam, FRONT_BIAS);
+    this.mesh.position.addScaledVector(this.toCam, CHARACTER_FRONT_BIAS);
   }
 
   /** Resize the character uniformly (1 = normal). Cheap enough to call every

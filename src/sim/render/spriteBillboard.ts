@@ -29,6 +29,8 @@ import { frameAt } from "../apng";
 import { frameTexture, type SpriteBundle } from "../spriteEffect";
 
 // Pull slightly toward the camera so the flame draws in front of the torch model.
+// Enough for a torch's own bowl; an effect that must clear the character
+// billboard (a nearer bias of its own) passes a larger one — see SpriteOptions.
 const FRONT_BIAS = 1.0;
 // World up — the sprite's vertical offset rides this (not the camera's up) so it stays
 // directly above its anchor as the camera yaws. See update().
@@ -47,6 +49,16 @@ export interface SpriteOptions {
   anchorH?: number; // WORLD-up units from `pos` to the object's attach point (e.g. a
   // torch's bowl). The sprite is anchored there so it shares the model's perspective
   // lean and never drifts off it; the screen float (lift) is added from there.
+
+  // Where the billboard sits in the draw order, for an effect attached to
+  // something that is itself biased toward the camera. Both are needed together
+  // to draw over the character: `renderOrder` decides who paints last among the
+  // transparent meshes, and `frontBias` has to clear the character's own pull
+  // toward the camera or the depth it writes discards the effect anyway.
+  // Defaulted for every world effect (a torch, an emitter), which only has the
+  // scenery to clear.
+  renderOrder?: number; // default 0, like every other transparent plane
+  frontBias?: number; // default FRONT_BIAS (1.0), in world units toward the camera
 }
 
 export class SpriteBillboard {
@@ -94,6 +106,7 @@ export class SpriteBillboard {
     const geo = new PlaneGeometry(this.maxW * UNITS_PER_PX * this.opts.scale, this.maxH * UNITS_PER_PX * this.opts.scale);
     this.mesh = new Mesh(geo, this.mat);
     this.mesh.frustumCulled = false;
+    if (this.opts.renderOrder) this.mesh.renderOrder = this.opts.renderOrder;
     this.scene.add(this.mesh);
   }
 
@@ -135,7 +148,7 @@ export class SpriteBillboard {
       .addScaledVector(WORLD_UP, this.opts.anchorH ?? 0)
       .addScaledVector(this.camUp, -oy * s + this.opts.lift + (dyn?.rise ?? 0))
       .addScaledVector(this.right, ox * s)
-      .addScaledVector(this.toCam, FRONT_BIAS);
+      .addScaledVector(this.toCam, this.opts.frontBias ?? FRONT_BIAS);
   }
 
   dispose(): void {

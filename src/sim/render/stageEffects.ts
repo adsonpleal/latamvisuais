@@ -1,21 +1,29 @@
-// The character preview's effect overlay: a transparent WebGL canvas sitting
-// behind the 2D paper-doll, playing the same ".str" bundles and built-in sprite
-// effects the map simulator does.
+// The character preview's effect overlay: transparent WebGL canvases around the
+// 2D paper-doll, playing the same ".str" bundles and built-in sprite effects the
+// map simulator does.
 //
 // Effect-only costumes and graphic stones are drawn by the game's world-effect
 // system, not by a character sprite, so ragassets can never composite them into
 // the paper-doll render. The map view could already show them; this puts them on
 // the preview too, without touching how the character itself is drawn — the
-// <img> stays exactly what it was and simply draws on top, which is also how the
-// simulator layers the two (the character billboard is renderOrder 1 and rides a
-// larger FRONT_BIAS than every effect).
+// <img> stays exactly what it was and the overlay draws around it.
+//
+// Around it, not behind it, because the client has both layers. The ".str"
+// auras and petals go behind the character, and so does a built-in effect whose
+// row asks to (`renderBeforeEntities`); a plain built-in attachment is drawn
+// over the body (core/db.ts's builtinInFront). The simulator settles that with
+// renderOrder and a depth bias in one scene, but here the character is a DOM
+// <img> between the two — so the front layer is a SECOND canvas, stacked over
+// the image by CSS, with its own renderer and scene sharing this camera. It is
+// built only while something needs it: a WebGL context is scarce, and today
+// exactly one stone (Raios Vermelhos) asks for one.
 //
 // Not built on Engine: that owns a perspective follow-camera and an opaque sky,
 // both of which are the opposite of what is wanted here. This is the same idea
 // with an orthographic camera (see stageLayout.ts) and no background at all.
 
 import { OrthographicCamera, Scene, Vector3, WebGLRenderer } from "three";
-import { builtinRisePx, type BuiltinEffect } from "../../core/db";
+import { builtinInFront, builtinRisePx, type BuiltinEffect, type BuiltinSprite } from "../../core/db";
 import { loopLength } from "../apng";
 import { loadEffect } from "../effect";
 import { disposeBundle, loadSpriteBundle, type SpriteBundle } from "../spriteEffect";
@@ -32,6 +40,33 @@ const CAM_Z = 100;
 /** The character's feet: world origin, by construction (see stageLayout). */
 const FEET = new Vector3(0, 0, 0);
 
+/** One canvas of the overlay: its own renderer and scene, drawn with the one
+ *  shared camera. Two at most — the layer behind the paper-doll and, when a
+ *  built-in effect belongs over it, the one in front. */
+type Layer = { renderer: WebGLRenderer; scene: Scene };
+
+function makeLayer(canvas: HTMLCanvasElement): Layer {
+  // alpha + a zero clear so the stage's CSS gradient (and, for the front layer,
+  // the paper-doll under it) shows through, and the default premultiplied
+  // compositing so the additive planes really do add onto whatever is painted
+  // behind the canvas.
+  const renderer = new WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+  const scene = new Scene();
+  scene.background = null;
+  return { renderer, scene };
+}
+
+/** Free a layer's renderer. dispose() frees three's own caches but leaves the
+ *  GL context alive, and the browser only allows a handful — the overlay is
+ *  mounted and unmounted as effects come and go, so without the forced loss
+ *  every toggle strands one. */
+function disposeLayer(layer: Layer): void {
+  layer.renderer.dispose();
+  layer.renderer.forceContextLoss();
+}
+
 export type StageEffectsOptions = {
   /** Called whenever the loaded set changes, with the longest loop in seconds
    *  (0 when nothing is loaded). What a scrubber needs for its range. */
@@ -39,8 +74,9 @@ export type StageEffectsOptions = {
 };
 
 export class StageEffects {
-  private renderer: WebGLRenderer;
-  private scene = new Scene();
+  private back: Layer;
+  private front: Layer | null = null;
+  private frontCanvas: HTMLCanvasElement | null = null;
   private camera = new OrthographicCamera(-1, 1, 1, -1, 0.1, CAM_Z * 4);
 
   private effects: EffectBillboard[] = [];
@@ -49,6 +85,9 @@ export class StageEffects {
 
   private sprite: SpriteBillboard | null = null;
   private bundle: SpriteBundle | null = null;
+  /** The built-in row in play, kept because the billboard is rebuilt whenever
+   *  the layer it belongs in appears or goes away. */
+  private played: BuiltinSprite | null = null;
   private builtinKey = "";
   private builtinToken = 0;
   /** Loop length in seconds: one per ".str" in play, plus the built-in sprite's. */
@@ -69,13 +108,7 @@ export class StageEffects {
 
   constructor(canvas: HTMLCanvasElement, opts: StageEffectsOptions = {}) {
     this.opts = opts;
-    // alpha + a zero clear so the stage's CSS gradient shows through, and the
-    // default premultiplied compositing so the additive planes really do add
-    // onto whatever is painted behind the canvas.
-    this.renderer = new WebGLRenderer({ canvas, alpha: true, antialias: true });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    this.renderer.setClearColor(0x000000, 0);
-    this.scene.background = null;
+    this.back = makeLayer(canvas);
     this.camera.position.set(0, 0, CAM_Z);
   }
 
@@ -99,7 +132,10 @@ export class StageEffects {
     this.camera.updateProjectionMatrix();
     // updateStyle=false: the canvas is sized by CSS (inset:0 over the stage);
     // this only sets the backing store, which is why it is worth not redoing.
-    if (resized) this.renderer.setSize(cssW, cssH, false);
+    if (resized) {
+      this.back.renderer.setSize(cssW, cssH, false);
+      this.front?.renderer.setSize(cssW, cssH, false);
+    }
     this.wake();
   }
 
@@ -117,7 +153,7 @@ export class StageEffects {
       loadEffect(key)
         .then((loaded) => {
           if (this.disposed || token !== this.effectToken) return;
-          this.effects.push(new EffectBillboard(this.scene, loaded));
+          this.effects.push(new EffectBillboard(this.back.scene, loaded));
           this.effectLoops.set(key, loaded.fps > 0 ? loaded.maxKey / loaded.fps : 0);
           this.reportDuration();
           this.wake();
@@ -136,6 +172,7 @@ export class StageEffects {
     if (key === this.builtinKey) return;
     this.builtinKey = key;
     this.clearBuiltin();
+    this.played = played;
     const token = ++this.builtinToken;
     if (!played) return;
     loadSpriteBundle(key)
@@ -145,17 +182,36 @@ export class StageEffects {
         // The bundle's delays are milliseconds; every other loop here is seconds.
         this.builtinLoop = loopLength(bundle.info) / 1000;
         this.reportDuration();
-        // The table's offset is a fixed screen-up float, which is exactly what
-        // `lift` is, so it is set here rather than re-derived every frame.
-        this.sprite = new SpriteBillboard(this.scene, bundle, {
-          scale: 1,
-          additive: false,
-          lift: builtinRisePx(played) * UNITS_PER_PX,
-          anchorH: 0,
-        });
+        this.placeSprite();
         this.wake();
       })
       .catch((err) => console.error("[preview] builtin effect load failed", key, err));
+  }
+
+  /** The canvas stacked OVER the paper-doll, for a built-in effect the client
+   *  draws in front of the character (builtinInFront). Null whenever the build
+   *  has none: this is a WebGL context of its own, so it exists only while
+   *  something is going to be drawn in it.
+   *
+   *  Separate from the constructor's canvas because the two come and go
+   *  independently — swapping the stone must not restart an aura already
+   *  playing in the layer behind. */
+  setFrontCanvas(canvas: HTMLCanvasElement | null): void {
+    if (canvas === this.frontCanvas) return;
+    this.frontCanvas = canvas;
+    // Dispose the billboard before the renderer goes, while its scene is still
+    // the one it was added to; placeSprite rebuilds it in whichever layer now
+    // applies.
+    this.sprite?.dispose();
+    this.sprite = null;
+    if (this.front) disposeLayer(this.front);
+    this.front = null;
+    if (canvas) {
+      this.front = makeLayer(canvas);
+      if (this.cssW > 0 && this.cssH > 0) this.front.renderer.setSize(this.cssW, this.cssH, false);
+    }
+    this.placeSprite();
+    this.wake();
   }
 
   /** Follow the preview's play/pause. Paused freezes the effect where it is
@@ -207,11 +263,9 @@ export class StageEffects {
     this.stop();
     this.clearEffects();
     this.clearBuiltin();
-    this.renderer.dispose();
-    // dispose() frees three's own caches but leaves the GL context alive, and
-    // the browser only allows a handful. The overlay is mounted and unmounted
-    // as effects come and go, so without this every toggle strands one.
-    this.renderer.forceContextLoss();
+    disposeLayer(this.back);
+    if (this.front) disposeLayer(this.front);
+    this.front = null;
   }
 
   private tick = (now: number) => {
@@ -237,7 +291,33 @@ export class StageEffects {
   private draw(): void {
     for (const e of this.effects) e.update(this.clock, FEET, this.camera);
     this.sprite?.update(this.clock, FEET, this.camera);
-    this.renderer.render(this.scene, this.camera);
+    this.back.renderer.render(this.back.scene, this.camera);
+    this.front?.renderer.render(this.front.scene, this.camera);
+  }
+
+  /** (Re)build the built-in effect's billboard in the layer its row belongs in.
+   *  Run when the bundle lands and whenever the front layer comes or goes.
+   *
+   *  Nothing here sets a renderOrder or a depth bias the way the simulator does:
+   *  the two layers are separate canvases, so the paper-doll between them is
+   *  stacked by CSS and there is no single scene to sort. A front effect with no
+   *  front layer yet simply waits — dropping it behind the character in the
+   *  meantime would flash the very mislayering this avoids. */
+  private placeSprite(): void {
+    this.sprite?.dispose();
+    this.sprite = null;
+    const played = this.played;
+    if (!played || !this.bundle) return;
+    const layer = builtinInFront(played) ? this.front : this.back;
+    if (!layer) return;
+    // The table's offset is a fixed screen-up float, which is exactly what
+    // `lift` is, so it is set here rather than re-derived every frame.
+    this.sprite = new SpriteBillboard(layer.scene, this.bundle, {
+      scale: 1,
+      additive: false,
+      lift: builtinRisePx(played) * UNITS_PER_PX,
+      anchorH: 0,
+    });
   }
 
   /** The longest loop in play. Effects of different lengths share one clock and
@@ -260,6 +340,7 @@ export class StageEffects {
   private clearBuiltin(): void {
     this.builtinLoop = 0;
     this.reportDuration();
+    this.played = null;
     this.sprite?.dispose();
     this.sprite = null;
     if (this.bundle) disposeBundle(this.bundle);

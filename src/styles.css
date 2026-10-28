@@ -1187,6 +1187,16 @@ button:disabled {
   pointer-events: none;
 }
 
+/* The same overlay on the other side of the paper-doll (z-index 1), for the one
+   kind of effect the client draws ON the body: a built-in attachment whose row
+   does not ask to render before the entities (core/db.ts's builtinInFront). The
+   map view settles this inside its single scene with a render order and a depth
+   bias; here the character is a DOM image, so the layer has to be its own
+   canvas stacked over it. */
+.stage-fx-front {
+  z-index: 2;
+}
+
 .stage-sprite {
   width: 100%;
   height: 100%;
@@ -1332,6 +1342,12 @@ button:disabled {
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+/* Over the character image (z-index 1) and under the zoom readout (3) — see
+   .stage-fx-front for which effects belong here. */
+.sprite-modal-fx-front {
+  z-index: 2;
 }
 
 /* Content zoom, bottom right. The readout doubles as the reset. */

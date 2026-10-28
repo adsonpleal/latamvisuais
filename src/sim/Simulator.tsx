@@ -11,10 +11,10 @@ import { t } from "../i18n";
 import { CACHE_BUST, frameCountProbeUrl, renderBodyKey, type State } from "../core/state";
 import { mountsFor } from "../core/mounts";
 import { flyingJobFor } from "../core/flight";
-import { builtinRisePx, SLOTS, type BuiltinEffect, type FootprintSteps } from "../core/db";
+import { builtinInFront, builtinRisePx, SLOTS, type BuiltinEffect, type FootprintSteps } from "../core/db";
 import { useAppState, useDispatch } from "../state/AppStateContext";
 import { Engine } from "./render/engine";
-import { Character } from "./render/character";
+import { Character, CHARACTER_FRONT_BIAS, CHARACTER_RENDER_ORDER } from "./render/character";
 import { Pet } from "./pet";
 import PetDialog from "./PetDialog";
 import { EffectBillboard } from "./render/effect";
@@ -370,11 +370,25 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
           // — adding them would blow out the lit parts and box the rest.
           // The table's offset is a fixed screen-up float, which is exactly what
           // `lift` is, so it is set here rather than re-derived every frame.
+          //
+          // Layer: the client draws a plain attachment over the body and only
+          // `renderBeforeEntities` under it (builtinInFront). Over means later
+          // than the character billboard AND nearer than it — the character
+          // writes depth, so a later draw at the effects' own bias would still
+          // be discarded behind the body. Behind keeps the defaults, which is
+          // where the .str effects live too.
+          const front = builtinInFront(played);
           builtinSprite = new SpriteBillboard(engine!.scene, bundle, {
             scale: 1,
             additive: false,
             lift: builtinRisePx(played) * UNITS_PER_PX,
             anchorH: 0,
+            ...(front
+              ? {
+                  renderOrder: CHARACTER_RENDER_ORDER + 1,
+                  frontBias: CHARACTER_FRONT_BIAS + 1,
+                }
+              : null),
           });
         })
         .catch((err) => console.error("[sim] builtin effect load failed", key, err));
