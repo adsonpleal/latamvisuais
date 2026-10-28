@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.17.2",
+    date: "2026-10-27",
+    changes: [
+      "A Pedra Gráfica: Raios Vermelhos voltou para o lugar. Ela aparecia bem acima do sprite, flutuando sozinha sobre a cabeça, em vez de envolver o corpo do personagem.",
+      "Eram duas alturas somadas onde o jogo usa uma só: a pedra pede para subir até a cabeça e também traz um deslocamento próprio, e o jogo, quando o deslocamento existe, segue só ele. Agora seguimos igual — na prévia, na tela cheia, na janelinha e na visão de mapa, em qualquer classe, gênero ou montaria.",
+    ],
+  },
+  {
     version: "0.17.1",
     date: "2026-10-15",
     changes: [

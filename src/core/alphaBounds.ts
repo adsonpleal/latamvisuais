@@ -8,10 +8,9 @@
 
 export type Bounds = { minX: number; minY: number; maxX: number; maxY: number };
 
-/** Alpha above this counts as drawn. Shared with the character billboard's head
- *  measurement (sim/render/measureTop) so the two readings agree on what a drawn
- *  pixel is, and so faint anti-aliased edges don't inflate either. */
-export const OPAQUE = 8;
+/** Alpha above this counts as drawn — low enough to keep real content, high
+ *  enough that faint anti-aliased edges don't inflate the box. */
+const OPAQUE = 8;
 
 /**
  * Bounding box (inclusive) of drawn pixels, or null when nothing was drawn.

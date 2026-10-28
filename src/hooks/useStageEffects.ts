@@ -9,7 +9,6 @@
 
 import { useEffect, useState } from "react";
 import type { BuiltinEffect } from "../core/db";
-import type { CanvasMetrics } from "../core/state";
 import type { StageEffects } from "../sim/render/stageEffects";
 
 export type StageLayout = {
@@ -31,9 +30,6 @@ export type StageEffectsInput = {
   /** ".str" bundle keys to play. */
   keys: string[];
   builtin: BuiltinEffect | null;
-  /** The paper-doll currently displayed, for head-anchored effects. */
-  spriteUrl: string | undefined;
-  metrics: CanvasMetrics;
   playing: boolean;
   layout: StageLayout | undefined;
   /** Where in their loop the effects should sit, in seconds. The preview drives
@@ -61,7 +57,7 @@ if (import.meta.env.DEV) {
 }
 
 export function useStageEffects(input: StageEffectsInput): StageEffectsHandle {
-  const { canvas, active, keys, builtin, spriteUrl, metrics, playing, layout, time } = input;
+  const { canvas, active, keys, builtin, playing, layout, time } = input;
   // The instance itself is the state, so the effect below can depend on it —
   // it is built asynchronously, and a ref cannot be a dependency.
   const [fx, setFx] = useState<StageEffects | null>(null);
@@ -97,12 +93,11 @@ export function useStageEffects(input: StageEffectsInput): StageEffectsHandle {
     fx.setEffects(keys);
     fx.setBuiltin(builtin);
     fx.setPlaying(playing);
-    fx.setSprite(spriteUrl, metrics);
     if (layout) {
       fx.setLayout(layout.cssW, layout.cssH, layout.groundX, layout.groundY, layout.scale);
     }
     if (time !== undefined) fx.seek(time);
-  }, [fx, keys, builtin, playing, spriteUrl, metrics, layout, time]);
+  }, [fx, keys, builtin, playing, layout, time]);
 
   return {
     duration,
