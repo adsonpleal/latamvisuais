@@ -14,6 +14,15 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.17.4",
+    date: "2026-10-29",
+    changes: [
+      "O catálogo ganhou 21 visuais novos. Entre eles: Poring OVNI e Capuz de Sapo, de Topo; Corvo e Olho do Necromante, de Meio; Manto da Nobreza e Espíritos Felinos, de Baixo; Asas de Monarca Azul e Sexto Sentido Satânico, de Capa — e os disfarces de Rgan e de Nevento, que ocupam Meio e Baixo ao mesmo tempo.",
+      "Cinco visuais apareceram com o nome que o jogo usa hoje: Pergaminho Místico agora é Pergaminho Ninja, Chapéu da Guarda Doram é Boina Felina Preta, Batata-doce na Boca é Batata Quente, Chapéu de Sorveja é Copo de Cerveja e Boina Militar é Boina Militar Azul. É só o nome: o visual continua o mesmo, e seus personagens salvos e links compartilhados não mudam.",
+      "Nenhum visual saiu do catálogo. Classes, cabelos, as 29 Pedras Gráficas e os nomes dos ovos de pet seguem iguais.",
+    ],
+  },
+  {
     version: "0.17.3",
     date: "2026-10-27",
     changes: [
