@@ -4,6 +4,24 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.17.4] — 2026-10-29
+
+### Added
+
+- Synced ragassets' current item table and verified all 1268 candidate costume
+  previews, excluding 13 blank renders. The catalogue grows from 1234 to 1255
+  costumes: 21 additions, among them Poring OVNI and Capuz de Sapo (Top), Corvo
+  and Olho do Necromante (Mid), Manto da Nobreza and Espíritos Felinos (Low),
+  Asas de Monarca Azul and Sexto Sentido Satânico (Garment), and the Rgan /
+  Nevento disguises, which take Mid and Low at once. No costume was removed.
+- Five costumes picked up the client's current pt-BR names: Pergaminho Místico →
+  Pergaminho Ninja (19606), Chapéu da Guarda Doram → Boina Felina Preta (20191),
+  Batata-doce na Boca → Batata Quente (31975), Chapéu de Sorveja → Copo de
+  Cerveja (400174) and Boina Militar → Boina Militar Azul (400224). Their views
+  are unchanged, so saved links and shared builds still render the same sprite.
+- Checked classes, hair, all 29 graphic stones and all 107 pet egg names against
+  the published tables; none changed.
+
 ## [0.17.3] — 2026-10-27
 
 ### Fixed
