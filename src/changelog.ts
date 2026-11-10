@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.17.5",
+    date: "2026-11-10",
+    changes: [
+      "O catálogo ganhou seis visuais novos: Véu de Friederike, de Topo; Elmo do Rei do Norte, que ocupa Topo e Meio ao mesmo tempo; Cabelo de Leon, Cabelo de Juncea e Cabelo de Aurelie, de Baixo; e Asas de Juncea, de Capa.",
+      "Nenhum visual saiu do catálogo e nenhum trocou de nome ou de lugar. Classes, cabelos, as 29 Pedras Gráficas e os nomes dos ovos de pet seguem iguais.",
+    ],
+  },
+  {
     version: "0.17.4",
     date: "2026-10-29",
     changes: [
