@@ -4,6 +4,35 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.17.5] — 2026-11-10
+
+### Added
+
+- Synced ragassets' current item table and re-verified all 1274 candidate
+  costume previews, excluding the same 13 blank renders as the previous sync. The
+  catalogue grows from 1255 to 1261 costumes, and every one of the six additions
+  is a row the client did not ship before: Véu de Friederike (400965, Top), Elmo
+  do Rei do Norte (400325, Top+Mid), Cabelo de Leon (400100), Cabelo de Juncea
+  (420204), Cabelo de Aurelie (420703) (Low) and Asas de Juncea (480488,
+  Garment). No costume was removed, renamed, or moved slot, view or sprite
+  table, so every saved character and shared link renders exactly as before.
+- Checked classes, hair, all 29 graphic stones and all 107 pet egg names against
+  the published tables; all four came out byte-identical.
+
+### Notes
+
+- ragassets now publishes every text-carrying `/raw` table once per locale
+  (`items_en.json` / `items_es.json`, and the same for `jobs`, `skills`,
+  `status`, `randomopt` and `classes`), plus `/effects/index_en.json` and
+  `/effects/index_es.json`. This sync deliberately stays on the unsuffixed pt-BR
+  tables. The app has no locale switch to point at them — `src/i18n.ts` is a flat
+  pt-BR string table, and `public/db` stores one name per costume — so serving
+  English or Spanish names is a localization feature, not a data refresh.
+- Equipment layering was rebuilt upstream from the client's full numeric
+  priorities. Nothing in this repo carries layer or slot-priority data (ragassets
+  composites the sprites server-side), so that change reaches the app through the
+  rendered images, with no data file to sync.
+
 ## [0.17.4] — 2026-10-29
 
 ### Added
