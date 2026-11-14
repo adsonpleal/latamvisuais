@@ -19,10 +19,27 @@ export type Costume = {
    *  `headgear` for the head slots. A few items' description slot doesn't match
    *  the sprite table their ClassNum lives in — see tools/sync-db.mjs. */
   viewKind?: "headgear" | "garment";
-  /** World-effect key (a ".str" aura / falling-petals etc.) for costumes the
-   *  character renderer can't draw — rendered in the map sim instead. Assets are
-   *  served by ragassets at /effects/<effect>/ (see sim/effect.ts). View-less. */
+  /** World-effect key (a ".str" aura / falling-petals etc.) played on the
+   *  character by the game's effect system rather than drawn into its sprite.
+   *  Assets are served by ragassets at /effects/<effect>/ (see sim/effect.ts).
+   *
+   *  NOT a statement about the sprite: a costume can have both a view and an
+   *  effect — "[Visual] Escudo Poenitentia" (420382) draws a shield AND plays
+   *  the atque_poenitentia aura over it. Only the rows from /effects/index.json
+   *  are view-less by construction (see loadDb). */
   effect?: string;
+  /** The same thing for a hat effect the client plays as a looping .spr/.act
+   *  attached to the character instead of as a ".str" — "[Visual] Aura de
+   *  Betelgeuse" (400149) and its two siblings.
+   *
+   *  Resolved at load (`hatSprite`) rather than stored as the bare bundle key,
+   *  so the bundle→placement question is answered once here and whoever draws it
+   *  is left with pure selection.
+   *
+   *  Exclusive with `effect`: the published row carries one or the other, never
+   *  both, because the client's hat-effect table names a single resource file
+   *  per costume and its extension is what decides which system plays it. */
+  attachment?: BuiltinSprite;
 };
 
 /** How a costume's view id must be rendered — its `viewKind` when present, else
@@ -121,6 +138,40 @@ export function builtinInFront(builtin: BuiltinEffect | null | undefined): boole
   return builtin?.kind === "sprite" && !builtin.behind;
 }
 
+/** Where a hat effect's sprite bundle plays, for the bundles whose placement is
+ *  not the client's default.
+ *
+ *  /effects/hat_effects.json publishes a bundle key and nothing else — none of
+ *  the client's placement flags — so a hat sprite plays at the feet, over the
+ *  body, unless it is listed here. Keyed by bundle rather than by item, because
+ *  that is what the client's own attachment carries; the whole `BuiltinSprite`
+ *  placement is expressible, not just the layer.
+ *
+ *  `digital_space` is listed because its bundle is the sprite the client's EF
+ *  1240 plays with `renderBeforeEntities` — the same row sync-db's
+ *  BUILTIN_EFFECT already records for the "Espaço Digital" stone, out of
+ *  roBrowser's port of that table. Drawn in front, its screen-filling hologram
+ *  hides the character instead of decorating it. (The stone and the hat effect
+ *  reach the same art under two different bundle names, `eff_1240` and
+ *  `digital_space`, so a correction to one belongs in the other.) */
+const SPRITE_PLACEMENT = new Map<string, Partial<BuiltinSprite>>([
+  ["digital_space", { behind: true }],
+]);
+
+/** The attachment a hat-effect costume's sprite bundle plays as. One canonical
+ *  object per bundle: both render surfaces are fed this every frame and compare
+ *  by key, and the stone path beside it hands out the db's own object too. */
+const attachments = new Map<string, BuiltinSprite>();
+
+export function hatSprite(key: string): BuiltinSprite {
+  let made = attachments.get(key);
+  if (!made) {
+    made = { kind: "sprite", key, ...SPRITE_PLACEMENT.get(key) };
+    attachments.set(key, made);
+  }
+  return made;
+}
+
 /** Whether anything will actually be drawn for this stone. Three different
  *  mechanisms can supply it — a ".str" bundle, a footprint trail, or the client's
  *  own built-in effect table — and every caller wants the same answer, so it
@@ -206,25 +257,88 @@ type RawStone = {
   builtin?: BuiltinEffect;
 };
 
+/** One row of ragassets' hat-effect catalogue (/effects/hat_effects.json): a
+ *  costume whose client hat-effect entry names a resource file, with the bundle
+ *  ragassets extracted from it.
+ *
+ *  A DIFFERENT set from /effects/index.json, and deliberately disjoint from it.
+ *  Membership in the index means "this costume draws no sprite, draw the effect
+ *  instead", which is why tools/sync-db.mjs deletes those ids from
+ *  costumes.json. These costumes mostly DO draw a sprite and must keep it — so
+ *  they are merged onto the committed rows rather than replacing them (see
+ *  `withHatEffects`), and their ids must never reach sync-db's drop list.
+ *
+ *  Merged at load rather than baked into costumes.json by sync-db, which would
+ *  otherwise be the natural place: tools/verify-previews.mjs rewrites that file
+ *  down to {id,name,slots,view,viewKind} and would strip the keys straight back
+ *  off, and it would prune the rows whose effect is the whole costume as
+ *  costumes that render blank — which they do. Reading it at runtime also means
+ *  a hat effect ragassets publishes tomorrow lights up without a sync commit,
+ *  the same property /effects/index.json already has. */
+export type HatEffectRow = {
+  id: number;
+  name: string;
+  slots: Slot[];
+  /** A ".str" bundle, at /effects/<effect>/. */
+  effect?: string;
+  /** A played .spr/.act bundle, at /effects/sprites/<sprite>/. */
+  sprite?: string;
+};
+
+/** What a hat-effect row gives the costume, or null when ragassets found the
+ *  costume's hat effect but no bundle for it. */
+function bundleOf(row: HatEffectRow): Pick<Costume, "effect" | "attachment"> | null {
+  if (row.effect) return { effect: row.effect };
+  if (row.sprite) return { attachment: hatSprite(row.sprite) };
+  return null;
+}
+
+/** Attach each hat effect to its costume, appending the ones the catalogue
+ *  doesn't already hold.
+ *
+ *  Most rows name a costume that is already in costumes.json with a real view:
+ *  those keep everything they have — name, view, viewKind — and only gain the
+ *  effect, so the character still renders and the effect plays over it. The
+ *  committed row wins on name: it comes from the same client item table and
+ *  carries the pins in sync-db's ITEM_TEXT_OVERRIDE.
+ *
+ *  The rest have no costume row to join, for one of two reasons that end the
+ *  same way: the item's sprite view is 0 ("Aura de Betelgeuse" is a hat effect
+ *  and nothing else), or it has a view whose sprite renders blank and
+ *  tools/verify-previews.mjs pruned it. Either way the effect is the whole
+ *  costume, so the row is appended view-less — exactly the shape the
+ *  /effects/index.json rows arrive in, which every surface already handles. */
+export function withHatEffects(costumes: Costume[], rows: HatEffectRow[]): Costume[] {
+  const pending = new Map(rows.filter(bundleOf).map((row) => [row.id, row]));
+  const out = costumes.map((costume) => {
+    const row = pending.get(costume.id);
+    if (!row) return costume;
+    pending.delete(costume.id);
+    return { ...costume, ...bundleOf(row) };
+  });
+  for (const row of pending.values()) {
+    out.push({ id: row.id, name: row.name, slots: row.slots, ...bundleOf(row) });
+  }
+  return out;
+}
+
 export async function loadDb(): Promise<Db> {
-  const [classes, hair, costumes, stones, effects] = await Promise.all([
+  const [classes, hair, costumes, stones, effects, hatEffects] = await Promise.all([
     fetchJson<{ classes: ClassInfo[] }>("db/classes.json"),
     fetchJson<HairDb>("db/hair.json"),
     fetchJson<{ items: Costume[] }>("db/costumes.json"),
     fetchJson<{ items: RawStone[] }>("db/stones.json"),
-    // World-effect costumes (auras, falling petals, spotlights — drawn by the
-    // client's .str effect system, so view-less and only renderable in the map
-    // sim). Served by ragassets (extract-grf.mjs --effects); tolerate failure so
-    // a ragassets outage just hides the effect costumes rather than breaking load.
-    // ?v=CACHE_BUST for the same reason the map manifests carry it: this file has
-    // a fixed name and immutable cache headers, and sync-db drops the ids it
-    // lists from costumes.json — so a browser pinned to last year's copy would
-    // lose every effect costume added since, with nothing else listing them.
-    fetchJson<{ items: Costume[] }>(`${RAGASSETS_BASE}/effects/index.json?v=${CACHE_BUST}`).catch(
-      () => ({ items: [] }),
-    ),
+    // Effect-only costumes: auras, falling petals, spotlights — drawn by the
+    // client's .str effect system rather than as a body sprite, so view-less,
+    // and dropped from costumes.json by sync-db precisely because they are here.
+    ragCatalogue<Costume>("index"),
+    // Hat-effect costumes: the ones that play an effect *as well as* drawing
+    // their own sprite, plus the few that are nothing but the effect. A
+    // different set from the index above, meaning the opposite thing about the
+    // sprite — see HatEffectRow.
+    ragCatalogue<HatEffectRow>("hat_effects"),
   ]);
-  const items = [...costumes.items, ...effects.items]
+  const items = withHatEffects([...costumes.items, ...effects.items], hatEffects.items)
     .sort((a, b) => a.name.localeCompare(b.name, "pt-BR") || a.id - b.id);
   const stoneItems: Stone[] = stones.items
     .map((s) => ({ ...s, slots: [s.slot], stone: true as const }))
@@ -239,4 +353,19 @@ async function fetchJson<T>(path: string): Promise<T> {
   const res = await fetch(path);
   if (!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
   return res.json() as Promise<T>;
+}
+
+/** One of ragassets' /effects catalogues, by filename.
+ *
+ *  ?v=CACHE_BUST for the same reason the map manifests carry it: these files
+ *  have fixed names and immutable cache headers, and the costumes they list are
+ *  listed nowhere else — so a browser pinned to last year's copy would lose
+ *  every costume added to them since.
+ *
+ *  A failure is tolerated rather than fatal: a ragassets outage then costs the
+ *  effects it would have added, which is a far better load than none. */
+function ragCatalogue<T>(name: string): Promise<{ items: T[] }> {
+  return fetchJson<{ items: T[] }>(
+    `${RAGASSETS_BASE}/effects/${name}.json?v=${CACHE_BUST}`,
+  ).catch(() => ({ items: [] }));
 }

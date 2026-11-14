@@ -8,7 +8,7 @@
 // alive at once (the stage plus a detached window), and contexts are scarce.
 
 import { useEffect, useState } from "react";
-import type { BuiltinEffect } from "../core/db";
+import type { BuiltinSprite } from "../core/db";
 import type { StageEffects } from "../sim/render/stageEffects";
 
 export type StageLayout = {
@@ -34,7 +34,7 @@ export type StageEffectsInput = {
   active: boolean;
   /** ".str" bundle keys to play. */
   keys: string[];
-  builtin: BuiltinEffect | null;
+  builtin: BuiltinSprite | null;
   playing: boolean;
   layout: StageLayout | undefined;
   /** Where in their loop the effects should sit, in seconds. The preview drives

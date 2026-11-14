@@ -55,7 +55,7 @@ import { hint } from "../core/hints";
 import { mountsFor } from "../core/mounts";
 import { flyingJobFor } from "../core/flight";
 import { SLOTS } from "../core/db";
-import { builtinOf, drawsEffects, effectKeys } from "../sim/equipped";
+import { charScaleOf, drawsEffects, effectKeys, spriteEffectOf } from "../sim/equipped";
 import { builtinInFront } from "../core/db";
 import { t } from "../i18n";
 import { dismissTip } from "../hooks/useTooltip";
@@ -207,14 +207,14 @@ export function Preview({ onPlay }: { onPlay: () => void }) {
   // two things the overlay needs to line up with it: how big the stage is
   // drawing the sprite, and where its feet are.
   const fxKeys = useMemo(() => effectKeys(state), [state]);
-  const builtin = useMemo(() => builtinOf(state), [state]);
+  const builtin = useMemo(() => spriteEffectOf(state), [state]);
   const hasFx = drawsEffects(fxKeys, builtin);
   // Miniatura resizes the character and draws nothing of its own. On this
   // surface that is a transform on the paper-doll rather than anything the
   // overlay does — anchored on the feet (see .stage-sprite in styles.css) so
   // they stay on the ground, exactly as the map scales its billboard — and a
   // build carrying only Miniatura therefore needs no canvas at all.
-  const charScale = builtin?.kind === "scale" ? builtin.scale : 1;
+  const charScale = charScaleOf(state);
   // A built-in effect the client attaches over the body (Raios Vermelhos) needs
   // a canvas on the other side of the <img>; everything else — every ".str", and
   // Espaço Digital's `renderBeforeEntities` — stays on the one behind it.

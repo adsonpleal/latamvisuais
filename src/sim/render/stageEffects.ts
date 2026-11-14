@@ -23,7 +23,7 @@
 // with an orthographic camera (see stageLayout.ts) and no background at all.
 
 import { OrthographicCamera, Scene, Vector3, WebGLRenderer } from "three";
-import { builtinInFront, builtinRisePx, type BuiltinEffect, type BuiltinSprite } from "../../core/db";
+import { builtinInFront, builtinRisePx, type BuiltinSprite } from "../../core/db";
 import { loopLength } from "../apng";
 import { loadEffect } from "../effect";
 import { disposeBundle, loadSpriteBundle, type SpriteBundle } from "../spriteEffect";
@@ -163,11 +163,11 @@ export class StageEffects {
     this.wake();
   }
 
-  /** The built-in (client-table) effect in play. Only the `sprite` shape draws
-   *  anything here — `scale` resizes the character, which on this surface is the
-   *  paper-doll image's business, not the overlay's. */
-  setBuiltin(builtin: BuiltinEffect | null): void {
-    const played = builtin?.kind === "sprite" ? builtin : null;
+  /** The sprite effect in play on the character's attachment layer — from a
+   *  graphic stone or from a hat-effect costume (equipped.ts's spriteEffectOf).
+   *  A stone that only resizes the character never reaches here: on this surface
+   *  that is the paper-doll image's business, not the overlay's. */
+  setBuiltin(played: BuiltinSprite | null): void {
     const key = played?.key ?? "";
     if (key === this.builtinKey) return;
     this.builtinKey = key;

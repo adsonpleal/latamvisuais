@@ -4,6 +4,40 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.18.0] — 2026-11-13
+
+### Added
+
+- The 22 costumes that carry a **hat effect** now draw it, in the 2D preview and
+  in the map view. ragassets publishes them at `/effects/hat_effects.json`, a
+  catalogue separate from `/effects/index.json` and meaning the opposite thing:
+  an index row draws no sprite, a hat-effect row keeps the sprite it has and
+  plays an effect over it. 17 of the 22 are already in `costumes.json` and only
+  gain a bundle key; the other 5 join the catalogue from the hat catalogue
+  itself, view-less, because the effect is the whole costume — Aura de
+  Betelgeuse, Holograma Futurista, Mini Geada, Balões de Poring and Cerração
+  were in no catalogue at all before this.
+- Both bundle kinds are handled: 19 rows are a `.str` (`/effects/<key>/`), which
+  joins the ".str" bundles `effectKeys` already plays, and 3 are a played
+  `.spr`/`.act` (`/effects/sprites/<key>/`), which goes through the attachment
+  layer the built-in graphic stones already use.
+
+### Notes
+
+- The merge happens at load (`withHatEffects` in `src/core/db.ts`), not in
+  `tools/sync-db.mjs`. `tools/verify-previews.mjs` rewrites `costumes.json` down
+  to `{id,name,slots,view,viewKind}` and would strip the bundle keys straight
+  back off, and it would also prune Aura de Betelgeuse as a costume that renders
+  blank — which it is. `sync-db` gains comments only: its effect-id drop list
+  must keep reading `/effects/index.json` alone, since feeding it the hat ids
+  would delete 17 working costumes from the catalogue.
+- `/effects/hat_effects.json` publishes a bundle key and none of the client's
+  placement flags, so a hat sprite takes the client's attachment defaults — at
+  the feet, over the body. One exception is pinned in `hatSprite`:
+  `digital_space` is the sprite the client's EF 1240 plays with
+  `renderBeforeEntities`, already recorded for the Espaço Digital stone, and in
+  front its hologram hides the character completely.
+
 ## [0.17.5] — 2026-11-10
 
 ### Added
