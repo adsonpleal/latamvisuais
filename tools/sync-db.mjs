@@ -10,6 +10,8 @@
 // plus the effect-costume catalogue it publishes next to those, read here only
 // to know which items to leave to it:
 //   https://assets.latam-tools.com.br/effects/index.json
+// Its sibling /effects/hat_effects.json is deliberately NOT read here — see the
+// costumes.json notes below.
 // That replaces the old in-repo extractor (tools/build-db.mjs + tools/lua51.mjs,
 // now removed) — no GRF reader, no Lua 5.1 VM and no installed client here.
 //
@@ -241,6 +243,13 @@ export function buildHair(rawHair) {
 // it was copied from). Keeping it here put the costume in the catalogue twice,
 // once as an effect and once as an entry that renders nothing. So the effects
 // index gets the final say: anything it claims is dropped here, view or not.
+//
+// That final say belongs to /effects/index.json ALONE. ragassets publishes a
+// second catalogue beside it, /effects/hat_effects.json, whose rows mean the
+// opposite — those costumes keep their sprite and only gain an effect to play
+// over it — and src/core/db.ts merges it at runtime (see its `HatEffectRow` for
+// why there and not here). Its ids must never reach `effectIds`: that would
+// delete 17 working costumes from the catalogue.
 // ---------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------
@@ -383,6 +392,12 @@ export function buildCostumes(rawItems, effectIds = new Set()) {
 //                                        5), i.e. exactly half size
 //   25225 Raios Vermelhos        EF 1130 SPR bakuretsu_hadou, head, yOffset -50
 //   1002585 Espaço Digital       EF 1240 SPR digital_space, renderBeforeEntities
+//
+// EF 1240's art reaches the app twice, under two bundle names: as `eff_1240`
+// here, and as `digital_space` for the hat-effect costume that plays the same
+// sprite ("[Visual] Holograma Futurista"). src/core/db.ts's SPRITE_PLACEMENT
+// records renderBeforeEntities for that second name, so a correction to this
+// row belongs there too.
 //
 // The other builtins — Aura Verde (680), Aura Azul (1122), Sombra (1004), Bolha
 // Rosa (396), Palidez (1131), Raios Azuis (254) — are in NEITHER source, so they

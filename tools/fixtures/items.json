@@ -316,5 +316,37 @@
   "viewKind": null,
   "equipSlots": [],
   "costume": false
+ },
+ {
+  "id": 420382,
+  "name": "[Visual] Escudo Poenitentia",
+  "slots": 0,
+  "aegisName": null,
+  "resourceName": "Atque_Poenitentia",
+  "description": "^008080Exibe efeito gráfico que pode ser desligado com /effect.^000000\n--------------------------\nTipo: ^777777Visual^000000\nEquipa em: ^777777Baixo^000000\nPeso: ^7777770^000000\nNível necessário: ^7777771^000000\nClasses: ^777777Todas^000000",
+  "view": 2594,
+  "spriteView": 2594,
+  "spriteBlank": false,
+  "viewKind": "headgear",
+  "equipSlots": [
+   "low"
+  ],
+  "costume": true
+ },
+ {
+  "id": 400149,
+  "name": "[Visual] Aura de Betelgeuse",
+  "slots": 0,
+  "aegisName": null,
+  "resourceName": "C_Black_Thunder",
+  "description": "^008080Exibe efeito gráfico que pode ser desligado com /effect.^000000\n--------------------------\nTipo: ^777777Visual^000000\nEquipa em: ^777777Meio^000000\nPeso: ^7777770^000000\nNível necessário: ^7777771^000000\nClasses: ^777777Todas^000000",
+  "view": 0,
+  "spriteView": 0,
+  "spriteBlank": false,
+  "viewKind": null,
+  "equipSlots": [
+   "mid"
+  ],
+  "costume": true
  }
 ]

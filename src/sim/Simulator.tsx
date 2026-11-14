@@ -11,7 +11,7 @@ import { t } from "../i18n";
 import { CACHE_BUST, frameCountProbeUrl, renderBodyKey, type State } from "../core/state";
 import { mountsFor } from "../core/mounts";
 import { flyingJobFor } from "../core/flight";
-import { builtinInFront, builtinRisePx, SLOTS, type BuiltinEffect, type FootprintSteps } from "../core/db";
+import { builtinInFront, builtinRisePx, SLOTS, type BuiltinSprite, type FootprintSteps } from "../core/db";
 import { useAppState, useDispatch } from "../state/AppStateContext";
 import { Engine } from "./render/engine";
 import { Character, CHARACTER_FRONT_BIAS, CHARACTER_RENDER_ORDER } from "./render/character";
@@ -24,7 +24,7 @@ import { SpriteBillboard } from "./render/spriteBillboard";
 import { disposeBundle, loadSpriteBundle, type SpriteBundle } from "./spriteEffect";
 import { WorldEffects } from "./render/worldEffects";
 import { loadEffect, type LoadedEffect } from "./effect";
-import { builtinOf, effectKeys } from "./equipped";
+import { charScaleOf, effectKeys, spriteEffectOf } from "./equipped";
 import { CursorAnimator } from "./cursor";
 import { loadImage } from "./imageCache";
 import { buildWorld, type MapManifest, type World } from "./render/scene";
@@ -338,13 +338,13 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
     };
     disposeTrail = clearTrail;
 
-    // Built-in effects: the stones the client draws from its own effect table
-    // rather than from a .str (see core/db.ts BuiltinEffect). Two shapes — one
-    // resizes the character, the other plays a looping .spr attached to it.
+    // The attachment layer: a looping .spr played on the character, from a
+    // graphic stone the client draws from its own effect table or from a
+    // hat-effect costume (see equipped.ts's spriteEffectOf). A stone that only
+    // resizes the character is a channel of its own — charScaleOf, below.
     let builtinSprite: SpriteBillboard | null = null;
     let builtinBundle: SpriteBundle | null = null;
     let builtinKey = "";
-    let builtin: BuiltinEffect | null = null;
     let builtinToken = 0;
     const clearBuiltinSprite = () => {
       builtinSprite?.dispose();
@@ -353,8 +353,7 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
       builtinBundle = null;
     };
     const syncBuiltin = (st: State) => {
-      builtin = builtinOf(st);
-      const played = builtin?.kind === "sprite" ? builtin : null;
+      const played: BuiltinSprite | null = spriteEffectOf(st);
       const key = played?.key ?? "";
       if (key === builtinKey) return;
       builtinKey = key;
@@ -459,7 +458,7 @@ export default function Simulator({ onClose }: { onClose: () => void }) {
       const frame = frames[fi];
       // EF 421 (Miniatura) is a resize and nothing else: the client sets the
       // entity's size to half. Applied before the draw so the feet stay put.
-      character.setScale(builtin?.kind === "scale" ? builtin.scale : 1);
+      character.setScale(charScaleOf(stateRef.current));
       if (frame && frame.complete && frame.naturalWidth) {
         character.update(frame, charWorld, engine!.cam.camera);
       }

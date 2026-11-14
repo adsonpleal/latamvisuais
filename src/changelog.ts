@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.18.0",
+    date: "2026-11-13",
+    changes: [
+      "22 visuais que soltam efeito gráfico agora mostram esse efeito, tanto na prévia quanto no mapa. Entre eles estão o Escudo Poenitentia, o Brasão de Midgard, as Pétalas de Rosa, o Manto do Senhor das Trevas, as Asas Carnavalescas e a Tiara da Nevasca. A peça continua sendo desenhada normalmente — o efeito entra por cima dela.",
+      "Cinco desses visuais nem apareciam no catálogo, porque são só o efeito e não têm peça para vestir: Aura de Betelgeuse, Holograma Futurista, Mini Geada, Balões de Poring e Cerração. Agora estão na lista e podem ser escolhidos como qualquer outro visual.",
+    ],
+  },
+  {
     version: "0.17.5",
     date: "2026-11-10",
     changes: [

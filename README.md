@@ -146,6 +146,32 @@ The three files it rewrites:
   to extract, which is only fatal when no published source describes it either.
   That is the case for the remaining 7.
 
+### Hat effects
+
+A costume that plays an effect is not the same thing as a costume that *is* one.
+ragassets publishes the first kind at `/effects/hat_effects.json` — 22 rows, each
+with a bundle key and nothing else — and the second at `/effects/index.json`,
+and the two mean opposite things about the sprite. An index row draws nothing, so
+`sync:db` deletes its id from `costumes.json`; a hat-effect row keeps whatever
+sprite it has and only gains an effect to play over it, so its id must never
+reach that drop list. "[Visual] Escudo Poenitentia" is the shield **and** the
+`atque_poenitentia` aura.
+
+`src/core/db.ts` merges the hat catalogue onto the loaded costumes at startup
+(`withHatEffects`), rather than `sync:db` baking it into `costumes.json` —
+`verify-previews.mjs` rewrites that file down to `{id,name,slots,view,viewKind}`
+and would strip the keys back off, and it would prune the rows whose effect is
+the whole costume. Five of the 22 have no costume row to join, either because
+their sprite view is `0` or because `verify-previews` dropped them as blank;
+those are appended view-less, exactly as an `/effects/index.json` row arrives.
+
+The bundles come in the two kinds the app already draws: a `.str`
+(`/effects/<key>/`), played like any other world effect, and a `.spr`/`.act`
+(`/effects/sprites/<key>/`), played by the same attachment layer the built-in
+graphic stones use. No placement is published for a hat effect, so a sprite takes
+the client's attachment defaults — at the feet, over the body — except for the
+one pinned in `hatSprite`.
+
 ### Dropping effect-only costumes
 
 Some costumes are pure visual **effects** (auras, weather, falling petals, the

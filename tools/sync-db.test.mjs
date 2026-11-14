@@ -116,7 +116,9 @@ describe("buildCostumes", () => {
   const byId = Object.fromEntries(items.map((i) => [i.id, i]));
 
   it("keeps only renderable visual items, sorted by id", () => {
-    expect(items.map((i) => i.id)).toEqual([5105, 19424, 19920, 20330, 31379, 480177, 480237, 480807]);
+    expect(items.map((i) => i.id)).toEqual([
+      5105, 19424, 19920, 20330, 31379, 420382, 480177, 480237, 480807,
+    ]);
   });
 
   it("takes items flagged as costumes and items that only say so in the description", () => {
@@ -140,6 +142,29 @@ describe("buildCostumes", () => {
     expect(byId[480097]).toBeUndefined();
     // And without the index it would still be there, so the drop is this rule's.
     expect(buildCostumes(rawItems).some((i) => i.id === 480097)).toBe(true);
+  });
+
+  it("keeps a hat-effect costume, which only GAINS an effect", () => {
+    // /effects/hat_effects.json is a different catalogue from the index above
+    // and means the opposite thing: these costumes draw a real sprite and play
+    // an effect over it. 420382 "Escudo Poenitentia" is the shield — it has to
+    // stay here, with its view, for src/core/db.ts to hang atque_poenitentia on
+    // (issue 3I4nI57YcRnurxtuIx1B).
+    expect(byId[420382].view).toBe(2594);
+    expect(byId[420382].slots).toEqual(["low"]);
+    // So the two sets are never merged. Spelled out as the failure it would be:
+    // feeding a hat id in as an effect id deletes the costume outright.
+    const merged = new Set([...effectIds, 420382]);
+    expect(buildCostumes(rawItems, merged).some((i) => i.id === 420382)).toBe(false);
+  });
+
+  it("still drops a hat effect that is nothing but the effect", () => {
+    // 400149 "Aura de Betelgeuse" ships spriteView 0 — there is no sprite to
+    // draw, so it has no business in costumes.json. Its catalogue row comes from
+    // the hat catalogue itself, view-less (core/db.ts withHatEffects), which is
+    // what fixes issue Dn2W4LQeTYMcalaPtko4.
+    expect(rawItems.find((i) => i.id === 400149).spriteView).toBe(0);
+    expect(byId[400149]).toBeUndefined();
   });
 
   it("drops the costumes pinned as hidden", () => {
