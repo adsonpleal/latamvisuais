@@ -87,6 +87,16 @@ export async function listRemote(url) {
   const m1 = header.readUInt32LE(0x22);
   const m2 = header.readUInt32LE(0x26);
   const version = header.readUInt32LE(0x2a);
+  // Asserted here rather than at import: this is the only thing that needs it,
+  // and every other stage works against an extractor that lacks it.
+  if (typeof fileTableLayout !== "function") {
+    throw new Error(
+      `${EXTRACTOR} has no fileTableLayout() — listing an archive's table over ` +
+        `the network needs ragassets to say which layout a GRF version uses, ` +
+        `so the two tools cannot drift on the dispatch. Stages that only read ` +
+        `the mirror on disk do not need it.`,
+    );
+  }
   const layout = fileTableLayout(version);
   const fileCount = m2 - m1 - 7;
 

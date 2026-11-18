@@ -32,12 +32,11 @@ if (typeof extractor.decodeGrfEntry !== "function") {
   );
 }
 
-if (typeof extractor.fileTableLayout !== "function") {
-  throw new Error(
-    `${EXTRACTOR} has no fileTableLayout() — that is the pre-2026-11-17 ` +
-      `extractor, which routes jRO's v0x103 to the wrong table reader.`,
-  );
-}
+// `fileTableLayout` is NOT asserted here. It is used by one module — `grf.mjs`,
+// to parse a table it read over the network — and an extractor without it still
+// serves every other command fine. Asserting at load made a missing export stop
+// the stages that never touch a remote table, including the ones that only read
+// the mirror already on disk. `grf.mjs` asserts it where it needs it.
 
 export const {
   // Shared so the two tools cannot drift on the DES filename decryption.
