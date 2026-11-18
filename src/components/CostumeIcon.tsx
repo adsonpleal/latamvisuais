@@ -8,10 +8,17 @@ import type { Costume, Stone } from "../core/db";
 import { costumeThumbUrl, itemIconUrl } from "../core/state";
 
 export function CostumeIcon({ item, className }: { item: Costume | Stone; className: string }) {
+  // A costume from another official server has no item icon here and never
+  // will: its id is synthetic (this app assigns it — see
+  // tools/multiserver/export-app-catalogue.mjs), because the real one belongs
+  // to another server's item table. Starting from the render skips a 404 per
+  // tile, and there are 592 of them.
+  const foreign = "origin" in item && Boolean(item.origin);
+  const first = foreign ? costumeThumbUrl(item as Costume) : itemIconUrl(item.id);
   return (
     <img
       className={className}
-      src={itemIconUrl(item.id)}
+      src={first}
       alt=""
       loading="lazy"
       decoding="async"

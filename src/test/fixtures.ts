@@ -138,6 +138,27 @@ export function makeDb(): Db {
       // Slot and sprite table disagree, both ways (see viewKindOf).
       { id: 700, name: "Capa com Sprite de Acessório", view: 70, slots: ["garment"], viewKind: "headgear" },
       { id: 800, name: "Baixo com Sprite de Capa", view: 80, slots: ["low"], viewKind: "garment" },
+      // Costumes from other official servers. Hidden until the catalogue's
+      // "outros servidores" filter is turned on, and carrying the sprite name
+      // their own client knows them by — the view id alone means nothing here.
+      {
+        id: 10000900,
+        name: "Chapéu Estrangeiro",
+        view: 900,
+        slots: ["top"],
+        viewKind: "headgear",
+        origin: "iro",
+        sprite: "_foreign_hat",
+      },
+      {
+        id: 10400950,
+        name: "Capa Estrangeira",
+        view: 950,
+        slots: ["garment"],
+        viewKind: "garment",
+        origin: "twro",
+        sprite: "foreign_cape",
+      },
     ],
     stones: [
       { id: 1100, name: "Pedra Gráfica: Brilho (Topo)", slot: "top", slots: ["top"], stone: true, effect: "glow" },

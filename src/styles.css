@@ -2260,6 +2260,22 @@ button:disabled {
   color: var(--muted);
 }
 
+/* The server a worn costume comes from, inline before its name. Inline rather
+   than pinned like the grid's badge, because this row is one line of text that
+   already ellipsises — an absolute badge would sit on top of the name. */
+.slot-origin {
+  display: inline-block;
+  margin-right: 0.3em;
+  padding: 0 0.3em;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 14%);
+  color: var(--fg);
+  font-size: 0.62rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+  vertical-align: 0.05em;
+}
+
 .slot-card.is-filled .slot-name {
   color: var(--fg);
 }
@@ -2596,6 +2612,26 @@ button:disabled {
    above would otherwise override. */
 .catalog-item[hidden] {
   display: none;
+}
+
+/* Which other official server a costume comes from.
+   Pinned to the tile's bottom edge rather than floated over the middle: the
+   sprite is the thing being looked at, and these tiles are ~56px, so anything
+   centred covers the costume you turned the filter on to see. Full width with
+   a dark scrim so it stays legible over a light sprite as well as a dark one,
+   and no pointer events so it never eats the tile's click. */
+.catalog-origin {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1px 2px;
+  background: rgb(0 0 0 / 62%);
+  color: #fff;
+  font-size: 0.56rem;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
 }
 
 .catalog-item:hover {

@@ -40,7 +40,32 @@ export type Costume = {
    *  both, because the client's hat-effect table names a single resource file
    *  per costume and its extension is what decides which system plays it. */
   attachment?: BuiltinSprite;
+  /** Which other official server this costume comes from (`iro`, `twrozero`…).
+   *
+   *  Absent for everything LATAM ships, which is the normal case and the only
+   *  thing the catalogue shows until the "outros servidores" filter is turned
+   *  on. Present means the costume is not obtainable here: it is shown so it
+   *  can be previewed, and the grid badges it so nobody mistakes it for
+   *  something they can wear in game. */
+  origin?: string;
+  /** What the sprite is called in that server's client, lowercased.
+   *
+   *  Required alongside `origin`, and the reason both exist: a view id is one
+   *  client's index into its own name table, so a foreign id usually means
+   *  nothing here and occasionally means a *different* hat. The renderer is
+   *  told the name outright — see renderParams. */
+  sprite?: string;
+  /** The name is the sprite's file name, because no client we read had an item
+   *  row for this costume (58 of them). Shown, but marked. */
+  unnamed?: boolean;
+  /** The item name came from that server's own tables rather than LATAM's, so
+   *  it is in that client's language (twRO's are Traditional Chinese). */
+  nameOrigin?: string;
 };
+
+/** The foreign catalogue's shape on disk (public/db/foreign-costumes.json),
+ *  built by tools/multiserver/export-app-catalogue.mjs. */
+type ForeignDb = { items: Costume[] };
 
 /** How a costume's view id must be rendered — its `viewKind` when present, else
  *  the slot's default. */
@@ -323,7 +348,7 @@ export function withHatEffects(costumes: Costume[], rows: HatEffectRow[]): Costu
 }
 
 export async function loadDb(): Promise<Db> {
-  const [classes, hair, costumes, stones, effects, hatEffects] = await Promise.all([
+  const [classes, hair, costumes, stones, effects, hatEffects, foreign] = await Promise.all([
     fetchJson<{ classes: ClassInfo[] }>("db/classes.json"),
     fetchJson<HairDb>("db/hair.json"),
     fetchJson<{ items: Costume[] }>("db/costumes.json"),
@@ -337,9 +362,17 @@ export async function loadDb(): Promise<Db> {
     // different set from the index above, meaning the opposite thing about the
     // sprite — see HatEffectRow.
     ragCatalogue<HatEffectRow>("hat_effects"),
+    // Costumes from the other official servers. Shipped with the app rather
+    // than fetched from ragassets because, unlike everything above, they are
+    // not kept in step with a live client: they were extracted once from each
+    // server's patch history. They are in the catalogue from the start but
+    // hidden by the "outros servidores" filter, which is off by default.
+    fetchJson<ForeignDb>("db/foreign-costumes.json").catch(() => ({ items: [] })),
   ]);
-  const items = withHatEffects([...costumes.items, ...effects.items], hatEffects.items)
-    .sort((a, b) => a.name.localeCompare(b.name, "pt-BR") || a.id - b.id);
+  const items = withHatEffects(
+    [...costumes.items, ...effects.items, ...foreign.items],
+    hatEffects.items,
+  ).sort((a, b) => a.name.localeCompare(b.name, "pt-BR") || a.id - b.id);
   const stoneItems: Stone[] = stones.items
     .map((s) => ({ ...s, slots: [s.slot], stone: true as const }))
     .sort((a, b) => a.name.localeCompare(b.name, "pt-BR") || a.id - b.id);

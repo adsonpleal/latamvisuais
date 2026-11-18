@@ -71,6 +71,17 @@ type Props = {
   /** Hide costumes that take more than one slot at a time. */
   singleSlotOnly: boolean;
   onSingleSlotOnlyChange: (only: boolean) => void;
+  /** Show costumes from the other official servers. Off by default: they are
+   *  the only thing in the catalogue nobody here can obtain, so they stay out
+   *  of the way until somebody asks for them. */
+  showForeign: boolean;
+  onShowForeignChange: (show: boolean) => void;
+  /** Narrow those to one server, or null for all of them. */
+  originFilter: string | null;
+  onOriginFilterChange: (origin: string | null) => void;
+  /** The servers actually present in the catalogue, so the chips describe the
+   *  data rather than a list someone has to remember to update. */
+  origins: string[];
 };
 
 export function CatalogFilters({
@@ -80,6 +91,11 @@ export function CatalogFilters({
   onKindFilterChange,
   singleSlotOnly,
   onSingleSlotOnlyChange,
+  showForeign,
+  onShowForeignChange,
+  originFilter,
+  onOriginFilterChange,
+  origins,
 }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const popRef = useRef<HTMLDivElement>(null);
@@ -126,7 +142,11 @@ export function CatalogFilters({
   const active =
     (slotFilter ? 1 : 0) +
     (kindFilter === "all" ? 0 : 1) +
-    (singleSlotOnly ? 1 : 0);
+    (singleSlotOnly ? 1 : 0) +
+    // Showing the foreign costumes counts as an active filter even though it
+    // widens the list: it is the one setting that puts things in the grid you
+    // cannot obtain, and the badge is how you remember it is on.
+    (showForeign ? 1 : 0);
 
   return (
     <div className="catalog-filter-menu" ref={rootRef}>
@@ -198,6 +218,46 @@ export function CatalogFilters({
               </label>
             </div>
 
+            {/* Its own group, below the ones that narrow the LATAM catalogue,
+                because this one adds to it instead — and adds the only items
+                in the grid nobody here can get. The server chips appear only
+                once it is on: offering them while nothing foreign is shown
+                would be four controls that do nothing. */}
+            {origins.length > 0 && (
+              <div className="catalog-filter-group">
+                <div className="catalog-filter-label">{t.foreignFilterLabel}</div>
+                <label className="catalog-filter-check" data-tip={t.foreignTip}>
+                  <input
+                    type="checkbox"
+                    checked={showForeign}
+                    onChange={(e) => onShowForeignChange(e.target.checked)}
+                  />
+                  {t.foreignLabel}
+                </label>
+                {showForeign && (
+                  <div
+                    className="catalog-filters"
+                    role="group"
+                    aria-label={t.foreignFilterLabel}
+                  >
+                    <Chip
+                      label={t.foreignAllServers}
+                      active={originFilter === null}
+                      onClick={() => onOriginFilterChange(null)}
+                    />
+                    {origins.map((o) => (
+                      <Chip
+                        key={o}
+                        label={t.foreignServerNames[o] ?? o}
+                        active={originFilter === o}
+                        onClick={() => onOriginFilterChange(originFilter === o ? null : o)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
             <button
               type="button"
               className="catalog-filter-clear"
@@ -206,6 +266,10 @@ export function CatalogFilters({
                 onSlotFilterChange(null);
                 onKindFilterChange("all");
                 onSingleSlotOnlyChange(false);
+                // Back to the default catalogue, which is the LATAM one: the
+                // badge counts this as active, so "Limpar" has to clear it.
+                onShowForeignChange(false);
+                onOriginFilterChange(null);
               }}
             >
               {t.filtersClear}

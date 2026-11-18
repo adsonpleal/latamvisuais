@@ -99,6 +99,65 @@ describe("Catalog", () => {
     expect(tile("Conjunto Topo+Meio (#500)")).toBeVisible();
   });
 
+  describe("costumes from other official servers", () => {
+    const foreignTile = (name: RegExp) => screen.getByLabelText(name);
+
+    it("hides them until the filter is turned on", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      // Off by default. These are the only items in the catalogue nobody here
+      // can obtain, so nothing about the default view may mention them.
+      expect(foreignTile(/Chapéu Estrangeiro/)).not.toBeVisible();
+      expect(foreignTile(/Capa Estrangeira/)).not.toBeVisible();
+      expect(tile("Chapéu A (#100)")).toBeVisible();
+
+      await openFilters(user);
+      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+
+      expect(foreignTile(/Chapéu Estrangeiro/)).toBeVisible();
+      expect(foreignTile(/Capa Estrangeira/)).toBeVisible();
+      // Additive: it shows more, it does not replace the LATAM catalogue.
+      expect(tile("Chapéu A (#100)")).toBeVisible();
+    });
+
+    it("narrows to one server, and says which on every tile", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await openFilters(user);
+      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      await user.click(
+        within(screen.getByRole("group", { name: "Outros servidores" })).getByRole("button", {
+          name: "twRO",
+        }),
+      );
+
+      expect(foreignTile(/Capa Estrangeira/)).toBeVisible();
+      expect(foreignTile(/Chapéu Estrangeiro/)).not.toBeVisible();
+      // Still only narrowing the foreign ones — the LATAM catalogue is whole.
+      expect(tile("Chapéu A (#100)")).toBeVisible();
+
+      // The badge is the only thing distinguishing a foreign tile from a LATAM
+      // one once they sit in the same grid, so it has to be on the tile and in
+      // its accessible name, not only in a tooltip.
+      expect(foreignTile(/Capa Estrangeira/)).toHaveAccessibleName(/Visual de twRO/);
+      expect(within(foreignTile(/Capa Estrangeira/)).getByText("twRO")).toBeInTheDocument();
+    });
+
+    it("puts them away again on Limpar", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await openFilters(user);
+      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      expect(foreignTile(/Chapéu Estrangeiro/)).toBeVisible();
+
+      await user.click(screen.getByRole("button", { name: "Limpar" }));
+      expect(foreignTile(/Chapéu Estrangeiro/)).not.toBeVisible();
+    });
+  });
+
   it("toggles the equipped highlight on click", async () => {
     const user = userEvent.setup();
     renderCatalog();

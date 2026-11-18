@@ -1,0 +1,7086 @@
+{
+ "version": 1,
+ "generatedAt": "2026-11-18",
+ "counts": {
+  "iro": 231,
+  "twro": 64,
+  "krozero": 113,
+  "twrozero": 38,
+  "kro": 27,
+  "jro": 119
+ },
+ "items": [
+  {
+   "id": 10001063,
+   "name": "'Merica_Hat",
+   "view": 1063,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_iro플래그모자",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10450028,
+   "name": "(服飾)2018-RTC紀念斗篷",
+   "view": 28,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_2018_rtc_cape_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10401908,
+   "name": "(服飾)2019RTC紀念波利池",
+   "view": 1908,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_2019rtc_celeaura_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402009,
+   "name": "(服飾)2020RTC頑皮鬼",
+   "view": 2009,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_2020rtc_imp_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402133,
+   "name": "(服飾)2021RTC應援之羽翼",
+   "view": 2133,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_2021rtc_wing_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402134,
+   "name": "(服飾)2021RTC電競耳機",
+   "view": 2134,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_2021rtc_headset_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450132,
+   "name": "(服飾)2022RTC紀念勝利大衣",
+   "view": 132,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_2022rtc_v_coat4",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450197,
+   "name": "(服飾)2023ROS冠軍披風",
+   "view": 197,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_ros2023_cape_1",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050184,
+   "name": "(服飾)2023ROS決戰spark斗篷",
+   "view": 184,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "2023rtc_s_robe4",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450198,
+   "name": "(服飾)2023ROS紀念披風",
+   "view": 198,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_ros2023_cape_2",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10350252,
+   "name": "(服飾)2024 ROS紀念翅膀",
+   "view": 252,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "sprite": "c_ros2024_wing_4",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302552,
+   "name": "(服飾)2024ROS亞軍戰鬥波利帽",
+   "view": 2552,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_2024ros_hat_2nd",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302551,
+   "name": "(服飾)2024ROS冠軍戰鬥波利帽",
+   "view": 2551,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_2024ros_hat_1st",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302553,
+   "name": "(服飾)2024ROS季軍戰鬥波利帽",
+   "view": 2553,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_2024ros_hat_3rd",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302554,
+   "name": "(服飾)2024ROS戰鬥波利帽",
+   "view": 2554,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_2024ros_hat_4th",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402284,
+   "name": "(服飾)20週年紀念頭飾",
+   "view": 2284,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_20th_anniversary_hat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10501432,
+   "name": "(服飾)7年級氣球",
+   "view": 1432,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c7학년풍선",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10501433,
+   "name": "(服飾)8年級氣球",
+   "view": 1433,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c8학년풍선",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402480,
+   "name": "(服飾)P助與粉紅兔兔",
+   "view": 2480,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_usa_pis",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450326,
+   "name": "(服飾)ROS亞軍外袍",
+   "view": 326,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_2026rosfesta_2nd",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450325,
+   "name": "(服飾)ROS冠軍外袍",
+   "view": 325,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_2026rosfesta_1st",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450327,
+   "name": "(服飾)ROS季軍外袍",
+   "view": 327,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_2026rosfesta_3rd",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450328,
+   "name": "(服飾)ROS殿軍外袍",
+   "view": 328,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_2026rosfesta_4th",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10550339,
+   "name": "(服飾)RSX-0806機械臂",
+   "view": 339,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "sprite": "c_rsx_chain_arm",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10050266,
+   "name": "(服飾)三色波利糰子",
+   "view": 266,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_3color_dumplings_p",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002538,
+   "name": "(服飾)三花貓咖啡杯(白)",
+   "view": 2538,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_catcoffeecup_wh",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402711,
+   "name": "(服飾)不死君主的權能",
+   "view": 2711,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_immortal_h_power",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450259,
+   "name": "(服飾)不死君主的翅膀",
+   "view": 259,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_immortal_h_wing",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402606,
+   "name": "(服飾)亞歷山大帝",
+   "view": 2606,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_alecsander",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10501020,
+   "name": "(服飾)亮藍色眼影",
+   "view": 1020,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_블루아이새도",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302818,
+   "name": "(服飾)仙女之耳",
+   "view": 2818,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_nymph_ear",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202556,
+   "name": "(服飾)伊格尼斯狩獵帽(紅)",
+   "view": 2556,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_magma_ignis_cap",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10002304,
+   "name": "(服飾)伊芙小娃娃",
+   "view": 2304,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_evil_mini",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450316,
+   "name": "(服飾)休息的虎王後背包",
+   "view": 316,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_eddga_rest",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402225,
+   "name": "(服飾)俏麗搖滾短髮",
+   "view": 2225,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_rocking_short",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402281,
+   "name": "(服飾)信賴頭冠",
+   "view": 2281,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_reliance_crown",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202384,
+   "name": "(服飾)冒險家教皇小娃娃",
+   "view": 2384,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_adventurer_pope_mini",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10502385,
+   "name": "(服飾)冒險家的帽子",
+   "view": 2385,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_adventurer_hat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002866,
+   "name": "(服飾)冰波利漸變蔚藍假髮",
+   "view": 2866,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_aqua_marin",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10050279,
+   "name": "(服飾)冰淇淋蘇打",
+   "view": 279,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_melon_cream_soda",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10002568,
+   "name": "(服飾)劍魚眼睛",
+   "view": 2568,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_eyes_phen",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001923,
+   "name": "(服飾)北極熊髮箍",
+   "view": 1923,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_pretty_bear_wh",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10101439,
+   "name": "(服飾)匹阿漫特蝴蝶結",
+   "view": 1439,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_피아멧트나비넥타이",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402479,
+   "name": "(服飾)卡娜赫拉的小動物",
+   "view": 2479,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_kanahei_fam",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402607,
+   "name": "(服飾)卡珊德拉公主",
+   "view": 2607,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_cassandra",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10550315,
+   "name": "(服飾)可愛蘑菇背包",
+   "view": 315,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "sprite": "c_mushroom_umbrella_rd",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10402356,
+   "name": "(服飾)可靠的可波",
+   "view": 2356,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_armored_copo",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050237,
+   "name": "(服飾)台灣藍鵲的翅膀",
+   "view": 237,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_blue_magpie",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050043,
+   "name": "(服飾)台灣黑熊背包",
+   "view": 43,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "blackbearbackpack",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002307,
+   "name": "(服飾)史皮卡奈里烏思小娃娃",
+   "view": 2307,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_spica_mini",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402021,
+   "name": "(服飾)咖波利",
+   "view": 2021,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_capooring_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050089,
+   "name": "(服飾)咖波包",
+   "view": 89,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_capoo_bag_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002483,
+   "name": "(服飾)喵喵寵物鈴鐺",
+   "view": 2483,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_sound_of_catbell",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050240,
+   "name": "(服飾)喵喵爪包包",
+   "view": 240,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_paw_bag",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002150,
+   "name": "(服飾)喵喵肉球印",
+   "view": 2150,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_cat_footprints",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10501438,
+   "name": "(服飾)喵波利氣球",
+   "view": 1438,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c13학년풍선",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202726,
+   "name": "(服飾)喵爾的灰耳朵",
+   "view": 2726,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_ear_of_nyar_gy",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302658,
+   "name": "(服飾)嘴叼草莓甜甜圈",
+   "view": 2658,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_sberry_donut_in_mouth",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002740,
+   "name": "(服飾)噩夢菲阿漫特假髮",
+   "view": 2740,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_n_piamette_rollhair",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10401909,
+   "name": "(服飾)回歸三週年頭飾",
+   "view": 1909,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_tw_3rd_balloon",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10301772,
+   "name": "(服飾)回歸二週年頭飾",
+   "view": 1772,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_return_tw_2th_hat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10000482,
+   "name": "(服飾)國旗帽",
+   "view": 482,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_대만국기모자",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002790,
+   "name": "(服飾)國王企鵝",
+   "view": 2790,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_emperor_penguin",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002290,
+   "name": "(服飾)國王小娃娃",
+   "view": 2290,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_king_mini",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402844,
+   "name": "(服飾)培養艙",
+   "view": 2844,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_culture_pod",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050233,
+   "name": "(服飾)墮落大神官的哀怨",
+   "view": 233,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_fb_evilsprit",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002141,
+   "name": "(服飾)夏日水手服",
+   "view": 2141,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_sailor_collar_wh",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402852,
+   "name": "(服飾)夜市印章",
+   "view": 2852,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_nf_stamp",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202717,
+   "name": "(服飾)夜市特製鹽罐",
+   "view": 2717,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_2508_salt_hat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002409,
+   "name": "(服飾)夜市閃亮波利環",
+   "view": 2409,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_bulb_wreath",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450287,
+   "name": "(服飾)大天使之盾",
+   "view": 287,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_herald_of_god",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002572,
+   "name": "(服飾)大白犬",
+   "view": 2572,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_great_pyrenees",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202427,
+   "name": "(服飾)大耳狗喜拿",
+   "view": 2427,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_cinnamon",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202428,
+   "name": "(服飾)大耳狗喜拿氣球",
+   "view": 2428,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_cinnamon2",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002291,
+   "name": "(服飾)天使波利小娃娃",
+   "view": 2291,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_angeling_mini",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10100997,
+   "name": "(服飾)天地樹帽子",
+   "view": 997,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_세계수의모자",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002521,
+   "name": "(服飾)天堂伊甸園帽",
+   "view": 2521,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_garden_of_heaven",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450256,
+   "name": "(服飾)天秤之翼",
+   "view": 256,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_libra_wing",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10401920,
+   "name": "(服飾)天音耳機",
+   "view": 1920,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_baryon_headphone_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002555,
+   "name": "(服飾)太陽神裝飾",
+   "view": 2555,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_helm_of_ra_kr",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002656,
+   "name": "(服飾)女僕裝飾",
+   "view": 2656,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_maid_frill",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102509,
+   "name": "(服飾)女巫的白貓帽",
+   "view": 2509,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_white_cat_witch_hat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10501161,
+   "name": "(服飾)女波利氣球",
+   "view": 1161,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_여포링풍선",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402422,
+   "name": "(服飾)好想兔耳帽",
+   "view": 2422,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_hosangto_hat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402423,
+   "name": "(服飾)好想兔與小賤狗",
+   "view": 2423,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_h_n_hat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402282,
+   "name": "(服飾)守護翅膀裝飾",
+   "view": 2282,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_guardian_wing",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002664,
+   "name": "(服飾)實驗精神",
+   "view": 2664,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_experiment_mind",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402357,
+   "name": "(服飾)小巧的可波",
+   "view": 2357,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_egg_copo",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402570,
+   "name": "(服飾)小海豹",
+   "view": 2570,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_baby_seal",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002574,
+   "name": "(服飾)小狗帽(白)",
+   "view": 2574,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_puppy_hat_wh",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302499,
+   "name": "(服飾)小白兔假髮",
+   "view": 2499,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_white_rabbit_hair",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202341,
+   "name": "(服飾)小白兔造型蒸糕",
+   "view": 2341,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_white_tteok",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202343,
+   "name": "(服飾)小黃兔造型蒸糕",
+   "view": 2343,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_bean_tteok",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202342,
+   "name": "(服飾)小黑兔造型蒸糕",
+   "view": 2342,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_blacksesame_tteok",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10350288,
+   "name": "(服飾)尼芙菲姆魔法掃帚(紅)",
+   "view": 288,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "sprite": "c_nifl_bloom_rd",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050228,
+   "name": "(服飾)布偶貓後背包",
+   "view": 228,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_ragdoll_face_bag",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10101935,
+   "name": "(服飾)帥氣墨鏡熊熊",
+   "view": 1935,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_sunglass_bear_cap_j",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10002279,
+   "name": "(服飾)帳篷",
+   "view": 2279,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_tent",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302515,
+   "name": "(服飾)幸運四葉草髮夾",
+   "view": 2515,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_clover_hairpin",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10401665,
+   "name": "(服飾)幽暗的蝴蝶",
+   "view": 1665,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_flutterbutterfly_bl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302493,
+   "name": "(服飾)強運錢袋",
+   "view": 2493,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_lucky_purse",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102400,
+   "name": "(服飾)彩虹爆米花",
+   "view": 2400,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_rainbow_popcorn",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001180,
+   "name": "(服飾)律動耳機",
+   "view": 1180,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_율동의머리장식",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302534,
+   "name": "(服飾)快閃餐車",
+   "view": 2534,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_kitchen_car",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050242,
+   "name": "(服飾)愛麗絲女僕掃帚",
+   "view": 242,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_alice_broom",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302410,
+   "name": "(服飾)憤怒魚",
+   "view": 2410,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_angry_fish",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10502903,
+   "name": "(服飾)懶洋洋凱特莉娜",
+   "view": 2903,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_katrinn_doll_hat",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10502904,
+   "name": "(服飾)懶洋洋哈沃德",
+   "view": 2904,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_harword_doll_hat",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10502531,
+   "name": "(服飾)懶洋洋廢柴",
+   "view": 2531,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_clb_ss_df",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050171,
+   "name": "(服飾)懶洋洋教皇後背包",
+   "view": 171,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_pope_doll",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10502899,
+   "name": "(服飾)懶洋洋瑪嘉雷特",
+   "view": 2899,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_magaleta_doll_hat",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10502902,
+   "name": "(服飾)懶洋洋艾勒梅斯",
+   "view": 2902,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_eremes_doll_hat",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10502900,
+   "name": "(服飾)懶洋洋賽依連",
+   "view": 2900,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_seyren_doll_hat",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10502901,
+   "name": "(服飾)懶洋洋迪文",
+   "view": 2901,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_shecil_doll_hat",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10001306,
+   "name": "(服飾)我愛仙境",
+   "view": 1306,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_러브게임햇",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10550221,
+   "name": "(服飾)招財太子",
+   "view": 221,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "sprite": "c_clb_ss_lt",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102701,
+   "name": "(服飾)挪威森林貓",
+   "view": 2701,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_n_forest_cat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102783,
+   "name": "(服飾)搖滾短假髮(棕)",
+   "view": 2783,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_rocking_short_om",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002782,
+   "name": "(服飾)搖滾短假髮(白)",
+   "view": 2782,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_rocking_short_wh",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002778,
+   "name": "(服飾)搖滾短假髮(紅)",
+   "view": 2778,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_rocking_short_rd",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002779,
+   "name": "(服飾)搖滾短假髮(藍)",
+   "view": 2779,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_rocking_short_lb",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002777,
+   "name": "(服飾)搖滾短假髮(金)",
+   "view": 2777,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_rocking_short_bd",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102780,
+   "name": "(服飾)搖滾短假髮(銀)",
+   "view": 2780,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_rocking_short_sv",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102776,
+   "name": "(服飾)搖滾短假髮(青)",
+   "view": 2776,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_rocking_short_bg",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002781,
+   "name": "(服飾)搖滾短假髮(黑)",
+   "view": 2781,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_rocking_short_jbl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102767,
+   "name": "(服飾)斯基亞假髮(棕)",
+   "view": 2767,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_skia_two_side_up_om",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102766,
+   "name": "(服飾)斯基亞假髮(白)",
+   "view": 2766,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_skia_two_side_up_wh",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002762,
+   "name": "(服飾)斯基亞假髮(粉)",
+   "view": 2762,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_skia_two_side_up_cb",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002763,
+   "name": "(服飾)斯基亞假髮(藍)",
+   "view": 2763,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_skia_two_side_up_lb",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102761,
+   "name": "(服飾)斯基亞假髮(金)",
+   "view": 2761,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_skia_two_side_up_bd",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002764,
+   "name": "(服飾)斯基亞假髮(銀)",
+   "view": 2764,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_skia_two_side_up_sv",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002760,
+   "name": "(服飾)斯基亞假髮(青)",
+   "view": 2760,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_skia_two_side_up_bg",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002765,
+   "name": "(服飾)斯基亞假髮(黑)",
+   "view": 2765,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_skia_two_side_up_bl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202489,
+   "name": "(服飾)日式被爐",
+   "view": 2489,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_kotatsu",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10550270,
+   "name": "(服飾)星空鋼珠筆",
+   "view": 270,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "sprite": "c_starrysky_fountainpen",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10550319,
+   "name": "(服飾)星空墨筆",
+   "view": 319,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "sprite": "c_star_glasspen",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10002487,
+   "name": "(服飾)星辰頭盔",
+   "view": 2487,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_wolf_rayet",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002494,
+   "name": "(服飾)春龍雕像",
+   "view": 2494,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_bluedragon",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050301,
+   "name": "(服飾)杜蘭族貓爪巨錘",
+   "view": 301,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_doram_paw_hammer",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002371,
+   "name": "(服飾)松鼠耳帽(白)",
+   "view": 2371,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_squirrel_ear_hat_w",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050239,
+   "name": "(服飾)柴犬之尾",
+   "view": 239,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_shiba_tail",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10000582,
+   "name": "(服飾)桃樂絲人偶帽",
+   "view": 582,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_도로시인형모자",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10002745,
+   "name": "(服飾)梅札德裝飾",
+   "view": 2745,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_medjed_cloth",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10502703,
+   "name": "(服飾)棕色小狗耳朵",
+   "view": 2703,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_ear_of_puppy_om",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002101,
+   "name": "(服飾)榮耀之象徵",
+   "view": 2101,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_glory_symbol_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102704,
+   "name": "(服飾)橘紅色蝴蝶結",
+   "view": 2704,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_orange_rear_ribbon",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302580,
+   "name": "(服飾)橘色大耳魔女帽",
+   "view": 2580,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_or_earwitchhat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102583,
+   "name": "(服飾)機械植物帽(白)",
+   "view": 2583,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_m_plant_hat_w",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050040,
+   "name": "(服飾)櫻之祭典緞帶",
+   "view": 40,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "cherryfesribbon",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002682,
+   "name": "(服飾)櫻花巫女短假髮",
+   "view": 2682,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_cb_fullb_twintails",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10002119,
+   "name": "(服飾)櫻花墨鏡",
+   "view": 2119,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_blossom_glasses",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10150273,
+   "name": "(服飾)次元大劍",
+   "view": 273,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "jro",
+   "sprite": "c_dimensional_sword",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302525,
+   "name": "(服飾)沉睡玫瑰",
+   "view": 2525,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_undead_seal_rose",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050234,
+   "name": "(服飾)波利冰淇淋蘇打",
+   "view": 234,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_poring_cream_soda",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10350229,
+   "name": "(服飾)波利游泳圈",
+   "view": 229,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "sprite": "hanwha_pool_ring",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10350236,
+   "name": "(服飾)波波利游泳圈",
+   "view": 236,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "sprite": "poporing_pool_ring",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102637,
+   "name": "(服飾)浪姬舞者假髮(棕)",
+   "view": 2637,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_wanderer_curl_om",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102632,
+   "name": "(服飾)浪姬舞者假髮(粉)",
+   "view": 2632,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_wanderer_curl_cb",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102634,
+   "name": "(服飾)浪姬舞者假髮(紫)",
+   "view": 2634,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_wanderer_curl_lpp",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102633,
+   "name": "(服飾)浪姬舞者假髮(藍)",
+   "view": 2633,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_wanderer_curl_lb",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102636,
+   "name": "(服飾)浪姬舞者假髮(雪白)",
+   "view": 2636,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_wanderer_curl_swh",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102630,
+   "name": "(服飾)浪姬舞者假髮(青)",
+   "view": 2630,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_wanderer_curl_bg",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102631,
+   "name": "(服飾)浪姬舞者假髮(黃)",
+   "view": 2631,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_wanderer_curl_yl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102635,
+   "name": "(服飾)浪姬舞者假髮(黑)",
+   "view": 2635,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_wanderer_curl_jbl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10401821,
+   "name": "(服飾)浪漫玫瑰",
+   "view": 1821,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_romanticrose",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002718,
+   "name": "(服飾)海洋祭教皇假髮",
+   "view": 2718,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_vacation_pope_hair",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202512,
+   "name": "(服飾)海涅的通訊器",
+   "view": 2512,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_heine_tab_1",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202513,
+   "name": "(服飾)海涅的通訊器(玫瑰紅)",
+   "view": 2513,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_heine_tab_2",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202514,
+   "name": "(服飾)海涅的通訊器(科技銀)",
+   "view": 2514,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_heine_tab_3",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002869,
+   "name": "(服飾)深海珍珠魔女帽",
+   "view": 2869,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_deepsea_pearls_hat",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10550238,
+   "name": "(服飾)深海章魚的呼喚",
+   "view": 238,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "sprite": "c_call_octo",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002672,
+   "name": "(服飾)深淵假髮",
+   "view": 2672,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_deep_you",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002671,
+   "name": "(服飾)深淵假髮(無裝飾)",
+   "view": 2671,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_deep_you_n",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10502888,
+   "name": "(服飾)深淵湖水稀有龍寶寶",
+   "view": 2888,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_little_abyss_d_bl",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10202146,
+   "name": "(服飾)滿月貓頭罩(黑)",
+   "view": 2146,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_black_moon_cat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002867,
+   "name": "(服飾)漸變蔚藍假髮",
+   "view": 2867,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_aqua_marin_n",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10401748,
+   "name": "(服飾)火花噴發頭飾",
+   "view": 1748,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_sparkler_fountain",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002686,
+   "name": "(服飾)無名之兜",
+   "view": 2686,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_majestic_helmet_bl",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10402850,
+   "name": "(服飾)熊貓",
+   "view": 2850,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_giant_panda",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450318,
+   "name": "(服飾)熊貓竹子",
+   "view": 318,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_panda_bamboo",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302380,
+   "name": "(服飾)牡丹帽",
+   "view": 2380,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_chic_peony",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10350219,
+   "name": "(服飾)狂暴邪惡箱KUSO包",
+   "view": 219,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "sprite": "c_big_treasure_chest",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402826,
+   "name": "(服飾)狐狸假面(黃)",
+   "view": 2826,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_mask_of_fox_yl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302825,
+   "name": "(服飾)狐狸貝雷帽",
+   "view": 2825,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_fox_ear_beret",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002647,
+   "name": "(服飾)狐耳雙馬尾",
+   "view": 2647,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_wh_fox_hood_twin_n",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10001618,
+   "name": "(服飾)率性單馬尾(白)",
+   "view": 1618,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_low_pony_wh",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001614,
+   "name": "(服飾)率性單馬尾(紅)",
+   "view": 1614,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_low_pony_rd",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001620,
+   "name": "(服飾)率性單馬尾(紫)",
+   "view": 1620,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_low_pony_pp",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001616,
+   "name": "(服飾)率性單馬尾(綠)",
+   "view": 1616,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_low_pony_gn",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001613,
+   "name": "(服飾)率性單馬尾(藍)",
+   "view": 1613,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_low_pony_bu",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001619,
+   "name": "(服飾)率性單馬尾(褐)",
+   "view": 1619,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_low_pony_om",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001615,
+   "name": "(服飾)率性單馬尾(黃)",
+   "view": 1615,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_low_pony_yl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001617,
+   "name": "(服飾)率性單馬尾(黑)",
+   "view": 1617,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_low_pony_bl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102452,
+   "name": "(服飾)玫瑰波浪長假髮(粉)",
+   "view": 2452,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_rose_wave_bdp",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102451,
+   "name": "(服飾)玫瑰波浪長假髮(金)",
+   "view": 2451,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_rose_wave_bd",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102453,
+   "name": "(服飾)玫瑰波浪長假髮(銀)",
+   "view": 2453,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_rose_wave_sv",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10550215,
+   "name": "(服飾)玫瑰花園之翼",
+   "view": 215,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "sprite": "c_glass_rose_garden",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001632,
+   "name": "(服飾)珍珠白腮紅",
+   "view": 1632,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_white_clay_filler",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002816,
+   "name": "(服飾)瑪嘉雷特假髮",
+   "view": 2816,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_magaleta_hair",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302535,
+   "name": "(服飾)環狀雙馬尾假髮",
+   "view": 2535,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_signon_loop",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10350222,
+   "name": "(服飾)甜甜蜂蜜棒",
+   "view": 222,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "sprite": "c_honey_dipper",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10150298,
+   "name": "(服飾)甜蜜餐叉",
+   "view": 298,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "jro",
+   "sprite": "c_sweet_folk",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050078,
+   "name": "(服飾)生命翠綠天使之翼",
+   "view": 78,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "wing_of_angel_move_gr",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10501159,
+   "name": "(服飾)男波利氣球",
+   "view": 1159,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_남포링풍선",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10502533,
+   "name": "(服飾)發懶滷哥氣球",
+   "view": 2533,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_clb_ss_ll",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10050255,
+   "name": "(服飾)白狐狸之尾",
+   "view": 255,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_white_fox_tail",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402354,
+   "name": "(服飾)白蛇妖假髮",
+   "view": 2354,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_white_serpent_hair",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102611,
+   "name": "(服飾)直立雙馬尾假髮(粉)",
+   "view": 2611,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_s_two_side_up_bdp",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102610,
+   "name": "(服飾)直立雙馬尾假髮(金)",
+   "view": 2610,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_s_two_side_up_bd",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002612,
+   "name": "(服飾)直立雙馬尾假髮(銀)",
+   "view": 2612,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_s_two_side_up_sv",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002613,
+   "name": "(服飾)直立雙馬尾假髮(黑)",
+   "view": 2613,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_s_two_side_up_blp",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102796,
+   "name": "(服飾)真愛碎片(黑)",
+   "view": 2796,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_love_piece_bl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10501719,
+   "name": "(服飾)石虎娃娃",
+   "view": 1719,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_baby_leopard_cat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002542,
+   "name": "(服飾)破蛋",
+   "view": 2542,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_broken_egg",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002579,
+   "name": "(服飾)萬聖節糖果袋",
+   "view": 2579,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_halloween_candypouch",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001270,
+   "name": "(服飾)竹葉帽子",
+   "view": 1270,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_소원종이모자",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102691,
+   "name": "(服飾)米德加爾特徽章肩飾",
+   "view": 2691,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_midgard_insignia",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10502308,
+   "name": "(服飾)紅火烈焰的巨人",
+   "view": 2308,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_fire_giant_red",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002559,
+   "name": "(服飾)紅牡丹度假帽",
+   "view": 2559,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_red_paeonia",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001449,
+   "name": "(服飾)紅白波利疊疊帽",
+   "view": 1449,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_홍백모치링모자",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10302654,
+   "name": "(服飾)紅緞帶長波浪捲髮",
+   "view": 2654,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_knit_ribbon_lowtwin",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10002561,
+   "name": "(服飾)紅色漂浮遮陽傘",
+   "view": 2561,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_buoyant_parasol_r",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10150272,
+   "name": "(服飾)紫肉食人火龍果背包",
+   "view": 272,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "jro",
+   "sprite": "c_pitaya_v_bag",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002563,
+   "name": "(服飾)綠色沙灘椅",
+   "view": 2563,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_green_sunbed",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001058,
+   "name": "(服飾)綠色狐尾草",
+   "view": 1058,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_녹색강아지풀",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001090,
+   "name": "(服飾)綱手的忍術",
+   "view": 1090,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_츠나데의인술서",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050074,
+   "name": "(服飾)緋紅金天使之翼",
+   "view": 74,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "wing_of_angel_move_rb",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402516,
+   "name": "(服飾)繽紛花藝針織帽",
+   "view": 2516,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_flower_s_knit_hat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102698,
+   "name": "(服飾)美妙長假髮",
+   "view": 2698,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_wonderful_long",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102697,
+   "name": "(服飾)美妙長假髮(無裝飾)",
+   "view": 2697,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_wonderful_long_n",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202609,
+   "name": "(服飾)聖誕樹披掛",
+   "view": 2609,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_winter_tree",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10002488,
+   "name": "(服飾)聖誕雪人帽",
+   "view": 2488,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_snowmanhat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402403,
+   "name": "(服飾)肩上小黑貓",
+   "view": 2403,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_lightning_savage",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002571,
+   "name": "(服飾)芬里爾探險帽",
+   "view": 2571,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_fenrir_afv_hat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002248,
+   "name": "(服飾)花朵的願望",
+   "view": 2248,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_many_flowers_prayer",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002737,
+   "name": "(服飾)莉阿漫特髮圈",
+   "view": 2737,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_liamette_hair_band",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002738,
+   "name": "(服飾)菲阿漫特帽",
+   "view": 2738,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_n_piamette_bonnet",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102794,
+   "name": "(服飾)蓬鬆編織髮辮",
+   "view": 2794,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_lots_braided_hair",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10502821,
+   "name": "(服飾)蓬鬆耳造型雙髮辮",
+   "view": 2821,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_petal_twin_n",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10002884,
+   "name": "(服飾)蓬鬆雙短辮假髮",
+   "view": 2884,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_fluffy_candy_long_n",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10002883,
+   "name": "(服飾)蓬鬆雙短辮蝴蝶結假髮",
+   "view": 2883,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_fluffy_candy_long",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10050261,
+   "name": "(服飾)藍玫瑰陽傘",
+   "view": 261,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_blue_rose_parasol",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302688,
+   "name": "(服飾)藍瘋兔白日夢圍巾",
+   "view": 2688,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_eclipse_muffler",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002562,
+   "name": "(服飾)藍色沙灘椅",
+   "view": 2562,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_blue_sunbed",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002560,
+   "name": "(服飾)藍色漂浮遮陽傘",
+   "view": 2560,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_buoyant_parasol_b",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202673,
+   "name": "(服飾)藍色的荊棘骷髏髮圈",
+   "view": 2673,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_thornbush_hairband_bu",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10301321,
+   "name": "(服飾)藍色精美頭飾",
+   "view": 1321,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_블루헤드드레스",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002522,
+   "name": "(服飾)藍貓耳披肩",
+   "view": 2522,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_cat_ears_cape_blue",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10402355,
+   "name": "(服飾)蛇神的水晶",
+   "view": 2355,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_serpent_crystal",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002315,
+   "name": "(服飾)蜘蛛波利帽",
+   "view": 2315,
+   "slots": [
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_spiding",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002547,
+   "name": "(服飾)蝴蝶結編織假髮",
+   "view": 2547,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_ribbon_braid_hair",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10401027,
+   "name": "(服飾)蝶翼髮夾",
+   "view": 1027,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_나비의트윈바렛",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002569,
+   "name": "(服飾)蠟燭套裝",
+   "view": 2569,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_candle_set",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10502814,
+   "name": "(服飾)見習巫師之帽",
+   "view": 2814,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_apprentice_witch_hat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402690,
+   "name": "(服飾)變體惡魔之角(上)",
+   "view": 2690,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_variant_devils_horn",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050330,
+   "name": "(服飾)豐收狸貓大餐",
+   "view": 330,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_smokie_basket",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10101871,
+   "name": "(服飾)豬小妹氣球",
+   "view": 1871,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_pig_girl_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10101872,
+   "name": "(服飾)豬小弟氣球",
+   "view": 1872,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_pig_boy_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10502714,
+   "name": "(服飾)貓耳短髮(白)",
+   "view": 2714,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_cat_ear_short_wh",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10502712,
+   "name": "(服飾)貓耳長直髮(黑)",
+   "view": 2712,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_cat_straight_long_bl",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10502713,
+   "name": "(服飾)貓耳長髮(藍)",
+   "view": 2713,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_cat_ear_long_bu",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10402022,
+   "name": "(服飾)貪吃咖波蛇",
+   "view": 2022,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_gluttony_capoo_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002292,
+   "name": "(服飾)賽依連小娃娃",
+   "view": 2292,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_seyren_mini",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10502539,
+   "name": "(服飾)起龍",
+   "view": 2539,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_dragon_green_aura",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450201,
+   "name": "(服飾)超大P助",
+   "view": 201,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_big_piske_bag",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450193,
+   "name": "(服飾)超大好想兔",
+   "view": 193,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_big_hosangto",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450200,
+   "name": "(服飾)超大粉紅兔兔",
+   "view": 200,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_big_usagi_bag",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102620,
+   "name": "(服飾)超級初學者假髮(白)",
+   "view": 2620,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_hn_hair_wh",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102616,
+   "name": "(服飾)超級初學者假髮(粉)",
+   "view": 2616,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_hn_hair_cb",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102621,
+   "name": "(服飾)超級初學者假髮(紅)",
+   "view": 2621,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_hn_hair_om",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102618,
+   "name": "(服飾)超級初學者假髮(紫)",
+   "view": 2618,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_hn_hair_lpp",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102614,
+   "name": "(服飾)超級初學者假髮(綠)",
+   "view": 2614,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_hn_hair_bg",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102617,
+   "name": "(服飾)超級初學者假髮(藍)",
+   "view": 2617,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_hn_hair_lb",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102615,
+   "name": "(服飾)超級初學者假髮(黃)",
+   "view": 2615,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_hn_hair_yl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102619,
+   "name": "(服飾)超級初學者假髮(黑)",
+   "view": 2619,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_hn_hair_jbl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102702,
+   "name": "(服飾)跳躍的藍色小雞",
+   "view": 2702,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_chick_hat_bu",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002548,
+   "name": "(服飾)跳鼠耳朵頭帶",
+   "view": 2548,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_jerboa_headband",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10050077,
+   "name": "(服飾)輕柔灰白天使之翼",
+   "view": 77,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "wing_of_angel_move_dg",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10502540,
+   "name": "(服飾)轟鳴鼓-紅",
+   "view": 2540,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_dragon_red_aura",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10502541,
+   "name": "(服飾)轟鳴鼓-黃",
+   "view": 2541,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_dragon_yellow_aura",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10102628,
+   "name": "(服飾)遊俠野狼假髮(白)",
+   "view": 2628,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_ram_hair_wh",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102624,
+   "name": "(服飾)遊俠野狼假髮(粉)",
+   "view": 2624,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_ram_hair_cb",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102629,
+   "name": "(服飾)遊俠野狼假髮(紅)",
+   "view": 2629,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_ram_hair_om",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102626,
+   "name": "(服飾)遊俠野狼假髮(紫)",
+   "view": 2626,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_ram_hair_lpp",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102622,
+   "name": "(服飾)遊俠野狼假髮(綠)",
+   "view": 2622,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_ram_hair_bg",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102625,
+   "name": "(服飾)遊俠野狼假髮(藍)",
+   "view": 2625,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_ram_hair_lb",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102623,
+   "name": "(服飾)遊俠野狼假髮(黃)",
+   "view": 2623,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_ram_hair_yl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102627,
+   "name": "(服飾)遊俠野狼假髮(黑)",
+   "view": 2627,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_ram_hair_jbl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10450323,
+   "name": "(服飾)達納托斯之翼",
+   "view": 323,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_s_thanatos_wing",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10401820,
+   "name": "(服飾)遺失的時間",
+   "view": 1820,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_losttime",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001002,
+   "name": "(服飾)邪惡神聖遊行者帽",
+   "view": 1002,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_사악한마칭햇_j",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002432,
+   "name": "(服飾)金環(受到攻擊)",
+   "view": 2432,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_s_attack_ring",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002309,
+   "name": "(服飾)金黃烈焰的巨人",
+   "view": 2309,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_fire_giant_gold",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002573,
+   "name": "(服飾)鈴鐺貓咪假髮",
+   "view": 2573,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_bell_cat_hair",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002739,
+   "name": "(服飾)鎖鏈玩具熊",
+   "view": 2739,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_chained_bear",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10150297,
+   "name": "(服飾)鏈鎖玩具熊後背包",
+   "view": 297,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "jro",
+   "sprite": "c_giant_chained_bear",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302655,
+   "name": "(服飾)長波浪捲髮",
+   "view": 2655,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_knit_ribbon_lowtwin_n",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10401819,
+   "name": "(服飾)開心長尾貓",
+   "view": 1819,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_happymargay",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002716,
+   "name": "(服飾)開放式耳機(紅)",
+   "view": 2716,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_openair_headset_red",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10000756,
+   "name": "(服飾)雀巢檸檬茶帽子",
+   "view": 756,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_네스티모자",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10502532,
+   "name": "(服飾)雀躍阿吉",
+   "view": 2532,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_clb_ss_ea",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10401941,
+   "name": "(服飾)雙十國慶紀念圍巾",
+   "view": 1941,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_2019_d10_muffler_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002831,
+   "name": "(服飾)雙極之翼",
+   "view": 2831,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_two_side_wing",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10302424,
+   "name": "(服飾)雙片秋杏",
+   "view": 2424,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_autumn_piece",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002735,
+   "name": "(服飾)雙翅長假髮(金)",
+   "view": 2735,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_feather_hair_bd",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10002706,
+   "name": "(服飾)雙馬尾銀河假髮(無裝飾)",
+   "view": 2706,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_twin_milkyway_n",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002486,
+   "name": "(服飾)雪人DIY",
+   "view": 2486,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_snow_head",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10402806,
+   "name": "(服飾)雲感小馬帽",
+   "view": 2806,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_malangmalang",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002305,
+   "name": "(服飾)雷拉爾小娃娃",
+   "view": 2305,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_lehar_mini",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102687,
+   "name": "(服飾)青蛙帽(棕)",
+   "view": 2687,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_frog_cap_bw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10201556,
+   "name": "(服飾)青鳥玫瑰髮飾",
+   "view": 1556,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_파랑새의장미장식",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001855,
+   "name": "(服飾)韓系丸子頭(白)",
+   "view": 1855,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_back_signon_wh",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001851,
+   "name": "(服飾)韓系丸子頭(紅)",
+   "view": 1851,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_back_signon_rd",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001857,
+   "name": "(服飾)韓系丸子頭(紫)",
+   "view": 1857,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_back_signon_pp",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001853,
+   "name": "(服飾)韓系丸子頭(綠)",
+   "view": 1853,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_back_signon_gn",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001850,
+   "name": "(服飾)韓系丸子頭(藍)",
+   "view": 1850,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_back_signon_bu",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001856,
+   "name": "(服飾)韓系丸子頭(褐)",
+   "view": 1856,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_back_signon_om",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001852,
+   "name": "(服飾)韓系丸子頭(黃)",
+   "view": 1852,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_back_signon_yl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10001854,
+   "name": "(服飾)韓系丸子頭(黑)",
+   "view": 1854,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_back_signon_bl",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10301378,
+   "name": "(服飾)飄揚的蝴蝶",
+   "view": 1378,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c나비의날갯짓",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10401230,
+   "name": "(服飾)飄浮的賢者之石",
+   "view": 1230,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_부유하는현자의돌",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202386,
+   "name": "(服飾)飛翔蒂比",
+   "view": 2386,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_flying_tilby",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002885,
+   "name": "(服飾)食人火龍果拉麵餐車",
+   "view": 2885,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_pitaya_ramen_stall",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002306,
+   "name": "(服飾)馬布侖小娃娃",
+   "view": 2306,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_marlbron_mini",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002391,
+   "name": "(服飾)高官將領軍帽",
+   "view": 2391,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_striking_hat_a",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10401817,
+   "name": "(服飾)魔法繼承者",
+   "view": 1817,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_magic_inheritor",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002140,
+   "name": "(服飾)鯊魚領航帽",
+   "view": 2140,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_whale_cap",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10302537,
+   "name": "(服飾)黃色精美頭飾",
+   "view": 2537,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_yellow_head_dress",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10202727,
+   "name": "(服飾)黃色貓眼",
+   "view": 2727,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_yl_cat_eyes",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10550305,
+   "name": "(服飾)黑暗之王披風",
+   "view": 305,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "sprite": "c_darklord_aura",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10001105,
+   "name": "(服飾)黑貓禮帽",
+   "view": 1105,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_검은고양이모자",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10502845,
+   "name": "(服飾)鼠叔魔法帽",
+   "view": 2845,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_tarou_magical_hat",
+   "nameOrigin": "twrozero"
+  },
+  {
+   "id": 10301931,
+   "name": "[Visual] Capacete de Dullahan",
+   "view": 1931,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_dullahan_mask"
+  },
+  {
+   "id": 10001528,
+   "name": "[Visual] Chuva Dourada",
+   "view": 1528,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c골드샤워"
+  },
+  {
+   "id": 10301309,
+   "name": "[Visual] Ilusões do Tempo",
+   "view": 1309,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_시간의장식"
+  },
+  {
+   "id": 10001461,
+   "name": "[Visual] Penas Coloridas",
+   "view": 1461,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c흩날리는깃털"
+  },
+  {
+   "id": 10401380,
+   "name": "[Visual] Penas Encantadas",
+   "view": 1380,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c흩날리는천사의날개"
+  },
+  {
+   "id": 10300290,
+   "name": "[Visual] Tiara de Anjo",
+   "view": 290,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_천사의머리띠"
+  },
+  {
+   "id": 10301473,
+   "name": "[Visual] Valsa da Primavera",
+   "view": 1473,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c꽃의왈츠"
+  },
+  {
+   "id": 10402011,
+   "name": "[レンタル衣装] エレガントウェーブ",
+   "view": 2011,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_elegant_wave",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101660,
+   "name": "[衣装] 15周年記念ウィング",
+   "view": 1660,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_15th_anniversary_wing",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101136,
+   "name": "[衣装] RWC2013記念帽子",
+   "view": 1136,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_rwc2013_jp기념모자",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10050226,
+   "name": "[衣装] アークメイジワンド",
+   "view": 226,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_archmage_wand",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002524,
+   "name": "[衣装] アイマスク",
+   "view": 2524,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_eye_mask",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102678,
+   "name": "[衣装] アイマスク(太眉)",
+   "view": 2678,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_eye_mask_2",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002028,
+   "name": "[衣装] エアリーツーサイドアップ(白)",
+   "view": 2028,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_airy_two_side_up_wh",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10202567,
+   "name": "[衣装] カリスマエクステツイン",
+   "view": 2567,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_cha_ex_twin",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101737,
+   "name": "[衣装] くまめいと(プリースト男性)",
+   "view": 1737,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev14",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101305,
+   "name": "[衣装] コントローラー",
+   "view": 1305,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_조이스틱햇",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002709,
+   "name": "[衣装] スターダストヘアバンド(青)",
+   "view": 2709,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_stardust_hairband_bu",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10302425,
+   "name": "[衣装] ストライプリボンハット",
+   "view": 2425,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_stripedribbonhat",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002815,
+   "name": "[衣装] セイレンヘア",
+   "view": 2815,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_seyren_hair",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101131,
+   "name": "[衣装] セブン-イレブンヘッドホン",
+   "view": 1131,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_711헤드폰",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10000620,
+   "name": "[衣装] だいだい帽",
+   "view": 620,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_귤꼭지모자",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101539,
+   "name": "[衣装] タイニー帽(橙)",
+   "view": 1539,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev08",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101540,
+   "name": "[衣装] タイニー帽(緑)",
+   "view": 1540,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev09",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101538,
+   "name": "[衣装] タイニー帽(青)",
+   "view": 1538,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev07",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101467,
+   "name": "[衣装] ダテメガネ",
+   "view": 1467,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_렌즈없는패션안경",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101537,
+   "name": "[衣装] ダンプティー・アルマ帽",
+   "view": 1537,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev06",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10050216,
+   "name": "[衣装] ツインエッジ",
+   "view": 216,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_twin_edge",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101410,
+   "name": "[衣装] ドゥクス・ティアのティアラ",
+   "view": 1410,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_보라색수정티아라",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102593,
+   "name": "[衣装] ドラムカチューシャ",
+   "view": 2593,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_doram_headband",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101533,
+   "name": "[衣装] バウ・アルマの犬耳",
+   "view": 1533,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev02",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102744,
+   "name": "[衣装] ハロウィンキャンディヘア(装飾無し)",
+   "view": 2744,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_hallocandy_hair_n",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102771,
+   "name": "[衣装] フェアリーロング(水色)",
+   "view": 2771,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_lb",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102774,
+   "name": "[衣装] フェアリーロング(白)",
+   "view": 2774,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_wh",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102775,
+   "name": "[衣装] フェアリーロング(紅)",
+   "view": 2775,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_om",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102772,
+   "name": "[衣装] フェアリーロング(薄紫)",
+   "view": 2772,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_lpp",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102770,
+   "name": "[衣装] フェアリーロング(赤)",
+   "view": 2770,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_rd",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102768,
+   "name": "[衣装] フェアリーロング(青緑)",
+   "view": 2768,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_bg",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102769,
+   "name": "[衣装] フェアリーロング(黄)",
+   "view": 2769,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_yl",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102773,
+   "name": "[衣装] フェアリーロング(黒)",
+   "view": 2773,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_bl",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10001874,
+   "name": "[衣装] ふんわりセミロング",
+   "view": 1874,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_fluffy_semi_long",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002653,
+   "name": "[衣装] ベビーアザラシ",
+   "view": 2653,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_baby_seal2",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102652,
+   "name": "[衣装] ホルスの目",
+   "view": 2652,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_wedjat",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101244,
+   "name": "[衣装] ミスリットの帽子",
+   "view": 1244,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_미스릿모자",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101534,
+   "name": "[衣装] ミニー・ドゥ・アルマの兎耳",
+   "view": 1534,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev03",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101242,
+   "name": "[衣装] メタルドラゴンの兜",
+   "view": 1242,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_메탈드래곤투구",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101243,
+   "name": "[衣装] メタルドラゴンの帽子",
+   "view": 1243,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_메탈드래곤모자",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102310,
+   "name": "[衣装] メモリアルクロース",
+   "view": 2310,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_20th_scarf_j",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102758,
+   "name": "[衣装] ゆる編みウェーブ(シルバー)",
+   "view": 2758,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_l_knitting_wave_sv",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102756,
+   "name": "[衣装] ゆる編みウェーブ(ブロンド)",
+   "view": 2756,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_l_knitting_wave_bd",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10001927,
+   "name": "[衣装] ラビットツーサイドアップ",
+   "view": 1927,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_rabbit_two_side_up",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002666,
+   "name": "[衣装] リゲルヘア",
+   "view": 2666,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_rigel_hair",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10050263,
+   "name": "[衣装] リザレクションボウ",
+   "view": 263,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_resurrection_bow",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10302657,
+   "name": "[衣装] レッドヘッドドレス",
+   "view": 2657,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_red_head_dress",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102454,
+   "name": "[衣装] ローズウェーブ(シルバーブルー)",
+   "view": 2454,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_rose_wave_svb",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10001934,
+   "name": "[衣装] 化け猫仮面",
+   "view": 1934,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_mask_of_cat_j",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10050285,
+   "name": "[衣装] 名探偵のルーペ",
+   "view": 285,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_detective_mag_glass",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101536,
+   "name": "[衣装] 御魂・アリアのヘッドドレス",
+   "view": 1536,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev05",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10050286,
+   "name": "[衣装] 悪夢のマッドバニー",
+   "view": 286,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_n_mad_bunny",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10050271,
+   "name": "[衣装] 暴食の魔王ヴェルゼブブの羽",
+   "view": 271,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_s_beelzebub_wing",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10050284,
+   "name": "[衣装] 機械妖精の羽根",
+   "view": 284,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_mechanical_fairy_wing",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002659,
+   "name": "[衣装] 機械羽根のブルーヘアバンド",
+   "view": 2659,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_mech_feather_hairband_b",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002736,
+   "name": "[衣装] 歯車モノクル",
+   "view": 2736,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_gear_monocle",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101096,
+   "name": "[衣装] 爽やかミントガム",
+   "view": 1096,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_입에문녹색풍선껌",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101535,
+   "name": "[衣装] 玉藻・ロアの狐耳",
+   "view": 1535,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev04",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102746,
+   "name": "[衣装] 瞬くハロウィンアイ",
+   "view": 2746,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_blink_eyes_halloween",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102667,
+   "name": "[衣装] 瞬く廣命龍の瞳",
+   "view": 2667,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_blink_eyes_rigel",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002649,
+   "name": "[衣装] 瞬く白蛇妖の瞳",
+   "view": 2649,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_blink_eyes_wh_serpent",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101532,
+   "name": "[衣装] 神魔バフォメットの角",
+   "view": 1532,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev01",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10050204,
+   "name": "[衣装] 竜の翼",
+   "view": 204,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "greatdevilwing2",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10050296,
+   "name": "[衣装] 銀の王笏",
+   "view": 296,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_scepter_sv",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002285,
+   "name": "[衣装] 青の惑星",
+   "view": 2285,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_2012rmscno4",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10050300,
+   "name": "[衣装] 騎士団の剣盾",
+   "view": 300,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_knights_sword_shield",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10302326,
+   "name": "5th_Anniversary",
+   "view": 2326,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_5th_anniversary",
+   "unnamed": true
+  },
+  {
+   "id": 10300206,
+   "name": "Abóbora de Decoração",
+   "view": 206,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_호박모자"
+  },
+  {
+   "id": 10300097,
+   "name": "Antena",
+   "view": 97,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_안테나"
+  },
+  {
+   "id": 10300085,
+   "name": "Antenas Verdes",
+   "view": 85,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_초록더듬이"
+  },
+  {
+   "id": 10050049,
+   "name": "Archangel_Wing",
+   "view": 49,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "archangel_wing",
+   "unnamed": true
+  },
+  {
+   "id": 10301331,
+   "name": "Aura de Amatsu",
+   "view": 1331,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_흩날리는벚꽃"
+  },
+  {
+   "id": 10300006,
+   "name": "Bandana",
+   "view": 6,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_두건"
+  },
+  {
+   "id": 10300127,
+   "name": "Bao-Bao",
+   "view": 127,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_머리포자기"
+  },
+  {
+   "id": 10402603,
+   "name": "Bar_Ice_Circlet",
+   "view": 2603,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_bar_ice_circlet",
+   "unnamed": true
+  },
+  {
+   "id": 10300235,
+   "name": "Bird_Nest_Hat",
+   "view": 235,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_새둥지모자",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10300208,
+   "name": "Boneca de Alice",
+   "view": 208,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_엘리스모자"
+  },
+  {
+   "id": 10300212,
+   "name": "Boneca de Marionete",
+   "view": 212,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_마리오넷모자"
+  },
+  {
+   "id": 10001346,
+   "name": "Bra_Hat",
+   "view": 1346,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_머리위의브라",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10102741,
+   "name": "Brown_Tabby_Muffler",
+   "view": 2741,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_brown_tabby_muffler",
+   "unnamed": true
+  },
+  {
+   "id": 10350282,
+   "name": "C_2025RosFesta",
+   "view": 282,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "sprite": "c_2025rosfesta",
+   "unnamed": true
+  },
+  {
+   "id": 10002868,
+   "name": "C_Angler_Dream",
+   "view": 2868,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_angler_dream",
+   "unnamed": true
+  },
+  {
+   "id": 10350304,
+   "name": "C_B_Ninetail_Tail",
+   "view": 304,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "sprite": "c_b_ninetail_tail",
+   "unnamed": true
+  },
+  {
+   "id": 10002557,
+   "name": "C_Carabao_MSP",
+   "view": 2557,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_carabao_msp",
+   "unnamed": true
+  },
+  {
+   "id": 10050331,
+   "name": "C_Cat_Fryingpan",
+   "view": 331,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_cat_fryingpan",
+   "unnamed": true
+  },
+  {
+   "id": 10202722,
+   "name": "C_Chestnut_Helmet",
+   "view": 2722,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_chestnut_helmet",
+   "unnamed": true
+  },
+  {
+   "id": 10250264,
+   "name": "C_CLB_HM_Noni",
+   "view": 264,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "kro",
+   "sprite": "c_clb_hm_noni",
+   "unnamed": true
+  },
+  {
+   "id": 10202681,
+   "name": "C_CLB_HM_Uzagi",
+   "view": 2681,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_clb_hm_uzagi",
+   "unnamed": true
+  },
+  {
+   "id": 10002172,
+   "name": "C_domovoi",
+   "view": 2172,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_domovoi",
+   "unnamed": true
+  },
+  {
+   "id": 10002886,
+   "name": "C_Grapes_Dresshat_WH",
+   "view": 2886,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_grapes_dresshat_wh",
+   "unnamed": true
+  },
+  {
+   "id": 10102546,
+   "name": "C_Guardian_Of_Abyss",
+   "view": 2546,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_guardian_of_abyss",
+   "unnamed": true
+  },
+  {
+   "id": 10002650,
+   "name": "C_Guide_Of_Dead_Cap",
+   "view": 2650,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_guide_of_dead_cap",
+   "unnamed": true
+  },
+  {
+   "id": 10002895,
+   "name": "C_Halloween_Candy_Hair",
+   "view": 2895,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_halloween_candy_hair",
+   "unnamed": true
+  },
+  {
+   "id": 10101736,
+   "name": "C_JP_EV13",
+   "view": 1736,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev13",
+   "unnamed": true
+  },
+  {
+   "id": 10101762,
+   "name": "C_JP_EV15",
+   "view": 1762,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev15",
+   "unnamed": true
+  },
+  {
+   "id": 10002501,
+   "name": "C_Merlion_Hat_MSP",
+   "view": 2501,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_merlion_hat_msp",
+   "unnamed": true
+  },
+  {
+   "id": 10302824,
+   "name": "C_Naughty_P_Wig",
+   "view": 2824,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_c_naughty_p_wig",
+   "unnamed": true
+  },
+  {
+   "id": 10002079,
+   "name": "C_Phigasia_Scarf_EXE",
+   "view": 2079,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_phigasia_scarf_exe",
+   "unnamed": true
+  },
+  {
+   "id": 10350249,
+   "name": "C_ROS2024_Wing_1",
+   "view": 249,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "sprite": "c_ros2024_wing_1",
+   "unnamed": true
+  },
+  {
+   "id": 10350250,
+   "name": "C_ROS2024_Wing_2",
+   "view": 250,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "sprite": "c_ros2024_wing_2",
+   "unnamed": true
+  },
+  {
+   "id": 10350251,
+   "name": "C_ROS2024_Wing_3",
+   "view": 251,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "sprite": "c_ros2024_wing_3",
+   "unnamed": true
+  },
+  {
+   "id": 10002822,
+   "name": "C_Ruck_Keeper",
+   "view": 2822,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_c_ruck_keeper",
+   "unnamed": true
+  },
+  {
+   "id": 10050303,
+   "name": "C_Sakura_Rod_PK",
+   "view": 303,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_sakura_rod_pk",
+   "unnamed": true
+  },
+  {
+   "id": 10050170,
+   "name": "C_Skia_Doll",
+   "view": 170,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_skia_doll",
+   "unnamed": true
+  },
+  {
+   "id": 10050324,
+   "name": "C_Tuna_Fishing",
+   "view": 324,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_tuna_fishing",
+   "unnamed": true
+  },
+  {
+   "id": 10050185,
+   "name": "C_Vietnam_flag_hood_JP",
+   "view": 185,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_vietnam_flag_hood_jp",
+   "unnamed": true
+  },
+  {
+   "id": 10050120,
+   "name": "C_Wing_Of_Eutaxy",
+   "view": 120,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "c_wing_of_eutaxy",
+   "unnamed": true
+  },
+  {
+   "id": 10202581,
+   "name": "C_Yakgwa_Hairband",
+   "view": 2581,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_yakgwa_hairband",
+   "unnamed": true
+  },
+  {
+   "id": 10300116,
+   "name": "Capacete de Mineiro",
+   "view": 116,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_광산헬멧"
+  },
+  {
+   "id": 10300098,
+   "name": "Capelo",
+   "view": 98,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_학사모"
+  },
+  {
+   "id": 10000185,
+   "name": "Cara de Espanto",
+   "view": 185,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_배틀온라인"
+  },
+  {
+   "id": 10300124,
+   "name": "Casca de Ovo Colorida",
+   "view": 124,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_알록달록알껍질"
+  },
+  {
+   "id": 10300016,
+   "name": "Chapéu",
+   "view": 16,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_햇"
+  },
+  {
+   "id": 10300104,
+   "name": "Chapéu com Pluma",
+   "view": 104,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_깃털모자"
+  },
+  {
+   "id": 10300195,
+   "name": "Chapéu de Balde",
+   "view": 195,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_벙거지모자"
+  },
+  {
+   "id": 10300109,
+   "name": "Chapéu de Bolo",
+   "view": 109,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_케이크모자"
+  },
+  {
+   "id": 10300105,
+   "name": "Chapéu de Corsário",
+   "view": 105,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_커세어"
+  },
+  {
+   "id": 10300064,
+   "name": "Chapéu de Enfermeira",
+   "view": 64,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_간호모"
+  },
+  {
+   "id": 10300051,
+   "name": "Chapéu de Munak",
+   "view": 51,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_무낙모자"
+  },
+  {
+   "id": 10300115,
+   "name": "Chapéu de Panda",
+   "view": 115,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_팬더곰모자"
+  },
+  {
+   "id": 10300262,
+   "name": "Chapéu de Rideword",
+   "view": 262,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_라이드워드"
+  },
+  {
+   "id": 10300189,
+   "name": "Chapéu do Detetive Famoso",
+   "view": 189,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_탐정모자"
+  },
+  {
+   "id": 10300192,
+   "name": "Chapéu Galápago",
+   "view": 192,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_오리모자"
+  },
+  {
+   "id": 10000977,
+   "name": "Chapéu Pré-Escolar",
+   "view": 977,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_유치원생의모자"
+  },
+  {
+   "id": 10300150,
+   "name": "Chifre de Succubus",
+   "view": 150,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_서큐버스뿔"
+  },
+  {
+   "id": 10300042,
+   "name": "Chifre de Unicórnio",
+   "view": 42,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_새하얀뿔"
+  },
+  {
+   "id": 10000435,
+   "name": "Coca-Cola_Bottle",
+   "view": 435,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_콜라캔",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10001097,
+   "name": "Cool_Pirate_Eyepatch",
+   "view": 1097,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_멋진해적안대",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10001156,
+   "name": "Costume_Mouton_Life",
+   "view": 1156,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_무통라이프",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10001209,
+   "name": "Costume:_Beret_Of_Artist",
+   "view": 1209,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_예술가의베레모",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10001191,
+   "name": "Costume:_Bomb_Hat",
+   "view": 1191,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_폭탄모자",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10001204,
+   "name": "Costume:_Lincoln_Hat",
+   "view": 1204,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_링컨모자",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10000428,
+   "name": "Creative_Convention_Chapeau",
+   "view": 428,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_홍차화전모자",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10300121,
+   "name": "Cruz",
+   "view": 121,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_십자머리띠"
+  },
+  {
+   "id": 10300147,
+   "name": "Curativo Gigante",
+   "view": 147,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_반창고"
+  },
+  {
+   "id": 10001121,
+   "name": "Divine_Guard_Hat",
+   "view": 1121,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_신의보호",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10102358,
+   "name": "Dragon_Circlet",
+   "view": 2358,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_dragon_circlet",
+   "unnamed": true
+  },
+  {
+   "id": 10300265,
+   "name": "Dress_Hat",
+   "view": 265,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_드레스햇",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10000850,
+   "name": "Drosera_Hairpin",
+   "view": 850,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_식충식물의헤어핀",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10300257,
+   "name": "Elmo de Morrigane",
+   "view": 257,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_모리아네헬름"
+  },
+  {
+   "id": 10300103,
+   "name": "Elmo de Osso",
+   "view": 103,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_본헬름"
+  },
+  {
+   "id": 10102731,
+   "name": "Eremes_Scarf_WH",
+   "view": 2731,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_eremes_scarf_wh",
+   "unnamed": true
+  },
+  {
+   "id": 10102689,
+   "name": "Evil_Druid_Hat_Blue",
+   "view": 2689,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_evil_druid_hat_blue",
+   "unnamed": true
+  },
+  {
+   "id": 10300136,
+   "name": "Faixa Azul",
+   "view": 136,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_청색머리띠"
+  },
+  {
+   "id": 10300009,
+   "name": "Faixa de Cabelo",
+   "view": 9,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_머리띠"
+  },
+  {
+   "id": 10300154,
+   "name": "Faixa de Caratê",
+   "view": 154,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_열혈머리띠"
+  },
+  {
+   "id": 10300061,
+   "name": "Faixa de Fantasma",
+   "view": 61,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_망자의머리띠"
+  },
+  {
+   "id": 10000519,
+   "name": "First_Leaf_Tea_Hat",
+   "view": 519,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_일차화모자",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10400126,
+   "name": "Fivela de Coração",
+   "view": 126,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_하트머리핀"
+  },
+  {
+   "id": 10300057,
+   "name": "Folha Romântica",
+   "view": 57,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_풀잎"
+  },
+  {
+   "id": 10001275,
+   "name": "Folhas Outonais",
+   "view": 1275,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_흩날리는낙엽"
+  },
+  {
+   "id": 10202733,
+   "name": "Frontier_R_Crown",
+   "view": 2733,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_frontier_r_crown",
+   "unnamed": true
+  },
+  {
+   "id": 10300278,
+   "name": "Gatinho Dorminhoco Amarelo",
+   "view": 278,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_노랑늘어진고양이"
+  },
+  {
+   "id": 10300277,
+   "name": "Gatinho Dorminhoco Azul",
+   "view": 277,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_파랑늘어진고양이"
+  },
+  {
+   "id": 10301042,
+   "name": "Gentleman_Fez",
+   "view": 1042,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_신사의페즈",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10102710,
+   "name": "Happy_Cat_JP_BL",
+   "view": 2710,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_happy_cat_jp_bl",
+   "unnamed": true
+  },
+  {
+   "id": 10300046,
+   "name": "Hélices",
+   "view": 46,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_프로펠라"
+  },
+  {
+   "id": 10400210,
+   "name": "Hibiscus",
+   "view": 210,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_부용",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10400342,
+   "name": "Indonesian_Bandana",
+   "view": 342,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_인도네시아헤어밴드",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10300214,
+   "name": "Kabuki_Mask",
+   "view": 214,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_가부키가면",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10300243,
+   "name": "Lacinho Amarelo",
+   "view": 243,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_리본_노랑"
+  },
+  {
+   "id": 10300244,
+   "name": "Lacinho Verde",
+   "view": 244,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_리본_초록"
+  },
+  {
+   "id": 10300169,
+   "name": "Lacinhos",
+   "view": 169,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_양쪽귀밑리본"
+  },
+  {
+   "id": 10300034,
+   "name": "Laço Meigo",
+   "view": 34,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_머리끈"
+  },
+  {
+   "id": 10300167,
+   "name": "Laço Vermelho",
+   "view": 167,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_빨간테일리본"
+  },
+  {
+   "id": 10302319,
+   "name": "Larva_Red",
+   "view": 2319,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_larva_red",
+   "unnamed": true
+  },
+  {
+   "id": 10302321,
+   "name": "Larva_Yellow_Mini",
+   "view": 2321,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_larva_yellow_mini",
+   "unnamed": true
+  },
+  {
+   "id": 10050307,
+   "name": "Magnus_Dominus",
+   "view": 307,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "magnus_dominus",
+   "unnamed": true
+  },
+  {
+   "id": 10300223,
+   "name": "Máscara de Noiva",
+   "view": 223,
+   "slots": [
+    "top",
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_각시탈"
+  },
+  {
+   "id": 10300079,
+   "name": "Máscara de Solda",
+   "view": 79,
+   "slots": [
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_용접마스크"
+  },
+  {
+   "id": 10300172,
+   "name": "Máscara Surpresa",
+   "view": 172,
+   "slots": [
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_고블린가면2호"
+  },
+  {
+   "id": 10002692,
+   "name": "Midgard_Diadem_JP",
+   "view": 2692,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_midgard_diadem_jp",
+   "unnamed": true
+  },
+  {
+   "id": 10000937,
+   "name": "Money_Lost_Spirit",
+   "view": 937,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_돈을잃은자의마음",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10300023,
+   "name": "Monóculo",
+   "view": 23,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_외눈안경"
+  },
+  {
+   "id": 10300268,
+   "name": "Moonlight_Flower_Hat",
+   "view": 268,
+   "slots": [
+    "top",
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_월야화모자",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10000614,
+   "name": "NoFear_Headband",
+   "view": 614,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_nofear파워헤드기어",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10300289,
+   "name": "Óculos Hi-Ban",
+   "view": 289,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_선글래스"
+  },
+  {
+   "id": 10001115,
+   "name": "Panda_Balloon",
+   "view": 1115,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_판다풍선",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10102484,
+   "name": "Passion_Rabbit_Ribbon",
+   "view": 2484,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_passion_rabbit_ribbon",
+   "unnamed": true
+  },
+  {
+   "id": 10300302,
+   "name": "Peruca do Atirador",
+   "view": 302,
+   "slots": [
+    "top",
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_아프로가발"
+  },
+  {
+   "id": 10102784,
+   "name": "Pigeon_Magic_Hat",
+   "view": 2784,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_pigeon_magic_hat",
+   "unnamed": true
+  },
+  {
+   "id": 10300047,
+   "name": "Pince-Nez",
+   "view": 47,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_미니글래스"
+  },
+  {
+   "id": 10000919,
+   "name": "Poring_Fedora_Hat",
+   "view": 919,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_보스모자",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10300145,
+   "name": "Presilha de Flor",
+   "view": 145,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_꽃머리핀"
+  },
+  {
+   "id": 10001094,
+   "name": "PRO_10th_Cap",
+   "view": 1094,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_필리핀10주년모자",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10350157,
+   "name": "Rainbow_Shell",
+   "view": 157,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "sprite": "rainbow_shell",
+   "unnamed": true
+  },
+  {
+   "id": 10302792,
+   "name": "Red_Horse_Hairpin",
+   "view": 2792,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_red_horse_hairpin",
+   "unnamed": true
+  },
+  {
+   "id": 10000592,
+   "name": "Red_Pirate_Bandana",
+   "view": 592,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_붉은해적두건",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10000469,
+   "name": "Red_White_Cap",
+   "view": 469,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_홍백모자",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10300194,
+   "name": "Resmungo Furioso",
+   "view": 194,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_분노입"
+  },
+  {
+   "id": 10000892,
+   "name": "Rice Dumpling Hat",
+   "view": 892,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_대만주먹밥",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10000949,
+   "name": "Sakura_Hairband",
+   "view": 949,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_사쿠라머리띠",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10000518,
+   "name": "Sakura_Milk_Tea_Hat",
+   "view": 518,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_사쿠라밀크티모자",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10001171,
+   "name": "saLUsalo_Hat",
+   "view": 1171,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_salusalo기념모자",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10302320,
+   "name": "Sausage",
+   "view": 2320,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_sausage",
+   "unnamed": true
+  },
+  {
+   "id": 10300306,
+   "name": "Shiny_Wig",
+   "view": 306,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_눈부신가발",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10000754,
+   "name": "Silvah_Bunny_Band",
+   "view": 754,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_실버토끼머리띠",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10202266,
+   "name": "SLEEPYCAT_HAT",
+   "view": 2266,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_sleepycat_hat",
+   "unnamed": true
+  },
+  {
+   "id": 10002519,
+   "name": "Soul_Mastery_Crown",
+   "view": 2519,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_soul_mastery_crown",
+   "unnamed": true
+  },
+  {
+   "id": 10001062,
+   "name": "Star-Spangled_Bandana",
+   "view": 1062,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_iro플래그두건",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10300186,
+   "name": "Sunflower_Hairpin",
+   "view": 186,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_해바라기핀",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10001083,
+   "name": "Super_Cute_Doll_Hat",
+   "view": 1083,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_늘어진메이드인형모자",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10000781,
+   "name": "Tare_Brownie",
+   "view": 781,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_타레도모붜이",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10300148,
+   "name": "Tiara de Folha",
+   "view": 148,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_나뭇잎투구"
+  },
+  {
+   "id": 10300313,
+   "name": "Vane_Hairpin",
+   "view": 313,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_풍차비녀",
+   "nameOrigin": "iro"
+  },
+  {
+   "id": 10002661,
+   "name": "VIP_Hair_2025",
+   "view": 2661,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_vip_hair_2025",
+   "unnamed": true
+  },
+  {
+   "id": 10202495,
+   "name": "YellowKitty_HeadPhone",
+   "view": 2495,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_yellowkitty_headphone",
+   "unnamed": true
+  },
+  {
+   "id": 10301290,
+   "name": "늘어진길용이",
+   "view": 1290,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_늘어진길용이",
+   "unnamed": true
+  },
+  {
+   "id": 10000323,
+   "name": "러시아리본",
+   "view": 323,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_러시아리본",
+   "unnamed": true
+  },
+  {
+   "id": 10300176,
+   "name": "수녀모자",
+   "view": 176,
+   "slots": [
+    "top",
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_수녀모자",
+   "unnamed": true
+  },
+  {
+   "id": 10100995,
+   "name": "스콜피온모자",
+   "view": 995,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_스콜피온모자",
+   "unnamed": true
+  },
+  {
+   "id": 10000424,
+   "name": "알럽차이나모자",
+   "view": 424,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_알럽차이나모자",
+   "unnamed": true
+  },
+  {
+   "id": 10300178,
+   "name": "오크히어로투구",
+   "view": 178,
+   "slots": [
+    "top",
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_오크히어로투구",
+   "unnamed": true
+  },
+  {
+   "id": 10000668,
+   "name": "천하일품라면",
+   "view": 668,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_천하일품라면",
+   "unnamed": true
+  },
+  {
+   "id": 10000516,
+   "name": "환타제로레몬모자",
+   "view": 516,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_환타제로레몬모자",
+   "unnamed": true
+  },
+  {
+   "id": 10000499,
+   "name": "황금_튤립머리핀",
+   "view": 499,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_황금튤립머리핀",
+   "nameOrigin": "kro"
+  },
+  {
+   "id": 10102754,
+   "name": "アシャワヒシュタ",
+   "view": 2754,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_asha_vahishta",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102529,
+   "name": "インターディメンショナルリフト",
+   "view": 2529,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_interdimensional_rift",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002715,
+   "name": "インペリアルガーディアン",
+   "view": 2715,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_imperial_guardian",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102674,
+   "name": "ヴァンパイアストール",
+   "view": 2674,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_vampire_stall",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10302503,
+   "name": "ウィズダムコアヘッドフォン",
+   "view": 2503,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_wisdom_core_headphones",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102808,
+   "name": "おしゃべりオカメインコ",
+   "view": 2808,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_chatty_cockatiel",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10000517,
+   "name": "カナダドライ サクラミスト帽",
+   "view": 517,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_사쿠라미스트모자",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10050267,
+   "name": "グラットンサーベラス",
+   "view": 267,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "glutton_cerberus",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10150144,
+   "name": "ジンベエザメフロート",
+   "view": 144,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "jro",
+   "sprite": "whale_shark_float",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002337,
+   "name": "セイクリッドラペル",
+   "view": 2337,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_sacred_lapel",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002750,
+   "name": "セレスティアルインテグリティ",
+   "view": 2750,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_midgard_integrity",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10000722,
+   "name": "タイニー帽",
+   "view": 722,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_타이니모자",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10101596,
+   "name": "たれチュウニペンギン",
+   "view": 1596,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_jp_ev12",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002359,
+   "name": "ツートンキャップ",
+   "view": 2359,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_two_tone_cap",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102786,
+   "name": "ドラコ・エクエス",
+   "view": 2786,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_draco_eques",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002595,
+   "name": "パーマフロストオブリビオン",
+   "view": 2595,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_perm_frost_oblivion",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10000425,
+   "name": "ファンタ オレンジ",
+   "view": 425,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_환타오렌지캔",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10000426,
+   "name": "ファンタ グレープ缶",
+   "view": 426,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_환타그레이프캔",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10302742,
+   "name": "マジェスティックフォックス",
+   "view": 2742,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_majestic_fox",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102608,
+   "name": "リヴァイアサンヘルム",
+   "view": 2608,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_leviathan_helm",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102813,
+   "name": "ルインテンペスト",
+   "view": 2813,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_ruin_tempest",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002352,
+   "name": "ワイルドビースト",
+   "view": 2352,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_wild_beast",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10502663,
+   "name": "占卜神力帽",
+   "view": 2663,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_blue_astrologer_hat",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102785,
+   "name": "天使のバレッタ",
+   "view": 2785,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_angel_valletta",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002353,
+   "name": "幽魅火球",
+   "view": 2353,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_ghost_fire_tw",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002752,
+   "name": "心頭滅却マフラー(青)",
+   "view": 2752,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_flame_muffler_bu",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002414,
+   "name": "携帯式サポートシステム",
+   "view": 2414,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_mobile_support_systems",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10301589,
+   "name": "晴空小貓耳朵",
+   "view": 1589,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_bluecat_ear",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102662,
+   "name": "暴食のクラウン(ドラゴンナイト)",
+   "view": 2662,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_gluttony_crown",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102582,
+   "name": "桜の白魔女帽子",
+   "view": 2582,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_sakura_witch_hat_w",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002415,
+   "name": "狂怒頭盔(風鷹狩獵者)",
+   "view": 2415,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_flash_of_lightning",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10002447,
+   "name": "異端審問官のヴェール",
+   "view": 2447,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_inquisitor_veil",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10002505,
+   "name": "白狐耳の笠",
+   "view": 2505,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_white_fox_bamboo_hat",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10001227,
+   "name": "竜騎士の眼帯",
+   "view": 1227,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_용기사의안대",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10102121,
+   "name": "覚醒古王の王冠",
+   "view": 2121,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_kings_crown_a",
+   "nameOrigin": "jro"
+  },
+  {
+   "id": 10000457,
+   "name": "進化的龍的骷髏",
+   "view": 457,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_진화된용의해골",
+   "nameOrigin": "twro"
+  },
+  {
+   "id": 10102787,
+   "name": "青狐耳鈴リボン",
+   "view": 2787,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_blue_fox_ear_ribbon",
+   "nameOrigin": "jro"
+  }
+ ]
+}

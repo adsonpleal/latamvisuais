@@ -62,6 +62,12 @@ export function Catalog({
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const [singleSlotOnly, setSingleSlotOnly] = useState(false);
+  // Off by default. Costumes from the other official servers are the only thing
+  // in the catalogue that cannot be obtained here, so they stay out until asked
+  // for — and not remembered across sessions either, so nobody is surprised by
+  // a grid full of them on a later visit.
+  const [showForeign, setShowForeign] = useState(false);
+  const [originFilter, setOriginFilter] = useState<string | null>(null);
   const [view, setView] = viewPref.use();
   const gridRef = useRef<HTMLDivElement>(null);
   // The item the arrow keys move from — set by clicking one. Held as an id so a
@@ -91,12 +97,28 @@ export function Catalog({
           (!q || haystacks[i].includes(q)) &&
           (kindFilter === "all" || (kindFilter === "stone") === isStone(item)) &&
           (!slotFilter || item.slots.includes(slotFilter)) &&
+          // A costume from another official server is hidden unless asked for,
+          // and then optionally narrowed to one server. Everything LATAM ships
+          // has no origin and is unaffected by either.
+          (!originOf(item)
+            ? true
+            : showForeign && (!originFilter || originOf(item) === originFilter)) &&
           // A stone only ever holds one position, so "só de uma posição" can
           // never exclude one — it exists to hide the Topo+Meio costume sets.
           (!singleSlotOnly || item.slots.length === 1),
       ),
-    [all, haystacks, q, kindFilter, slotFilter, singleSlotOnly],
+    [all, haystacks, q, kindFilter, slotFilter, singleSlotOnly, showForeign, originFilter],
   );
+  // The servers actually represented in the catalogue, in the order they are
+  // first seen, so the chips describe the data instead of a hard-coded list.
+  const origins = useMemo(() => {
+    const seen: string[] = [];
+    for (const item of all) {
+      const o = originOf(item);
+      if (o && !seen.includes(o)) seen.push(o);
+    }
+    return seen.sort();
+  }, [all]);
   // The filtered items in display order. The list view windows over this, and
   // the arrow keys step through it; both need the same array, so it's built
   // once here rather than twice.
@@ -214,6 +236,11 @@ export function Catalog({
           onSlotFilterChange={onSlotFilterChange}
           kindFilter={kindFilter}
           onKindFilterChange={onKindFilterChange}
+          showForeign={showForeign}
+          onShowForeignChange={setShowForeign}
+          originFilter={originFilter}
+          onOriginFilterChange={setOriginFilter}
+          origins={origins}
           singleSlotOnly={singleSlotOnly}
           onSingleSlotOnlyChange={setSingleSlotOnly}
         />
@@ -259,11 +286,19 @@ export function Catalog({
           <div className="catalog-grid" role="list" ref={gridRef}>
             {all.map((item, i) => {
               const equipped = isOn(item);
-              const label = `${item.name} (#${item.id})`;
+              const origin = originOf(item);
+              const server = origin ? (t.foreignServerNames[origin] ?? origin) : null;
+              // The badge is on the tile, not only in the tooltip: once the
+              // filter is on, foreign and LATAM costumes sit side by side in
+              // one grid, and the only thing that tells them apart is this.
+              const label = server
+                ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip(server)}`
+                : `${item.name} (#${item.id})`;
               const cls = [
                 "catalog-item",
                 equipped ? "is-equipped" : "",
                 isStone(item) ? "is-stone" : "",
+                origin ? "is-foreign" : "",
               ]
                 .filter(Boolean)
                 .join(" ");
@@ -285,6 +320,7 @@ export function Catalog({
                   onClick={(e) => pick(item, e.currentTarget)}
                 >
                   <CostumeIcon item={item} className="catalog-icon" />
+                  {server && <span className="catalog-origin">{server}</span>}
                 </button>
               );
             })}
@@ -321,4 +357,10 @@ function columnsOf(grid: HTMLElement | null, view: (typeof VIEWS)[number]): numb
  *  rather than a guess at the shape. */
 function isStone(item: Costume | Stone): item is Stone {
   return "stone" in item;
+}
+
+/** Which other official server an item comes from, or null for everything
+ *  LATAM ships — which is every stone and almost every costume. */
+export function originOf(item: Costume | Stone): string | null {
+  return (!isStone(item) && item.origin) || null;
 }

@@ -12,6 +12,7 @@ import {
   itemIconUrl,
   renderBodyKey,
   jobIconUrl,
+  RAGASSETS_BASE,
   toggleEquip,
   uiIconUrl,
   unequipSlot,
@@ -21,7 +22,11 @@ import { makeDb } from "../test/fixtures";
 import { APP_VERSION } from "../changelog";
 
 const db = makeDb();
-const BASE = "https://assets.latam-tools.com.br";
+// The configured origin, not the literal: RAGASSETS_BASE is overridable
+// (VITE_RAGASSETS_BASE) so the app can be pointed at a gateway on this machine,
+// and hard-coding the production host here would mean the suite fails for
+// anyone who does that. What these tests are about is the query string.
+const BASE = RAGASSETS_BASE;
 const V = `&v=${APP_VERSION}`; // cache-buster appended to every rendered image URL
 const item = (id: number): Costume => db.costumes.find((c) => c.id === id)!;
 
@@ -144,13 +149,19 @@ describe("skin tone (fan-made)", () => {
   });
 });
 
+/** Every case below equips costumes LATAM ships, so all three foreign fields
+ *  come back empty — which is the assertion that matters as much as the views:
+ *  an ordinary character must not grow an `origin` param just because costumes
+ *  from other servers exist in the catalogue. */
+const NO_FOREIGN = { origins: [], headgearSprites: [], garmentSprites: [] };
+
 describe("gearViews", () => {
   it("dedupes a multi-slot costume's view and preserves top→low order", () => {
     const state: State = {
       ...initialState(db),
       equipped: { top: item(500), mid: item(500), low: item(300) },
     };
-    expect(gearViews(state)).toEqual({ headgear: [50, 30], garment: null });
+    expect(gearViews(state)).toEqual({ headgear: [50, 30], garment: null, ...NO_FOREIGN });
   });
 
   it("ignores headgear with no view id and reads the garment view", () => {
@@ -158,7 +169,7 @@ describe("gearViews", () => {
       ...initialState(db),
       equipped: { low: item(600), garment: item(400) },
     };
-    expect(gearViews(state)).toEqual({ headgear: [], garment: 40 });
+    expect(gearViews(state)).toEqual({ headgear: [], garment: 40, ...NO_FOREIGN });
   });
 
   it("routes by the sprite table, not the slot, when the two disagree", () => {
@@ -167,7 +178,7 @@ describe("gearViews", () => {
       equipped: { top: item(100), low: item(800), garment: item(700) },
     };
     // 700 sits in Capa but is an accessory sprite; 800 sits in Baixo but is a robe.
-    expect(gearViews(state)).toEqual({ headgear: [10, 70], garment: 80 });
+    expect(gearViews(state)).toEqual({ headgear: [10, 70], garment: 80, ...NO_FOREIGN });
   });
 
   it("a real Capa costume wins the garment view over a head-slot robe sprite", () => {
@@ -175,7 +186,7 @@ describe("gearViews", () => {
       ...initialState(db),
       equipped: { low: item(800), garment: item(400) },
     };
-    expect(gearViews(state)).toEqual({ headgear: [], garment: 40 });
+    expect(gearViews(state)).toEqual({ headgear: [], garment: 40, ...NO_FOREIGN });
   });
 
   it("drops the Capa-worn accessory first when the 3-headgear limit bites", () => {
@@ -183,7 +194,7 @@ describe("gearViews", () => {
       ...initialState(db),
       equipped: { top: item(100), mid: item(200), low: item(300), garment: item(700) },
     };
-    expect(gearViews(state)).toEqual({ headgear: [10, 20, 30], garment: null });
+    expect(gearViews(state)).toEqual({ headgear: [10, 20, 30], garment: null, ...NO_FOREIGN });
   });
 });
 

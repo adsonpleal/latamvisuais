@@ -38,6 +38,18 @@ export function Slots({ onPick }: { onPick: (slot: Slot, kind: PickKind) => void
             >
               <SlotIcon key={item?.id ?? "empty"} id={item?.id} className="slot-icon" />
               <div className="slot-name" data-tip={item ? `${item.name} (${item.id})` : undefined}>
+                {/* The same badge the grid puts on the tile, carried onto what
+                    is actually worn: somebody who scrolls away from the
+                    catalogue should still be able to see that a piece of this
+                    character cannot be obtained here. */}
+                {item?.origin && (
+                  <span
+                    className="slot-origin"
+                    data-tip={t.foreignBadgeTip(t.foreignServerNames[item.origin] ?? item.origin)}
+                  >
+                    {t.foreignServerNames[item.origin] ?? item.origin}
+                  </span>
+                )}
                 {item ? item.name : t.slotEmpty}
               </div>
               <button

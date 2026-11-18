@@ -204,6 +204,31 @@ export const t = {
   singleSlotLabel: "Só visuais de uma posição",
   singleSlotTip:
     "Esconde os visuais que ocupam mais de uma posição ao mesmo tempo (um conjunto de Topo + Meio, por exemplo), que ao equipar tiram o que estiver nas outras.",
+  // Costumes from the other official Ragnarok servers. Off by default, and the
+  // wording has to carry the one thing that matters: they are real, they draw,
+  // and you cannot get them here.
+  foreignFilterLabel: "Outros servidores",
+  foreignLabel: "Visuais de outros servidores",
+  foreignTip:
+    "Mostra visuais que existem em outros servidores oficiais (iRO, jRO, kRO, twRO) e não no Ragnarok LATAM. Dá para vestir e ver na prévia, mas não dá para conseguir no jogo daqui.",
+  foreignAllServers: "Todos",
+  foreignServerNames: {
+    iro: "iRO",
+    jro: "jRO",
+    kro: "kRO",
+    krozero: "kRO Zero",
+    twro: "twRO",
+    twrozero: "twRO Zero",
+  } as Record<string, string>,
+  /** Badge on a foreign costume in the grid and on the equipped chip. */
+  foreignBadge: (server: string) => server,
+  foreignBadgeTip: (server: string) =>
+    `Visual de ${server}. Não existe no Ragnarok LATAM — dá para ver aqui, mas não para conseguir no jogo.`,
+  foreignUnnamedTip:
+    "Sem nome: nenhum cliente que lemos tinha a linha de item desse visual, então o nome mostrado é o do arquivo do sprite.",
+  foreignForeignNameTip: (server: string) =>
+    `Nome vindo das tabelas de ${server}, no idioma daquele cliente.`,
+
   viewGrid: "Grade",
   viewList: "Lista",
 

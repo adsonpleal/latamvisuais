@@ -408,3 +408,63 @@ six live patch services before downloading anything.
 6. **Skin tone and robe pruning** apply to any foreign sprite that does get
    extracted: `gen-skin-table` is baked per sprite, and `--prune-robes` has to
    run on each new garment tree or the costumes render as Adventurer's Backpacks.
+
+## No app: o filtro, o badge e como o visual chega à tela
+
+O catálogo estrangeiro é um arquivo que o app leva junto
+(`public/db/foreign-costumes.json`, 592 fantasias), gerado por
+`tools/multiserver/export-app-catalogue.mjs` a partir do catálogo que o
+pipeline produz. Não vem do ragassets como os outros catálogos, e por um motivo:
+estas fantasias não acompanham um cliente vivo — foram extraídas uma vez do
+histórico de patches de cada servidor.
+
+### Por que o id do visual não basta
+
+O id de view é o índice **daquele cliente** na tabela de nomes **dele**. Pedir
+um id estrangeiro a este cliente falha de duas maneiras, e as duas são
+silenciosas:
+
+- Quase sempre o id simplesmente não existe aqui, e o renderizador desenha o
+  personagem **sem chapéu nenhum** — 200, um PNG válido, o personagem certo,
+  nada vestido. Medido contra a produção antes da mudança:
+  `/image?job=0&headgear=2904` voltou **idêntico byte a byte** à mesma URL sem
+  `headgear`.
+- Às vezes o id existe e significa **outro chapéu** aqui (a view 2696 é um
+  caso), e aí o renderizador desenha aquele — pior, porque a imagem parece
+  certa.
+
+Por isso o catálogo carrega o **nome do sprite**, e o app o manda junto:
+`origin=<servidor>` diz de qual árvore ler, `headgearSprite=<view>:<nome>` e
+`garmentSprite=<view>:<nome>` dizem o que ler dela. O `origin` aceita até
+quatro servidores de uma vez, porque um chapéu de um servidor com uma capa de
+outro é um pedido perfeitamente comum.
+
+### O filtro
+
+Desligado por padrão, e sem memória entre sessões: são os únicos itens do
+catálogo que ninguém aqui consegue obter. Ligado, entram no mesmo grid dos
+visuais do LATAM (o filtro **soma**, não substitui), com chips para restringir a
+um servidor. O badge do botão de filtros conta esse filtro como ativo mesmo ele
+alargando a lista, e o "Limpar" o desliga.
+
+Cada peça estrangeira leva o nome do servidor **na telha do grid e no card do
+que está vestido**, além do tooltip — uma vez que as duas origens dividem um
+grid só, é a única coisa que as distingue.
+
+### Nomes e posições que nenhum cliente deu
+
+58 das 592 não têm linha de item em cliente nenhum que lemos. Em vez de
+escondê-las (elas desenham perfeitamente), aparecem com o nome do arquivo do
+sprite, marcadas. 188 não trazem posição; a posição vem então do tipo
+(acessório → Topo, capa → Capa), o que só muda onde a peça aparece na interface:
+o render é o mesmo.
+
+Os nomes vêm das tabelas do próprio servidor quando o LATAM não tem o item —
+472 das 592 — então muitos estão em chinês tradicional (twRO) ou japonês. O
+campo `nameOrigin` registra de onde veio.
+
+### O que *não* muda
+
+`tools/prerender-seo.mjs` lê só `public/db/costumes.json`, então nenhuma fantasia
+estrangeira entra no HTML pré-renderizado. Elas não são obtíveis no LATAM e não
+deveriam ser indexadas como se fossem.
