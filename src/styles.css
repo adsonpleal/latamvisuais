@@ -2248,6 +2248,14 @@ button:disabled {
   flex: none;
 }
 
+/* Both slot images borrow CostumeIcon, which marks an image that failed even
+   its rendered fallback instead of hiding it — the card keeps the space so the
+   name does not jump left. */
+.slot-icon.is-missing,
+.slot-stone-icon.is-missing {
+  visibility: hidden;
+}
+
 .slot-name {
   flex: 1;
   /* Allow the flex item to shrink below its content width so the ellipsis
@@ -2463,7 +2471,9 @@ button:disabled {
   position: fixed;
   top: 0;
   left: 0;
-  width: 240px;
+  /* Overridden inline by placeUnder (MIN_WIDTH); kept in step with it so the
+     panel is never narrower than its longest label for a frame. */
+  width: 264px;
   max-height: 60vh;
   overflow-y: auto;
   display: flex;
@@ -2622,12 +2632,18 @@ button:disabled {
    and no pointer events so it never eats the tile's click. */
 .catalog-origin {
   position: absolute;
-  inset: auto 0 0 0;
-  padding: 1px 2px;
+  /* Held inside the frame rather than flush with the tile box: the tile has no
+     border-radius of its own — its corners are drawn by the button artwork
+     (bt_hairstyle_normal.png) — so a bar pinned to 0 squared off over that
+     rounded corner. The inset clears the frame's border and the radius follows
+     the curve it sits in. */
+  inset: auto 2px 2px;
+  border-radius: 0 0 3px 3px;
+  padding: 0 1px;
   background: rgb(0 0 0 / 62%);
   color: #fff;
-  font-size: 0.56rem;
-  line-height: 1.25;
+  font-size: 0.5rem;
+  line-height: 1.4;
   letter-spacing: 0.02em;
   text-align: center;
   text-transform: uppercase;
@@ -2671,6 +2687,14 @@ button:disabled {
 
 .catalog-icon.is-missing {
   visibility: hidden;
+}
+
+/* "+3": how the tile says the costume is on other servers too. 162 of them are
+   on four or more, and only one name fits here — the list view shows them all.
+   Dimmed so the server that IS named stays the thing you read. */
+.catalog-origin-more {
+  margin-left: 0.25em;
+  opacity: 0.72;
 }
 
 .catalog-empty {

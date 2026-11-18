@@ -13,13 +13,7 @@
 // which it has to do arithmetically because the target row may not be mounted.
 
 import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from "react";
-import {
-  canPreview,
-  originsOf,
-  primaryOrigin,
-  type Costume,
-  type Stone,
-} from "../core/db";
+import { canPreview, originsOf, type Costume, type Stone } from "../core/db";
 import { divinePrideUrl, marketUrl } from "../core/links";
 import { useServer } from "../core/server";
 import { t } from "../i18n";
@@ -44,12 +38,9 @@ type Props = {
   onPick: (item: Costume | Stone, el: HTMLElement) => void;
   /** Bumps when a slot card opened the catalogue: scroll back to the top. */
   pickSignal: number;
-  /** The server chip currently held down, if any. Only decides which name a
-   *  badge shows when several servers have the costume. */
-  originFilter: string | null;
 };
 
-export function CatalogList({ items, cursorId, isOn, onPick, pickSignal, originFilter }: Props) {
+export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props) {
   const listRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef(0);
   // The window's own coordinates, not the scroller's: `scrollTop` changes every
@@ -175,9 +166,10 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal, originF
           // Same badge the grid puts on a tile. The row has more space than a
           // tile and still needs it more: a row shows a name and an id, and
           // for a foreign costume both of those are unfamiliar on purpose.
+          // Unlike a tile, a row has room for all of them — and 70% of these
+          // costumes are on more than one server.
           const servers = originsOf(item);
-          const origin = primaryOrigin(servers, originFilter);
-          const server = origin ? (t.foreignServerNames[origin] ?? origin) : null;
+          const names = servers.map((o) => t.foreignServerNames[o] ?? o);
           return (
             <div
               key={item.id}
@@ -198,8 +190,8 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal, originF
                 className="catalog-row-pick"
                 aria-pressed={equipped}
                 aria-label={
-                  server
-                    ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip(t.foreignServerList(servers))}`
+                  names.length
+                    ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip}`
                     : `${item.name} (#${item.id})`
                 }
                 onClick={(e) => onPick(item, e.currentTarget)}
@@ -213,7 +205,7 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal, originF
                       so there is nothing on divine-pride to link it to. It is
                       still printed: it is what the search box and a share link
                       take. */}
-                  {server ? (
+                  {names.length ? (
                     <span className="catalog-row-id is-plain">{`#${item.id}`}</span>
                   ) : (
                     <a
@@ -232,20 +224,17 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal, originF
                   {"stone" in item
                     ? ` · ${t.stoneLabel}${stoneNote(item)}`
                     : ` · ${item.slots.map((s) => t.slotNames[s]).join(" + ")}`}
-                  {server && (
-                    <span
-                      className="catalog-origin"
-                      data-tip={t.foreignBadgeTip(t.foreignServerList(servers))}
-                    >
-                      {server}
+                  {names.map((name) => (
+                    <span key={name} className="catalog-origin" data-tip={t.foreignBadgeTip}>
+                      {name}
                     </span>
-                  )}
+                  ))}
                 </span>
               </span>
               {/* Nothing to search for: the market is LATAM's, and this
                   costume is in the catalogue precisely because LATAM has no
                   item for it. */}
-              {!server && (
+              {!names.length && (
                 <a
                   className="catalog-row-market"
                   href={marketUrl(item, gameServer)}

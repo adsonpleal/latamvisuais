@@ -7,11 +7,10 @@
 // "Encantamento de Visual"). It is a line of its own because that is what it is
 // in the game: the costume stays put and the stone rides along with it.
 
-import { useState } from "react";
-import { canPreview, originsOf, SLOTS, type Slot, type Stone } from "../core/db";
-import { itemIconUrl } from "../core/state";
+import { canPreview, originsOf, SLOTS, type Costume, type Slot, type Stone } from "../core/db";
 import { t } from "../i18n";
 import { useAppState, useDispatch } from "../state/AppStateContext";
+import { CostumeIcon } from "./CostumeIcon";
 import { ClearX } from "./icons";
 
 /** What an empty row on a card asks the catalogue for. */
@@ -36,20 +35,17 @@ export function Slots({ onPick }: { onPick: (slot: Slot, kind: PickKind) => void
                 if (!item) onPick(slot, "costume");
               }}
             >
-              <SlotIcon key={item?.id ?? "empty"} id={item?.id} className="slot-icon" />
+              <SlotIcon key={item?.id ?? "empty"} item={item} className="slot-icon" />
               <div className="slot-name" data-tip={item ? `${item.name} (${item.id})` : undefined}>
                 {/* The same badge the grid puts on the tile, carried onto what
                     is actually worn: somebody who scrolls away from the
                     catalogue should still be able to see that a piece of this
                     character cannot be obtained here. */}
-                {item?.origin && (
-                  <span
-                    className="slot-origin"
-                    data-tip={t.foreignBadgeTip(t.foreignServerList(originsOf(item)))}
-                  >
-                    {t.foreignServerNames[item.origin] ?? item.origin}
+                {(item ? originsOf(item) : []).map((o) => (
+                  <span key={o} className="slot-origin" data-tip={t.foreignBadgeTip}>
+                    {t.foreignServerNames[o] ?? o}
                   </span>
-                )}
+                ))}
                 {item ? item.name : t.slotEmpty}
               </div>
               <button
@@ -81,7 +77,7 @@ export function Slots({ onPick }: { onPick: (slot: Slot, kind: PickKind) => void
                 if (!stone) onPick(slot, "stone");
               }}
             >
-              <SlotIcon key={stone?.id ?? "empty"} id={stone?.id} className="slot-stone-icon" />
+              <SlotIcon key={stone?.id ?? "empty"} item={stone} className="slot-stone-icon" />
               <div className="slot-stone-name">{stone ? stone.name : t.stoneEmpty}</div>
               {/* A word, only where there is something a reader can't already
                   see. An ordinary effect says nothing: it is drawn on the
@@ -139,19 +135,16 @@ function StoneNote({ stone }: { stone: Stone }) {
 
 // Keyed by item id by the parent, so a new costume gets a fresh error state
 // rather than inheriting a previous slot occupant's broken-icon flag.
-function SlotIcon({ id, className }: { id?: number; className: string }) {
-  const [errored, setErrored] = useState(false);
-  if (id == null) {
+//
+// A costume from another official server has no item icon and never will — its
+// id is this app's own, not one in anybody's item table — so this card was
+// showing a name with an empty square beside it. CostumeIcon already knows the
+// fallback the catalogue uses (the head-framed render), so the card borrows it
+// rather than keeping a second, worse copy: the slot CSS hides the image only
+// when that fails too.
+function SlotIcon({ item, className }: { item?: Costume | Stone; className: string }) {
+  if (!item) {
     return <img className={className} alt="" decoding="async" style={{ visibility: "hidden" }} />;
   }
-  return (
-    <img
-      className={className}
-      src={itemIconUrl(id)}
-      alt=""
-      decoding="async"
-      style={{ visibility: errored ? "hidden" : undefined }}
-      onError={() => setErrored(true)}
-    />
-  );
+  return <CostumeIcon item={item} className={className} />;
 }

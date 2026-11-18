@@ -210,7 +210,7 @@ export const t = {
   foreignFilterLabel: "Outros servidores",
   foreignLabel: "Visuais de outros servidores",
   foreignTip:
-    "Mostra visuais que existem em outros servidores oficiais (iRO, jRO, kRO, twRO) e não no Ragnarok LATAM. Dá para vestir e ver na prévia, mas não dá para conseguir no jogo daqui.",
+    "Mostra visuais que existem em outros servidores oficiais e não no Ragnarok LATAM. Dá para vestir e ver na prévia, mas não dá para conseguir no jogo daqui.",
   foreignAllServers: "Todos",
   foreignServerNames: {
     iro: "iRO",
@@ -221,17 +221,18 @@ export const t = {
     twrozero: "twRO Zero",
   } as Record<string, string>,
   /** Badge on a foreign costume in the grid, in the list and on the equipped
-   *  chip. One server fits, so the badge names one; the tooltip names them all. */
+   *  chip. It names one server — whichever chip is held down, or the first the
+   *  costume belongs to. */
   foreignBadge: (server: string) => server,
-  /** "iRO", "iRO e twRO", "iRO, jRO e twRO" — 70 of the costumes are on more
-   *  than one server, and the tooltip is where there is room to say so. */
-  foreignServerList: (origins: string[]) => {
-    const names = origins.map((o) => t.foreignServerNames[o] ?? o);
-    if (names.length < 2) return names[0] ?? "";
-    return `${names.slice(0, -1).join(", ")} e ${names[names.length - 1]}`;
-  },
-  foreignBadgeTip: (servers: string) =>
-    `Visual de ${servers}. Não existe no Ragnarok LATAM — dá para ver aqui, mas não para conseguir no jogo.`,
+  /** The badge's tooltip says what the badge is, not which servers: the name is
+   *  already on the badge, and a costume on four of them turned this into a
+   *  list nobody reads. */
+  /** The tile has room for one name. "+3" is how it says there are others,
+   *  since 162 of the costumes are on four servers or more and a 53x48 tile
+   *  fits one 8px line. The list view shows every name instead. */
+  foreignBadgeMore: (n: number) => `+${n}`,
+  foreignBadgeTip:
+    "Visual de outro servidor. Não existe no Ragnarok LATAM — dá para vestir e ver aqui, mas não dá para conseguir no jogo.",
   foreignUnnamedTip:
     "Sem nome: nenhum cliente que lemos tinha a linha de item desse visual, então o nome mostrado é o do arquivo do sprite.",
   foreignForeignNameTip: (server: string) =>

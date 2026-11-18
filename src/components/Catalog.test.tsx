@@ -141,7 +141,7 @@ describe("Catalog", () => {
       // The badge is the only thing distinguishing a foreign tile from a LATAM
       // one once they sit in the same grid, so it has to be on the tile and in
       // its accessible name, not only in a tooltip.
-      expect(foreignTile(/Capa Estrangeira/)).toHaveAccessibleName(/Visual de twRO/);
+      expect(foreignTile(/Capa Estrangeira/)).toHaveAccessibleName(/Visual de outro servidor/);
       expect(within(foreignTile(/Capa Estrangeira/)).getByText("twRO")).toBeInTheDocument();
     });
 
@@ -162,9 +162,8 @@ describe("Catalog", () => {
       expect(foreignTile(/Chapéu de Dois Servidores/)).toBeVisible();
       expect(foreignTile(/Capa Estrangeira/)).not.toBeVisible();
       // The badge follows the chip, so it never seems to contradict the
-      // filter; the tooltip is where both servers fit.
+      // filter: the same costume reads "twRO" under the twRO chip, below.
       expect(within(foreignTile(/Chapéu de Dois Servidores/)).getByText("iRO")).toBeInTheDocument();
-      expect(foreignTile(/Chapéu de Dois Servidores/)).toHaveAccessibleName(/Visual de iRO e twRO/);
 
       await user.click(chip("twRO"));
       expect(foreignTile(/Chapéu de Dois Servidores/)).toBeVisible();

@@ -284,7 +284,6 @@ export function Catalog({
           isOn={isOn}
           onPick={pick}
           pickSignal={pickSignal}
-          originFilter={originFilter}
         />
       ) : (
         // The card is a box outside the scroller so it can clip its scrollbar
@@ -302,7 +301,7 @@ export function Catalog({
               // filter is on, foreign and LATAM costumes sit side by side in
               // one grid, and the only thing that tells them apart is this.
               const label = server
-                ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip(t.foreignServerList(servers))}`
+                ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip}`
                 : `${item.name} (#${item.id})`;
               const cls = [
                 "catalog-item",
@@ -330,7 +329,16 @@ export function Catalog({
                   onClick={(e) => pick(item, e.currentTarget)}
                 >
                   <CostumeIcon item={item} className="catalog-icon" />
-                  {server && <span className="catalog-origin">{server}</span>}
+                  {server && (
+                    <span className="catalog-origin">
+                      {t.foreignBadge(server)}
+                      {servers.length > 1 && (
+                        <span className="catalog-origin-more">
+                          {t.foreignBadgeMore(servers.length - 1)}
+                        </span>
+                      )}
+                    </span>
+                  )}
                 </button>
               );
             })}

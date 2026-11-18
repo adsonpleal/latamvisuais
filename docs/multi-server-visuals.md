@@ -484,9 +484,39 @@ legível é invisível ali.
 Com esse critério, 1510 pertencimentos entre 575 visuais — jRO 392, iRO 316,
 twRO 297, kRO Zero 204, kRO 191, twRO Zero 110.
 
-O badge cabe um nome só. Com um chip ligado ele mostra **aquele** servidor, pra
+Metade do catálogo está em mais de um servidor — 170 peças em um, 120 em dois,
+123 em três, 94 em quatro, 53 em cinco, 15 nos seis —, então o badge mostra
+todos, de três jeitos diferentes conforme o espaço:
+
+| onde | como |
+|---|---|
+| tile da grade | um nome, colado no rodapé do quadro, mais `+N` quando há mais |
+| linha da lista | um chip por servidor, lado a lado |
+| card do visual vestido | um chip por servidor |
+
+Onde cabe um nome só, com um chip ligado ele mostra **aquele** servidor, pra
 não parecer que o filtro está quebrado quando uma peça de iRO+twRO aparece sob
-"iRO" escrita "twRO"; sem chip, o primeiro da lista. O tooltip diz todos.
+"iRO" escrita "twRO"; sem chip, o primeiro da lista.
+
+O tooltip **não** lista os servidores: o nome já está no badge, e uma peça que
+está em quatro virava uma lista que ninguém lê. Ele diz o que o badge é —
+"Visual de outro servidor. Não existe no Ragnarok LATAM — dá para vestir e ver
+aqui, mas não dá para conseguir no jogo.".
+
+#### O ícone do card vestido
+
+O id de uma peça estrangeira é inventado por esta aplicação, então
+`/icons/item/<id>.png` é 404 garantido — `CostumeIcon` já sabia disso e começa
+pelo render (`costumeThumbUrl`) em vez de gastar um 404 por telha. O card do
+visual vestido não usava esse componente: pedia o ícone estático direto e
+ficava vazio. Agora ele delega ao mesmo `CostumeIcon`, e a peça aparece
+desenhada no card como aparece na grade.
+
+O caminho mais limpo seria o ragassets publicar os ícones por origem, como já
+publica os do LATAM — o cliente de cada servidor traz `collection/` e
+`item/` nos seus próprios GRFs, e a extração por origem já baixa os archives.
+Fica anotado junto com as outras derivações por origem (tabela de nomes,
+ilustrações, `.str`), que ainda não rodaram.
 
 #### As 17 que não desenham nada
 

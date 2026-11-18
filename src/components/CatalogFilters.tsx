@@ -39,9 +39,16 @@ const GAP = 4;
 const EDGE = 8;
 /** Below this, dropping down isn't worth it and the panel flips above the trigger. */
 const MIN_ROOM = 220;
+/** Wide enough for the longest label, "Visuais de outros servidores", to sit on
+ *  one line beside its checkbox. It needs 244px here and gets slack on top, so
+ *  a fallback font measuring a little wider does not wrap it again. */
+const MIN_WIDTH = 264;
 
 function placeUnder(trigger: DOMRect): Placement {
-  const width = Math.max(240, Math.round(trigger.width));
+  // Never wider than the window: the panel is fixed and `left` is clamped, so
+  // without this a phone narrower than MIN_WIDTH would lose its right edge.
+  const room = window.innerWidth - EDGE * 2;
+  const width = Math.min(room, Math.max(MIN_WIDTH, Math.round(trigger.width)));
   const left = Math.round(Math.max(EDGE, Math.min(trigger.left, window.innerWidth - width - EDGE)));
   const below = window.innerHeight - trigger.bottom - GAP - EDGE;
   const above = trigger.top - GAP - EDGE;
