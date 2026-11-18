@@ -48,6 +48,15 @@ export type Costume = {
    *  can be previewed, and the grid badges it so nobody mistakes it for
    *  something they can wear in game. */
   origin?: string;
+  /** Every official server that has this costume, when more than one does.
+   *
+   *  Not the same question as `origin`, which is the single tree the gateway
+   *  renders it from -- whichever client the extraction found it cheapest to
+   *  pull from. A costume twRO and iRO both ship belongs behind both chips,
+   *  and before this existed the filter showed it under one and hid it from
+   *  the other. Absent on the 505 costumes only one server has; read it
+   *  through `originsOf`, never directly. */
+  origins?: string[];
   /** What the sprite is called in that server's client, lowercased.
    *
    *  Required alongside `origin`, and the reason both exist: a view id is one
@@ -202,6 +211,31 @@ export function hatSprite(key: string): BuiltinSprite {
  *  own built-in effect table — and every caller wants the same answer, so it
  *  lives here rather than being spelled out at each call site (it had already
  *  drifted into three copies that disagreed). */
+/**
+ * Every official server that has this costume, or nothing for a LATAM one.
+ *
+ * The single source of this answer: the catalogue leaves `origins` out when it
+ * would just repeat `origin`, so every reader would otherwise have to remember
+ * the fallback.
+ */
+export function originsOf(item: Costume | Stone): string[] {
+  if (!item.origin) return [];
+  return item.origins?.length ? item.origins : [item.origin];
+}
+
+/**
+ * The one server to put on a badge that has room for one name.
+ *
+ * `preferred` is the server the catalogue is filtered by, if any. Showing that
+ * one keeps the badge from contradicting the filter: with the iRO chip held
+ * down, a tile reading "twRO" looks like the filter is broken, when in fact
+ * both servers have the costume.
+ */
+export function primaryOrigin(origins: string[], preferred?: string | null): string | null {
+  if (preferred && origins.includes(preferred)) return preferred;
+  return origins[0] ?? null;
+}
+
 export function canPreview(stone: Stone): boolean {
   return !!(stone.effect || stone.steps || stone.builtin);
 }

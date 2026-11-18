@@ -412,7 +412,8 @@ six live patch services before downloading anything.
 ## No app: o filtro, o badge e como o visual chega à tela
 
 O catálogo estrangeiro é um arquivo que o app leva junto
-(`public/db/foreign-costumes.json`, 592 fantasias), gerado por
+(`public/db/foreign-costumes.json`, 575 fantasias — 592 completas no espelho
+menos as 17 que não desenham nada), gerado por
 `tools/multiserver/export-app-catalogue.mjs` a partir do catálogo que o
 pipeline produz. Não vem do ragassets como os outros catálogos, e por um motivo:
 estas fantasias não acompanham um cliente vivo — foram extraídas uma vez do
@@ -447,20 +448,76 @@ visuais do LATAM (o filtro **soma**, não substitui), com chips para restringir 
 um servidor. O badge do botão de filtros conta esse filtro como ativo mesmo ele
 alargando a lista, e o "Limpar" o desliga.
 
-Cada peça estrangeira leva o nome do servidor **na telha do grid e no card do
-que está vestido**, além do tooltip — uma vez que as duas origens dividem um
-grid só, é a única coisa que as distingue.
+Cada peça estrangeira leva o nome do servidor **na telha do grid, na linha da
+lista e no card do que está vestido**, além do tooltip — uma vez que as duas
+origens dividem um grid só, é a única coisa que as distingue. Na lista ainda
+some o link do id (o id é invenção nossa, não existe página no Divine-Pride) e
+o carrinho do mercado (o mercado é do LATAM, que é justamente onde essa peça
+não existe).
+
+#### "Existe no iRO" é uma pergunta sobre a arte, não sobre o id
+
+Um visual tem **duas** origens no catálogo, e elas respondem a perguntas
+diferentes:
+
+| campo | o que é | para quê |
+|---|---|---|
+| `origin` | a árvore de onde os arquivos saíram — uma só, porque a extração baixou cada peça de um cliente só | o `origin=` que vai no render |
+| `origins` | todo servidor oficial cujos próprios arquivos trazem aquele sprite | o chip e o badge |
+
+Filtrar por `origin` era filtrar por *de onde a gente baixou*: uma peça que o
+iRO e o twRO têm aparecia sob um chip e sumia do outro. `origins` sai do índice
+de caminhos (`index/<origem>/paths.tsv`, uma linha por arquivo por archive),
+com a mesma regra do `costumeDraws` — os dois sexos para um chapéu, qualquer
+`.spr` na pasta para uma capa —, então "o iRO tem" quer dizer "o iRO
+conseguiria desenhar".
+
+Duas alternativas foram medidas e descartadas. A **tabela de views** do cliente
+diz que o iRO tem 591 das 592: a Gravity publica uma tabela de acessórios
+global, e o id estar nela não diz nada sobre o cliente ter a arte. A **tabela
+de itens** seria mais perto de "dá para conseguir", mas o kRO Zero não publica
+uma, e o chip dele ficaria zerado por falta de dado, não por falta de visual.
+O índice de caminhos é o único critério que as seis origens respondem do mesmo
+jeito. Ele subestima em vez de inventar: um archive sem tabela de arquivos
+legível é invisível ali.
+
+Com esse critério, 1510 pertencimentos entre 575 visuais — jRO 392, iRO 316,
+twRO 297, kRO Zero 204, kRO 191, twRO Zero 110.
+
+O badge cabe um nome só. Com um chip ligado ele mostra **aquele** servidor, pra
+não parecer que o filtro está quebrado quando uma peça de iRO+twRO aparece sob
+"iRO" escrita "twRO"; sem chip, o primeiro da lista. O tooltip diz todos.
+
+#### As 17 que não desenham nada
+
+`tools/multiserver/find-blank-visuals.mjs` renderiza cada peça contra o próprio
+gateway e compara com o personagem pelado. 17 das 592 saem **idênticas** ao
+pelado nas dez poses testadas, e essas ficam fora de
+`public/db/foreign-costumes.json` — a lista fica versionada em
+`blank-visuals.json`, com o motivo.
+
+Quase todas são visuais de efeito (`_흩날리는낙엽` folhas, `_c골드샤워` chuva
+dourada, `_흩날리는벚꽃` aura de Amatsu): o sprite do acessório é um
+placeholder e o visual de verdade é um `.str`, que esta pipeline ainda não
+extrai por origem. Duas são arquivo incompleto — um `.spr` de zero byte, um
+par sem `.act`.
+
+A primeira versão da varredura testou só a pose parada e acusou 47. Cinco
+delas desenham perfeitamente assim que o personagem se mexe — o
+`_low_pony_bu` do iRO é vazio parado, andando e sentado, e desenha a partir do
+tipo de ação 3. Por isso a varredura tenta dez poses, e só paga por elas quem
+falha na primeira: 822 renders para 592 visuais.
 
 ### Nomes e posições que nenhum cliente deu
 
-58 das 592 não têm linha de item em cliente nenhum que lemos. Em vez de
+58 das 575 não têm linha de item em cliente nenhum que lemos. Em vez de
 escondê-las (elas desenham perfeitamente), aparecem com o nome do arquivo do
 sprite, marcadas. 188 não trazem posição; a posição vem então do tipo
 (acessório → Topo, capa → Capa), o que só muda onde a peça aparece na interface:
 o render é o mesmo.
 
 Os nomes vêm das tabelas do próprio servidor quando o LATAM não tem o item —
-472 das 592 — então muitos estão em chinês tradicional (twRO) ou japonês. O
+462 das 575 — então muitos estão em chinês tradicional (twRO) ou japonês. O
 campo `nameOrigin` registra de onde veio.
 
 ### O que *não* muda

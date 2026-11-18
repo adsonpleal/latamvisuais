@@ -220,10 +220,18 @@ export const t = {
     twro: "twRO",
     twrozero: "twRO Zero",
   } as Record<string, string>,
-  /** Badge on a foreign costume in the grid and on the equipped chip. */
+  /** Badge on a foreign costume in the grid, in the list and on the equipped
+   *  chip. One server fits, so the badge names one; the tooltip names them all. */
   foreignBadge: (server: string) => server,
-  foreignBadgeTip: (server: string) =>
-    `Visual de ${server}. Não existe no Ragnarok LATAM — dá para ver aqui, mas não para conseguir no jogo.`,
+  /** "iRO", "iRO e twRO", "iRO, jRO e twRO" — 70 of the costumes are on more
+   *  than one server, and the tooltip is where there is room to say so. */
+  foreignServerList: (origins: string[]) => {
+    const names = origins.map((o) => t.foreignServerNames[o] ?? o);
+    if (names.length < 2) return names[0] ?? "";
+    return `${names.slice(0, -1).join(", ")} e ${names[names.length - 1]}`;
+  },
+  foreignBadgeTip: (servers: string) =>
+    `Visual de ${servers}. Não existe no Ragnarok LATAM — dá para ver aqui, mas não para conseguir no jogo.`,
   foreignUnnamedTip:
     "Sem nome: nenhum cliente que lemos tinha a linha de item desse visual, então o nome mostrado é o do arquivo do sprite.",
   foreignForeignNameTip: (server: string) =>

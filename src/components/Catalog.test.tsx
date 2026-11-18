@@ -145,6 +145,32 @@ describe("Catalog", () => {
       expect(within(foreignTile(/Capa Estrangeira/)).getByText("twRO")).toBeInTheDocument();
     });
 
+    it("shows a costume under every server that has it", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await openFilters(user);
+      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      const chip = (name: string) =>
+        within(screen.getByRole("group", { name: "Outros servidores" })).getByRole("button", {
+          name,
+        });
+
+      // It is rendered from the twRO tree, but iRO has it just as much — and
+      // the chip means "what iRO has", not "what we extracted from iRO".
+      await user.click(chip("iRO"));
+      expect(foreignTile(/Chapéu de Dois Servidores/)).toBeVisible();
+      expect(foreignTile(/Capa Estrangeira/)).not.toBeVisible();
+      // The badge follows the chip, so it never seems to contradict the
+      // filter; the tooltip is where both servers fit.
+      expect(within(foreignTile(/Chapéu de Dois Servidores/)).getByText("iRO")).toBeInTheDocument();
+      expect(foreignTile(/Chapéu de Dois Servidores/)).toHaveAccessibleName(/Visual de iRO e twRO/);
+
+      await user.click(chip("twRO"));
+      expect(foreignTile(/Chapéu de Dois Servidores/)).toBeVisible();
+      expect(within(foreignTile(/Chapéu de Dois Servidores/)).getByText("twRO")).toBeInTheDocument();
+    });
+
     it("puts them away again on Limpar", async () => {
       const user = userEvent.setup();
       renderCatalog();
@@ -155,6 +181,41 @@ describe("Catalog", () => {
 
       await user.click(screen.getByRole("button", { name: "Limpar" }));
       expect(foreignTile(/Chapéu Estrangeiro/)).not.toBeVisible();
+    });
+
+    it("marks them in the list view too, where the id links nowhere", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await openFilters(user);
+      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      await user.click(screen.getByRole("button", { name: "Lista" }));
+      // The list mounts only the rows near the viewport, and jsdom lays
+      // nothing out — so narrow to the one row this is about.
+      await user.type(screen.getByRole("searchbox"), "Estrangeira");
+
+      const row = document.querySelector(".catalog-row") as HTMLElement;
+      // A row shows a name and an id, and for a foreign costume both of those
+      // are unfamiliar on purpose — so the badge belongs here as much as on a
+      // tile.
+      expect(within(row).getByText("Capa Estrangeira")).toBeInTheDocument();
+      expect(within(row).getByText("twRO")).toBeInTheDocument();
+      // The id is this app's own invention for a view in another client's
+      // table, so there is no Divine-Pride page behind it; and the market is
+      // LATAM's, which is exactly where this costume cannot be bought.
+      expect(within(row).getByText("#10400950").tagName).toBe("SPAN");
+      expect(within(row).queryByRole("link")).not.toBeInTheDocument();
+
+      // A LATAM row keeps both links.
+      await user.clear(screen.getByRole("searchbox"));
+      await user.type(screen.getByRole("searchbox"), "Chapéu A");
+      const latam = document.querySelector(".catalog-row") as HTMLElement;
+      expect(within(latam).getByText("#100").tagName).toBe("A");
+      expect(within(latam).getAllByRole("link")).toHaveLength(2);
+
+      // Back to the grid: the view preference is cached in a module and
+      // outlives the localStorage reset between tests (see renderGrid below).
+      await user.click(screen.getByRole("button", { name: "Grade" }));
     });
   });
 

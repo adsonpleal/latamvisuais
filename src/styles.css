@@ -2806,6 +2806,30 @@ button:disabled {
   color: var(--muted);
 }
 
+/* The same badge as the grid's, but a row has no corner to pin it to: here it
+   is a chip at the end of the meta line, after the id and the position. */
+.catalog-row-meta .catalog-origin {
+  position: static;
+  display: inline-block;
+  margin-left: 0.45em;
+  padding: 0 0.35em;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 14%);
+  color: var(--fg);
+  font-size: 0.62rem;
+  line-height: 1.5;
+  vertical-align: 0.05em;
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* A foreign costume's id links nowhere, so it must not look clickable. */
+.catalog-row-id.is-plain {
+  pointer-events: none;
+  text-decoration: none;
+}
+
 /* The id reads as what it is — a link to the item's Divine-Pride page. */
 .catalog-row-id {
   pointer-events: auto;

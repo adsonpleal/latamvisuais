@@ -2,12 +2,12 @@
  "version": 1,
  "generatedAt": "2026-11-18",
  "counts": {
-  "iro": 231,
-  "twro": 64,
-  "krozero": 113,
-  "twrozero": 38,
-  "kro": 27,
-  "jro": 119
+  "iro": 316,
+  "twro": 297,
+  "kro": 191,
+  "krozero": 204,
+  "jro": 392,
+  "twrozero": 110
  },
  "items": [
   {
@@ -31,6 +31,10 @@
    ],
    "viewKind": "garment",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "twro"
+   ],
    "sprite": "c_2018_rtc_cape_tw",
    "nameOrigin": "twro"
   },
@@ -103,6 +107,10 @@
    ],
    "viewKind": "garment",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "twro"
+   ],
    "sprite": "c_ros2023_cape_1",
    "nameOrigin": "twro"
   },
@@ -115,6 +123,10 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "twro"
+   ],
    "sprite": "2023rtc_s_robe4",
    "nameOrigin": "twro"
   },
@@ -127,6 +139,12 @@
    ],
    "viewKind": "garment",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "c_ros2023_cape_2",
    "nameOrigin": "twro"
   },
@@ -139,6 +157,12 @@
    ],
    "viewKind": "garment",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "c_ros2024_wing_4",
    "nameOrigin": "twro"
   },
@@ -153,6 +177,12 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_2024ros_hat_2nd",
    "nameOrigin": "twro"
   },
@@ -167,6 +197,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_2024ros_hat_1st",
    "nameOrigin": "twro"
   },
@@ -181,6 +216,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_2024ros_hat_3rd",
    "nameOrigin": "twro"
   },
@@ -195,6 +235,12 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_2024ros_hat_4th",
    "nameOrigin": "twro"
   },
@@ -207,6 +253,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_20th_anniversary_hat",
    "nameOrigin": "twro"
   },
@@ -315,6 +367,13 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "c_3color_dumplings_p",
    "nameOrigin": "twro"
   },
@@ -327,6 +386,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_catcoffeecup_wh",
    "nameOrigin": "twro"
   },
@@ -339,6 +405,10 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_immortal_h_power",
    "nameOrigin": "twro"
   },
@@ -351,6 +421,10 @@
    ],
    "viewKind": "garment",
    "origin": "twro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
    "sprite": "c_immortal_h_wing",
    "nameOrigin": "twro"
   },
@@ -365,6 +439,10 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_alecsander",
    "nameOrigin": "twro"
   },
@@ -377,6 +455,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_블루아이새도",
    "nameOrigin": "twro"
   },
@@ -389,6 +473,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_nymph_ear",
    "nameOrigin": "twro"
   },
@@ -401,6 +490,11 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twrozero"
+   ],
    "sprite": "_magma_ignis_cap",
    "nameOrigin": "twrozero"
   },
@@ -413,6 +507,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_evil_mini",
    "nameOrigin": "twro"
   },
@@ -425,6 +525,13 @@
    ],
    "viewKind": "garment",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "c_eddga_rest",
    "nameOrigin": "twro"
   },
@@ -437,6 +544,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_rocking_short",
    "nameOrigin": "twro"
   },
@@ -449,6 +562,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_reliance_crown",
    "nameOrigin": "twro"
   },
@@ -461,6 +580,11 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_adventurer_pope_mini",
    "nameOrigin": "twro"
   },
@@ -473,6 +597,13 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_adventurer_hat",
    "nameOrigin": "twro"
   },
@@ -485,6 +616,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_c_aqua_marin",
    "nameOrigin": "twrozero"
   },
@@ -497,6 +633,13 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twrozero"
+   ],
    "sprite": "c_melon_cream_soda",
    "nameOrigin": "twrozero"
   },
@@ -509,6 +652,14 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_eyes_phen",
    "nameOrigin": "twro"
   },
@@ -521,6 +672,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_pretty_bear_wh",
    "nameOrigin": "twro"
   },
@@ -533,6 +689,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_피아멧트나비넥타이",
    "nameOrigin": "twro"
   },
@@ -559,6 +719,10 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_cassandra",
    "nameOrigin": "twro"
   },
@@ -571,6 +735,11 @@
    ],
    "viewKind": "garment",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
    "sprite": "c_mushroom_umbrella_rd",
    "nameOrigin": "twrozero"
   },
@@ -583,6 +752,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_armored_copo",
    "nameOrigin": "twro"
   },
@@ -595,6 +770,12 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "c_blue_magpie",
    "nameOrigin": "twro"
   },
@@ -607,6 +788,10 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "twro"
+   ],
    "sprite": "blackbearbackpack",
    "nameOrigin": "twro"
   },
@@ -619,6 +804,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_spica_mini",
    "nameOrigin": "twro"
   },
@@ -635,18 +826,6 @@
    "nameOrigin": "twro"
   },
   {
-   "id": 10050089,
-   "name": "(服飾)咖波包",
-   "view": 89,
-   "slots": [
-    "garment"
-   ],
-   "viewKind": "garment",
-   "origin": "iro",
-   "sprite": "c_capoo_bag_tw",
-   "nameOrigin": "twro"
-  },
-  {
    "id": 10002483,
    "name": "(服飾)喵喵寵物鈴鐺",
    "view": 2483,
@@ -655,6 +834,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_sound_of_catbell",
    "nameOrigin": "twro"
   },
@@ -667,19 +853,14 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
-   "sprite": "c_paw_bag",
-   "nameOrigin": "twro"
-  },
-  {
-   "id": 10002150,
-   "name": "(服飾)喵喵肉球印",
-   "view": 2150,
-   "slots": [
-    "low"
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
    ],
-   "viewKind": "headgear",
-   "origin": "iro",
-   "sprite": "_c_cat_footprints",
+   "sprite": "c_paw_bag",
    "nameOrigin": "twro"
   },
   {
@@ -691,6 +872,10 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_c13학년풍선",
    "nameOrigin": "twro"
   },
@@ -703,6 +888,10 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_ear_of_nyar_gy",
    "nameOrigin": "twro"
   },
@@ -715,6 +904,13 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_sberry_donut_in_mouth",
    "nameOrigin": "twro"
   },
@@ -727,6 +923,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_n_piamette_rollhair",
    "nameOrigin": "twro"
   },
@@ -740,18 +942,6 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_c_tw_3rd_balloon",
-   "nameOrigin": "twro"
-  },
-  {
-   "id": 10301772,
-   "name": "(服飾)回歸二週年頭飾",
-   "view": 1772,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_return_tw_2th_hat",
    "nameOrigin": "twro"
   },
   {
@@ -775,6 +965,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_emperor_penguin",
    "nameOrigin": "twro"
   },
@@ -787,6 +983,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_king_mini",
    "nameOrigin": "twro"
   },
@@ -799,6 +1001,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_culture_pod",
    "nameOrigin": "twro"
   },
@@ -811,6 +1019,12 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "c_fb_evilsprit",
    "nameOrigin": "twro"
   },
@@ -823,6 +1037,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_sailor_collar_wh",
    "nameOrigin": "twro"
   },
@@ -835,6 +1056,10 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_nf_stamp",
    "nameOrigin": "twro"
   },
@@ -847,6 +1072,11 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_2508_salt_hat",
    "nameOrigin": "twro"
   },
@@ -859,6 +1089,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_bulb_wreath",
    "nameOrigin": "twro"
   },
@@ -871,6 +1107,12 @@
    ],
    "viewKind": "garment",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "c_herald_of_god",
    "nameOrigin": "twro"
   },
@@ -883,6 +1125,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_great_pyrenees",
    "nameOrigin": "twro"
   },
@@ -895,6 +1144,10 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_cinnamon",
    "nameOrigin": "twro"
   },
@@ -907,6 +1160,10 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_cinnamon2",
    "nameOrigin": "twro"
   },
@@ -919,6 +1176,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_angeling_mini",
    "nameOrigin": "twro"
   },
@@ -943,6 +1206,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_garden_of_heaven",
    "nameOrigin": "twro"
   },
@@ -955,6 +1225,11 @@
    ],
    "viewKind": "garment",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "kro",
+    "twro"
+   ],
    "sprite": "c_libra_wing",
    "nameOrigin": "twro"
   },
@@ -979,6 +1254,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_helm_of_ra_kr",
    "nameOrigin": "twro"
   },
@@ -991,6 +1271,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_maid_frill",
    "nameOrigin": "twro"
   },
@@ -1003,6 +1290,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_white_cat_witch_hat",
    "nameOrigin": "twro"
   },
@@ -1015,6 +1306,10 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_여포링풍선",
    "nameOrigin": "twro"
   },
@@ -1051,6 +1346,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_guardian_wing",
    "nameOrigin": "twro"
   },
@@ -1063,6 +1364,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_experiment_mind",
    "nameOrigin": "twro"
   },
@@ -1075,6 +1383,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_egg_copo",
    "nameOrigin": "twro"
   },
@@ -1099,6 +1413,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_puppy_hat_wh",
    "nameOrigin": "twro"
   },
@@ -1111,6 +1432,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_white_rabbit_hair",
    "nameOrigin": "twro"
   },
@@ -1123,6 +1449,12 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_white_tteok",
    "nameOrigin": "twro"
   },
@@ -1135,6 +1467,11 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_bean_tteok",
    "nameOrigin": "twro"
   },
@@ -1147,6 +1484,11 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_blacksesame_tteok",
    "nameOrigin": "twro"
   },
@@ -1159,6 +1501,14 @@
    ],
    "viewKind": "garment",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "c_nifl_bloom_rd",
    "nameOrigin": "twro"
   },
@@ -1171,6 +1521,12 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "c_ragdoll_face_bag",
    "nameOrigin": "twro"
   },
@@ -1183,6 +1539,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_c_sunglass_bear_cap_j",
    "nameOrigin": "twrozero"
   },
@@ -1195,6 +1555,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_tent",
    "nameOrigin": "twro"
   },
@@ -1207,19 +1574,14 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
-   "sprite": "_c_clover_hairpin",
-   "nameOrigin": "twro"
-  },
-  {
-   "id": 10401665,
-   "name": "(服飾)幽暗的蝴蝶",
-   "view": 1665,
-   "slots": [
-    "top"
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
    ],
-   "viewKind": "headgear",
-   "origin": "twro",
-   "sprite": "_c_flutterbutterfly_bl",
+   "sprite": "_c_clover_hairpin",
    "nameOrigin": "twro"
   },
   {
@@ -1231,6 +1593,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_lucky_purse",
    "nameOrigin": "twro"
   },
@@ -1243,6 +1610,13 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_rainbow_popcorn",
    "nameOrigin": "twro"
   },
@@ -1255,6 +1629,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_율동의머리장식",
    "nameOrigin": "twro"
   },
@@ -1267,6 +1648,14 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_kitchen_car",
    "nameOrigin": "twro"
   },
@@ -1279,6 +1668,12 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "c_alice_broom",
    "nameOrigin": "twro"
   },
@@ -1291,6 +1686,12 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_angry_fish",
    "nameOrigin": "twro"
   },
@@ -1327,6 +1728,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_clb_ss_df",
    "nameOrigin": "twro"
   },
@@ -1339,6 +1746,11 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "c_pope_doll",
    "nameOrigin": "twro"
   },
@@ -1399,6 +1811,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_러브게임햇",
    "nameOrigin": "twro"
   },
@@ -1411,6 +1829,12 @@
    ],
    "viewKind": "garment",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "c_clb_ss_lt",
    "nameOrigin": "twro"
   },
@@ -1423,6 +1847,12 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_n_forest_cat",
    "nameOrigin": "twro"
   },
@@ -1435,6 +1865,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_rocking_short_om",
    "nameOrigin": "twro"
   },
@@ -1447,6 +1881,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_rocking_short_wh",
    "nameOrigin": "twro"
   },
@@ -1459,6 +1899,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_rocking_short_rd",
    "nameOrigin": "twro"
   },
@@ -1471,6 +1917,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_rocking_short_lb",
    "nameOrigin": "twro"
   },
@@ -1483,6 +1935,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_rocking_short_bd",
    "nameOrigin": "twro"
   },
@@ -1495,6 +1954,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_rocking_short_sv",
    "nameOrigin": "twro"
   },
@@ -1507,6 +1970,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_rocking_short_bg",
    "nameOrigin": "twro"
   },
@@ -1519,6 +1986,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_rocking_short_jbl",
    "nameOrigin": "twro"
   },
@@ -1531,6 +2005,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_skia_two_side_up_om",
    "nameOrigin": "twro"
   },
@@ -1543,6 +2021,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_skia_two_side_up_wh",
    "nameOrigin": "twro"
   },
@@ -1555,6 +2037,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_skia_two_side_up_cb",
    "nameOrigin": "twro"
   },
@@ -1567,6 +2054,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_skia_two_side_up_lb",
    "nameOrigin": "twro"
   },
@@ -1579,6 +2071,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_skia_two_side_up_bd",
    "nameOrigin": "twro"
   },
@@ -1591,6 +2087,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_skia_two_side_up_sv",
    "nameOrigin": "twro"
   },
@@ -1603,6 +2104,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_skia_two_side_up_bg",
    "nameOrigin": "twro"
   },
@@ -1615,6 +2121,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_skia_two_side_up_bl",
    "nameOrigin": "twro"
   },
@@ -1627,6 +2138,13 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_kotatsu",
    "nameOrigin": "twro"
   },
@@ -1639,6 +2157,14 @@
    ],
    "viewKind": "garment",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "c_starrysky_fountainpen",
    "nameOrigin": "twro"
   },
@@ -1651,6 +2177,11 @@
    ],
    "viewKind": "garment",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
    "sprite": "c_star_glasspen",
    "nameOrigin": "twrozero"
   },
@@ -1663,6 +2194,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_wolf_rayet",
    "nameOrigin": "twro"
   },
@@ -1677,6 +2215,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_bluedragon",
    "nameOrigin": "twro"
   },
@@ -1689,6 +2233,12 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "c_doram_paw_hammer",
    "nameOrigin": "twro"
   },
@@ -1701,6 +2251,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_squirrel_ear_hat_w",
    "nameOrigin": "twro"
   },
@@ -1713,6 +2269,13 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "c_shiba_tail",
    "nameOrigin": "twro"
   },
@@ -1725,6 +2288,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twrozero"
+   ],
    "sprite": "_도로시인형모자",
    "nameOrigin": "twrozero"
   },
@@ -1737,6 +2306,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_medjed_cloth",
    "nameOrigin": "twro"
   },
@@ -1749,6 +2324,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_ear_of_puppy_om",
    "nameOrigin": "twro"
   },
@@ -1761,6 +2342,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_glory_symbol_tw",
    "nameOrigin": "twro"
   },
@@ -1773,6 +2359,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_orange_rear_ribbon",
    "nameOrigin": "twro"
   },
@@ -1785,6 +2375,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_or_earwitchhat",
    "nameOrigin": "twro"
   },
@@ -1797,6 +2392,12 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_m_plant_hat_w",
    "nameOrigin": "twro"
   },
@@ -1809,6 +2410,10 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "twro"
+   ],
    "sprite": "cherryfesribbon",
    "nameOrigin": "twro"
   },
@@ -1821,6 +2426,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twrozero"
+   ],
    "sprite": "_c_cb_fullb_twintails",
    "nameOrigin": "twrozero"
   },
@@ -1833,6 +2444,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_blossom_glasses",
    "nameOrigin": "twro"
   },
@@ -1845,6 +2463,12 @@
    ],
    "viewKind": "garment",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "c_dimensional_sword",
    "nameOrigin": "twro"
   },
@@ -1857,6 +2481,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_undead_seal_rose",
    "nameOrigin": "twro"
   },
@@ -1869,6 +2498,14 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "c_poring_cream_soda",
    "nameOrigin": "twro"
   },
@@ -1881,6 +2518,13 @@
    ],
    "viewKind": "garment",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "hanwha_pool_ring",
    "nameOrigin": "twro"
   },
@@ -1893,6 +2537,12 @@
    ],
    "viewKind": "garment",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "poporing_pool_ring",
    "nameOrigin": "twro"
   },
@@ -1905,6 +2555,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_wanderer_curl_om",
    "nameOrigin": "twro"
   },
@@ -1917,6 +2571,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_wanderer_curl_cb",
    "nameOrigin": "twro"
   },
@@ -1929,6 +2588,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_wanderer_curl_lpp",
    "nameOrigin": "twro"
   },
@@ -1941,6 +2604,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_wanderer_curl_lb",
    "nameOrigin": "twro"
   },
@@ -1953,6 +2621,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_wanderer_curl_swh",
    "nameOrigin": "twro"
   },
@@ -1965,6 +2637,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_wanderer_curl_bg",
    "nameOrigin": "twro"
   },
@@ -1977,6 +2654,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_wanderer_curl_yl",
    "nameOrigin": "twro"
   },
@@ -1989,19 +2671,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
-   "sprite": "_c_wanderer_curl_jbl",
-   "nameOrigin": "twro"
-  },
-  {
-   "id": 10401821,
-   "name": "(服飾)浪漫玫瑰",
-   "view": 1821,
-   "slots": [
-    "top"
+   "origins": [
+    "jro",
+    "twro"
    ],
-   "viewKind": "headgear",
-   "origin": "twro",
-   "sprite": "_romanticrose",
+   "sprite": "_c_wanderer_curl_jbl",
    "nameOrigin": "twro"
   },
   {
@@ -2013,6 +2687,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_vacation_pope_hair",
    "nameOrigin": "twro"
   },
@@ -2025,6 +2704,11 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_heine_tab_1",
    "nameOrigin": "twro"
   },
@@ -2037,6 +2721,11 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_heine_tab_2",
    "nameOrigin": "twro"
   },
@@ -2049,6 +2738,11 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_heine_tab_3",
    "nameOrigin": "twro"
   },
@@ -2061,6 +2755,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_c_deepsea_pearls_hat",
    "nameOrigin": "twrozero"
   },
@@ -2073,6 +2772,12 @@
    ],
    "viewKind": "garment",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "c_call_octo",
    "nameOrigin": "twro"
   },
@@ -2085,6 +2790,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_deep_you",
    "nameOrigin": "twro"
   },
@@ -2097,6 +2809,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_deep_you_n",
    "nameOrigin": "twro"
   },
@@ -2123,6 +2842,12 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_black_moon_cat",
    "nameOrigin": "twro"
   },
@@ -2135,6 +2860,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_c_aqua_marin_n",
    "nameOrigin": "twrozero"
   },
@@ -2147,6 +2877,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_sparkler_fountain",
    "nameOrigin": "twro"
   },
@@ -2159,6 +2895,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twrozero"
+   ],
    "sprite": "_c_majestic_helmet_bl",
    "nameOrigin": "twrozero"
   },
@@ -2171,6 +2913,11 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_giant_panda",
    "nameOrigin": "twro"
   },
@@ -2183,6 +2930,11 @@
    ],
    "viewKind": "garment",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "c_panda_bamboo",
    "nameOrigin": "twro"
   },
@@ -2195,6 +2947,13 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_chic_peony",
    "nameOrigin": "twro"
   },
@@ -2207,6 +2966,13 @@
    ],
    "viewKind": "garment",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "c_big_treasure_chest",
    "nameOrigin": "twro"
   },
@@ -2219,6 +2985,11 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_mask_of_fox_yl",
    "nameOrigin": "twro"
   },
@@ -2231,6 +3002,13 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_fox_ear_beret",
    "nameOrigin": "twro"
   },
@@ -2243,6 +3021,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twrozero"
+   ],
    "sprite": "_c_wh_fox_hood_twin_n",
    "nameOrigin": "twrozero"
   },
@@ -2255,6 +3040,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_low_pony_wh",
    "nameOrigin": "twro"
   },
@@ -2267,6 +3058,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_low_pony_rd",
    "nameOrigin": "twro"
   },
@@ -2279,6 +3076,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_low_pony_pp",
    "nameOrigin": "twro"
   },
@@ -2291,6 +3094,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_low_pony_gn",
    "nameOrigin": "twro"
   },
@@ -2303,6 +3112,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_low_pony_bu",
    "nameOrigin": "twro"
   },
@@ -2315,6 +3130,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_low_pony_om",
    "nameOrigin": "twro"
   },
@@ -2327,6 +3148,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_low_pony_yl",
    "nameOrigin": "twro"
   },
@@ -2339,6 +3166,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_low_pony_bl",
    "nameOrigin": "twro"
   },
@@ -2351,6 +3184,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_rose_wave_bdp",
    "nameOrigin": "twro"
   },
@@ -2363,6 +3201,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_rose_wave_bd",
    "nameOrigin": "twro"
   },
@@ -2375,6 +3218,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_rose_wave_sv",
    "nameOrigin": "twro"
   },
@@ -2387,6 +3235,14 @@
    ],
    "viewKind": "garment",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "c_glass_rose_garden",
    "nameOrigin": "twro"
   },
@@ -2399,6 +3255,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_white_clay_filler",
    "nameOrigin": "twro"
   },
@@ -2411,6 +3274,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_magaleta_hair",
    "nameOrigin": "twro"
   },
@@ -2423,6 +3291,14 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_signon_loop",
    "nameOrigin": "twro"
   },
@@ -2435,6 +3311,14 @@
    ],
    "viewKind": "garment",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "c_honey_dipper",
    "nameOrigin": "twro"
   },
@@ -2447,6 +3331,12 @@
    ],
    "viewKind": "garment",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "c_sweet_folk",
    "nameOrigin": "twro"
   },
@@ -2459,6 +3349,13 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "wing_of_angel_move_gr",
    "nameOrigin": "twro"
   },
@@ -2471,20 +3368,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_남포링풍선",
    "nameOrigin": "twro"
-  },
-  {
-   "id": 10502533,
-   "name": "(服飾)發懶滷哥氣球",
-   "view": 2533,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "twrozero",
-   "sprite": "_c_clb_ss_ll",
-   "nameOrigin": "twrozero"
   },
   {
    "id": 10050255,
@@ -2495,6 +3384,12 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "c_white_fox_tail",
    "nameOrigin": "twro"
   },
@@ -2507,6 +3402,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_white_serpent_hair",
    "nameOrigin": "twro"
   },
@@ -2519,6 +3420,13 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_s_two_side_up_bdp",
    "nameOrigin": "twro"
   },
@@ -2531,6 +3439,13 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_s_two_side_up_bd",
    "nameOrigin": "twro"
   },
@@ -2543,6 +3458,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_s_two_side_up_sv",
    "nameOrigin": "twro"
   },
@@ -2555,6 +3477,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_s_two_side_up_blp",
    "nameOrigin": "twro"
   },
@@ -2567,6 +3495,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_love_piece_bl",
    "nameOrigin": "twro"
   },
@@ -2579,6 +3511,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_baby_leopard_cat",
    "nameOrigin": "twro"
   },
@@ -2591,6 +3529,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_broken_egg",
    "nameOrigin": "twro"
   },
@@ -2603,6 +3546,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_halloween_candypouch",
    "nameOrigin": "twro"
   },
@@ -2615,6 +3564,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_소원종이모자",
    "nameOrigin": "twro"
   },
@@ -2627,6 +3580,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_midgard_insignia",
    "nameOrigin": "twrozero"
   },
@@ -2639,6 +3596,13 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_fire_giant_red",
    "nameOrigin": "twro"
   },
@@ -2651,6 +3615,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_red_paeonia",
    "nameOrigin": "twro"
   },
@@ -2663,6 +3632,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twrozero"
+   ],
    "sprite": "_홍백모치링모자",
    "nameOrigin": "twrozero"
   },
@@ -2675,6 +3650,13 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twrozero"
+   ],
    "sprite": "_c_knit_ribbon_lowtwin",
    "nameOrigin": "twrozero"
   },
@@ -2687,6 +3669,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_buoyant_parasol_r",
    "nameOrigin": "twro"
   },
@@ -2699,6 +3687,10 @@
    ],
    "viewKind": "garment",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "c_pitaya_v_bag",
    "nameOrigin": "twro"
   },
@@ -2711,6 +3703,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_green_sunbed",
    "nameOrigin": "twro"
   },
@@ -2723,6 +3721,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "_녹색강아지풀",
    "nameOrigin": "twro"
   },
@@ -2735,6 +3739,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_츠나데의인술서",
    "nameOrigin": "twro"
   },
@@ -2747,6 +3755,12 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "wing_of_angel_move_rb",
    "nameOrigin": "twro"
   },
@@ -2759,6 +3773,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_flower_s_knit_hat",
    "nameOrigin": "twro"
   },
@@ -2771,6 +3791,13 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_wonderful_long",
    "nameOrigin": "twro"
   },
@@ -2783,6 +3810,12 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_wonderful_long_n",
    "nameOrigin": "twro"
   },
@@ -2795,6 +3828,11 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "iro",
+    "kro",
+    "twrozero"
+   ],
    "sprite": "_c_winter_tree",
    "nameOrigin": "twrozero"
   },
@@ -2807,6 +3845,14 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_snowmanhat",
    "nameOrigin": "twro"
   },
@@ -2819,6 +3865,13 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_lightning_savage",
    "nameOrigin": "twro"
   },
@@ -2831,6 +3884,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_fenrir_afv_hat",
    "nameOrigin": "twro"
   },
@@ -2843,6 +3901,14 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_many_flowers_prayer",
    "nameOrigin": "twro"
   },
@@ -2855,6 +3921,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_liamette_hair_band",
    "nameOrigin": "twro"
   },
@@ -2867,6 +3940,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_n_piamette_bonnet",
    "nameOrigin": "twro"
   },
@@ -2879,6 +3958,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_lots_braided_hair",
    "nameOrigin": "twro"
   },
@@ -2891,6 +3975,10 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_c_petal_twin_n",
    "nameOrigin": "twrozero"
   },
@@ -2903,6 +3991,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_c_fluffy_candy_long_n",
    "nameOrigin": "twrozero"
   },
@@ -2915,6 +4008,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_c_fluffy_candy_long",
    "nameOrigin": "twrozero"
   },
@@ -2927,6 +4025,13 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "c_blue_rose_parasol",
    "nameOrigin": "twro"
   },
@@ -2939,6 +4044,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_eclipse_muffler",
    "nameOrigin": "twro"
   },
@@ -2951,6 +4061,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_blue_sunbed",
    "nameOrigin": "twro"
   },
@@ -2963,6 +4080,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_buoyant_parasol_b",
    "nameOrigin": "twro"
   },
@@ -2975,6 +4099,11 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_thornbush_hairband_bu",
    "nameOrigin": "twro"
   },
@@ -2987,6 +4116,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero"
+   ],
    "sprite": "_블루헤드드레스",
    "nameOrigin": "twro"
   },
@@ -2999,6 +4132,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twrozero"
+   ],
    "sprite": "_cat_ears_cape_blue",
    "nameOrigin": "twrozero"
   },
@@ -3011,6 +4151,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_serpent_crystal",
    "nameOrigin": "twro"
   },
@@ -3024,6 +4170,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_spiding",
    "nameOrigin": "twro"
   },
@@ -3036,6 +4188,14 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_ribbon_braid_hair",
    "nameOrigin": "twro"
   },
@@ -3048,6 +4208,10 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_나비의트윈바렛",
    "nameOrigin": "twro"
   },
@@ -3060,6 +4224,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_candle_set",
    "nameOrigin": "twro"
   },
@@ -3072,6 +4241,13 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_apprentice_witch_hat",
    "nameOrigin": "twro"
   },
@@ -3084,6 +4260,10 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_variant_devils_horn",
    "nameOrigin": "twro"
   },
@@ -3096,6 +4276,11 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
    "sprite": "c_smokie_basket",
    "nameOrigin": "twrozero"
   },
@@ -3108,6 +4293,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_pig_girl_tw",
    "nameOrigin": "twro"
   },
@@ -3120,6 +4309,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_pig_boy_tw",
    "nameOrigin": "twro"
   },
@@ -3180,6 +4373,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_seyren_mini",
    "nameOrigin": "twro"
   },
@@ -3192,6 +4391,11 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_dragon_green_aura",
    "nameOrigin": "twro"
   },
@@ -3240,6 +4444,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_hn_hair_wh",
    "nameOrigin": "twro"
   },
@@ -3252,6 +4460,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_hn_hair_cb",
    "nameOrigin": "twro"
   },
@@ -3264,6 +4477,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_hn_hair_om",
    "nameOrigin": "twro"
   },
@@ -3276,6 +4493,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_hn_hair_lpp",
    "nameOrigin": "twro"
   },
@@ -3288,6 +4509,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_hn_hair_bg",
    "nameOrigin": "twro"
   },
@@ -3300,6 +4526,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_hn_hair_lb",
    "nameOrigin": "twro"
   },
@@ -3312,6 +4543,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_hn_hair_yl",
    "nameOrigin": "twro"
   },
@@ -3324,6 +4560,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_hn_hair_jbl",
    "nameOrigin": "twro"
   },
@@ -3336,6 +4576,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_chick_hat_bu",
    "nameOrigin": "twro"
   },
@@ -3348,6 +4593,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_jerboa_headband",
    "nameOrigin": "twro"
   },
@@ -3360,6 +4612,12 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "wing_of_angel_move_dg",
    "nameOrigin": "twro"
   },
@@ -3372,6 +4630,11 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "krozero",
+    "twrozero"
+   ],
    "sprite": "_c_dragon_red_aura",
    "nameOrigin": "twrozero"
   },
@@ -3396,6 +4659,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_ram_hair_wh",
    "nameOrigin": "twro"
   },
@@ -3408,6 +4675,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_ram_hair_cb",
    "nameOrigin": "twro"
   },
@@ -3420,6 +4692,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_ram_hair_om",
    "nameOrigin": "twro"
   },
@@ -3432,6 +4708,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_ram_hair_lpp",
    "nameOrigin": "twro"
   },
@@ -3444,6 +4724,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_ram_hair_bg",
    "nameOrigin": "twro"
   },
@@ -3456,6 +4741,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_ram_hair_lb",
    "nameOrigin": "twro"
   },
@@ -3468,6 +4758,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_ram_hair_yl",
    "nameOrigin": "twro"
   },
@@ -3480,6 +4775,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_ram_hair_jbl",
    "nameOrigin": "twro"
   },
@@ -3492,6 +4791,10 @@
    ],
    "viewKind": "garment",
    "origin": "twro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "c_s_thanatos_wing",
    "nameOrigin": "twro"
   },
@@ -3516,19 +4819,14 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
-   "sprite": "_사악한마칭햇_j",
-   "nameOrigin": "twro"
-  },
-  {
-   "id": 10002432,
-   "name": "(服飾)金環(受到攻擊)",
-   "view": 2432,
-   "slots": [
-    "low"
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
    ],
-   "viewKind": "headgear",
-   "origin": "iro",
-   "sprite": "_c_s_attack_ring",
+   "sprite": "_사악한마칭햇_j",
    "nameOrigin": "twro"
   },
   {
@@ -3540,6 +4838,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_fire_giant_gold",
    "nameOrigin": "twro"
   },
@@ -3552,6 +4856,14 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_bell_cat_hair",
    "nameOrigin": "twro"
   },
@@ -3564,6 +4876,14 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_chained_bear",
    "nameOrigin": "twro"
   },
@@ -3576,6 +4896,11 @@
    ],
    "viewKind": "garment",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "c_giant_chained_bear",
    "nameOrigin": "twro"
   },
@@ -3588,6 +4913,12 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twrozero"
+   ],
    "sprite": "_c_knit_ribbon_lowtwin_n",
    "nameOrigin": "twrozero"
   },
@@ -3614,6 +4945,14 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_openair_headset_red",
    "nameOrigin": "twro"
   },
@@ -3638,6 +4977,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_clb_ss_ea",
    "nameOrigin": "twro"
   },
@@ -3650,6 +4995,10 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_2019_d10_muffler_tw",
    "nameOrigin": "twro"
   },
@@ -3662,6 +5011,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_two_side_wing",
    "nameOrigin": "twrozero"
   },
@@ -3674,6 +5028,12 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_autumn_piece",
    "nameOrigin": "twro"
   },
@@ -3686,6 +5046,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twrozero"
+   ],
    "sprite": "_c_feather_hair_bd",
    "nameOrigin": "twrozero"
   },
@@ -3698,6 +5064,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_twin_milkyway_n",
    "nameOrigin": "twro"
   },
@@ -3710,6 +5083,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_snow_head",
    "nameOrigin": "twro"
   },
@@ -3722,6 +5102,11 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_malangmalang",
    "nameOrigin": "twro"
   },
@@ -3734,6 +5119,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_lehar_mini",
    "nameOrigin": "twro"
   },
@@ -3746,6 +5137,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_frog_cap_bw",
    "nameOrigin": "twro"
   },
@@ -3758,6 +5154,12 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_파랑새의장미장식",
    "nameOrigin": "twro"
   },
@@ -3770,6 +5172,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_back_signon_wh",
    "nameOrigin": "twro"
   },
@@ -3782,6 +5189,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_back_signon_rd",
    "nameOrigin": "twro"
   },
@@ -3794,6 +5206,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_back_signon_pp",
    "nameOrigin": "twro"
   },
@@ -3806,6 +5223,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_back_signon_gn",
    "nameOrigin": "twro"
   },
@@ -3818,6 +5240,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_back_signon_bu",
    "nameOrigin": "twro"
   },
@@ -3830,6 +5257,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_back_signon_om",
    "nameOrigin": "twro"
   },
@@ -3842,6 +5274,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_back_signon_yl",
    "nameOrigin": "twro"
   },
@@ -3854,31 +5291,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_back_signon_bl",
-   "nameOrigin": "twro"
-  },
-  {
-   "id": 10301378,
-   "name": "(服飾)飄揚的蝴蝶",
-   "view": 1378,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_c나비의날갯짓",
-   "nameOrigin": "twro"
-  },
-  {
-   "id": 10401230,
-   "name": "(服飾)飄浮的賢者之石",
-   "view": 1230,
-   "slots": [
-    "mid"
-   ],
-   "viewKind": "headgear",
-   "origin": "twro",
-   "sprite": "_부유하는현자의돌",
    "nameOrigin": "twro"
   },
   {
@@ -3890,6 +5308,11 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_flying_tilby",
    "nameOrigin": "twro"
   },
@@ -3902,6 +5325,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_pitaya_ramen_stall",
    "nameOrigin": "twro"
   },
@@ -3914,6 +5342,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_marlbron_mini",
    "nameOrigin": "twro"
   },
@@ -3926,6 +5360,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_striking_hat_a",
    "nameOrigin": "twro"
   },
@@ -3950,6 +5390,14 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_c_whale_cap",
    "nameOrigin": "twro"
   },
@@ -3962,6 +5410,12 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c_yellow_head_dress",
    "nameOrigin": "twro"
   },
@@ -3974,6 +5428,10 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_yl_cat_eyes",
    "nameOrigin": "twro"
   },
@@ -3986,6 +5444,10 @@
    ],
    "viewKind": "garment",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "twrozero"
+   ],
    "sprite": "c_darklord_aura",
    "nameOrigin": "twrozero"
   },
@@ -3998,6 +5460,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "_검은고양이모자",
    "nameOrigin": "twro"
   },
@@ -4010,63 +5477,13 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_c_tarou_magical_hat",
    "nameOrigin": "twrozero"
-  },
-  {
-   "id": 10301931,
-   "name": "[Visual] Capacete de Dullahan",
-   "view": 1931,
-   "slots": [
-    "low"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_c_dullahan_mask"
-  },
-  {
-   "id": 10001528,
-   "name": "[Visual] Chuva Dourada",
-   "view": 1528,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "iro",
-   "sprite": "_c골드샤워"
-  },
-  {
-   "id": 10301309,
-   "name": "[Visual] Ilusões do Tempo",
-   "view": 1309,
-   "slots": [
-    "mid"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_시간의장식"
-  },
-  {
-   "id": 10001461,
-   "name": "[Visual] Penas Coloridas",
-   "view": 1461,
-   "slots": [
-    "low"
-   ],
-   "viewKind": "headgear",
-   "origin": "iro",
-   "sprite": "_c흩날리는깃털"
-  },
-  {
-   "id": 10401380,
-   "name": "[Visual] Penas Encantadas",
-   "view": 1380,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "twro",
-   "sprite": "_c흩날리는천사의날개"
   },
   {
    "id": 10300290,
@@ -4088,6 +5505,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_c꽃의왈츠"
   },
   {
@@ -4099,6 +5521,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
    "sprite": "_c_elegant_wave",
    "nameOrigin": "jro"
   },
@@ -4135,6 +5563,12 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "c_archmage_wand",
    "nameOrigin": "jro"
   },
@@ -4147,6 +5581,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_c_eye_mask",
    "nameOrigin": "jro"
   },
@@ -4171,6 +5609,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "_c_airy_two_side_up_wh",
    "nameOrigin": "jro"
   },
@@ -4183,6 +5626,11 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "_c_cha_ex_twin",
    "nameOrigin": "jro"
   },
@@ -4195,6 +5643,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_jp_ev14",
    "nameOrigin": "jro"
   },
@@ -4219,6 +5671,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "_c_stardust_hairband_bu",
    "nameOrigin": "jro"
   },
@@ -4231,6 +5688,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "_stripedribbonhat",
    "nameOrigin": "jro"
   },
@@ -4243,6 +5705,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "_c_seyren_hair",
    "nameOrigin": "jro"
   },
@@ -4267,6 +5734,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_귤꼭지모자",
    "nameOrigin": "jro"
   },
@@ -4339,6 +5810,11 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "c_twin_edge",
    "nameOrigin": "jro"
   },
@@ -4363,6 +5839,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "_c_doram_headband",
    "nameOrigin": "jro"
   },
@@ -4387,6 +5868,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
    "sprite": "_c_hallocandy_hair_n",
    "nameOrigin": "jro"
   },
@@ -4495,6 +5980,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_c_fluffy_semi_long",
    "nameOrigin": "jro"
   },
@@ -4507,6 +5996,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "_c_baby_seal2",
    "nameOrigin": "jro"
   },
@@ -4519,6 +6014,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "_c_wedjat",
    "nameOrigin": "jro"
   },
@@ -4591,6 +6091,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
    "sprite": "_c_l_knitting_wave_sv",
    "nameOrigin": "jro"
   },
@@ -4603,6 +6107,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
    "sprite": "_c_l_knitting_wave_bd",
    "nameOrigin": "jro"
   },
@@ -4615,6 +6123,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_c_rabbit_two_side_up",
    "nameOrigin": "jro"
   },
@@ -4627,6 +6139,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_c_rigel_hair",
    "nameOrigin": "jro"
   },
@@ -4639,6 +6155,10 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "c_resurrection_bow",
    "nameOrigin": "jro"
   },
@@ -4651,6 +6171,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero"
+   ],
    "sprite": "_c_red_head_dress",
    "nameOrigin": "jro"
   },
@@ -4663,6 +6187,12 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "_c_rose_wave_svb",
    "nameOrigin": "jro"
   },
@@ -4675,6 +6205,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_c_mask_of_cat_j",
    "nameOrigin": "jro"
   },
@@ -4687,6 +6221,11 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "c_detective_mag_glass",
    "nameOrigin": "jro"
   },
@@ -4711,6 +6250,11 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "c_n_mad_bunny",
    "nameOrigin": "jro"
   },
@@ -4723,6 +6267,10 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "c_s_beelzebub_wing",
    "nameOrigin": "jro"
   },
@@ -4735,6 +6283,11 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "c_mechanical_fairy_wing",
    "nameOrigin": "jro"
   },
@@ -4747,6 +6300,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "_mech_feather_hairband_b",
    "nameOrigin": "jro"
   },
@@ -4759,6 +6317,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "_c_gear_monocle",
    "nameOrigin": "jro"
   },
@@ -4795,6 +6358,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
    "sprite": "_c_blink_eyes_halloween",
    "nameOrigin": "jro"
   },
@@ -4819,6 +6386,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "_c_blink_eyes_wh_serpent",
    "nameOrigin": "jro"
   },
@@ -4843,6 +6416,11 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "greatdevilwing2",
    "nameOrigin": "jro"
   },
@@ -4855,6 +6433,11 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "c_scepter_sv",
    "nameOrigin": "jro"
   },
@@ -4867,6 +6450,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_c_2012rmscno4",
    "nameOrigin": "jro"
   },
@@ -4879,6 +6466,11 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "c_knights_sword_shield",
    "nameOrigin": "jro"
   },
@@ -4938,17 +6530,6 @@
    "origin": "iro",
    "sprite": "archangel_wing",
    "unnamed": true
-  },
-  {
-   "id": 10301331,
-   "name": "Aura de Amatsu",
-   "view": 1331,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_흩날리는벚꽃"
   },
   {
    "id": 10300006,
@@ -5051,6 +6632,11 @@
    ],
    "viewKind": "garment",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "c_2025rosfesta",
    "unnamed": true
   },
@@ -5063,6 +6649,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_c_angler_dream",
    "unnamed": true
   },
@@ -5075,6 +6665,11 @@
    ],
    "viewKind": "garment",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "c_b_ninetail_tail",
    "unnamed": true
   },
@@ -5099,6 +6694,10 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "c_cat_fryingpan",
    "unnamed": true
   },
@@ -5111,6 +6710,10 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
    "sprite": "_c_chestnut_helmet",
    "unnamed": true
   },
@@ -5159,6 +6762,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_c_grapes_dresshat_wh",
    "unnamed": true
   },
@@ -5171,6 +6778,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_guardian_of_abyss",
    "unnamed": true
   },
@@ -5183,6 +6794,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "kro"
+   ],
    "sprite": "_c_guide_of_dead_cap",
    "unnamed": true
   },
@@ -5195,6 +6810,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "_c_halloween_candy_hair",
    "unnamed": true
   },
@@ -5207,6 +6828,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
    "sprite": "_c_jp_ev13",
    "unnamed": true
   },
@@ -5231,6 +6856,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "_c_merlion_hat_msp",
    "unnamed": true
   },
@@ -5243,6 +6874,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "_c_naughty_p_wig",
    "unnamed": true
   },
@@ -5267,6 +6903,10 @@
    ],
    "viewKind": "garment",
    "origin": "krozero",
+   "origins": [
+    "kro",
+    "krozero"
+   ],
    "sprite": "c_ros2024_wing_1",
    "unnamed": true
   },
@@ -5279,6 +6919,11 @@
    ],
    "viewKind": "garment",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "c_ros2024_wing_2",
    "unnamed": true
   },
@@ -5291,6 +6936,11 @@
    ],
    "viewKind": "garment",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "c_ros2024_wing_3",
    "unnamed": true
   },
@@ -5303,6 +6953,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_c_ruck_keeper",
    "unnamed": true
   },
@@ -5315,6 +6969,10 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "c_sakura_rod_pk",
    "unnamed": true
   },
@@ -5327,6 +6985,10 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "c_skia_doll",
    "unnamed": true
   },
@@ -5339,6 +7001,10 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "c_tuna_fishing",
    "unnamed": true
   },
@@ -5351,6 +7017,10 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "c_vietnam_flag_hood_jp",
    "unnamed": true
   },
@@ -5363,6 +7033,10 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "krozero"
+   ],
    "sprite": "c_wing_of_eutaxy",
    "unnamed": true
   },
@@ -5375,6 +7049,10 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "kro",
+    "krozero"
+   ],
    "sprite": "_c_yakgwa_hairband",
    "unnamed": true
   },
@@ -5409,6 +7087,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_배틀온라인"
   },
   {
@@ -5521,6 +7206,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_라이드워드"
   },
   {
@@ -5554,6 +7244,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "_유치원생의모자"
   },
   {
@@ -5611,6 +7306,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_무통라이프",
    "nameOrigin": "iro"
   },
@@ -5623,6 +7323,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_예술가의베레모",
    "nameOrigin": "iro"
   },
@@ -5647,6 +7351,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "_링컨모자",
    "nameOrigin": "iro"
   },
@@ -5671,6 +7380,12 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
    "sprite": "_십자머리띠"
   },
   {
@@ -5729,6 +7444,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "_식충식물의헤어핀",
    "nameOrigin": "iro"
   },
@@ -5809,6 +7529,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
    "sprite": "_열혈머리띠"
   },
   {
@@ -5820,6 +7544,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
    "sprite": "_망자의머리띠"
   },
   {
@@ -5857,17 +7585,6 @@
    "sprite": "_풀잎"
   },
   {
-   "id": 10001275,
-   "name": "Folhas Outonais",
-   "view": 1275,
-   "slots": [
-    "mid"
-   ],
-   "viewKind": "headgear",
-   "origin": "iro",
-   "sprite": "_흩날리는낙엽"
-  },
-  {
    "id": 10202733,
    "name": "Frontier_R_Crown",
    "view": 2733,
@@ -5888,6 +7605,12 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_노랑늘어진고양이"
   },
   {
@@ -5899,6 +7622,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "krozero"
+   ],
    "sprite": "_파랑늘어진고양이"
   },
   {
@@ -5910,6 +7637,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "krozero"
+   ],
    "sprite": "_신사의페즈",
    "nameOrigin": "iro"
   },
@@ -5957,6 +7688,11 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_인도네시아헤어밴드",
    "nameOrigin": "iro"
   },
@@ -6016,6 +7752,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "krozero"
+   ],
    "sprite": "_머리끈"
   },
   {
@@ -6038,6 +7778,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "kro",
+    "krozero"
+   ],
    "sprite": "_larva_red",
    "unnamed": true
   },
@@ -6050,6 +7794,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "kro",
+    "krozero"
+   ],
    "sprite": "_larva_yellow_mini",
    "unnamed": true
   },
@@ -6062,6 +7810,10 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "magnus_dominus",
    "unnamed": true
   },
@@ -6075,6 +7827,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
    "sprite": "_각시탈"
   },
   {
@@ -6099,6 +7855,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "krozero"
+   ],
    "sprite": "_고블린가면2호"
   },
   {
@@ -6110,6 +7870,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "_midgard_diadem_jp",
    "unnamed": true
   },
@@ -6122,6 +7887,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_돈을잃은자의마음",
    "nameOrigin": "iro"
   },
@@ -6146,6 +7915,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
    "sprite": "_월야화모자",
    "nameOrigin": "iro"
   },
@@ -6181,6 +7954,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_판다풍선",
    "nameOrigin": "iro"
   },
@@ -6193,6 +7971,10 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
    "sprite": "_passion_rabbit_ribbon",
    "unnamed": true
   },
@@ -6206,6 +7988,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
    "sprite": "_아프로가발"
   },
   {
@@ -6229,6 +8015,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
    "sprite": "_미니글래스"
   },
   {
@@ -6240,6 +8030,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "_보스모자",
    "nameOrigin": "iro"
   },
@@ -6275,6 +8070,11 @@
    ],
    "viewKind": "garment",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "rainbow_shell",
    "unnamed": true
   },
@@ -6323,6 +8123,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "krozero"
+   ],
    "sprite": "_분노입"
   },
   {
@@ -6334,6 +8138,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_대만주먹밥",
    "nameOrigin": "iro"
   },
@@ -6346,6 +8154,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twrozero"
+   ],
    "sprite": "_사쿠라머리띠",
    "nameOrigin": "iro"
   },
@@ -6382,6 +8197,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "kro",
+    "krozero"
+   ],
    "sprite": "_sausage",
    "unnamed": true
   },
@@ -6394,6 +8213,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
    "sprite": "_눈부신가발",
    "nameOrigin": "iro"
   },
@@ -6406,6 +8229,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_실버토끼머리띠",
    "nameOrigin": "iro"
   },
@@ -6430,6 +8257,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_soul_mastery_crown",
    "unnamed": true
   },
@@ -6454,6 +8285,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
    "sprite": "_해바라기핀",
    "nameOrigin": "iro"
   },
@@ -6466,6 +8301,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_늘어진메이드인형모자",
    "nameOrigin": "iro"
   },
@@ -6478,6 +8317,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
    "sprite": "_타레도모붜이",
    "nameOrigin": "iro"
   },
@@ -6501,6 +8345,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
    "sprite": "_풍차비녀",
    "nameOrigin": "iro"
   },
@@ -6513,6 +8361,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "_vip_hair_2025",
    "unnamed": true
   },
@@ -6525,6 +8378,10 @@
    ],
    "viewKind": "headgear",
    "origin": "kro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
    "sprite": "_yellowkitty_headphone",
    "unnamed": true
   },
@@ -6537,6 +8394,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero"
+   ],
    "sprite": "_늘어진길용이",
    "unnamed": true
   },
@@ -6611,6 +8472,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_천하일품라면",
    "unnamed": true
   },
@@ -6635,6 +8500,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_황금튤립머리핀",
    "nameOrigin": "kro"
   },
@@ -6671,6 +8540,12 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "_imperial_guardian",
    "nameOrigin": "jro"
   },
@@ -6695,6 +8570,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero"
+   ],
    "sprite": "_wisdom_core_headphones",
    "nameOrigin": "jro"
   },
@@ -6731,6 +8611,10 @@
    ],
    "viewKind": "garment",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "glutton_cerberus",
    "nameOrigin": "jro"
   },
@@ -6755,6 +8639,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_sacred_lapel",
    "nameOrigin": "jro"
   },
@@ -6767,6 +8655,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_midgard_integrity",
    "nameOrigin": "jro"
   },
@@ -6779,6 +8671,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_타이니모자",
    "nameOrigin": "jro"
   },
@@ -6803,6 +8699,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "_two_tone_cap",
    "nameOrigin": "jro"
   },
@@ -6827,6 +8728,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_perm_frost_oblivion",
    "nameOrigin": "jro"
   },
@@ -6863,6 +8768,11 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "_majestic_fox",
    "nameOrigin": "jro"
   },
@@ -6899,6 +8809,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "_wild_beast",
    "nameOrigin": "jro"
   },
@@ -6911,6 +8826,12 @@
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
+   "origins": [
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_blue_astrologer_hat",
    "nameOrigin": "twro"
   },
@@ -6927,18 +8848,6 @@
    "nameOrigin": "jro"
   },
   {
-   "id": 10002353,
-   "name": "幽魅火球",
-   "view": 2353,
-   "slots": [
-    "low"
-   ],
-   "viewKind": "headgear",
-   "origin": "iro",
-   "sprite": "_ghost_fire_tw",
-   "nameOrigin": "twro"
-  },
-  {
    "id": 10002752,
    "name": "心頭滅却マフラー(青)",
    "view": 2752,
@@ -6947,6 +8856,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
    "sprite": "_flame_muffler_bu",
    "nameOrigin": "jro"
   },
@@ -6959,6 +8873,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_mobile_support_systems",
    "nameOrigin": "jro"
   },
@@ -6971,6 +8889,10 @@
    ],
    "viewKind": "headgear",
    "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero"
+   ],
    "sprite": "_bluecat_ear",
    "nameOrigin": "twro"
   },
@@ -6995,6 +8917,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_c_sakura_witch_hat_w",
    "nameOrigin": "jro"
   },
@@ -7007,6 +8934,13 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
    "sprite": "_flash_of_lightning",
    "nameOrigin": "twro"
   },
@@ -7019,6 +8953,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "_inquisitor_veil",
    "nameOrigin": "jro"
   },
@@ -7031,6 +8970,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "_white_fox_bamboo_hat",
    "nameOrigin": "jro"
   },
@@ -7043,6 +8987,10 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
    "sprite": "_용기사의안대",
    "nameOrigin": "jro"
   },
@@ -7067,6 +9015,11 @@
    ],
    "viewKind": "headgear",
    "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
    "sprite": "_진화된용의해골",
    "nameOrigin": "twro"
   },

@@ -21,7 +21,13 @@
 // rather than an index so it survives a filter, a search or a view switch.
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { Costume, Slot, Stone } from "../core/db";
+import {
+  originsOf as dbOriginsOf,
+  primaryOrigin,
+  type Costume,
+  type Slot,
+  type Stone,
+} from "../core/db";
 import { hint } from "../core/hints";
 import { persisted } from "../core/prefs";
 import { fold } from "../core/text";
@@ -98,11 +104,14 @@ export function Catalog({
           (kindFilter === "all" || (kindFilter === "stone") === isStone(item)) &&
           (!slotFilter || item.slots.includes(slotFilter)) &&
           // A costume from another official server is hidden unless asked for,
-          // and then optionally narrowed to one server. Everything LATAM ships
-          // has no origin and is unaffected by either.
-          (!originOf(item)
+          // and then optionally narrowed to one server. A costume several
+          // servers have answers to each of their chips -- "iRO" means every
+          // costume iRO has and LATAM does not, not the subset we happened to
+          // extract from iRO. Everything LATAM ships has no origin at all and
+          // is unaffected by either filter.
+          (originsOf(item).length === 0
             ? true
-            : showForeign && (!originFilter || originOf(item) === originFilter)) &&
+            : showForeign && (!originFilter || originsOf(item).includes(originFilter))) &&
           // A stone only ever holds one position, so "só de uma posição" can
           // never exclude one — it exists to hide the Topo+Meio costume sets.
           (!singleSlotOnly || item.slots.length === 1),
@@ -112,12 +121,9 @@ export function Catalog({
   // The servers actually represented in the catalogue, in the order they are
   // first seen, so the chips describe the data instead of a hard-coded list.
   const origins = useMemo(() => {
-    const seen: string[] = [];
-    for (const item of all) {
-      const o = originOf(item);
-      if (o && !seen.includes(o)) seen.push(o);
-    }
-    return seen.sort();
+    const seen = new Set<string>();
+    for (const item of all) for (const o of originsOf(item)) seen.add(o);
+    return [...seen].sort();
   }, [all]);
   // The filtered items in display order. The list view windows over this, and
   // the arrow keys step through it; both need the same array, so it's built
@@ -278,6 +284,7 @@ export function Catalog({
           isOn={isOn}
           onPick={pick}
           pickSignal={pickSignal}
+          originFilter={originFilter}
         />
       ) : (
         // The card is a box outside the scroller so it can clip its scrollbar
@@ -286,13 +293,16 @@ export function Catalog({
           <div className="catalog-grid" role="list" ref={gridRef}>
             {all.map((item, i) => {
               const equipped = isOn(item);
-              const origin = originOf(item);
+              const servers = originsOf(item);
+              // One name fits a tile. With a chip held down it is that chip's
+              // server, so the badge never seems to contradict the filter.
+              const origin = primaryOrigin(servers, originFilter);
               const server = origin ? (t.foreignServerNames[origin] ?? origin) : null;
               // The badge is on the tile, not only in the tooltip: once the
               // filter is on, foreign and LATAM costumes sit side by side in
               // one grid, and the only thing that tells them apart is this.
               const label = server
-                ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip(server)}`
+                ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip(t.foreignServerList(servers))}`
                 : `${item.name} (#${item.id})`;
               const cls = [
                 "catalog-item",
@@ -363,4 +373,10 @@ function isStone(item: Costume | Stone): item is Stone {
  *  LATAM ships — which is every stone and almost every costume. */
 export function originOf(item: Costume | Stone): string | null {
   return (!isStone(item) && item.origin) || null;
+}
+
+/** The servers a costume belongs to, with stones (which never have one)
+ *  answered as "none" rather than reaching into db.ts for an empty array. */
+function originsOf(item: Costume | Stone): string[] {
+  return isStone(item) ? [] : dbOriginsOf(item);
 }

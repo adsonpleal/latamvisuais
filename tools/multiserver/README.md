@@ -365,10 +365,10 @@ node tools/multiserver/cli.mjs publishable
 Everything before this stage is addressed by the pipeline's own keys: a
 shortlist row, a plan step, a path inside somebody's patch. This writes
 `foreign-costumes.json`, one list of costumes that are **present on disk and
-renderable**, each carrying the `origin` the feature needs for its badge and its
-filter.
+renderable**, each carrying both origins the feature needs: the tree it is
+rendered from, and the servers that have it.
 
-Two things decide what the file says, both measured rather than assumed.
+Three things decide what the file says, all measured rather than assumed.
 
 **A costume is listed only if the tree can draw it.** Not "every planned path
 exists": a plan is a delivery order, not an inventory. `--prune-robes`
@@ -394,11 +394,51 @@ carry an English identifier. By origin: iRO 231, jRO 119, kRO Zero 113, LATAM
 71, twRO 64, twRO Zero 38, kRO 27. By slot: top 163, low 132, garment 111, mid
 87, and 200 whose slot no client states.
 
-Each entry is `{kind, view, sprite, origin, name, nameOrigin, aegis, slots,
-files}`. `name` is whichever client names the item, which is not always the
+**Where it comes from and who has it are different questions.** `origin` is the
+one tree whose files render it — whichever client the extraction found it
+cheapest to fetch from. `origins` is every official server whose own archives
+ship that sprite, which is what a filter means by "the costumes iRO has", and it
+is read from the per-origin path index with the same rule the tree probe uses:
+both sexes for a headgear, any `.spr` in the folder for a garment. The two
+differ for 1 costume in 8 — filtering on `origin` showed a costume under one
+server and hid it from every other server that has it. Measured against the
+alternatives: the client's **view table** credits iRO with 591 of 592, because
+Gravity ships one global accessory table and the id being in it says nothing
+about the art; the client's **item table** is closer to "obtainable" but kRO
+Zero publishes none, so its chip would read zero for want of data. The path
+index is the only one all six answer the same way, and it undercounts rather
+than inventing: an archive with no readable file table is invisible to it.
+
+Each entry is `{kind, view, sprite, origin, origins, name, nameOrigin, aegis,
+slots, files}`. `name` is whichever client names the item, which is not always the
 client the art came from: an item id is global, so twRO can name a costume iRO
 supplies. `aegis` is the English identifier, a translation base rather than a
 display name.
+
+### 6. `find-blank-visuals` — the ones that draw nothing
+
+```bash
+node tools/multiserver/find-blank-visuals.mjs [--base <gateway>]
+```
+
+A costume can be present, complete and still draw **nothing**: the sprite is a
+placeholder for a `.str` effect the client hangs off it, or the client shipped
+it broken. The gateway answers those with a 200 and a valid PNG of a character
+wearing nothing, which no status code or content type distinguishes from a
+request that asked for nothing — so the only way to find them is to render the
+bare character too and compare the bytes.
+
+17 of the 592 are blank. `blank-visuals.json` is the committed result, and
+`export-app-catalogue.mjs` reads it and leaves those rows out, so the app ships
+no dead tiles. Nearly all 17 are effect costumes (`_흩날리는낙엽` falling
+leaves, `_c골드샤워` gold shower, `_흩날리는벚꽃` Amatsu aura): drawing them
+needs the `.str` extracted per origin, which this pipeline does not do yet.
+
+The sweep tries ten poses before calling a costume blank. Asking for the
+standing pose alone accused 47, and five of those draw perfectly well once the
+character moves — iRO's `_low_pony_bu` is empty standing, walking and sitting,
+and draws from action type 3 on. Only a costume that fails the first pose pays
+for the other nine: 822 renders for 592 costumes.
 
 ## Not done here
 

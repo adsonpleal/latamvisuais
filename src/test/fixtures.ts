@@ -159,6 +159,18 @@ export function makeDb(): Db {
         origin: "twro",
         sprite: "foreign_cape",
       },
+      // Two servers ship this one. `origin` is the tree it renders from;
+      // `origins` is who has it, and the filter answers from the second.
+      {
+        id: 10400990,
+        name: "Chapéu de Dois Servidores",
+        view: 990,
+        slots: ["top"],
+        viewKind: "headgear",
+        origin: "twro",
+        origins: ["iro", "twro"],
+        sprite: "_shared_hat",
+      },
     ],
     stones: [
       { id: 1100, name: "Pedra Gráfica: Brilho (Topo)", slot: "top", slots: ["top"], stone: true, effect: "glow" },

@@ -12,7 +12,7 @@
 // share link made today has to still mean the same costume after the next
 // extraction run.
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 
 /** Frozen: an origin's position here is part of every id derived from it.
@@ -72,7 +72,12 @@ export function toAppRow(c) {
     view: c.view,
     slots: slotsFor(c),
     viewKind: c.kind === "acc" ? "headgear" : "garment",
+    // The tree the gateway renders it from.
     origin: c.origin,
+    // Every server that has it, when that is more than the one it is rendered
+    // from. Left out of the 521 rows where the two say the same thing, so the
+    // file stays small; the app reads `origins ?? [origin]`.
+    ...(c.origins?.length > 1 ? { origins: c.origins } : {}),
     // Lowercased here rather than in the app or the gateway: this is the one
     // place that knows it is naming a file in a mirror.
     sprite: c.sprite.toLowerCase(),
@@ -86,16 +91,32 @@ export function toAppRow(c) {
   };
 }
 
-export function buildAppCatalogue(doc, { skipOrigins = ["latam"] } = {}) {
+/** "<origin>/<kind>:<view>" — how the blank sweep names a costume, since the
+ *  app id is derived and the view id means nothing without its origin. The two
+ *  sides spell the kind differently (the pipeline says acc/robe, the app says
+ *  headgear/garment), so the key settles on the app's spelling. */
+const appKind = (k) => (k === "robe" || k === "garment" ? "garment" : "headgear");
+export const blankKey = (c) => `${c.origin}/${appKind(c.viewKind ?? c.kind)}:${Number(c.view)}`;
+
+export function buildAppCatalogue(doc, { skipOrigins = ["latam"], blank = [] } = {}) {
   const items = [];
   const skipped = [];
+  const empty = [];
   const seen = new Set();
+  // Costumes measured to draw nothing — the sprite is a placeholder for a .str
+  // effect, or the client shipped it incomplete. They render as a 200 and a
+  // character wearing nothing, so shipping them means a grid of dead tiles.
+  const isBlank = new Set(blank.map(blankKey));
   for (const c of doc.costumes) {
     // LATAM-sourced rows are not "another server's visuals" — they are views
     // this client has and the published catalogue happens not to list. They
     // belong to a different question, so they do not go behind this filter.
     if (skipOrigins.includes(c.origin)) {
       skipped.push(c);
+      continue;
+    }
+    if (isBlank.has(blankKey(c))) {
+      empty.push(c);
       continue;
     }
     const row = toAppRow(c);
@@ -105,11 +126,13 @@ export function buildAppCatalogue(doc, { skipOrigins = ["latam"] } = {}) {
   }
   items.sort((a, b) => a.name.localeCompare(b.name, "pt-BR") || a.id - b.id);
 
+  // Counted per server rather than per tree, because that is what the app's
+  // chips show: a costume three servers have is counted by all three.
   const byOrigin = {};
-  for (const r of items) byOrigin[r.origin] = (byOrigin[r.origin] ?? 0) + 1;
+  for (const r of items) for (const o of r.origins ?? [r.origin]) byOrigin[o] = (byOrigin[o] ?? 0) + 1;
   return {
     doc: { version: 1, generatedAt: doc.generatedAt, counts: byOrigin, items },
-    stats: { items: items.length, skipped: skipped.length, byOrigin },
+    stats: { items: items.length, skipped: skipped.length, blank: empty.length, byOrigin },
   };
 }
 
@@ -120,11 +143,14 @@ if (isMain) {
     console.error("usage: node export-app-catalogue.mjs <foreign-costumes.json> <public/db/foreign-costumes.json>");
     process.exit(2);
   }
-  const { doc, stats } = buildAppCatalogue(JSON.parse(readFileSync(src, "utf8")));
+  const blankFile = new URL("./blank-visuals.json", import.meta.url);
+  const blank = existsSync(blankFile) ? JSON.parse(readFileSync(blankFile, "utf8")).blank : [];
+  const { doc, stats } = buildAppCatalogue(JSON.parse(readFileSync(src, "utf8")), { blank });
   writeFileSync(dest, JSON.stringify(doc, null, 1) + "\n");
   console.log(`${stats.items} fantasias → ${dest}`);
   for (const [o, n] of Object.entries(stats.byOrigin).sort((a, b) => b[1] - a[1])) {
     console.log(`  ${o.padEnd(9)} ${String(n).padStart(4)}`);
   }
   console.log(`  (${stats.skipped} de origem latam ficaram de fora — nao sao visuais de outro servidor)`);
+  console.log(`  (${stats.blank} que nao desenham nada ficaram de fora — ver blank-visuals.json)`);
 }

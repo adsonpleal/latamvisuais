@@ -30,6 +30,7 @@ import {
   buildCatalogue,
   catalogueDocument,
   costumeDraws,
+  originsFromPaths,
   planByCostume,
   slotsByCostume,
   treeProbe,
@@ -969,6 +970,48 @@ describe("treeProbe", () => {
   });
 });
 
+describe("originsFromPaths", () => {
+  const costumes = [
+    { kind: "acc", view: 1, sprite: "_chapeu" },
+    { kind: "robe", view: 2, sprite: "capa" },
+    { kind: "acc", view: 3, sprite: "" },
+  ];
+  const acc = (sex, name) => `data\\sprite\\악세사리\\${sex}\\${sex}${name}`;
+  const index = new Map([
+    // Ships both sexes of the hat and a sprite inside the garment's folder.
+    [
+      "iro",
+      [acc("남", "_chapeu.spr"), acc("여", "_chapeu.spr"), "data\\sprite\\로브\\capa\\남_capa.spr"],
+    ],
+    // Only the male hat, and only animation data for the garment.
+    ["twro", [acc("남", "_Chapeu.SPR"), "data\\sprite\\로브\\capa\\남_capa.act"]],
+    // Has the garment, not the hat.
+    ["jro", ["data\\sprite\\로브\\capa\\여_capa.spr"]],
+  ]);
+  const holders = originsFromPaths(costumes, index);
+
+  it("credits a server only when it ships both sexes of a headgear", () => {
+    // twRO ships the male sprite alone -- the same rule costumeDraws applies,
+    // because "has it" has to mean "could draw it".
+    expect(holders.get("acc:1")).toEqual(["iro"]);
+  });
+
+  it("credits a garment to every server with a sprite in its folder", () => {
+    // twRO's folder holds only an .act, which draws nothing.
+    expect(holders.get("robe:2")).toEqual(["iro", "jro"]);
+  });
+
+  it("matches regardless of the case and slashes an archive used", () => {
+    // Paths inside a GRF are Windows-style and inconsistently cased; iRO's
+    // rows above are lowercase and twRO's are not.
+    expect(originsFromPaths([costumes[0]], new Map([["twro", [acc("남", "_CHAPEU.spr"), acc("여", "_chapeu.SPR")]]])).get("acc:1")).toEqual(["twro"]);
+  });
+
+  it("credits nothing to a costume with no sprite name", () => {
+    expect(holders.get("acc:3")).toEqual([]);
+  });
+});
+
 describe("buildCatalogue", () => {
   const plan = [
     { kind: "acc", view: "1", origin: "twro", path: "a.spr" },
@@ -997,6 +1040,9 @@ describe("buildCatalogue", () => {
       view: 1,
       sprite: "bom",
       origin: "twro",
+      // No path index was given, so the only server known to have it is the
+      // tree it came from.
+      origins: ["twro"],
       name: "Chapéu Bom",
       nameOrigin: "latam",
       aegis: "C_Good",

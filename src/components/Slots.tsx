@@ -8,7 +8,7 @@
 // in the game: the costume stays put and the stone rides along with it.
 
 import { useState } from "react";
-import { canPreview, SLOTS, type Slot, type Stone } from "../core/db";
+import { canPreview, originsOf, SLOTS, type Slot, type Stone } from "../core/db";
 import { itemIconUrl } from "../core/state";
 import { t } from "../i18n";
 import { useAppState, useDispatch } from "../state/AppStateContext";
@@ -45,7 +45,7 @@ export function Slots({ onPick }: { onPick: (slot: Slot, kind: PickKind) => void
                 {item?.origin && (
                   <span
                     className="slot-origin"
-                    data-tip={t.foreignBadgeTip(t.foreignServerNames[item.origin] ?? item.origin)}
+                    data-tip={t.foreignBadgeTip(t.foreignServerList(originsOf(item)))}
                   >
                     {t.foreignServerNames[item.origin] ?? item.origin}
                   </span>

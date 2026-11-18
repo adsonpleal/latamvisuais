@@ -13,7 +13,13 @@
 // which it has to do arithmetically because the target row may not be mounted.
 
 import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from "react";
-import { canPreview, type Costume, type Stone } from "../core/db";
+import {
+  canPreview,
+  originsOf,
+  primaryOrigin,
+  type Costume,
+  type Stone,
+} from "../core/db";
 import { divinePrideUrl, marketUrl } from "../core/links";
 import { useServer } from "../core/server";
 import { t } from "../i18n";
@@ -38,9 +44,12 @@ type Props = {
   onPick: (item: Costume | Stone, el: HTMLElement) => void;
   /** Bumps when a slot card opened the catalogue: scroll back to the top. */
   pickSignal: number;
+  /** The server chip currently held down, if any. Only decides which name a
+   *  badge shows when several servers have the costume. */
+  originFilter: string | null;
 };
 
-export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props) {
+export function CatalogList({ items, cursorId, isOn, onPick, pickSignal, originFilter }: Props) {
   const listRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef(0);
   // The window's own coordinates, not the scroller's: `scrollTop` changes every
@@ -50,7 +59,7 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
   const [count, setCount] = useState(OVERSCAN * 2);
   const [pitch, setPitch] = useState(ROW_PITCH);
   // Read, not picked, here: the server picker lives in the wishlist.
-  const [server] = useServer();
+  const [gameServer] = useServer();
 
   const total = items.length;
   const start = Math.min(first, Math.max(0, total - count));
@@ -163,6 +172,12 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
         <div style={{ height: start * pitch, flexShrink: 0 }} aria-hidden="true" />
         {items.slice(start, end).map((item) => {
           const equipped = isOn(item);
+          // Same badge the grid puts on a tile. The row has more space than a
+          // tile and still needs it more: a row shows a name and an id, and
+          // for a foreign costume both of those are unfamiliar on purpose.
+          const servers = originsOf(item);
+          const origin = primaryOrigin(servers, originFilter);
+          const server = origin ? (t.foreignServerNames[origin] ?? origin) : null;
           return (
             <div
               key={item.id}
@@ -182,40 +197,66 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
                 type="button"
                 className="catalog-row-pick"
                 aria-pressed={equipped}
-                aria-label={`${item.name} (#${item.id})`}
+                aria-label={
+                  server
+                    ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip(t.foreignServerList(servers))}`
+                    : `${item.name} (#${item.id})`
+                }
                 onClick={(e) => onPick(item, e.currentTarget)}
               />
               <CostumeIcon item={item} className="catalog-row-icon" />
               <span className="catalog-row-text">
                 <span className="catalog-row-name">{item.name}</span>
                 <span className="catalog-row-meta">
-                  <a
-                    className="catalog-row-id"
-                    href={divinePrideUrl(item)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-tip={t.divineLink}
-                  >
-                    {`#${item.id}`}
-                  </a>
+                  {/* A foreign costume's id is this app's own invention -- a
+                      synthetic number for a view in another client's table --
+                      so there is nothing on divine-pride to link it to. It is
+                      still printed: it is what the search box and a share link
+                      take. */}
+                  {server ? (
+                    <span className="catalog-row-id is-plain">{`#${item.id}`}</span>
+                  ) : (
+                    <a
+                      className="catalog-row-id"
+                      href={divinePrideUrl(item)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-tip={t.divineLink}
+                    >
+                      {`#${item.id}`}
+                    </a>
+                  )}
                   {/* A stone's client name already ends in "(Topo)", so
                       repeating the position would say it twice — what the row
                       still has to say is that it is a stone at all. */}
                   {"stone" in item
                     ? ` · ${t.stoneLabel}${stoneNote(item)}`
                     : ` · ${item.slots.map((s) => t.slotNames[s]).join(" + ")}`}
+                  {server && (
+                    <span
+                      className="catalog-origin"
+                      data-tip={t.foreignBadgeTip(t.foreignServerList(servers))}
+                    >
+                      {server}
+                    </span>
+                  )}
                 </span>
               </span>
-              <a
-                className="catalog-row-market"
-                href={marketUrl(item, server)}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-tip={t.marketSearch}
-                aria-label={`${t.marketSearch}: ${item.name}`}
-              >
-                <Cart />
-              </a>
+              {/* Nothing to search for: the market is LATAM's, and this
+                  costume is in the catalogue precisely because LATAM has no
+                  item for it. */}
+              {!server && (
+                <a
+                  className="catalog-row-market"
+                  href={marketUrl(item, gameServer)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-tip={t.marketSearch}
+                  aria-label={`${t.marketSearch}: ${item.name}`}
+                >
+                  <Cart />
+                </a>
+              )}
             </div>
           );
         })}
