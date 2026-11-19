@@ -1150,9 +1150,11 @@ Aqui tem caminho. O site (`ro.zhaouc.com`) publica o cliente completo em
 **é a árvore de arquivos do cliente, não um instalador**: o primeiro membro já é
 `Mss32.dll`.
 
-Escrevi um walker de RAR5 que anda a cadeia de headers por Range e pula os dados
-por aritmética de offset (`scripts/rarwalk.mjs` no scratchpad da sessão; 400
-membros custaram **34 reads e 1,1 MB**). O que ele diz:
+Medi com um walker de RAR5 escrito para isso: anda a cadeia de headers por
+Range e pula os dados por aritmética de offset, então uma varredura de 400
+membros custou **34 requisições e 1,1 MB**. Quem retomar reescreve em meia
+hora — o formato é público e o truque é só este: ler o header, pegar `hdrSize` e
+`dataSize`, e saltar para `typeAt + hdrSize + dataSize`. O que ele disse:
 
 | | |
 |---|---|
@@ -1174,9 +1176,11 @@ E o `ROCN.ini` rendeu um achado lateral que vale para todas as origens:
 > segunda rota para o endpoint de patch exatamente nos clientes onde o
 > `ServerInfo` está fora de alcance, como o idRO.
 
-O que falta medir no cRO é **em qual balde caem os arquivos que interessam** —
-`ServerInfo_CN.lub` (para o endpoint de patch), `System/itemInfo*.lub` e o
-`data.grf`. Se forem `store`, o cRO entra pelo mesmo custo do thRO; se forem
-`normal`, precisa de um leitor de RAR antes. O walk completo ficou pendente
-porque o host começou a estrangular a banda no meio da caminhada — é um
-"continuar", não um "não dá".
+**Parado aqui por decisão, em 2026-11-19.** Falta medir uma coisa só: **em qual
+balde caem os arquivos que interessam** — `ServerInfo_CN.lub` (para o endpoint
+de patch), `System/itemInfo*.lub` e o `data.grf`. Se forem `store`, o cRO entra
+pelo mesmo custo do thRO; se forem `normal`, precisa de um decodificador de RAR
+antes, e aí deixa de ser barato. A varredura completa não terminou porque o host
+passou a estrangular a banda no meio dela — os 400 primeiros membros vieram em
+dois minutos, os 250 seguintes em dez —, então quem retomar deve contar com
+várias passadas curtas em vez de uma caminhada só.
