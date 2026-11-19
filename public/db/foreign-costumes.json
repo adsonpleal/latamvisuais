@@ -1,13 +1,13 @@
 {
  "version": 1,
- "generatedAt": "2026-11-18",
+ "generatedAt": "2026-11-19",
  "counts": {
-  "iro": 316,
-  "twro": 297,
-  "kro": 191,
-  "krozero": 204,
-  "jro": 392,
-  "twrozero": 110
+  "iro": 306,
+  "twro": 286,
+  "kro": 188,
+  "krozero": 148,
+  "jro": 387,
+  "twrozero": 109
  },
  "items": [
   {
@@ -5486,33 +5486,6 @@
    "nameOrigin": "twrozero"
   },
   {
-   "id": 10300290,
-   "name": "[Visual] Tiara de Anjo",
-   "view": 290,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_천사의머리띠"
-  },
-  {
-   "id": 10301473,
-   "name": "[Visual] Valsa da Primavera",
-   "view": 1473,
-   "slots": [
-    "low"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "jro",
-    "krozero",
-    "twro"
-   ],
-   "sprite": "_c꽃의왈츠"
-  },
-  {
    "id": 10402011,
    "name": "[レンタル衣装] エレガントウェーブ",
    "view": 2011,
@@ -6487,39 +6460,6 @@
    "unnamed": true
   },
   {
-   "id": 10300206,
-   "name": "Abóbora de Decoração",
-   "view": 206,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_호박모자"
-  },
-  {
-   "id": 10300097,
-   "name": "Antena",
-   "view": 97,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_안테나"
-  },
-  {
-   "id": 10300085,
-   "name": "Antenas Verdes",
-   "view": 85,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_초록더듬이"
-  },
-  {
    "id": 10050049,
    "name": "Archangel_Wing",
    "view": 49,
@@ -6530,28 +6470,6 @@
    "origin": "iro",
    "sprite": "archangel_wing",
    "unnamed": true
-  },
-  {
-   "id": 10300006,
-   "name": "Bandana",
-   "view": 6,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_두건"
-  },
-  {
-   "id": 10300127,
-   "name": "Bao-Bao",
-   "view": 127,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_머리포자기"
   },
   {
    "id": 10402603,
@@ -6576,28 +6494,6 @@
    "origin": "krozero",
    "sprite": "_새둥지모자",
    "nameOrigin": "iro"
-  },
-  {
-   "id": 10300208,
-   "name": "Boneca de Alice",
-   "view": 208,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_엘리스모자"
-  },
-  {
-   "id": 10300212,
-   "name": "Boneca de Marionete",
-   "view": 212,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_마리오넷모자"
   },
   {
    "id": 10001346,
@@ -6799,24 +6695,6 @@
     "kro"
    ],
    "sprite": "_c_guide_of_dead_cap",
-   "unnamed": true
-  },
-  {
-   "id": 10002895,
-   "name": "C_Halloween_Candy_Hair",
-   "view": 2895,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "iro",
-   "origins": [
-    "iro",
-    "jro",
-    "kro",
-    "krozero"
-   ],
-   "sprite": "_c_halloween_candy_hair",
    "unnamed": true
   },
   {
@@ -7057,223 +6935,6 @@
    "unnamed": true
   },
   {
-   "id": 10300116,
-   "name": "Capacete de Mineiro",
-   "view": 116,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_광산헬멧"
-  },
-  {
-   "id": 10300098,
-   "name": "Capelo",
-   "view": 98,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_학사모"
-  },
-  {
-   "id": 10000185,
-   "name": "Cara de Espanto",
-   "view": 185,
-   "slots": [
-    "mid"
-   ],
-   "viewKind": "headgear",
-   "origin": "iro",
-   "origins": [
-    "iro",
-    "jro",
-    "kro",
-    "krozero",
-    "twro"
-   ],
-   "sprite": "_배틀온라인"
-  },
-  {
-   "id": 10300124,
-   "name": "Casca de Ovo Colorida",
-   "view": 124,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_알록달록알껍질"
-  },
-  {
-   "id": 10300016,
-   "name": "Chapéu",
-   "view": 16,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_햇"
-  },
-  {
-   "id": 10300104,
-   "name": "Chapéu com Pluma",
-   "view": 104,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_깃털모자"
-  },
-  {
-   "id": 10300195,
-   "name": "Chapéu de Balde",
-   "view": 195,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_벙거지모자"
-  },
-  {
-   "id": 10300109,
-   "name": "Chapéu de Bolo",
-   "view": 109,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_케이크모자"
-  },
-  {
-   "id": 10300105,
-   "name": "Chapéu de Corsário",
-   "view": 105,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_커세어"
-  },
-  {
-   "id": 10300064,
-   "name": "Chapéu de Enfermeira",
-   "view": 64,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_간호모"
-  },
-  {
-   "id": 10300051,
-   "name": "Chapéu de Munak",
-   "view": 51,
-   "slots": [
-    "top",
-    "mid",
-    "low"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_무낙모자"
-  },
-  {
-   "id": 10300115,
-   "name": "Chapéu de Panda",
-   "view": 115,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_팬더곰모자"
-  },
-  {
-   "id": 10300262,
-   "name": "Chapéu de Rideword",
-   "view": 262,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "iro",
-    "krozero",
-    "twro"
-   ],
-   "sprite": "_라이드워드"
-  },
-  {
-   "id": 10300189,
-   "name": "Chapéu do Detetive Famoso",
-   "view": 189,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_탐정모자"
-  },
-  {
-   "id": 10300192,
-   "name": "Chapéu Galápago",
-   "view": 192,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_오리모자"
-  },
-  {
-   "id": 10000977,
-   "name": "Chapéu Pré-Escolar",
-   "view": 977,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "iro",
-   "origins": [
-    "iro",
-    "jro",
-    "kro"
-   ],
-   "sprite": "_유치원생의모자"
-  },
-  {
-   "id": 10300150,
-   "name": "Chifre de Succubus",
-   "view": 150,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_서큐버스뿔"
-  },
-  {
-   "id": 10300042,
-   "name": "Chifre de Unicórnio",
-   "view": 42,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_새하얀뿔"
-  },
-  {
    "id": 10000435,
    "name": "Coca-Cola_Bottle",
    "view": 435,
@@ -7372,34 +7033,6 @@
    "nameOrigin": "iro"
   },
   {
-   "id": 10300121,
-   "name": "Cruz",
-   "view": 121,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "iro",
-    "jro",
-    "krozero",
-    "twro"
-   ],
-   "sprite": "_십자머리띠"
-  },
-  {
-   "id": 10300147,
-   "name": "Curativo Gigante",
-   "view": 147,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_반창고"
-  },
-  {
    "id": 10001121,
    "name": "Divine_Guard_Hat",
    "view": 1121,
@@ -7453,28 +7086,6 @@
    "nameOrigin": "iro"
   },
   {
-   "id": 10300257,
-   "name": "Elmo de Morrigane",
-   "view": 257,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_모리아네헬름"
-  },
-  {
-   "id": 10300103,
-   "name": "Elmo de Osso",
-   "view": 103,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_본헬름"
-  },
-  {
    "id": 10102731,
    "name": "Eremes_Scarf_WH",
    "view": 2731,
@@ -7499,58 +7110,6 @@
    "unnamed": true
   },
   {
-   "id": 10300136,
-   "name": "Faixa Azul",
-   "view": 136,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_청색머리띠"
-  },
-  {
-   "id": 10300009,
-   "name": "Faixa de Cabelo",
-   "view": 9,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_머리띠"
-  },
-  {
-   "id": 10300154,
-   "name": "Faixa de Caratê",
-   "view": 154,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "krozero",
-    "twro"
-   ],
-   "sprite": "_열혈머리띠"
-  },
-  {
-   "id": 10300061,
-   "name": "Faixa de Fantasma",
-   "view": 61,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "krozero",
-    "twro"
-   ],
-   "sprite": "_망자의머리띠"
-  },
-  {
    "id": 10000519,
    "name": "First_Leaf_Tea_Hat",
    "view": 519,
@@ -7563,28 +7122,6 @@
    "nameOrigin": "iro"
   },
   {
-   "id": 10400126,
-   "name": "Fivela de Coração",
-   "view": 126,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "twro",
-   "sprite": "_하트머리핀"
-  },
-  {
-   "id": 10300057,
-   "name": "Folha Romântica",
-   "view": 57,
-   "slots": [
-    "low"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_풀잎"
-  },
-  {
    "id": 10202733,
    "name": "Frontier_R_Crown",
    "view": 2733,
@@ -7595,38 +7132,6 @@
    "origin": "kro",
    "sprite": "_frontier_r_crown",
    "unnamed": true
-  },
-  {
-   "id": 10300278,
-   "name": "Gatinho Dorminhoco Amarelo",
-   "view": 278,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "iro",
-    "krozero",
-    "twro",
-    "twrozero"
-   ],
-   "sprite": "_노랑늘어진고양이"
-  },
-  {
-   "id": 10300277,
-   "name": "Gatinho Dorminhoco Azul",
-   "view": 277,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "iro",
-    "krozero"
-   ],
-   "sprite": "_파랑늘어진고양이"
   },
   {
    "id": 10301042,
@@ -7655,17 +7160,6 @@
    "origin": "jro",
    "sprite": "_happy_cat_jp_bl",
    "unnamed": true
-  },
-  {
-   "id": 10300046,
-   "name": "Hélices",
-   "view": 46,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_프로펠라"
   },
   {
    "id": 10400210,
@@ -7709,65 +7203,6 @@
    "origin": "krozero",
    "sprite": "_가부키가면",
    "nameOrigin": "iro"
-  },
-  {
-   "id": 10300243,
-   "name": "Lacinho Amarelo",
-   "view": 243,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_리본_노랑"
-  },
-  {
-   "id": 10300244,
-   "name": "Lacinho Verde",
-   "view": 244,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_리본_초록"
-  },
-  {
-   "id": 10300169,
-   "name": "Lacinhos",
-   "view": 169,
-   "slots": [
-    "mid"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_양쪽귀밑리본"
-  },
-  {
-   "id": 10300034,
-   "name": "Laço Meigo",
-   "view": 34,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "iro",
-    "krozero"
-   ],
-   "sprite": "_머리끈"
-  },
-  {
-   "id": 10300167,
-   "name": "Laço Vermelho",
-   "view": 167,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_빨간테일리본"
   },
   {
    "id": 10302319,
@@ -7818,50 +7253,6 @@
    "unnamed": true
   },
   {
-   "id": 10300223,
-   "name": "Máscara de Noiva",
-   "view": 223,
-   "slots": [
-    "top",
-    "mid"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "krozero",
-    "twro"
-   ],
-   "sprite": "_각시탈"
-  },
-  {
-   "id": 10300079,
-   "name": "Máscara de Solda",
-   "view": 79,
-   "slots": [
-    "mid",
-    "low"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_용접마스크"
-  },
-  {
-   "id": 10300172,
-   "name": "Máscara Surpresa",
-   "view": 172,
-   "slots": [
-    "mid",
-    "low"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "iro",
-    "krozero"
-   ],
-   "sprite": "_고블린가면2호"
-  },
-  {
    "id": 10002692,
    "name": "Midgard_Diadem_JP",
    "view": 2692,
@@ -7895,17 +7286,6 @@
    "nameOrigin": "iro"
   },
   {
-   "id": 10300023,
-   "name": "Monóculo",
-   "view": 23,
-   "slots": [
-    "mid"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_외눈안경"
-  },
-  {
    "id": 10300268,
    "name": "Moonlight_Flower_Hat",
    "view": 268,
@@ -7933,17 +7313,6 @@
    "origin": "iro",
    "sprite": "_nofear파워헤드기어",
    "nameOrigin": "iro"
-  },
-  {
-   "id": 10300289,
-   "name": "Óculos Hi-Ban",
-   "view": 289,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_선글래스"
   },
   {
    "id": 10001115,
@@ -7979,22 +7348,6 @@
    "unnamed": true
   },
   {
-   "id": 10300302,
-   "name": "Peruca do Atirador",
-   "view": 302,
-   "slots": [
-    "top",
-    "mid"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "krozero",
-    "twro"
-   ],
-   "sprite": "_아프로가발"
-  },
-  {
    "id": 10102784,
    "name": "Pigeon_Magic_Hat",
    "view": 2784,
@@ -8005,21 +7358,6 @@
    "origin": "jro",
    "sprite": "_pigeon_magic_hat",
    "unnamed": true
-  },
-  {
-   "id": 10300047,
-   "name": "Pince-Nez",
-   "view": 47,
-   "slots": [
-    "mid"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "krozero",
-    "twro"
-   ],
-   "sprite": "_미니글래스"
   },
   {
    "id": 10000919,
@@ -8037,17 +7375,6 @@
    ],
    "sprite": "_보스모자",
    "nameOrigin": "iro"
-  },
-  {
-   "id": 10300145,
-   "name": "Presilha de Flor",
-   "view": 145,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_꽃머리핀"
   },
   {
    "id": 10001094,
@@ -8113,21 +7440,6 @@
    "origin": "iro",
    "sprite": "_홍백모자",
    "nameOrigin": "iro"
-  },
-  {
-   "id": 10300194,
-   "name": "Resmungo Furioso",
-   "view": 194,
-   "slots": [
-    "low"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "iro",
-    "krozero"
-   ],
-   "sprite": "_분노입"
   },
   {
    "id": 10000892,
@@ -8326,17 +7638,6 @@
    "nameOrigin": "iro"
   },
   {
-   "id": 10300148,
-   "name": "Tiara de Folha",
-   "view": 148,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_나뭇잎투구"
-  },
-  {
    "id": 10300313,
    "name": "Vane_Hairpin",
    "view": 313,
@@ -8414,19 +7715,6 @@
    "unnamed": true
   },
   {
-   "id": 10300176,
-   "name": "수녀모자",
-   "view": 176,
-   "slots": [
-    "top",
-    "mid"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_수녀모자",
-   "unnamed": true
-  },
-  {
    "id": 10100995,
    "name": "스콜피온모자",
    "view": 995,
@@ -8448,19 +7736,6 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_알럽차이나모자",
-   "unnamed": true
-  },
-  {
-   "id": 10300178,
-   "name": "오크히어로투구",
-   "view": 178,
-   "slots": [
-    "top",
-    "mid"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "sprite": "_오크히어로투구",
    "unnamed": true
   },
   {

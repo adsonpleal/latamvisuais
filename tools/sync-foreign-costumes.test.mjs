@@ -12,6 +12,7 @@ import {
   buildAppCatalogue,
   foreignId,
   labelFromSprite,
+  localizedSprites,
   ORIGIN_ORDER,
   toAppRow,
 } from "./sync-foreign-costumes.mjs";
@@ -85,6 +86,31 @@ describe("toAppRow", () => {
   });
 });
 
+describe("localizedSprites", () => {
+  // /raw/items.json, as sync-db reads it: keyed by id, naming the sprite file.
+  const items = [
+    { id: 2211, name: "Bandana", resourceName: "_두건" },
+    // Gravity ships one item table to every client, so a row exists here for
+    // things this one never released -- with no name. That is the opposite
+    // case from the one above and must not count.
+    { id: 420165, name: null, resourceName: "_C_Tent" },
+    { id: 999, name: "Sem sprite", resourceName: null },
+  ];
+
+  it("keys on the sprite, in the one spelling both tables agree on", () => {
+    const here = localizedSprites(items);
+    expect(here.has("두건")).toBe(true);
+    // The catalogue writes it lowercase and without the underscore; the item
+    // table writes it as the accessory tables do.
+    expect(here.has("c_tent")).toBe(false);
+  });
+
+  it("ignores the rows that answer nothing", () => {
+    expect(localizedSprites(items).size).toBe(1);
+    expect(localizedSprites(undefined).size).toBe(0);
+  });
+});
+
 describe("buildAppCatalogue", () => {
   const doc = {
     generatedAt: "2026-11-18",
@@ -117,6 +143,23 @@ describe("buildAppCatalogue", () => {
     const { doc: built, stats } = buildAppCatalogue(withBlank);
     expect(built.items.map((i) => i.view)).toEqual([2551]);
     expect(stats.blank).toBe(1);
+  });
+
+  // The filter's whole claim is that these cannot be had here. A costume whose
+  // art this client already sells under a name of its own -- kRO Zero publishes
+  // dozens of the old headgears as costume views -- would make that a lie.
+  it("drops a costume whose sprite LATAM already sells under a name", () => {
+    const localItems = [{ id: 2211, name: "Bandana", resourceName: "_IRO_Hat" }];
+    const { doc: built, stats } = buildAppCatalogue(doc, { localItems });
+    expect(built.items.map((i) => i.view)).toEqual([2551]);
+    expect(stats.localized).toBe(1);
+  });
+
+  it("keeps one LATAM has no name for, which is what unreleased looks like", () => {
+    const localItems = [{ id: 2211, name: null, resourceName: "_IRO_Hat" }];
+    const { doc: built, stats } = buildAppCatalogue(doc, { localItems });
+    expect(built.items).toHaveLength(2);
+    expect(stats.localized).toBe(0);
   });
 
   it("refuses two costumes that would land on one id", () => {

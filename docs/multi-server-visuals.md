@@ -413,8 +413,8 @@ six live patch services before downloading anything.
 ## No app: o filtro, o badge e como o visual chega à tela
 
 O catálogo estrangeiro é um arquivo que o app leva junto
-(`public/db/foreign-costumes.json`, 575 fantasias — 592 completas no espelho
-menos as 17 que não desenham nada), gerado por
+(`public/db/foreign-costumes.json`, 517 fantasias — 592 completas no espelho,
+menos as 17 que não desenham nada e as 58 que o LATAM já vende), gerado por
 `tools/sync-foreign-costumes.mjs` (`npm run sync:foreign`) a partir de
 `/raw/foreign-costumes.json`, que o ragassets publica do mesmo jeito que publica
 as outras tabelas do cliente. A extração que produz esse arquivo **mora no
@@ -501,11 +501,11 @@ O índice de caminhos é o único critério que as seis origens respondem do mes
 jeito. Ele subestima em vez de inventar: um archive sem tabela de arquivos
 legível é invisível ali.
 
-Com esse critério, 1510 pertencimentos entre 575 visuais — jRO 392, iRO 316,
-twRO 297, kRO Zero 204, kRO 191, twRO Zero 110.
+Com esse critério, 1424 pertencimentos entre 517 visuais — jRO 387, iRO 306,
+twRO 286, kRO 188, kRO Zero 148, twRO Zero 109.
 
-Metade do catálogo está em mais de um servidor — 170 peças em um, 120 em dois,
-123 em três, 94 em quatro, 53 em cinco, 15 nos seis —, então o badge mostra
+Metade do catálogo está em mais de um servidor — 128 peças em um, 111 em dois,
+120 em três, 91 em quatro, 52 em cinco, 15 nos seis —, então o badge mostra
 todos, de jeitos diferentes conforme o espaço:
 
 | onde | como |
@@ -535,7 +535,7 @@ servidor (iRO)".
 #### O ícone: por nome de sprite, não por id
 
 O id de uma peça estrangeira é inventado por esta aplicação, então
-`/icons/item/<id>.png` é 404 garantido para as 575. Por um tempo `CostumeIcon`
+`/icons/item/<id>.png` é 404 garantido para as 517. Por um tempo `CostumeIcon`
 começava pelo render (`costumeThumbUrl`) justamente para não gastar um 404 por
 telha.
 
@@ -575,16 +575,40 @@ delas desenham perfeitamente assim que o personagem se mexe — o
 tipo de ação 3. Por isso a varredura tenta dez poses, e só paga por elas quem
 falha na primeira: 822 renders para 592 visuais.
 
+### As 58 que o LATAM já vende
+
+O filtro promete uma coisa: estes visuais **não dá para conseguir aqui**. Uma
+peça cuja arte este cliente já vende sob um nome próprio quebra a promessa, e 58
+quebravam.
+
+O cruzamento é pelo nome do sprite. O `/raw/items.json` — a tabela de itens
+deste cliente, a mesma que alimenta o `costumes.json` — traz `resourceName` por
+item, que é a mesma string que o nosso `sprite`, escrita de outro jeito. Com as
+duas normalizações que a rota de ícones já faz (minúsculas, sem o underscore
+inicial das tabelas de acessório), 113 das 575 casam com um item do LATAM; **58
+desses itens têm nome em pt-BR**, e são esses que saem.
+
+Quase todos são chapéu comum e vêm do kRO Zero, que publica dezenas dos
+acessórios antigos também como view de fantasia: Bandana (2211), Chapéu (2220),
+Capelo (5012), Chapéu de Enfermeira (2277). Um deles era duplicata pura — o
+`_c_halloween_candy_hair` é o item 420593, "[Visual] Penteado de Halloween",
+que já estava no `costumes.json`: o mesmo visual aparecia duas vezes na grade,
+uma delas com tarja de outro servidor.
+
+As outras 55 ficam. O item existe na tabela porque a Gravity manda uma tabela só
+para todos os clientes, e **ninguém aqui traduziu o nome** — que é exatamente a
+cara de um item não lançado no LATAM.
+
 ### Nomes e posições que nenhum cliente deu
 
-58 das 575 não têm linha de item em cliente nenhum que lemos. Em vez de
+55 das 517 não têm linha de item em cliente nenhum que lemos. Em vez de
 escondê-las (elas desenham perfeitamente), aparecem com o nome do arquivo do
 sprite, marcadas. 188 não trazem posição; a posição vem então do tipo
 (acessório → Topo, capa → Capa), o que só muda onde a peça aparece na interface:
 o render é o mesmo.
 
 Os nomes vêm das tabelas do próprio servidor quando o LATAM não tem o item —
-462 das 575 — então muitos estão em chinês tradicional (twRO) ou japonês. O
+462 das 517 — então muitos estão em chinês tradicional (twRO) ou japonês. O
 campo `nameOrigin` registra de onde veio.
 
 ### O que *não* muda

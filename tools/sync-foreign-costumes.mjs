@@ -37,6 +37,7 @@ import { pathToFileURL } from "node:url";
 import { loadTable, parseArgs } from "./sync-db.mjs";
 
 const SOURCE = "foreign-costumes"; // /raw/foreign-costumes.json
+const LOCAL_ITEMS = "items"; // /raw/items.json -- this client's own item table
 const DEFAULT_OUT = "public/db";
 
 /** Frozen: an origin's position here is part of every id derived from it.
@@ -61,6 +62,36 @@ export function foreignId(origin, view, kind) {
   }
   if (kind !== "acc" && kind !== "robe") throw new Error(`unknown kind ${kind}`);
   return FOREIGN_ID_BASE + i * PER_ORIGIN + (kind === "robe" ? ROBE_OFFSET : 0) + view;
+}
+
+/** The one spelling a sprite name has in both tables.
+ *
+ *  A resource name is written `_C_Rhythm_Hairband` in the accessory tables and
+ *  `c_rhythm_hairband` under a mirror's data/, and the catalogue and the item
+ *  table disagree about which. Same two steps the icon route takes: lowercase,
+ *  and drop the accessory tables' leading underscore. */
+const spriteKey = (name) => String(name ?? "").toLowerCase().replace(/^_+/, "");
+
+/** The sprites this client already has a *named* item for.
+ *
+ *  A costume whose art the LATAM client ships under an item somebody here can
+ *  read the name of is not "a visual from another server", whatever its origins
+ *  say: the look is obtainable, and the badge's "não dá para conseguir no jogo"
+ *  would be a lie. 58 rows match, almost all of them ordinary headgears that
+ *  kRO Zero also publishes as a costume -- plus one outright duplicate, the
+ *  Halloween candy hair, which is in `costumes.json` as "[Visual] Penteado de
+ *  Halloween" and was sitting in the grid twice.
+ *
+ *  The item table is keyed by id, so this reads its `resourceName` and inverts
+ *  it. An item with no name is the opposite case and stays: the row exists in
+ *  the table because Gravity ships one table to every client, and nothing here
+ *  localized it, which is exactly what "not released in LATAM" looks like. */
+export function localizedSprites(items) {
+  const out = new Set();
+  for (const it of items ?? []) {
+    if (it?.resourceName && it?.name) out.add(spriteKey(it.resourceName));
+  }
+  return out;
 }
 
 /** A label for a costume whose name no client ragassets read could give us.
@@ -117,10 +148,12 @@ export function toAppRow(c) {
   };
 }
 
-export function buildAppCatalogue(doc, { skipOrigins = ["latam"] } = {}) {
+export function buildAppCatalogue(doc, { skipOrigins = ["latam"], localItems = [] } = {}) {
   const items = [];
   const skipped = [];
   const empty = [];
+  const localized = [];
+  const here = localizedSprites(localItems);
   const seen = new Set();
   for (const c of doc.costumes) {
     // LATAM-sourced rows are not "another server's visuals" — they are views
@@ -140,6 +173,13 @@ export function buildAppCatalogue(doc, { skipOrigins = ["latam"] } = {}) {
       empty.push(c);
       continue;
     }
+    // ...and neither is a costume whose art this client already sells under a
+    // name of its own. See localizedSprites: the filter's whole claim is that
+    // these cannot be had here.
+    if (here.has(spriteKey(c.sprite))) {
+      localized.push(c);
+      continue;
+    }
     const row = toAppRow(c);
     if (seen.has(row.id)) throw new Error(`duplicate id ${row.id} for ${c.origin}/${c.view}`);
     seen.add(row.id);
@@ -153,7 +193,13 @@ export function buildAppCatalogue(doc, { skipOrigins = ["latam"] } = {}) {
   for (const r of items) for (const o of r.origins ?? [r.origin]) byOrigin[o] = (byOrigin[o] ?? 0) + 1;
   return {
     doc: { version: 1, generatedAt: doc.generatedAt, counts: byOrigin, items },
-    stats: { items: items.length, skipped: skipped.length, blank: empty.length, byOrigin },
+    stats: {
+      items: items.length,
+      skipped: skipped.length,
+      blank: empty.length,
+      localized: localized.length,
+      byOrigin,
+    },
   };
 }
 
@@ -162,7 +208,11 @@ async function main(argv) {
   const outDir = resolve(args.out ?? DEFAULT_OUT);
   mkdirSync(outDir, { recursive: true });
 
-  const { doc, stats } = buildAppCatalogue(await loadTable(SOURCE, args));
+  const [raw, localItems] = await Promise.all([
+    loadTable(SOURCE, args),
+    loadTable(LOCAL_ITEMS, args),
+  ]);
+  const { doc, stats } = buildAppCatalogue(raw, { localItems });
   const dest = join(outDir, `${SOURCE}.json`);
   writeFileSync(dest, JSON.stringify(doc, null, 1) + "\n");
 
@@ -172,6 +222,7 @@ async function main(argv) {
   }
   console.log(`  (${stats.skipped} de origem latam ficaram de fora — nao sao visuais de outro servidor)`);
   console.log(`  (${stats.blank} marcadas como blank pelo ragassets ficaram de fora — nao desenham nada)`);
+  console.log(`  (${stats.localized} ficaram de fora — o LATAM ja tem um item com nome para esse sprite)`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
