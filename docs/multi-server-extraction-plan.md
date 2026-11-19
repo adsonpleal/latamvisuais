@@ -72,8 +72,8 @@ segunda opinião mais confiável que existe, e corrige duas coisas do doc anteri
 | GGH / SEA | ❌ | fechado 31/07/2026 |
 | bRO | ❌ | fechado 30/07/2026 |
 | **thRO** | ✅ ativo | `.gpf` v0x102, patch de ontem — **tinha índice e ninguém tinha olhado** (§10) |
-| idRO GNJoy, vnRO VTC, ROPrime 4game (EU/RU), cRO Zhaouc | ⚠️ rodando, launcher próprio | sem índice conhecido; o RSU marca todos como "Support: No". O thRO estava nesta linha até 2026-11-19, o que recomenda repetir por aqui o caminho do §10 antes de dar qualquer um deles por perdido |
-| Ragnarok Zero Global (`roz.mygnjoy.com`) | ⚠️ | lançado 2026-08-18, site 403 daqui, endpoint desconhecido |
+| idRO GNJoy, vnRO VTC, ROPrime 4game (EU/RU), cRO Zhaouc | ⚠️ rodando, launcher próprio | sondados um por um em §11: idRO e ROPrime só distribuem instalador/launcher empacotado, vnRO está em manutenção, cRO publica um `.rar` de árvore de cliente com Range. O thRO estava nesta linha até 2026-11-19 |
+| Ragnarok Zero Global (`roz.mygnjoy.com`) | ⛔ | lançado 2026-08-18; o 403 é **Cloudflare 1009, país BR banido pelo operador** (§11) |
 
 O penúltimo grupo é o limite real do plano: sem índice de patch não há extração
 remota, e um cliente completo teria que vir de instalador. Ficam fora, e o
@@ -1061,3 +1061,122 @@ antes do resource name" e saiu **errado** — o Lua 5.1 interna cada constante u
 vez por função, então a ordem do pool não reproduz a ordem do arquivo e o que
 vem antes é linha de descrição, não nome. O pareamento é trabalho do leitor de
 bytecode que o ragassets já tem para LATAM/twRO/twRO Zero.
+
+---
+
+## 11. Os outros cinco oficiais — sondados 2026-11-19
+
+Depois que o thRO saiu do grupo "sem índice" (§10), rodei o mesmo caminho nos
+cinco que sobraram. **Nenhum entra hoje**, mas por motivos bem diferentes, e a
+diferença é o que diz onde vale insistir:
+
+| origem | o que achei | veredito |
+|---|---|---|
+| **cRO** (Zhaouc) | `.rar` da árvore do cliente, 4,0 GB, Range, RAR5 não sólido, 308 de 400 membros `store` | **rota existe** — falta ver em que balde caem as tabelas |
+| **idRO** (GNJoy ID) | só instalador Inno Setup empacotado (2,6 GB); 7 hosts de patch não resolvem | precisa de um leitor de Inno, ou do cliente instalado |
+| **ROPrime** (4game) | distribuição exclusiva pelo launcher próprio | precisa do launcher |
+| **vnRO** (VTC) | site em manutenção, 503 | indisponível na data |
+| **Zero Global** (GGT) | Cloudflare 1009: país BR banido pelo operador | bloqueado, e não é falha técnica |
+
+### idRO — Ragnarok Online Classic (GNJoy Indonésia)
+
+Vivo e ativo: `ro.gnjoy.id` redireciona para `roclassic.gnjoy.id`, que tem
+página de download. O cliente é
+`https://download.gnjoy.id/roc/full/ROC_INSTALLER.zip` (2.578.357.153 bytes,
+nginx, Range) — mas **é um instalador empacotado, não uma árvore de arquivos**:
+quatro membros, sendo dois `ROC_Installer-1a/1b.bin` de 1,4 GB e 1,18 GB
+**STORED** e um `ROC_Installer.exe` deflatado. Li o início do primeiro `.bin`:
+assinatura `idska32\x1a` seguida de `zlb\x1a` — fatia de **Inno Setup** com
+bloco comprimido.
+
+Isso não é um "impossível", é um preço: o Inno Setup guarda a tabela de arquivos
+num header comprimido no começo da primeira fatia e, por padrão, comprime
+**arquivo por arquivo** em vez de num bloco sólido — então, com um leitor de
+header do Inno (trabalho da classe do `innoextract`, específico por versão),
+daria para alcançar um arquivo isolado por Range, como fizemos no ZIP
+tailandês. O que não dá é o que tentei aqui: ler o `ServerInfo_ID.lub` sem
+entender o formato do instalador.
+
+Puxei o `ROC_Installer.exe` (1,44 MB comprimidos) e varri strings ASCII e
+UTF-16: só URLs de certificado da DigiCert e a ajuda do `jrsoftware.org`. É Inno
+Setup puro, sem nada do patcher.
+
+Também não achei o índice por adivinhação: `ropatch`, `rocpatch`, `patch`,
+`roclassicpatch`, `rocdn`, `cdn` e `file` sob `gnjoy.id` **não resolvem**, e oito
+nomes de arquivo plausíveis sob `/roc/` e `/roc/full/` deram 404 (o diretório
+`/roc/` responde 403, então existe — a listagem é que está desligada). Para o
+idRO falta instalar o cliente e ler o `ServerInfo_ID.lub` de dentro dele, que é
+exatamente o que o §10 evitou no thRO.
+
+### vnRO — VTC Game (Vietnã)
+
+`ro.vtcgame.vn` responde **503 com página de manutenção** ("BẢO TRÌ", rodapé ©
+2025), inclusive num navegador de verdade. Não há página de download para ler, e
+uma busca não achou nenhum RO de PC da VTC em operação hoje — só títulos mobile
+de outras publicadoras. Não dá para medir e não vou chamar de morto sem
+evidência: fica como **indisponível na data**.
+
+### ROPrime — 4game / Inn.games (EU e RU)
+
+`eu.4game.com/roprime` é a página viva (o `ru.4game.com/ro/` redireciona para
+`ru.4game.ru/ro/`, que dá 404). A distribuição é **só pelo launcher próprio** —
+"one launcher for all games" — e nenhuma página expõe cliente, patcher ou CDN.
+Mesma situação do idRO, com uma camada a mais: o launcher é que resolve os
+endereços, em tempo de execução.
+
+### Ragnarok Zero Global — GGT
+
+`roz.mygnjoy.com` dá **403 do Cloudflare, erro 1009**, e a página diz o motivo
+em letras garrafais: *"The owner of this website has banned the country or
+region your IP address is in (BR)"*. Não é falha técnica nem site fora do ar — é
+decisão de acesso do operador, e o respeito a ela é o fim da linha por aqui.
+Qualquer medição desse serviço precisa partir de outro lugar.
+
+### Ruído que vale ter documentado
+
+O portal `gnjoy.id` linka `roglobal.com`, `rogo.gnjoyglobal.com`,
+`roidle.gnjoy.asia`, `theragnaroksea.com`, `rotwilight.onelink.me` e
+`rofrontier.gnjoy.id`. **Nenhum é RO de PC**: o primeiro é o Ragnarok Origin
+global (mobile) e os outros são mobile ou estão fora do ar (`rofrontier` recusa
+conexão na 443). O `wlanding-rop.gnjoy.in.th` é um cliente web com tela de
+login, não um cliente com GRF. Contar qualquer um deles como origem seria
+inflar a lista.
+
+### cRO — Zhaouc (China): o único dos cinco com rota
+
+Aqui tem caminho. O site (`ro.zhaouc.com`) publica o cliente completo em
+`https://d1.zhaouc.com/RO20261016.rar` — **4.008.210.153 bytes**, Tencent COS,
+`Accept-Ranges: bytes`, `Last-Modified` 2026-10-22 — e, ao contrário do idRO,
+**é a árvore de arquivos do cliente, não um instalador**: o primeiro membro já é
+`Mss32.dll`.
+
+Escrevi um walker de RAR5 que anda a cadeia de headers por Range e pula os dados
+por aritmética de offset (`scripts/rarwalk.mjs` no scratchpad da sessão; 400
+membros custaram **34 reads e 1,1 MB**). O que ele diz:
+
+| | |
+|---|---|
+| Formato | RAR5 (`Rar!\x1a\x07\x01\x00`), **não sólido** |
+| Métodos nos 400 primeiros | **308 `store`**, 92 `normal` |
+| Árvore | `Ragexe.exe`, `Setup.exe`, `RagHash.dat`, `rolauncher.exe`, `.lub` de System — cliente Gravity de verdade |
+
+**Não sólido + `store`** é a combinação que importa: um membro armazenado se lê
+no lugar com um único Range, sem decodificador nenhum. Provei puxando o
+`ROCN.ini` (1.351 bytes, `store`, offset 13.546.864). Os 92 `normal` precisariam
+de um decodificador RAR — que, diferente do deflate, não vem no node.
+
+E o `ROCN.ini` rendeu um achado lateral que vale para todas as origens:
+
+> Os **22 primeiros bytes do `ROCN.ini` do cRO são idênticos aos do
+> `RagnarokTH.ini` do thRO** (`ec de 6d d8 c9 f7 a4 4c db 0d f3 ae 22 57 b9 40
+> b7 71 cb cd e4 21`). Dois operadores, dois países, o mesmo esquema de
+> criptografia. Então um decryptor de `.ini` serviria a todos — e seria uma
+> segunda rota para o endpoint de patch exatamente nos clientes onde o
+> `ServerInfo` está fora de alcance, como o idRO.
+
+O que falta medir no cRO é **em qual balde caem os arquivos que interessam** —
+`ServerInfo_CN.lub` (para o endpoint de patch), `System/itemInfo*.lub` e o
+`data.grf`. Se forem `store`, o cRO entra pelo mesmo custo do thRO; se forem
+`normal`, precisa de um leitor de RAR antes. O walk completo ficou pendente
+porque o host começou a estrangular a banda no meio da caminhada — é um
+"continuar", não um "não dá".
