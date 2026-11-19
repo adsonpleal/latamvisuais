@@ -551,7 +551,7 @@ export function itemIconUrl(id: number): string {
  *  than not (`_c7학년풍선`); ragassets' path routes only spell `[a-z0-9_]`.
  *
  *  The name goes through untouched — the gateway lowercases it and strips the
- *  accessory tables' leading underscore itself. 638 of the 663 costumes have a
+ *  accessory tables' leading underscore itself. 637 of the 663 costumes have a
  *  picture; the rest 404 on purpose, and CostumeIcon falls back to a render. */
 export function foreignIconUrl(sprite: string): string {
   return `${RAGASSETS_BASE}/icons/costume?sprite=${encodeURIComponent(sprite)}`;

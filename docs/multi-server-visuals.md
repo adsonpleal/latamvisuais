@@ -551,7 +551,8 @@ sublinhado inicial das tabelas de acessório por conta própria.
 **Sem dimensão de origem**, e isso foi medido: pedir o ícone à árvore de onde a
 arte veio acha 556 de 663 (83,9%), pedir a qualquer cliente acha 637 (96,1%). Os
 dois motivos da regra "uma árvore por origem" somem para um ícone — ele é um BMP
-avulso, sem `.act` com que precisar concordar. Cobertura final: **638 de 663**.
+avulso, sem `.act` com que precisar concordar. Cobertura final: **637 de 663**
+(medida na produção: 637 respondem 200, 26 dão o 404 de propósito).
 Os 25 restantes dão 404 de propósito, e aí `CostumeIcon` cai no render, que é
 onde todas elas começavam antes.
 
