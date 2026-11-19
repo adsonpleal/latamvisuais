@@ -71,7 +71,8 @@ segunda opinião mais confiável que existe, e corrige duas coisas do doc anteri
 | iRO Classic | ❌ | para em 2019 |
 | GGH / SEA | ❌ | fechado 31/07/2026 |
 | bRO | ❌ | fechado 30/07/2026 |
-| thRO GNJoy, idRO GNJoy, vnRO VTC, ROPrime 4game (EU/RU), cRO Zhaouc | ⚠️ rodando, launcher próprio | sem índice estilo Gravity; o RSU marca todos como "Support: No" |
+| **thRO** | ✅ ativo | `.gpf` v0x102, patch de ontem — **tinha índice e ninguém tinha olhado** (§10) |
+| idRO GNJoy, vnRO VTC, ROPrime 4game (EU/RU), cRO Zhaouc | ⚠️ rodando, launcher próprio | sem índice conhecido; o RSU marca todos como "Support: No". O thRO estava nesta linha até 2026-11-19, o que recomenda repetir por aqui o caminho do §10 antes de dar qualquer um deles por perdido |
 | Ragnarok Zero Global (`roz.mygnjoy.com`) | ⚠️ | lançado 2026-08-18, site 403 daqui, endpoint desconhecido |
 
 O penúltimo grupo é o limite real do plano: sem índice de patch não há extração
@@ -96,6 +97,7 @@ abaixo foi confirmada com um GET no índice e um `Range: bytes=0-45` num arquivo
 | twRO | `https://twcdn.gnjoy.com.tw/ragnarok/patchinfo/patch3.txt` | `https://twcdn.gnjoy.com.tw/ragnarok/patchfile/` | 2026-11-17 | 1.501 GRF + 2.636 `.rgz`, desde 2017-02 |
 | twRO Zero | `https://rollive-patch.gnjoy.com.tw/patchinfo/patch.txt` | `https://rollive-patch.gnjoy.com.tw/patchfile/` | 2026-11-17 | 174 GRF + 364 `.rgz`, desde 2025-06-13 |
 | LATAM | `https://ro1patch.gnjoylatam.com/LIVE/patchinfo/patch.txt` | `https://ro1patch.gnjoylatam.com/LIVE/patchfile/` | — | 917 sequências ativas |
+| thRO | `https://ropatch.gnjoy.in.th/patchinfo/patch.txt` | `https://ropatch.gnjoy.in.th/patchfile/` | 2026-11-18 | 1.099 GRF + 2.214 `.rgz`, desde 2020-04-23 |
 
 Detalhes que custaram tentativa:
 
@@ -972,3 +974,90 @@ patch-list virou o mesmo que o ciclo de patch do LATAM usa.
   minúsculas, então quem resolver essas árvores precisa ser case-insensitive.
 - **O ragassets está sem commit** (v0x103, `--min-folders`, `grfEntrySpan`). Lá, `main` é o branch de
   trabalho e **push em `main` faz deploy**, então o commit é decisão sua.
+
+---
+
+## 10. thRO — medido 2026-11-19
+
+O servidor tailandês ficou fora deste plano por um motivo errado. A §1 o botou
+no grupo "launcher próprio, sem índice estilo Gravity", junto com idRO, vnRO,
+cRO e ROPrime, apoiada em o RSU marcar todos como "Support: No". **O thRO tem
+índice de patch, no mesmo formato dos outros seis, e patcheia todo dia.** O RSU
+não saber dele não é evidência de que não exista.
+
+### Como se acha o endpoint de um oficial que "não tem" endpoint
+
+O caminho não é específico do thRO e é o que recomendo repetir para idRO, vnRO
+e cRO antes de dá-los por perdidos:
+
+1. **Ache o cliente completo.** O site (`ro.gnjoy.in.th`) manda para
+   `/game_download`, que manda para `/thankyou/`, onde ficam os links de verdade
+   — em `rofull.gnjoy.in.th`, um bucket **Tencent COS** com `Accept-Ranges`.
+2. **Leia o `ServerInfo_<país>.lub` do patcher de dentro do zip, sem baixar o
+   zip.** Um membro de um ZIP é um stream deflate independente: lendo o
+   diretório central pelo fim (Range) e depois só os bytes comprimidos daquele
+   membro, 601 bytes resolvem o que seriam 4,26 GB.
+3. **O `.lub` é bytecode Lua 5.1 sem criptografia** e as constantes saem com um
+   walker de 20 linhas. O `ServerInfo_TH.lub` entrega a configuração inteira:
+
+   ```
+   g_strWeb     = ropatch.gnjoy.in.th/      g_strWebDir  = /patchinfo
+   g_strPatch   = patch.txt                 g_strHttpDir = /patchfile
+   g_strPatchInf = patch.inf                g_strPatchData = data.grf
+   ```
+
+   O `Local.lua` ao lado lista **as 21 configurações de serviço que a Gravity
+   mantém** — KR, KR_Sak, KR_Zero, USA, CN, TW, TW_restart, BR, BR_Sak, PH, FR,
+   TH, ID, JP (+sak, urdr, thanatos, lobby), MYSG, RU, VN. Cada cliente completo
+   só embarca o seu, então é um arquivo por origem, não uma lista pronta.
+
+Detalhe que custa uma hora: `http://ropatch.gnjoy.in.th/...` responde **301**
+para HTTPS, a raiz responde **403** (listagem de bucket desligada) e um timeout
+curto no handshake devolve 000. Sonde um caminho real com HTTPS e tempo
+folgado, não a raiz.
+
+### O que o índice entrega
+
+| | |
+|---|---|
+| Índice | `https://ropatch.gnjoy.in.th/patchinfo/patch.txt` — 154.767 bytes |
+| Store | `https://ropatch.gnjoy.in.th/patchfile/` |
+| Sequências | **3.312** (1.099 GRF + 2.214 `.rgz`), de 2020-04-23 a **2026-11-18** |
+| Formato | `.gpf` **v0x102** — `Master of Magic`, versão `02 01`, o caso fácil |
+| Range | `Accept-Ranges: bytes` no store (tencent-cos) |
+
+Ou seja: **o thRO não precisa de código novo.** É o mesmo caminho do twRO, que
+a §3 já chama de melhor origem — v0x102, patch do dia, HTTPS com Range. Pelo
+critério da §8 ele entraria logo depois do twRO, não no fim da fila.
+
+### O cliente completo como segunda fonte
+
+O `rofull.gnjoy.in.th/RagnarokOnline.zip` (4,26 GB, 707 membros) é uma árvore de
+arquivos, não um instalador empacotado — ao contrário do
+`RagnarokOnlineInstaller.zip`, que tem só três `RAG_SETUP_*.bin` deflatados e
+não serve para leitura seletiva. Dele saem, por Range:
+
+- `System/itemInfo_new.lub` — 2,15 MB comprimidos, 8,75 MB abertos, **LuaQ 5.1
+  sem criptografia**: 54.216 constantes string, **31.204 com caractere
+  tailandês**, e os campos de sempre (`identifiedDisplayName`,
+  `identifiedResourceName`, `slotCount`, `ClassNum`). O `identifiedResourceName`
+  é a chave de junção que o resto do pipeline já usa.
+- `RagnarokTH.ini` está **criptografado** (1.172 bytes ilegíveis). Não é por ali.
+- `patch.inf` = `1659`, a sequência que o cliente trazia; o índice vivo está em
+  3.312.
+
+Duas ressalvas que impedem de tratar esse zip como a fonte de nomes:
+
+1. **A tabela é de 2024-11-21** (o caminho de build embutido diz
+   `1732103383_20241121_production_patch`).
+2. **O `itemInfo_new.lub` é parcial.** Tem 2.298 nomes de sprite únicos, 358
+   começando com `c_`/`_c_`, e menciona **51 dos 517** visuais que publicamos
+   hoje. O nome autoritativo vive no `idnum2itemdisplaynametable.txt` dentro do
+   `data.grf` — que no zip é um membro deflate de 3,9 GB, então vem dos patches,
+   não daqui.
+
+E um aviso de método: tentei pareá-lo por "a string tailandesa mais próxima
+antes do resource name" e saiu **errado** — o Lua 5.1 interna cada constante uma
+vez por função, então a ordem do pool não reproduz a ordem do arquivo e o que
+vem antes é linha de descrição, não nome. O pareamento é trabalho do leitor de
+bytecode que o ragassets já tem para LATAM/twRO/twRO Zero.

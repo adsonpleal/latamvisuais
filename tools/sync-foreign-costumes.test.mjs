@@ -51,6 +51,22 @@ describe("foreignId", () => {
   it("refuses an origin it does not know, rather than inventing a band", () => {
     expect(() => foreignId("eu", 1, "acc")).toThrow(/unknown origin/);
   });
+
+  // thRO was added after the first six shipped. Its band has to come last, and
+  // the six before it have to keep the positions their published ids were
+  // derived from -- this is the test that fails if someone tidies the array.
+  it("gives thRO the next band without moving the six already published", () => {
+    expect(ORIGIN_ORDER.slice(0, 7)).toEqual([
+      "iro",
+      "jro",
+      "kro",
+      "krozero",
+      "twro",
+      "twrozero",
+      "latam",
+    ]);
+    expect(foreignId("thro", 1, "acc")).toBe(foreignId("latam", 1, "acc") + 100_000);
+  });
 });
 
 describe("pickName", () => {
@@ -75,6 +91,15 @@ describe("pickName", () => {
     // Last, not refused: Chinese names more of this catalogue than everything
     // else together, and dropping it turns hundreds of rows into file names.
     expect(pickName({ names: { twro: names.twro } }).nameOrigin).toBe("twro");
+  });
+
+  // Thai was asked for after the other four and sits where it was asked for:
+  // ahead of Chinese, behind Japanese. No published row carries it yet, which is
+  // exactly why the order is pinned by a test instead of by the data.
+  it("puts Thai ahead of Chinese and behind Japanese", () => {
+    const thro = "คอสตูม ริทึ่ม";
+    expect(pickName({ names: { thro, twro: names.twro } }).nameOrigin).toBe("thro");
+    expect(pickName({ names: { jro: names.jro, thro } }).nameOrigin).toBe("jro");
   });
 
   it("prefers a pt-BR name to any of them", () => {

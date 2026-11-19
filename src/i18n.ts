@@ -230,6 +230,7 @@ export const t = {
     jro: "jRO",
     kro: "kRO",
     krozero: "kRO Zero",
+    thro: "thRO",
     twro: "twRO",
     twrozero: "twRO Zero",
   } as Record<string, string>,

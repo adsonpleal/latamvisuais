@@ -618,14 +618,25 @@ A mesma peça é "Rhythm Hairband" no iRO, "リズムヘアバンド" no jRO e
 uma parede para quem não lê chinês. Então a escolha tem ordem, em
 `NAME_PRIORITY`:
 
-> pt-BR → inglês (iRO) → coreano (kRO, kRO Zero) → japonês (jRO) → chinês
-> tradicional (twRO, twRO Zero)
+> pt-BR → inglês (iRO) → coreano (kRO, kRO Zero) → japonês (jRO) →
+> tailandês (thRO) → chinês tradicional (twRO, twRO Zero)
 
 O chinês é **o último, não o recusado**: ele nomeia 287 das 517 linhas de hoje,
 mais do que todos os outros clientes somados, e tirá-lo devolveria centenas de
-nomes de arquivo — pior do que um nome que dá para colar num tradutor. Tailandês
-também foi pedido, mas nenhum dos seis clientes que o ragassets extrai é
-tailandês, então não há de onde tirar.
+nomes de arquivo — pior do que um nome que dá para colar num tradutor.
+
+O tailandês está na ordem mas ainda não nomeia nada: o thRO não é origem no
+catálogo publicado. Ele entrou aqui porque **é alcançável** — tem índice de
+patch no mesmo formato dos outros seis, `.gpf` v0x102, patcheado todo dia
+(medido 2026-11-19; a rota inteira está em `docs/multi-server-extraction-plan.md`
+§10). Enquanto o campo não vier, `pickName` pula a origem.
+
+**Inglês é o nome mais escasso, não o mais disponível.** A medição por cliente
+(ragassets, 2026-11-19) diz que, nas 663 extraídas, a ordem acima daria inglês
+em **99** linhas e japonês em **366**: a tabela de item do iRO tem 8.367 nomes e
+alcança só 99 das nossas peças, e não existe segunda fonte em inglês entre os
+seis clientes. A ordem é a pedida; o que não se sustenta é a expectativa de um
+catálogo em inglês.
 
 **Hoje isso ainda não muda nada.** O `/raw/foreign-costumes.json` publica um
 `name` só, já escolhido lá em cima, e os outros candidatos se perdem antes de

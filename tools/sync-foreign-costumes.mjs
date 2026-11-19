@@ -41,8 +41,11 @@ const LOCAL_ITEMS = "items"; // /raw/items.json -- this client's own item table
 const DEFAULT_OUT = "public/db";
 
 /** Frozen: an origin's position here is part of every id derived from it.
- *  Append only — reordering this renumbers costumes that are already shared. */
-export const ORIGIN_ORDER = ["iro", "jro", "kro", "krozero", "twro", "twrozero", "latam"];
+ *  Append only — reordering this renumbers costumes that are already shared,
+ *  which is why `thro` sits after `latam` rather than beside the other Asian
+ *  clients: it arrived last. Where the chips appear in the filter is a separate
+ *  question, decided where they are built. */
+export const ORIGIN_ORDER = ["iro", "jro", "kro", "krozero", "twro", "twrozero", "latam", "thro"];
 
 /** Above every real item id in the client (the highest today is ~450,000) and
  *  below Number.MAX_SAFE_INTEGER by a mile. */
@@ -107,10 +110,13 @@ export function localizedSprites(items) {
  *  then Japanese. Traditional Chinese is last rather than refused -- it names
  *  more of this catalogue than every other client put together, and dropping it
  *  would turn hundreds of costumes back into sprite file names, which is worse
- *  than a name you have to paste into a translator. Thai was asked for too, but
- *  none of the six clients ragassets extracts is Thai, so there is nothing to
- *  take. */
-export const NAME_PRIORITY = ["latam", "iro", "kro", "krozero", "jro", "twro", "twrozero"];
+ *  than a name you have to paste into a translator. Thai sits where it was
+ *  asked for, between Japanese and Chinese. It names nothing yet -- thRO is not
+ *  an origin in the published catalogue -- but its client is reachable by the
+ *  same patch index the other six use (docs/multi-server-extraction-plan.md
+ *  §10), so this is a seat kept warm, not a dead entry: `pickName` skips an
+ *  origin the catalogue does not carry. */
+export const NAME_PRIORITY = ["latam", "iro", "kro", "krozero", "jro", "thro", "twro", "twrozero"];
 
 /** The best name a costume has, and which client gave it.
  *
