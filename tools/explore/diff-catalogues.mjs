@@ -1,4 +1,5 @@
-// Diff two clients' headgear catalogues (the TSVs accessory-table.mjs writes:
+// Diff two clients' headgear catalogues (the TSVs in docs/data/, written by
+// the accessory-table CLI that moved to ragassets with the rest of the pipeline:
 // `<view id>\t<sprite name>\t<ACCESSORY_ key>`).
 //
 // Answers the two questions that decide the multi-server design:

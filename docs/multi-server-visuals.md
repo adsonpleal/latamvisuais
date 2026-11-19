@@ -188,10 +188,11 @@ AccNameTable  = { [ACCESSORY_IDs.ACCESSORY_GOGGLES] = "_고글", ... }
 ```
 
 so reading the constant pool and the SETTABLE/GETTABLE stream recovers
-`view id → sprite name` exactly. `tools/explore/lua51.mjs` is a ~120-line
-undumper that reads the header's own word sizes (so it handles both 32- and
-64-bit chunks) and `tools/explore/accessory-table.mjs` does the join. Two gotchas
-it documents: instruction words exceed 2^31 so `Bx` must be extracted with
+`view id → sprite name` exactly. The reading was a ~120-line Lua 5.1 undumper
+that takes the header's own word sizes (so it handles both 32- and 64-bit
+chunks) plus a join over the two tables. Both went to ragassets with the rest of
+the pipeline, where the undumper gave way to the `runChunk` already there. Two gotchas
+they documented: instruction words exceed 2^31 so `Bx` must be extracted with
 `>>>`, and the older half of the names are **EUC-KR Korean**, which latin1 turns
 into mojibake that no longer matches the sprite folder on disk.
 
@@ -414,10 +415,14 @@ six live patch services before downloading anything.
 O catálogo estrangeiro é um arquivo que o app leva junto
 (`public/db/foreign-costumes.json`, 575 fantasias — 592 completas no espelho
 menos as 17 que não desenham nada), gerado por
-`tools/multiserver/export-app-catalogue.mjs` a partir do catálogo que o
-pipeline produz. Não vem do ragassets como os outros catálogos, e por um motivo:
-estas fantasias não acompanham um cliente vivo — foram extraídas uma vez do
-histórico de patches de cada servidor.
+`tools/sync-foreign-costumes.mjs` (`npm run sync:foreign`) a partir de
+`/raw/foreign-costumes.json`, que o ragassets publica do mesmo jeito que publica
+as outras tabelas do cliente. A extração que produz esse arquivo **mora no
+ragassets** — junto do leitor de GRF e da VM de Lua de que ela precisa; viveu
+aqui um tempo carregando cópias próprias dos dois. Deste lado sobrou só o que o
+ragassets não tem como decidir: o id sintético e estável que o app usa em grid,
+lista de desejos e link de compartilhamento, já que uma fantasia estrangeira não
+tem id de item aqui.
 
 ### Por que o id do visual não basta
 
@@ -486,13 +491,20 @@ twRO 297, kRO Zero 204, kRO 191, twRO Zero 110.
 
 Metade do catálogo está em mais de um servidor — 170 peças em um, 120 em dois,
 123 em três, 94 em quatro, 53 em cinco, 15 nos seis —, então o badge mostra
-todos, de três jeitos diferentes conforme o espaço:
+todos, de jeitos diferentes conforme o espaço:
 
 | onde | como |
 |---|---|
 | tile da grade | um nome, colado no rodapé do quadro, mais `+N` quando há mais |
 | linha da lista | um chip por servidor, lado a lado |
-| card do visual vestido | um chip por servidor |
+| card do visual vestido | nada visível — os nomes ficam no tooltip |
+
+O card vestido chegou a mostrar um chip por servidor e **voltou atrás**: são
+quatro cards lado a lado numa linha só, então a linha do nome tem espaço para um
+nome e pouco mais — uma peça de quatro servidores punha três chips e reticências
+na frente dela, e isso se lê como o item, não como uma nota sobre o item. Quem
+está vendo o card já veio da grade, onde o badge é visível; aqui os nomes ficam
+no tooltip que a linha já tinha.
 
 Onde cabe um nome só, com um chip ligado ele mostra **aquele** servidor, pra
 não parecer que o filtro está quebrado quando uma peça de iRO+twRO aparece sob
@@ -505,28 +517,35 @@ servidores (iRO e twRO). Não existe no Ragnarok LATAM — dá para vestir e ver
 aqui, mas não dá para conseguir no jogo.". Com um servidor só, "Visual de outro
 servidor (iRO)".
 
-#### O ícone do card vestido
+#### O ícone: por nome de sprite, não por id
 
 O id de uma peça estrangeira é inventado por esta aplicação, então
-`/icons/item/<id>.png` é 404 garantido — `CostumeIcon` já sabia disso e começa
-pelo render (`costumeThumbUrl`) em vez de gastar um 404 por telha. O card do
-visual vestido não usava esse componente: pedia o ícone estático direto e
-ficava vazio. Agora ele delega ao mesmo `CostumeIcon`, e a peça aparece
-desenhada no card como aparece na grade.
+`/icons/item/<id>.png` é 404 garantido para as 575. Por um tempo `CostumeIcon`
+começava pelo render (`costumeThumbUrl`) justamente para não gastar um 404 por
+telha.
 
-O caminho mais limpo seria o ragassets publicar os ícones por origem, como já
-publica os do LATAM — o cliente de cada servidor traz `collection/` e
-`item/` nos seus próprios GRFs, e a extração por origem já baixa os archives.
-Fica anotado junto com as outras derivações por origem (tabela de nomes,
-ilustrações, `.str`), que ainda não rodaram.
+Agora o ragassets extrai e serve esses ícones, chaveados pelo **nome do sprite**
+— `/icons/costume?sprite=<nome>`, o mesmo nome que o render já recebe. Query e
+não caminho porque a chave é um nome de recurso do cliente, e esses são coreanos
+ou chineses na maioria (`_c7학년풍선`); as rotas de caminho do ragassets só
+soletram `[a-z0-9_]`. O nome vai inteiro: o gateway minúscula e tira o
+sublinhado inicial das tabelas de acessório por conta própria.
+
+**Sem dimensão de origem**, e isso foi medido: pedir o ícone à árvore de onde a
+arte veio acha 556 de 663 (83,9%), pedir a qualquer cliente acha 637 (96,1%). Os
+dois motivos da regra "uma árvore por origem" somem para um ícone — ele é um BMP
+avulso, sem `.act` com que precisar concordar. Cobertura final: **638 de 663**.
+Os 25 restantes dão 404 de propósito, e aí `CostumeIcon` cai no render, que é
+onde todas elas começavam antes.
 
 #### As 17 que não desenham nada
 
-`tools/multiserver/find-blank-visuals.mjs` renderiza cada peça contra o próprio
-gateway e compara com o personagem pelado. 17 das 592 saem **idênticas** ao
-pelado nas dez poses testadas, e essas ficam fora de
-`public/db/foreign-costumes.json` — a lista fica versionada em
-`blank-visuals.json`, com o motivo.
+`find-blank-visuals.mjs` renderiza cada peça contra o próprio gateway e compara
+com o personagem pelado. 17 das 592 saem **idênticas** ao pelado nas dez poses
+testadas. A varredura mora no ragassets, junto do renderizador que ela mede, e o
+catálogo publicado marca essas linhas com `blank: true`; deste lado
+`tools/sync-foreign-costumes.mjs` só lê a marca e deixa a peça fora de
+`public/db/foreign-costumes.json`.
 
 Quase todas são visuais de efeito (`_흩날리는낙엽` folhas, `_c골드샤워` chuva
 dourada, `_흩날리는벚꽃` aura de Amatsu): o sprite do acessório é um

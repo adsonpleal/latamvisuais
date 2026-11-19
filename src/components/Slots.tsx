@@ -36,20 +36,7 @@ export function Slots({ onPick }: { onPick: (slot: Slot, kind: PickKind) => void
               }}
             >
               <SlotIcon key={item?.id ?? "empty"} item={item} className="slot-icon" />
-              <div className="slot-name" data-tip={item ? `${item.name} (${item.id})` : undefined}>
-                {/* The same badge the grid puts on the tile, carried onto what
-                    is actually worn: somebody who scrolls away from the
-                    catalogue should still be able to see that a piece of this
-                    character cannot be obtained here. */}
-                {(() => {
-                  const servers = item ? originsOf(item) : [];
-                  const names = servers.map((o) => t.foreignServerNames[o] ?? o);
-                  return names.map((name) => (
-                    <span key={name} className="slot-origin" data-tip={t.foreignBadgeTip(names)}>
-                      {name}
-                    </span>
-                  ));
-                })()}
+              <div className="slot-name" data-tip={item ? wornTip(item) : undefined}>
                 {item ? item.name : t.slotEmpty}
               </div>
               <button
@@ -108,6 +95,22 @@ export function Slots({ onPick }: { onPick: (slot: Slot, kind: PickKind) => void
       })}
     </div>
   );
+}
+
+/**
+ * What is worn, and — when it is from another server — which ones.
+ *
+ * The grid tile carries a visible badge; this card deliberately does not. Four
+ * cards sit side by side on one row, so the name line has room for a name and
+ * little else: a costume six servers have put three chips and an ellipsis in
+ * front of it, which read as the item rather than as a note about it. The names
+ * move into the tooltip this line already had.
+ */
+function wornTip(item: Costume | Stone): string {
+  const head = `${item.name} (${item.id})`;
+  const servers = originsOf(item);
+  if (!servers.length) return head;
+  return `${head} — ${t.foreignBadgeTip(servers.map((o) => t.foreignServerNames[o] ?? o))}`;
 }
 
 /**

@@ -116,4 +116,26 @@ describe("Slots", () => {
     renderSlots({ equipped: { mid: item(200) }, enchants: { mid: stone(1600) } });
     expect(card("Meio").querySelector(".slot-stone-note")).toBeNull();
   });
+
+  // The grid tile carries a visible server badge; this card deliberately does
+  // not. Four cards sit side by side on one row, so the name line has room for
+  // a name and little else — a costume six servers have put three chips and an
+  // ellipsis in front of it, reading as the item rather than as a note about
+  // it. The names stay, in the tooltip the line already had.
+  it("names the servers in the worn costume's tooltip, not on the card", () => {
+    renderSlots({ equipped: { top: item(10400990) } });
+    const top = card("Topo");
+    expect(within(top).getByText("Chapéu de Dois Servidores")).toBeInTheDocument();
+    expect(within(top).queryByText("iRO")).not.toBeInTheDocument();
+    expect(within(top).queryByText("twRO")).not.toBeInTheDocument();
+    expect(top.querySelector(".slot-name")).toHaveAttribute(
+      "data-tip",
+      expect.stringMatching(/Visual de outros servidores \(iRO e twRO\)/),
+    );
+  });
+
+  it("leaves an ordinary costume's tooltip as its name and id", () => {
+    renderSlots({ equipped: { top: item(100) } });
+    expect(card("Topo").querySelector(".slot-name")).toHaveAttribute("data-tip", "Chapéu A (100)");
+  });
 });

@@ -2268,22 +2268,6 @@ button:disabled {
   color: var(--muted);
 }
 
-/* The server a worn costume comes from, inline before its name. Inline rather
-   than pinned like the grid's badge, because this row is one line of text that
-   already ellipsises — an absolute badge would sit on top of the name. */
-.slot-origin {
-  display: inline-block;
-  margin-right: 0.3em;
-  padding: 0 0.3em;
-  border-radius: 3px;
-  background: rgb(255 255 255 / 14%);
-  color: var(--fg);
-  font-size: 0.62rem;
-  line-height: 1.5;
-  text-transform: uppercase;
-  vertical-align: 0.05em;
-}
-
 .slot-card.is-filled .slot-name {
   color: var(--fg);
 }

@@ -541,6 +541,22 @@ export function itemIconUrl(id: number): string {
   return `${RAGASSETS_BASE}/icons/item/${id}.png`;
 }
 
+/** The inventory icon of a costume from another official server, keyed by its
+ *  sprite name.
+ *
+ *  `/icons/item/<id>.png` cannot answer this: its key is a LATAM item id, and
+ *  these costumes have none — their id here is synthetic (see
+ *  tools/sync-foreign-costumes.mjs). Query-shaped rather than a path because the
+ *  key is a client resource name, and those are Korean or Chinese far more often
+ *  than not (`_c7학년풍선`); ragassets' path routes only spell `[a-z0-9_]`.
+ *
+ *  The name goes through untouched — the gateway lowercases it and strips the
+ *  accessory tables' leading underscore itself. 638 of the 663 costumes have a
+ *  picture; the rest 404 on purpose, and CostumeIcon falls back to a render. */
+export function foreignIconUrl(sprite: string): string {
+  return `${RAGASSETS_BASE}/icons/costume?sprite=${encodeURIComponent(sprite)}`;
+}
+
 /** Fallback catalog thumbnail for the handful of costumes whose static item
  *  icon is missing from ragassets (404). Renders the item on the reference
  *  novice, head-framed like the hair thumbnails, so the tile still shows the

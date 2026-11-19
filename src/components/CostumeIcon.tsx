@@ -5,16 +5,25 @@
 // the CSS can show a placeholder.
 
 import type { Costume, Stone } from "../core/db";
-import { costumeThumbUrl, itemIconUrl } from "../core/state";
+import { costumeThumbUrl, foreignIconUrl, itemIconUrl } from "../core/state";
 
 export function CostumeIcon({ item, className }: { item: Costume | Stone; className: string }) {
-  // A costume from another official server has no item icon here and never
-  // will: its id is synthetic (this app assigns it — see
-  // tools/multiserver/export-app-catalogue.mjs), because the real one belongs
-  // to another server's item table. Starting from the render skips a 404 per
-  // tile, and there are 592 of them.
-  const foreign = "origin" in item && Boolean(item.origin);
-  const first = foreign ? costumeThumbUrl(item as Costume) : itemIconUrl(item.id);
+  // A costume from another official server is asked for by sprite name rather
+  // than by id: its id here is synthetic (this app assigns it — see
+  // tools/sync-foreign-costumes.mjs), because the real one belongs to another
+  // server's item table, so /icons/item/<id>.png is a guaranteed 404 for all
+  // 575 of them. ragassets serves these under /icons/costume?sprite= instead,
+  // and has a picture for 638 of the 663 it extracted; the rest fall through to
+  // the render below, which is where every one of them used to start.
+  const foreign = "origin" in item && item.origin ? item : null;
+  // Every foreign row carries a sprite name — the exporter refuses one without
+  // — but a missing one must not become a request for a LATAM item id that
+  // cannot exist. Start from the render instead, as all of these once did.
+  const first = !foreign
+    ? itemIconUrl(item.id)
+    : foreign.sprite
+      ? foreignIconUrl(foreign.sprite)
+      : costumeThumbUrl(foreign);
   return (
     <img
       className={className}

@@ -10,6 +10,7 @@ import {
   imageUrl,
   initialState,
   itemIconUrl,
+  foreignIconUrl,
   renderBodyKey,
   jobIconUrl,
   RAGASSETS_BASE,
@@ -250,5 +251,17 @@ describe("canvas + asset URL builders", () => {
     expect(jobIconUrl(4302)).toBe(`${BASE}/icons/job/4302.png`);
     expect(jobIconUrl(4308)).toBe(`${BASE}/icons/job/4308.png`);
     expect(uiIconUrl("color05_off")).toBe(`${BASE}/icons/ui/color05_off.png`);
+  });
+
+  it("asks for a foreign costume's icon by sprite name, percent-encoded", () => {
+    // These ids are this app's own, so /icons/item/<id>.png is a guaranteed
+    // 404; ragassets keys the picture on the sprite name. The name goes through
+    // untouched -- the gateway lowercases it and strips the accessory tables'
+    // leading underscore itself -- and most of these names are Korean, so the
+    // one thing this side must not skip is the encoding.
+    expect(foreignIconUrl("_c_hat")).toBe(`${BASE}/icons/costume?sprite=_c_hat`);
+    expect(foreignIconUrl("_술집모자")).toBe(
+      `${BASE}/icons/costume?sprite=_%EC%88%A0%EC%A7%91%EB%AA%A8%EC%9E%90`,
+    );
   });
 });

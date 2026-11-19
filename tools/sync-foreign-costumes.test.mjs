@@ -1,21 +1,24 @@
-// The last step of the pipeline, where its catalogue becomes the app's.
+// Where ragassets' published catalogue of the other servers' costumes becomes
+// the app's.
 //
 // Three things here are worth a test rather than a careful reading: the ids,
 // because a share link made today has to still mean the same costume after the
 // next extraction; the `origins` elision, because the app reads a field that is
-// absent from 505 of the 575 rows; and the blank list, because dropping rows is
-// the one thing in this file that loses information.
+// absent from most of the rows; and the dropped rows, because dropping is the
+// one thing in this file that loses information.
 
 import { describe, expect, it } from "vitest";
 import {
-  blankKey,
   buildAppCatalogue,
   foreignId,
   labelFromSprite,
   ORIGIN_ORDER,
   toAppRow,
-} from "./export-app-catalogue.mjs";
+} from "./sync-foreign-costumes.mjs";
 
+/** One row as /raw/foreign-costumes.json ships it. `name`/`nameOrigin`/`aegis`
+ *  are null rather than absent when no client named the costume, and `files` is
+ *  the extraction's own bookkeeping that this side ignores. */
 const hat = (over = {}) => ({
   kind: "acc",
   view: 1063,
@@ -24,7 +27,9 @@ const hat = (over = {}) => ({
   origins: ["iro"],
   name: "'Merica_Hat",
   nameOrigin: "iro",
+  aegis: "C_America_Hat",
   slots: ["top"],
+  files: 4,
   ...over,
 });
 
@@ -48,7 +53,8 @@ describe("foreignId", () => {
 describe("toAppRow", () => {
   it("lowercases the sprite, because the mirror's paths are lowercase", () => {
     // A mixed-case name works on a developer's Windows machine and 404s on the
-    // Linux box, which is the worst way for this to break.
+    // Linux box, which is the worst way for this to break. The same name is the
+    // key /icons/costume?sprite= is served under.
     expect(toAppRow(hat()).sprite).toBe("_iro_hat");
   });
 
@@ -63,14 +69,18 @@ describe("toAppRow", () => {
   });
 
   it("falls back to the sprite's own name, and says that it did", () => {
-    const row = toAppRow(hat({ name: "", nameOrigin: "" }));
+    // The published row spells "nobody named it" as null, not as an empty
+    // string, so the fallback has to answer to both.
+    const row = toAppRow(hat({ name: null, nameOrigin: null }));
     expect(row.name).toBe(labelFromSprite("_IRO_Hat"));
     expect(row.unnamed).toBe(true);
+    expect(row).not.toHaveProperty("nameOrigin");
   });
 
   it("refuses a costume with no sprite name", () => {
     // Without one the gateway would fall back to the LATAM table and draw the
-    // wrong hat, or nothing, through a request that looks like it worked.
+    // wrong hat, or nothing, through a request that looks like it worked — and
+    // the icon route, keyed on the same name, would have nothing to ask for.
     expect(() => toAppRow(hat({ sprite: "" }))).toThrow(/no sprite name/);
   });
 });
@@ -99,23 +109,14 @@ describe("buildAppCatalogue", () => {
     expect(buildAppCatalogue(doc).doc.counts).toEqual({ iro: 2, twro: 1 });
   });
 
-  it("drops the costumes the sweep measured as drawing nothing", () => {
-    const blank = [{ origin: "iro", viewKind: "headgear", view: 1063 }];
-    const { doc: built, stats } = buildAppCatalogue(doc, { blank });
+  it("drops the costumes ragassets measured as drawing nothing", () => {
+    // The sweep runs against the renderer, so it lives with the renderer; this
+    // side reads one flag. Shipping these means tiles that render a character
+    // wearing nothing, through a 200 that looks like a working render.
+    const withBlank = { ...doc, costumes: [hat({ blank: true }), doc.costumes[1]] };
+    const { doc: built, stats } = buildAppCatalogue(withBlank);
     expect(built.items.map((i) => i.view)).toEqual([2551]);
     expect(stats.blank).toBe(1);
-  });
-
-  it("names a costume the same way from either side of the sweep", () => {
-    // The pipeline says acc/robe and the app says headgear/garment; the key
-    // has to answer the same for both or the blank list silently matches
-    // nothing -- which is exactly what it did the first time.
-    expect(blankKey({ origin: "iro", kind: "acc", view: 1063 })).toBe(
-      blankKey({ origin: "iro", viewKind: "headgear", view: 1063 }),
-    );
-    expect(blankKey({ origin: "iro", kind: "robe", view: 1 })).toBe(
-      blankKey({ origin: "iro", viewKind: "garment", view: 1 }),
-    );
   });
 
   it("refuses two costumes that would land on one id", () => {

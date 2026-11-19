@@ -73,7 +73,7 @@ export type Costume = {
 };
 
 /** The foreign catalogue's shape on disk (public/db/foreign-costumes.json),
- *  built by tools/multiserver/export-app-catalogue.mjs. */
+ *  built by tools/sync-foreign-costumes.mjs from ragassets' published copy. */
 type ForeignDb = { items: Costume[] };
 
 /** How a costume's view id must be rendered — its `viewKind` when present, else

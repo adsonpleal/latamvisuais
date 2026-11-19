@@ -145,6 +145,30 @@ describe("Catalog", () => {
       expect(within(foreignTile(/Capa Estrangeira/)).getByText("twRO")).toBeInTheDocument();
     });
 
+    it("asks for the inventory icon by sprite name, not by its synthetic id", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await openFilters(user);
+      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+
+      // The id on these rows is this app's own invention — the real one belongs
+      // to another server's item table — so /icons/item/<id>.png could only
+      // ever 404. ragassets keys these pictures on the sprite name instead, the
+      // same name the render is asked for.
+      const foreignIcon = foreignTile(/Chapéu Estrangeiro/).querySelector("img");
+      expect(foreignIcon).toHaveAttribute("src", expect.stringContaining("/icons/costume?"));
+      expect(foreignIcon?.getAttribute("src")).toContain("sprite=_foreign_hat");
+      expect(foreignIcon?.getAttribute("src")).not.toContain("/icons/item/");
+
+      // And a LATAM costume keeps the id route it has always used: the foreign
+      // ones are the exception here, not a new rule for everything.
+      expect(tile("Chapéu A (#100)").querySelector("img")).toHaveAttribute(
+        "src",
+        expect.stringContaining("/icons/item/100.png"),
+      );
+    });
+
     it("shows a costume under every server that has it", async () => {
       const user = userEvent.setup();
       renderCatalog();

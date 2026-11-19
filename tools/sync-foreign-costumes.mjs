@@ -1,19 +1,43 @@
-// Turns the extraction pipeline's catalogue into the one the app ships.
+#!/usr/bin/env node
+// Rebuild public/db/foreign-costumes.json from ragassets' published catalogue of
+// the other official servers' costumes.
 //
-// Two things change on the way. Sprite names are lowercased, because every path
-// under a mirror's data/ is written lowercase and a mixed-case name would work
-// on a developer's Windows machine and 404 on the Linux box. And every costume
-// gets an id, because the app keys everything -- grid, wishlist, share links --
-// on one, while a foreign costume has no item id here: it is a view id in
-// another client's table, and two servers reuse the same numbers.
+// The extraction that produces that catalogue lives in ragassets, next to the
+// GRF reader and the Lua VM it needs (tools/multiserver/ there). It used to live
+// in this repo and carried its own copies of both; see
+// docs/multi-server-extraction-plan.md for what it does and
+// https://assets.latam-tools.com.br/raw/foreign-costumes.json for its output.
 //
-// The ids are synthetic but stable: a fixed base, then the origin's position in
-// a frozen list, then the view. Stable matters more than pretty, because a
-// share link made today has to still mean the same costume after the next
-// extraction run.
+// What stays here is the one thing ragassets can't decide: how the app names
+// these costumes. Two things change on the way in.
+//
+// Sprite names are lowercased, because every path under a mirror's data/ is
+// written lowercase and a mixed-case name would work on a developer's Windows
+// machine and 404 on the Linux box.
+//
+// And every costume gets an id, because the app keys everything -- grid,
+// wishlist, share links -- on one, while a foreign costume has no item id here:
+// it is a view id in another client's table, and two servers reuse the same
+// numbers. The ids are synthetic but stable: a fixed base, then the origin's
+// position in a frozen list, then the view. Stable matters more than pretty,
+// because a share link made today has to still mean the same costume after the
+// next extraction run.
+//
+// Usage:
+//   node tools/sync-foreign-costumes.mjs                 # fetch from ragassets
+//   node tools/sync-foreign-costumes.mjs --input <dir>   # read the raw doc from a dir
+//   node tools/sync-foreign-costumes.mjs --url <base>    # override the source base URL
+//   node tools/sync-foreign-costumes.mjs --out <dir>     # override the output directory
 
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
+import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
+// The same two helpers tools/sync-db.mjs and tools/extract-pet-eggs.mjs use, so
+// all three halves of a sync take the same flags and read /raw the same way.
+import { loadTable, parseArgs } from "./sync-db.mjs";
+
+const SOURCE = "foreign-costumes"; // /raw/foreign-costumes.json
+const DEFAULT_OUT = "public/db";
 
 /** Frozen: an origin's position here is part of every id derived from it.
  *  Append only — reordering this renumbers costumes that are already shared. */
@@ -39,7 +63,7 @@ export function foreignId(origin, view, kind) {
   return FOREIGN_ID_BASE + i * PER_ORIGIN + (kind === "robe" ? ROBE_OFFSET : 0) + view;
 }
 
-/** A label for a costume whose name no client we read could give us.
+/** A label for a costume whose name no client ragassets read could give us.
  *
  *  58 of them have none: the sprite exists, the item row that would name it
  *  does not (it is a GM-only or event piece, or its table was never published).
@@ -75,11 +99,13 @@ export function toAppRow(c) {
     // The tree the gateway renders it from.
     origin: c.origin,
     // Every server that has it, when that is more than the one it is rendered
-    // from. Left out of the 521 rows where the two say the same thing, so the
-    // file stays small; the app reads `origins ?? [origin]`.
+    // from. Left out of the rows where the two say the same thing, so the file
+    // stays small; the app reads `origins ?? [origin]`.
     ...(c.origins?.length > 1 ? { origins: c.origins } : {}),
     // Lowercased here rather than in the app or the gateway: this is the one
-    // place that knows it is naming a file in a mirror.
+    // place that knows it is naming a file in a mirror. It is also the key the
+    // inventory icon is served under (/icons/costume?sprite=), which is why
+    // every row must carry one even when the costume has a name.
     sprite: c.sprite.toLowerCase(),
     // Present only when it is true, so the common row stays small: the name is
     // the sprite's file name, not something a person wrote.
@@ -91,22 +117,11 @@ export function toAppRow(c) {
   };
 }
 
-/** "<origin>/<kind>:<view>" — how the blank sweep names a costume, since the
- *  app id is derived and the view id means nothing without its origin. The two
- *  sides spell the kind differently (the pipeline says acc/robe, the app says
- *  headgear/garment), so the key settles on the app's spelling. */
-const appKind = (k) => (k === "robe" || k === "garment" ? "garment" : "headgear");
-export const blankKey = (c) => `${c.origin}/${appKind(c.viewKind ?? c.kind)}:${Number(c.view)}`;
-
-export function buildAppCatalogue(doc, { skipOrigins = ["latam"], blank = [] } = {}) {
+export function buildAppCatalogue(doc, { skipOrigins = ["latam"] } = {}) {
   const items = [];
   const skipped = [];
   const empty = [];
   const seen = new Set();
-  // Costumes measured to draw nothing — the sprite is a placeholder for a .str
-  // effect, or the client shipped it incomplete. They render as a 200 and a
-  // character wearing nothing, so shipping them means a grid of dead tiles.
-  const isBlank = new Set(blank.map(blankKey));
   for (const c of doc.costumes) {
     // LATAM-sourced rows are not "another server's visuals" — they are views
     // this client has and the published catalogue happens not to list. They
@@ -115,7 +130,13 @@ export function buildAppCatalogue(doc, { skipOrigins = ["latam"], blank = [] } =
       skipped.push(c);
       continue;
     }
-    if (isBlank.has(blankKey(c))) {
+    // Costumes ragassets measured as drawing nothing — the sprite is a
+    // placeholder for a .str effect, or the client shipped it incomplete. They
+    // render as a 200 and a character wearing nothing, so shipping them means a
+    // grid of dead tiles. The sweep that finds them lives with the renderer it
+    // measures (tools/multiserver/find-blank-visuals.mjs in ragassets); this
+    // side only reads the flag.
+    if (c.blank) {
       empty.push(c);
       continue;
     }
@@ -136,21 +157,23 @@ export function buildAppCatalogue(doc, { skipOrigins = ["latam"], blank = [] } =
   };
 }
 
-const isMain = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
-if (isMain) {
-  const [src, dest] = process.argv.slice(2);
-  if (!src || !dest) {
-    console.error("usage: node export-app-catalogue.mjs <foreign-costumes.json> <public/db/foreign-costumes.json>");
-    process.exit(2);
-  }
-  const blankFile = new URL("./blank-visuals.json", import.meta.url);
-  const blank = existsSync(blankFile) ? JSON.parse(readFileSync(blankFile, "utf8")).blank : [];
-  const { doc, stats } = buildAppCatalogue(JSON.parse(readFileSync(src, "utf8")), { blank });
+async function main(argv) {
+  const args = parseArgs(argv, "node tools/sync-foreign-costumes.mjs [--input <dir>] [--url <base>] [--out <dir>]");
+  const outDir = resolve(args.out ?? DEFAULT_OUT);
+  mkdirSync(outDir, { recursive: true });
+
+  const { doc, stats } = buildAppCatalogue(await loadTable(SOURCE, args));
+  const dest = join(outDir, `${SOURCE}.json`);
   writeFileSync(dest, JSON.stringify(doc, null, 1) + "\n");
-  console.log(`${stats.items} fantasias → ${dest}`);
+
+  console.log(`\n${stats.items} fantasias → ${dest}`);
   for (const [o, n] of Object.entries(stats.byOrigin).sort((a, b) => b[1] - a[1])) {
     console.log(`  ${o.padEnd(9)} ${String(n).padStart(4)}`);
   }
   console.log(`  (${stats.skipped} de origem latam ficaram de fora — nao sao visuais de outro servidor)`);
-  console.log(`  (${stats.blank} que nao desenham nada ficaram de fora — ver blank-visuals.json)`);
+  console.log(`  (${stats.blank} marcadas como blank pelo ragassets ficaram de fora — nao desenham nada)`);
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  await main(process.argv.slice(2));
 }

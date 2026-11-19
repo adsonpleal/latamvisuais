@@ -1,8 +1,15 @@
 # Plano de extração — todos os servidores oficiais ativos
 
-Status: **implementado** em [tools/multiserver/](../tools/multiserver/) e testado
-ponta a ponta nas sete origens. 2026-11-17. O que falta rodar de verdade é o
-estágio 1 completo (~85 MB, ~5 h) — ver §9.
+Status: **implementado** e testado ponta a ponta nas sete origens. 2026-11-17.
+O que falta rodar de verdade é o estágio 1 completo (~85 MB, ~5 h) — ver §9.
+
+O pipeline nasceu aqui e **mora no ragassets** desde então
+(`tools/multiserver/` lá), onde já existiam o leitor de GRF, a VM de Lua, o
+parser de patch-list e o leitor de BMP de que ele precisa — este repositório
+carregava uma segunda cópia de cada um. Deste lado sobrou
+`tools/sync-foreign-costumes.mjs`, que transforma o catálogo publicado no que o
+app leva junto. Este documento descreve o pipeline; as seções abaixo que citam
+caminhos são caminhos **no ragassets**.
 
 Companheiro de [multi-server-visuals.md](multi-server-visuals.md), que
 estabeleceu que os containers são legíveis e que view ids são consistentes. Este
@@ -772,9 +779,11 @@ endpoints responderam do Brasil sem truque.
 
 ## 9. Estado da implementação
 
-O pipeline existe em [tools/multiserver/](../tools/multiserver/), com
-[README](../tools/multiserver/README.md) de operação. Um CLI, quatro estágios,
-estado fora do repo (`MULTISERVER_DIR`, default `~/ro-multiserver`).
+O pipeline existe em `tools/multiserver/` **no ragassets**, com README de
+operação. Um CLI, seis estágios, estado fora do repo (`MULTISERVER_DIR`, default
+`~/ro-multiserver`). Na mudança para lá, `grf.mjs` perdeu a metade que lia
+archives do disco, `lua51.mjs` e `extractor.mjs` sumiram inteiros, e o leitor de
+patch-list virou o mesmo que o ciclo de patch do LATAM usa.
 
 | Arquivo | O quê |
 |---|---|
