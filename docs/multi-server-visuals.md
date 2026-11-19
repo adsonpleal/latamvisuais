@@ -463,12 +463,10 @@ ele responde é "o que a iRO tem que a gente não tem"; com 1322 visuais obtíve
 misturados na resposta, e nada na telha além do badge separando uns dos outros,
 a lista deixa de ser sobre a iRO. "Todos" devolve as duas metades juntas.
 
-Os chips ficam **sempre visíveis**, e clicar em um liga a caixa sozinho. Eles já
-apareceram só depois da caixa marcada, pela regra de não deixar controle inerte
-no painel; o efeito foi esconder a funcionalidade de quem não sabia que ela
-existia. Desmarcar a caixa limpa o chip, pra linha nunca ficar restringindo um
-catálogo que não está na tela — o que esconderia o do LATAM sem pôr nada no
-lugar.
+Os chips só aparecem com a caixa marcada: oferecer sete controles que não
+mexem em nada enquanto não há estrangeiro na tela é pior do que não os mostrar.
+Desmarcar limpa o chip na saída — porque o chip esconde o catálogo do LATAM, os
+dois juntos devolveriam um grid vazio na próxima vez que a caixa fosse ligada.
 
 Cada peça estrangeira leva o nome do servidor **na telha do grid, na linha da
 lista e no card do que está vestido**, além do tooltip — uma vez que as duas

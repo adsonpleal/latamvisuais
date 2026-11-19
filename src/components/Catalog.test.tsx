@@ -173,22 +173,21 @@ describe("Catalog", () => {
       expect(foreignTile(/Capa Estrangeira/)).toBeVisible();
     });
 
-    // The chips used to appear only after the checkbox was ticked, which is how
-    // the row stayed invisible to everyone who had not already found it.
-    it("offers the servers before anything foreign is shown, and picking one turns them on", async () => {
+    // The chips narrow something that isn't on screen until the checkbox is
+    // ticked, so until then they aren't there at all.
+    it("offers no server chips until the foreign costumes are switched on", async () => {
       const user = userEvent.setup();
       renderCatalog();
 
       await openFilters(user);
-      const box = screen.getByRole("checkbox", { name: /outros servidores/i });
-      expect(box).not.toBeChecked();
+      expect(screen.queryByRole("group", { name: "Outros servidores" })).not.toBeInTheDocument();
 
-      const servers = within(screen.getByRole("group", { name: "Outros servidores" }));
-      await user.click(servers.getByRole("button", { name: "twRO" }));
-
-      expect(box).toBeChecked();
-      expect(foreignTile(/Capa Estrangeira/)).toBeVisible();
-      expect(tile("Chapéu A (#100)")).not.toBeVisible();
+      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      expect(
+        within(screen.getByRole("group", { name: "Outros servidores" })).getByRole("button", {
+          name: "iRO",
+        }),
+      ).toBeVisible();
     });
 
     it("clears the picked server when the foreign costumes are switched off", async () => {
@@ -196,22 +195,26 @@ describe("Catalog", () => {
       renderCatalog();
 
       await openFilters(user);
+      const box = () => screen.getByRole("checkbox", { name: /outros servidores/i });
       const servers = () => within(screen.getByRole("group", { name: "Outros servidores" }));
+      await user.click(box());
       await user.click(servers().getByRole("button", { name: "twRO" }));
-      expect(servers().getByRole("button", { name: "twRO" })).toHaveAttribute(
-        "aria-pressed",
-        "true",
-      );
+      expect(tile("Chapéu A (#100)")).not.toBeVisible();
 
-      // Unticking must not leave a chip narrowing a catalogue nobody is showing
-      // — which would hide the LATAM one with nothing to replace it.
-      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      // Unticking must not leave the chip set behind the hidden row: a server
+      // takes the LATAM catalogue out, so the two settings together would come
+      // back to an empty grid next time the box goes on.
+      await user.click(box());
+      expect(tile("Chapéu A (#100)")).toBeVisible();
+      expect(foreignTile(/Capa Estrangeira/)).not.toBeVisible();
+
+      await user.click(box());
       expect(servers().getByRole("button", { name: "Todos" })).toHaveAttribute(
         "aria-pressed",
         "true",
       );
       expect(tile("Chapéu A (#100)")).toBeVisible();
-      expect(foreignTile(/Capa Estrangeira/)).not.toBeVisible();
+      expect(foreignTile(/Capa Estrangeira/)).toBeVisible();
     });
 
     it("asks for the inventory icon by sprite name, not by its synthetic id", async () => {

@@ -227,15 +227,13 @@ export function CatalogFilters({
 
             {/* Its own group, below the ones that narrow the LATAM catalogue,
                 because this one adds to it instead — and adds the only items
-                in the grid nobody here can get.
-
-                The chips used to be hidden until the checkbox was on, so that
-                nothing in the panel did nothing. That hid the feature instead:
-                the row only exists for whoever already knew to look. They stay
-                up, and picking one turns the costumes on by itself — the click
-                says what you want plainly enough that making you tick a box
-                first is ceremony. Unticking clears the chip, so the row never
-                claims to be narrowing a catalogue that isn't there. */}
+                in the grid nobody here can get. The server chips appear only
+                once it is on: offering them while nothing foreign is shown
+                would be six controls that do nothing. Unticking clears the
+                chip on the way out, so the next time the box goes on the row
+                isn't still narrowing to whatever was picked a session ago —
+                and, since a chip hides the LATAM catalogue, so the two settings
+                can never leave the grid empty between them. */}
             {origins.length > 0 && (
               <div className="catalog-filter-group">
                 <div className="catalog-filter-label">{t.foreignFilterLabel}</div>
@@ -250,32 +248,28 @@ export function CatalogFilters({
                   />
                   {t.foreignLabel}
                 </label>
-                <div className="catalog-filters" role="group" aria-label={t.foreignFilterLabel}>
-                  <Chip
-                    label={t.foreignAllServers}
-                    tip={t.foreignAllServersTip}
-                    active={originFilter === null}
-                    onClick={() => onOriginFilterChange(null)}
-                  />
-                  {origins.map((o) => {
-                    const name = t.foreignServerNames[o] ?? o;
-                    return (
-                      <Chip
-                        key={o}
-                        label={name}
-                        tip={t.foreignOnlyServerTip(name)}
-                        active={originFilter === o}
-                        onClick={() => {
-                          const next = originFilter === o ? null : o;
-                          onOriginFilterChange(next);
-                          // Picking a server is itself the ask; "Todos" goes
-                          // back to the mixed list rather than emptying it.
-                          if (next) onShowForeignChange(true);
-                        }}
-                      />
-                    );
-                  })}
-                </div>
+                {showForeign && (
+                  <div className="catalog-filters" role="group" aria-label={t.foreignFilterLabel}>
+                    <Chip
+                      label={t.foreignAllServers}
+                      tip={t.foreignAllServersTip}
+                      active={originFilter === null}
+                      onClick={() => onOriginFilterChange(null)}
+                    />
+                    {origins.map((o) => {
+                      const name = t.foreignServerNames[o] ?? o;
+                      return (
+                        <Chip
+                          key={o}
+                          label={name}
+                          tip={t.foreignOnlyServerTip(name)}
+                          active={originFilter === o}
+                          onClick={() => onOriginFilterChange(originFilter === o ? null : o)}
+                        />
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             )}
 
