@@ -94,6 +94,45 @@ export function localizedSprites(items) {
   return out;
 }
 
+/** Whose name the app would rather show, best first.
+ *
+ *  These costumes are named by whichever clients happen to carry an item row
+ *  for them, and those clients are not interchangeable: the same hat is
+ *  "Rhythm Hairband" in iRO, "リズムヘアバンド" in jRO and "(服飾)律動耳機" in
+ *  twRO. A reader here can do something with the first two; the third is a
+ *  wall unless you read Chinese.
+ *
+ *  So: pt-BR if this client ever names one, then English, then Korean (the
+ *  language the item was written in, and the one a search engine answers for),
+ *  then Japanese. Traditional Chinese is last rather than refused -- it names
+ *  more of this catalogue than every other client put together, and dropping it
+ *  would turn hundreds of costumes back into sprite file names, which is worse
+ *  than a name you have to paste into a translator. Thai was asked for too, but
+ *  none of the six clients ragassets extracts is Thai, so there is nothing to
+ *  take. */
+export const NAME_PRIORITY = ["latam", "iro", "kro", "krozero", "jro", "twro", "twrozero"];
+
+/** The best name a costume has, and which client gave it.
+ *
+ *  Takes `names` -- every client's own name for the costume -- when the
+ *  published catalogue carries it, and falls back to the single `name` it has
+ *  always carried when it does not. Both shapes are read so this side can ship
+ *  before the field does and start choosing the moment it appears. */
+export function pickName(c) {
+  const names = c.names;
+  if (names) {
+    for (const origin of NAME_PRIORITY) {
+      if (names[origin]) return { name: names[origin], nameOrigin: origin };
+    }
+    // A client outside the priority list is still better than no name: take it
+    // in a fixed order so the output does not depend on key insertion.
+    for (const origin of Object.keys(names).sort()) {
+      if (names[origin]) return { name: names[origin], nameOrigin: origin };
+    }
+  }
+  return { name: c.name ?? null, nameOrigin: c.nameOrigin ?? null };
+}
+
 /** A label for a costume whose name no client ragassets read could give us.
  *
  *  58 of them have none: the sprite exists, the item row that would name it
@@ -120,10 +159,11 @@ export function slotsFor(c) {
  *  different params. */
 export function toAppRow(c) {
   if (!c.sprite) throw new Error(`costume ${c.origin}/${c.view} has no sprite name`);
-  const named = Boolean(c.name);
+  const { name, nameOrigin } = pickName(c);
+  const named = Boolean(name);
   return {
     id: foreignId(c.origin, c.view, c.kind),
-    name: named ? c.name : labelFromSprite(c.sprite),
+    name: named ? name : labelFromSprite(c.sprite),
     view: c.view,
     slots: slotsFor(c),
     viewKind: c.kind === "acc" ? "headgear" : "garment",
@@ -144,7 +184,7 @@ export function toAppRow(c) {
     // Which client's item table the name came from, when it was not this one's.
     // "Chapéu" read from twRO's tables is in Traditional Chinese, and saying so
     // is better than letting it look like a broken translation.
-    ...(named && c.nameOrigin && c.nameOrigin !== "latam" ? { nameOrigin: c.nameOrigin } : {}),
+    ...(named && nameOrigin && nameOrigin !== "latam" ? { nameOrigin } : {}),
   };
 }
 
@@ -191,6 +231,13 @@ export function buildAppCatalogue(doc, { skipOrigins = ["latam"], localItems = [
   // chips show: a costume three servers have is counted by all three.
   const byOrigin = {};
   for (const r of items) for (const o of r.origins ?? [r.origin]) byOrigin[o] = (byOrigin[o] ?? 0) + 1;
+  // Which client ended up naming each costume, so a run says plainly whether
+  // the priority above is getting anything to choose from.
+  const byNameOrigin = {};
+  for (const r of items) {
+    const k = r.unnamed ? "(sprite)" : (r.nameOrigin ?? "latam");
+    byNameOrigin[k] = (byNameOrigin[k] ?? 0) + 1;
+  }
   return {
     doc: { version: 1, generatedAt: doc.generatedAt, counts: byOrigin, items },
     stats: {
@@ -199,6 +246,7 @@ export function buildAppCatalogue(doc, { skipOrigins = ["latam"], localItems = [
       blank: empty.length,
       localized: localized.length,
       byOrigin,
+      byNameOrigin,
     },
   };
 }
@@ -223,6 +271,11 @@ async function main(argv) {
   console.log(`  (${stats.skipped} de origem latam ficaram de fora — nao sao visuais de outro servidor)`);
   console.log(`  (${stats.blank} marcadas como blank pelo ragassets ficaram de fora — nao desenham nada)`);
   console.log(`  (${stats.localized} ficaram de fora — o LATAM ja tem um item com nome para esse sprite)`);
+  console.log("");
+  console.log("  nome veio de:");
+  for (const [o, n] of Object.entries(stats.byNameOrigin).sort((a, b) => b[1] - a[1])) {
+    console.log(`    ${o.padEnd(9)} ${String(n).padStart(4)}`);
+  }
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

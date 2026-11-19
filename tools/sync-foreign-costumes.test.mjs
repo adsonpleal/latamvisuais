@@ -13,7 +13,9 @@ import {
   foreignId,
   labelFromSprite,
   localizedSprites,
+  NAME_PRIORITY,
   ORIGIN_ORDER,
+  pickName,
   toAppRow,
 } from "./sync-foreign-costumes.mjs";
 
@@ -51,6 +53,55 @@ describe("foreignId", () => {
   });
 });
 
+describe("pickName", () => {
+  // The same hat is named by whichever clients carry an item row for it, and
+  // those names are not interchangeable: English and Korean are something a
+  // reader here can act on, Traditional Chinese is a wall unless you read it.
+  const names = {
+    twro: "(服飾)律動耳機",
+    jro: "リズムヘアバンド",
+    kro: "리듬 헤어밴드",
+    iro: "Rhythm Hairband",
+  };
+
+  it("takes English over every other client", () => {
+    expect(pickName({ names })).toEqual({ name: "Rhythm Hairband", nameOrigin: "iro" });
+  });
+
+  it("falls to Korean, then Japanese, then Chinese as the clients run out", () => {
+    const { iro, ...noEnglish } = names;
+    expect(pickName({ names: noEnglish }).nameOrigin).toBe("kro");
+    expect(pickName({ names: { jro: names.jro, twro: names.twro } }).nameOrigin).toBe("jro");
+    // Last, not refused: Chinese names more of this catalogue than everything
+    // else together, and dropping it turns hundreds of rows into file names.
+    expect(pickName({ names: { twro: names.twro } }).nameOrigin).toBe("twro");
+  });
+
+  it("prefers a pt-BR name to any of them", () => {
+    expect(NAME_PRIORITY[0]).toBe("latam");
+    expect(pickName({ names: { ...names, latam: "Tiara Rítmica" } })).toEqual({
+      name: "Tiara Rítmica",
+      nameOrigin: "latam",
+    });
+  });
+
+  it("ignores a client that has the costume but no name for it", () => {
+    expect(pickName({ names: { iro: null, kro: "리듬 헤어밴드" } }).nameOrigin).toBe("kro");
+  });
+
+  // The field does not exist in the published catalogue yet. Reading both
+  // shapes is what lets this ship before ragassets does and start choosing the
+  // moment the field appears, with no coordinated release.
+  it("falls back to the single name the catalogue carries today", () => {
+    expect(pickName({ name: "(服飾)律動耳機", nameOrigin: "twro" })).toEqual({
+      name: "(服飾)律動耳機",
+      nameOrigin: "twro",
+    });
+    expect(pickName({ name: null, nameOrigin: null })).toEqual({ name: null, nameOrigin: null });
+    expect(pickName({})).toEqual({ name: null, nameOrigin: null });
+  });
+});
+
 describe("toAppRow", () => {
   it("lowercases the sprite, because the mirror's paths are lowercase", () => {
     // A mixed-case name works on a developer's Windows machine and 404s on the
@@ -67,6 +118,26 @@ describe("toAppRow", () => {
 
   it("carries origins when more than one server has the costume", () => {
     expect(toAppRow(hat({ origins: ["iro", "twro"] })).origins).toEqual(["iro", "twro"]);
+  });
+
+  it("names the costume in the best language its clients offer", () => {
+    const row = toAppRow(
+      hat({
+        name: "(服飾)律動耳機",
+        nameOrigin: "twro",
+        names: { twro: "(服飾)律動耳機", iro: "Rhythm Hairband" },
+      }),
+    );
+    expect(row.name).toBe("Rhythm Hairband");
+    expect(row.nameOrigin).toBe("iro");
+  });
+
+  it("drops nameOrigin when the name is this client's own", () => {
+    // The UI shows nameOrigin to explain a name in a language nobody here
+    // asked for. A pt-BR name needs no such note.
+    const row = toAppRow(hat({ names: { latam: "Tiara Rítmica" } }));
+    expect(row.name).toBe("Tiara Rítmica");
+    expect(row).not.toHaveProperty("nameOrigin");
   });
 
   it("falls back to the sprite's own name, and says that it did", () => {

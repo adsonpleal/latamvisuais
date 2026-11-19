@@ -611,6 +611,29 @@ Os nomes vêm das tabelas do próprio servidor quando o LATAM não tem o item �
 462 das 517 — então muitos estão em chinês tradicional (twRO) ou japonês. O
 campo `nameOrigin` registra de onde veio.
 
+#### Em que língua, quando mais de um cliente nomeia
+
+A mesma peça é "Rhythm Hairband" no iRO, "リズムヘアバンド" no jRO e
+"(服飾)律動耳機" no twRO. Os dois primeiros um leitor daqui resolve; o terceiro é
+uma parede para quem não lê chinês. Então a escolha tem ordem, em
+`NAME_PRIORITY`:
+
+> pt-BR → inglês (iRO) → coreano (kRO, kRO Zero) → japonês (jRO) → chinês
+> tradicional (twRO, twRO Zero)
+
+O chinês é **o último, não o recusado**: ele nomeia 287 das 517 linhas de hoje,
+mais do que todos os outros clientes somados, e tirá-lo devolveria centenas de
+nomes de arquivo — pior do que um nome que dá para colar num tradutor. Tailandês
+também foi pedido, mas nenhum dos seis clientes que o ragassets extrai é
+tailandês, então não há de onde tirar.
+
+**Hoje isso ainda não muda nada.** O `/raw/foreign-costumes.json` publica um
+`name` só, já escolhido lá em cima, e os outros candidatos se perdem antes de
+chegar aqui. O `pickName` lê as duas formas — um objeto `names` por origem
+quando existir, e o `name` avulso enquanto não existir —, então este lado já
+está pronto e começa a escolher no instante em que o campo for publicado, sem
+precisar de release combinado. O pedido do campo está com a sessão do ragassets.
+
 ### O que *não* muda
 
 `tools/prerender-seo.mjs` lê só `public/db/costumes.json`, então nenhuma fantasia
