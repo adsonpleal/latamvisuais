@@ -498,10 +498,12 @@ Onde cabe um nome só, com um chip ligado ele mostra **aquele** servidor, pra
 não parecer que o filtro está quebrado quando uma peça de iRO+twRO aparece sob
 "iRO" escrita "twRO"; sem chip, o primeiro da lista.
 
-O tooltip **não** lista os servidores: o nome já está no badge, e uma peça que
-está em quatro virava uma lista que ninguém lê. Ele diz o que o badge é —
-"Visual de outro servidor. Não existe no Ragnarok LATAM — dá para vestir e ver
-aqui, mas não dá para conseguir no jogo.".
+O tooltip é o único lugar onde os servidores saem escritos por extenso, e é por
+causa do `+N`: a telha diz "iRO +1" e nada mais na tela responde *qual*. Então
+ele abre com a lista e segue com o que o badge significa — "Visual de outros
+servidores (iRO e twRO). Não existe no Ragnarok LATAM — dá para vestir e ver
+aqui, mas não dá para conseguir no jogo.". Com um servidor só, "Visual de outro
+servidor (iRO)".
 
 #### O ícone do card vestido
 

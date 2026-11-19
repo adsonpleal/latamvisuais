@@ -297,11 +297,14 @@ export function Catalog({
               // server, so the badge never seems to contradict the filter.
               const origin = primaryOrigin(servers, originFilter);
               const server = origin ? (t.foreignServerNames[origin] ?? origin) : null;
+              // Every name, in chip order: the tile shows one and a "+3", so
+              // the tooltip is the only place that says which three.
+              const serverNames = servers.map((o) => t.foreignServerNames[o] ?? o);
               // The badge is on the tile, not only in the tooltip: once the
               // filter is on, foreign and LATAM costumes sit side by side in
               // one grid, and the only thing that tells them apart is this.
               const label = server
-                ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip}`
+                ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip(serverNames)}`
                 : `${item.name} (#${item.id})`;
               const cls = [
                 "catalog-item",

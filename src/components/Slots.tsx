@@ -41,11 +41,15 @@ export function Slots({ onPick }: { onPick: (slot: Slot, kind: PickKind) => void
                     is actually worn: somebody who scrolls away from the
                     catalogue should still be able to see that a piece of this
                     character cannot be obtained here. */}
-                {(item ? originsOf(item) : []).map((o) => (
-                  <span key={o} className="slot-origin" data-tip={t.foreignBadgeTip}>
-                    {t.foreignServerNames[o] ?? o}
-                  </span>
-                ))}
+                {(() => {
+                  const servers = item ? originsOf(item) : [];
+                  const names = servers.map((o) => t.foreignServerNames[o] ?? o);
+                  return names.map((name) => (
+                    <span key={name} className="slot-origin" data-tip={t.foreignBadgeTip(names)}>
+                      {name}
+                    </span>
+                  ));
+                })()}
                 {item ? item.name : t.slotEmpty}
               </div>
               <button

@@ -191,7 +191,7 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
                 aria-pressed={equipped}
                 aria-label={
                   names.length
-                    ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip}`
+                    ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip(names)}`
                     : `${item.name} (#${item.id})`
                 }
                 onClick={(e) => onPick(item, e.currentTarget)}
@@ -225,7 +225,7 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
                     ? ` · ${t.stoneLabel}${stoneNote(item)}`
                     : ` · ${item.slots.map((s) => t.slotNames[s]).join(" + ")}`}
                   {names.map((name) => (
-                    <span key={name} className="catalog-origin" data-tip={t.foreignBadgeTip}>
+                    <span key={name} className="catalog-origin" data-tip={t.foreignBadgeTip(names)}>
                       {name}
                     </span>
                   ))}

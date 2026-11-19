@@ -1,5 +1,11 @@
 // UI strings — pt-BR only (the LATAM server's language).
 
+/** "a, b e c" — the one bit of grammar these strings need. Not Intl.ListFormat:
+ *  this file is single-locale by design, and the tooltip it serves is built
+ *  once per visible tile. */
+const joinAnd = (names: string[]) =>
+  names.length < 2 ? (names[0] ?? "") : `${names.slice(0, -1).join(", ")} e ${names[names.length - 1]}`;
+
 export const t = {
   appTitle: "Simulador de Visuais",
   appSubtitle: "Ragnarok Online LATAM",
@@ -224,15 +230,19 @@ export const t = {
    *  chip. It names one server — whichever chip is held down, or the first the
    *  costume belongs to. */
   foreignBadge: (server: string) => server,
-  /** The badge's tooltip says what the badge is, not which servers: the name is
-   *  already on the badge, and a costume on four of them turned this into a
-   *  list nobody reads. */
   /** The tile has room for one name. "+3" is how it says there are others,
    *  since 162 of the costumes are on four servers or more and a 53x48 tile
    *  fits one 8px line. The list view shows every name instead. */
   foreignBadgeMore: (n: number) => `+${n}`,
-  foreignBadgeTip:
-    "Visual de outro servidor. Não existe no Ragnarok LATAM — dá para vestir e ver aqui, mas não dá para conseguir no jogo.",
+  /** The badge's tooltip, and the only place every server is written out: the
+   *  tile shows one name and a "+3", so without this there is nothing that
+   *  answers which three. Takes the display names, already in chip order. */
+  foreignBadgeTip: (servers: string[]) =>
+    `${
+      servers.length > 1
+        ? `Visual de outros servidores (${joinAnd(servers)})`
+        : `Visual de outro servidor${servers.length ? ` (${servers[0]})` : ""}`
+    }. Não existe no Ragnarok LATAM — dá para vestir e ver aqui, mas não dá para conseguir no jogo.`,
   foreignUnnamedTip:
     "Sem nome: nenhum cliente que lemos tinha a linha de item desse visual, então o nome mostrado é o do arquivo do sprite.",
   foreignForeignNameTip: (server: string) =>

@@ -168,6 +168,12 @@ describe("Catalog", () => {
       await user.click(chip("twRO"));
       expect(foreignTile(/Chapéu de Dois Servidores/)).toBeVisible();
       expect(within(foreignTile(/Chapéu de Dois Servidores/)).getByText("twRO")).toBeInTheDocument();
+      // The tile says "twRO +1"; the tooltip is the only place that answers
+      // which one, so it names every server rather than describing the badge.
+      expect(within(foreignTile(/Chapéu de Dois Servidores/)).getByText("+1")).toBeInTheDocument();
+      expect(foreignTile(/Chapéu de Dois Servidores/)).toHaveAccessibleName(
+        /Visual de outros servidores \(iRO e twRO\)/,
+      );
     });
 
     it("puts them away again on Limpar", async () => {
