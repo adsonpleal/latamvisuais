@@ -135,14 +135,83 @@ describe("Catalog", () => {
 
       expect(foreignTile(/Capa Estrangeira/)).toBeVisible();
       expect(foreignTile(/Chapéu Estrangeiro/)).not.toBeVisible();
-      // Still only narrowing the foreign ones — the LATAM catalogue is whole.
-      expect(tile("Chapéu A (#100)")).toBeVisible();
+      // And the LATAM catalogue goes with it: the chip asks what twRO has that
+      // we don't, and the obtainable costumes are not part of that answer.
+      expect(tile("Chapéu A (#100)")).not.toBeVisible();
 
       // The badge is the only thing distinguishing a foreign tile from a LATAM
       // one once they sit in the same grid, so it has to be on the tile and in
       // its accessible name, not only in a tooltip.
       expect(foreignTile(/Capa Estrangeira/)).toHaveAccessibleName(/Visual de outro servidor/);
       expect(within(foreignTile(/Capa Estrangeira/)).getByText("twRO")).toBeInTheDocument();
+    });
+
+    // What the chip row is for. Without this the answer to "o que a iRO tem que
+    // a gente não tem" arrives buried in 1322 costumes anyone here can already
+    // wear, and nothing on screen tells the two apart.
+    it("drops the LATAM catalogue while a server is picked, and brings it back", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await openFilters(user);
+      const servers = () => within(screen.getByRole("group", { name: "Outros servidores" }));
+      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+
+      // The checkbox on its own is still additive: both catalogues, together.
+      expect(tile("Chapéu A (#100)")).toBeVisible();
+      expect(foreignTile(/Chapéu Estrangeiro/)).toBeVisible();
+
+      await user.click(servers().getByRole("button", { name: "iRO" }));
+      expect(tile("Chapéu A (#100)")).not.toBeVisible();
+      expect(tile("Máscara B (#200)")).not.toBeVisible();
+      expect(foreignTile(/Chapéu Estrangeiro/)).toBeVisible();
+      expect(foreignTile(/Chapéu de Dois Servidores/)).toBeVisible();
+      expect(foreignTile(/Capa Estrangeira/)).not.toBeVisible();
+
+      await user.click(servers().getByRole("button", { name: "Todos" }));
+      expect(tile("Chapéu A (#100)")).toBeVisible();
+      expect(foreignTile(/Capa Estrangeira/)).toBeVisible();
+    });
+
+    // The chips used to appear only after the checkbox was ticked, which is how
+    // the row stayed invisible to everyone who had not already found it.
+    it("offers the servers before anything foreign is shown, and picking one turns them on", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await openFilters(user);
+      const box = screen.getByRole("checkbox", { name: /outros servidores/i });
+      expect(box).not.toBeChecked();
+
+      const servers = within(screen.getByRole("group", { name: "Outros servidores" }));
+      await user.click(servers.getByRole("button", { name: "twRO" }));
+
+      expect(box).toBeChecked();
+      expect(foreignTile(/Capa Estrangeira/)).toBeVisible();
+      expect(tile("Chapéu A (#100)")).not.toBeVisible();
+    });
+
+    it("clears the picked server when the foreign costumes are switched off", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await openFilters(user);
+      const servers = () => within(screen.getByRole("group", { name: "Outros servidores" }));
+      await user.click(servers().getByRole("button", { name: "twRO" }));
+      expect(servers().getByRole("button", { name: "twRO" })).toHaveAttribute(
+        "aria-pressed",
+        "true",
+      );
+
+      // Unticking must not leave a chip narrowing a catalogue nobody is showing
+      // — which would hide the LATAM one with nothing to replace it.
+      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      expect(servers().getByRole("button", { name: "Todos" })).toHaveAttribute(
+        "aria-pressed",
+        "true",
+      );
+      expect(tile("Chapéu A (#100)")).toBeVisible();
+      expect(foreignTile(/Capa Estrangeira/)).not.toBeVisible();
     });
 
     it("asks for the inventory icon by sprite name, not by its synthetic id", async () => {

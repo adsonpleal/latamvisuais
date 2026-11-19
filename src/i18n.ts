@@ -218,6 +218,13 @@ export const t = {
   foreignTip:
     "Mostra visuais que existem em outros servidores oficiais e não no Ragnarok LATAM. Dá para vestir e ver na prévia, mas não dá para conseguir no jogo daqui.",
   foreignAllServers: "Todos",
+  foreignAllServersTip:
+    "O catálogo do LATAM e, junto com ele, os visuais de todos os outros servidores.",
+  /** Each server chip answers one question — o que esse servidor tem que o
+   *  LATAM não tem — e por isso tira o catálogo daqui da lista: misturado com
+   *  1322 visuais que dá para conseguir, a resposta não é mais uma resposta. */
+  foreignOnlyServerTip: (server: string) =>
+    `Só os visuais que ${server} tem e o Ragnarok LATAM não. O catálogo daqui fica de fora da lista.`,
   foreignServerNames: {
     iro: "iRO",
     jro: "jRO",

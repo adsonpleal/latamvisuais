@@ -107,10 +107,16 @@ export function Catalog({
           // and then optionally narrowed to one server. A costume several
           // servers have answers to each of their chips -- "iRO" means every
           // costume iRO has and LATAM does not, not the subset we happened to
-          // extract from iRO. Everything LATAM ships has no origin at all and
-          // is unaffected by either filter.
+          // extract from iRO.
+          //
+          // Picking a server also takes the LATAM catalogue out. That chip
+          // answers one question -- what does iRO have that we don't -- and
+          // 1322 obtainable costumes mixed into the answer is not an answer:
+          // you cannot tell the two apart by looking, so the list stops being
+          // about iRO at all. With no server picked they sit together, which is
+          // what the checkbox on its own has always meant.
           (originsOf(item).length === 0
-            ? true
+            ? !originFilter
             : showForeign && (!originFilter || originsOf(item).includes(originFilter))) &&
           // A stone only ever holds one position, so "só de uma posição" can
           // never exclude one — it exists to hide the Topo+Meio costume sets.

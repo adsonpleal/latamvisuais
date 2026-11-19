@@ -448,10 +448,27 @@ outro é um pedido perfeitamente comum.
 ### O filtro
 
 Desligado por padrão, e sem memória entre sessões: são os únicos itens do
-catálogo que ninguém aqui consegue obter. Ligado, entram no mesmo grid dos
-visuais do LATAM (o filtro **soma**, não substitui), com chips para restringir a
-um servidor. O badge do botão de filtros conta esse filtro como ativo mesmo ele
-alargando a lista, e o "Limpar" o desliga.
+catálogo que ninguém aqui consegue obter. O badge do botão de filtros conta esse
+filtro como ativo mesmo ele alargando a lista, e o "Limpar" o desliga.
+
+São **dois** controles, e eles respondem a perguntas diferentes:
+
+| controle | o que mostra |
+|---|---|
+| só a caixa ligada | o catálogo do LATAM **mais** todos os estrangeiros, no mesmo grid |
+| um chip de servidor | **só** o que aquele servidor tem e o LATAM não — 316 para a iRO, 297 para a twRO |
+
+O chip tira o catálogo do LATAM da lista, e isso é o ponto dele. A pergunta que
+ele responde é "o que a iRO tem que a gente não tem"; com 1322 visuais obtíveis
+misturados na resposta, e nada na telha além do badge separando uns dos outros,
+a lista deixa de ser sobre a iRO. "Todos" devolve as duas metades juntas.
+
+Os chips ficam **sempre visíveis**, e clicar em um liga a caixa sozinho. Eles já
+apareceram só depois da caixa marcada, pela regra de não deixar controle inerte
+no painel; o efeito foi esconder a funcionalidade de quem não sabia que ela
+existia. Desmarcar a caixa limpa o chip, pra linha nunca ficar restringindo um
+catálogo que não está na tela — o que esconderia o do LATAM sem pôr nada no
+lugar.
 
 Cada peça estrangeira leva o nome do servidor **na telha do grid, na linha da
 lista e no card do que está vestido**, além do tooltip — uma vez que as duas
