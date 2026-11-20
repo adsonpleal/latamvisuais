@@ -58,11 +58,15 @@ describe("Wishlist", () => {
       "https://www.divine-pride.net/database/item/20123/chapeu-estrangeiro",
     );
     expect(screen.queryByRole("link", { name: "Buscar no mercado" })).not.toBeInTheDocument();
+    // The line prints the client's number too, not the one this app invented
+    // for its own indexing.
+    expect(screen.getByText("#20123")).toBeInTheDocument();
+    expect(screen.queryByText("#10000900")).not.toBeInTheDocument();
   });
 
-  // The row whose item no client carries an id for: a link to our own number
-  // would 404, so the name is not a link at all.
-  it("leaves a foreign costume unlinked when no client gave an item id", async () => {
+  // The row whose item no client carries an id for: there is no number to
+  // print and nothing to link, and ours is neither.
+  it("leaves a foreign costume unlinked, and unnumbered, when no client gave an id", async () => {
     const user = userEvent.setup();
     render(
       <StateHarness db={db} init={{ equipped: { garment: item(10400950) } }}>
@@ -73,6 +77,7 @@ describe("Wishlist", () => {
 
     expect(screen.getByText("Capa Estrangeira").tagName).toBe("SPAN");
     expect(screen.queryAllByRole("link")).toHaveLength(0);
+    expect(screen.queryByText("#10400950")).not.toBeInTheDocument();
   });
   it("includes the selected pet's egg as its own item", async () => {
     const user = userEvent.setup();

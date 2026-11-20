@@ -156,8 +156,8 @@ export function pickName(c) {
  *  beside `names` -- same keys, same join, and every origin that names a
  *  costume also carries its id.
  *
- *  466 of the rows we publish get an id and 420 of those have only one number
- *  to choose from. The other 46 disagree for two different reasons, and the
+ *  490 of the rows we publish get an id and 425 of those have only one number
+ *  to choose from. The other 65 disagree for two different reasons, and the
  *  reasons pull opposite ways:
  *
  *  - **The costume and the ordinary hat it copies are separate items.** A
@@ -242,8 +242,8 @@ export function toAppRow(c) {
     ...(named && nameOrigin && nameOrigin !== "latam" ? { nameOrigin } : {}),
     // The item's real id in the clients' own tables, when they carry one: the
     // only thing a Divine-Pride link can be built from, since `id` above is
-    // ours. Absent for the 51 rows no client gives an id for, and the app
-    // falls back to printing the id without a link, as every row used to.
+    // ours. Absent for the 27 rows no client gives an id for, and those
+    // rows print no id at all rather than show the number we made up.
     ...(itemId ? { itemId } : {}),
   };
 }

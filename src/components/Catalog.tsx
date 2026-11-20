@@ -24,6 +24,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   originsOf as dbOriginsOf,
   primaryOrigin,
+  realItemId,
   type Costume,
   type Slot,
   type Stone,
@@ -88,9 +89,18 @@ export function Catalog({
     [db.costumes, db.stones],
   );
 
-  // Each item's search haystack (folded name + id) — independent of state, so
-  // compute it once.
-  const haystacks = useMemo(() => all.map((item) => `${fold(item.name)} ${item.id}`), [all]);
+  // Each item's search haystack (folded name + the id a player could know) —
+  // independent of state, so compute it once.
+  //
+  // The id here is the real one, never the number this app invents for a
+  // foreign row: typing a costume's actual item id is a thing people do, and
+  // typing ours is not — nobody has it except from this screen, and until now
+  // this screen was the only place it ever appeared. The 27 rows with no real
+  // id are findable by name alone, which is all anyone could have for them.
+  const haystacks = useMemo(
+    () => all.map((item) => `${fold(item.name)} ${realItemId(item) ?? ""}`),
+    [all],
+  );
 
   const q = fold(query.trim());
   // Memoized because it's 1500 items wide and feeds `visibleItems`, which the
@@ -309,9 +319,14 @@ export function Catalog({
               // The badge is on the tile, not only in the tooltip: once the
               // filter is on, foreign and LATAM costumes sit side by side in
               // one grid, and the only thing that tells them apart is this.
+              // The id in the tooltip is the real one, and absent when the row
+              // has none — see realItemId. A tile is the only place a foreign
+              // costume's number is read aloud, so it must not be ours.
+              const realId = realItemId(item);
+              const shownId = realId === null ? "" : ` (#${realId})`;
               const label = server
-                ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip(serverNames)}`
-                : `${item.name} (#${item.id})`;
+                ? `${item.name}${shownId} — ${t.foreignBadgeTip(serverNames)}`
+                : `${item.name}${shownId}`;
               const cls = [
                 "catalog-item",
                 equipped ? "is-equipped" : "",

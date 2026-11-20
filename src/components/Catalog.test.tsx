@@ -272,11 +272,11 @@ describe("Catalog", () => {
       );
     });
 
-    // The number printed on a foreign row is this app’s own invention, so a
-    // link built from it would 404 -- which is why there was none at all until
-    // ragassets published the clients’ real item ids. The risk now is the
-    // mirror image: a link quietly built from our number instead of theirs.
-    it("links a foreign row to the real item id, not to the one we invented", async () => {
+    // A foreign row's `id` is this app's own invention. It used to be the
+    // number printed on screen, which made the row claim an item id that is
+    // nobody's: searching for it in game finds nothing, and a link built from
+    // it 404s. The real one is the only number that may appear here.
+    it("prints and links the real item id, never the one we invented", async () => {
       const user = userEvent.setup();
       renderCatalog();
 
@@ -287,19 +287,41 @@ describe("Catalog", () => {
       await user.type(screen.getByRole("searchbox"), "Estrangeiro");
 
       const row = document.querySelector(".catalog-row") as HTMLElement;
-      const link = within(row).getByText("#10000900");
+      const link = within(row).getByText("#20123");
       expect(link.tagName).toBe("A");
       expect(link).toHaveAttribute(
         "href",
         "https://www.divine-pride.net/database/item/20123/chapeu-estrangeiro",
       );
-      // On screen 10000900, on the page 20123. The tooltip says so rather than
-      // letting the two numbers disagree in silence.
-      expect(link).toHaveAttribute("data-tip", "Ver no Divine-Pride (item 20123)");
+      // Our number appears nowhere a reader can see it -- not as the text, and
+      // not in the tooltip, which is plain again now that the two agree.
+      expect(link).toHaveAttribute("data-tip", "Ver no Divine-Pride");
+      expect(row.textContent).not.toContain("10000900");
 
       // Back to the grid: the view preference outlives the localStorage reset.
       await user.click(screen.getByRole("button", { name: "Grade" }));
     });
+    // The search box is the one place a number gets typed rather than read,
+    // and the number anyone would type is the item's own: from the game, from
+    // Divine-Pride, from a friend. Ours exists nowhere outside this app, so
+    // matching it would only ever help someone who copied it off this screen
+    // -- which is precisely what we stopped putting there.
+    it("finds a foreign costume by its real item id, and not by ours", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await openFilters(user);
+      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+
+      await user.type(screen.getByRole("searchbox"), "20123");
+      expect(foreignTile(/Chapéu Estrangeiro/)).toBeVisible();
+      expect(tile("Chapéu A (#100)")).not.toBeVisible();
+
+      await user.clear(screen.getByRole("searchbox"));
+      await user.type(screen.getByRole("searchbox"), "10000900");
+      expect(foreignTile(/Chapéu Estrangeiro/)).not.toBeVisible();
+    });
+
     it("puts them away again on Limpar", async () => {
       const user = userEvent.setup();
       renderCatalog();
@@ -312,7 +334,7 @@ describe("Catalog", () => {
       expect(foreignTile(/Chapéu Estrangeiro/)).not.toBeVisible();
     });
 
-    it("marks them in the list view too, where no client gave an item id", async () => {
+    it("prints no id at all where no client gave one, rather than ours", async () => {
       const user = userEvent.setup();
       renderCatalog();
 
@@ -329,11 +351,18 @@ describe("Catalog", () => {
       // tile.
       expect(within(row).getByText("Capa Estrangeira")).toBeInTheDocument();
       expect(within(row).getByText("twRO")).toBeInTheDocument();
-      // 51 of the published rows have no item id in any client's table, and
-      // this fixture is one of them: our own number would 404, so the id stays
-      // plain. The market link is missing for a different reason -- it is
-      // LATAM's, which is exactly where this costume cannot be bought.
-      expect(within(row).getByText("#10400950").tagName).toBe("SPAN");
+      // 27 of the published rows have no item id in any client's table, and
+      // this fixture is one of them. There is no number to show, so the row
+      // shows none and starts at the position: ours would be a made-up id
+      // dressed as a real one, which is the whole bug. The market link is
+      // missing for a different reason -- it is LATAM's, which is exactly
+      // where this costume cannot be bought.
+      expect(row.textContent).not.toContain("#");
+      expect(row.textContent).not.toContain("10400950");
+      // And no orphaned separator where the id used to be: the " · " belongs
+      // to the id, so the line starts at the position.
+      const meta = row.querySelector(".catalog-row-meta") as HTMLElement;
+      expect(meta.textContent?.startsWith("Capa")).toBe(true);
       expect(within(row).queryByRole("link")).not.toBeInTheDocument();
 
       // A LATAM row keeps both links.

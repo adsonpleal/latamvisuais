@@ -2832,12 +2832,6 @@ button:disabled {
   z-index: 2;
 }
 
-/* A foreign costume's id links nowhere, so it must not look clickable. */
-.catalog-row-id.is-plain {
-  pointer-events: none;
-  text-decoration: none;
-}
-
 /* The id reads as what it is — a link to the item's Divine-Pride page. */
 .catalog-row-id {
   pointer-events: auto;

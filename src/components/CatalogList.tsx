@@ -13,8 +13,8 @@
 // which it has to do arithmetically because the target row may not be mounted.
 
 import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from "react";
-import { canPreview, originsOf, type Costume, type Stone } from "../core/db";
-import { divinePrideId, divinePrideUrl, marketUrl } from "../core/links";
+import { canPreview, originsOf, realItemId, type Costume, type Stone } from "../core/db";
+import { divinePrideUrl, marketUrl } from "../core/links";
 import { useServer } from "../core/server";
 import { t } from "../i18n";
 import { CostumeIcon } from "./CostumeIcon";
@@ -170,8 +170,9 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
           // costumes are on more than one server.
           const servers = originsOf(item);
           const names = servers.map((o) => t.foreignServerNames[o] ?? o);
-          // Which number a Divine-Pride link may use, if any: see divinePrideId.
-          const dpId = divinePrideId(item);
+          // The id to show and to link, or null when the row has none: see
+          // realItemId. Never item.id for a foreign row — that one is ours.
+          const realId = realItemId(item);
           return (
             <div
               key={item.id}
@@ -193,7 +194,7 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
                 aria-pressed={equipped}
                 aria-label={
                   names.length
-                    ? `${item.name} (#${item.id}) — ${t.foreignBadgeTip(names)}`
+                    ? `${item.name}${realId ? ` (#${realId})` : ""} — ${t.foreignBadgeTip(names)}`
                     : `${item.name} (#${item.id})`
                 }
                 onClick={(e) => onPick(item, e.currentTarget)}
@@ -202,32 +203,33 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
               <span className="catalog-row-text">
                 <span className="catalog-row-name">{item.name}</span>
                 <span className="catalog-row-meta">
-                  {/* The number printed is always this app's -- it is what the
-                      search box and a share link take -- but for a foreign
-                      costume that number is an invention of ours and not an
-                      item id anywhere. The link goes to the real item instead,
-                      and the tooltip names it, so the two numbers never
-                      silently disagree. 51 foreign rows have no real id at all
-                      and stay plain, as all of them did before. */}
-                  {dpId === null ? (
-                    <span className="catalog-row-id is-plain">{`#${item.id}`}</span>
-                  ) : (
+                  {/* The real item id, the one a player can paste anywhere
+                      else — never the id this app invented for a foreign row,
+                      which is not that costume's number in any client and
+                      looked like one here. 27 foreign rows have no real id at
+                      all, and those print none: an invented number is worse
+                      than a missing one, since only the invented one gets
+                      believed. */}
+                  {realId !== null && (
                     <a
                       className="catalog-row-id"
-                      href={divinePrideUrl(dpId, item.name)}
+                      href={divinePrideUrl(realId, item.name)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      data-tip={dpId === item.id ? t.divineLink : t.divineLinkItem(dpId)}
+                      data-tip={t.divineLink}
                     >
-                      {`#${item.id}`}
+                      {`#${realId}`}
                     </a>
                   )}
                   {/* A stone's client name already ends in "(Topo)", so
                       repeating the position would say it twice — what the row
-                      still has to say is that it is a stone at all. */}
-                  {"stone" in item
-                    ? ` · ${t.stoneLabel}${stoneNote(item)}`
-                    : ` · ${item.slots.map((s) => t.slotNames[s]).join(" + ")}`}
+                      still has to say is that it is a stone at all. The
+                      separator belongs to the id before it, so a row without
+                      one starts at the position rather than at a stray dot. */}
+                  {(realId !== null ? " · " : "") +
+                    ("stone" in item
+                      ? `${t.stoneLabel}${stoneNote(item)}`
+                      : item.slots.map((s) => t.slotNames[s]).join(" + "))}
                   {names.map((name) => (
                     <span key={name} className="catalog-origin" data-tip={t.foreignBadgeTip(names)}>
                       {name}

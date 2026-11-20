@@ -7,6 +7,7 @@ import {
   builtinRisePx,
   hatSprite,
   loadDb,
+  realItemId,
   withHatEffects,
   type Costume,
   type HatEffectRow,
@@ -234,5 +235,27 @@ describe("loadDb", () => {
       viewKind: "headgear",
     });
     expect(db.costumes.filter((c) => !c.origin).length).toBeGreaterThan(0);
+  });
+});
+
+// Which of the two numbers a row carries is a real item id -- the one the
+// screen prints, the search box matches and a Divine-Pride link uses. Getting
+// it wrong is invisible in the markup and a wrong number in front of a reader,
+// which is why it is one function with a test rather than a condition spelled
+// out at each of the five call sites.
+describe("realItemId", () => {
+  it("uses a LATAM item's own id, which is already real", () => {
+    expect(realItemId({ id: 15858 })).toBe(15858);
+  });
+
+  it("uses the client's id for a costume from another server, never ours", () => {
+    expect(realItemId({ id: 10_101_871, itemId: 410076, origin: "jro" })).toBe(410076);
+  });
+
+  // The 27 rows no client gives an id for. Ours is not a usable substitute:
+  // it is a number this app made up, so printing it would invite someone to
+  // search for an item that does not exist, and linking it is a 404.
+  it("gives nothing for a foreign costume no client carries an id for", () => {
+    expect(realItemId({ id: 10_101_871, origin: "jro" })).toBeNull();
   });
 });

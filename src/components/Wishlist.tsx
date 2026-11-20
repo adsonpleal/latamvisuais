@@ -8,8 +8,8 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { SLOTS, type Costume, type Stone } from "../core/db";
-import { divinePrideId, divinePrideUrl, marketUrl } from "../core/links";
+import { SLOTS, realItemId, type Costume, type Stone } from "../core/db";
+import { divinePrideUrl, marketUrl } from "../core/links";
 import { SERVERS, serverLabel, useServer, type Server } from "../core/server";
 import { itemIconUrl } from "../core/state";
 import { CostumeIcon } from "./CostumeIcon";
@@ -128,7 +128,8 @@ function WishlistRows({ items, server }: { items: WishItem[]; server: Server }) 
         // the cart goes, and the name links to the real item rather than to a
         // page built from the id this app invented.
         const foreign = Boolean(row.item?.origin);
-        const dpId = divinePrideId(row.item ?? row);
+        // The real id — shown and linked — or null when the row has none.
+        const realId = realItemId(row.item ?? row);
         return (
           <div key={row.id} className="wishlist-row">
             {row.item ? (
@@ -144,20 +145,20 @@ function WishlistRows({ items, server }: { items: WishItem[]; server: Server }) 
               />
             )}
             <div className="wishlist-info">
-              {dpId === null ? (
+              {realId === null ? (
                 <span className="wishlist-name">{row.name}</span>
               ) : (
                 <a
                   className="wishlist-name"
-                  href={divinePrideUrl(dpId, row.name)}
+                  href={divinePrideUrl(realId, row.name)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  data-tip={dpId === row.id ? t.divineLink : t.divineLinkItem(dpId)}
+                  data-tip={t.divineLink}
                 >
                   {row.name}
                 </a>
               )}
-              <span className="wishlist-id">{`#${row.id}`}</span>
+              {realId !== null && <span className="wishlist-id">{`#${realId}`}</span>}
             </div>
             {!foreign && (
               <a

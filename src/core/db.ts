@@ -57,15 +57,17 @@ export type Costume = {
    *  the other. Absent on the 505 costumes only one server has; read it
    *  through `originsOf`, never directly. */
   origins?: string[];
-  /** The costume's real item id in the clients' own tables -- the only id a
-   *  Divine-Pride link can be built from, because `id` above is this app's
-   *  own invention for a foreign row (tools/sync-foreign-costumes.mjs).
+  /** The costume's real item id in the clients' own tables -- the number the
+   *  screen shows and the search box matches, because `id` above is this
+   *  app's own invention for a foreign row (tools/sync-foreign-costumes.mjs)
+   *  and means nothing to anyone outside it.
    *
-   *  Present alongside `origin` on 466 of the 517, chosen by the sync tool
-   *  when the clients disagree. Absent on the 51 no client gives an id for,
-   *  and the row then prints its id without a link, as every foreign row did
-   *  before this existed. Never read it as the row's identity: a share link
-   *  and the search box take `id`. */
+   *  Present alongside `origin` on 490 of the 517, chosen by the sync tool
+   *  when the clients disagree. Absent on the 27 no client gives an id for,
+   *  and those rows print no id at all rather than ours. Read it through
+   *  `realItemId`, never directly, and never as the row's identity: equipping,
+   *  the keyboard cursor and a share link all still go by `id`, which is the
+   *  only number unique across both catalogues. */
   itemId?: number;
   /** What the sprite is called in that server's client, lowercased.
    *
@@ -231,6 +233,24 @@ export function hatSprite(key: string): BuiltinSprite {
 export function originsOf(item: Costume | Stone): string[] {
   if (!item.origin) return [];
   return item.origins?.length ? item.origins : [item.origin];
+}
+
+/**
+ * The item's real id -- the one a player can look up -- or null when nothing
+ * in the game's tables answers to this row.
+ *
+ * A LATAM item is its own id. A costume from another server is not: its `id`
+ * here is a number this app made up out of the origin and the view (see
+ * tools/sync-foreign-costumes.mjs) so that two servers' costumes can share one
+ * catalogue. That number is plumbing -- it equips, it indexes, it packs into a
+ * share link -- and showing it to a reader was a small lie: `#10002653` is not
+ * the Baby Seal costume's id anywhere, and searching for the real one found
+ * nothing. So the screen and the search box both come here, and both get `null`
+ * for the 27 rows no client names a number for, which print no id rather than
+ * ours.
+ */
+export function realItemId(item: { id: number; itemId?: number; origin?: string }): number | null {
+  return item.origin ? (item.itemId ?? null) : item.id;
 }
 
 /**

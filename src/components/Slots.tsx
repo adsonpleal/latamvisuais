@@ -7,7 +7,15 @@
 // "Encantamento de Visual"). It is a line of its own because that is what it is
 // in the game: the costume stays put and the stone rides along with it.
 
-import { canPreview, originsOf, SLOTS, type Costume, type Slot, type Stone } from "../core/db";
+import {
+  canPreview,
+  originsOf,
+  realItemId,
+  SLOTS,
+  type Costume,
+  type Slot,
+  type Stone,
+} from "../core/db";
 import { t } from "../i18n";
 import { useAppState, useDispatch } from "../state/AppStateContext";
 import { CostumeIcon } from "./CostumeIcon";
@@ -107,7 +115,10 @@ export function Slots({ onPick }: { onPick: (slot: Slot, kind: PickKind) => void
  * move into the tooltip this line already had.
  */
 function wornTip(item: Costume | Stone): string {
-  const head = `${item.name} (${item.id})`;
+  // The real id, or the name alone for the 27 foreign rows that have none:
+  // see realItemId. Never this app's own number for a foreign costume.
+  const realId = realItemId(item);
+  const head = realId === null ? item.name : `${item.name} (${realId})`;
   const servers = originsOf(item);
   if (!servers.length) return head;
   return `${head} — ${t.foreignBadgeTip(servers.map((o) => t.foreignServerNames[o] ?? o))}`;

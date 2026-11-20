@@ -474,21 +474,39 @@ origens dividem um grid só, é a única coisa que as distingue. Na lista ainda
 some o carrinho do mercado: o mercado é do LATAM, que é justamente onde essa
 peça não existe.
 
-#### O link do Divine-Pride vai por um id que não é o da tela
+#### Na tela, só o id real — o nosso é encanamento
 
-O número impresso na linha é **nosso** — `10_000_000 + origem × 100.000 + view`
-—, e nenhuma tabela de item do mundo o contém. Enquanto era só isso que
-tínhamos, a linha estrangeira imprimia o id sem link: página errada é pior que
-página nenhuma.
+O id que cada linha estrangeira carrega é **nosso** — `10_000_000 + origem ×
+100.000 + view` — e nenhuma tabela de item do mundo o contém. Por um tempo era
+o número impresso na linha, e isso era uma mentira pequena e convincente:
+`#10002653` tem exatamente a cara de um id de item, então alguém o copia, busca
+no jogo ou no Divine-Pride e não acha nada. A linha também não linkava, pelo
+mesmo motivo: página errada é pior que página nenhuma.
 
 Desde 2026-11-20 o `/raw/foreign-costumes.json` publica também `ids`, o id real
-em cada cliente, no mesmo formato de `names`. **466 das 517** ganham link; as
-51 restantes seguem sem, porque cliente nenhum traz id para elas. O número na
-tela continua sendo o nosso — é o que a busca e o link compartilhado usam — e
-o tooltip diz qual item a página abre, para que os dois números nunca
-discordem em silêncio.
+em cada cliente, no mesmo formato de `names` — e com ele **490 das 517** passam
+a mostrar e linkar o número de verdade. As **27** restantes não mostram id
+nenhum: cliente algum traz um, e o nosso não é substituto — inventado e
+impresso como se fosse real é justamente o problema. O separador pertence ao
+id, então a linha sem id começa na posição em vez de num ponto solto.
 
-Quando os clientes discordam entre si (46 das 466), `pickItemId` fica com **o
+O nosso continua existindo e não vai sumir: é ele que equipa, que indexa o
+cursor do teclado e que entra no link compartilhado, porque é o único número
+único entre os dois catálogos. Ele só não aparece mais — nem na linha, nem no
+tooltip da telha, nem no card do que está vestido, nem na lista de desejos.
+
+**A busca vai pelo id real também, e só por ele.** Quem digita um número no
+campo digita o do jogo, o do Divine-Pride, o que um amigo mandou. O nosso só
+existiria para quem o copiou desta tela — que é exatamente o que deixamos de
+imprimir. As 27 sem id se acham pelo nome, que é tudo que alguém poderia ter
+delas.
+
+Uma função só decide qual dos dois números é real (`realItemId`, em
+`src/core/db.ts`), e os cinco pontos que mostram ou buscam um id perguntam a
+ela. Antes era uma condição repetida em cada componente, e errar ali é
+invisível na marcação.
+
+Quando os clientes discordam entre si (65 das 490), `pickItemId` fica com **o
 número em que mais clientes concordam, e com o maior quando empatam**. As duas
 metades da regra existem por razões opostas e medidas:
 
