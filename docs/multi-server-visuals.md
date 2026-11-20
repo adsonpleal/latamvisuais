@@ -638,14 +638,14 @@ cara de um item não lançado no LATAM.
 
 ### Nomes e posições que nenhum cliente deu
 
-55 das 517 não têm linha de item em cliente nenhum que lemos. Em vez de
-escondê-las (elas desenham perfeitamente), aparecem com o nome do arquivo do
-sprite, marcadas. 188 não trazem posição; a posição vem então do tipo
+31 das 517 não têm linha de item em cliente nenhum que lemos — eram 55 antes de
+o thRO e a tabela viva do iRO entrarem. Em vez de escondê-las (elas desenham
+perfeitamente), aparecem com o nome do arquivo do sprite, marcadas. 188 não trazem posição; a posição vem então do tipo
 (acessório → Topo, capa → Capa), o que só muda onde a peça aparece na interface:
 o render é o mesmo.
 
 Os nomes vêm das tabelas do próprio servidor quando o LATAM não tem o item —
-462 das 517 — então muitos estão em chinês tradicional (twRO) ou japonês. O
+486 das 517 — e desde 2026-11-20 a maioria sai em inglês. O
 campo `nameOrigin` registra de onde veio.
 
 #### Em que língua, quando mais de um cliente nomeia
@@ -659,9 +659,10 @@ uma parede para quem não lê chinês. Então a escolha tem ordem, em
 > chinês tradicional (twRO, twRO Zero)
 
 O chinês é **o último, não o recusado**: mesmo colocado no fim, ele ainda é o
-nome escolhido de **117 das 517** (90 twRO + 27 twRO Zero), porque é o único
-cliente que nomeia essas peças. Tirá-lo da ordem não as traduziria: devolveria
-117 nomes de arquivo — pior do que um nome que dá para colar num tradutor.
+nome escolhido de **55 das 517** (41 twRO + 14 twRO Zero), porque é o único
+cliente que nomeia essas peças. Eram 117 antes de o iRO e o thRO entrarem, e as
+que sobraram são exatamente as que ninguém mais nomeia: tirá-lo da ordem não as
+traduziria, devolveria 55 nomes de arquivo.
 
 **O thRO entrou como tailandês e acabou sendo inglês.** Ele foi posto entre o
 japonês e o chinês pela suposição óbvia sobre um serviço tailandês. Medido
@@ -673,47 +674,77 @@ traduz as *descrições* e mantém os *nomes* em inglês — o que também expli
 
 Como `NAME_PRIORITY` ordena **línguas e não servidores**, o thRO foi movido para
 junto do iRO — atrás dele, porque onde os dois nomeiam a mesma peça a palavra do
-iRO é a que esta região já lê. Ele ainda não nomeia nada aqui, porque o
-catálogo publicado ainda não traz a origem, e `pickName` pula origem que o
-catálogo não carrega. A numeração de view do thRO bate com a nossa em **100%**
-das 2.763 views de acessório e das 308 de capa — zero discordâncias, melhor que
-o jRO, que tem três.
+iRO é a que esta região já lê. A numeração de view dele bate com a nossa em
+**100%** das 2.763 views de acessório e das 308 de capa — zero discordâncias,
+melhor que o jRO, que tem três.
+
+Publicado em 2026-11-20, ele nomeia **316 das 663** e **37 das 517** acabam
+levando o nome dele. Não trouxe fantasia nova nenhuma que passe pelo nosso
+filtro: o índice do thRO se pagou nos nomes, não na arte — vale saber antes de
+alguém rodar outro índice esperando arte.
 
 **O inglês era o nome mais escasso, e deixou de ser por causa do thRO.** A
 medição de 2026-11-19 dizia que, nas 663 extraídas, a ordem daria inglês em
 **99** linhas e japonês em **366** — a tabela do iRO tem 8.367 nomes e alcança
 só 99 das nossas peças. A conclusão que tiramos dali, "não existe segunda fonte
 em inglês", valia para **seis** clientes; o thRO é o sétimo e nomeia **234 que o
-iRO não nomeia**, levando o inglês de 99 para **333 das 663**.
+iRO não nomeia**, levando o inglês de 99 para **333 das 663**. E isso foi antes
+de consertarem o iRO.
 
-Sobra uma suspeita do lado do iRO, que ainda não é resposta: 277 das 517 têm
-arte do iRO e nenhum nome do iRO, e 8.367 nomes é pouco para uma tabela de
-cliente atual. O palpite — `itemInfo` do GRF base em vez da versão que os
-patches sobrepõem — está com a sessão do ragassets para ser confirmado ou
-descartado. Se for confirmado, some com parte dessas 277 sem mexer em nada
-daqui.
+**E a tabela do iRO estava dez anos velha — por culpa nossa.** 277 das 517
+tinham arte do iRO e nenhum nome do iRO, e 8.367 nomes era pouco demais para um
+cliente atual. O palpite (GRF base em vez da versão dos patches) errou o
+mecanismo e acertou a conclusão. O que havia era isto:
 
-**Isto está valendo desde 2026-11-19.** O `/raw/foreign-costumes.json` passou a
-publicar `names` por origem — 605 das 663 linhas trazem o objeto — e o
-`pickName` começou a escolher sem precisar de release combinado, porque lê as
-duas formas (o objeto quando existe, o `name` avulso quando não). A primeira
-regeneração trocou **248 dos 517 nomes**, quase toda a diferença sendo peça que
-o jRO e o twRO nomeiam os dois e que agora vem em japonês:
+- A extração lia `idnum2itemdisplaynametable.txt`, e a cópia mais nova desse
+  arquivo que o iRO publicou é da **seq 3009, `2016-12-01data_gm_desc_r.gpf`**,
+  contra seq 5707 na cabeça do índice. O arquivo simplesmente morreu — enquanto
+  o `resnametable` e o `mapnametable` seguiram sendo patcheados até a seq 5660.
+- A tabela viva do iRO é `System/itemInfo.lub`, de 2026-11-17, com 19.763
+  nomes. **Todo outro cliente chama esse arquivo de `iteminfo_new.lub`**, e era
+  só esse nome que o estágio de extração procurava.
+- A resposta estava no nosso próprio ledger havia dois dias: o probe do iRO
+  registra `system/iteminfo.lub` dentro de **33 arquivos**, achado 33 vezes e
+  descartado 33 vezes numa comparação de string. Reler custou **zero** banda.
 
-| de onde veio o nome | antes | depois |
-| --- | ---: | ---: |
-| jRO | 98 | 304 |
-| twRO | 287 | 90 |
-| twRO Zero | 39 | 27 |
-| iRO | 37 | 37 |
-| kRO | 1 | 4 |
-| nome do arquivo | 55 | 55 |
+Corrigido: iRO vai de **99 para 420** nomes das 663, e das 399 linhas com arte
+do iRO as que não tinham nome do iRO caem de 355 para 36 — **90% fechadas**.
+Dos 29 nomes que mudaram em vez de aparecer, 11 trocaram o item comum pela
+fantasia (`Surprised Mask` 5088 → `Costume Goblin Mask` 19793 nem era o mesmo
+chapéu) e 4 linhas do jRO saíram de uma fantasia **de aluguel** para a
+permanente.
 
-O iRO não se move: onde ele não nomeava, continua não nomeando — ele distribui a
-arte sem a linha de item muito mais vezes do que o contrário. E os marcadores
-vêm como vieram, por decisão: 394 das 517 carregam `(服飾)`, `[衣装]` ou
-`Costume:` do cliente de origem, sem reescrita para `[Visual]`.
+Somadas as duas correcções, **o inglês vai de 99 para 464 das 663** — e, no que
+o app publica, de 37 para **328 das 517**. A lição barata de tirar daqui é a do
+meio: um cliente que não traz arte nova ainda pode valer o índice inteiro só
+pela tabela de item, e foi assim duas vezes seguidas, com o thRO e com o iRO.
 
+**Isto está valendo desde 2026-11-19**, quando o `/raw/foreign-costumes.json`
+passou a publicar `names` por origem e o `pickName` começou a escolher sem
+precisar de release combinado. Em 2026-11-20 entraram o thRO e a tabela de item
+do iRO, e foi aí que a ordem virou o que ela prometia ser. As duas regenerações,
+lado a lado:
+
+| de onde veio o nome | antes de `names` | só com `names` | com thRO + iRO |
+| --- | ---: | ---: | ---: |
+| **iRO** | 37 | 37 | **291** |
+| **thRO** | — | — | **37** |
+| jRO | 98 | 304 | 99 |
+| twRO | 287 | 90 | 41 |
+| twRO Zero | 39 | 27 | 14 |
+| kRO | 1 | 4 | 4 |
+| nome do arquivo | 55 | 55 | 31 |
+
+**Inglês sai de 37 para 328 das 517** — 63% do catálogo estrangeiro — e 300 dos
+517 nomes mudaram nessa última passada. O chinês não foi recusado em lugar
+nenhum: ele caiu de 117 para 55 porque apareceu quem nomeasse em inglês, não
+porque alguém o tirou.
+
+A qualidade segurou: das 328 em inglês, **uma** tem cara de nome de recurso
+(`C Autumn Piece`). O resto são nomes que alguém escreveu.
+
+E os marcadores continuam vindo como vieram, por decisão: `(服飾)` em 55,
+`[衣装]` em 85, `Costume:`/`Costume ` em 286, sem reescrita para `[Visual]`.
 ### O que *não* muda
 
 `tools/prerender-seo.mjs` lê só `public/db/costumes.json`, então nenhuma fantasia
