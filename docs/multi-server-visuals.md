@@ -621,9 +621,10 @@ uma parede para quem não lê chinês. Então a escolha tem ordem, em
 > pt-BR → inglês (iRO) → coreano (kRO, kRO Zero) → japonês (jRO) →
 > tailandês (thRO) → chinês tradicional (twRO, twRO Zero)
 
-O chinês é **o último, não o recusado**: ele nomeia 287 das 517 linhas de hoje,
-mais do que todos os outros clientes somados, e tirá-lo devolveria centenas de
-nomes de arquivo — pior do que um nome que dá para colar num tradutor.
+O chinês é **o último, não o recusado**: mesmo colocado no fim, ele ainda é o
+nome escolhido de **117 das 517** (90 twRO + 27 twRO Zero), porque é o único
+cliente que nomeia essas peças. Tirá-lo da ordem não as traduziria: devolveria
+117 nomes de arquivo — pior do que um nome que dá para colar num tradutor.
 
 O tailandês está na ordem mas ainda não nomeia nada: o thRO não é origem no
 catálogo publicado. Ele entrou aqui porque **é alcançável** — tem índice de
@@ -638,12 +639,26 @@ alcança só 99 das nossas peças, e não existe segunda fonte em inglês entre 
 seis clientes. A ordem é a pedida; o que não se sustenta é a expectativa de um
 catálogo em inglês.
 
-**Hoje isso ainda não muda nada.** O `/raw/foreign-costumes.json` publica um
-`name` só, já escolhido lá em cima, e os outros candidatos se perdem antes de
-chegar aqui. O `pickName` lê as duas formas — um objeto `names` por origem
-quando existir, e o `name` avulso enquanto não existir —, então este lado já
-está pronto e começa a escolher no instante em que o campo for publicado, sem
-precisar de release combinado. O pedido do campo está com a sessão do ragassets.
+**Isto está valendo desde 2026-11-19.** O `/raw/foreign-costumes.json` passou a
+publicar `names` por origem — 605 das 663 linhas trazem o objeto — e o
+`pickName` começou a escolher sem precisar de release combinado, porque lê as
+duas formas (o objeto quando existe, o `name` avulso quando não). A primeira
+regeneração trocou **248 dos 517 nomes**, quase toda a diferença sendo peça que
+o jRO e o twRO nomeiam os dois e que agora vem em japonês:
+
+| de onde veio o nome | antes | depois |
+| --- | ---: | ---: |
+| jRO | 98 | 304 |
+| twRO | 287 | 90 |
+| twRO Zero | 39 | 27 |
+| iRO | 37 | 37 |
+| kRO | 1 | 4 |
+| nome do arquivo | 55 | 55 |
+
+O iRO não se move: onde ele não nomeava, continua não nomeando — ele distribui a
+arte sem a linha de item muito mais vezes do que o contrário. E os marcadores
+vêm como vieram, por decisão: 394 das 517 carregam `(服飾)`, `[衣装]` ou
+`Costume:` do cliente de origem, sem reescrita para `[Visual]`.
 
 ### O que *não* muda
 
