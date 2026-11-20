@@ -4,6 +4,90 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.19.0] — 2026-11-20
+
+### Added
+
+- **Costumes from the other official Gravity servers**, behind a filter that is
+  **off by default** ("Visuais de outros servidores"). 517 rows from seven
+  clients — jRO 387, iRO 306, twRO 286, kRO 188, thRO 164, kRO Zero 148, twRO
+  Zero 109 — of which 397 exist on more than one server and appear under every
+  chip that has them. They can be previewed and worn but not obtained here, so
+  each one carries a server badge and no market link: the market is LATAM's,
+  which is precisely where the piece does not exist.
+- Per-server chips, derived from `origins` (every official server whose own
+  files carry the sprite) rather than from `origin` (the single tree the files
+  were pulled from). Filtering by the tree we happened to download from showed a
+  costume under one chip and hid it from the other.
+- A foreign row is asked for **by sprite name**, not by view id: a view id means
+  a different hat in a different client, while the sprite name is the same
+  string everywhere. The id each row carries here is this app's own
+  (`10_000_000 + origin × 100_000 + view`), stable and used for equipping, the
+  keyboard cursor and share links.
+
+### Changed
+
+- **Names come from the clients, by language.** ragassets publishes every
+  client's name per costume, and `NAME_PRIORITY` picks pt-BR, then English
+  (iRO, thRO), then Korean, Japanese and Chinese. 328 of the 517 now read in
+  English, up from 37, and the rows with no name in any client — a resource
+  name in place of a name — fell from 55 to 31.
+  - **thRO sits in the English slot**: 18,843 of its 18,889 item names are plain
+    ASCII. It translates descriptions and leaves names in English.
+  - **iRO's name table was ten years stale, and the cause was ours.** The
+    extraction matched `iteminfo_new.lub`, the filename every other client
+    uses; iRO ships `System/itemInfo.lub`. The `.txt` table we were reading
+    instead was last patched at seq 3009 (2016) against seq 5707 at head. iRO's
+    names went 99 → 420.
+- **The screen prints the item's real id**, not the one this app invents.
+  ragassets publishes each client's item id beside its name; 490 of the 517 now
+  show and link the client's own number, and the other 27 show no id at all,
+  because an invented number dressed as a real one is worse than a missing one.
+  The search box matches the real id and only it. `realItemId` (`src/core/db.ts`)
+  is the single place that knows which of the two numbers is real.
+  - Where the clients disagree (65 of 490), `pickItemId` takes the number most
+    of them agree on and the highest when they tie — the costume and the
+    ordinary hat it copies are separate items, and a lone client sometimes
+    carries a number no database has.
+- The extraction pipeline **moved to ragassets** (adsonpleal/ragassets#14),
+  taking 5,500 lines and its 99 tests with it. What stays here is the one thing
+  ragassets cannot decide: the synthetic id the app keys its grid, wishlist and
+  share links on. The exploration tools in `tools/explore/` followed in this
+  release — two were already superseded upstream, two were adopted into
+  `tools/multiserver/` (adsonpleal/ragassets#20). `docs/data/` stays, because it
+  is the evidence these documents cite line by line.
+- Icons are served by sprite name (`/icons/costume?sprite=`) for foreign rows,
+  since `/icons/item/<id>.png` is a guaranteed 404 for all of them. ragassets
+  has a picture for 637 of the 663 it extracted; the rest fall back to a
+  head-framed render, which is where every one of them used to start.
+
+### Fixed
+
+- **A deploy could land and visitors keep the previous build for an hour.**
+  Firebase matches header patterns against the path that was *requested*, before
+  any rewrite runs, so `/**/*.@(html|json)` covered `/index.html` but never `/`
+  or `/visual/<slug>` — those have no extension and fell through to the default
+  `Cache-Control: max-age=3600`. Since the shell names the hashed bundle and
+  `/assets/**` is immutable, an hour-old visitor kept the whole old app.
+- A worn foreign costume reached the wishlist with a 404 icon, a 404 link and a
+  cart for a market that cannot sell it. The list now carries the catalogue row
+  itself, so the icon, the link and the cart all follow the same rules as the
+  grid.
+- 58 costumes LATAM already sells under a name of its own were dropped from the
+  foreign catalogue: they are not "what another server has that we don't".
+- The map-manifest cache-bust (`?v=APP_VERSION`) that keeps an immutable
+  year-long `Cache-Control` from hiding a map update.
+
+### Notes
+
+- `ORIGIN_ORDER` in `tools/sync-foreign-costumes.mjs` is **frozen and
+  append-only**: an origin's index is baked into every id ever published, so
+  reordering it would renumber live share links. `NAME_PRIORITY` is a separate
+  list from which no id derives, and is free to be reordered.
+- cRO is parked: its patch archives are RAR, and whether the three files worth
+  reading are stored or deflated is an open question, recorded in
+  `docs/multi-server-extraction-plan.md`.
+
 ## [0.18.0] — 2026-11-13
 
 ### Added
