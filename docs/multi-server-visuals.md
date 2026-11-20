@@ -11,9 +11,10 @@ filter that is **off by default** ("Visuais de outros servidores"), with a badge
 saying where each one comes from, and the ability to filter by server.
 
 Everything marked "verified" was run against the live hosts from this machine on
-2026-11-17. The tools are in [tools/explore/](../tools/explore/) and the data
-they produced in [docs/data/](data/) — they belong in ragassets eventually, they
-live here so this exploration is reproducible.
+2026-11-17. The tools that did it have since moved to ragassets, where the
+extraction pipeline lives (`tools/multiserver/`) — some of them were already
+there in a better form. The data they produced stayed in [docs/data/](data/),
+because it is the evidence this document cites line by line.
 
 ---
 
@@ -101,9 +102,9 @@ returns **200** and renders the character *without a headgear* — byte for byte
 identical to a request with no `headgear` at all. `headgear=9999` and
 `headgear=2900` both come back as the bare body. So "does this costume exist?"
 cannot be answered from the status code; it needs a byte comparison against a
-no-headgear baseline (that's what `tools/explore/probe-renderable.mjs` does). A
-404, or at least a response header saying which views resolved, would make every
-caller's life easier.
+no-headgear baseline (that is what ragassets' render probe, in
+`tools/multiserver/`, does). A 404, or at least a response header saying which
+views resolved, would make every caller's life easier.
 
 **b) kRO's `.gsf` entries can't be extracted.** Every entry in a kRO v0x300
 patch carries `flags = 0x80` where LATAM's `data.grf` carries the standard `0x01`
@@ -127,10 +128,11 @@ patches read fine and were enough for this exploration.
 `0x103` to a `readFileTableV103` that assumes unencrypted names. jRO's `.gpf` are
 v0x103 with the **v1** layout (nibble-swap + DES filenames, shifted size fields),
 so the listing comes out as mojibake and `--extract` writes zero files. Verified
-both ways: `tools/explore/grf-remote-list.mjs` reads the same archive correctly
-with the v1 parser, and flipping the version byte to `0x02` in a copy made the
+both ways: the throwaway v1 reader written for this read the same archive
+correctly, and flipping the version byte to `0x02` in a copy made the
 extractor pull jRO's two tables cleanly. One-line fix, unblocks 2,692 jRO
-archives back to 2009.
+archives back to 2009. (That reader is gone: ragassets' own
+`tools/multiserver/grf.mjs` does the same job for v1, v0x200 and v0x300.)
 
 **d) Cosmetic:** the v0x300 header's file-count is computed with the LATAM
 offset convention, so a 1-entry `.gsf` reports `-6 files`. The listing itself is
@@ -170,8 +172,10 @@ so two small reads list a whole patch. Measured:
 | kRO mirror, 40 newest 2025 `.gpf` | 40 | 0.6 MB |
 
 Range support: LATAM HTTPS/GCS `206` + `accept-ranges: bytes`; kRO mirror HTTP
-`206`; iRO FTP `REST` accepted. `tools/explore/grf-remote-list.mjs` implements
-it for v1, v0x200 and v0x300 tables.
+`206`; iRO FTP `REST` accepted. The reader that proved it was a v1-only
+throwaway; ragassets' `tools/multiserver/grf.mjs` (table parsing) and
+`net.mjs` (range reads, one request per second, FTP via curl) are what
+implement it for real, across v1, v0x200 and v0x300.
 
 ### 2.5 Reading the catalogue without a 32-bit Lua
 

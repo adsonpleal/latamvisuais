@@ -17,8 +17,9 @@ documento é o plano de fazer a extração de verdade, em todos os servidores
 oficiais que ainda rodam um patch service da Gravity.
 
 Tudo marcado "verificado" foi rodado contra os hosts reais desta máquina em
-2026-11-17. Ferramentas em [tools/explore/](../tools/explore/), dados em
-[docs/data/](data/).
+2026-11-17. As ferramentas que fizeram isso viviam em `tools/explore/` e hoje
+estão no ragassets, em `tools/multiserver/` — os dados que elas produziram
+ficaram em [docs/data/](data/), porque é a evidência que este documento cita.
 
 ---
 
@@ -146,7 +147,7 @@ GRF version 0x103, 45 files, table at 0x5e7570
 RSB&CrFÖ³CR"¦ÇEPEE	23689	flags=0x1
 ...
 
-$ node tools/explore/grf-remote-list.mjs .../2026-03-17main01.gpf   # parser v1
+$ node grf-remote-list.mjs .../2026-03-17main01.gpf   # throwaway v1 parser
 magic="Master of Magic" version=0x103 count=45 table=3415B
 data\carditemnametable.txt
 data\LuaFiles514\Lua Files\Datainfo\accessoryid.lub
