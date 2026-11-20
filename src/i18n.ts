@@ -157,6 +157,10 @@ export const t = {
   wishlistHint: "Toque no nome para ver no Divine-Pride; no carrinho para buscar no mercado.",
   serverLabel: "Servidor",
   divineLink: "Ver no Divine-Pride",
+  // The number on screen is ours and the page is the client's, so the tooltip
+  // says which item it opens rather than letting the two numbers disagree in
+  // silence.
+  divineLinkItem: (itemId: number) => `Ver no Divine-Pride (item ${itemId})`,
   marketSearch: "Buscar no mercado",
   wishlistCount: (n: number) => `(${n})`,
   slotNames: {

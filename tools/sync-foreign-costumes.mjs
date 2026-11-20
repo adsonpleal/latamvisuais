@@ -139,6 +139,44 @@ export function pickName(c) {
   return { name: c.name ?? null, nameOrigin: c.nameOrigin ?? null };
 }
 
+/** The real item id to link to, out of the one each client gave.
+ *
+ *  Our own `id` is a synthetic number (see `foreignId`), so the Divine-Pride
+ *  link was suppressed for every foreign row until ragassets published `ids`
+ *  beside `names` -- same keys, same join, and every origin that names a
+ *  costume also carries its id.
+ *
+ *  466 of the rows we publish get an id and 420 of those have only one number
+ *  to choose from. The other 46 disagree for two different reasons, and the
+ *  reasons pull opposite ways:
+ *
+ *  - **The costume and the ordinary hat it copies are separate items.** A
+ *    client that never shipped the costume answers with the base item:
+ *    "Sunflower Hairpin" is 5103 in LATAM, iRO and kRO, and `Costume:
+ *    Sunflower Hairpin` is 20484 in jRO, twRO and twRO Zero. Our row is the
+ *    costume, so the higher number is the one we want -- every costume range
+ *    (20k, 31k, 40xxxx) sits above the base item's.
+ *  - **One client sometimes has a number of its own.** `[衣装]
+ *    バックシニョン(紫)` is 31660 in three clients and 31754 in twRO,
+ *    and 31754 is not a page Divine-Pride has at all. Here the odd one out is
+ *    noise, not a second item.
+ *
+ *  So: the number most clients agree on, and the highest when they tie. The
+ *  base/costume split is a tie broken upwards; the lone outlier loses the
+ *  vote. Checked against Divine-Pride on the six disagreeing rows sampled
+ *  2026-11-20 -- 6 of 6 landed on the right costume, where taking the highest
+ *  outright would have linked a dead page for one of them. */
+export function pickItemId(c) {
+  const ids = Object.values(c.ids ?? {}).filter((n) => Number.isInteger(n) && n > 0);
+  if (!ids.length) return null;
+  const votes = new Map();
+  for (const id of ids) votes.set(id, (votes.get(id) ?? 0) + 1);
+  let best = null;
+  for (const [id, n] of votes) {
+    if (!best || n > best.n || (n === best.n && id > best.id)) best = { id, n };
+  }
+  return best.id;
+}
 /** A label for a costume whose name no client ragassets read could give us.
  *
  *  58 of them have none: the sprite exists, the item row that would name it
@@ -167,6 +205,7 @@ export function toAppRow(c) {
   if (!c.sprite) throw new Error(`costume ${c.origin}/${c.view} has no sprite name`);
   const { name, nameOrigin } = pickName(c);
   const named = Boolean(name);
+  const itemId = pickItemId(c);
   return {
     id: foreignId(c.origin, c.view, c.kind),
     name: named ? name : labelFromSprite(c.sprite),
@@ -191,6 +230,11 @@ export function toAppRow(c) {
     // "Chapéu" read from twRO's tables is in Traditional Chinese, and saying so
     // is better than letting it look like a broken translation.
     ...(named && nameOrigin && nameOrigin !== "latam" ? { nameOrigin } : {}),
+    // The item's real id in the clients' own tables, when they carry one: the
+    // only thing a Divine-Pride link can be built from, since `id` above is
+    // ours. Absent for the 51 rows no client gives an id for, and the app
+    // falls back to printing the id without a link, as every row used to.
+    ...(itemId ? { itemId } : {}),
   };
 }
 

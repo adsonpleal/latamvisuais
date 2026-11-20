@@ -14,7 +14,7 @@
 
 import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from "react";
 import { canPreview, originsOf, type Costume, type Stone } from "../core/db";
-import { divinePrideUrl, marketUrl } from "../core/links";
+import { divinePrideId, divinePrideUrl, marketUrl } from "../core/links";
 import { useServer } from "../core/server";
 import { t } from "../i18n";
 import { CostumeIcon } from "./CostumeIcon";
@@ -170,6 +170,8 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
           // costumes are on more than one server.
           const servers = originsOf(item);
           const names = servers.map((o) => t.foreignServerNames[o] ?? o);
+          // Which number a Divine-Pride link may use, if any: see divinePrideId.
+          const dpId = divinePrideId(item);
           return (
             <div
               key={item.id}
@@ -200,20 +202,22 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
               <span className="catalog-row-text">
                 <span className="catalog-row-name">{item.name}</span>
                 <span className="catalog-row-meta">
-                  {/* A foreign costume's id is this app's own invention -- a
-                      synthetic number for a view in another client's table --
-                      so there is nothing on divine-pride to link it to. It is
-                      still printed: it is what the search box and a share link
-                      take. */}
-                  {names.length ? (
+                  {/* The number printed is always this app's -- it is what the
+                      search box and a share link take -- but for a foreign
+                      costume that number is an invention of ours and not an
+                      item id anywhere. The link goes to the real item instead,
+                      and the tooltip names it, so the two numbers never
+                      silently disagree. 51 foreign rows have no real id at all
+                      and stay plain, as all of them did before. */}
+                  {dpId === null ? (
                     <span className="catalog-row-id is-plain">{`#${item.id}`}</span>
                   ) : (
                     <a
                       className="catalog-row-id"
-                      href={divinePrideUrl(item)}
+                      href={divinePrideUrl(dpId, item.name)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      data-tip={t.divineLink}
+                      data-tip={dpId === item.id ? t.divineLink : t.divineLinkItem(dpId)}
                     >
                       {`#${item.id}`}
                     </a>

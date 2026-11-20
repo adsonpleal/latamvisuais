@@ -38,6 +38,42 @@ describe("Wishlist", () => {
     );
   });
 
+  // A foreign costume can be worn, so it reaches this list — and when it does,
+  // all three of the things a line offers are wrong for it: the icon is served
+  // by sprite, the Divine-Pride page is under the client’s number rather than
+  // ours, and the market is LATAM’s, which is exactly where it cannot be
+  // bought. The list used to offer all three regardless.
+  it("links a worn foreign costume to the real item, and offers no market", async () => {
+    const user = userEvent.setup();
+    render(
+      <StateHarness db={db} init={{ equipped: { top: item(10000900) } }}>
+        <Wishlist />
+      </StateHarness>,
+    );
+    await user.click(screen.getByRole("button", { name: /Lista de desejos/ }));
+
+    const link = screen.getByRole("link", { name: "Chapéu Estrangeiro" });
+    expect(link).toHaveAttribute(
+      "href",
+      "https://www.divine-pride.net/database/item/20123/chapeu-estrangeiro",
+    );
+    expect(screen.queryByRole("link", { name: "Buscar no mercado" })).not.toBeInTheDocument();
+  });
+
+  // The row whose item no client carries an id for: a link to our own number
+  // would 404, so the name is not a link at all.
+  it("leaves a foreign costume unlinked when no client gave an item id", async () => {
+    const user = userEvent.setup();
+    render(
+      <StateHarness db={db} init={{ equipped: { garment: item(10400950) } }}>
+        <Wishlist />
+      </StateHarness>,
+    );
+    await user.click(screen.getByRole("button", { name: /Lista de desejos/ }));
+
+    expect(screen.getByText("Capa Estrangeira").tagName).toBe("SPAN");
+    expect(screen.queryAllByRole("link")).toHaveLength(0);
+  });
   it("includes the selected pet's egg as its own item", async () => {
     const user = userEvent.setup();
     render(

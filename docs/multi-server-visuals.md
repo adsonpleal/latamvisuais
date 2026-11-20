@@ -471,9 +471,46 @@ dois juntos devolveriam um grid vazio na próxima vez que a caixa fosse ligada.
 Cada peça estrangeira leva o nome do servidor **na telha do grid, na linha da
 lista e no card do que está vestido**, além do tooltip — uma vez que as duas
 origens dividem um grid só, é a única coisa que as distingue. Na lista ainda
-some o link do id (o id é invenção nossa, não existe página no Divine-Pride) e
-o carrinho do mercado (o mercado é do LATAM, que é justamente onde essa peça
-não existe).
+some o carrinho do mercado: o mercado é do LATAM, que é justamente onde essa
+peça não existe.
+
+#### O link do Divine-Pride vai por um id que não é o da tela
+
+O número impresso na linha é **nosso** — `10_000_000 + origem × 100.000 + view`
+—, e nenhuma tabela de item do mundo o contém. Enquanto era só isso que
+tínhamos, a linha estrangeira imprimia o id sem link: página errada é pior que
+página nenhuma.
+
+Desde 2026-11-20 o `/raw/foreign-costumes.json` publica também `ids`, o id real
+em cada cliente, no mesmo formato de `names`. **466 das 517** ganham link; as
+51 restantes seguem sem, porque cliente nenhum traz id para elas. O número na
+tela continua sendo o nosso — é o que a busca e o link compartilhado usam — e
+o tooltip diz qual item a página abre, para que os dois números nunca
+discordem em silêncio.
+
+Quando os clientes discordam entre si (46 das 466), `pickItemId` fica com **o
+número em que mais clientes concordam, e com o maior quando empatam**. As duas
+metades da regra existem por razões opostas e medidas:
+
+- **A fantasia e o chapéu que ela copia são itens diferentes.** `Sunflower
+  Hairpin` é 5103 no LATAM, iRO e kRO, e `Costume: Sunflower Hairpin` é 20484
+  no jRO, twRO e twRO Zero. Nossa linha é a fantasia, e toda faixa de fantasia
+  (20k, 31k, 40xxxx) fica acima da do item comum — empate se resolve para cima.
+- **Às vezes um cliente só tem um número próprio.** `[衣装] バックシニョン(紫)` é
+  31660 em três clientes e 31754 no twRO, e 31754 não é página que o
+  Divine-Pride tenha. Aqui o voto isolado é ruído, e pegar o maior levaria a
+  lugar nenhum.
+
+Conferido contra o Divine-Pride nas seis linhas em disputa amostradas em
+2026-11-20: 6 de 6 na fantasia certa. E mais oito ids resolvidos, amostrados do
+arquivo gerado: 8 de 8 vivos e corretos.
+
+A lista de desejos tinha o mesmo problema e nunca foi corrigida junto, porque
+até aqui não havia o que corrigir: uma fantasia estrangeira vestida chegava
+lá com ícone 404, link 404 e carrinho para um mercado que não a vende. Agora
+ela leva a linha do catálogo inteira, então o ícone vem por sprite (o mesmo
+`CostumeIcon` do grid, em vez de uma segunda cópia pior), o link vai pelo id
+real e o carrinho some.
 
 #### "Existe no iRO" é uma pergunta sobre a arte, não sobre o id
 

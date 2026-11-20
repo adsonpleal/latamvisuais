@@ -57,6 +57,16 @@ export type Costume = {
    *  the other. Absent on the 505 costumes only one server has; read it
    *  through `originsOf`, never directly. */
   origins?: string[];
+  /** The costume's real item id in the clients' own tables -- the only id a
+   *  Divine-Pride link can be built from, because `id` above is this app's
+   *  own invention for a foreign row (tools/sync-foreign-costumes.mjs).
+   *
+   *  Present alongside `origin` on 466 of the 517, chosen by the sync tool
+   *  when the clients disagree. Absent on the 51 no client gives an id for,
+   *  and the row then prints its id without a link, as every foreign row did
+   *  before this existed. Never read it as the row's identity: a share link
+   *  and the search box take `id`. */
+  itemId?: number;
   /** What the sprite is called in that server's client, lowercased.
    *
    *  Required alongside `origin`, and the reason both exist: a view id is one

@@ -272,6 +272,34 @@ describe("Catalog", () => {
       );
     });
 
+    // The number printed on a foreign row is this app’s own invention, so a
+    // link built from it would 404 -- which is why there was none at all until
+    // ragassets published the clients’ real item ids. The risk now is the
+    // mirror image: a link quietly built from our number instead of theirs.
+    it("links a foreign row to the real item id, not to the one we invented", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await openFilters(user);
+      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      await user.click(screen.getByRole("button", { name: "Lista" }));
+      // Only the rows near the viewport mount, and jsdom lays nothing out.
+      await user.type(screen.getByRole("searchbox"), "Estrangeiro");
+
+      const row = document.querySelector(".catalog-row") as HTMLElement;
+      const link = within(row).getByText("#10000900");
+      expect(link.tagName).toBe("A");
+      expect(link).toHaveAttribute(
+        "href",
+        "https://www.divine-pride.net/database/item/20123/chapeu-estrangeiro",
+      );
+      // On screen 10000900, on the page 20123. The tooltip says so rather than
+      // letting the two numbers disagree in silence.
+      expect(link).toHaveAttribute("data-tip", "Ver no Divine-Pride (item 20123)");
+
+      // Back to the grid: the view preference outlives the localStorage reset.
+      await user.click(screen.getByRole("button", { name: "Grade" }));
+    });
     it("puts them away again on Limpar", async () => {
       const user = userEvent.setup();
       renderCatalog();
@@ -284,7 +312,7 @@ describe("Catalog", () => {
       expect(foreignTile(/Chapéu Estrangeiro/)).not.toBeVisible();
     });
 
-    it("marks them in the list view too, where the id links nowhere", async () => {
+    it("marks them in the list view too, where no client gave an item id", async () => {
       const user = userEvent.setup();
       renderCatalog();
 
@@ -301,8 +329,9 @@ describe("Catalog", () => {
       // tile.
       expect(within(row).getByText("Capa Estrangeira")).toBeInTheDocument();
       expect(within(row).getByText("twRO")).toBeInTheDocument();
-      // The id is this app's own invention for a view in another client's
-      // table, so there is no Divine-Pride page behind it; and the market is
+      // 51 of the published rows have no item id in any client's table, and
+      // this fixture is one of them: our own number would 404, so the id stays
+      // plain. The market link is missing for a different reason -- it is
       // LATAM's, which is exactly where this costume cannot be bought.
       expect(within(row).getByText("#10400950").tagName).toBe("SPAN");
       expect(within(row).queryByRole("link")).not.toBeInTheDocument();

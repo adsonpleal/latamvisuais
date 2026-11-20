@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generatedAt": "2026-11-19",
+ "generatedAt": "2026-11-20",
  "counts": {
   "iro": 306,
   "twro": 286,
@@ -20,7 +20,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_iro플래그모자",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5877
   },
   {
    "id": 10450028,
@@ -36,7 +37,8 @@
     "twro"
    ],
    "sprite": "c_2018_rtc_cape_tw",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 20523
   },
   {
    "id": 10401908,
@@ -48,7 +50,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_2019rtc_celeaura_tw",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 31768
   },
   {
    "id": 10402009,
@@ -60,7 +63,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_2020rtc_imp_tw",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400081
   },
   {
    "id": 10402133,
@@ -72,7 +76,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_2021rtc_wing_tw",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 420073
   },
   {
    "id": 10402134,
@@ -84,7 +89,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_c_2021rtc_headset_tw",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410078
   },
   {
    "id": 10450132,
@@ -96,7 +102,8 @@
    "viewKind": "garment",
    "origin": "twro",
    "sprite": "c_2022rtc_v_coat4",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480190
   },
   {
    "id": 10450197,
@@ -112,7 +119,8 @@
     "twro"
    ],
    "sprite": "c_ros2023_cape_1",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 20625
   },
   {
    "id": 10050184,
@@ -128,7 +136,8 @@
     "twro"
    ],
    "sprite": "2023rtc_s_robe4",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480329
   },
   {
    "id": 10450198,
@@ -146,7 +155,8 @@
     "twro"
    ],
    "sprite": "c_ros2023_cape_2",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 20626
   },
   {
    "id": 10350252,
@@ -164,7 +174,8 @@
     "twro"
    ],
    "sprite": "c_ros2024_wing_4",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480508
   },
   {
    "id": 10302552,
@@ -184,7 +195,8 @@
     "twro"
    ],
    "sprite": "_c_2024ros_hat_2nd",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 440014
   },
   {
    "id": 10302551,
@@ -203,7 +215,8 @@
     "twro"
    ],
    "sprite": "_c_2024ros_hat_1st",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 440013
   },
   {
    "id": 10302553,
@@ -222,7 +235,8 @@
     "twro"
    ],
    "sprite": "_c_2024ros_hat_3rd",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 440015
   },
   {
    "id": 10302554,
@@ -242,7 +256,8 @@
     "twro"
    ],
    "sprite": "_c_2024ros_hat_4th",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 440016
   },
   {
    "id": 10402284,
@@ -260,7 +275,8 @@
     "twro"
    ],
    "sprite": "_c_20th_anniversary_hat",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400309
   },
   {
    "id": 10501432,
@@ -272,7 +288,8 @@
    "viewKind": "headgear",
    "origin": "twrozero",
    "sprite": "_c7학년풍선",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 20422
   },
   {
    "id": 10501433,
@@ -284,7 +301,8 @@
    "viewKind": "headgear",
    "origin": "twrozero",
    "sprite": "_c8학년풍선",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 20423
   },
   {
    "id": 10402480,
@@ -296,7 +314,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_c_usa_pis",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410288
   },
   {
    "id": 10450326,
@@ -308,7 +327,8 @@
    "viewKind": "garment",
    "origin": "twro",
    "sprite": "c_2026rosfesta_2nd",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480901
   },
   {
    "id": 10450325,
@@ -320,7 +340,8 @@
    "viewKind": "garment",
    "origin": "twro",
    "sprite": "c_2026rosfesta_1st",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480900
   },
   {
    "id": 10450327,
@@ -332,7 +353,8 @@
    "viewKind": "garment",
    "origin": "twro",
    "sprite": "c_2026rosfesta_3rd",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480902
   },
   {
    "id": 10450328,
@@ -344,7 +366,8 @@
    "viewKind": "garment",
    "origin": "twro",
    "sprite": "c_2026rosfesta_4th",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480903
   },
   {
    "id": 10550339,
@@ -356,7 +379,8 @@
    "viewKind": "garment",
    "origin": "twrozero",
    "sprite": "c_rsx_chain_arm",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 480994
   },
   {
    "id": 10402711,
@@ -372,7 +396,8 @@
     "twro"
    ],
    "sprite": "_c_immortal_h_power",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 420532
   },
   {
    "id": 10450259,
@@ -388,7 +413,8 @@
     "twro"
    ],
    "sprite": "c_immortal_h_wing",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480566
   },
   {
    "id": 10402606,
@@ -406,7 +432,8 @@
     "twro"
    ],
    "sprite": "_c_alecsander",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 440019
   },
   {
    "id": 10302818,
@@ -423,7 +450,8 @@
     "twro"
    ],
    "sprite": "_c_nymph_ear",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 401295
   },
   {
    "id": 10202556,
@@ -440,7 +468,8 @@
     "twrozero"
    ],
    "sprite": "_magma_ignis_cap",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 401062
   },
   {
    "id": 10450316,
@@ -459,7 +488,8 @@
     "twrozero"
    ],
    "sprite": "c_eddga_rest",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480850
   },
   {
    "id": 10502385,
@@ -478,7 +508,8 @@
     "twrozero"
    ],
    "sprite": "_c_adventurer_hat",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400446
   },
   {
    "id": 10002866,
@@ -495,7 +526,8 @@
     "twrozero"
    ],
    "sprite": "_c_aqua_marin",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 420909
   },
   {
    "id": 10402479,
@@ -507,7 +539,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_c_kanahei_fam",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400571
   },
   {
    "id": 10402607,
@@ -525,7 +558,8 @@
     "twro"
    ],
    "sprite": "_c_cassandra",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 440020
   },
   {
    "id": 10550315,
@@ -542,7 +576,8 @@
     "twrozero"
    ],
    "sprite": "c_mushroom_umbrella_rd",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 480849
   },
   {
    "id": 10050043,
@@ -558,7 +593,8 @@
     "twro"
    ],
    "sprite": "blackbearbackpack",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 20542
   },
   {
    "id": 10402021,
@@ -570,7 +606,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_c_capooring_tw",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400126
   },
   {
    "id": 10202726,
@@ -586,7 +623,8 @@
     "twro"
    ],
    "sprite": "_c_ear_of_nyar_gy",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400964
   },
   {
    "id": 10401909,
@@ -598,7 +636,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_c_tw_3rd_balloon",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 31767
   },
   {
    "id": 10000482,
@@ -610,7 +649,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_대만국기모자",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 31127
   },
   {
    "id": 10402844,
@@ -628,7 +668,8 @@
     "twrozero"
    ],
    "sprite": "_c_culture_pod",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 420855
   },
   {
    "id": 10402852,
@@ -644,7 +685,8 @@
     "twro"
    ],
    "sprite": "_c_nf_stamp",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410665
   },
   {
    "id": 10202717,
@@ -661,7 +703,8 @@
     "twro"
    ],
    "sprite": "_c_2508_salt_hat",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400951
   },
   {
    "id": 10002409,
@@ -679,7 +722,8 @@
     "twro"
    ],
    "sprite": "_c_bulb_wreath",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400475
   },
   {
    "id": 10450287,
@@ -697,7 +741,8 @@
     "twrozero"
    ],
    "sprite": "c_herald_of_god",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480642
   },
   {
    "id": 10202427,
@@ -713,7 +758,8 @@
     "twro"
    ],
    "sprite": "_c_cinnamon",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410267
   },
   {
    "id": 10202428,
@@ -729,7 +775,8 @@
     "twro"
    ],
    "sprite": "_c_cinnamon2",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410268
   },
   {
    "id": 10450256,
@@ -746,7 +793,8 @@
     "twro"
    ],
    "sprite": "c_libra_wing",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480523
   },
   {
    "id": 10401920,
@@ -758,7 +806,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_c_baryon_headphone_tw",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 31792
   },
   {
    "id": 10002555,
@@ -775,7 +824,8 @@
     "twro"
    ],
    "sprite": "_c_helm_of_ra_kr",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410338
   },
   {
    "id": 10402422,
@@ -787,7 +837,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_c_hosangto_hat",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400503
   },
   {
    "id": 10402423,
@@ -799,7 +850,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_c_h_n_hat",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410266
   },
   {
    "id": 10002664,
@@ -818,7 +870,8 @@
     "twrozero"
    ],
    "sprite": "_c_experiment_mind",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 420358
   },
   {
    "id": 10402570,
@@ -830,7 +883,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_c_baby_seal",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 420357
   },
   {
    "id": 10202343,
@@ -847,7 +901,8 @@
     "twro"
    ],
    "sprite": "_c_bean_tteok",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410223
   },
   {
    "id": 10202342,
@@ -864,7 +919,8 @@
     "twro"
    ],
    "sprite": "_c_blacksesame_tteok",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410222
   },
   {
    "id": 10302410,
@@ -882,7 +938,8 @@
     "twro"
    ],
    "sprite": "_c_angry_fish",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400471
   },
   {
    "id": 10502903,
@@ -894,7 +951,8 @@
    "viewKind": "headgear",
    "origin": "twrozero",
    "sprite": "_c_katrinn_doll_hat",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 401596
   },
   {
    "id": 10502904,
@@ -906,7 +964,8 @@
    "viewKind": "headgear",
    "origin": "twrozero",
    "sprite": "_c_harword_doll_hat",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 401594
   },
   {
    "id": 10502531,
@@ -924,7 +983,8 @@
     "twrozero"
    ],
    "sprite": "_c_clb_ss_df",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400664
   },
   {
    "id": 10502899,
@@ -936,7 +996,8 @@
    "viewKind": "headgear",
    "origin": "twrozero",
    "sprite": "_c_magaleta_doll_hat",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 401595
   },
   {
    "id": 10502902,
@@ -948,7 +1009,8 @@
    "viewKind": "headgear",
    "origin": "twrozero",
    "sprite": "_c_eremes_doll_hat",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 401593
   },
   {
    "id": 10502900,
@@ -960,7 +1022,8 @@
    "viewKind": "headgear",
    "origin": "twrozero",
    "sprite": "_c_seyren_doll_hat",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 401592
   },
   {
    "id": 10502901,
@@ -972,7 +1035,8 @@
    "viewKind": "headgear",
    "origin": "twrozero",
    "sprite": "_c_shecil_doll_hat",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 401598
   },
   {
    "id": 10550221,
@@ -990,7 +1054,8 @@
     "twrozero"
    ],
    "sprite": "c_clb_ss_lt",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480445
   },
   {
    "id": 10550319,
@@ -1007,7 +1072,8 @@
     "twrozero"
    ],
    "sprite": "c_star_glasspen",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 480864
   },
   {
    "id": 10050040,
@@ -1023,7 +1089,8 @@
     "twro"
    ],
    "sprite": "cherryfesribbon",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 20539
   },
   {
    "id": 10350236,
@@ -1041,7 +1108,8 @@
     "twro"
    ],
    "sprite": "poporing_pool_ring",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480478
   },
   {
    "id": 10002869,
@@ -1058,7 +1126,8 @@
     "twrozero"
    ],
    "sprite": "_c_deepsea_pearls_hat",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 401472
   },
   {
    "id": 10550238,
@@ -1076,7 +1145,8 @@
     "twrozero"
    ],
    "sprite": "c_call_octo",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480485
   },
   {
    "id": 10502888,
@@ -1088,7 +1158,8 @@
    "viewKind": "headgear",
    "origin": "twrozero",
    "sprite": "_c_little_abyss_d_bl",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 410726
   },
   {
    "id": 10002867,
@@ -1105,7 +1176,8 @@
     "twrozero"
    ],
    "sprite": "_c_aqua_marin_n",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 420910
   },
   {
    "id": 10402850,
@@ -1122,7 +1194,8 @@
     "twro"
    ],
    "sprite": "_c_giant_panda",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410664
   },
   {
    "id": 10450318,
@@ -1139,7 +1212,8 @@
     "twro"
    ],
    "sprite": "c_panda_bamboo",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480863
   },
   {
    "id": 10402826,
@@ -1156,7 +1230,8 @@
     "twro"
    ],
    "sprite": "_c_mask_of_fox_yl",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 401316
   },
   {
    "id": 10302825,
@@ -1175,7 +1250,8 @@
     "twro"
    ],
    "sprite": "_c_fox_ear_beret",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 401315
   },
   {
    "id": 10050078,
@@ -1194,7 +1270,8 @@
     "twro"
    ],
    "sprite": "wing_of_angel_move_gr",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480060
   },
   {
    "id": 10002542,
@@ -1211,7 +1288,8 @@
     "twro"
    ],
    "sprite": "_c_broken_egg",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400671
   },
   {
    "id": 10502308,
@@ -1230,7 +1308,8 @@
     "twrozero"
    ],
    "sprite": "_c_fire_giant_red",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 31978
   },
   {
    "id": 10002559,
@@ -1247,7 +1326,8 @@
     "twro"
    ],
    "sprite": "_c_red_paeonia",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400693
   },
   {
    "id": 10002561,
@@ -1265,7 +1345,8 @@
     "twro"
    ],
    "sprite": "_c_buoyant_parasol_r",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410352
   },
   {
    "id": 10002563,
@@ -1283,7 +1364,8 @@
     "twrozero"
    ],
    "sprite": "_c_green_sunbed",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 420350
   },
   {
    "id": 10202609,
@@ -1300,7 +1382,8 @@
     "twrozero"
    ],
    "sprite": "_c_winter_tree",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 400743
   },
   {
    "id": 10002571,
@@ -1317,7 +1400,8 @@
     "twro"
    ],
    "sprite": "_c_fenrir_afv_hat",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400707
   },
   {
    "id": 10502821,
@@ -1333,7 +1417,8 @@
     "twrozero"
    ],
    "sprite": "_c_petal_twin_n",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 420776
   },
   {
    "id": 10002884,
@@ -1350,7 +1435,8 @@
     "twrozero"
    ],
    "sprite": "_c_fluffy_candy_long_n",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 420942
   },
   {
    "id": 10002883,
@@ -1367,7 +1453,8 @@
     "twrozero"
    ],
    "sprite": "_c_fluffy_candy_long",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 420941
   },
   {
    "id": 10002569,
@@ -1384,7 +1471,8 @@
     "twro"
    ],
    "sprite": "_c_candle_set",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 420354
   },
   {
    "id": 10050330,
@@ -1401,7 +1489,8 @@
     "twrozero"
    ],
    "sprite": "c_smokie_basket",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 480921
   },
   {
    "id": 10101872,
@@ -1417,7 +1506,8 @@
     "twro"
    ],
    "sprite": "_c_pig_boy_tw",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410075
   },
   {
    "id": 10502714,
@@ -1429,7 +1519,8 @@
    "viewKind": "headgear",
    "origin": "twrozero",
    "sprite": "_c_cat_ear_short_wh",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 420527
   },
   {
    "id": 10502712,
@@ -1441,7 +1532,8 @@
    "viewKind": "headgear",
    "origin": "twrozero",
    "sprite": "_c_cat_straight_long_bl",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 420529
   },
   {
    "id": 10502713,
@@ -1453,7 +1545,8 @@
    "viewKind": "headgear",
    "origin": "twrozero",
    "sprite": "_c_cat_ear_long_bu",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 420528
   },
   {
    "id": 10402022,
@@ -1465,7 +1558,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_c_gluttony_capoo_tw",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 420011
   },
   {
    "id": 10502539,
@@ -1482,7 +1576,8 @@
     "twrozero"
    ],
    "sprite": "_c_dragon_green_aura",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410329
   },
   {
    "id": 10450201,
@@ -1494,7 +1589,8 @@
    "viewKind": "garment",
    "origin": "twro",
    "sprite": "c_big_piske_bag",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480395
   },
   {
    "id": 10450193,
@@ -1506,7 +1602,8 @@
    "viewKind": "garment",
    "origin": "twro",
    "sprite": "c_big_hosangto",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480363
   },
   {
    "id": 10450200,
@@ -1518,7 +1615,8 @@
    "viewKind": "garment",
    "origin": "twro",
    "sprite": "c_big_usagi_bag",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480394
   },
   {
    "id": 10050077,
@@ -1536,7 +1634,8 @@
     "twro"
    ],
    "sprite": "wing_of_angel_move_dg",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480059
   },
   {
    "id": 10502540,
@@ -1553,7 +1652,8 @@
     "twrozero"
    ],
    "sprite": "_c_dragon_red_aura",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 410330
   },
   {
    "id": 10502541,
@@ -1565,7 +1665,8 @@
    "viewKind": "headgear",
    "origin": "twrozero",
    "sprite": "_c_dragon_yellow_aura",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 410331
   },
   {
    "id": 10450323,
@@ -1581,7 +1682,8 @@
     "twro"
    ],
    "sprite": "c_s_thanatos_wing",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 480879
   },
   {
    "id": 10401820,
@@ -1593,7 +1695,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_losttime",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 31622
   },
   {
    "id": 10002309,
@@ -1611,7 +1714,8 @@
     "twro"
    ],
    "sprite": "_c_fire_giant_gold",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 31979
   },
   {
    "id": 10401819,
@@ -1625,7 +1729,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_happymargay",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 31621
   },
   {
    "id": 10000756,
@@ -1637,7 +1742,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_네스티모자",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 31126
   },
   {
    "id": 10502532,
@@ -1655,7 +1761,8 @@
     "twrozero"
    ],
    "sprite": "_c_clb_ss_ea",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410326
   },
   {
    "id": 10401941,
@@ -1671,7 +1778,8 @@
     "twrozero"
    ],
    "sprite": "_c_2019_d10_muffler_tw",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 31835
   },
   {
    "id": 10002831,
@@ -1688,7 +1796,8 @@
     "twrozero"
    ],
    "sprite": "_two_side_wing",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 410629
   },
   {
    "id": 10302424,
@@ -1706,7 +1815,8 @@
     "twro"
    ],
    "sprite": "_c_autumn_piece",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 400504
   },
   {
    "id": 10402806,
@@ -1723,7 +1833,8 @@
     "twro"
    ],
    "sprite": "_c_malangmalang",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 440035
   },
   {
    "id": 10002885,
@@ -1740,7 +1851,8 @@
     "twro"
    ],
    "sprite": "_c_pitaya_ramen_stall",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410707
   },
   {
    "id": 10401817,
@@ -1752,7 +1864,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_magic_inheritor",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 31619
   },
   {
    "id": 10202727,
@@ -1768,7 +1881,8 @@
     "twro"
    ],
    "sprite": "_c_yl_cat_eyes",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 410457
   },
   {
    "id": 10550305,
@@ -1784,7 +1898,8 @@
     "twrozero"
    ],
    "sprite": "c_darklord_aura",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 480800
   },
   {
    "id": 10502845,
@@ -1801,7 +1916,8 @@
     "twrozero"
    ],
    "sprite": "_c_tarou_magical_hat",
-   "nameOrigin": "twrozero"
+   "nameOrigin": "twrozero",
+   "itemId": 401392
   },
   {
    "id": 10402011,
@@ -1819,7 +1935,8 @@
     "twro"
    ],
    "sprite": "_c_elegant_wave",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31944
   },
   {
    "id": 10101660,
@@ -1831,7 +1948,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_15th_anniversary_wing",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31317
   },
   {
    "id": 10101871,
@@ -1847,7 +1965,8 @@
     "twro"
    ],
    "sprite": "_c_pig_girl_tw",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410076
   },
   {
    "id": 10001306,
@@ -1865,7 +1984,8 @@
     "twrozero"
    ],
    "sprite": "_러브게임햇",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31579
   },
   {
    "id": 10101136,
@@ -1877,7 +1997,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_rwc2013_jp기념모자",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 19949
   },
   {
    "id": 10050226,
@@ -1895,7 +2016,8 @@
     "krozero"
    ],
    "sprite": "c_archmage_wand",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480459
   },
   {
    "id": 10002524,
@@ -1911,7 +2033,8 @@
     "jro"
    ],
    "sprite": "_c_eye_mask",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410317
   },
   {
    "id": 10102678,
@@ -1923,7 +2046,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_eye_mask_2",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410398
   },
   {
    "id": 10302654,
@@ -1942,7 +2066,8 @@
     "twrozero"
    ],
    "sprite": "_c_knit_ribbon_lowtwin",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420433
   },
   {
    "id": 10302655,
@@ -1960,7 +2085,8 @@
     "twrozero"
    ],
    "sprite": "_c_knit_ribbon_lowtwin_n",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420434
   },
   {
    "id": 10050242,
@@ -1978,7 +2104,8 @@
     "twro"
    ],
    "sprite": "c_alice_broom",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480492
   },
   {
    "id": 10002304,
@@ -1996,7 +2123,8 @@
     "twro"
    ],
    "sprite": "_c_evil_mini",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410192
   },
   {
    "id": 10302537,
@@ -2014,7 +2142,8 @@
     "twro"
    ],
    "sprite": "_c_yellow_head_dress",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400669
   },
   {
    "id": 10202512,
@@ -2031,7 +2160,8 @@
     "twro"
    ],
    "sprite": "_c_heine_tab_1",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410308
   },
   {
    "id": 10202514,
@@ -2048,7 +2178,8 @@
     "twro"
    ],
    "sprite": "_c_heine_tab_3",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410310
   },
   {
    "id": 10202513,
@@ -2065,7 +2196,8 @@
     "twro"
    ],
    "sprite": "_c_heine_tab_2",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410309
   },
   {
    "id": 10002487,
@@ -2084,7 +2216,8 @@
     "twrozero"
    ],
    "sprite": "_wolf_rayet",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 401247
   },
   {
    "id": 10202386,
@@ -2101,7 +2234,8 @@
     "twro"
    ],
    "sprite": "_c_flying_tilby",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410239
   },
   {
    "id": 10002028,
@@ -2118,7 +2252,8 @@
     "krozero"
    ],
    "sprite": "_c_airy_two_side_up_wh",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420033
   },
   {
    "id": 10302688,
@@ -2135,7 +2270,8 @@
     "twro"
    ],
    "sprite": "_eclipse_muffler",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420702
   },
   {
    "id": 10002291,
@@ -2153,7 +2289,8 @@
     "twro"
    ],
    "sprite": "_c_angeling_mini",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410189
   },
   {
    "id": 10402357,
@@ -2171,7 +2308,8 @@
     "twro"
    ],
    "sprite": "_egg_copo",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400415
   },
   {
    "id": 10002574,
@@ -2190,7 +2328,8 @@
     "twrozero"
    ],
    "sprite": "_c_puppy_hat_wh",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400709
   },
   {
    "id": 10002521,
@@ -2209,7 +2348,8 @@
     "twro"
    ],
    "sprite": "_garden_of_heaven",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400792
   },
   {
    "id": 10202567,
@@ -2226,7 +2366,8 @@
     "krozero"
    ],
    "sprite": "_c_cha_ex_twin",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420353
   },
   {
    "id": 10302534,
@@ -2246,7 +2387,8 @@
     "twrozero"
    ],
    "sprite": "_c_kitchen_car",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420340
   },
   {
    "id": 10101737,
@@ -2262,7 +2404,8 @@
     "twro"
    ],
    "sprite": "_c_jp_ev14",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31485
   },
   {
    "id": 10550215,
@@ -2282,7 +2425,8 @@
     "twrozero"
    ],
    "sprite": "c_glass_rose_garden",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480432
   },
   {
    "id": 10002572,
@@ -2301,7 +2445,8 @@
     "twrozero"
    ],
    "sprite": "_c_great_pyrenees",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410359
   },
   {
    "id": 10302515,
@@ -2320,7 +2465,8 @@
     "twrozero"
    ],
    "sprite": "_c_clover_hairpin",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410312
   },
   {
    "id": 10102796,
@@ -2336,7 +2482,8 @@
     "twro"
    ],
    "sprite": "_c_love_piece_bl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420728
   },
   {
    "id": 10002790,
@@ -2354,7 +2501,8 @@
     "twro"
    ],
    "sprite": "_c_emperor_penguin",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410556
   },
   {
    "id": 10202489,
@@ -2373,7 +2521,8 @@
     "twro"
    ],
    "sprite": "_c_kotatsu",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420306
   },
   {
    "id": 10101305,
@@ -2385,7 +2534,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_조이스틱햇",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 20334
   },
   {
    "id": 10501159,
@@ -2401,7 +2551,8 @@
     "twrozero"
    ],
    "sprite": "_남포링풍선",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31426
   },
   {
    "id": 10302380,
@@ -2420,7 +2571,8 @@
     "twro"
    ],
    "sprite": "_chic_peony",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400633
   },
   {
    "id": 10302535,
@@ -2440,7 +2592,8 @@
     "twrozero"
    ],
    "sprite": "_c_signon_loop",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420341
   },
   {
    "id": 10150298,
@@ -2458,7 +2611,8 @@
     "twrozero"
    ],
    "sprite": "c_sweet_folk",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480718
   },
   {
    "id": 10002764,
@@ -2475,7 +2629,8 @@
     "twro"
    ],
    "sprite": "_c_skia_two_side_up_sv",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420655
   },
   {
    "id": 10102761,
@@ -2491,7 +2646,8 @@
     "twro"
    ],
    "sprite": "_c_skia_two_side_up_bd",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420652
   },
   {
    "id": 10002762,
@@ -2508,7 +2664,8 @@
     "twro"
    ],
    "sprite": "_c_skia_two_side_up_cb",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420653
   },
   {
    "id": 10002763,
@@ -2525,7 +2682,8 @@
     "twro"
    ],
    "sprite": "_c_skia_two_side_up_lb",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420654
   },
   {
    "id": 10102766,
@@ -2541,7 +2699,8 @@
     "twro"
    ],
    "sprite": "_c_skia_two_side_up_wh",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420657
   },
   {
    "id": 10102767,
@@ -2557,7 +2716,8 @@
     "twro"
    ],
    "sprite": "_c_skia_two_side_up_om",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420658
   },
   {
    "id": 10002760,
@@ -2574,7 +2734,8 @@
     "twro"
    ],
    "sprite": "_c_skia_two_side_up_bg",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420651
   },
   {
    "id": 10002765,
@@ -2591,7 +2752,8 @@
     "twro"
    ],
    "sprite": "_c_skia_two_side_up_bl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420656
   },
   {
    "id": 10002709,
@@ -2608,7 +2770,8 @@
     "krozero"
    ],
    "sprite": "_c_stardust_hairband_bu",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400932
   },
   {
    "id": 10302425,
@@ -2625,7 +2788,8 @@
     "krozero"
    ],
    "sprite": "_stripedribbonhat",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 401196
   },
   {
    "id": 10002612,
@@ -2644,7 +2808,8 @@
     "twro"
    ],
    "sprite": "_c_s_two_side_up_sv",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420395
   },
   {
    "id": 10002613,
@@ -2662,7 +2827,8 @@
     "twro"
    ],
    "sprite": "_c_s_two_side_up_blp",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420396
   },
   {
    "id": 10102610,
@@ -2681,7 +2847,8 @@
     "twrozero"
    ],
    "sprite": "_c_s_two_side_up_bd",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420393
   },
   {
    "id": 10102611,
@@ -2700,7 +2867,8 @@
     "twrozero"
    ],
    "sprite": "_c_s_two_side_up_bdp",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420394
   },
   {
    "id": 10302658,
@@ -2719,7 +2887,8 @@
     "twrozero"
    ],
    "sprite": "_c_sberry_donut_in_mouth",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420435
   },
   {
    "id": 10002486,
@@ -2738,7 +2907,8 @@
     "twro"
    ],
    "sprite": "_c_snow_head",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400558
   },
   {
    "id": 10002315,
@@ -2757,7 +2927,8 @@
     "twro"
    ],
    "sprite": "_c_spiding",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 436010
   },
   {
    "id": 10002307,
@@ -2775,7 +2946,8 @@
     "twro"
    ],
    "sprite": "_c_spica_mini",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410191
   },
   {
    "id": 10002292,
@@ -2793,7 +2965,8 @@
     "twro"
    ],
    "sprite": "_c_seyren_mini",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410190
   },
   {
    "id": 10002815,
@@ -2810,7 +2983,8 @@
     "krozero"
    ],
    "sprite": "_c_seyren_hair",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420750
   },
   {
    "id": 10101131,
@@ -2822,7 +2996,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_711헤드폰",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 19933
   },
   {
    "id": 10002101,
@@ -2839,7 +3014,8 @@
     "twro"
    ],
    "sprite": "_c_glory_symbol_tw",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400144
   },
   {
    "id": 10102691,
@@ -2855,7 +3031,8 @@
     "twrozero"
    ],
    "sprite": "_midgard_insignia",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420508
   },
   {
    "id": 10000620,
@@ -2871,7 +3048,8 @@
     "jro"
    ],
    "sprite": "_귤꼭지모자",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31675
   },
   {
    "id": 10101539,
@@ -2883,7 +3061,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_jp_ev08",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31102
   },
   {
    "id": 10101540,
@@ -2895,7 +3074,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_jp_ev09",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31103
   },
   {
    "id": 10101538,
@@ -2907,7 +3087,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_jp_ev07",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31101
   },
   {
    "id": 10102794,
@@ -2924,7 +3105,8 @@
     "twrozero"
    ],
    "sprite": "_c_lots_braided_hair",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420727
   },
   {
    "id": 10101467,
@@ -2936,7 +3118,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_렌즈없는패션안경",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 20465
   },
   {
    "id": 10000582,
@@ -2954,7 +3137,8 @@
     "twrozero"
    ],
    "sprite": "_도로시인형모자",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400404
   },
   {
    "id": 10101537,
@@ -2966,7 +3150,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_jp_ev06",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31100
   },
   {
    "id": 10002739,
@@ -2986,7 +3171,8 @@
     "twrozero"
    ],
    "sprite": "_c_chained_bear",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410474
   },
   {
    "id": 10101935,
@@ -3002,7 +3188,8 @@
     "twrozero"
    ],
    "sprite": "_c_sunglass_bear_cap_j",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31826
   },
   {
    "id": 10050216,
@@ -3019,7 +3206,8 @@
     "kro"
    ],
    "sprite": "c_twin_edge",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480433
   },
   {
    "id": 10002706,
@@ -3038,7 +3226,8 @@
     "twrozero"
    ],
    "sprite": "_c_twin_milkyway_n",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420524
   },
   {
    "id": 10002279,
@@ -3057,7 +3246,8 @@
     "twro"
    ],
    "sprite": "_c_tent",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420165
   },
   {
    "id": 10101410,
@@ -3069,7 +3259,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_보라색수정티아라",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 20384
   },
   {
    "id": 10002548,
@@ -3088,7 +3279,8 @@
     "twro"
    ],
    "sprite": "_c_jerboa_headband",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400684
   },
   {
    "id": 10102593,
@@ -3105,7 +3297,8 @@
     "krozero"
    ],
    "sprite": "_c_doram_headband",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400727
   },
   {
    "id": 10202146,
@@ -3125,7 +3318,8 @@
     "twro"
    ],
    "sprite": "_black_moon_cat",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 440009
   },
   {
    "id": 10050301,
@@ -3143,7 +3337,8 @@
     "twro"
    ],
    "sprite": "c_doram_paw_hammer",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480748
   },
   {
    "id": 10002522,
@@ -3162,7 +3357,8 @@
     "twrozero"
    ],
    "sprite": "_cat_ears_cape_blue",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420421
   },
   {
    "id": 10501438,
@@ -3178,7 +3374,8 @@
     "twrozero"
    ],
    "sprite": "_c13학년풍선",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 20428
   },
   {
    "id": 10102701,
@@ -3196,7 +3393,8 @@
     "twro"
    ],
    "sprite": "_c_n_forest_cat",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410442
   },
   {
    "id": 10150272,
@@ -3212,7 +3410,8 @@
     "twro"
    ],
    "sprite": "c_pitaya_v_bag",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480610
   },
   {
    "id": 10001632,
@@ -3231,7 +3430,8 @@
     "twro"
    ],
    "sprite": "_white_clay_filler",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31258
   },
   {
    "id": 10102616,
@@ -3248,7 +3448,8 @@
     "twro"
    ],
    "sprite": "_c_hn_hair_cb",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420399
   },
   {
    "id": 10102617,
@@ -3265,7 +3466,8 @@
     "twro"
    ],
    "sprite": "_c_hn_hair_lb",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420400
   },
   {
    "id": 10102619,
@@ -3281,7 +3483,8 @@
     "twro"
    ],
    "sprite": "_c_hn_hair_jbl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420402
   },
   {
    "id": 10102620,
@@ -3297,7 +3500,8 @@
     "twro"
    ],
    "sprite": "_c_hn_hair_wh",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420403
   },
   {
    "id": 10102621,
@@ -3313,7 +3517,8 @@
     "twro"
    ],
    "sprite": "_c_hn_hair_om",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420404
   },
   {
    "id": 10102618,
@@ -3329,7 +3534,8 @@
     "twro"
    ],
    "sprite": "_c_hn_hair_lpp",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420401
   },
   {
    "id": 10102614,
@@ -3346,7 +3552,8 @@
     "twro"
    ],
    "sprite": "_c_hn_hair_bg",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420397
   },
   {
    "id": 10102615,
@@ -3363,7 +3570,8 @@
     "twro"
    ],
    "sprite": "_c_hn_hair_yl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420398
   },
   {
    "id": 10101533,
@@ -3375,7 +3583,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_jp_ev02",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31096
   },
   {
    "id": 10001855,
@@ -3392,7 +3601,8 @@
     "twro"
    ],
    "sprite": "_c_back_signon_wh",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31658
   },
   {
    "id": 10001856,
@@ -3409,7 +3619,8 @@
     "twro"
    ],
    "sprite": "_c_back_signon_om",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31659
   },
   {
    "id": 10001857,
@@ -3426,7 +3637,8 @@
     "twro"
    ],
    "sprite": "_c_back_signon_pp",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31660
   },
   {
    "id": 10001853,
@@ -3443,7 +3655,8 @@
     "twro"
    ],
    "sprite": "_c_back_signon_gn",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31656
   },
   {
    "id": 10001851,
@@ -3460,7 +3673,8 @@
     "twro"
    ],
    "sprite": "_c_back_signon_rd",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31654
   },
   {
    "id": 10001850,
@@ -3477,7 +3691,8 @@
     "twro"
    ],
    "sprite": "_c_back_signon_bu",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31653
   },
   {
    "id": 10001852,
@@ -3494,7 +3709,8 @@
     "twro"
    ],
    "sprite": "_c_back_signon_yl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31655
   },
   {
    "id": 10001854,
@@ -3511,7 +3727,8 @@
     "twro"
    ],
    "sprite": "_c_back_signon_bl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31657
   },
   {
    "id": 10350222,
@@ -3531,7 +3748,8 @@
     "twrozero"
    ],
    "sprite": "c_honey_dipper",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480450
   },
   {
    "id": 10402690,
@@ -3547,7 +3765,8 @@
     "twro"
    ],
    "sprite": "_variant_devils_horn",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410439
   },
   {
    "id": 10102744,
@@ -3563,7 +3782,8 @@
     "kro"
    ],
    "sprite": "_c_hallocandy_hair_n",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420594
   },
   {
    "id": 10002579,
@@ -3581,7 +3801,8 @@
     "twro"
    ],
    "sprite": "_c_halloween_candypouch",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480494
   },
   {
    "id": 10101439,
@@ -3597,7 +3818,8 @@
     "twro"
    ],
    "sprite": "_피아멧트나비넥타이",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 20429
   },
   {
    "id": 10102687,
@@ -3614,7 +3836,8 @@
     "twro"
    ],
    "sprite": "_c_frog_cap_bw",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400901
   },
   {
    "id": 10102771,
@@ -3626,7 +3849,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_fairy_long_lb",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420662
   },
   {
    "id": 10102774,
@@ -3638,7 +3862,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_fairy_long_wh",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420665
   },
   {
    "id": 10102775,
@@ -3650,7 +3875,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_fairy_long_om",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420666
   },
   {
    "id": 10102772,
@@ -3662,7 +3888,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_fairy_long_lpp",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420663
   },
   {
    "id": 10102770,
@@ -3674,7 +3901,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_fairy_long_rd",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420661
   },
   {
    "id": 10102768,
@@ -3686,7 +3914,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_fairy_long_bg",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420659
   },
   {
    "id": 10102769,
@@ -3698,7 +3927,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_fairy_long_yl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420660
   },
   {
    "id": 10102773,
@@ -3710,7 +3940,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_fairy_long_bl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420664
   },
   {
    "id": 10002568,
@@ -3730,7 +3961,8 @@
     "twrozero"
    ],
    "sprite": "_c_eyes_phen",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410353
   },
   {
    "id": 10001923,
@@ -3747,7 +3979,8 @@
     "twro"
    ],
    "sprite": "_c_pretty_bear_wh",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31799
   },
   {
    "id": 10501020,
@@ -3765,7 +3998,8 @@
     "twrozero"
    ],
    "sprite": "_블루아이새도",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31563
   },
   {
    "id": 10002560,
@@ -3784,7 +4018,8 @@
     "twro"
    ],
    "sprite": "_c_buoyant_parasol_b",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410351
   },
   {
    "id": 10002562,
@@ -3803,7 +4038,8 @@
     "twrozero"
    ],
    "sprite": "_c_blue_sunbed",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420349
   },
   {
    "id": 10301321,
@@ -3819,7 +4055,8 @@
     "krozero"
    ],
    "sprite": "_블루헤드드레스",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 20258
   },
   {
    "id": 10001874,
@@ -3835,7 +4072,8 @@
     "jro"
    ],
    "sprite": "_c_fluffy_semi_long",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31685
   },
   {
    "id": 10002653,
@@ -3853,7 +4091,8 @@
     "krozero"
    ],
    "sprite": "_c_baby_seal2",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420432
   },
   {
    "id": 10002573,
@@ -3873,7 +4112,8 @@
     "twrozero"
    ],
    "sprite": "_c_bell_cat_hair",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420360
   },
   {
    "id": 10002140,
@@ -3893,7 +4133,8 @@
     "twrozero"
    ],
    "sprite": "_c_whale_cap",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400163
   },
   {
    "id": 10001180,
@@ -3912,7 +4153,8 @@
     "twro"
    ],
    "sprite": "_율동의머리장식",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 15882
   },
   {
    "id": 10350229,
@@ -3931,7 +4173,8 @@
     "twro"
    ],
    "sprite": "hanwha_pool_ring",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480462
   },
   {
    "id": 10050234,
@@ -3951,7 +4194,8 @@
     "twrozero"
    ],
    "sprite": "c_poring_cream_soda",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480476
   },
   {
    "id": 10050266,
@@ -3970,7 +4214,8 @@
     "twrozero"
    ],
    "sprite": "c_3color_dumplings_p",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480582
   },
   {
    "id": 10102652,
@@ -3987,7 +4232,8 @@
     "kro"
    ],
    "sprite": "_c_wedjat",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400760
   },
   {
    "id": 10302499,
@@ -4004,7 +4250,8 @@
     "twro"
    ],
    "sprite": "_c_white_rabbit_hair",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420317
   },
   {
    "id": 10002816,
@@ -4021,7 +4268,8 @@
     "twro"
    ],
    "sprite": "_c_magaleta_hair",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420751
   },
   {
    "id": 10002306,
@@ -4039,7 +4287,8 @@
     "twro"
    ],
    "sprite": "_c_marlbron_mini",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410205
   },
   {
    "id": 10101244,
@@ -4051,7 +4300,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_미스릿모자",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 20083
   },
   {
    "id": 10101534,
@@ -4063,7 +4313,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_jp_ev03",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31097
   },
   {
    "id": 10002656,
@@ -4082,7 +4333,8 @@
     "twro"
    ],
    "sprite": "_c_maid_frill",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410387
   },
   {
    "id": 10002745,
@@ -4100,7 +4352,8 @@
     "twro"
    ],
    "sprite": "_c_medjed_cloth",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420595
   },
   {
    "id": 10101242,
@@ -4112,7 +4365,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_메탈드래곤투구",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 20081
   },
   {
    "id": 10101243,
@@ -4124,7 +4378,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_메탈드래곤모자",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 20082
   },
   {
    "id": 10102310,
@@ -4136,7 +4391,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_20th_scarf_j",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420205
   },
   {
    "id": 10050279,
@@ -4155,7 +4411,8 @@
     "twrozero"
    ],
    "sprite": "c_melon_cream_soda",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480619
   },
   {
    "id": 10050237,
@@ -4173,7 +4430,8 @@
     "twro"
    ],
    "sprite": "c_blue_magpie",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480484
   },
   {
    "id": 10102758,
@@ -4189,7 +4447,8 @@
     "kro"
    ],
    "sprite": "_c_l_knitting_wave_sv",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420649
   },
   {
    "id": 10102756,
@@ -4205,7 +4464,8 @@
     "kro"
    ],
    "sprite": "_c_l_knitting_wave_bd",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420647
   },
   {
    "id": 10402403,
@@ -4224,7 +4484,8 @@
     "twrozero"
    ],
    "sprite": "_lightning_savage",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410357
   },
   {
    "id": 10050228,
@@ -4242,7 +4503,8 @@
     "twro"
    ],
    "sprite": "c_ragdoll_face_bag",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480461
   },
   {
    "id": 10001927,
@@ -4258,7 +4520,8 @@
     "jro"
    ],
    "sprite": "_c_rabbit_two_side_up",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31817
   },
   {
    "id": 10002737,
@@ -4277,7 +4540,8 @@
     "twrozero"
    ],
    "sprite": "_c_liamette_hair_band",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 401000
   },
   {
    "id": 10002666,
@@ -4293,7 +4557,8 @@
     "jro"
    ],
    "sprite": "_c_rigel_hair",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420440
   },
   {
    "id": 10050263,
@@ -4309,7 +4574,8 @@
     "jro"
    ],
    "sprite": "c_resurrection_bow",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480560
   },
   {
    "id": 10002371,
@@ -4327,7 +4593,8 @@
     "twro"
    ],
    "sprite": "_squirrel_ear_hat_w",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400754
   },
   {
    "id": 10002547,
@@ -4347,7 +4614,8 @@
     "twrozero"
    ],
    "sprite": "_c_ribbon_braid_hair",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420345
   },
   {
    "id": 10002483,
@@ -4366,7 +4634,8 @@
     "twro"
    ],
    "sprite": "_sound_of_catbell",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420359
   },
   {
    "id": 10302657,
@@ -4382,7 +4651,8 @@
     "krozero"
    ],
    "sprite": "_c_red_head_dress",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400762
   },
   {
    "id": 10501161,
@@ -4398,7 +4668,8 @@
     "twrozero"
    ],
    "sprite": "_여포링풍선",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31427
   },
   {
    "id": 10002305,
@@ -4416,7 +4687,8 @@
     "twro"
    ],
    "sprite": "_c_lehar_mini",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410206
   },
   {
    "id": 10102624,
@@ -4433,7 +4705,8 @@
     "twro"
    ],
    "sprite": "_c_ram_hair_cb",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420407
   },
   {
    "id": 10102625,
@@ -4450,7 +4723,8 @@
     "twro"
    ],
    "sprite": "_c_ram_hair_lb",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420408
   },
   {
    "id": 10102627,
@@ -4466,7 +4740,8 @@
     "twro"
    ],
    "sprite": "_c_ram_hair_jbl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420410
   },
   {
    "id": 10102628,
@@ -4482,7 +4757,8 @@
     "twro"
    ],
    "sprite": "_c_ram_hair_wh",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420411
   },
   {
    "id": 10102629,
@@ -4498,7 +4774,8 @@
     "twro"
    ],
    "sprite": "_c_ram_hair_om",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420412
   },
   {
    "id": 10102626,
@@ -4514,7 +4791,8 @@
     "twro"
    ],
    "sprite": "_c_ram_hair_lpp",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420409
   },
   {
    "id": 10102622,
@@ -4531,7 +4809,8 @@
     "twro"
    ],
    "sprite": "_c_ram_hair_bg",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420405
   },
   {
    "id": 10102623,
@@ -4548,7 +4827,8 @@
     "twro"
    ],
    "sprite": "_c_ram_hair_yl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420406
   },
   {
    "id": 10102453,
@@ -4565,7 +4845,8 @@
     "twro"
    ],
    "sprite": "_c_rose_wave_sv",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420275
   },
   {
    "id": 10102454,
@@ -4583,7 +4864,8 @@
     "krozero"
    ],
    "sprite": "_c_rose_wave_svb",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420276
   },
   {
    "id": 10102451,
@@ -4600,7 +4882,8 @@
     "twro"
    ],
    "sprite": "_c_rose_wave_bd",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420273
   },
   {
    "id": 10102452,
@@ -4617,7 +4900,8 @@
     "twro"
    ],
    "sprite": "_c_rose_wave_bdp",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420274
   },
   {
    "id": 10001618,
@@ -4635,7 +4919,8 @@
     "twro"
    ],
    "sprite": "_low_pony_wh",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31346
   },
   {
    "id": 10001619,
@@ -4653,7 +4938,8 @@
     "twro"
    ],
    "sprite": "_low_pony_om",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31347
   },
   {
    "id": 10001620,
@@ -4671,7 +4957,8 @@
     "twro"
    ],
    "sprite": "_low_pony_pp",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31348
   },
   {
    "id": 10001616,
@@ -4689,7 +4976,8 @@
     "twro"
    ],
    "sprite": "_low_pony_gn",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31221
   },
   {
    "id": 10001614,
@@ -4707,7 +4995,8 @@
     "twro"
    ],
    "sprite": "_low_pony_rd",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31219
   },
   {
    "id": 10001613,
@@ -4725,7 +5014,8 @@
     "twro"
    ],
    "sprite": "_low_pony_bu",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31218
   },
   {
    "id": 10001615,
@@ -4743,7 +5033,8 @@
     "twro"
    ],
    "sprite": "_low_pony_yl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31220
   },
   {
    "id": 10001617,
@@ -4761,7 +5052,8 @@
     "twro"
    ],
    "sprite": "_low_pony_bl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31345
   },
   {
    "id": 10402225,
@@ -4779,7 +5071,8 @@
     "twrozero"
    ],
    "sprite": "_c_rocking_short",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420111
   },
   {
    "id": 10102780,
@@ -4795,7 +5088,8 @@
     "twro"
    ],
    "sprite": "_c_rocking_short_sv",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420671
   },
   {
    "id": 10002777,
@@ -4814,7 +5108,8 @@
     "twrozero"
    ],
    "sprite": "_c_rocking_short_bd",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420668
   },
   {
    "id": 10002779,
@@ -4832,7 +5127,8 @@
     "twrozero"
    ],
    "sprite": "_c_rocking_short_lb",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420670
   },
   {
    "id": 10002781,
@@ -4851,7 +5147,8 @@
     "twrozero"
    ],
    "sprite": "_c_rocking_short_jbl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420672
   },
   {
    "id": 10002782,
@@ -4869,7 +5166,8 @@
     "twrozero"
    ],
    "sprite": "_c_rocking_short_wh",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420673
   },
   {
    "id": 10102783,
@@ -4885,7 +5183,8 @@
     "twro"
    ],
    "sprite": "_c_rocking_short_om",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420674
   },
   {
    "id": 10002778,
@@ -4903,7 +5202,8 @@
     "twrozero"
    ],
    "sprite": "_c_rocking_short_rd",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420669
   },
   {
    "id": 10102776,
@@ -4919,7 +5219,8 @@
     "twro"
    ],
    "sprite": "_c_rocking_short_bg",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420667
   },
   {
    "id": 10102698,
@@ -4938,7 +5239,8 @@
     "twrozero"
    ],
    "sprite": "_c_wonderful_long",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420515
   },
   {
    "id": 10102697,
@@ -4956,7 +5258,8 @@
     "twrozero"
    ],
    "sprite": "_c_wonderful_long_n",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420514
   },
   {
    "id": 10102636,
@@ -4972,7 +5275,8 @@
     "twro"
    ],
    "sprite": "_c_wanderer_curl_swh",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420419
   },
   {
    "id": 10102632,
@@ -4989,7 +5293,8 @@
     "twro"
    ],
    "sprite": "_c_wanderer_curl_cb",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420415
   },
   {
    "id": 10102633,
@@ -5006,7 +5311,8 @@
     "twro"
    ],
    "sprite": "_c_wanderer_curl_lb",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420416
   },
   {
    "id": 10102635,
@@ -5022,7 +5328,8 @@
     "twro"
    ],
    "sprite": "_c_wanderer_curl_jbl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420418
   },
   {
    "id": 10102637,
@@ -5038,7 +5345,8 @@
     "twro"
    ],
    "sprite": "_c_wanderer_curl_om",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420420
   },
   {
    "id": 10102634,
@@ -5054,7 +5362,8 @@
     "twro"
    ],
    "sprite": "_c_wanderer_curl_lpp",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420417
   },
   {
    "id": 10102630,
@@ -5071,7 +5380,8 @@
     "twro"
    ],
    "sprite": "_c_wanderer_curl_bg",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420413
   },
   {
    "id": 10102631,
@@ -5088,7 +5398,8 @@
     "twro"
    ],
    "sprite": "_c_wanderer_curl_yl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420414
   },
   {
    "id": 10001270,
@@ -5104,7 +5415,8 @@
     "jro"
    ],
    "sprite": "_소원종이모자",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410171
   },
   {
    "id": 10100997,
@@ -5116,7 +5428,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_세계수의모자",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 19766
   },
   {
    "id": 10402281,
@@ -5134,7 +5447,8 @@
     "twro"
    ],
    "sprite": "_c_reliance_crown",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400311
   },
   {
    "id": 10001934,
@@ -5150,7 +5464,8 @@
     "jro"
    ],
    "sprite": "_c_mask_of_cat_j",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31824
   },
   {
    "id": 10050285,
@@ -5167,7 +5482,8 @@
     "kro"
    ],
    "sprite": "c_detective_mag_glass",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480631
   },
   {
    "id": 10401748,
@@ -5185,7 +5501,8 @@
     "twrozero"
    ],
    "sprite": "_sparkler_fountain",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31501
   },
   {
    "id": 10002290,
@@ -5203,7 +5520,8 @@
     "twro"
    ],
    "sprite": "_c_king_mini",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410188
   },
   {
    "id": 10050233,
@@ -5221,7 +5539,8 @@
     "twro"
    ],
    "sprite": "c_fb_evilsprit",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480473
   },
   {
    "id": 10000457,
@@ -5238,7 +5557,8 @@
     "twrozero"
    ],
    "sprite": "_진화된용의해골",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400802
   },
   {
    "id": 10150297,
@@ -5255,7 +5575,8 @@
     "twro"
    ],
    "sprite": "c_giant_chained_bear",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480717
   },
   {
    "id": 10350219,
@@ -5274,7 +5595,8 @@
     "twro"
    ],
    "sprite": "c_big_treasure_chest",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480438
   },
   {
    "id": 10002391,
@@ -5292,7 +5614,8 @@
     "twro"
    ],
    "sprite": "_striking_hat_a",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400899
   },
   {
    "id": 10002686,
@@ -5310,7 +5633,8 @@
     "twrozero"
    ],
    "sprite": "_c_majestic_helmet_bl",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400900
   },
   {
    "id": 10502703,
@@ -5328,7 +5652,8 @@
     "twrozero"
    ],
    "sprite": "_c_ear_of_puppy_om",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400921
   },
   {
    "id": 10002488,
@@ -5348,7 +5673,8 @@
     "twrozero"
    ],
    "sprite": "_snowmanhat",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400585
   },
   {
    "id": 10101536,
@@ -5360,7 +5686,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_jp_ev05",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31099
   },
   {
    "id": 10002740,
@@ -5378,7 +5705,8 @@
     "twro"
    ],
    "sprite": "_c_n_piamette_rollhair",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420575
   },
   {
    "id": 10002738,
@@ -5396,7 +5724,8 @@
     "twro"
    ],
    "sprite": "_c_n_piamette_bonnet",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 401001
   },
   {
    "id": 10050286,
@@ -5413,7 +5742,8 @@
     "kro"
    ],
    "sprite": "c_n_mad_bunny",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480632
   },
   {
    "id": 10501719,
@@ -5431,7 +5761,8 @@
     "twrozero"
    ],
    "sprite": "_c_baby_leopard_cat",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31456
   },
   {
    "id": 10050171,
@@ -5448,7 +5779,8 @@
     "twro"
    ],
    "sprite": "c_pope_doll",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480305
   },
   {
    "id": 10002718,
@@ -5465,7 +5797,8 @@
     "twro"
    ],
    "sprite": "_c_vacation_pope_hair",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420545
   },
   {
    "id": 10550270,
@@ -5485,7 +5818,8 @@
     "twrozero"
    ],
    "sprite": "c_starrysky_fountainpen",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480603
   },
   {
    "id": 10402282,
@@ -5503,7 +5837,8 @@
     "twro"
    ],
    "sprite": "_c_guardian_wing",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480200
   },
   {
    "id": 10050271,
@@ -5519,7 +5854,8 @@
     "jro"
    ],
    "sprite": "c_s_beelzebub_wing",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480608
   },
   {
    "id": 10102704,
@@ -5535,7 +5871,8 @@
     "twro"
    ],
    "sprite": "_orange_rear_ribbon",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420726
   },
   {
    "id": 10050239,
@@ -5554,7 +5891,8 @@
     "twrozero"
    ],
    "sprite": "c_shiba_tail",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480486
   },
   {
    "id": 10002119,
@@ -5573,7 +5911,8 @@
     "twro"
    ],
    "sprite": "_c_blossom_glasses",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31973
   },
   {
    "id": 10002682,
@@ -5591,7 +5930,8 @@
     "twrozero"
    ],
    "sprite": "_c_cb_fullb_twintails",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420499
   },
   {
    "id": 10302580,
@@ -5608,7 +5948,8 @@
     "twro"
    ],
    "sprite": "_c_or_earwitchhat",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400716
   },
   {
    "id": 10050284,
@@ -5625,7 +5966,8 @@
     "kro"
    ],
    "sprite": "c_mechanical_fairy_wing",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480630
   },
   {
    "id": 10002659,
@@ -5642,7 +5984,8 @@
     "kro"
    ],
    "sprite": "_mech_feather_hairband_b",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400994
   },
   {
    "id": 10002736,
@@ -5659,7 +6002,8 @@
     "kro"
    ],
    "sprite": "_c_gear_monocle",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410471
   },
   {
    "id": 10002141,
@@ -5678,7 +6022,8 @@
     "twro"
    ],
    "sprite": "_c_sailor_collar_wh",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420044
   },
   {
    "id": 10002672,
@@ -5697,7 +6042,8 @@
     "twro"
    ],
    "sprite": "_c_deep_you",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420449
   },
   {
    "id": 10002671,
@@ -5716,7 +6062,8 @@
     "twro"
    ],
    "sprite": "_c_deep_you_n",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420448
   },
   {
    "id": 10302525,
@@ -5733,7 +6080,8 @@
     "twro"
    ],
    "sprite": "_undead_seal_rose",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420347
   },
   {
    "id": 10101096,
@@ -5745,7 +6093,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_입에문녹색풍선껌",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420023
   },
   {
    "id": 10001058,
@@ -5763,7 +6112,8 @@
     "krozero"
    ],
    "sprite": "_녹색강아지풀",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 20192
   },
   {
    "id": 10101535,
@@ -5775,7 +6125,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_jp_ev04",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31098
   },
   {
    "id": 10102583,
@@ -5793,7 +6144,8 @@
     "twro"
    ],
    "sprite": "_m_plant_hat_w",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400993
   },
   {
    "id": 10202341,
@@ -5811,7 +6163,8 @@
     "twro"
    ],
    "sprite": "_c_white_tteok",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410221
   },
   {
    "id": 10050255,
@@ -5829,7 +6182,8 @@
     "twro"
    ],
    "sprite": "c_white_fox_tail",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480521
   },
   {
    "id": 10002647,
@@ -5848,7 +6202,8 @@
     "twrozero"
    ],
    "sprite": "_c_wh_fox_hood_twin_n",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420426
   },
   {
    "id": 10002538,
@@ -5867,7 +6222,8 @@
     "twro"
    ],
    "sprite": "_c_catcoffeecup_wh",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400670
   },
   {
    "id": 10102509,
@@ -5883,7 +6239,8 @@
     "twro"
    ],
    "sprite": "_white_cat_witch_hat",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400918
   },
   {
    "id": 10402354,
@@ -5901,7 +6258,8 @@
     "twro"
    ],
    "sprite": "_white_serpent_hair",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420201
   },
   {
    "id": 10002248,
@@ -5921,7 +6279,8 @@
     "twrozero"
    ],
    "sprite": "_c_many_flowers_prayer",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400272
   },
   {
    "id": 10350288,
@@ -5941,7 +6300,8 @@
     "twrozero"
    ],
    "sprite": "c_nifl_bloom_rd",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480648
   },
   {
    "id": 10102746,
@@ -5957,7 +6317,8 @@
     "kro"
    ],
    "sprite": "_c_blink_eyes_halloween",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420596
   },
   {
    "id": 10102667,
@@ -5969,7 +6330,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_blink_eyes_rigel",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410393
   },
   {
    "id": 10002649,
@@ -5987,7 +6349,8 @@
     "krozero"
    ],
    "sprite": "_c_blink_eyes_wh_serpent",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410384
   },
   {
    "id": 10101532,
@@ -5999,7 +6362,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_c_jp_ev01",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31095
   },
   {
    "id": 10302493,
@@ -6016,7 +6380,8 @@
     "twro"
    ],
    "sprite": "_c_lucky_purse",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400588
   },
   {
    "id": 10202384,
@@ -6033,7 +6398,8 @@
     "twro"
    ],
    "sprite": "_c_adventurer_pope_mini",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410238
   },
   {
    "id": 10050204,
@@ -6050,7 +6416,8 @@
     "kro"
    ],
    "sprite": "greatdevilwing2",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480408
   },
   {
    "id": 10001449,
@@ -6068,7 +6435,8 @@
     "twrozero"
    ],
    "sprite": "_홍백모치링모자",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 20442
   },
   {
    "id": 10001090,
@@ -6084,7 +6452,8 @@
     "jro"
    ],
    "sprite": "_츠나데의인술서",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420240
   },
   {
    "id": 10050074,
@@ -6102,7 +6471,8 @@
     "twro"
    ],
    "sprite": "wing_of_angel_move_rb",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480057
   },
   {
    "id": 10002735,
@@ -6120,7 +6490,8 @@
     "twrozero"
    ],
    "sprite": "_c_feather_hair_bd",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420571
   },
   {
    "id": 10050240,
@@ -6139,7 +6510,8 @@
     "twro"
    ],
    "sprite": "c_paw_bag",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480487
   },
   {
    "id": 10402516,
@@ -6157,7 +6529,8 @@
     "twrozero"
    ],
    "sprite": "_c_flower_s_knit_hat",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400635
   },
   {
    "id": 10202673,
@@ -6174,7 +6547,8 @@
     "twro"
    ],
    "sprite": "_c_thornbush_hairband_bu",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400795
   },
   {
    "id": 10102400,
@@ -6193,7 +6567,8 @@
     "twro"
    ],
    "sprite": "_c_rainbow_popcorn",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400466
   },
   {
    "id": 10402355,
@@ -6211,7 +6586,8 @@
     "twro"
    ],
    "sprite": "_serpent_crystal",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410229
   },
   {
    "id": 10401027,
@@ -6227,7 +6603,8 @@
     "twro"
    ],
    "sprite": "_나비의트윈바렛",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 20483
   },
   {
    "id": 10502814,
@@ -6246,7 +6623,8 @@
     "twrozero"
    ],
    "sprite": "_c_apprentice_witch_hat",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 401248
   },
   {
    "id": 10001002,
@@ -6265,7 +6643,8 @@
     "twrozero"
    ],
    "sprite": "_사악한마칭햇_j",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 20214
   },
   {
    "id": 10050296,
@@ -6282,7 +6661,8 @@
     "krozero"
    ],
    "sprite": "c_scepter_sv",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480699
   },
   {
    "id": 10102702,
@@ -6299,7 +6679,8 @@
     "twro"
    ],
    "sprite": "_c_chick_hat_bu",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400920
   },
   {
    "id": 10301589,
@@ -6315,7 +6696,8 @@
     "krozero"
    ],
    "sprite": "_bluecat_ear",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31192
   },
   {
    "id": 10002285,
@@ -6331,7 +6713,8 @@
     "jro"
    ],
    "sprite": "_c_2012rmscno4",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400315
   },
   {
    "id": 10201556,
@@ -6349,7 +6732,8 @@
     "twro"
    ],
    "sprite": "_파랑새의장미장식",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 31137
   },
   {
    "id": 10050261,
@@ -6368,7 +6752,8 @@
     "twro"
    ],
    "sprite": "c_blue_rose_parasol",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480556
   },
   {
    "id": 10002494,
@@ -6388,7 +6773,8 @@
     "twro"
    ],
    "sprite": "_c_bluedragon",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400700
   },
   {
    "id": 10402356,
@@ -6406,7 +6792,8 @@
     "twro"
    ],
    "sprite": "_armored_copo",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400414
   },
   {
    "id": 10050300,
@@ -6423,7 +6810,8 @@
     "krozero"
    ],
    "sprite": "c_knights_sword_shield",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480747
   },
   {
    "id": 10150273,
@@ -6441,7 +6829,8 @@
     "twrozero"
    ],
    "sprite": "c_dimensional_sword",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480609
   },
   {
    "id": 10001105,
@@ -6458,7 +6847,8 @@
     "krozero"
    ],
    "sprite": "_검은고양이모자",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 19916
   },
   {
    "id": 10302326,
@@ -6506,7 +6896,8 @@
    "viewKind": "headgear",
    "origin": "krozero",
    "sprite": "_새둥지모자",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5183
   },
   {
    "id": 10001346,
@@ -6518,7 +6909,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_머리위의브라",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5949
   },
   {
    "id": 10102741,
@@ -6957,7 +7349,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_콜라캔",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5434
   },
   {
    "id": 10001097,
@@ -6969,7 +7362,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_멋진해적안대",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 19900
   },
   {
    "id": 10001156,
@@ -6986,7 +7380,8 @@
     "twro"
    ],
    "sprite": "_무통라이프",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 19989
   },
   {
    "id": 10001209,
@@ -7002,7 +7397,8 @@
     "jro"
    ],
    "sprite": "_예술가의베레모",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 20019
   },
   {
    "id": 10001191,
@@ -7014,7 +7410,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_폭탄모자",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 19997
   },
   {
    "id": 10300214,
@@ -7028,7 +7425,8 @@
    "viewKind": "headgear",
    "origin": "krozero",
    "sprite": "_가부키가면",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 19556
   },
   {
    "id": 10001204,
@@ -7045,7 +7443,8 @@
     "kro"
    ],
    "sprite": "_링컨모자",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 20014
   },
   {
    "id": 10001094,
@@ -7057,7 +7456,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_필리핀10주년모자",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 19896
   },
   {
    "id": 10300313,
@@ -7073,7 +7473,8 @@
     "twro"
    ],
    "sprite": "_풍차비녀",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 19694
   },
   {
    "id": 10000428,
@@ -7085,7 +7486,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_홍차화전모자",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5427
   },
   {
    "id": 10001121,
@@ -7097,7 +7499,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_신의보호",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5900
   },
   {
    "id": 10102358,
@@ -7121,7 +7524,8 @@
    "viewKind": "headgear",
    "origin": "krozero",
    "sprite": "_드레스햇",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5211
   },
   {
    "id": 10000850,
@@ -7138,7 +7542,8 @@
     "krozero"
    ],
    "sprite": "_식충식물의헤어핀",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 31541
   },
   {
    "id": 10102731,
@@ -7150,7 +7555,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_eremes_scarf_wh",
-   "unnamed": true
+   "unnamed": true,
+   "itemId": 420567
   },
   {
    "id": 10102689,
@@ -7174,7 +7580,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_일차화모자",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5525
   },
   {
    "id": 10202733,
@@ -7202,7 +7609,8 @@
     "krozero"
    ],
    "sprite": "_신사의페즈",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 18924
   },
   {
    "id": 10102710,
@@ -7226,7 +7634,8 @@
    "viewKind": "headgear",
    "origin": "twro",
    "sprite": "_부용",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5139
   },
   {
    "id": 10400342,
@@ -7243,7 +7652,8 @@
     "twro"
    ],
    "sprite": "_인도네시아헤어밴드",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5321
   },
   {
    "id": 10302319,
@@ -7324,7 +7734,8 @@
     "jro"
    ],
    "sprite": "_돈을잃은자의마음",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 18825
   },
   {
    "id": 10300268,
@@ -7341,7 +7752,8 @@
     "twro"
    ],
    "sprite": "_월야화모자",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 19642
   },
   {
    "id": 10000614,
@@ -7353,7 +7765,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_nofear파워헤드기어",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5694
   },
   {
    "id": 10001115,
@@ -7370,7 +7783,8 @@
     "twro"
    ],
    "sprite": "_판다풍선",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 31428
   },
   {
    "id": 10102484,
@@ -7415,7 +7829,8 @@
     "kro"
    ],
    "sprite": "_보스모자",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 18802
   },
   {
    "id": 10350157,
@@ -7444,7 +7859,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_붉은해적두건",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5661
   },
   {
    "id": 10000469,
@@ -7456,7 +7872,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_홍백모자",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 31705
   },
   {
    "id": 10302792,
@@ -7484,7 +7901,8 @@
     "jro"
    ],
    "sprite": "_대만주먹밥",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 31723
   },
   {
    "id": 10000949,
@@ -7503,7 +7921,8 @@
     "twrozero"
    ],
    "sprite": "_사쿠라머리띠",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 20437
   },
   {
    "id": 10000518,
@@ -7515,7 +7934,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_사쿠라밀크티모자",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5524
   },
   {
    "id": 10001171,
@@ -7527,7 +7947,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_salusalo기념모자",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 19994
   },
   {
    "id": 10302320,
@@ -7559,7 +7980,8 @@
     "twro"
    ],
    "sprite": "_눈부신가발",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 19814
   },
   {
    "id": 10000754,
@@ -7575,7 +7997,8 @@
     "jro"
    ],
    "sprite": "_실버토끼머리띠",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 18588
   },
   {
    "id": 10202266,
@@ -7615,7 +8038,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_iro플래그두건",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 5876
   },
   {
    "id": 10300186,
@@ -7631,7 +8055,8 @@
     "twro"
    ],
    "sprite": "_해바라기핀",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 20484
   },
   {
    "id": 10001083,
@@ -7647,7 +8072,8 @@
     "jro"
    ],
    "sprite": "_늘어진메이드인형모자",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 400449
   },
   {
    "id": 10000781,
@@ -7664,7 +8090,8 @@
     "twro"
    ],
    "sprite": "_타레도모붜이",
-   "nameOrigin": "iro"
+   "nameOrigin": "iro",
+   "itemId": 31147
   },
   {
    "id": 10002661,
@@ -7725,7 +8152,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_러시아리본",
-   "unnamed": true
+   "unnamed": true,
+   "itemId": 5301
   },
   {
    "id": 10000517,
@@ -7737,7 +8165,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_사쿠라미스트모자",
-   "nameOrigin": "kro"
+   "nameOrigin": "kro",
+   "itemId": 5523
   },
   {
    "id": 10100995,
@@ -7777,7 +8206,8 @@
     "jro"
    ],
    "sprite": "_천하일품라면",
-   "unnamed": true
+   "unnamed": true,
+   "itemId": 5791
   },
   {
    "id": 10000426,
@@ -7789,7 +8219,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_환타그레이프캔",
-   "nameOrigin": "kro"
+   "nameOrigin": "kro",
+   "itemId": 5425
   },
   {
    "id": 10000425,
@@ -7801,7 +8232,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_환타오렌지캔",
-   "nameOrigin": "kro"
+   "nameOrigin": "kro",
+   "itemId": 11506
   },
   {
    "id": 10000516,
@@ -7813,7 +8245,8 @@
    "viewKind": "headgear",
    "origin": "iro",
    "sprite": "_환타제로레몬모자",
-   "unnamed": true
+   "unnamed": true,
+   "itemId": 5522
   },
   {
    "id": 10000499,
@@ -7829,7 +8262,8 @@
     "jro"
    ],
    "sprite": "_황금튤립머리핀",
-   "nameOrigin": "kro"
+   "nameOrigin": "kro",
+   "itemId": 5821
   },
   {
    "id": 10102754,
@@ -7841,7 +8275,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_asha_vahishta",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410509
   },
   {
    "id": 10102529,
@@ -7853,7 +8288,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_interdimensional_rift",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410322
   },
   {
    "id": 10002715,
@@ -7871,7 +8307,8 @@
     "krozero"
    ],
    "sprite": "_imperial_guardian",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420540
   },
   {
    "id": 10102674,
@@ -7883,7 +8320,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_vampire_stall",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420450
   },
   {
    "id": 10302503,
@@ -7900,7 +8338,8 @@
     "krozero"
    ],
    "sprite": "_wisdom_core_headphones",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410302
   },
   {
    "id": 10002716,
@@ -7920,7 +8359,8 @@
     "twrozero"
    ],
    "sprite": "_openair_headset_red",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420642
   },
   {
    "id": 10102808,
@@ -7932,7 +8372,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_chatty_cockatiel",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420733
   },
   {
    "id": 10050267,
@@ -7948,7 +8389,8 @@
     "jro"
    ],
    "sprite": "glutton_cerberus",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480590
   },
   {
    "id": 10150144,
@@ -7960,7 +8402,8 @@
    "viewKind": "garment",
    "origin": "jro",
    "sprite": "whale_shark_float",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 480220
   },
   {
    "id": 10002337,
@@ -7976,7 +8419,8 @@
     "jro"
    ],
    "sprite": "_sacred_lapel",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420187
   },
   {
    "id": 10002750,
@@ -7992,7 +8436,8 @@
     "jro"
    ],
    "sprite": "_midgard_integrity",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410504
   },
   {
    "id": 10000722,
@@ -8008,7 +8453,8 @@
     "jro"
    ],
    "sprite": "_타이니모자",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 18548
   },
   {
    "id": 10101596,
@@ -8020,7 +8466,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_jp_ev12",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 19219
   },
   {
    "id": 10002359,
@@ -8037,7 +8484,8 @@
     "kro"
    ],
    "sprite": "_two_tone_cap",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400421
   },
   {
    "id": 10102786,
@@ -8049,7 +8497,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_draco_eques",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 460140
   },
   {
    "id": 10002595,
@@ -8065,7 +8514,8 @@
     "jro"
    ],
    "sprite": "_perm_frost_oblivion",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 410365
   },
   {
    "id": 10302742,
@@ -8082,7 +8532,8 @@
     "krozero"
    ],
    "sprite": "_majestic_fox",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420592
   },
   {
    "id": 10102608,
@@ -8094,7 +8545,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_leviathan_helm",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400742
   },
   {
    "id": 10102813,
@@ -8106,7 +8558,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_ruin_tempest",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420746
   },
   {
    "id": 10002352,
@@ -8123,7 +8576,8 @@
     "kro"
    ],
    "sprite": "_wild_beast",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400409
   },
   {
    "id": 10502663,
@@ -8141,7 +8595,8 @@
     "twrozero"
    ],
    "sprite": "_blue_astrologer_hat",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 401320
   },
   {
    "id": 10102785,
@@ -8153,7 +8608,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_angel_valletta",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420695
   },
   {
    "id": 10002752,
@@ -8170,7 +8626,8 @@
     "kro"
    ],
    "sprite": "_flame_muffler_bu",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420620
   },
   {
    "id": 10002414,
@@ -8186,7 +8643,8 @@
     "jro"
    ],
    "sprite": "_mobile_support_systems",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 420235
   },
   {
    "id": 10102662,
@@ -8198,7 +8656,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_gluttony_crown",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400768
   },
   {
    "id": 10102582,
@@ -8215,7 +8674,8 @@
     "twrozero"
    ],
    "sprite": "_c_sakura_witch_hat_w",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400721
   },
   {
    "id": 10002415,
@@ -8234,7 +8694,8 @@
     "twrozero"
    ],
    "sprite": "_flash_of_lightning",
-   "nameOrigin": "twro"
+   "nameOrigin": "twro",
+   "itemId": 401211
   },
   {
    "id": 10002447,
@@ -8251,7 +8712,8 @@
     "krozero"
    ],
    "sprite": "_inquisitor_veil",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400556
   },
   {
    "id": 10002505,
@@ -8268,7 +8730,8 @@
     "krozero"
    ],
    "sprite": "_white_fox_bamboo_hat",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 400602
   },
   {
    "id": 10001227,
@@ -8284,7 +8747,8 @@
     "jro"
    ],
    "sprite": "_용기사의안대",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 5924
   },
   {
    "id": 10102121,
@@ -8296,7 +8760,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_kings_crown_a",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 15898
   },
   {
    "id": 10102787,
@@ -8308,7 +8773,8 @@
    "viewKind": "headgear",
    "origin": "jro",
    "sprite": "_blue_fox_ear_ribbon",
-   "nameOrigin": "jro"
+   "nameOrigin": "jro",
+   "itemId": 401122
   }
  ]
 }

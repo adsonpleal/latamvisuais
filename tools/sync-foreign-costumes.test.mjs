@@ -15,6 +15,7 @@ import {
   localizedSprites,
   NAME_PRIORITY,
   ORIGIN_ORDER,
+  pickItemId,
   pickName,
   toAppRow,
 } from "./sync-foreign-costumes.mjs";
@@ -36,6 +37,35 @@ const hat = (over = {}) => ({
   ...over,
 });
 
+describe("pickItemId", () => {
+  // 420 of the 466 rows that get an id have one number and nothing to decide.
+  it("takes the only id when the clients agree", () => {
+    expect(pickItemId({ ids: { jro: 410312, twro: 410312 } })).toBe(410312);
+  });
+
+  // The costume and the hat it copies are two items. A client that never
+  // shipped the costume answers with the base one, so a split vote has to go
+  // up: 20484 is `Costume: Sunflower Hairpin`, 5103 is the ordinary hairpin,
+  // and this row is the costume.
+  it("breaks a tie upwards, onto the costume rather than the base item", () => {
+    const ids = { latam: 5103, iro: 5103, kro: 5103, jro: 20484, twro: 20484, twrozero: 20484 };
+    expect(pickItemId({ ids })).toBe(20484);
+  });
+
+  // ...but a lone client with a number of its own is noise, not a second item.
+  // twRO answers 31754 for a costume three other clients call 31660, and
+  // Divine-Pride has no page for 31754 at all -- taking the highest outright
+  // would link nowhere.
+  it("lets three clients outvote one, even when the one is higher", () => {
+    const ids = { latam: 31660, jro: 31660, twrozero: 31660, twro: 31754 };
+    expect(pickItemId({ ids })).toBe(31660);
+  });
+
+  it("has no answer when no client carries an id", () => {
+    expect(pickItemId({})).toBeNull();
+    expect(pickItemId({ ids: {} })).toBeNull();
+  });
+});
 describe("foreignId", () => {
   it("keeps a headgear and a garment of the same view apart", () => {
     // iRO view 185 is both, and folding the kind into the id is the only thing

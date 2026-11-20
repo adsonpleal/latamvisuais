@@ -149,6 +149,9 @@ export function makeDb(): Db {
         viewKind: "headgear",
         origin: "iro",
         sprite: "_foreign_hat",
+        // The real id in iRO’s own item table. Every link to this row has to
+        // use this number and not the 10000900 above, which this app invented.
+        itemId: 20123,
       },
       {
         id: 10400950,
@@ -158,6 +161,8 @@ export function makeDb(): Db {
         viewKind: "garment",
         origin: "twro",
         sprite: "foreign_cape",
+        // Deliberately no itemId: 51 of the published rows have none, and the
+        // app must print them without a link rather than guess a page.
       },
       // Two servers ship this one. `origin` is the tree it renders from;
       // `origins` is who has it, and the filter answers from the second.
