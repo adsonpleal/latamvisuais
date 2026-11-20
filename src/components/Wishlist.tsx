@@ -8,18 +8,23 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { SLOTS } from "../core/db";
+import { SLOTS, realItemId, type Costume, type Stone } from "../core/db";
 import { divinePrideUrl, marketUrl } from "../core/links";
 import { SERVERS, serverLabel, useServer, type Server } from "../core/server";
 import { itemIconUrl } from "../core/state";
+import { CostumeIcon } from "./CostumeIcon";
 import { PETS } from "../sim/pets";
 import { t } from "../i18n";
 import { useAppState } from "../state/AppStateContext";
 import { Cart } from "./icons";
 
-// A wishlist line only needs an item id (icon + links) and a name (display) —
-// satisfied by costumes, graphic stones and the pet egg alike.
-type WishItem = { id: number; name: string };
+// A wishlist line needs an item id (icon + links) and a name (display) —
+// satisfied by costumes, graphic stones and the pet egg alike. It also keeps
+// the catalogue row itself when there is one, because a costume from another
+// server answers all three of those differently: no LATAM icon, no LATAM
+// market, and a Divine-Pride page under a different number. The pet egg has no
+// such row, which is why this is optional rather than the only field.
+type WishItem = { id: number; name: string; item?: Costume | Stone };
 
 export function Wishlist() {
   const state = useAppState();
@@ -34,10 +39,10 @@ export function Wishlist() {
   // is only worth anything with a visual to enchant.
   const items: WishItem[] = [];
   const seen = new Set<number>();
-  const push = (it?: { id: number; name: string }) => {
+  const push = (it?: Costume | Stone) => {
     if (!it || seen.has(it.id)) return;
     seen.add(it.id);
-    items.push({ id: it.id, name: it.name });
+    items.push({ id: it.id, name: it.name, item: it });
   };
   for (const slot of SLOTS) {
     push(state.equipped[slot]);
@@ -45,7 +50,12 @@ export function Wishlist() {
   }
   if (state.pet != null) {
     const pet = PETS.find((p) => p.mob === state.pet);
-    if (pet) push({ id: pet.egg, name: pet.eggName });
+    // Not a catalogue row: a plain LATAM item id, which is the case every
+    // field below already treats as the ordinary one.
+    if (pet && !seen.has(pet.egg)) {
+      seen.add(pet.egg);
+      items.push({ id: pet.egg, name: pet.eggName });
+    }
   }
 
   useEffect(() => {
@@ -111,40 +121,60 @@ function WishlistRows({ items, server }: { items: WishItem[]; server: Server }) 
   return (
     <>
       <div className="wishlist-hint">{t.wishlistHint}</div>
-      {items.map((item) => (
-        <div key={item.id} className="wishlist-row">
-          <img
-            className="wishlist-icon"
-            src={itemIconUrl(item.id)}
-            alt=""
-            loading="lazy"
-            decoding="async"
-            onError={(e) => (e.currentTarget.style.visibility = "hidden")}
-          />
-          <div className="wishlist-info">
-            <a
-              className="wishlist-name"
-              href={divinePrideUrl(item)}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-tip={t.divineLink}
-            >
-              {item.name}
-            </a>
-            <span className="wishlist-id">{`#${item.id}`}</span>
+      {items.map((row) => {
+        // A costume from another server is here because it can be previewed,
+        // not because it can be bought: the market is LATAM’s and this piece
+        // is in the catalogue precisely because LATAM has no item for it. So
+        // the cart goes, and the name links to the real item rather than to a
+        // page built from the id this app invented.
+        const foreign = Boolean(row.item?.origin);
+        // The real id — shown and linked — or null when the row has none.
+        const realId = realItemId(row.item ?? row);
+        return (
+          <div key={row.id} className="wishlist-row">
+            {row.item ? (
+              <CostumeIcon item={row.item} className="wishlist-icon" />
+            ) : (
+              <img
+                className="wishlist-icon"
+                src={itemIconUrl(row.id)}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                onError={(e) => (e.currentTarget.style.visibility = "hidden")}
+              />
+            )}
+            <div className="wishlist-info">
+              {realId === null ? (
+                <span className="wishlist-name">{row.name}</span>
+              ) : (
+                <a
+                  className="wishlist-name"
+                  href={divinePrideUrl(realId, row.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-tip={t.divineLink}
+                >
+                  {row.name}
+                </a>
+              )}
+              {realId !== null && <span className="wishlist-id">{`#${realId}`}</span>}
+            </div>
+            {!foreign && (
+              <a
+                className="wishlist-market"
+                href={marketUrl(row, server)}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-tip={t.marketSearch}
+                aria-label={t.marketSearch}
+              >
+                <Cart />
+              </a>
+            )}
           </div>
-          <a
-            className="wishlist-market"
-            href={marketUrl(item, server)}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-tip={t.marketSearch}
-            aria-label={t.marketSearch}
-          >
-            <Cart />
-          </a>
-        </div>
-      ))}
+        );
+      })}
     </>
   );
 }

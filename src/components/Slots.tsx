@@ -7,11 +7,18 @@
 // "Encantamento de Visual"). It is a line of its own because that is what it is
 // in the game: the costume stays put and the stone rides along with it.
 
-import { useState } from "react";
-import { canPreview, SLOTS, type Slot, type Stone } from "../core/db";
-import { itemIconUrl } from "../core/state";
+import {
+  canPreview,
+  originsOf,
+  realItemId,
+  SLOTS,
+  type Costume,
+  type Slot,
+  type Stone,
+} from "../core/db";
 import { t } from "../i18n";
 import { useAppState, useDispatch } from "../state/AppStateContext";
+import { CostumeIcon } from "./CostumeIcon";
 import { ClearX } from "./icons";
 
 /** What an empty row on a card asks the catalogue for. */
@@ -36,8 +43,8 @@ export function Slots({ onPick }: { onPick: (slot: Slot, kind: PickKind) => void
                 if (!item) onPick(slot, "costume");
               }}
             >
-              <SlotIcon key={item?.id ?? "empty"} id={item?.id} className="slot-icon" />
-              <div className="slot-name" data-tip={item ? `${item.name} (${item.id})` : undefined}>
+              <SlotIcon key={item?.id ?? "empty"} item={item} className="slot-icon" />
+              <div className="slot-name" data-tip={item ? wornTip(item) : undefined}>
                 {item ? item.name : t.slotEmpty}
               </div>
               <button
@@ -69,7 +76,7 @@ export function Slots({ onPick }: { onPick: (slot: Slot, kind: PickKind) => void
                 if (!stone) onPick(slot, "stone");
               }}
             >
-              <SlotIcon key={stone?.id ?? "empty"} id={stone?.id} className="slot-stone-icon" />
+              <SlotIcon key={stone?.id ?? "empty"} item={stone} className="slot-stone-icon" />
               <div className="slot-stone-name">{stone ? stone.name : t.stoneEmpty}</div>
               {/* A word, only where there is something a reader can't already
                   see. An ordinary effect says nothing: it is drawn on the
@@ -96,6 +103,25 @@ export function Slots({ onPick }: { onPick: (slot: Slot, kind: PickKind) => void
       })}
     </div>
   );
+}
+
+/**
+ * What is worn, and — when it is from another server — which ones.
+ *
+ * The grid tile carries a visible badge; this card deliberately does not. Four
+ * cards sit side by side on one row, so the name line has room for a name and
+ * little else: a costume six servers have put three chips and an ellipsis in
+ * front of it, which read as the item rather than as a note about it. The names
+ * move into the tooltip this line already had.
+ */
+function wornTip(item: Costume | Stone): string {
+  // The real id, or the name alone for the 27 foreign rows that have none:
+  // see realItemId. Never this app's own number for a foreign costume.
+  const realId = realItemId(item);
+  const head = realId === null ? item.name : `${item.name} (${realId})`;
+  const servers = originsOf(item);
+  if (!servers.length) return head;
+  return `${head} — ${t.foreignBadgeTip(servers.map((o) => t.foreignServerNames[o] ?? o))}`;
 }
 
 /**
@@ -127,19 +153,16 @@ function StoneNote({ stone }: { stone: Stone }) {
 
 // Keyed by item id by the parent, so a new costume gets a fresh error state
 // rather than inheriting a previous slot occupant's broken-icon flag.
-function SlotIcon({ id, className }: { id?: number; className: string }) {
-  const [errored, setErrored] = useState(false);
-  if (id == null) {
+//
+// A costume from another official server has no item icon and never will — its
+// id is this app's own, not one in anybody's item table — so this card was
+// showing a name with an empty square beside it. CostumeIcon already knows the
+// fallback the catalogue uses (the head-framed render), so the card borrows it
+// rather than keeping a second, worse copy: the slot CSS hides the image only
+// when that fails too.
+function SlotIcon({ item, className }: { item?: Costume | Stone; className: string }) {
+  if (!item) {
     return <img className={className} alt="" decoding="async" style={{ visibility: "hidden" }} />;
   }
-  return (
-    <img
-      className={className}
-      src={itemIconUrl(id)}
-      alt=""
-      decoding="async"
-      style={{ visibility: errored ? "hidden" : undefined }}
-      onError={() => setErrored(true)}
-    />
-  );
+  return <CostumeIcon item={item} className={className} />;
 }

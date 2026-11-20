@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "sync:db": "node tools/sync-db.mjs",
+    "sync:foreign": "node tools/sync-foreign-costumes.mjs",
     "deploy": "npm run build && firebase deploy --only hosting"
   },
   "devDependencies": {

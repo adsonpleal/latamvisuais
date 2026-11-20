@@ -2248,6 +2248,14 @@ button:disabled {
   flex: none;
 }
 
+/* Both slot images borrow CostumeIcon, which marks an image that failed even
+   its rendered fallback instead of hiding it — the card keeps the space so the
+   name does not jump left. */
+.slot-icon.is-missing,
+.slot-stone-icon.is-missing {
+  visibility: hidden;
+}
+
 .slot-name {
   flex: 1;
   /* Allow the flex item to shrink below its content width so the ellipsis
@@ -2447,7 +2455,9 @@ button:disabled {
   position: fixed;
   top: 0;
   left: 0;
-  width: 240px;
+  /* Overridden inline by placeUnder (MIN_WIDTH); kept in step with it so the
+     panel is never narrower than its longest label for a frame. */
+  width: 264px;
   max-height: 60vh;
   overflow-y: auto;
   display: flex;
@@ -2598,6 +2608,32 @@ button:disabled {
   display: none;
 }
 
+/* Which other official server a costume comes from.
+   Pinned to the tile's bottom edge rather than floated over the middle: the
+   sprite is the thing being looked at, and these tiles are ~56px, so anything
+   centred covers the costume you turned the filter on to see. Full width with
+   a dark scrim so it stays legible over a light sprite as well as a dark one,
+   and no pointer events so it never eats the tile's click. */
+.catalog-origin {
+  position: absolute;
+  /* Held inside the frame rather than flush with the tile box: the tile has no
+     border-radius of its own — its corners are drawn by the button artwork
+     (bt_hairstyle_normal.png) — so a bar pinned to 0 squared off over that
+     rounded corner. The inset clears the frame's border and the radius follows
+     the curve it sits in. */
+  inset: auto 2px 2px;
+  border-radius: 0 0 3px 3px;
+  padding: 0 1px;
+  background: rgb(0 0 0 / 62%);
+  color: #fff;
+  font-size: 0.5rem;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
 .catalog-item:hover {
   background-image: url("https://assets.latam-tools.com.br/icons/ui/bt_hairstyle_over.png");
 }
@@ -2635,6 +2671,14 @@ button:disabled {
 
 .catalog-icon.is-missing {
   visibility: hidden;
+}
+
+/* "+3": how the tile says the costume is on other servers too. 162 of them are
+   on four or more, and only one name fits here — the list view shows them all.
+   Dimmed so the server that IS named stays the thing you read. */
+.catalog-origin-more {
+  margin-left: 0.25em;
+  opacity: 0.72;
 }
 
 .catalog-empty {
@@ -2768,6 +2812,24 @@ button:disabled {
 .catalog-row-meta {
   font-size: 0.7rem;
   color: var(--muted);
+}
+
+/* The same badge as the grid's, but a row has no corner to pin it to: here it
+   is a chip at the end of the meta line, after the id and the position. */
+.catalog-row-meta .catalog-origin {
+  position: static;
+  display: inline-block;
+  margin-left: 0.45em;
+  padding: 0 0.35em;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 14%);
+  color: var(--fg);
+  font-size: 0.62rem;
+  line-height: 1.5;
+  vertical-align: 0.05em;
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
 }
 
 /* The id reads as what it is — a link to the item's Divine-Pride page. */

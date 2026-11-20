@@ -21,7 +21,14 @@
 // rather than an index so it survives a filter, a search or a view switch.
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { Costume, Slot, Stone } from "../core/db";
+import {
+  originsOf as dbOriginsOf,
+  primaryOrigin,
+  realItemId,
+  type Costume,
+  type Slot,
+  type Stone,
+} from "../core/db";
 import { hint } from "../core/hints";
 import { persisted } from "../core/prefs";
 import { fold } from "../core/text";
@@ -62,6 +69,12 @@ export function Catalog({
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const [singleSlotOnly, setSingleSlotOnly] = useState(false);
+  // Off by default. Costumes from the other official servers are the only thing
+  // in the catalogue that cannot be obtained here, so they stay out until asked
+  // for — and not remembered across sessions either, so nobody is surprised by
+  // a grid full of them on a later visit.
+  const [showForeign, setShowForeign] = useState(false);
+  const [originFilter, setOriginFilter] = useState<string | null>(null);
   const [view, setView] = viewPref.use();
   const gridRef = useRef<HTMLDivElement>(null);
   // The item the arrow keys move from — set by clicking one. Held as an id so a
@@ -76,9 +89,18 @@ export function Catalog({
     [db.costumes, db.stones],
   );
 
-  // Each item's search haystack (folded name + id) — independent of state, so
-  // compute it once.
-  const haystacks = useMemo(() => all.map((item) => `${fold(item.name)} ${item.id}`), [all]);
+  // Each item's search haystack (folded name + the id a player could know) —
+  // independent of state, so compute it once.
+  //
+  // The id here is the real one, never the number this app invents for a
+  // foreign row: typing a costume's actual item id is a thing people do, and
+  // typing ours is not — nobody has it except from this screen, and until now
+  // this screen was the only place it ever appeared. The 27 rows with no real
+  // id are findable by name alone, which is all anyone could have for them.
+  const haystacks = useMemo(
+    () => all.map((item) => `${fold(item.name)} ${realItemId(item) ?? ""}`),
+    [all],
+  );
 
   const q = fold(query.trim());
   // Memoized because it's 1500 items wide and feeds `visibleItems`, which the
@@ -91,12 +113,34 @@ export function Catalog({
           (!q || haystacks[i].includes(q)) &&
           (kindFilter === "all" || (kindFilter === "stone") === isStone(item)) &&
           (!slotFilter || item.slots.includes(slotFilter)) &&
+          // A costume from another official server is hidden unless asked for,
+          // and then optionally narrowed to one server. A costume several
+          // servers have answers to each of their chips -- "iRO" means every
+          // costume iRO has and LATAM does not, not the subset we happened to
+          // extract from iRO.
+          //
+          // Picking a server also takes the LATAM catalogue out. That chip
+          // answers one question -- what does iRO have that we don't -- and
+          // 1322 obtainable costumes mixed into the answer is not an answer:
+          // you cannot tell the two apart by looking, so the list stops being
+          // about iRO at all. With no server picked they sit together, which is
+          // what the checkbox on its own has always meant.
+          (originsOf(item).length === 0
+            ? !originFilter
+            : showForeign && (!originFilter || originsOf(item).includes(originFilter))) &&
           // A stone only ever holds one position, so "só de uma posição" can
           // never exclude one — it exists to hide the Topo+Meio costume sets.
           (!singleSlotOnly || item.slots.length === 1),
       ),
-    [all, haystacks, q, kindFilter, slotFilter, singleSlotOnly],
+    [all, haystacks, q, kindFilter, slotFilter, singleSlotOnly, showForeign, originFilter],
   );
+  // The servers actually represented in the catalogue, in the order they are
+  // first seen, so the chips describe the data instead of a hard-coded list.
+  const origins = useMemo(() => {
+    const seen = new Set<string>();
+    for (const item of all) for (const o of originsOf(item)) seen.add(o);
+    return [...seen].sort();
+  }, [all]);
   // The filtered items in display order. The list view windows over this, and
   // the arrow keys step through it; both need the same array, so it's built
   // once here rather than twice.
@@ -214,6 +258,11 @@ export function Catalog({
           onSlotFilterChange={onSlotFilterChange}
           kindFilter={kindFilter}
           onKindFilterChange={onKindFilterChange}
+          showForeign={showForeign}
+          onShowForeignChange={setShowForeign}
+          originFilter={originFilter}
+          onOriginFilterChange={setOriginFilter}
+          origins={origins}
           singleSlotOnly={singleSlotOnly}
           onSingleSlotOnlyChange={setSingleSlotOnly}
         />
@@ -259,11 +308,30 @@ export function Catalog({
           <div className="catalog-grid" role="list" ref={gridRef}>
             {all.map((item, i) => {
               const equipped = isOn(item);
-              const label = `${item.name} (#${item.id})`;
+              const servers = originsOf(item);
+              // One name fits a tile. With a chip held down it is that chip's
+              // server, so the badge never seems to contradict the filter.
+              const origin = primaryOrigin(servers, originFilter);
+              const server = origin ? (t.foreignServerNames[origin] ?? origin) : null;
+              // Every name, in chip order: the tile shows one and a "+3", so
+              // the tooltip is the only place that says which three.
+              const serverNames = servers.map((o) => t.foreignServerNames[o] ?? o);
+              // The badge is on the tile, not only in the tooltip: once the
+              // filter is on, foreign and LATAM costumes sit side by side in
+              // one grid, and the only thing that tells them apart is this.
+              // The id in the tooltip is the real one, and absent when the row
+              // has none — see realItemId. A tile is the only place a foreign
+              // costume's number is read aloud, so it must not be ours.
+              const realId = realItemId(item);
+              const shownId = realId === null ? "" : ` (#${realId})`;
+              const label = server
+                ? `${item.name}${shownId} — ${t.foreignBadgeTip(serverNames)}`
+                : `${item.name}${shownId}`;
               const cls = [
                 "catalog-item",
                 equipped ? "is-equipped" : "",
                 isStone(item) ? "is-stone" : "",
+                origin ? "is-foreign" : "",
               ]
                 .filter(Boolean)
                 .join(" ");
@@ -285,6 +353,16 @@ export function Catalog({
                   onClick={(e) => pick(item, e.currentTarget)}
                 >
                   <CostumeIcon item={item} className="catalog-icon" />
+                  {server && (
+                    <span className="catalog-origin">
+                      {t.foreignBadge(server)}
+                      {servers.length > 1 && (
+                        <span className="catalog-origin-more">
+                          {t.foreignBadgeMore(servers.length - 1)}
+                        </span>
+                      )}
+                    </span>
+                  )}
                 </button>
               );
             })}
@@ -321,4 +399,16 @@ function columnsOf(grid: HTMLElement | null, view: (typeof VIEWS)[number]): numb
  *  rather than a guess at the shape. */
 function isStone(item: Costume | Stone): item is Stone {
   return "stone" in item;
+}
+
+/** Which other official server an item comes from, or null for everything
+ *  LATAM ships — which is every stone and almost every costume. */
+export function originOf(item: Costume | Stone): string | null {
+  return (!isStone(item) && item.origin) || null;
+}
+
+/** The servers a costume belongs to, with stones (which never have one)
+ *  answered as "none" rather than reaching into db.ts for an empty array. */
+function originsOf(item: Costume | Stone): string[] {
+  return isStone(item) ? [] : dbOriginsOf(item);
 }

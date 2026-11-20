@@ -1,5 +1,11 @@
 // UI strings — pt-BR only (the LATAM server's language).
 
+/** "a, b e c" — the one bit of grammar these strings need. Not Intl.ListFormat:
+ *  this file is single-locale by design, and the tooltip it serves is built
+ *  once per visible tile. */
+const joinAnd = (names: string[]) =>
+  names.length < 2 ? (names[0] ?? "") : `${names.slice(0, -1).join(", ")} e ${names[names.length - 1]}`;
+
 export const t = {
   appTitle: "Simulador de Visuais",
   appSubtitle: "Ragnarok Online LATAM",
@@ -204,6 +210,52 @@ export const t = {
   singleSlotLabel: "Só visuais de uma posição",
   singleSlotTip:
     "Esconde os visuais que ocupam mais de uma posição ao mesmo tempo (um conjunto de Topo + Meio, por exemplo), que ao equipar tiram o que estiver nas outras.",
+  // Costumes from the other official Ragnarok servers. Off by default, and the
+  // wording has to carry the one thing that matters: they are real, they draw,
+  // and you cannot get them here.
+  foreignFilterLabel: "Outros servidores",
+  foreignLabel: "Visuais de outros servidores",
+  foreignTip:
+    "Mostra visuais que existem em outros servidores oficiais e não no Ragnarok LATAM. Dá para vestir e ver na prévia, mas não dá para conseguir no jogo daqui.",
+  foreignAllServers: "Todos",
+  foreignAllServersTip:
+    "O catálogo do LATAM e, junto com ele, os visuais de todos os outros servidores.",
+  /** Each server chip answers one question — o que esse servidor tem que o
+   *  LATAM não tem — e por isso tira o catálogo daqui da lista: misturado com
+   *  1322 visuais que dá para conseguir, a resposta não é mais uma resposta. */
+  foreignOnlyServerTip: (server: string) =>
+    `Só os visuais que ${server} tem e o Ragnarok LATAM não. O catálogo daqui fica de fora da lista.`,
+  foreignServerNames: {
+    iro: "iRO",
+    jro: "jRO",
+    kro: "kRO",
+    krozero: "kRO Zero",
+    thro: "thRO",
+    twro: "twRO",
+    twrozero: "twRO Zero",
+  } as Record<string, string>,
+  /** Badge on a foreign costume in the grid, in the list and on the equipped
+   *  chip. It names one server — whichever chip is held down, or the first the
+   *  costume belongs to. */
+  foreignBadge: (server: string) => server,
+  /** The tile has room for one name. "+3" is how it says there are others,
+   *  since 162 of the costumes are on four servers or more and a 53x48 tile
+   *  fits one 8px line. The list view shows every name instead. */
+  foreignBadgeMore: (n: number) => `+${n}`,
+  /** The badge's tooltip, and the only place every server is written out: the
+   *  tile shows one name and a "+3", so without this there is nothing that
+   *  answers which three. Takes the display names, already in chip order. */
+  foreignBadgeTip: (servers: string[]) =>
+    `${
+      servers.length > 1
+        ? `Visual de outros servidores (${joinAnd(servers)})`
+        : `Visual de outro servidor${servers.length ? ` (${servers[0]})` : ""}`
+    }. Não existe no Ragnarok LATAM — dá para vestir e ver aqui, mas não dá para conseguir no jogo.`,
+  foreignUnnamedTip:
+    "Sem nome: nenhum cliente que lemos tinha a linha de item desse visual, então o nome mostrado é o do arquivo do sprite.",
+  foreignForeignNameTip: (server: string) =>
+    `Nome vindo das tabelas de ${server}, no idioma daquele cliente.`,
+
   viewGrid: "Grade",
   viewList: "Lista",
 

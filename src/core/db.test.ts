@@ -7,6 +7,7 @@ import {
   builtinRisePx,
   hatSprite,
   loadDb,
+  realItemId,
   withHatEffects,
   type Costume,
   type HatEffectRow,
@@ -156,10 +157,30 @@ describe("loadDb", () => {
         items: [{ id: 420382, name: "[Visual] Escudo Poenitentia", slots: ["low"], view: 2594 }],
       },
       "hat_effects.json": hat,
+      "foreign-costumes.json": {
+        items: [
+          {
+            id: 10001063,
+            name: "'Merica_Hat",
+            slots: ["top"],
+            view: 1063,
+            viewKind: "headgear",
+            origin: "iro",
+            sprite: "_iro플래그모자",
+          },
+        ],
+      },
     };
-    return stubFetch(
-      (url: string) => Object.entries(bodies).find(([file]) => url.includes(file))?.[1] ?? { items: [] },
-    );
+    // Matched on the last path segment, not anywhere in the URL:
+    // "foreign-costumes.json" contains "costumes.json", so a substring match
+    // served the LATAM catalogue for both and silently duplicated it.
+    return stubFetch((url: string) => {
+      // Last path segment, query stripped: the ragassets catalogues carry a
+      // ?v= cache-buster, and "foreign-costumes.json" contains "costumes.json"
+      // — so neither a substring match nor a bare last-segment match works.
+      const file = url.split("?")[0].split("/").pop() ?? "";
+      return bodies[file] ?? { items: [] };
+    });
   }
 
   afterEach(() => vi.unstubAllGlobals());
@@ -181,6 +202,7 @@ describe("loadDb", () => {
     // cache headers, so a browser would otherwise sit on last year's copy.
     expect(seen).toContain(`${RAGASSETS_BASE}/effects/hat_effects.json?v=${CACHE_BUST}`);
     expect(db.costumes.map((c) => [c.id, c.view, c.effect, c.attachment])).toEqual([
+      [10001063, 1063, undefined, undefined],
       [400149, undefined, undefined, hatSprite("black_thunder")],
       [420382, 2594, "atque_poenitentia", undefined],
     ]);
@@ -189,7 +211,51 @@ describe("loadDb", () => {
   it("ships the catalogue unchanged when ragassets is down", async () => {
     serve(new Error("network"));
     const db = await loadDb();
-    expect(db.costumes.map((c) => c.id)).toEqual([420382]);
-    expect(db.costumes[0]).not.toHaveProperty("effect");
+    // The foreign catalogue is a file this app ships, not something ragassets
+    // serves, so it survives ragassets being unreachable — unlike the effect
+    // and hat-effect catalogues, which are the point of this test.
+    expect(db.costumes.map((c) => c.id)).toEqual([10001063, 420382]);
+    expect(db.costumes.find((c) => c.id === 420382)).not.toHaveProperty("effect");
+  });
+
+  it("loads the costumes from other official servers with their sprite names", async () => {
+    // The loader puts them in the one catalogue; what keeps them out of sight
+    // is the filter in Catalog, which is off by default. Both halves have to
+    // be true, and this is the half that makes them renderable at all: without
+    // `origin` and `sprite` the renderer has only a view id, which in this
+    // client means nothing — or means a different hat.
+    serve({ items: [] });
+    const db = await loadDb();
+    const foreign = db.costumes.find((c) => c.origin);
+    expect(foreign).toMatchObject({
+      id: 10001063,
+      origin: "iro",
+      sprite: "_iro플래그모자",
+      view: 1063,
+      viewKind: "headgear",
+    });
+    expect(db.costumes.filter((c) => !c.origin).length).toBeGreaterThan(0);
+  });
+});
+
+// Which of the two numbers a row carries is a real item id -- the one the
+// screen prints, the search box matches and a Divine-Pride link uses. Getting
+// it wrong is invisible in the markup and a wrong number in front of a reader,
+// which is why it is one function with a test rather than a condition spelled
+// out at each of the five call sites.
+describe("realItemId", () => {
+  it("uses a LATAM item's own id, which is already real", () => {
+    expect(realItemId({ id: 15858 })).toBe(15858);
+  });
+
+  it("uses the client's id for a costume from another server, never ours", () => {
+    expect(realItemId({ id: 10_101_871, itemId: 410076, origin: "jro" })).toBe(410076);
+  });
+
+  // The 27 rows no client gives an id for. Ours is not a usable substitute:
+  // it is a number this app made up, so printing it would invite someone to
+  // search for an item that does not exist, and linking it is a 404.
+  it("gives nothing for a foreign costume no client carries an id for", () => {
+    expect(realItemId({ id: 10_101_871, origin: "jro" })).toBeNull();
   });
 });

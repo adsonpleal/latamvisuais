@@ -1,0 +1,8993 @@
+{
+ "version": 1,
+ "generatedAt": "2026-11-20",
+ "counts": {
+  "iro": 306,
+  "twro": 286,
+  "twrozero": 109,
+  "kro": 188,
+  "jro": 387,
+  "krozero": 148,
+  "thro": 164
+ },
+ "items": [
+  {
+   "id": 10001063,
+   "name": "'Merica Hat",
+   "view": 1063,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_iro플래그모자",
+   "nameOrigin": "iro",
+   "itemId": 5877
+  },
+  {
+   "id": 10401908,
+   "name": "(服飾)2019RTC紀念波利池",
+   "view": 1908,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_2019rtc_celeaura_tw",
+   "nameOrigin": "twro",
+   "itemId": 31768
+  },
+  {
+   "id": 10402009,
+   "name": "(服飾)2020RTC頑皮鬼",
+   "view": 2009,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_2020rtc_imp_tw",
+   "nameOrigin": "twro",
+   "itemId": 400081
+  },
+  {
+   "id": 10402133,
+   "name": "(服飾)2021RTC應援之羽翼",
+   "view": 2133,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_2021rtc_wing_tw",
+   "nameOrigin": "twro",
+   "itemId": 420073
+  },
+  {
+   "id": 10402134,
+   "name": "(服飾)2021RTC電競耳機",
+   "view": 2134,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_2021rtc_headset_tw",
+   "nameOrigin": "twro",
+   "itemId": 410078
+  },
+  {
+   "id": 10450132,
+   "name": "(服飾)2022RTC紀念勝利大衣",
+   "view": 132,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_2022rtc_v_coat4",
+   "nameOrigin": "twro",
+   "itemId": 480190
+  },
+  {
+   "id": 10501432,
+   "name": "(服飾)7年級氣球",
+   "view": 1432,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c7학년풍선",
+   "nameOrigin": "twro",
+   "itemId": 20422
+  },
+  {
+   "id": 10501433,
+   "name": "(服飾)8年級氣球",
+   "view": 1433,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c8학년풍선",
+   "nameOrigin": "twro",
+   "itemId": 20423
+  },
+  {
+   "id": 10402480,
+   "name": "(服飾)P助與粉紅兔兔",
+   "view": 2480,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_usa_pis",
+   "nameOrigin": "twro",
+   "itemId": 410288
+  },
+  {
+   "id": 10450326,
+   "name": "(服飾)ROS亞軍外袍",
+   "view": 326,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_2026rosfesta_2nd",
+   "nameOrigin": "twro",
+   "itemId": 480901
+  },
+  {
+   "id": 10450327,
+   "name": "(服飾)ROS季軍外袍",
+   "view": 327,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_2026rosfesta_3rd",
+   "nameOrigin": "twro",
+   "itemId": 480902
+  },
+  {
+   "id": 10450328,
+   "name": "(服飾)ROS殿軍外袍",
+   "view": 328,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_2026rosfesta_4th",
+   "nameOrigin": "twro",
+   "itemId": 480903
+  },
+  {
+   "id": 10550339,
+   "name": "(服飾)RSX-0806機械臂",
+   "view": 339,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "sprite": "c_rsx_chain_arm",
+   "nameOrigin": "twrozero",
+   "itemId": 480994
+  },
+  {
+   "id": 10402711,
+   "name": "(服飾)不死君主的權能",
+   "view": 2711,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_immortal_h_power",
+   "nameOrigin": "twro",
+   "itemId": 420532
+  },
+  {
+   "id": 10402606,
+   "name": "(服飾)亞歷山大帝",
+   "view": 2606,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_alecsander",
+   "nameOrigin": "twro",
+   "itemId": 440019
+  },
+  {
+   "id": 10302818,
+   "name": "(服飾)仙女之耳",
+   "view": 2818,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_nymph_ear",
+   "nameOrigin": "twro",
+   "itemId": 401295
+  },
+  {
+   "id": 10202556,
+   "name": "(服飾)伊格尼斯狩獵帽(紅)",
+   "view": 2556,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twrozero"
+   ],
+   "sprite": "_magma_ignis_cap",
+   "nameOrigin": "twrozero",
+   "itemId": 401062
+  },
+  {
+   "id": 10502385,
+   "name": "(服飾)冒險家的帽子",
+   "view": 2385,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_adventurer_hat",
+   "nameOrigin": "twro",
+   "itemId": 400446
+  },
+  {
+   "id": 10402479,
+   "name": "(服飾)卡娜赫拉的小動物",
+   "view": 2479,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_kanahei_fam",
+   "nameOrigin": "twro",
+   "itemId": 400571
+  },
+  {
+   "id": 10402607,
+   "name": "(服飾)卡珊德拉公主",
+   "view": 2607,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_cassandra",
+   "nameOrigin": "twro",
+   "itemId": 440020
+  },
+  {
+   "id": 10050043,
+   "name": "(服飾)台灣黑熊背包",
+   "view": 43,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "twro"
+   ],
+   "sprite": "blackbearbackpack",
+   "nameOrigin": "twro",
+   "itemId": 20542
+  },
+  {
+   "id": 10402021,
+   "name": "(服飾)咖波利",
+   "view": 2021,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_capooring_tw",
+   "nameOrigin": "twro",
+   "itemId": 400126
+  },
+  {
+   "id": 10202726,
+   "name": "(服飾)喵爾的灰耳朵",
+   "view": 2726,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_ear_of_nyar_gy",
+   "nameOrigin": "twro",
+   "itemId": 400964
+  },
+  {
+   "id": 10401909,
+   "name": "(服飾)回歸三週年頭飾",
+   "view": 1909,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_tw_3rd_balloon",
+   "nameOrigin": "twro",
+   "itemId": 31767
+  },
+  {
+   "id": 10000482,
+   "name": "(服飾)國旗帽",
+   "view": 482,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_대만국기모자",
+   "nameOrigin": "twro",
+   "itemId": 31127
+  },
+  {
+   "id": 10401920,
+   "name": "(服飾)天音耳機",
+   "view": 1920,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_baryon_headphone_tw",
+   "nameOrigin": "twro",
+   "itemId": 31792
+  },
+  {
+   "id": 10402422,
+   "name": "(服飾)好想兔耳帽",
+   "view": 2422,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_hosangto_hat",
+   "nameOrigin": "twro",
+   "itemId": 400503
+  },
+  {
+   "id": 10402423,
+   "name": "(服飾)好想兔與小賤狗",
+   "view": 2423,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_h_n_hat",
+   "nameOrigin": "twro",
+   "itemId": 410266
+  },
+  {
+   "id": 10202343,
+   "name": "(服飾)小黃兔造型蒸糕",
+   "view": 2343,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_bean_tteok",
+   "nameOrigin": "twro",
+   "itemId": 410223
+  },
+  {
+   "id": 10202342,
+   "name": "(服飾)小黑兔造型蒸糕",
+   "view": 2342,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_blacksesame_tteok",
+   "nameOrigin": "twro",
+   "itemId": 410222
+  },
+  {
+   "id": 10502903,
+   "name": "(服飾)懶洋洋凱特莉娜",
+   "view": 2903,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_katrinn_doll_hat",
+   "nameOrigin": "twrozero",
+   "itemId": 401596
+  },
+  {
+   "id": 10502904,
+   "name": "(服飾)懶洋洋哈沃德",
+   "view": 2904,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_harword_doll_hat",
+   "nameOrigin": "twrozero",
+   "itemId": 401594
+  },
+  {
+   "id": 10502899,
+   "name": "(服飾)懶洋洋瑪嘉雷特",
+   "view": 2899,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_magaleta_doll_hat",
+   "nameOrigin": "twrozero",
+   "itemId": 401595
+  },
+  {
+   "id": 10502902,
+   "name": "(服飾)懶洋洋艾勒梅斯",
+   "view": 2902,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_eremes_doll_hat",
+   "nameOrigin": "twrozero",
+   "itemId": 401593
+  },
+  {
+   "id": 10502900,
+   "name": "(服飾)懶洋洋賽依連",
+   "view": 2900,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_seyren_doll_hat",
+   "nameOrigin": "twrozero",
+   "itemId": 401592
+  },
+  {
+   "id": 10502901,
+   "name": "(服飾)懶洋洋迪文",
+   "view": 2901,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_shecil_doll_hat",
+   "nameOrigin": "twrozero",
+   "itemId": 401598
+  },
+  {
+   "id": 10050040,
+   "name": "(服飾)櫻之祭典緞帶",
+   "view": 40,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "twro"
+   ],
+   "sprite": "cherryfesribbon",
+   "nameOrigin": "twro",
+   "itemId": 20539
+  },
+  {
+   "id": 10350236,
+   "name": "(服飾)波波利游泳圈",
+   "view": 236,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "poporing_pool_ring",
+   "nameOrigin": "twro",
+   "itemId": 480478
+  },
+  {
+   "id": 10502888,
+   "name": "(服飾)深淵湖水稀有龍寶寶",
+   "view": 2888,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_little_abyss_d_bl",
+   "nameOrigin": "twrozero",
+   "itemId": 410726
+  },
+  {
+   "id": 10502821,
+   "name": "(服飾)蓬鬆耳造型雙髮辮",
+   "view": 2821,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "jro",
+    "twrozero"
+   ],
+   "sprite": "_c_petal_twin_n",
+   "nameOrigin": "twrozero",
+   "itemId": 420776
+  },
+  {
+   "id": 10002884,
+   "name": "(服飾)蓬鬆雙短辮假髮",
+   "view": 2884,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
+   "sprite": "_c_fluffy_candy_long_n",
+   "nameOrigin": "twrozero",
+   "itemId": 420942
+  },
+  {
+   "id": 10101872,
+   "name": "(服飾)豬小弟氣球",
+   "view": 1872,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_pig_boy_tw",
+   "nameOrigin": "twro",
+   "itemId": 410075
+  },
+  {
+   "id": 10502714,
+   "name": "(服飾)貓耳短髮(白)",
+   "view": 2714,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_cat_ear_short_wh",
+   "nameOrigin": "twrozero",
+   "itemId": 420527
+  },
+  {
+   "id": 10502712,
+   "name": "(服飾)貓耳長直髮(黑)",
+   "view": 2712,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_cat_straight_long_bl",
+   "nameOrigin": "twrozero",
+   "itemId": 420529
+  },
+  {
+   "id": 10502713,
+   "name": "(服飾)貓耳長髮(藍)",
+   "view": 2713,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "sprite": "_c_cat_ear_long_bu",
+   "nameOrigin": "twrozero",
+   "itemId": 420528
+  },
+  {
+   "id": 10402022,
+   "name": "(服飾)貪吃咖波蛇",
+   "view": 2022,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_c_gluttony_capoo_tw",
+   "nameOrigin": "twro",
+   "itemId": 420011
+  },
+  {
+   "id": 10450201,
+   "name": "(服飾)超大P助",
+   "view": 201,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_big_piske_bag",
+   "nameOrigin": "twro",
+   "itemId": 480395
+  },
+  {
+   "id": 10450193,
+   "name": "(服飾)超大好想兔",
+   "view": 193,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_big_hosangto",
+   "nameOrigin": "twro",
+   "itemId": 480363
+  },
+  {
+   "id": 10450200,
+   "name": "(服飾)超大粉紅兔兔",
+   "view": 200,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "sprite": "c_big_usagi_bag",
+   "nameOrigin": "twro",
+   "itemId": 480394
+  },
+  {
+   "id": 10401820,
+   "name": "(服飾)遺失的時間",
+   "view": 1820,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_losttime",
+   "nameOrigin": "twro",
+   "itemId": 31622
+  },
+  {
+   "id": 10401819,
+   "name": "(服飾)開心長尾貓",
+   "view": 1819,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_happymargay",
+   "nameOrigin": "twro",
+   "itemId": 31621
+  },
+  {
+   "id": 10000756,
+   "name": "(服飾)雀巢檸檬茶帽子",
+   "view": 756,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_네스티모자",
+   "nameOrigin": "twro",
+   "itemId": 31126
+  },
+  {
+   "id": 10401941,
+   "name": "(服飾)雙十國慶紀念圍巾",
+   "view": 1941,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_2019_d10_muffler_tw",
+   "nameOrigin": "twro",
+   "itemId": 31835
+  },
+  {
+   "id": 10402806,
+   "name": "(服飾)雲感小馬帽",
+   "view": 2806,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_malangmalang",
+   "nameOrigin": "twro",
+   "itemId": 440035
+  },
+  {
+   "id": 10401817,
+   "name": "(服飾)魔法繼承者",
+   "view": 1817,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_magic_inheritor",
+   "nameOrigin": "twro",
+   "itemId": 31619
+  },
+  {
+   "id": 10202727,
+   "name": "(服飾)黃色貓眼",
+   "view": 2727,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_yl_cat_eyes",
+   "nameOrigin": "twro",
+   "itemId": 410457
+  },
+  {
+   "id": 10150273,
+   "name": "[S2] Costume Dimensional Sword",
+   "view": 273,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "c_dimensional_sword",
+   "nameOrigin": "iro",
+   "itemId": 480609
+  },
+  {
+   "id": 10101660,
+   "name": "[衣装] 15周年記念ウィング",
+   "view": 1660,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_15th_anniversary_wing",
+   "nameOrigin": "jro",
+   "itemId": 31317
+  },
+  {
+   "id": 10101871,
+   "name": "[衣装] Hagu Hagu マーリン",
+   "view": 1871,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_pig_girl_tw",
+   "nameOrigin": "jro",
+   "itemId": 410076
+  },
+  {
+   "id": 10101136,
+   "name": "[衣装] RWC2013記念帽子",
+   "view": 1136,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_rwc2013_jp기념모자",
+   "nameOrigin": "jro",
+   "itemId": 19949
+  },
+  {
+   "id": 10102678,
+   "name": "[衣装] アイマスク(太眉)",
+   "view": 2678,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_eye_mask_2",
+   "nameOrigin": "jro",
+   "itemId": 410398
+  },
+  {
+   "id": 10302655,
+   "name": "[衣装] あみあみリボンローツイン(装飾無し)",
+   "view": 2655,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twrozero"
+   ],
+   "sprite": "_c_knit_ribbon_lowtwin_n",
+   "nameOrigin": "jro",
+   "itemId": 420434
+  },
+  {
+   "id": 10202512,
+   "name": "[衣装] イルジェのタブレット",
+   "view": 2512,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_heine_tab_1",
+   "nameOrigin": "jro",
+   "itemId": 410308
+  },
+  {
+   "id": 10202514,
+   "name": "[衣装] イルジェのタブレット(シルバー)",
+   "view": 2514,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_heine_tab_3",
+   "nameOrigin": "jro",
+   "itemId": 410310
+  },
+  {
+   "id": 10202513,
+   "name": "[衣装] イルジェのタブレット(ローズ)",
+   "view": 2513,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_heine_tab_2",
+   "nameOrigin": "jro",
+   "itemId": 410309
+  },
+  {
+   "id": 10202386,
+   "name": "[衣装] うきうきティルビー",
+   "view": 2386,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_flying_tilby",
+   "nameOrigin": "jro",
+   "itemId": 410239
+  },
+  {
+   "id": 10101737,
+   "name": "[衣装] くまめいと(プリースト男性)",
+   "view": 1737,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_jp_ev14",
+   "nameOrigin": "jro",
+   "itemId": 31485
+  },
+  {
+   "id": 10302515,
+   "name": "[衣装] クローバーのヘアピン",
+   "view": 2515,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_clover_hairpin",
+   "nameOrigin": "jro",
+   "itemId": 410312
+  },
+  {
+   "id": 10102796,
+   "name": "[衣装] くわえたハートチョコ",
+   "view": 2796,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_love_piece_bl",
+   "nameOrigin": "jro",
+   "itemId": 420728
+  },
+  {
+   "id": 10501159,
+   "name": "[衣装] ジェントルマーリンバルーン",
+   "view": 1159,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "jro",
+    "twrozero"
+   ],
+   "sprite": "_남포링풍선",
+   "nameOrigin": "jro",
+   "itemId": 31426
+  },
+  {
+   "id": 10102761,
+   "name": "[衣装] スキアツーサイドアップ(ブロンド)",
+   "view": 2761,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_skia_two_side_up_bd",
+   "nameOrigin": "jro",
+   "itemId": 420652
+  },
+  {
+   "id": 10102766,
+   "name": "[衣装] スキアツーサイドアップ(白)",
+   "view": 2766,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_skia_two_side_up_wh",
+   "nameOrigin": "jro",
+   "itemId": 420657
+  },
+  {
+   "id": 10102767,
+   "name": "[衣装] スキアツーサイドアップ(紅)",
+   "view": 2767,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_skia_two_side_up_om",
+   "nameOrigin": "jro",
+   "itemId": 420658
+  },
+  {
+   "id": 10302658,
+   "name": "[衣装] ストロベリードーナツ",
+   "view": 2658,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_sberry_donut_in_mouth",
+   "nameOrigin": "jro",
+   "itemId": 420435
+  },
+  {
+   "id": 10101131,
+   "name": "[衣装] セブン-イレブンヘッドホン",
+   "view": 1131,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_711헤드폰",
+   "nameOrigin": "jro",
+   "itemId": 19933
+  },
+  {
+   "id": 10000620,
+   "name": "[衣装] だいだい帽",
+   "view": 620,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_귤꼭지모자",
+   "nameOrigin": "jro",
+   "itemId": 31675
+  },
+  {
+   "id": 10101539,
+   "name": "[衣装] タイニー帽(橙)",
+   "view": 1539,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev08",
+   "nameOrigin": "jro",
+   "itemId": 31102
+  },
+  {
+   "id": 10101540,
+   "name": "[衣装] タイニー帽(緑)",
+   "view": 1540,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev09",
+   "nameOrigin": "jro",
+   "itemId": 31103
+  },
+  {
+   "id": 10101538,
+   "name": "[衣装] タイニー帽(青)",
+   "view": 1538,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev07",
+   "nameOrigin": "jro",
+   "itemId": 31101
+  },
+  {
+   "id": 10101467,
+   "name": "[衣装] ダテメガネ",
+   "view": 1467,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_렌즈없는패션안경",
+   "nameOrigin": "jro",
+   "itemId": 20465
+  },
+  {
+   "id": 10101537,
+   "name": "[衣装] ダンプティー・アルマ帽",
+   "view": 1537,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev06",
+   "nameOrigin": "jro",
+   "itemId": 31100
+  },
+  {
+   "id": 10101935,
+   "name": "[衣装] ちょいわるベア帽",
+   "view": 1935,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twrozero"
+   ],
+   "sprite": "_c_sunglass_bear_cap_j",
+   "nameOrigin": "jro",
+   "itemId": 31826
+  },
+  {
+   "id": 10101410,
+   "name": "[衣装] ドゥクス・ティアのティアラ",
+   "view": 1410,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_보라색수정티아라",
+   "nameOrigin": "jro",
+   "itemId": 20384
+  },
+  {
+   "id": 10102593,
+   "name": "[衣装] ドラムカチューシャ",
+   "view": 2593,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero"
+   ],
+   "sprite": "_c_doram_headband",
+   "nameOrigin": "jro",
+   "itemId": 400727
+  },
+  {
+   "id": 10202146,
+   "name": "[衣装] ドラムなりきりフード(黒)",
+   "view": 2146,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_black_moon_cat",
+   "nameOrigin": "jro",
+   "itemId": 440009
+  },
+  {
+   "id": 10150272,
+   "name": "[衣装] パープルピタヤリュック",
+   "view": 272,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "c_pitaya_v_bag",
+   "nameOrigin": "jro",
+   "itemId": 480610
+  },
+  {
+   "id": 10102619,
+   "name": "[衣装] ハイパーノービスポニー(漆黒)",
+   "view": 2619,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_hn_hair_jbl",
+   "nameOrigin": "jro",
+   "itemId": 420402
+  },
+  {
+   "id": 10102620,
+   "name": "[衣装] ハイパーノービスポニー(白)",
+   "view": 2620,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_hn_hair_wh",
+   "nameOrigin": "jro",
+   "itemId": 420403
+  },
+  {
+   "id": 10102621,
+   "name": "[衣装] ハイパーノービスポニー(紅)",
+   "view": 2621,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_hn_hair_om",
+   "nameOrigin": "jro",
+   "itemId": 420404
+  },
+  {
+   "id": 10102618,
+   "name": "[衣装] ハイパーノービスポニー(薄紫)",
+   "view": 2618,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_hn_hair_lpp",
+   "nameOrigin": "jro",
+   "itemId": 420401
+  },
+  {
+   "id": 10101533,
+   "name": "[衣装] バウ・アルマの犬耳",
+   "view": 1533,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev02",
+   "nameOrigin": "jro",
+   "itemId": 31096
+  },
+  {
+   "id": 10102744,
+   "name": "[衣装] ハロウィンキャンディヘア(装飾無し)",
+   "view": 2744,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
+   "sprite": "_c_hallocandy_hair_n",
+   "nameOrigin": "jro",
+   "itemId": 420594
+  },
+  {
+   "id": 10101439,
+   "name": "[衣装] ピアメットの蝶ネクタイ",
+   "view": 1439,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_피아멧트나비넥타이",
+   "nameOrigin": "jro",
+   "itemId": 20429
+  },
+  {
+   "id": 10102687,
+   "name": "[衣装] ひきがえるの帽子(茶)",
+   "view": 2687,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_frog_cap_bw",
+   "nameOrigin": "jro",
+   "itemId": 400901
+  },
+  {
+   "id": 10102771,
+   "name": "[衣装] フェアリーロング(水色)",
+   "view": 2771,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_lb",
+   "nameOrigin": "jro",
+   "itemId": 420662
+  },
+  {
+   "id": 10102774,
+   "name": "[衣装] フェアリーロング(白)",
+   "view": 2774,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_wh",
+   "nameOrigin": "jro",
+   "itemId": 420665
+  },
+  {
+   "id": 10102775,
+   "name": "[衣装] フェアリーロング(紅)",
+   "view": 2775,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_om",
+   "nameOrigin": "jro",
+   "itemId": 420666
+  },
+  {
+   "id": 10102772,
+   "name": "[衣装] フェアリーロング(薄紫)",
+   "view": 2772,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_lpp",
+   "nameOrigin": "jro",
+   "itemId": 420663
+  },
+  {
+   "id": 10102770,
+   "name": "[衣装] フェアリーロング(赤)",
+   "view": 2770,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_rd",
+   "nameOrigin": "jro",
+   "itemId": 420661
+  },
+  {
+   "id": 10102768,
+   "name": "[衣装] フェアリーロング(青緑)",
+   "view": 2768,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_bg",
+   "nameOrigin": "jro",
+   "itemId": 420659
+  },
+  {
+   "id": 10102769,
+   "name": "[衣装] フェアリーロング(黄)",
+   "view": 2769,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_yl",
+   "nameOrigin": "jro",
+   "itemId": 420660
+  },
+  {
+   "id": 10102773,
+   "name": "[衣装] フェアリーロング(黒)",
+   "view": 2773,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_fairy_long_bl",
+   "nameOrigin": "jro",
+   "itemId": 420664
+  },
+  {
+   "id": 10302499,
+   "name": "[衣装] ホワイトラビットヘア",
+   "view": 2499,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_white_rabbit_hair",
+   "nameOrigin": "jro",
+   "itemId": 420317
+  },
+  {
+   "id": 10101244,
+   "name": "[衣装] ミスリットの帽子",
+   "view": 1244,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_미스릿모자",
+   "nameOrigin": "jro",
+   "itemId": 20083
+  },
+  {
+   "id": 10101534,
+   "name": "[衣装] ミニー・ドゥ・アルマの兎耳",
+   "view": 1534,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev03",
+   "nameOrigin": "jro",
+   "itemId": 31097
+  },
+  {
+   "id": 10101242,
+   "name": "[衣装] メタルドラゴンの兜",
+   "view": 1242,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_메탈드래곤투구",
+   "nameOrigin": "jro",
+   "itemId": 20081
+  },
+  {
+   "id": 10101243,
+   "name": "[衣装] メタルドラゴンの帽子",
+   "view": 1243,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_메탈드래곤모자",
+   "nameOrigin": "jro",
+   "itemId": 20082
+  },
+  {
+   "id": 10102310,
+   "name": "[衣装] メモリアルクロース",
+   "view": 2310,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_20th_scarf_j",
+   "nameOrigin": "jro",
+   "itemId": 420205
+  },
+  {
+   "id": 10102758,
+   "name": "[衣装] ゆる編みウェーブ(シルバー)",
+   "view": 2758,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
+   "sprite": "_c_l_knitting_wave_sv",
+   "nameOrigin": "jro",
+   "itemId": 420649
+  },
+  {
+   "id": 10102756,
+   "name": "[衣装] ゆる編みウェーブ(ブロンド)",
+   "view": 2756,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
+   "sprite": "_c_l_knitting_wave_bd",
+   "nameOrigin": "jro",
+   "itemId": 420647
+  },
+  {
+   "id": 10302657,
+   "name": "[衣装] レッドヘッドドレス",
+   "view": 2657,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero"
+   ],
+   "sprite": "_c_red_head_dress",
+   "nameOrigin": "jro",
+   "itemId": 400762
+  },
+  {
+   "id": 10501161,
+   "name": "[衣装] レディポリンバルーン",
+   "view": 1161,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "jro",
+    "twrozero"
+   ],
+   "sprite": "_여포링풍선",
+   "nameOrigin": "jro",
+   "itemId": 31427
+  },
+  {
+   "id": 10102453,
+   "name": "[衣装] ローズウェーブ(シルバー)",
+   "view": 2453,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_rose_wave_sv",
+   "nameOrigin": "jro",
+   "itemId": 420275
+  },
+  {
+   "id": 10102451,
+   "name": "[衣装] ローズウェーブ(ブロンド)",
+   "view": 2451,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_rose_wave_bd",
+   "nameOrigin": "jro",
+   "itemId": 420273
+  },
+  {
+   "id": 10102452,
+   "name": "[衣装] ローズウェーブ(ブロンドピンク)",
+   "view": 2452,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_rose_wave_bdp",
+   "nameOrigin": "jro",
+   "itemId": 420274
+  },
+  {
+   "id": 10102780,
+   "name": "[衣装] ロッキンショート(シルバー)",
+   "view": 2780,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_rocking_short_sv",
+   "nameOrigin": "jro",
+   "itemId": 420671
+  },
+  {
+   "id": 10102783,
+   "name": "[衣装] ロッキンショート(紅)",
+   "view": 2783,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_rocking_short_om",
+   "nameOrigin": "jro",
+   "itemId": 420674
+  },
+  {
+   "id": 10102776,
+   "name": "[衣装] ロッキンショート(青緑)",
+   "view": 2776,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_rocking_short_bg",
+   "nameOrigin": "jro",
+   "itemId": 420667
+  },
+  {
+   "id": 10102697,
+   "name": "[衣装] ワンダフルロング(装飾なし)",
+   "view": 2697,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_wonderful_long_n",
+   "nameOrigin": "jro",
+   "itemId": 420514
+  },
+  {
+   "id": 10102636,
+   "name": "[衣装] ワンダラーカール(スノーホワイト)",
+   "view": 2636,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_wanderer_curl_swh",
+   "nameOrigin": "jro",
+   "itemId": 420419
+  },
+  {
+   "id": 10102635,
+   "name": "[衣装] ワンダラーカール(漆黒)",
+   "view": 2635,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_wanderer_curl_jbl",
+   "nameOrigin": "jro",
+   "itemId": 420418
+  },
+  {
+   "id": 10102637,
+   "name": "[衣装] ワンダラーカール(紅)",
+   "view": 2637,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_wanderer_curl_om",
+   "nameOrigin": "jro",
+   "itemId": 420420
+  },
+  {
+   "id": 10102634,
+   "name": "[衣装] ワンダラーカール(薄紫)",
+   "view": 2634,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_wanderer_curl_lpp",
+   "nameOrigin": "jro",
+   "itemId": 420417
+  },
+  {
+   "id": 10100997,
+   "name": "[衣装] 世界樹の帽子",
+   "view": 997,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_세계수의모자",
+   "nameOrigin": "jro",
+   "itemId": 19766
+  },
+  {
+   "id": 10000457,
+   "name": "[衣装] 変色した龍の骸骨",
+   "view": 457,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "_진화된용의해골",
+   "nameOrigin": "jro",
+   "itemId": 400802
+  },
+  {
+   "id": 10502703,
+   "name": "[衣装] 子犬のヘアバンド(茶)",
+   "view": 2703,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_ear_of_puppy_om",
+   "nameOrigin": "jro",
+   "itemId": 400921
+  },
+  {
+   "id": 10101536,
+   "name": "[衣装] 御魂・アリアのヘッドドレス",
+   "view": 1536,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev05",
+   "nameOrigin": "jro",
+   "itemId": 31099
+  },
+  {
+   "id": 10102704,
+   "name": "[衣装] 朱のリアリボン",
+   "view": 2704,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_orange_rear_ribbon",
+   "nameOrigin": "jro",
+   "itemId": 420726
+  },
+  {
+   "id": 10302580,
+   "name": "[衣装] 橙の猫耳魔女帽子",
+   "view": 2580,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_or_earwitchhat",
+   "nameOrigin": "jro",
+   "itemId": 400716
+  },
+  {
+   "id": 10101096,
+   "name": "[衣装] 爽やかミントガム",
+   "view": 1096,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_입에문녹색풍선껌",
+   "nameOrigin": "jro",
+   "itemId": 420023
+  },
+  {
+   "id": 10101535,
+   "name": "[衣装] 玉藻・ロアの狐耳",
+   "view": 1535,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev04",
+   "nameOrigin": "jro",
+   "itemId": 31098
+  },
+  {
+   "id": 10202341,
+   "name": "[衣装] 白ウサギマスク",
+   "view": 2341,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_white_tteok",
+   "nameOrigin": "jro",
+   "itemId": 410221
+  },
+  {
+   "id": 10102509,
+   "name": "[衣装] 白猫の魔女帽子",
+   "view": 2509,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_white_cat_witch_hat",
+   "nameOrigin": "jro",
+   "itemId": 400918
+  },
+  {
+   "id": 10102746,
+   "name": "[衣装] 瞬くハロウィンアイ",
+   "view": 2746,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
+   "sprite": "_c_blink_eyes_halloween",
+   "nameOrigin": "jro",
+   "itemId": 420596
+  },
+  {
+   "id": 10102667,
+   "name": "[衣装] 瞬く廣命龍の瞳",
+   "view": 2667,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_blink_eyes_rigel",
+   "nameOrigin": "jro",
+   "itemId": 410393
+  },
+  {
+   "id": 10101532,
+   "name": "[衣装] 神魔バフォメットの角",
+   "view": 1532,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev01",
+   "nameOrigin": "jro",
+   "itemId": 31095
+  },
+  {
+   "id": 10302493,
+   "name": "[衣装] 福巾着",
+   "view": 2493,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_lucky_purse",
+   "nameOrigin": "jro",
+   "itemId": 400588
+  },
+  {
+   "id": 10202384,
+   "name": "[衣装] 私服教皇・ミニミー",
+   "view": 2384,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_adventurer_pope_mini",
+   "nameOrigin": "jro",
+   "itemId": 410238
+  },
+  {
+   "id": 10402516,
+   "name": "[衣装] 花のサマーニット帽",
+   "view": 2516,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_flower_s_knit_hat",
+   "nameOrigin": "jro",
+   "itemId": 400635
+  },
+  {
+   "id": 10202673,
+   "name": "[衣装] 茨のヘアバンド(青)",
+   "view": 2673,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_thornbush_hairband_bu",
+   "nameOrigin": "jro",
+   "itemId": 400795
+  },
+  {
+   "id": 10502814,
+   "name": "[衣装] 見習い魔女帽子",
+   "view": 2814,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_apprentice_witch_hat",
+   "nameOrigin": "jro",
+   "itemId": 401248
+  },
+  {
+   "id": 10301589,
+   "name": "[衣装] 青い猫耳",
+   "view": 1589,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero"
+   ],
+   "sprite": "_bluecat_ear",
+   "nameOrigin": "jro",
+   "itemId": 31192
+  },
+  {
+   "id": 10302326,
+   "name": "5th_Anniversary",
+   "view": 2326,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_5th_anniversary",
+   "unnamed": true
+  },
+  {
+   "id": 10050049,
+   "name": "Archangel_Wing",
+   "view": 49,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "sprite": "archangel_wing",
+   "unnamed": true
+  },
+  {
+   "id": 10402603,
+   "name": "Bar_Ice_Circlet",
+   "view": 2603,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_bar_ice_circlet",
+   "unnamed": true
+  },
+  {
+   "id": 10300235,
+   "name": "Bird Nest Hat",
+   "view": 235,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_새둥지모자",
+   "nameOrigin": "iro",
+   "itemId": 5183
+  },
+  {
+   "id": 10001346,
+   "name": "Bra Hat",
+   "view": 1346,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_머리위의브라",
+   "nameOrigin": "iro",
+   "itemId": 5949
+  },
+  {
+   "id": 10102741,
+   "name": "Brown_Tabby_Muffler",
+   "view": 2741,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_brown_tabby_muffler",
+   "unnamed": true
+  },
+  {
+   "id": 10302424,
+   "name": "C Autumn Piece",
+   "view": 2424,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_autumn_piece",
+   "nameOrigin": "iro",
+   "itemId": 400504
+  },
+  {
+   "id": 10202722,
+   "name": "C_Chestnut_Helmet",
+   "view": 2722,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
+   "sprite": "_c_chestnut_helmet",
+   "unnamed": true
+  },
+  {
+   "id": 10250264,
+   "name": "C_CLB_HM_Noni",
+   "view": 264,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "kro",
+   "sprite": "c_clb_hm_noni",
+   "unnamed": true
+  },
+  {
+   "id": 10202681,
+   "name": "C_CLB_HM_Uzagi",
+   "view": 2681,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_c_clb_hm_uzagi",
+   "unnamed": true
+  },
+  {
+   "id": 10102546,
+   "name": "C_Guardian_Of_Abyss",
+   "view": 2546,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_guardian_of_abyss",
+   "unnamed": true
+  },
+  {
+   "id": 10101736,
+   "name": "C_JP_EV13",
+   "view": 1736,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_jp_ev13",
+   "unnamed": true
+  },
+  {
+   "id": 10101762,
+   "name": "C_JP_EV15",
+   "view": 1762,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_c_jp_ev15",
+   "unnamed": true
+  },
+  {
+   "id": 10050185,
+   "name": "C_Vietnam_flag_hood_JP",
+   "view": 185,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "c_vietnam_flag_hood_jp",
+   "unnamed": true
+  },
+  {
+   "id": 10050120,
+   "name": "C_Wing_Of_Eutaxy",
+   "view": 120,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "krozero"
+   ],
+   "sprite": "c_wing_of_eutaxy",
+   "unnamed": true
+  },
+  {
+   "id": 10000435,
+   "name": "Coca-Cola Bottle",
+   "view": 435,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_콜라캔",
+   "nameOrigin": "iro",
+   "itemId": 5434
+  },
+  {
+   "id": 10001097,
+   "name": "Cool Pirate Eyepatch",
+   "view": 1097,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_멋진해적안대",
+   "nameOrigin": "iro",
+   "itemId": 19900
+  },
+  {
+   "id": 10402284,
+   "name": "Costume 20th Anniversary Poring",
+   "view": 2284,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_20th_anniversary_hat",
+   "nameOrigin": "iro",
+   "itemId": 400309
+  },
+  {
+   "id": 10302553,
+   "name": "Costume 2nd Runner Up of ROS 2024",
+   "view": 2553,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_2024ros_hat_3rd",
+   "nameOrigin": "thro",
+   "itemId": 440015
+  },
+  {
+   "id": 10002671,
+   "name": "Costume Abyssal",
+   "view": 2671,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_deep_you_n",
+   "nameOrigin": "iro",
+   "itemId": 420448
+  },
+  {
+   "id": 10002672,
+   "name": "Costume Abyssal Hair",
+   "view": 2672,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_deep_you",
+   "nameOrigin": "iro",
+   "itemId": 420449
+  },
+  {
+   "id": 10002650,
+   "name": "Costume Afterlife Guide Cap",
+   "view": 2650,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "kro",
+    "thro"
+   ],
+   "sprite": "_c_guide_of_dead_cap",
+   "nameOrigin": "iro",
+   "itemId": 400749
+  },
+  {
+   "id": 10002028,
+   "name": "Costume Airy Two Side Up (White)",
+   "view": 2028,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "thro"
+   ],
+   "sprite": "_c_airy_two_side_up_wh",
+   "nameOrigin": "iro",
+   "itemId": 420033
+  },
+  {
+   "id": 10050242,
+   "name": "Costume Alice Broom",
+   "view": 242,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "c_alice_broom",
+   "nameOrigin": "iro",
+   "itemId": 480492
+  },
+  {
+   "id": 10002291,
+   "name": "Costume Angeling Mini-Me",
+   "view": 2291,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_angeling_mini",
+   "nameOrigin": "iro",
+   "itemId": 410189
+  },
+  {
+   "id": 10002868,
+   "name": "Costume Angler Dream",
+   "view": 2868,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro"
+   ],
+   "sprite": "_c_angler_dream",
+   "nameOrigin": "iro",
+   "itemId": 410680
+  },
+  {
+   "id": 10302410,
+   "name": "Costume Angry Fish",
+   "view": 2410,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_angry_fish",
+   "nameOrigin": "iro",
+   "itemId": 400471
+  },
+  {
+   "id": 10002867,
+   "name": "Costume Aqua Marin",
+   "view": 2867,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
+   "sprite": "_c_aqua_marin_n",
+   "nameOrigin": "iro",
+   "itemId": 420910
+  },
+  {
+   "id": 10050077,
+   "name": "Costume Archangel Moving Wings",
+   "view": 77,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "wing_of_angel_move_dg",
+   "nameOrigin": "iro",
+   "itemId": 480059
+  },
+  {
+   "id": 10350251,
+   "name": "Costume Archangel's Glory",
+   "view": 251,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "thro"
+   ],
+   "sprite": "c_ros2024_wing_3",
+   "nameOrigin": "iro",
+   "itemId": 480507
+  },
+  {
+   "id": 10050226,
+   "name": "Costume Archmage Wand",
+   "view": 226,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero"
+   ],
+   "sprite": "c_archmage_wand",
+   "nameOrigin": "iro",
+   "itemId": 480459
+  },
+  {
+   "id": 10402356,
+   "name": "Costume Armored Copo",
+   "view": 2356,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_armored_copo",
+   "nameOrigin": "iro",
+   "itemId": 400414
+  },
+  {
+   "id": 10002752,
+   "name": "Costume Azure Flame Muffler",
+   "view": 2752,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro"
+   ],
+   "sprite": "_flame_muffler_bu",
+   "nameOrigin": "iro",
+   "itemId": 420798
+  },
+  {
+   "id": 10501719,
+   "name": "Costume Baby Leopard Cat",
+   "view": 1719,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_baby_leopard_cat",
+   "nameOrigin": "thro",
+   "itemId": 31456
+  },
+  {
+   "id": 10002653,
+   "name": "Costume Baby Seal",
+   "view": 2653,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero"
+   ],
+   "sprite": "_c_baby_seal2",
+   "nameOrigin": "iro",
+   "itemId": 420432
+  },
+  {
+   "id": 10402570,
+   "name": "Costume Baby Seal",
+   "view": 2570,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_baby_seal",
+   "nameOrigin": "thro",
+   "itemId": 420357
+  },
+  {
+   "id": 10450318,
+   "name": "Costume Bamboo Panda",
+   "view": 318,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "c_panda_bamboo",
+   "nameOrigin": "iro",
+   "itemId": 480863
+  },
+  {
+   "id": 10050271,
+   "name": "Costume Beelzebub's Wings of Gluttony",
+   "view": 271,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro"
+   ],
+   "sprite": "c_s_beelzebub_wing",
+   "nameOrigin": "iro",
+   "itemId": 480608
+  },
+  {
+   "id": 10002573,
+   "name": "Costume Bell Cat Hair",
+   "view": 2573,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_bell_cat_hair",
+   "nameOrigin": "iro",
+   "itemId": 420360
+  },
+  {
+   "id": 10350219,
+   "name": "Costume Big Treasure Chest",
+   "view": 219,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_big_treasure_chest",
+   "nameOrigin": "iro",
+   "itemId": 480438
+  },
+  {
+   "id": 10001105,
+   "name": "Costume Black Cat Hat",
+   "view": 1105,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "thro"
+   ],
+   "sprite": "_검은고양이모자",
+   "nameOrigin": "iro",
+   "itemId": 19916
+  },
+  {
+   "id": 10350304,
+   "name": "Costume Blazing Crimson Flame Ninetail",
+   "view": 304,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "thro"
+   ],
+   "sprite": "c_b_ninetail_tail",
+   "nameOrigin": "iro",
+   "itemId": 480780
+  },
+  {
+   "id": 10002649,
+   "name": "Costume Blinking White Sand Eyes",
+   "view": 2649,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro"
+   ],
+   "sprite": "_c_blink_eyes_wh_serpent",
+   "nameOrigin": "iro",
+   "itemId": 410384
+  },
+  {
+   "id": 10002119,
+   "name": "Costume Blossom Glasses",
+   "view": 2119,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_blossom_glasses",
+   "nameOrigin": "iro",
+   "itemId": 31973
+  },
+  {
+   "id": 10502663,
+   "name": "Costume Blue Astrologer Hat",
+   "view": 2663,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_blue_astrologer_hat",
+   "nameOrigin": "thro",
+   "itemId": 401320
+  },
+  {
+   "id": 10002522,
+   "name": "Costume Blue Cat Ear Cape",
+   "view": 2522,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "_cat_ears_cape_blue",
+   "nameOrigin": "iro",
+   "itemId": 420421
+  },
+  {
+   "id": 10102702,
+   "name": "Costume Blue Chick Hat",
+   "view": 2702,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_chick_hat_bu",
+   "nameOrigin": "thro",
+   "itemId": 400920
+  },
+  {
+   "id": 10002494,
+   "name": "Costume Blue Dragon Head",
+   "view": 2494,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_bluedragon",
+   "nameOrigin": "iro",
+   "itemId": 21400
+  },
+  {
+   "id": 10002285,
+   "name": "Costume Blue Emotion",
+   "view": 2285,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_c_2012rmscno4",
+   "nameOrigin": "iro",
+   "itemId": 400315
+  },
+  {
+   "id": 10501020,
+   "name": "Costume Blue Eye Shadow",
+   "view": 1020,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_블루아이새도",
+   "nameOrigin": "iro",
+   "itemId": 31563
+  },
+  {
+   "id": 10301321,
+   "name": "Costume Blue Headdress",
+   "view": 1321,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "thro"
+   ],
+   "sprite": "_블루헤드드레스",
+   "nameOrigin": "thro",
+   "itemId": 20258
+  },
+  {
+   "id": 10050237,
+   "name": "Costume Blue Magpie Wings",
+   "view": 237,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "c_blue_magpie",
+   "nameOrigin": "iro",
+   "itemId": 480484
+  },
+  {
+   "id": 10002659,
+   "name": "Costume Blue Mechanical Feather",
+   "view": 2659,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro"
+   ],
+   "sprite": "_mech_feather_hairband_b",
+   "nameOrigin": "iro",
+   "itemId": 400994
+  },
+  {
+   "id": 10201556,
+   "name": "Costume Blue Rose",
+   "view": 1556,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_파랑새의장미장식",
+   "nameOrigin": "thro",
+   "itemId": 31137
+  },
+  {
+   "id": 10050261,
+   "name": "Costume Blue Rose Parasol",
+   "view": 261,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "c_blue_rose_parasol",
+   "nameOrigin": "iro",
+   "itemId": 480556
+  },
+  {
+   "id": 10002709,
+   "name": "Costume Blue Stardust Hairband",
+   "view": 2709,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
+   "sprite": "_c_stardust_hairband_bu",
+   "nameOrigin": "iro",
+   "itemId": 400932
+  },
+  {
+   "id": 10002562,
+   "name": "Costume Blue Sunbed",
+   "view": 2562,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_blue_sunbed",
+   "nameOrigin": "iro",
+   "itemId": 420349
+  },
+  {
+   "id": 10001191,
+   "name": "Costume Bomb Hat",
+   "view": 1191,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "thro"
+   ],
+   "sprite": "_폭탄모자",
+   "nameOrigin": "iro",
+   "itemId": 19997
+  },
+  {
+   "id": 10302654,
+   "name": "Costume Braided Twin Ribbons",
+   "view": 2654,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twrozero"
+   ],
+   "sprite": "_c_knit_ribbon_lowtwin",
+   "nameOrigin": "iro",
+   "itemId": 420433
+  },
+  {
+   "id": 10002542,
+   "name": "Costume Broken Egg",
+   "view": 2542,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_broken_egg",
+   "nameOrigin": "iro",
+   "itemId": 400671
+  },
+  {
+   "id": 10401027,
+   "name": "Costume Butterfly Barrettes",
+   "view": 1027,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "jro",
+    "twro"
+   ],
+   "sprite": "_나비의트윈바렛",
+   "nameOrigin": "thro",
+   "itemId": 20483
+  },
+  {
+   "id": 10002557,
+   "name": "Costume Carabao",
+   "view": 2557,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "thro"
+   ],
+   "sprite": "_c_carabao_msp",
+   "nameOrigin": "iro",
+   "itemId": 410350
+  },
+  {
+   "id": 10050331,
+   "name": "Costume Cat Fryingpan",
+   "view": 331,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro"
+   ],
+   "sprite": "c_cat_fryingpan",
+   "nameOrigin": "iro",
+   "itemId": 480922
+  },
+  {
+   "id": 10001934,
+   "name": "Costume Cat Mask",
+   "view": 1934,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_c_mask_of_cat_j",
+   "nameOrigin": "iro",
+   "itemId": 31824
+  },
+  {
+   "id": 10501438,
+   "name": "Costume Cat Poring Balloon",
+   "view": 1438,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "jro",
+    "twrozero"
+   ],
+   "sprite": "_c13학년풍선",
+   "nameOrigin": "thro",
+   "itemId": 20428
+  },
+  {
+   "id": 10002692,
+   "name": "Costume Celestial Diadem",
+   "view": 2692,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro"
+   ],
+   "sprite": "_midgard_diadem_jp",
+   "nameOrigin": "iro",
+   "itemId": 401013
+  },
+  {
+   "id": 10002739,
+   "name": "Costume Chained Bear",
+   "view": 2739,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_chained_bear",
+   "nameOrigin": "iro",
+   "itemId": 410474
+  },
+  {
+   "id": 10202567,
+   "name": "Costume Charisma Extension Twin",
+   "view": 2567,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "thro"
+   ],
+   "sprite": "_c_cha_ex_twin",
+   "nameOrigin": "thro",
+   "itemId": 420353
+  },
+  {
+   "id": 10102582,
+   "name": "Costume Cherry Blossom Witch Hat",
+   "view": 2582,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
+   "sprite": "_c_sakura_witch_hat_w",
+   "nameOrigin": "iro",
+   "itemId": 400898
+  },
+  {
+   "id": 10302380,
+   "name": "Costume Chic Peony",
+   "view": 2380,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_chic_peony",
+   "nameOrigin": "iro",
+   "itemId": 400633
+  },
+  {
+   "id": 10001854,
+   "name": "Costume Chignon (Black)",
+   "view": 1854,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_back_signon_bl",
+   "nameOrigin": "iro",
+   "itemId": 31657
+  },
+  {
+   "id": 10001852,
+   "name": "Costume Chignon (Blonde)",
+   "view": 1852,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_back_signon_yl",
+   "nameOrigin": "iro",
+   "itemId": 31655
+  },
+  {
+   "id": 10001850,
+   "name": "Costume Chignon (Blue)",
+   "view": 1850,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_back_signon_bu",
+   "nameOrigin": "iro",
+   "itemId": 31653
+  },
+  {
+   "id": 10001856,
+   "name": "Costume Chignon (Brown)",
+   "view": 1856,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_back_signon_om",
+   "nameOrigin": "iro",
+   "itemId": 31659
+  },
+  {
+   "id": 10001853,
+   "name": "Costume Chignon (Green)",
+   "view": 1853,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_back_signon_gn",
+   "nameOrigin": "iro",
+   "itemId": 31656
+  },
+  {
+   "id": 10001857,
+   "name": "Costume Chignon (Purple)",
+   "view": 1857,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_back_signon_pp",
+   "nameOrigin": "iro",
+   "itemId": 31660
+  },
+  {
+   "id": 10001851,
+   "name": "Costume Chignon (Red)",
+   "view": 1851,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_back_signon_rd",
+   "nameOrigin": "iro",
+   "itemId": 31654
+  },
+  {
+   "id": 10001855,
+   "name": "Costume Chignon (White)",
+   "view": 1855,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_back_signon_wh",
+   "nameOrigin": "iro",
+   "itemId": 31658
+  },
+  {
+   "id": 10202427,
+   "name": "Costume Cinnamoroll",
+   "view": 2427,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_cinnamon",
+   "nameOrigin": "thro",
+   "itemId": 410267
+  },
+  {
+   "id": 10202489,
+   "name": "Costume Comforting Kotatsu",
+   "view": 2489,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_kotatsu",
+   "nameOrigin": "iro",
+   "itemId": 420306
+  },
+  {
+   "id": 10450028,
+   "name": "Costume Commemorative Flag",
+   "view": 28,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_2018_rtc_cape_tw",
+   "nameOrigin": "thro",
+   "itemId": 20529
+  },
+  {
+   "id": 10402852,
+   "name": "Costume Cons of Emoji",
+   "view": 2852,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_nf_stamp",
+   "nameOrigin": "thro",
+   "itemId": 410665
+  },
+  {
+   "id": 10000428,
+   "name": "Costume Creative Convention Chapeau",
+   "view": 428,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_홍차화전모자",
+   "nameOrigin": "iro",
+   "itemId": 5427
+  },
+  {
+   "id": 10402844,
+   "name": "Costume Cultivation Pod",
+   "view": 2844,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_culture_pod",
+   "nameOrigin": "iro",
+   "itemId": 420855
+  },
+  {
+   "id": 10550305,
+   "name": "Costume Dark Lord Aura",
+   "view": 305,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "twrozero"
+   ],
+   "sprite": "c_darklord_aura",
+   "nameOrigin": "iro",
+   "itemId": 480800
+  },
+  {
+   "id": 10002866,
+   "name": "Costume Decorated Aqua Marin",
+   "view": 2866,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "_c_aqua_marin",
+   "nameOrigin": "iro",
+   "itemId": 420909
+  },
+  {
+   "id": 10550238,
+   "name": "Costume Deep Sea Octopus's Call",
+   "view": 238,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "c_call_octo",
+   "nameOrigin": "iro",
+   "itemId": 480485
+  },
+  {
+   "id": 10002869,
+   "name": "Costume Deepsea Pearls Hat",
+   "view": 2869,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "_c_deepsea_pearls_hat",
+   "nameOrigin": "iro",
+   "itemId": 401472
+  },
+  {
+   "id": 10050285,
+   "name": "Costume Detective Glass",
+   "view": 285,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro"
+   ],
+   "sprite": "c_detective_mag_glass",
+   "nameOrigin": "iro",
+   "itemId": 480631
+  },
+  {
+   "id": 10050301,
+   "name": "Costume Doram Paw Hammer",
+   "view": 301,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_doram_paw_hammer",
+   "nameOrigin": "iro",
+   "itemId": 480748
+  },
+  {
+   "id": 10000582,
+   "name": "Costume Dorothy Doll Hat",
+   "view": 582,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "_도로시인형모자",
+   "nameOrigin": "thro",
+   "itemId": 400404
+  },
+  {
+   "id": 10000850,
+   "name": "Costume Drosera Hairpin",
+   "view": 850,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
+   "sprite": "_식충식물의헤어핀",
+   "nameOrigin": "iro",
+   "itemId": 31541
+  },
+  {
+   "id": 10302688,
+   "name": "Costume Eclipse Muffler",
+   "view": 2688,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_eclipse_muffler",
+   "nameOrigin": "thro",
+   "itemId": 420702
+  },
+  {
+   "id": 10450316,
+   "name": "Costume Eddga Rest",
+   "view": 316,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "c_eddga_rest",
+   "nameOrigin": "iro",
+   "itemId": 480850
+  },
+  {
+   "id": 10402011,
+   "name": "Costume Elegant Wave",
+   "view": 2011,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_elegant_wave",
+   "nameOrigin": "iro",
+   "itemId": 31944
+  },
+  {
+   "id": 10002790,
+   "name": "Costume Emperor Penguin",
+   "view": 2790,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_emperor_penguin",
+   "nameOrigin": "iro",
+   "itemId": 410556
+  },
+  {
+   "id": 10001002,
+   "name": "Costume Evil Marcher Hat",
+   "view": 1002,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_사악한마칭햇_j",
+   "nameOrigin": "thro",
+   "itemId": 20214
+  },
+  {
+   "id": 10002304,
+   "name": "Costume Evil Mini-Me",
+   "view": 2304,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_evil_mini",
+   "nameOrigin": "iro",
+   "itemId": 410192
+  },
+  {
+   "id": 10002664,
+   "name": "Costume Experiment Mind",
+   "view": 2664,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_experiment_mind",
+   "nameOrigin": "iro",
+   "itemId": 420358
+  },
+  {
+   "id": 10002524,
+   "name": "Costume Eye Mask",
+   "view": 2524,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_c_eye_mask",
+   "nameOrigin": "iro",
+   "itemId": 410317
+  },
+  {
+   "id": 10002568,
+   "name": "Costume Eyes of Phen",
+   "view": 2568,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_eyes_phen",
+   "nameOrigin": "iro",
+   "itemId": 410353
+  },
+  {
+   "id": 10002571,
+   "name": "Costume Fenrir Straw Hat",
+   "view": 2571,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_fenrir_afv_hat",
+   "nameOrigin": "iro",
+   "itemId": 400707
+  },
+  {
+   "id": 10002309,
+   "name": "Costume Fire Gold Giant",
+   "view": 2309,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_fire_giant_gold",
+   "nameOrigin": "iro",
+   "itemId": 31979
+  },
+  {
+   "id": 10502308,
+   "name": "Costume Fire Red Giant",
+   "view": 2308,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_fire_giant_red",
+   "nameOrigin": "iro",
+   "itemId": 31978
+  },
+  {
+   "id": 10002248,
+   "name": "Costume Flowers Prayer",
+   "view": 2248,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_many_flowers_prayer",
+   "nameOrigin": "iro",
+   "itemId": 400272
+  },
+  {
+   "id": 10002883,
+   "name": "Costume Fluffy Candy Long",
+   "view": 2883,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
+   "sprite": "_c_fluffy_candy_long",
+   "nameOrigin": "iro",
+   "itemId": 420941
+  },
+  {
+   "id": 10002560,
+   "name": "Costume Fluffy Parasol",
+   "view": 2560,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_buoyant_parasol_b",
+   "nameOrigin": "iro",
+   "itemId": 410351
+  },
+  {
+   "id": 10002561,
+   "name": "Costume Fluffy Red Parasol",
+   "view": 2561,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_buoyant_parasol_r",
+   "nameOrigin": "iro",
+   "itemId": 410352
+  },
+  {
+   "id": 10001874,
+   "name": "Costume Fluffy Semi Long",
+   "view": 1874,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_c_fluffy_semi_long",
+   "nameOrigin": "iro",
+   "itemId": 31685
+  },
+  {
+   "id": 10202428,
+   "name": "Costume Flying Cinnamoroll",
+   "view": 2428,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_cinnamon2",
+   "nameOrigin": "thro",
+   "itemId": 410268
+  },
+  {
+   "id": 10002548,
+   "name": "Costume Flying Mouse Headband",
+   "view": 2548,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_jerboa_headband",
+   "nameOrigin": "iro",
+   "itemId": 400684
+  },
+  {
+   "id": 10102701,
+   "name": "Costume Forest Cat",
+   "view": 2701,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_n_forest_cat",
+   "nameOrigin": "iro",
+   "itemId": 410442
+  },
+  {
+   "id": 10302825,
+   "name": "Costume Fox Ear Beret",
+   "view": 2825,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_fox_ear_beret",
+   "nameOrigin": "iro",
+   "itemId": 401315
+  },
+  {
+   "id": 10001058,
+   "name": "Costume Foxtail",
+   "view": 1058,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero"
+   ],
+   "sprite": "_녹색강아지풀",
+   "nameOrigin": "thro",
+   "itemId": 20192
+  },
+  {
+   "id": 10002521,
+   "name": "Costume Garden of Heaven",
+   "view": 2521,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_garden_of_heaven",
+   "nameOrigin": "iro",
+   "itemId": 400792
+  },
+  {
+   "id": 10002736,
+   "name": "Costume Gear Monocle",
+   "view": 2736,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
+   "sprite": "_c_gear_monocle",
+   "nameOrigin": "iro",
+   "itemId": 410471
+  },
+  {
+   "id": 10150297,
+   "name": "Costume Giant Chained Bear",
+   "view": 297,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_giant_chained_bear",
+   "nameOrigin": "iro",
+   "itemId": 480717
+  },
+  {
+   "id": 10402850,
+   "name": "Costume Giant Panda",
+   "view": 2850,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_giant_panda",
+   "nameOrigin": "iro",
+   "itemId": 410664
+  },
+  {
+   "id": 10550215,
+   "name": "Costume Glass Rose Garden",
+   "view": 215,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "c_glass_rose_garden",
+   "nameOrigin": "iro",
+   "itemId": 480432
+  },
+  {
+   "id": 10350250,
+   "name": "Costume Glory Glory Wings",
+   "view": 250,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "thro"
+   ],
+   "sprite": "c_ros2024_wing_2",
+   "nameOrigin": "iro",
+   "itemId": 480506
+  },
+  {
+   "id": 10002101,
+   "name": "Costume Glory Symbol",
+   "view": 2101,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_glory_symbol_tw",
+   "nameOrigin": "iro",
+   "itemId": 400144
+  },
+  {
+   "id": 10001632,
+   "name": "Costume Glowing White Blush",
+   "view": 1632,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_white_clay_filler",
+   "nameOrigin": "iro",
+   "itemId": 31258
+  },
+  {
+   "id": 10050267,
+   "name": "Costume Glutton Cerberus",
+   "view": 267,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro"
+   ],
+   "sprite": "glutton_cerberus",
+   "nameOrigin": "iro",
+   "itemId": 480591
+  },
+  {
+   "id": 10002886,
+   "name": "Costume Grapes Dresshat White",
+   "view": 2886,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_c_grapes_dresshat_wh",
+   "nameOrigin": "iro",
+   "itemId": 401522
+  },
+  {
+   "id": 10002572,
+   "name": "Costume Great Pyrenees",
+   "view": 2572,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_great_pyrenees",
+   "nameOrigin": "iro",
+   "itemId": 410359
+  },
+  {
+   "id": 10050204,
+   "name": "Costume Greatest Devil Wing",
+   "view": 204,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro"
+   ],
+   "sprite": "greatdevilwing2",
+   "nameOrigin": "iro",
+   "itemId": 480408
+  },
+  {
+   "id": 10002563,
+   "name": "Costume Green Sunbed",
+   "view": 2563,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "kro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_green_sunbed",
+   "nameOrigin": "iro",
+   "itemId": 420350
+  },
+  {
+   "id": 10402282,
+   "name": "Costume Guardian Angel Wing Ears",
+   "view": 2282,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_guardian_wing",
+   "nameOrigin": "iro",
+   "itemId": 480200
+  },
+  {
+   "id": 10402281,
+   "name": "Costume Helmet of Light and Darkness",
+   "view": 2281,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_reliance_crown",
+   "nameOrigin": "iro",
+   "itemId": 400311
+  },
+  {
+   "id": 10450287,
+   "name": "Costume Herald of the Gods",
+   "view": 287,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "kro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "c_herald_of_god",
+   "nameOrigin": "iro",
+   "itemId": 480642
+  },
+  {
+   "id": 10050233,
+   "name": "Costume Hibram Evil Sprit",
+   "view": 233,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "c_fb_evilsprit",
+   "nameOrigin": "iro",
+   "itemId": 480473
+  },
+  {
+   "id": 10002715,
+   "name": "Costume Holy Knight Pauldron",
+   "view": 2715,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro"
+   ],
+   "sprite": "_imperial_guardian",
+   "nameOrigin": "iro",
+   "itemId": 420831
+  },
+  {
+   "id": 10350222,
+   "name": "Costume Honey Dipper",
+   "view": 222,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "c_honey_dipper",
+   "nameOrigin": "iro",
+   "itemId": 480450
+  },
+  {
+   "id": 10102614,
+   "name": "Costume Hyper Novice Pony (Cyan)",
+   "view": 2614,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_hn_hair_bg",
+   "nameOrigin": "iro",
+   "itemId": 420397
+  },
+  {
+   "id": 10102617,
+   "name": "Costume Hyper Novice Pony (Light Blue)",
+   "view": 2617,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_hn_hair_lb",
+   "nameOrigin": "iro",
+   "itemId": 420400
+  },
+  {
+   "id": 10102616,
+   "name": "Costume Hyper Novice Pony (Sakura)",
+   "view": 2616,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_hn_hair_cb",
+   "nameOrigin": "iro",
+   "itemId": 420399
+  },
+  {
+   "id": 10102615,
+   "name": "Costume Hyper Novice Pony (Yellow)",
+   "view": 2615,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_hn_hair_yl",
+   "nameOrigin": "iro",
+   "itemId": 420398
+  },
+  {
+   "id": 10001306,
+   "name": "Costume I Love Game",
+   "view": 1306,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_러브게임햇",
+   "nameOrigin": "iro",
+   "itemId": 31579
+  },
+  {
+   "id": 10502539,
+   "name": "Costume Jade Dragon Aura",
+   "view": 2539,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_dragon_green_aura",
+   "nameOrigin": "iro",
+   "itemId": 410329
+  },
+  {
+   "id": 10350252,
+   "name": "Costume Jade Raptor's Wing",
+   "view": 252,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_ros2024_wing_4",
+   "nameOrigin": "iro",
+   "itemId": 480508
+  },
+  {
+   "id": 10300214,
+   "name": "Costume Kabuki Mask",
+   "view": 214,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_가부키가면",
+   "nameOrigin": "iro",
+   "itemId": 19556
+  },
+  {
+   "id": 10002290,
+   "name": "Costume King Mini-Me",
+   "view": 2290,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_king_mini",
+   "nameOrigin": "iro",
+   "itemId": 410188
+  },
+  {
+   "id": 10302534,
+   "name": "Costume Kitchen Car",
+   "view": 2534,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_kitchen_car",
+   "nameOrigin": "iro",
+   "itemId": 420340
+  },
+  {
+   "id": 10050300,
+   "name": "Costume Knights' Order Sword and Shield",
+   "view": 300,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "thro"
+   ],
+   "sprite": "c_knights_sword_shield",
+   "nameOrigin": "iro",
+   "itemId": 480747
+  },
+  {
+   "id": 10002305,
+   "name": "Costume Lehar Mini-Me",
+   "view": 2305,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_lehar_mini",
+   "nameOrigin": "iro",
+   "itemId": 410206
+  },
+  {
+   "id": 10002737,
+   "name": "Costume Liamette Hair Band",
+   "view": 2737,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_liamette_hair_band",
+   "nameOrigin": "iro",
+   "itemId": 401000
+  },
+  {
+   "id": 10450256,
+   "name": "Costume Libra Wings",
+   "view": 256,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_libra_wing",
+   "nameOrigin": "iro",
+   "itemId": 480523
+  },
+  {
+   "id": 10002415,
+   "name": "Costume Lightning Flash",
+   "view": 2415,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_flash_of_lightning",
+   "nameOrigin": "iro",
+   "itemId": 401211
+  },
+  {
+   "id": 10402403,
+   "name": "Costume Lightning Savage",
+   "view": 2403,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_lightning_savage",
+   "nameOrigin": "iro",
+   "itemId": 410357
+  },
+  {
+   "id": 10001204,
+   "name": "Costume Lincoln Hat",
+   "view": 1204,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro"
+   ],
+   "sprite": "_링컨모자",
+   "nameOrigin": "iro",
+   "itemId": 20014
+  },
+  {
+   "id": 10001617,
+   "name": "Costume Low Pony (Black)",
+   "view": 1617,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_low_pony_bl",
+   "nameOrigin": "iro",
+   "itemId": 31222
+  },
+  {
+   "id": 10001613,
+   "name": "Costume Low Pony (Blue)",
+   "view": 1613,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_low_pony_bu",
+   "nameOrigin": "iro",
+   "itemId": 31218
+  },
+  {
+   "id": 10001619,
+   "name": "Costume Low Pony (Brown)",
+   "view": 1619,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_low_pony_om",
+   "nameOrigin": "iro",
+   "itemId": 31224
+  },
+  {
+   "id": 10001616,
+   "name": "Costume Low Pony (Green)",
+   "view": 1616,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_low_pony_gn",
+   "nameOrigin": "iro",
+   "itemId": 31221
+  },
+  {
+   "id": 10001620,
+   "name": "Costume Low Pony (Purple)",
+   "view": 1620,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_low_pony_pp",
+   "nameOrigin": "iro",
+   "itemId": 31225
+  },
+  {
+   "id": 10001614,
+   "name": "Costume Low Pony (Red)",
+   "view": 1614,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_low_pony_rd",
+   "nameOrigin": "iro",
+   "itemId": 31219
+  },
+  {
+   "id": 10001618,
+   "name": "Costume Low Pony (White)",
+   "view": 1618,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_low_pony_wh",
+   "nameOrigin": "iro",
+   "itemId": 31223
+  },
+  {
+   "id": 10001615,
+   "name": "Costume Low Pony (Yellow)",
+   "view": 1615,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_low_pony_yl",
+   "nameOrigin": "iro",
+   "itemId": 31220
+  },
+  {
+   "id": 10050286,
+   "name": "Costume Mad Bunny Nightmare",
+   "view": 286,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro"
+   ],
+   "sprite": "c_n_mad_bunny",
+   "nameOrigin": "iro",
+   "itemId": 480632
+  },
+  {
+   "id": 10050307,
+   "name": "Costume Magnus Dominus",
+   "view": 307,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "magnus_dominus",
+   "nameOrigin": "iro",
+   "itemId": 480810
+  },
+  {
+   "id": 10002656,
+   "name": "Costume Maid Frill",
+   "view": 2656,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_maid_frill",
+   "nameOrigin": "iro",
+   "itemId": 410387
+  },
+  {
+   "id": 10302742,
+   "name": "Costume Majestic Fox",
+   "view": 2742,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
+   "sprite": "_majestic_fox",
+   "nameOrigin": "iro",
+   "itemId": 420790
+  },
+  {
+   "id": 10002816,
+   "name": "Costume Margaretha Hair",
+   "view": 2816,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_magaleta_hair",
+   "nameOrigin": "iro",
+   "itemId": 420751
+  },
+  {
+   "id": 10002306,
+   "name": "Costume Marlbron Mini-Me",
+   "view": 2306,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_marlbron_mini",
+   "nameOrigin": "iro",
+   "itemId": 410205
+  },
+  {
+   "id": 10050284,
+   "name": "Costume Mechanical Fairy Wings",
+   "view": 284,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro"
+   ],
+   "sprite": "c_mechanical_fairy_wing",
+   "nameOrigin": "iro",
+   "itemId": 480630
+  },
+  {
+   "id": 10002745,
+   "name": "Costume Medjed Cloth",
+   "view": 2745,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_medjed_cloth",
+   "nameOrigin": "iro",
+   "itemId": 420595
+  },
+  {
+   "id": 10050279,
+   "name": "Costume Melon Cream Soda",
+   "view": 279,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twrozero"
+   ],
+   "sprite": "c_melon_cream_soda",
+   "nameOrigin": "iro",
+   "itemId": 480619
+  },
+  {
+   "id": 10102691,
+   "name": "Costume Midgard Insignia",
+   "view": 2691,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "_midgard_insignia",
+   "nameOrigin": "thro",
+   "itemId": 420508
+  },
+  {
+   "id": 10002750,
+   "name": "Costume Midgard Integrity",
+   "view": 2750,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro"
+   ],
+   "sprite": "_midgard_integrity",
+   "nameOrigin": "iro",
+   "itemId": 410508
+  },
+  {
+   "id": 10002172,
+   "name": "Costume Mini Domovoi",
+   "view": 2172,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "thro"
+   ],
+   "sprite": "_c_domovoi",
+   "nameOrigin": "iro",
+   "itemId": 15919
+  },
+  {
+   "id": 10302824,
+   "name": "Costume Mischievous Princess Wig",
+   "view": 2824,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
+   "sprite": "_c_naughty_p_wig",
+   "nameOrigin": "iro",
+   "itemId": 420791
+  },
+  {
+   "id": 10001156,
+   "name": "Costume Mouton Life",
+   "view": 1156,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_무통라이프",
+   "nameOrigin": "iro",
+   "itemId": 19989
+  },
+  {
+   "id": 10050078,
+   "name": "Costume Moving Green Angel Wings",
+   "view": 78,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "wing_of_angel_move_gr",
+   "nameOrigin": "iro",
+   "itemId": 480060
+  },
+  {
+   "id": 10350288,
+   "name": "Costume Niflheim Bloom Red",
+   "view": 288,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "c_nifl_bloom_rd",
+   "nameOrigin": "iro",
+   "itemId": 480648
+  },
+  {
+   "id": 10002409,
+   "name": "Costume Night Market Orb",
+   "view": 2409,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_bulb_wreath",
+   "nameOrigin": "iro",
+   "itemId": 400475
+  },
+  {
+   "id": 10002661,
+   "name": "Costume Oriental Black and Blue Wig",
+   "view": 2661,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "thro"
+   ],
+   "sprite": "_vip_hair_2025",
+   "nameOrigin": "iro",
+   "itemId": 400767
+  },
+  {
+   "id": 10102662,
+   "name": "Costume Orrivane Crown",
+   "view": 2662,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_gluttony_crown",
+   "nameOrigin": "thro",
+   "itemId": 401283
+  },
+  {
+   "id": 10050240,
+   "name": "Costume Paw Backpack",
+   "view": 240,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_paw_bag",
+   "nameOrigin": "iro",
+   "itemId": 480487
+  },
+  {
+   "id": 10002595,
+   "name": "Costume Permafrost Oblivion",
+   "view": 2595,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro"
+   ],
+   "sprite": "_perm_frost_oblivion",
+   "nameOrigin": "iro",
+   "itemId": 410368
+  },
+  {
+   "id": 10002079,
+   "name": "Costume Phigasia Scarf",
+   "view": 2079,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "thro"
+   ],
+   "sprite": "_c_phigasia_scarf_exe",
+   "nameOrigin": "iro",
+   "itemId": 15854
+  },
+  {
+   "id": 10050184,
+   "name": "Costume Phoenix Cloak",
+   "view": 184,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "2023rtc_s_robe4",
+   "nameOrigin": "iro",
+   "itemId": 480329
+  },
+  {
+   "id": 10002738,
+   "name": "Costume Piamette Bonnet",
+   "view": 2738,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_n_piamette_bonnet",
+   "nameOrigin": "iro",
+   "itemId": 401001
+  },
+  {
+   "id": 10002740,
+   "name": "Costume Piamette Rollhair",
+   "view": 2740,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_n_piamette_rollhair",
+   "nameOrigin": "iro",
+   "itemId": 420575
+  },
+  {
+   "id": 10050303,
+   "name": "Costume Pink Sakura Rod",
+   "view": 303,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "c_sakura_rod_pk",
+   "nameOrigin": "iro",
+   "itemId": 480773
+  },
+  {
+   "id": 10002885,
+   "name": "Costume Pitaya Ramen Stall",
+   "view": 2885,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_pitaya_ramen_stall",
+   "nameOrigin": "iro",
+   "itemId": 410707
+  },
+  {
+   "id": 10350229,
+   "name": "Costume Pool Ring",
+   "view": 229,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "hanwha_pool_ring",
+   "nameOrigin": "iro",
+   "itemId": 480462
+  },
+  {
+   "id": 10050171,
+   "name": "Costume Pope Doll",
+   "view": 171,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_pope_doll",
+   "nameOrigin": "iro",
+   "itemId": 480305
+  },
+  {
+   "id": 10302554,
+   "name": "Costume Poring Commoner",
+   "view": 2554,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_2024ros_hat_4th",
+   "nameOrigin": "iro",
+   "itemId": 440016
+  },
+  {
+   "id": 10050234,
+   "name": "Costume Poring Cream Soda",
+   "view": 234,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "c_poring_cream_soda",
+   "nameOrigin": "iro",
+   "itemId": 480476
+  },
+  {
+   "id": 10302552,
+   "name": "Costume Poring Royalty",
+   "view": 2552,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_2024ros_hat_2nd",
+   "nameOrigin": "iro",
+   "itemId": 440014
+  },
+  {
+   "id": 10001923,
+   "name": "Costume Pretty White Bear",
+   "view": 1923,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_pretty_bear_wh",
+   "nameOrigin": "iro",
+   "itemId": 31799
+  },
+  {
+   "id": 10001094,
+   "name": "Costume pRO 10th Cap",
+   "view": 1094,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_필리핀10주년모자",
+   "nameOrigin": "iro",
+   "itemId": 19896
+  },
+  {
+   "id": 10001927,
+   "name": "Costume Rabbit Two Sides Up",
+   "view": 1927,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_c_rabbit_two_side_up",
+   "nameOrigin": "iro",
+   "itemId": 31817
+  },
+  {
+   "id": 10050228,
+   "name": "Costume Ragdoll Face Bag",
+   "view": 228,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_ragdoll_face_bag",
+   "nameOrigin": "iro",
+   "itemId": 480461
+  },
+  {
+   "id": 10102400,
+   "name": "Costume Rainbow Popcorn",
+   "view": 2400,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_rainbow_popcorn",
+   "nameOrigin": "iro",
+   "itemId": 400466
+  },
+  {
+   "id": 10102627,
+   "name": "Costume Ranger Wolf Shorts (Black)",
+   "view": 2627,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_ram_hair_jbl",
+   "nameOrigin": "thro",
+   "itemId": 420410
+  },
+  {
+   "id": 10102626,
+   "name": "Costume Ranger Wolf Shorts (Purple)",
+   "view": 2626,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_ram_hair_lpp",
+   "nameOrigin": "thro",
+   "itemId": 420409
+  },
+  {
+   "id": 10102629,
+   "name": "Costume Ranger Wolf Shorts (Red-Brown)",
+   "view": 2629,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_ram_hair_om",
+   "nameOrigin": "thro",
+   "itemId": 420412
+  },
+  {
+   "id": 10102628,
+   "name": "Costume Ranger Wolf Shorts (White)",
+   "view": 2628,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_ram_hair_wh",
+   "nameOrigin": "thro",
+   "itemId": 420411
+  },
+  {
+   "id": 10001449,
+   "name": "Costume Red and White Mochiring Hat",
+   "view": 1449,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twrozero"
+   ],
+   "sprite": "_홍백모치링모자",
+   "nameOrigin": "iro",
+   "itemId": 20442
+  },
+  {
+   "id": 10502540,
+   "name": "Costume Red Aura Dragon",
+   "view": 2540,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "krozero",
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "_c_dragon_red_aura",
+   "nameOrigin": "iro",
+   "itemId": 410330
+  },
+  {
+   "id": 10550315,
+   "name": "Costume Red Mushroom Umbrella",
+   "view": 315,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
+   "sprite": "c_mushroom_umbrella_rd",
+   "nameOrigin": "iro",
+   "itemId": 480849
+  },
+  {
+   "id": 10002559,
+   "name": "Costume Red Paeonia",
+   "view": 2559,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_red_paeonia",
+   "nameOrigin": "iro",
+   "itemId": 400693
+  },
+  {
+   "id": 10050263,
+   "name": "Costume Resurrection Bow",
+   "view": 263,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "c_resurrection_bow",
+   "nameOrigin": "iro",
+   "itemId": 480560
+  },
+  {
+   "id": 10002547,
+   "name": "Costume Ribbon Braid Hair",
+   "view": 2547,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_ribbon_braid_hair",
+   "nameOrigin": "iro",
+   "itemId": 420345
+  },
+  {
+   "id": 10002483,
+   "name": "Costume Ribbon Cat Bell",
+   "view": 2483,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_sound_of_catbell",
+   "nameOrigin": "iro",
+   "itemId": 420359
+  },
+  {
+   "id": 10002666,
+   "name": "Costume Rigel Hair",
+   "view": 2666,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro"
+   ],
+   "sprite": "_c_rigel_hair",
+   "nameOrigin": "iro",
+   "itemId": 420440
+  },
+  {
+   "id": 10002569,
+   "name": "Costume Ritual Candle",
+   "view": 2569,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_candle_set",
+   "nameOrigin": "iro",
+   "itemId": 420354
+  },
+  {
+   "id": 10402225,
+   "name": "Costume Rocking Short",
+   "view": 2225,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_rocking_short",
+   "nameOrigin": "iro",
+   "itemId": 420111
+  },
+  {
+   "id": 10002781,
+   "name": "Costume Rocking Short (Black)",
+   "view": 2781,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_rocking_short_jbl",
+   "nameOrigin": "iro",
+   "itemId": 420672
+  },
+  {
+   "id": 10002777,
+   "name": "Costume Rocking Short (Blonde)",
+   "view": 2777,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_rocking_short_bd",
+   "nameOrigin": "iro",
+   "itemId": 420668
+  },
+  {
+   "id": 10002779,
+   "name": "Costume Rocking Short (Light Blue)",
+   "view": 2779,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_rocking_short_lb",
+   "nameOrigin": "iro",
+   "itemId": 420670
+  },
+  {
+   "id": 10002778,
+   "name": "Costume Rocking Short (Red)",
+   "view": 2778,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_rocking_short_rd",
+   "nameOrigin": "iro",
+   "itemId": 420669
+  },
+  {
+   "id": 10002782,
+   "name": "Costume Rocking Short (White)",
+   "view": 2782,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_rocking_short_wh",
+   "nameOrigin": "iro",
+   "itemId": 420673
+  },
+  {
+   "id": 10350282,
+   "name": "Costume ROS 2025 Champion Coat",
+   "view": 282,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero",
+    "thro"
+   ],
+   "sprite": "c_2025rosfesta",
+   "nameOrigin": "thro",
+   "itemId": 480627
+  },
+  {
+   "id": 10450325,
+   "name": "Costume ROS 2026 Legendary Champion",
+   "view": 325,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "origins": [
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_2026rosfesta_1st",
+   "nameOrigin": "thro",
+   "itemId": 480900
+  },
+  {
+   "id": 10102454,
+   "name": "Costume Rose Wave (Silver Blue)",
+   "view": 2454,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero"
+   ],
+   "sprite": "_c_rose_wave_svb",
+   "nameOrigin": "iro",
+   "itemId": 420276
+  },
+  {
+   "id": 10002822,
+   "name": "Costume Ruck Keeper",
+   "view": 2822,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro"
+   ],
+   "sprite": "_c_ruck_keeper",
+   "nameOrigin": "iro",
+   "itemId": 401303
+  },
+  {
+   "id": 10002141,
+   "name": "Costume Sailor's White Collar",
+   "view": 2141,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_sailor_collar_wh",
+   "nameOrigin": "iro",
+   "itemId": 420044
+  },
+  {
+   "id": 10001171,
+   "name": "Costume saLUsalo Hat",
+   "view": 1171,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_salusalo기념모자",
+   "nameOrigin": "iro",
+   "itemId": 19994
+  },
+  {
+   "id": 10402355,
+   "name": "Costume Serpent Crystal",
+   "view": 2355,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_serpent_crystal",
+   "nameOrigin": "iro",
+   "itemId": 410229
+  },
+  {
+   "id": 10002815,
+   "name": "Costume Seyren Hair",
+   "view": 2815,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
+   "sprite": "_c_seyren_hair",
+   "nameOrigin": "iro",
+   "itemId": 420750
+  },
+  {
+   "id": 10002292,
+   "name": "Costume Seyren Mini-Me",
+   "view": 2292,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_seyren_mini",
+   "nameOrigin": "iro",
+   "itemId": 410190
+  },
+  {
+   "id": 10502532,
+   "name": "Costume Shiba Says A-Ji",
+   "view": 2532,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "kro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_clb_ss_ea",
+   "nameOrigin": "iro",
+   "itemId": 410326
+  },
+  {
+   "id": 10502531,
+   "name": "Costume Shiba Says Fei-Chai",
+   "view": 2531,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "kro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_clb_ss_df",
+   "nameOrigin": "iro",
+   "itemId": 400664
+  },
+  {
+   "id": 10550221,
+   "name": "Costume Shiba Says Tai-Zi",
+   "view": 221,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "kro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "c_clb_ss_lt",
+   "nameOrigin": "iro",
+   "itemId": 480445
+  },
+  {
+   "id": 10050239,
+   "name": "Costume Shiba Tail",
+   "view": 239,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "c_shiba_tail",
+   "nameOrigin": "iro",
+   "itemId": 480486
+  },
+  {
+   "id": 10300306,
+   "name": "Costume Shiny Wig",
+   "view": 306,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_눈부신가발",
+   "nameOrigin": "iro",
+   "itemId": 19814
+  },
+  {
+   "id": 10302535,
+   "name": "Costume Signon Loop",
+   "view": 2535,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_signon_loop",
+   "nameOrigin": "iro",
+   "itemId": 420341
+  },
+  {
+   "id": 10050296,
+   "name": "Costume Silver Scepter",
+   "view": 296,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
+   "sprite": "c_scepter_sv",
+   "nameOrigin": "iro",
+   "itemId": 480699
+  },
+  {
+   "id": 10050170,
+   "name": "Costume Skia Doll",
+   "view": 170,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro"
+   ],
+   "sprite": "c_skia_doll",
+   "nameOrigin": "iro",
+   "itemId": 480287
+  },
+  {
+   "id": 10002765,
+   "name": "Costume Skia Wig (Black)",
+   "view": 2765,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_skia_two_side_up_bl",
+   "nameOrigin": "iro",
+   "itemId": 420656
+  },
+  {
+   "id": 10002760,
+   "name": "Costume Skia Wig (Blue Green)",
+   "view": 2760,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_skia_two_side_up_bg",
+   "nameOrigin": "iro",
+   "itemId": 420651
+  },
+  {
+   "id": 10002763,
+   "name": "Costume Skia Wig (Light Blue)",
+   "view": 2763,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_skia_two_side_up_lb",
+   "nameOrigin": "iro",
+   "itemId": 420654
+  },
+  {
+   "id": 10002762,
+   "name": "Costume Skia Wig (Sakura)",
+   "view": 2762,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_skia_two_side_up_cb",
+   "nameOrigin": "iro",
+   "itemId": 420653
+  },
+  {
+   "id": 10002764,
+   "name": "Costume Skia Wig (Silver)",
+   "view": 2764,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_skia_two_side_up_sv",
+   "nameOrigin": "iro",
+   "itemId": 420655
+  },
+  {
+   "id": 10050330,
+   "name": "Costume Smokie Basket",
+   "view": 330,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "c_smokie_basket",
+   "nameOrigin": "iro",
+   "itemId": 480921
+  },
+  {
+   "id": 10002488,
+   "name": "Costume Snowman Hat",
+   "view": 2488,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_snowmanhat",
+   "nameOrigin": "iro",
+   "itemId": 400585
+  },
+  {
+   "id": 10002486,
+   "name": "Costume Snowman Head",
+   "view": 2486,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_snow_head",
+   "nameOrigin": "iro",
+   "itemId": 400558
+  },
+  {
+   "id": 10202717,
+   "name": "Costume Sodium Salt Hat",
+   "view": 2717,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_2508_salt_hat",
+   "nameOrigin": "thro",
+   "itemId": 400951
+  },
+  {
+   "id": 10401748,
+   "name": "Costume Sparkler Fountain",
+   "view": 1748,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_sparkler_fountain",
+   "nameOrigin": "iro",
+   "itemId": 31501
+  },
+  {
+   "id": 10002307,
+   "name": "Costume Spica Neries Mini-Me",
+   "view": 2307,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_spica_mini",
+   "nameOrigin": "iro",
+   "itemId": 410191
+  },
+  {
+   "id": 10002315,
+   "name": "Costume Spider Poring",
+   "view": 2315,
+   "slots": [
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_spiding",
+   "nameOrigin": "iro",
+   "itemId": 436010
+  },
+  {
+   "id": 10002371,
+   "name": "Costume Squirrel Ears Hooded Hat (Albino)",
+   "view": 2371,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_squirrel_ear_hat_w",
+   "nameOrigin": "iro",
+   "itemId": 400754
+  },
+  {
+   "id": 10350249,
+   "name": "Costume Star Champion's 2024 Wing",
+   "view": 249,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "origins": [
+    "kro",
+    "krozero",
+    "thro"
+   ],
+   "sprite": "c_ros2024_wing_1",
+   "nameOrigin": "thro",
+   "itemId": 480505
+  },
+  {
+   "id": 10550319,
+   "name": "Costume Starglass Pen",
+   "view": 319,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
+   "sprite": "c_star_glasspen",
+   "nameOrigin": "iro",
+   "itemId": 480864
+  },
+  {
+   "id": 10550270,
+   "name": "Costume Starry Sky Pen",
+   "view": 270,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "c_starrysky_fountainpen",
+   "nameOrigin": "iro",
+   "itemId": 480603
+  },
+  {
+   "id": 10102611,
+   "name": "Costume Straight Two-Side Up (Blonde Pink)",
+   "view": 2611,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_s_two_side_up_bdp",
+   "nameOrigin": "iro",
+   "itemId": 420394
+  },
+  {
+   "id": 10102610,
+   "name": "Costume Straight Two-Side Up (Blonde)",
+   "view": 2610,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_s_two_side_up_bd",
+   "nameOrigin": "iro",
+   "itemId": 420393
+  },
+  {
+   "id": 10402357,
+   "name": "Costume Stylish Copo",
+   "view": 2357,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_egg_copo",
+   "nameOrigin": "iro",
+   "itemId": 400415
+  },
+  {
+   "id": 10002555,
+   "name": "Costume Sun God",
+   "view": 2555,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_c_helm_of_ra_kr",
+   "nameOrigin": "iro",
+   "itemId": 410338
+  },
+  {
+   "id": 10150298,
+   "name": "Costume Sweets Fork",
+   "view": 298,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "c_sweet_folk",
+   "nameOrigin": "iro",
+   "itemId": 480718
+  },
+  {
+   "id": 10502845,
+   "name": "Costume Tarou Magical Hat",
+   "view": 2845,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "iro",
+    "jro",
+    "twrozero"
+   ],
+   "sprite": "_c_tarou_magical_hat",
+   "nameOrigin": "iro",
+   "itemId": 401392
+  },
+  {
+   "id": 10450198,
+   "name": "Costume TE Challenger",
+   "view": 198,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_ros2023_cape_2",
+   "nameOrigin": "iro",
+   "itemId": 20626
+  },
+  {
+   "id": 10450197,
+   "name": "Costume TE Conqueror",
+   "view": 197,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_ros2023_cape_1",
+   "nameOrigin": "iro",
+   "itemId": 20625
+  },
+  {
+   "id": 10002279,
+   "name": "Costume Tent",
+   "view": 2279,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_tent",
+   "nameOrigin": "iro",
+   "itemId": 420165
+  },
+  {
+   "id": 10302551,
+   "name": "Costume The Winner of ROS 2024",
+   "view": 2551,
+   "slots": [
+    "top",
+    "mid",
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "kro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_2024ros_hat_1st",
+   "nameOrigin": "thro",
+   "itemId": 440013
+  },
+  {
+   "id": 10102794,
+   "name": "Costume Thick Braided Pigtails Hairstyle",
+   "view": 2794,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_lots_braided_hair",
+   "nameOrigin": "thro",
+   "itemId": 420727
+  },
+  {
+   "id": 10001090,
+   "name": "Costume Tsunade's Ninjutsu Book",
+   "view": 1090,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro"
+   ],
+   "sprite": "_츠나데의인술서",
+   "nameOrigin": "iro",
+   "itemId": 420240
+  },
+  {
+   "id": 10050324,
+   "name": "Costume Tuna Fishing",
+   "view": 324,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro"
+   ],
+   "sprite": "c_tuna_fishing",
+   "nameOrigin": "iro",
+   "itemId": 480895
+  },
+  {
+   "id": 10050216,
+   "name": "Costume Twin Edge Sword",
+   "view": 216,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro"
+   ],
+   "sprite": "c_twin_edge",
+   "nameOrigin": "iro",
+   "itemId": 480433
+  },
+  {
+   "id": 10002706,
+   "name": "Costume Twin Milkyway (Undecorated)",
+   "view": 2706,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_twin_milkyway_n",
+   "nameOrigin": "iro",
+   "itemId": 420524
+  },
+  {
+   "id": 10002831,
+   "name": "Costume Two Side Wing",
+   "view": 2831,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "_two_side_wing",
+   "nameOrigin": "iro",
+   "itemId": 410629
+  },
+  {
+   "id": 10002718,
+   "name": "Costume Vacation Pope Hair",
+   "view": 2718,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_vacation_pope_hair",
+   "nameOrigin": "iro",
+   "itemId": 420545
+  },
+  {
+   "id": 10300313,
+   "name": "Costume Vane Hairpin",
+   "view": 313,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_풍차비녀",
+   "nameOrigin": "iro",
+   "itemId": 19694
+  },
+  {
+   "id": 10402690,
+   "name": "Costume Variant Devil’s Horn",
+   "view": 2690,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_variant_devils_horn",
+   "nameOrigin": "thro",
+   "itemId": 400909
+  },
+  {
+   "id": 10102652,
+   "name": "Costume Wadjet",
+   "view": 2652,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro"
+   ],
+   "sprite": "_c_wedjat",
+   "nameOrigin": "iro",
+   "itemId": 400760
+  },
+  {
+   "id": 10102630,
+   "name": "Costume Wanderer Curl (Cyan)",
+   "view": 2630,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_wanderer_curl_bg",
+   "nameOrigin": "iro",
+   "itemId": 420413
+  },
+  {
+   "id": 10102633,
+   "name": "Costume Wanderer Curl (Light Blue)",
+   "view": 2633,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_wanderer_curl_lb",
+   "nameOrigin": "iro",
+   "itemId": 420416
+  },
+  {
+   "id": 10102632,
+   "name": "Costume Wanderer Curl (Sakura)",
+   "view": 2632,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_wanderer_curl_cb",
+   "nameOrigin": "iro",
+   "itemId": 420415
+  },
+  {
+   "id": 10102631,
+   "name": "Costume Wanderer Curl (Yellow)",
+   "view": 2631,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_wanderer_curl_yl",
+   "nameOrigin": "iro",
+   "itemId": 420414
+  },
+  {
+   "id": 10050074,
+   "name": "Costume Wavy Orange Angel Wings",
+   "view": 74,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "wing_of_angel_move_rb",
+   "nameOrigin": "iro",
+   "itemId": 480057
+  },
+  {
+   "id": 10002140,
+   "name": "Costume Whale Cap",
+   "view": 2140,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_whale_cap",
+   "nameOrigin": "iro",
+   "itemId": 400163
+  },
+  {
+   "id": 10002579,
+   "name": "Costume Whisper Candy Pouch",
+   "view": 2579,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_halloween_candypouch",
+   "nameOrigin": "iro",
+   "itemId": 480494
+  },
+  {
+   "id": 10002538,
+   "name": "Costume White Cat Coffee Cup",
+   "view": 2538,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_catcoffeecup_wh",
+   "nameOrigin": "iro",
+   "itemId": 400670
+  },
+  {
+   "id": 10002505,
+   "name": "Costume White Fox Bamboo Hat",
+   "view": 2505,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
+   "sprite": "_white_fox_bamboo_hat",
+   "nameOrigin": "iro",
+   "itemId": 401314
+  },
+  {
+   "id": 10002647,
+   "name": "Costume White Fox Hood Twin (No Decoration)",
+   "view": 2647,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "_c_wh_fox_hood_twin_n",
+   "nameOrigin": "iro",
+   "itemId": 420426
+  },
+  {
+   "id": 10050255,
+   "name": "Costume White Fox Tail",
+   "view": 255,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "c_white_fox_tail",
+   "nameOrigin": "iro",
+   "itemId": 480521
+  },
+  {
+   "id": 10102583,
+   "name": "Costume White Mechanical Plant Hat",
+   "view": 2583,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro"
+   ],
+   "sprite": "_m_plant_hat_w",
+   "nameOrigin": "iro",
+   "itemId": 400993
+  },
+  {
+   "id": 10002574,
+   "name": "Costume White Puppy Hat",
+   "view": 2574,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_puppy_hat_wh",
+   "nameOrigin": "iro",
+   "itemId": 400709
+  },
+  {
+   "id": 10402354,
+   "name": "Costume White Serpent Hair",
+   "view": 2354,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_white_serpent_hair",
+   "nameOrigin": "iro",
+   "itemId": 420201
+  },
+  {
+   "id": 10002735,
+   "name": "Costume Winged Blonde Hair",
+   "view": 2735,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "_c_feather_hair_bd",
+   "nameOrigin": "iro",
+   "itemId": 420571
+  },
+  {
+   "id": 10450323,
+   "name": "Costume Wings of Arrogant Thanatos",
+   "view": 323,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "origins": [
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_s_thanatos_wing",
+   "nameOrigin": "thro",
+   "itemId": 480879
+  },
+  {
+   "id": 10450259,
+   "name": "Costume Wings of the Immortal Lord",
+   "view": 259,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "twro",
+   "origins": [
+    "kro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "c_immortal_h_wing",
+   "nameOrigin": "thro",
+   "itemId": 480566
+  },
+  {
+   "id": 10202609,
+   "name": "Costume Winter Tree",
+   "view": 2609,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "iro",
+    "kro",
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "_c_winter_tree",
+   "nameOrigin": "iro",
+   "itemId": 400743
+  },
+  {
+   "id": 10001270,
+   "name": "Costume Wishing Tree Hat",
+   "view": 1270,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro"
+   ],
+   "sprite": "_소원종이모자",
+   "nameOrigin": "iro",
+   "itemId": 410171
+  },
+  {
+   "id": 10102622,
+   "name": "Costume Wolf Short (Cyan)",
+   "view": 2622,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_ram_hair_bg",
+   "nameOrigin": "iro",
+   "itemId": 420405
+  },
+  {
+   "id": 10102625,
+   "name": "Costume Wolf Short (Light Blue)",
+   "view": 2625,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_ram_hair_lb",
+   "nameOrigin": "iro",
+   "itemId": 420408
+  },
+  {
+   "id": 10102624,
+   "name": "Costume Wolf Short (Sakura)",
+   "view": 2624,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_ram_hair_cb",
+   "nameOrigin": "iro",
+   "itemId": 420407
+  },
+  {
+   "id": 10102623,
+   "name": "Costume Wolf Short (Yellow)",
+   "view": 2623,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_c_ram_hair_yl",
+   "nameOrigin": "iro",
+   "itemId": 420406
+  },
+  {
+   "id": 10102698,
+   "name": "Costume Wonderful Long",
+   "view": 2698,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_c_wonderful_long",
+   "nameOrigin": "iro",
+   "itemId": 420515
+  },
+  {
+   "id": 10202581,
+   "name": "Costume Yakgwa Headband",
+   "view": 2581,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "kro",
+    "krozero"
+   ],
+   "sprite": "_c_yakgwa_hairband",
+   "nameOrigin": "thro",
+   "itemId": 400717
+  },
+  {
+   "id": 10502541,
+   "name": "Costume Yellow Aura Dragon",
+   "view": 2541,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twrozero",
+   "origins": [
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "_c_dragon_yellow_aura",
+   "nameOrigin": "iro",
+   "itemId": 410331
+  },
+  {
+   "id": 10402826,
+   "name": "Costume Yellow Fox Mask",
+   "view": 2826,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_c_mask_of_fox_yl",
+   "nameOrigin": "iro",
+   "itemId": 401316
+  },
+  {
+   "id": 10302537,
+   "name": "Costume Yellow Headdress",
+   "view": 2537,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_yellow_head_dress",
+   "nameOrigin": "iro",
+   "itemId": 400669
+  },
+  {
+   "id": 10001209,
+   "name": "Costume: Beret Of Artist",
+   "view": 1209,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_예술가의베레모",
+   "nameOrigin": "iro",
+   "itemId": 20019
+  },
+  {
+   "id": 10002686,
+   "name": "Costume: Majestic Helmet (Black)",
+   "view": 2686,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twrozero"
+   ],
+   "sprite": "_c_majestic_helmet_bl",
+   "nameOrigin": "iro",
+   "itemId": 400900
+  },
+  {
+   "id": 10002501,
+   "name": "Costume: Merlion Hat",
+   "view": 2501,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero"
+   ],
+   "sprite": "_c_merlion_hat_msp",
+   "nameOrigin": "iro",
+   "itemId": 400599
+  },
+  {
+   "id": 10002682,
+   "name": "Costume: Sakura Twin tails",
+   "view": 2682,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "twrozero"
+   ],
+   "sprite": "_c_cb_fullb_twintails",
+   "nameOrigin": "iro",
+   "itemId": 420499
+  },
+  {
+   "id": 10050266,
+   "name": "Costume: Three Color Dumplings",
+   "view": 266,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "c_3color_dumplings_p",
+   "nameOrigin": "iro",
+   "itemId": 480582
+  },
+  {
+   "id": 10002613,
+   "name": "Costume: Two-Side Up (Black Purple)",
+   "view": 2613,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_s_two_side_up_blp",
+   "nameOrigin": "iro",
+   "itemId": 420396
+  },
+  {
+   "id": 10002612,
+   "name": "Costume: Two-Side Up (Silver)",
+   "view": 2612,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_c_s_two_side_up_sv",
+   "nameOrigin": "iro",
+   "itemId": 420395
+  },
+  {
+   "id": 10302525,
+   "name": "Deep Sleep Luck Equipment",
+   "view": 2525,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_undead_seal_rose",
+   "nameOrigin": "thro",
+   "itemId": 420347
+  },
+  {
+   "id": 10001121,
+   "name": "Divine Guard Hat",
+   "view": 1121,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_신의보호",
+   "nameOrigin": "iro",
+   "itemId": 5900
+  },
+  {
+   "id": 10001227,
+   "name": "Dragon Knight Eye Patch",
+   "view": 1227,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_용기사의안대",
+   "nameOrigin": "iro",
+   "itemId": 5924
+  },
+  {
+   "id": 10102358,
+   "name": "Dragon_Circlet",
+   "view": 2358,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_dragon_circlet",
+   "unnamed": true
+  },
+  {
+   "id": 10300265,
+   "name": "Dress Hat",
+   "view": 265,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_드레스햇",
+   "nameOrigin": "iro",
+   "itemId": 5211
+  },
+  {
+   "id": 10102731,
+   "name": "Eremes_Scarf_WH",
+   "view": 2731,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_eremes_scarf_wh",
+   "unnamed": true,
+   "itemId": 420567
+  },
+  {
+   "id": 10102689,
+   "name": "Evil_Druid_Hat_Blue",
+   "view": 2689,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_evil_druid_hat_blue",
+   "unnamed": true
+  },
+  {
+   "id": 10000519,
+   "name": "First Leaf Tea Hat",
+   "view": 519,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_일차화모자",
+   "nameOrigin": "iro",
+   "itemId": 5525
+  },
+  {
+   "id": 10202733,
+   "name": "Frontier_R_Crown",
+   "view": 2733,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_frontier_r_crown",
+   "unnamed": true
+  },
+  {
+   "id": 10002716,
+   "name": "Gangster Tactician Headset",
+   "view": 2716,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "thro",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_openair_headset_red",
+   "nameOrigin": "iro",
+   "itemId": 420642
+  },
+  {
+   "id": 10301042,
+   "name": "Gentleman Fez",
+   "view": 1042,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "krozero"
+   ],
+   "sprite": "_신사의페즈",
+   "nameOrigin": "iro",
+   "itemId": 18924
+  },
+  {
+   "id": 10102710,
+   "name": "Happy_Cat_JP_BL",
+   "view": 2710,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_happy_cat_jp_bl",
+   "unnamed": true
+  },
+  {
+   "id": 10400210,
+   "name": "Hibiscus",
+   "view": 210,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "sprite": "_부용",
+   "nameOrigin": "iro",
+   "itemId": 5139
+  },
+  {
+   "id": 10000424,
+   "name": "I LOVE CHINA",
+   "view": 424,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_알럽차이나모자",
+   "nameOrigin": "thro",
+   "itemId": 5423
+  },
+  {
+   "id": 10400342,
+   "name": "Indonesian Bandana",
+   "view": 342,
+   "slots": [
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "twro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_인도네시아헤어밴드",
+   "nameOrigin": "iro",
+   "itemId": 5321
+  },
+  {
+   "id": 10002447,
+   "name": "Inquisitor Veil",
+   "view": 2447,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
+   "sprite": "_inquisitor_veil",
+   "nameOrigin": "iro",
+   "itemId": 400556
+  },
+  {
+   "id": 10002391,
+   "name": "Invicible Crest Hat",
+   "view": 2391,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "thro",
+    "twro"
+   ],
+   "sprite": "_striking_hat_a",
+   "nameOrigin": "iro",
+   "itemId": 400899
+  },
+  {
+   "id": 10101305,
+   "name": "Joystick Hat",
+   "view": 1305,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_조이스틱햇",
+   "nameOrigin": "thro",
+   "itemId": 20334
+  },
+  {
+   "id": 10302319,
+   "name": "Larva_Red",
+   "view": 2319,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "kro",
+    "krozero"
+   ],
+   "sprite": "_larva_red",
+   "unnamed": true
+  },
+  {
+   "id": 10302321,
+   "name": "Larva_Yellow_Mini",
+   "view": 2321,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "kro",
+    "krozero"
+   ],
+   "sprite": "_larva_yellow_mini",
+   "unnamed": true
+  },
+  {
+   "id": 10000937,
+   "name": "Money Lost Spirit",
+   "view": 937,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_돈을잃은자의마음",
+   "nameOrigin": "iro",
+   "itemId": 18825
+  },
+  {
+   "id": 10300268,
+   "name": "Moonlight Flower Hat",
+   "view": 268,
+   "slots": [
+    "top",
+    "mid"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_월야화모자",
+   "nameOrigin": "iro",
+   "itemId": 5214
+  },
+  {
+   "id": 10000614,
+   "name": "NoFear Headband",
+   "view": 614,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_nofear파워헤드기어",
+   "nameOrigin": "iro",
+   "itemId": 5694
+  },
+  {
+   "id": 10001115,
+   "name": "Panda Balloon",
+   "view": 1115,
+   "slots": [
+    "low"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_판다풍선",
+   "nameOrigin": "iro",
+   "itemId": 31428
+  },
+  {
+   "id": 10102484,
+   "name": "Passion_Rabbit_Ribbon",
+   "view": 2484,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
+   "sprite": "_passion_rabbit_ribbon",
+   "unnamed": true
+  },
+  {
+   "id": 10102784,
+   "name": "Pigeon_Magic_Hat",
+   "view": 2784,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_pigeon_magic_hat",
+   "unnamed": true
+  },
+  {
+   "id": 10000919,
+   "name": "Poring Fedora Hat",
+   "view": 919,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
+   "sprite": "_보스모자",
+   "nameOrigin": "iro",
+   "itemId": 18802
+  },
+  {
+   "id": 10002414,
+   "name": "Portable Support System",
+   "view": 2414,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_mobile_support_systems",
+   "nameOrigin": "iro",
+   "itemId": 420235
+  },
+  {
+   "id": 10350157,
+   "name": "Rainbow_Shell",
+   "view": 157,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "kro",
+    "krozero"
+   ],
+   "sprite": "rainbow_shell",
+   "unnamed": true
+  },
+  {
+   "id": 10000592,
+   "name": "Red Pirate Bandana",
+   "view": 592,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_붉은해적두건",
+   "nameOrigin": "iro",
+   "itemId": 5661
+  },
+  {
+   "id": 10000469,
+   "name": "Red White Cap",
+   "view": 469,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "thro"
+   ],
+   "sprite": "_홍백모자",
+   "nameOrigin": "iro",
+   "itemId": 31705
+  },
+  {
+   "id": 10302792,
+   "name": "Red_Horse_Hairpin",
+   "view": 2792,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "sprite": "_red_horse_hairpin",
+   "unnamed": true
+  },
+  {
+   "id": 10001180,
+   "name": "Rhythm Hairband",
+   "view": 1180,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_율동의머리장식",
+   "nameOrigin": "iro",
+   "itemId": 15882
+  },
+  {
+   "id": 10000892,
+   "name": "Rice Dumpling Hat",
+   "view": 892,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_대만주먹밥",
+   "nameOrigin": "iro",
+   "itemId": 31723
+  },
+  {
+   "id": 10002337,
+   "name": "Sacred Lapel",
+   "view": 2337,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_sacred_lapel",
+   "nameOrigin": "iro",
+   "itemId": 420187
+  },
+  {
+   "id": 10000949,
+   "name": "Sakura Hairband",
+   "view": 949,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "krozero",
+    "twrozero"
+   ],
+   "sprite": "_사쿠라머리띠",
+   "nameOrigin": "iro",
+   "itemId": 20437
+  },
+  {
+   "id": 10000518,
+   "name": "Sakura Milk Tea Hat",
+   "view": 518,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_사쿠라밀크티모자",
+   "nameOrigin": "iro",
+   "itemId": 5524
+  },
+  {
+   "id": 10302320,
+   "name": "Sausage",
+   "view": 2320,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "kro",
+    "krozero"
+   ],
+   "sprite": "_sausage",
+   "unnamed": true
+  },
+  {
+   "id": 10000754,
+   "name": "Silvah Bunny Band",
+   "view": 754,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_실버토끼머리띠",
+   "nameOrigin": "iro",
+   "itemId": 18588
+  },
+  {
+   "id": 10202266,
+   "name": "SLEEPYCAT_HAT",
+   "view": 2266,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "sprite": "_sleepycat_hat",
+   "unnamed": true
+  },
+  {
+   "id": 10002519,
+   "name": "Spiritual Crown",
+   "view": 2519,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_soul_mastery_crown",
+   "nameOrigin": "iro",
+   "itemId": 400644
+  },
+  {
+   "id": 10001062,
+   "name": "Star-Spangled Bandana",
+   "view": 1062,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_iro플래그두건",
+   "nameOrigin": "iro",
+   "itemId": 5876
+  },
+  {
+   "id": 10302425,
+   "name": "Striped Ribbon Hat",
+   "view": 2425,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
+   "sprite": "_stripedribbonhat",
+   "nameOrigin": "iro",
+   "itemId": 401196
+  },
+  {
+   "id": 10300186,
+   "name": "Sunflower Hairpin",
+   "view": 186,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
+   "sprite": "_해바라기핀",
+   "nameOrigin": "iro",
+   "itemId": 20484
+  },
+  {
+   "id": 10001083,
+   "name": "Super Cute Doll Hat",
+   "view": 1083,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "thro"
+   ],
+   "sprite": "_늘어진메이드인형모자",
+   "nameOrigin": "iro",
+   "itemId": 400449
+  },
+  {
+   "id": 10000781,
+   "name": "Tare Brownie",
+   "view": 781,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "twro"
+   ],
+   "sprite": "_타레도모붜이",
+   "nameOrigin": "iro",
+   "itemId": 31147
+  },
+  {
+   "id": 10002359,
+   "name": "Two Tone Cap",
+   "view": 2359,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro"
+   ],
+   "sprite": "_two_tone_cap",
+   "nameOrigin": "iro",
+   "itemId": 400421
+  },
+  {
+   "id": 10002352,
+   "name": "Wild Beast",
+   "view": 2352,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "kro",
+    "thro"
+   ],
+   "sprite": "_wild_beast",
+   "nameOrigin": "iro",
+   "itemId": 400409
+  },
+  {
+   "id": 10002487,
+   "name": "Wolf Rayet",
+   "view": 2487,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero",
+    "twro",
+    "twrozero"
+   ],
+   "sprite": "_wolf_rayet",
+   "nameOrigin": "iro",
+   "itemId": 401247
+  },
+  {
+   "id": 10202495,
+   "name": "YellowKitty_HeadPhone",
+   "view": 2495,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "kro",
+   "origins": [
+    "jro",
+    "kro"
+   ],
+   "sprite": "_yellowkitty_headphone",
+   "unnamed": true
+  },
+  {
+   "id": 10301290,
+   "name": "늘어진길용이",
+   "view": 1290,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "krozero"
+   ],
+   "sprite": "_늘어진길용이",
+   "unnamed": true
+  },
+  {
+   "id": 10000323,
+   "name": "러시아리본",
+   "view": 323,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_러시아리본",
+   "unnamed": true,
+   "itemId": 5301
+  },
+  {
+   "id": 10000517,
+   "name": "사쿠라 미스트 모자",
+   "view": 517,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_사쿠라미스트모자",
+   "nameOrigin": "kro",
+   "itemId": 5523
+  },
+  {
+   "id": 10100995,
+   "name": "스콜피온모자",
+   "view": 995,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_스콜피온모자",
+   "unnamed": true
+  },
+  {
+   "id": 10000668,
+   "name": "천하일품라면",
+   "view": 668,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_천하일품라면",
+   "unnamed": true,
+   "itemId": 5791
+  },
+  {
+   "id": 10000426,
+   "name": "환타 그레이프 캔 모자",
+   "view": 426,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_환타그레이프캔",
+   "nameOrigin": "kro",
+   "itemId": 5425
+  },
+  {
+   "id": 10000425,
+   "name": "환타 오렌지 캔",
+   "view": 425,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_환타오렌지캔",
+   "nameOrigin": "kro",
+   "itemId": 11506
+  },
+  {
+   "id": 10000516,
+   "name": "환타제로레몬모자",
+   "view": 516,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "sprite": "_환타제로레몬모자",
+   "unnamed": true,
+   "itemId": 5522
+  },
+  {
+   "id": 10000499,
+   "name": "황금 튤립머리핀",
+   "view": 499,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_황금튤립머리핀",
+   "nameOrigin": "kro",
+   "itemId": 5821
+  },
+  {
+   "id": 10102754,
+   "name": "アシャワヒシュタ",
+   "view": 2754,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_asha_vahishta",
+   "nameOrigin": "jro",
+   "itemId": 410509
+  },
+  {
+   "id": 10102529,
+   "name": "インターディメンショナルリフト",
+   "view": 2529,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_interdimensional_rift",
+   "nameOrigin": "jro",
+   "itemId": 410322
+  },
+  {
+   "id": 10102674,
+   "name": "ヴァンパイアストール",
+   "view": 2674,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_vampire_stall",
+   "nameOrigin": "jro",
+   "itemId": 420450
+  },
+  {
+   "id": 10302503,
+   "name": "ウィズダムコアヘッドフォン",
+   "view": 2503,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "krozero",
+   "origins": [
+    "jro",
+    "kro",
+    "krozero"
+   ],
+   "sprite": "_wisdom_core_headphones",
+   "nameOrigin": "jro",
+   "itemId": 410302
+  },
+  {
+   "id": 10102808,
+   "name": "おしゃべりオカメインコ",
+   "view": 2808,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_chatty_cockatiel",
+   "nameOrigin": "jro",
+   "itemId": 420733
+  },
+  {
+   "id": 10150144,
+   "name": "ジンベエザメフロート",
+   "view": 144,
+   "slots": [
+    "garment"
+   ],
+   "viewKind": "garment",
+   "origin": "jro",
+   "sprite": "whale_shark_float",
+   "nameOrigin": "jro",
+   "itemId": 480220
+  },
+  {
+   "id": 10000722,
+   "name": "タイニー帽",
+   "view": 722,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "iro",
+   "origins": [
+    "iro",
+    "jro"
+   ],
+   "sprite": "_타이니모자",
+   "nameOrigin": "jro",
+   "itemId": 18548
+  },
+  {
+   "id": 10101596,
+   "name": "たれチュウニペンギン",
+   "view": 1596,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_jp_ev12",
+   "nameOrigin": "jro",
+   "itemId": 19219
+  },
+  {
+   "id": 10102786,
+   "name": "ドラコ・エクエス",
+   "view": 2786,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_draco_eques",
+   "nameOrigin": "jro",
+   "itemId": 460140
+  },
+  {
+   "id": 10102608,
+   "name": "リヴァイアサンヘルム",
+   "view": 2608,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_leviathan_helm",
+   "nameOrigin": "jro",
+   "itemId": 400742
+  },
+  {
+   "id": 10102813,
+   "name": "ルインテンペスト",
+   "view": 2813,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_ruin_tempest",
+   "nameOrigin": "jro",
+   "itemId": 420746
+  },
+  {
+   "id": 10102785,
+   "name": "天使のバレッタ",
+   "view": 2785,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_angel_valletta",
+   "nameOrigin": "jro",
+   "itemId": 420695
+  },
+  {
+   "id": 10102121,
+   "name": "覚醒古王の王冠",
+   "view": 2121,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_kings_crown_a",
+   "nameOrigin": "jro",
+   "itemId": 15898
+  },
+  {
+   "id": 10102787,
+   "name": "青狐耳鈴リボン",
+   "view": 2787,
+   "slots": [
+    "top"
+   ],
+   "viewKind": "headgear",
+   "origin": "jro",
+   "sprite": "_blue_fox_ear_ribbon",
+   "nameOrigin": "jro",
+   "itemId": 401122
+  }
+ ]
+}

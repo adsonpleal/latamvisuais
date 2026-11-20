@@ -39,9 +39,16 @@ const GAP = 4;
 const EDGE = 8;
 /** Below this, dropping down isn't worth it and the panel flips above the trigger. */
 const MIN_ROOM = 220;
+/** Wide enough for the longest label, "Visuais de outros servidores", to sit on
+ *  one line beside its checkbox. It needs 244px here and gets slack on top, so
+ *  a fallback font measuring a little wider does not wrap it again. */
+const MIN_WIDTH = 264;
 
 function placeUnder(trigger: DOMRect): Placement {
-  const width = Math.max(240, Math.round(trigger.width));
+  // Never wider than the window: the panel is fixed and `left` is clamped, so
+  // without this a phone narrower than MIN_WIDTH would lose its right edge.
+  const room = window.innerWidth - EDGE * 2;
+  const width = Math.min(room, Math.max(MIN_WIDTH, Math.round(trigger.width)));
   const left = Math.round(Math.max(EDGE, Math.min(trigger.left, window.innerWidth - width - EDGE)));
   const below = window.innerHeight - trigger.bottom - GAP - EDGE;
   const above = trigger.top - GAP - EDGE;
@@ -71,6 +78,17 @@ type Props = {
   /** Hide costumes that take more than one slot at a time. */
   singleSlotOnly: boolean;
   onSingleSlotOnlyChange: (only: boolean) => void;
+  /** Show costumes from the other official servers. Off by default: they are
+   *  the only thing in the catalogue nobody here can obtain, so they stay out
+   *  of the way until somebody asks for them. */
+  showForeign: boolean;
+  onShowForeignChange: (show: boolean) => void;
+  /** Narrow those to one server, or null for all of them. */
+  originFilter: string | null;
+  onOriginFilterChange: (origin: string | null) => void;
+  /** The servers actually present in the catalogue, so the chips describe the
+   *  data rather than a list someone has to remember to update. */
+  origins: string[];
 };
 
 export function CatalogFilters({
@@ -80,6 +98,11 @@ export function CatalogFilters({
   onKindFilterChange,
   singleSlotOnly,
   onSingleSlotOnlyChange,
+  showForeign,
+  onShowForeignChange,
+  originFilter,
+  onOriginFilterChange,
+  origins,
 }: Props) {
   const rootRef = useRef<HTMLDivElement>(null);
   const popRef = useRef<HTMLDivElement>(null);
@@ -126,7 +149,11 @@ export function CatalogFilters({
   const active =
     (slotFilter ? 1 : 0) +
     (kindFilter === "all" ? 0 : 1) +
-    (singleSlotOnly ? 1 : 0);
+    (singleSlotOnly ? 1 : 0) +
+    // Showing the foreign costumes counts as an active filter even though it
+    // widens the list: it is the one setting that puts things in the grid you
+    // cannot obtain, and the badge is how you remember it is on.
+    (showForeign ? 1 : 0);
 
   return (
     <div className="catalog-filter-menu" ref={rootRef}>
@@ -198,6 +225,54 @@ export function CatalogFilters({
               </label>
             </div>
 
+            {/* Its own group, below the ones that narrow the LATAM catalogue,
+                because this one adds to it instead — and adds the only items
+                in the grid nobody here can get. The server chips appear only
+                once it is on: offering them while nothing foreign is shown
+                would be six controls that do nothing. Unticking clears the
+                chip on the way out, so the next time the box goes on the row
+                isn't still narrowing to whatever was picked a session ago —
+                and, since a chip hides the LATAM catalogue, so the two settings
+                can never leave the grid empty between them. */}
+            {origins.length > 0 && (
+              <div className="catalog-filter-group">
+                <div className="catalog-filter-label">{t.foreignFilterLabel}</div>
+                <label className="catalog-filter-check" data-tip={t.foreignTip}>
+                  <input
+                    type="checkbox"
+                    checked={showForeign}
+                    onChange={(e) => {
+                      onShowForeignChange(e.target.checked);
+                      if (!e.target.checked) onOriginFilterChange(null);
+                    }}
+                  />
+                  {t.foreignLabel}
+                </label>
+                {showForeign && (
+                  <div className="catalog-filters" role="group" aria-label={t.foreignFilterLabel}>
+                    <Chip
+                      label={t.foreignAllServers}
+                      tip={t.foreignAllServersTip}
+                      active={originFilter === null}
+                      onClick={() => onOriginFilterChange(null)}
+                    />
+                    {origins.map((o) => {
+                      const name = t.foreignServerNames[o] ?? o;
+                      return (
+                        <Chip
+                          key={o}
+                          label={name}
+                          tip={t.foreignOnlyServerTip(name)}
+                          active={originFilter === o}
+                          onClick={() => onOriginFilterChange(originFilter === o ? null : o)}
+                        />
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+
             <button
               type="button"
               className="catalog-filter-clear"
@@ -206,6 +281,10 @@ export function CatalogFilters({
                 onSlotFilterChange(null);
                 onKindFilterChange("all");
                 onSingleSlotOnlyChange(false);
+                // Back to the default catalogue, which is the LATAM one: the
+                // badge counts this as active, so "Limpar" has to clear it.
+                onShowForeignChange(false);
+                onOriginFilterChange(null);
               }}
             >
               {t.filtersClear}

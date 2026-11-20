@@ -19,5 +19,11 @@ export const marketUrl = (item: { name: string }, server: Server) =>
     searchWord: marketName(item.name),
   });
 
-export const divinePrideUrl = (item: { id: number; name: string }) =>
-  `https://www.divine-pride.net/database/item/${item.id}/${slugify(item.name)}`;
+/** The page for an id from `realItemId` (src/core/db.ts) -- never for a
+  * foreign row's `id`, which is ours and would 404.
+  *
+  * The slug is decoration: Divine-Pride resolves by the number and ignores the
+  * rest, which is just as well for a name written in Japanese, where
+  * `slugify` leaves nothing. */
+export const divinePrideUrl = (id: number, name: string) =>
+  `https://www.divine-pride.net/database/item/${id}/${slugify(name)}`;

@@ -10,8 +10,10 @@ import {
   imageUrl,
   initialState,
   itemIconUrl,
+  foreignIconUrl,
   renderBodyKey,
   jobIconUrl,
+  RAGASSETS_BASE,
   toggleEquip,
   uiIconUrl,
   unequipSlot,
@@ -21,7 +23,11 @@ import { makeDb } from "../test/fixtures";
 import { APP_VERSION } from "../changelog";
 
 const db = makeDb();
-const BASE = "https://assets.latam-tools.com.br";
+// The configured origin, not the literal: RAGASSETS_BASE is overridable
+// (VITE_RAGASSETS_BASE) so the app can be pointed at a gateway on this machine,
+// and hard-coding the production host here would mean the suite fails for
+// anyone who does that. What these tests are about is the query string.
+const BASE = RAGASSETS_BASE;
 const V = `&v=${APP_VERSION}`; // cache-buster appended to every rendered image URL
 const item = (id: number): Costume => db.costumes.find((c) => c.id === id)!;
 
@@ -144,13 +150,19 @@ describe("skin tone (fan-made)", () => {
   });
 });
 
+/** Every case below equips costumes LATAM ships, so all three foreign fields
+ *  come back empty — which is the assertion that matters as much as the views:
+ *  an ordinary character must not grow an `origin` param just because costumes
+ *  from other servers exist in the catalogue. */
+const NO_FOREIGN = { origins: [], headgearSprites: [], garmentSprites: [] };
+
 describe("gearViews", () => {
   it("dedupes a multi-slot costume's view and preserves top→low order", () => {
     const state: State = {
       ...initialState(db),
       equipped: { top: item(500), mid: item(500), low: item(300) },
     };
-    expect(gearViews(state)).toEqual({ headgear: [50, 30], garment: null });
+    expect(gearViews(state)).toEqual({ headgear: [50, 30], garment: null, ...NO_FOREIGN });
   });
 
   it("ignores headgear with no view id and reads the garment view", () => {
@@ -158,7 +170,7 @@ describe("gearViews", () => {
       ...initialState(db),
       equipped: { low: item(600), garment: item(400) },
     };
-    expect(gearViews(state)).toEqual({ headgear: [], garment: 40 });
+    expect(gearViews(state)).toEqual({ headgear: [], garment: 40, ...NO_FOREIGN });
   });
 
   it("routes by the sprite table, not the slot, when the two disagree", () => {
@@ -167,7 +179,7 @@ describe("gearViews", () => {
       equipped: { top: item(100), low: item(800), garment: item(700) },
     };
     // 700 sits in Capa but is an accessory sprite; 800 sits in Baixo but is a robe.
-    expect(gearViews(state)).toEqual({ headgear: [10, 70], garment: 80 });
+    expect(gearViews(state)).toEqual({ headgear: [10, 70], garment: 80, ...NO_FOREIGN });
   });
 
   it("a real Capa costume wins the garment view over a head-slot robe sprite", () => {
@@ -175,7 +187,7 @@ describe("gearViews", () => {
       ...initialState(db),
       equipped: { low: item(800), garment: item(400) },
     };
-    expect(gearViews(state)).toEqual({ headgear: [], garment: 40 });
+    expect(gearViews(state)).toEqual({ headgear: [], garment: 40, ...NO_FOREIGN });
   });
 
   it("drops the Capa-worn accessory first when the 3-headgear limit bites", () => {
@@ -183,7 +195,7 @@ describe("gearViews", () => {
       ...initialState(db),
       equipped: { top: item(100), mid: item(200), low: item(300), garment: item(700) },
     };
-    expect(gearViews(state)).toEqual({ headgear: [10, 20, 30], garment: null });
+    expect(gearViews(state)).toEqual({ headgear: [10, 20, 30], garment: null, ...NO_FOREIGN });
   });
 });
 
@@ -239,5 +251,17 @@ describe("canvas + asset URL builders", () => {
     expect(jobIconUrl(4302)).toBe(`${BASE}/icons/job/4302.png`);
     expect(jobIconUrl(4308)).toBe(`${BASE}/icons/job/4308.png`);
     expect(uiIconUrl("color05_off")).toBe(`${BASE}/icons/ui/color05_off.png`);
+  });
+
+  it("asks for a foreign costume's icon by sprite name, percent-encoded", () => {
+    // These ids are this app's own, so /icons/item/<id>.png is a guaranteed
+    // 404; ragassets keys the picture on the sprite name. The name goes through
+    // untouched -- the gateway lowercases it and strips the accessory tables'
+    // leading underscore itself -- and most of these names are Korean, so the
+    // one thing this side must not skip is the encoding.
+    expect(foreignIconUrl("_c_hat")).toBe(`${BASE}/icons/costume?sprite=_c_hat`);
+    expect(foreignIconUrl("_술집모자")).toBe(
+      `${BASE}/icons/costume?sprite=_%EC%88%A0%EC%A7%91%EB%AA%A8%EC%9E%90`,
+    );
   });
 });

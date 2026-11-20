@@ -13,7 +13,7 @@
 // which it has to do arithmetically because the target row may not be mounted.
 
 import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from "react";
-import { canPreview, type Costume, type Stone } from "../core/db";
+import { canPreview, originsOf, realItemId, type Costume, type Stone } from "../core/db";
 import { divinePrideUrl, marketUrl } from "../core/links";
 import { useServer } from "../core/server";
 import { t } from "../i18n";
@@ -50,7 +50,7 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
   const [count, setCount] = useState(OVERSCAN * 2);
   const [pitch, setPitch] = useState(ROW_PITCH);
   // Read, not picked, here: the server picker lives in the wishlist.
-  const [server] = useServer();
+  const [gameServer] = useServer();
 
   const total = items.length;
   const start = Math.min(first, Math.max(0, total - count));
@@ -163,6 +163,16 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
         <div style={{ height: start * pitch, flexShrink: 0 }} aria-hidden="true" />
         {items.slice(start, end).map((item) => {
           const equipped = isOn(item);
+          // Same badge the grid puts on a tile. The row has more space than a
+          // tile and still needs it more: a row shows a name and an id, and
+          // for a foreign costume both of those are unfamiliar on purpose.
+          // Unlike a tile, a row has room for all of them — and 70% of these
+          // costumes are on more than one server.
+          const servers = originsOf(item);
+          const names = servers.map((o) => t.foreignServerNames[o] ?? o);
+          // The id to show and to link, or null when the row has none: see
+          // realItemId. Never item.id for a foreign row — that one is ours.
+          const realId = realItemId(item);
           return (
             <div
               key={item.id}
@@ -182,40 +192,66 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
                 type="button"
                 className="catalog-row-pick"
                 aria-pressed={equipped}
-                aria-label={`${item.name} (#${item.id})`}
+                aria-label={
+                  names.length
+                    ? `${item.name}${realId ? ` (#${realId})` : ""} — ${t.foreignBadgeTip(names)}`
+                    : `${item.name} (#${item.id})`
+                }
                 onClick={(e) => onPick(item, e.currentTarget)}
               />
               <CostumeIcon item={item} className="catalog-row-icon" />
               <span className="catalog-row-text">
                 <span className="catalog-row-name">{item.name}</span>
                 <span className="catalog-row-meta">
-                  <a
-                    className="catalog-row-id"
-                    href={divinePrideUrl(item)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-tip={t.divineLink}
-                  >
-                    {`#${item.id}`}
-                  </a>
+                  {/* The real item id, the one a player can paste anywhere
+                      else — never the id this app invented for a foreign row,
+                      which is not that costume's number in any client and
+                      looked like one here. 27 foreign rows have no real id at
+                      all, and those print none: an invented number is worse
+                      than a missing one, since only the invented one gets
+                      believed. */}
+                  {realId !== null && (
+                    <a
+                      className="catalog-row-id"
+                      href={divinePrideUrl(realId, item.name)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-tip={t.divineLink}
+                    >
+                      {`#${realId}`}
+                    </a>
+                  )}
                   {/* A stone's client name already ends in "(Topo)", so
                       repeating the position would say it twice — what the row
-                      still has to say is that it is a stone at all. */}
-                  {"stone" in item
-                    ? ` · ${t.stoneLabel}${stoneNote(item)}`
-                    : ` · ${item.slots.map((s) => t.slotNames[s]).join(" + ")}`}
+                      still has to say is that it is a stone at all. The
+                      separator belongs to the id before it, so a row without
+                      one starts at the position rather than at a stray dot. */}
+                  {(realId !== null ? " · " : "") +
+                    ("stone" in item
+                      ? `${t.stoneLabel}${stoneNote(item)}`
+                      : item.slots.map((s) => t.slotNames[s]).join(" + "))}
+                  {names.map((name) => (
+                    <span key={name} className="catalog-origin" data-tip={t.foreignBadgeTip(names)}>
+                      {name}
+                    </span>
+                  ))}
                 </span>
               </span>
-              <a
-                className="catalog-row-market"
-                href={marketUrl(item, server)}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-tip={t.marketSearch}
-                aria-label={`${t.marketSearch}: ${item.name}`}
-              >
-                <Cart />
-              </a>
+              {/* Nothing to search for: the market is LATAM's, and this
+                  costume is in the catalogue precisely because LATAM has no
+                  item for it. */}
+              {!names.length && (
+                <a
+                  className="catalog-row-market"
+                  href={marketUrl(item, gameServer)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-tip={t.marketSearch}
+                  aria-label={`${t.marketSearch}: ${item.name}`}
+                >
+                  <Cart />
+                </a>
+              )}
             </div>
           );
         })}

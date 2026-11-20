@@ -138,6 +138,44 @@ export function makeDb(): Db {
       // Slot and sprite table disagree, both ways (see viewKindOf).
       { id: 700, name: "Capa com Sprite de Acessório", view: 70, slots: ["garment"], viewKind: "headgear" },
       { id: 800, name: "Baixo com Sprite de Capa", view: 80, slots: ["low"], viewKind: "garment" },
+      // Costumes from other official servers. Hidden until the catalogue's
+      // "outros servidores" filter is turned on, and carrying the sprite name
+      // their own client knows them by — the view id alone means nothing here.
+      {
+        id: 10000900,
+        name: "Chapéu Estrangeiro",
+        view: 900,
+        slots: ["top"],
+        viewKind: "headgear",
+        origin: "iro",
+        sprite: "_foreign_hat",
+        // The real id in iRO’s own item table. Every link to this row has to
+        // use this number and not the 10000900 above, which this app invented.
+        itemId: 20123,
+      },
+      {
+        id: 10400950,
+        name: "Capa Estrangeira",
+        view: 950,
+        slots: ["garment"],
+        viewKind: "garment",
+        origin: "twro",
+        sprite: "foreign_cape",
+        // Deliberately no itemId: 51 of the published rows have none, and the
+        // app must print them without a link rather than guess a page.
+      },
+      // Two servers ship this one. `origin` is the tree it renders from;
+      // `origins` is who has it, and the filter answers from the second.
+      {
+        id: 10400990,
+        name: "Chapéu de Dois Servidores",
+        view: 990,
+        slots: ["top"],
+        viewKind: "headgear",
+        origin: "twro",
+        origins: ["iro", "twro"],
+        sprite: "_shared_hat",
+      },
     ],
     stones: [
       { id: 1100, name: "Pedra Gráfica: Brilho (Topo)", slot: "top", slots: ["top"], stone: true, effect: "glow" },

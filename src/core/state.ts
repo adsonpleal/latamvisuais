@@ -12,7 +12,14 @@ import { flyingJobFor } from "./flight";
 import { t } from "../i18n";
 import { APP_VERSION } from "../changelog";
 
-export const RAGASSETS_BASE = "https://assets.latam-tools.com.br";
+/** Where the renders come from.
+ *
+ *  Overridable so the app can be pointed at a gateway running on this machine
+ *  — `VITE_RAGASSETS_BASE=http://127.0.0.1:8099 npm run dev` — which is how a
+ *  renderer change is seen in the app before it is deployed. Production builds
+ *  set nothing and get the real origin. */
+export const RAGASSETS_BASE =
+  import.meta.env?.VITE_RAGASSETS_BASE ?? "https://assets.latam-tools.com.br";
 
 /** Cache-buster appended to every RENDERED image URL (`&v=`). ragassets serves
  *  renders with `Cache-Control: immutable` (≈1 year), keyed by the full query —
@@ -359,24 +366,51 @@ export function clothesPalettesOf(db: Db, state: State) {
  *  headgear is the one dropped when the renderer's 3-id limit bites, and the
  *  garment slot is read first for the garment view so a real Capa costume wins
  *  over a head-slot item that happens to carry a robe sprite. */
-export function gearViews(state: State): { headgear: number[]; garment: number | null } {
+export function gearViews(state: State): {
+  headgear: number[];
+  garment: number | null;
+  /** Which other servers' asset trees this render needs, in the order the
+   *  renderer should layer them. Empty for an ordinary LATAM character. */
+  origins: string[];
+  /** `viewID:spriteName` for each equipped costume that comes from one of
+   *  those trees — see renderParams for why the name travels, not just the id. */
+  headgearSprites: string[];
+  garmentSprites: string[];
+} {
   const seen = new Set<number>();
   const headgear: number[] = [];
+  const headgearSprites: string[] = [];
+  const garmentSprites: string[] = [];
+  const origins: string[] = [];
   let garment: number | null = null;
   const order: Slot[] = ["top", "mid", "low", "garment"];
+  // A foreign costume carries the tree it came from and the name it has there.
+  // Both are recorded as the views are collected, so the lists stay in step
+  // with what is actually being rendered.
+  const note = (item: Costume, into: string[]) => {
+    if (!item.origin || !item.sprite || item.view == null) return;
+    if (!origins.includes(item.origin)) origins.push(item.origin);
+    into.push(`${item.view}:${item.sprite}`);
+  };
   for (const slot of ["garment", "top", "mid", "low"] as Slot[]) {
     const item = state.equipped[slot];
     if (!item?.view || viewKindOf(item) !== "garment") continue;
     garment = item.view;
+    note(item, garmentSprites);
     break;
   }
   for (const slot of order) {
     const item = state.equipped[slot];
     if (!item?.view || viewKindOf(item) !== "headgear" || seen.has(item.view)) continue;
     seen.add(item.view);
+    // The renderer draws at most three headgears, so a fourth must not be noted
+    // either: its tree would be layered for a sprite nothing asks for, and four
+    // origins is the most a request may name.
+    if (headgear.length >= 3) break;
     headgear.push(item.view);
+    note(item, headgearSprites);
   }
-  return { headgear: headgear.slice(0, 3), garment };
+  return { headgear, garment, origins, headgearSprites, garmentSprites };
 }
 
 /** Render URL for the current character. Overrides pin individual render
@@ -408,9 +442,20 @@ function renderParams(state: State, overrides: RenderOverrides): URLSearchParams
   if (typeof state.skin === "string") p.set("skinColor", state.skin);
   else if (state.skin != null) p.set("skinTone", String(state.skin));
   if (state.outfit != null) p.set("outfit", String(state.outfit));
-  const { headgear, garment } = gearViews(state);
+  const { headgear, garment, origins, headgearSprites, garmentSprites } = gearViews(state);
   if (headgear.length) p.set("headgear", headgear.join(","));
   if (garment != null) p.set("garment", String(garment));
+  // A costume from another official server is addressed by name, not by number.
+  // Its view id is that client's index into that client's name table: here it
+  // usually means nothing (ragassets would draw the character with no hat and
+  // still return a perfectly good PNG) and occasionally means a different hat
+  // (it would draw that one, which looks right and is wrong). `origin` says
+  // which asset tree to read; the sprite pairs say what to read from it.
+  if (origins.length) {
+    p.set("origin", origins.join(","));
+    if (headgearSprites.length) p.set("headgearSprite", headgearSprites.join(","));
+    if (garmentSprites.length) p.set("garmentSprite", garmentSprites.join(","));
+  }
   const type = overrides.action ?? state.action;
   p.set("action", String(type * 8 + (overrides.bodyDir ?? state.bodyDir)));
   if (overrides.frame != null) p.set("frame", String(overrides.frame));
@@ -455,9 +500,16 @@ export function frameCountProbeUrl(state: State, action: number = state.action):
   // The alternative outfit is its own .act, so it can time a pose differently
   // from the normal body — part of the probe's identity, unlike the palettes.
   if (state.outfit != null) p.set("outfit", String(state.outfit));
-  const { headgear, garment } = gearViews(state);
+  const { headgear, garment, origins, headgearSprites, garmentSprites } = gearViews(state);
   if (headgear.length) p.set("headgear", headgear.join(","));
   if (garment != null) p.set("garment", String(garment));
+  // Part of the probe's identity: a foreign costume can be animated, and an
+  // unresolved one would silently time the pose as if nothing were worn.
+  if (origins.length) {
+    p.set("origin", origins.join(","));
+    if (headgearSprites.length) p.set("headgearSprite", headgearSprites.join(","));
+    if (garmentSprites.length) p.set("garmentSprite", garmentSprites.join(","));
+  }
   p.set("action", String(action * 8)); // bodyDir 0
   p.set("headdir", "0");
   p.set("canvas", "2x2+1+1");
@@ -489,18 +541,45 @@ export function itemIconUrl(id: number): string {
   return `${RAGASSETS_BASE}/icons/item/${id}.png`;
 }
 
+/** The inventory icon of a costume from another official server, keyed by its
+ *  sprite name.
+ *
+ *  `/icons/item/<id>.png` cannot answer this: its key is a LATAM item id, and
+ *  these costumes have none — their id here is synthetic (see
+ *  tools/sync-foreign-costumes.mjs). Query-shaped rather than a path because the
+ *  key is a client resource name, and those are Korean or Chinese far more often
+ *  than not (`_c7학년풍선`); ragassets' path routes only spell `[a-z0-9_]`.
+ *
+ *  The name goes through untouched — the gateway lowercases it and strips the
+ *  accessory tables' leading underscore itself. 637 of the 663 costumes have a
+ *  picture; the rest 404 on purpose, and CostumeIcon falls back to a render. */
+export function foreignIconUrl(sprite: string): string {
+  return `${RAGASSETS_BASE}/icons/costume?sprite=${encodeURIComponent(sprite)}`;
+}
+
 /** Fallback catalog thumbnail for the handful of costumes whose static item
  *  icon is missing from ragassets (404). Renders the item on the reference
  *  novice, head-framed like the hair thumbnails, so the tile still shows the
  *  costume instead of a blank square. */
-export function costumeThumbUrl(item: Pick<Costume, "view" | "slots" | "viewKind">): string {
+export function costumeThumbUrl(
+  item: Pick<Costume, "view" | "slots" | "viewKind" | "origin" | "sprite">,
+): string {
   const p = new URLSearchParams();
   p.set("job", "0");
   p.set("gender", "male");
   p.set("head", "1");
   p.set("action", "0");
   p.set("frame", "0");
-  if (item.view != null) p.set(viewKindOf(item), String(item.view));
+  const kind = viewKindOf(item);
+  if (item.view != null) p.set(kind, String(item.view));
+  // The thumbnail needs the same two things the full render does, for the same
+  // reason: a foreign view id resolves to nothing in this client, so without
+  // the origin and the name every tile in the grid would come back as the same
+  // bare character — which is exactly what the first run of this looked like.
+  if (item.origin && item.sprite && item.view != null) {
+    p.set("origin", item.origin);
+    p.set(kind === "garment" ? "garmentSprite" : "headgearSprite", `${item.view}:${item.sprite}`);
+  }
   p.set("canvas", "44x40+22+86");
   p.set("v", CACHE_BUST);
   return `${RAGASSETS_BASE}/image?${p.toString()}`;

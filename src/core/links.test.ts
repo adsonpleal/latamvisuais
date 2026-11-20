@@ -20,14 +20,22 @@ describe("marketUrl", () => {
 
 describe("divinePrideUrl", () => {
   it("slugifies the name after the id", () => {
-    expect(divinePrideUrl({ id: 100, name: "Chapéu A" })).toBe(
+    expect(divinePrideUrl(100, "Chapéu A")).toBe(
       "https://www.divine-pride.net/database/item/100/chapeu-a",
     );
   });
 
   it("drops the bracket tag's punctuation instead of leaving stray dashes", () => {
-    expect(divinePrideUrl({ id: 15858, name: "[Visual] Cartola Recheada" })).toBe(
+    expect(divinePrideUrl(15858, "[Visual] Cartola Recheada")).toBe(
       "https://www.divine-pride.net/database/item/15858/visual-cartola-recheada",
+    );
+  });
+
+  // A Japanese name slugifies to nothing. The id is what resolves the page, so
+  // an empty slug is a cosmetic loss and not a broken link.
+  it("still builds a link when the name leaves no slug at all", () => {
+    expect(divinePrideUrl(410312, "[衣装] クローバーのヘアピン")).toBe(
+      "https://www.divine-pride.net/database/item/410312/",
     );
   });
 });
