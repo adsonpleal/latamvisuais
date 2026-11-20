@@ -14,6 +14,17 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.19.0",
+    date: "2026-11-20",
+    changes: [
+      "O catálogo agora pode mostrar 517 visuais que existem em outros servidores oficiais do Ragnarok: iRO, jRO, kRO, kRO Zero, thRO, twRO e twRO Zero. Eles vêm desligados — para ver, abra os Filtros e marque \"Visuais de outros servidores\".",
+      "Dá para vestir e ver esses visuais no personagem, mas não dá para consegui-los jogando aqui. Por isso cada um deles mostra de qual servidor veio, e não tem busca no mercado: o mercado é do LATAM, que é justamente onde a peça não existe.",
+      "Com o filtro ligado aparecem botões por servidor, para ver só o que um deles tem. A maior parte (397 dos 517) está em mais de um servidor ao mesmo tempo, e nesse caso aparece em todos.",
+      "Os nomes saem em português ou inglês sempre que algum desses clientes nomeia a peça — 328 dos 517 já aparecem em inglês. E o número ao lado do nome é o número de verdade do item: tocar nele abre a página no Divine-Pride, e buscar por ele no campo de busca encontra o visual.",
+      "Correção: depois de uma atualização, o site podia continuar mostrando a versão anterior por até uma hora. Agora a versão nova aparece assim que a página é recarregada.",
+    ],
+  },
+  {
     version: "0.18.0",
     date: "2026-11-13",
     changes: [
