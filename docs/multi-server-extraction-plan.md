@@ -1042,6 +1042,12 @@ não serve para leitura seletiva. Dele saem, por Range:
   tailandês**, e os campos de sempre (`identifiedDisplayName`,
   `identifiedResourceName`, `slotCount`, `ClassNum`). O `identifiedResourceName`
   é a chave de junção que o resto do pipeline já usa.
+
+  > **Aquelas 31.204 não são nomes.** Quando o ragassets leu a tabela viva
+  > (2026-11-20), 18.843 dos 18.889 **nomes** saíram em ASCII puro e só 28
+  > traziam caractere tailandês. O cliente do thRO traduz as descrições e
+  > mantém os nomes em inglês — contar caractere tailandês no pool inteiro
+  > mistura os dois campos e dá a impressão oposta, que foi a que eu tive.
 - `RagnarokTH.ini` está **criptografado** (1.172 bytes ilegíveis). Não é por ali.
 - `patch.inf` = `1659`, a sequência que o cliente trazia; o índice vivo está em
   3.312.

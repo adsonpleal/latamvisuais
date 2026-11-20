@@ -655,26 +655,43 @@ A mesma peça é "Rhythm Hairband" no iRO, "リズムヘアバンド" no jRO e
 uma parede para quem não lê chinês. Então a escolha tem ordem, em
 `NAME_PRIORITY`:
 
-> pt-BR → inglês (iRO) → coreano (kRO, kRO Zero) → japonês (jRO) →
-> tailandês (thRO) → chinês tradicional (twRO, twRO Zero)
+> pt-BR → inglês (iRO, **thRO**) → coreano (kRO, kRO Zero) → japonês (jRO) →
+> chinês tradicional (twRO, twRO Zero)
 
 O chinês é **o último, não o recusado**: mesmo colocado no fim, ele ainda é o
 nome escolhido de **117 das 517** (90 twRO + 27 twRO Zero), porque é o único
 cliente que nomeia essas peças. Tirá-lo da ordem não as traduziria: devolveria
 117 nomes de arquivo — pior do que um nome que dá para colar num tradutor.
 
-O tailandês está na ordem mas ainda não nomeia nada: o thRO não é origem no
-catálogo publicado. Ele entrou aqui porque **é alcançável** — tem índice de
-patch no mesmo formato dos outros seis, `.gpf` v0x102, patcheado todo dia
-(medido 2026-11-19; a rota inteira está em `docs/multi-server-extraction-plan.md`
-§10). Enquanto o campo não vier, `pickName` pula a origem.
+**O thRO entrou como tailandês e acabou sendo inglês.** Ele foi posto entre o
+japonês e o chinês pela suposição óbvia sobre um serviço tailandês. Medido
+(ragassets, 2026-11-20): **18.843 dos 18.889 nomes de item são ASCII puro**, 28
+têm caractere tailandês (milho, limão, pesca de Ayothaya). O cliente tailandês
+traduz as *descrições* e mantém os *nomes* em inglês — o que também explica as
+31.204 constantes com caractere tailandês que o plano registra no
+`itemInfo_new.lub` (§10): são linhas de descrição, não nomes.
 
-**Inglês é o nome mais escasso, não o mais disponível.** A medição por cliente
-(ragassets, 2026-11-19) diz que, nas 663 extraídas, a ordem acima daria inglês
-em **99** linhas e japonês em **366**: a tabela de item do iRO tem 8.367 nomes e
-alcança só 99 das nossas peças, e não existe segunda fonte em inglês entre os
-seis clientes. A ordem é a pedida; o que não se sustenta é a expectativa de um
-catálogo em inglês.
+Como `NAME_PRIORITY` ordena **línguas e não servidores**, o thRO foi movido para
+junto do iRO — atrás dele, porque onde os dois nomeiam a mesma peça a palavra do
+iRO é a que esta região já lê. Ele ainda não nomeia nada aqui, porque o
+catálogo publicado ainda não traz a origem, e `pickName` pula origem que o
+catálogo não carrega. A numeração de view do thRO bate com a nossa em **100%**
+das 2.763 views de acessório e das 308 de capa — zero discordâncias, melhor que
+o jRO, que tem três.
+
+**O inglês era o nome mais escasso, e deixou de ser por causa do thRO.** A
+medição de 2026-11-19 dizia que, nas 663 extraídas, a ordem daria inglês em
+**99** linhas e japonês em **366** — a tabela do iRO tem 8.367 nomes e alcança
+só 99 das nossas peças. A conclusão que tiramos dali, "não existe segunda fonte
+em inglês", valia para **seis** clientes; o thRO é o sétimo e nomeia **234 que o
+iRO não nomeia**, levando o inglês de 99 para **333 das 663**.
+
+Sobra uma suspeita do lado do iRO, que ainda não é resposta: 277 das 517 têm
+arte do iRO e nenhum nome do iRO, e 8.367 nomes é pouco para uma tabela de
+cliente atual. O palpite — `itemInfo` do GRF base em vez da versão que os
+patches sobrepõem — está com a sessão do ragassets para ser confirmado ou
+descartado. Se for confirmado, some com parte dessas 277 sem mexer em nada
+daqui.
 
 **Isto está valendo desde 2026-11-19.** O `/raw/foreign-costumes.json` passou a
 publicar `names` por origem — 605 das 663 linhas trazem o objeto — e o

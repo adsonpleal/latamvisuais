@@ -123,13 +123,18 @@ describe("pickName", () => {
     expect(pickName({ names: { twro: names.twro } }).nameOrigin).toBe("twro");
   });
 
-  // Thai was asked for after the other four and sits where it was asked for:
-  // ahead of Chinese, behind Japanese. No published row carries it yet, which is
-  // exactly why the order is pinned by a test instead of by the data.
-  it("puts Thai ahead of Chinese and behind Japanese", () => {
-    const thro = "คอสตูม ริทึ่ม";
+  // thRO sat between Japanese and Chinese on the assumption that a Thai
+  // service ships Thai names. It does not: 18,843 of its 18,889 item names are
+  // ASCII, and for our costumes it gives English and no Thai at all. So it
+  // belongs in the English slot, behind iRO and ahead of everything else --
+  // this list orders languages, not servers. No published row carries `thro`
+  // yet, which is exactly why the order is pinned here rather than by the data.
+  it("treats thRO as an English source, behind iRO and ahead of the rest", () => {
+    const thro = "Rhythm Hairband (TH)";
+    expect(pickName({ names: { thro, jro: names.jro } }).nameOrigin).toBe("thro");
+    expect(pickName({ names: { thro, kro: names.kro } }).nameOrigin).toBe("thro");
     expect(pickName({ names: { thro, twro: names.twro } }).nameOrigin).toBe("thro");
-    expect(pickName({ names: { jro: names.jro, thro } }).nameOrigin).toBe("jro");
+    expect(pickName({ names: { iro: names.iro, thro } }).nameOrigin).toBe("iro");
   });
 
   it("prefers a pt-BR name to any of them", () => {

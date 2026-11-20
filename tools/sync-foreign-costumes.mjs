@@ -110,13 +110,23 @@ export function localizedSprites(items) {
  *  then Japanese. Traditional Chinese is last rather than refused -- it names
  *  more of this catalogue than every other client put together, and dropping it
  *  would turn hundreds of costumes back into sprite file names, which is worse
- *  than a name you have to paste into a translator. Thai sits where it was
- *  asked for, between Japanese and Chinese. It names nothing yet -- thRO is not
- *  an origin in the published catalogue -- but its client is reachable by the
- *  same patch index the other six use (docs/multi-server-extraction-plan.md
- *  §10), so this is a seat kept warm, not a dead entry: `pickName` skips an
- *  origin the catalogue does not carry. */
-export const NAME_PRIORITY = ["latam", "iro", "kro", "krozero", "jro", "thro", "twro", "twrozero"];
+ *  than a name you have to paste into a translator.
+ *
+ *  **thRO is in the English slot, not a Thai one.** It was put between Japanese
+ *  and Chinese when it was added, on the obvious assumption about a Thai
+ *  service. Measured (ragassets, 2026-11-20), 18,843 of its 18,889 item names
+ *  are plain ASCII and 28 carry Thai script at all: the Thai client ships
+ *  English names. For our 663 it gives 313 English names and no Thai, and 234
+ *  of those are costumes iRO does not name, which takes English coverage from
+ *  99 to 333. This list orders languages, not servers, so thRO belongs beside
+ *  iRO -- behind it, because where both name a costume the iRO wording is the
+ *  one this region already reads.
+ *
+ *  It names nothing until the published catalogue carries the origin, and
+ *  `pickName` skips an origin it does not carry, so the order is safe to hold
+ *  ahead of the data. Unlike ORIGIN_ORDER, this list is free to be reordered:
+ *  no id is derived from it. */
+export const NAME_PRIORITY = ["latam", "iro", "thro", "kro", "krozero", "jro", "twro", "twrozero"];
 
 /** The best name a costume has, and which client gave it.
  *
