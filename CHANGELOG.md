@@ -72,6 +72,10 @@ costume preview re-verified.
 
 ## [0.19.0] — 2026-11-20
 
+Suggested by PazzoLino, who asked for the other servers' costumes to be
+visible here. Credited in `src/changelog.ts` from 2026-11-22 — the release
+shipped without a credit line, which was an oversight and not a missing author.
+
 ### Added
 
 - **Costumes from the other official Gravity servers**, behind a filter that is

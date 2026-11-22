@@ -35,6 +35,7 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Os nomes saem em português ou inglês sempre que algum desses clientes nomeia a peça — 328 dos 517 já aparecem em inglês. E o número ao lado do nome é o número de verdade do item: tocar nele abre a página no Divine-Pride, e buscar por ele no campo de busca encontra o visual.",
       "Correção: depois de uma atualização, o site podia continuar mostrando a versão anterior por até uma hora. Agora a versão nova aparece assim que a página é recarregada.",
     ],
+    credit: "Obrigado a PazzoLino, que sugeriu mostrar os visuais dos outros servidores.",
   },
   {
     version: "0.18.0",
