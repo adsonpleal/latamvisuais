@@ -21,20 +21,34 @@ Base URL: `https://assets.latam-tools.com.br/raw`.
 It also reads two files that sit *next to* `/raw`, not inside it:
 `/effects/index.json` (the effect-only costumes — see the gotcha below) and
 `/effects/stones.json`, which says which effect bundle draws each graphic stone,
-and `/effects/footprints.json`, which does the same for the six "Pegadas" (two
+and `/effects/footprints.json`, which does the same for the "Pegadas" (two
 bundles plus the client's placement numbers, since those are stamped per footstep
 rather than played on the body).
-Both are **optional**: a stone with no entry still ships, just with no preview. 12 of the 29 have one today — the other 17 are built-in client effects,
+Both are **optional**: a stone with no entry still ships, just with no preview. 12 of the 31 have one today — the rest are built-in client effects,
 footprints, or (Ventania) an effect the client declares and never defines, and no
 amount of extraction will give them a bundle.
+
+`/effects/footprints.json` can also lag the item table — it did for the two
+Pegadas the 24/11/2026 client added — so `buildStones` reads the footprint
+*flag* off the stone's own `Pedra de Pegada:` name as well, and takes only the
+placement data from that index. 8 Pegadas today, 6 of them with a trail.
 
 ## The command order — do not reorder
 
 ```sh
 npm run sync:db                  # 1. rebuild public/db/{classes,hair,costumes,stones}.json
 node tools/verify-previews.mjs   # 2. prune costumes that render blank
-git diff --stat public/db        # 3. read the diff before committing
+npm run sync:foreign             # 3. rebuild public/db/foreign-costumes.json
+node tools/extract-pet-eggs.mjs  # 4. refresh the egg names in src/sim/pets.ts
+git diff --stat public/db        # 5. read the diff before committing
 ```
+
+**Step 3 belongs in every sync, not only when the other servers' catalogue
+moves.** `tools/sync-foreign-costumes.mjs` reads `/raw/items.json` too: a
+foreign costume whose sprite the LATAM client now ships under a *named* item is
+obtainable here, so it leaves the "outros servidores" list — which is the same
+upstream event that adds it to `costumes.json`. Skipping step 3 leaves the same
+costume in both lists, once as a LATAM row and once badged as another server's.
 
 **Step 2 is not optional.** `sync:db` writes every costume that has a view;
 `verify-previews.mjs` renders each one against the live server and deletes the
@@ -126,7 +140,7 @@ carries robe view 100, so it used to land in both lists and show up twice in the
 picker. If the effects index is unreachable the sync fails loudly rather than
 shipping a catalogue with duplicates.
 
-**Graphic stones are read out of item NAMES.** `stones.json` covers the 29
+**Graphic stones are read out of item NAMES.** `stones.json` covers the 31
 "Pedras Gráficas" — the enchants that go *inside* a costume rather than in a
 slot. They carry no `equipSlots`, no view and no `costume` flag, so the only
 statement of which position each one goes in is the suffix on its own name
@@ -135,7 +149,7 @@ enchant stones that share that suffix takes two signals — the
 "Pedra Gráfica:"/"Pedra de Pegada:" prefix *and* the description's
 graphic-effect note — because neither covers the whole set (see `buildStones`).
 If a game update renames them, the count drops silently: check the
-`stones.json — N graphic stones` line the sync prints, and expect 29 until
+`stones.json — N graphic stones` line the sync prints, and expect 31 until
 Gravity ships a new one.
 
 **`npm run sync:db -- --input …`** — the `--` matters, otherwise npm eats the
