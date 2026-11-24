@@ -4,6 +4,72 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.19.1] — 2026-11-23
+
+Data refresh: `public/db` rebuilt from ragassets' current client tables (the
+pt-BR `/raw` wave published 2026-11-24 01:42 UTC, plus the
+`/raw/foreign-costumes.json` re-extraction of 2026-11-23 23:41 UTC) and every
+costume preview re-verified.
+
+### Added
+
+- **17 costumes**, all of them rows the client had no pt-BR name for at the
+  previous sync: 15904 Mitra da Guardiã, 31309 Chapéu da Banda Fantasma, 31433
+  Auréola Benevolente, 400232 Homem de Neve, 400280 Mini-Nabi IA and 400633
+  Chapéu Multiclasse Azul (Topo); 410145-410149 the five Mini (Agnes, Debris,
+  Elena, Elumina, Eisen) and 410556 Pinguim-Imperador (Meio); 31566 Estola das
+  Divindades and 31625 Patrono Celeste (Baixo); 20503 Sacola Roubada do
+  Antonio, 480204 Sino Espalhafatoso Azul and 480810 Magnus Dominus (Capa).
+  Candidates from the item table went 1274 → 1291, `verify-previews` dropped
+  the same 13 blank renders as the last two rounds, and the catalogue ships
+  1261 → **1278**.
+- **Two graphic stones**, 29 → **31**: 1002286 Pedra de Pegada: ROStars and
+  1002623 Pedra de Pegada: Estrela Azul, both Capa. Neither has a bundle in
+  `/effects/footprints.json` yet, so both ship flagged as footprints with no
+  trail.
+
+### Changed
+
+- **Seven costume renames**, every one of them a real client rename measured
+  against the table the 10/11 sync read: 19598 Elmo do Rei do Norte → Lobo
+  Vagante Elmo, 19990 Gorro de Coelho de Inverno → `[Visual]` Gorro de Eclipse,
+  31189 Capa Vermelha de Gatinho → `[Visual]` Sobrepeliz Felina Vermelha,
+  410236 Castiçal de Pajem → `[Visual]` Castiçal Floral, 480055 Asas
+  Encantadas de Rudra → `[Visual]` Asas Esvoaçantes de Rudra, 480247 `[Visual]`
+  Mochila Gigante de Angeling → `[Visual]` Angeling Gigante, and 480393 Brilho
+  da Lua Minguante, which only gained the `[Visual]` prefix. Ids, views and
+  slots are untouched, so saved characters and shared links are unaffected.
+- **400325 `[Visual]` Elmo do Rei do Norte is Topo only**, where the 10/11
+  table said Topo *and* Meio. The slot list is upstream's, parsed out of the
+  item description.
+- **Foreign costumes 517 → 514.** Three left the "outros servidores" list
+  because the LATAM client now names their sprite, which is the same event that
+  added them to the main catalogue: `_chic_peony` (400633 Chapéu Multiclasse
+  Azul), `_c_emperor_penguin` (410556 Pinguim-Imperador) and `magnus_dominus`
+  (480810 Magnus Dominus). Upstream's own re-extraction also moved **47** rows
+  to a different slot — 31 were listed as Topo and 16 as Meio, and they come
+  back as 33 Baixo, 13 Meio and 1 Capa, almost all of them wigs and mufflers —
+  and widened `origins` on 6, four of them gaining kRO Zero and two iRO.
+- `tools/sync-db.mjs` reads the footprint flag off the stone's own name
+  (`Pedra de Pegada:`) as well as out of `/effects/footprints.json`. The index
+  can lag a client patch — it did for both new stones — and a Pegada with
+  neither flag nor bundle used to read in the UI as an effect the game keeps in
+  its own code that nothing can ever draw, instead of one still waiting on an
+  extraction. The placement data still comes from upstream alone.
+
+### Unchanged
+
+- `classes.json` (85), `hair.json` (42+42 human, 10+10 doram) and the 107 pet
+  egg names came back byte-identical. No costume was removed.
+- The two upstream regressions in this publish — 61 `jobs.json` names blanked
+  to `null`, and 15 `status.json` rows returning the literal `%s` — do not
+  reach this repo: it reads neither table.
+- The locale tables (`items_en.json` / `items_es.json`) are still not adopted.
+  `src/i18n.ts` has no locale parameter and `costumes.json` stores one `name`
+  per costume, so serving English or Spanish names needs a locale switch, a
+  per-locale name field and a change to the hat-effect merge in
+  `src/core/db.ts`. That is a feature, not a data refresh.
+
 ## [0.19.0] — 2026-11-20
 
 ### Added

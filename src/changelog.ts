@@ -14,6 +14,18 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.19.1",
+    date: "2026-11-23",
+    changes: [
+      "O catálogo ganhou 17 visuais novos da última atualização do jogo: seis de Topo (Mitra da Guardiã, Chapéu da Banda Fantasma, Auréola Benevolente, Homem de Neve, Mini-Nabi IA e Chapéu Multiclasse Azul), seis de Meio (Pinguim-Imperador e os cinco Mini — Agnes, Debris, Elena, Elumina e Eisen), dois de Baixo (Estola das Divindades e Patrono Celeste) e três de Capa (Sacola Roubada do Antonio, Sino Espalhafatoso Azul e Magnus Dominus).",
+      "Sete visuais apareceram com o nome que o jogo usa hoje: Gorro de Coelho de Inverno agora é Gorro de Eclipse, Elmo do Rei do Norte é Lobo Vagante Elmo, Capa Vermelha de Gatinho é Sobrepeliz Felina Vermelha, Castiçal de Pajem é Castiçal Floral, Asas Encantadas de Rudra é Asas Esvoaçantes de Rudra, Mochila Gigante de Angeling é Angeling Gigante, e Brilho da Lua Minguante ganhou o \"[Visual]\" na frente. É só o nome: o visual continua o mesmo, e seus personagens salvos e links compartilhados não mudam.",
+      "O [Visual] Elmo do Rei do Norte agora ocupa só o Topo — o jogo passou a dizer Topo, e não mais Topo e Meio como no mês passado.",
+      "Duas Pedras Gráficas novas, as Pedras de Pegada ROStars e Estrela Azul, as duas de Capa. Como as outras pegadas, elas aparecem no chão enquanto o personagem anda; o desenho das duas ainda não foi extraído do jogo, então por enquanto não dá para mostrar.",
+      "Três visuais que estavam na lista de outros servidores agora existem aqui e passaram para o catálogo normal: Chapéu Multiclasse Azul, Pinguim-Imperador e Magnus Dominus. E 47 visuais de outros servidores foram para a posição certa — quase todos cabelos e echarpes que estavam listados como Topo e são de Baixo.",
+      "Nenhum visual saiu do catálogo. Classes, cabelos e os nomes dos ovos de pet seguem iguais.",
+    ],
+  },
+  {
     version: "0.19.0",
     date: "2026-11-20",
     changes: [

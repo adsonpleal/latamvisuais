@@ -416,6 +416,8 @@ const STONE_SLOT = { topo: "top", meio: "mid", baixo: "low", capa: "garment" };
 const STONE_SUFFIX = /\((Topo|Meio|Baixo|Capa)\)?\s*$/i;
 const STONE_PREFIX = /^Pedra (Gr[áa]fica|de Pegada)\s*:/i;
 const STONE_NOTE = /(desligado|desativado) com \/effect|para aplicar este efeito/i;
+// The half of STONE_PREFIX that only the footprints carry — see buildStones.
+const FOOTPRINT_PREFIX = /^Pedra de Pegada\s*:/i;
 
 /** `effects` maps a stone id to the ragassets effect-bundle key that draws it
  *  (see loadStoneEffects). A stone with no entry ships without one and is marked
@@ -440,11 +442,19 @@ export function buildStones(rawItems, effects = new Map(), footprints = new Map(
     // know a stone IS a footprint well before it has bundles for it, and the two
     // states read differently in the UI ("appears when you walk" vs "nothing can
     // draw this").
+    //
+    // The flag is NOT taken from /effects/footprints.json alone, because that
+    // index can lag the item table: the 24/11/2026 client shipped 1002286
+    // (ROStars) and 1002623 (Estrela Azul) with no row there, and a stone with
+    // neither flag nor bundle reads in the UI as "the game draws this in its own
+    // code, nothing can ever show it" — the wrong one of the two no-preview
+    // reasons for a Pegada that is only waiting on an extraction. The client's
+    // own name is a sufficient signal and is already parsed above, so the
+    // "Pedra de Pegada:" prefix sets the flag too; upstream remains the only
+    // source for the placement data, which is the part a name cannot carry.
     const fp = footprints.get(it.id);
-    if (fp) {
-      stone.footprint = true;
-      if (fp.steps) stone.steps = fp.steps;
-    }
+    if (fp || FOOTPRINT_PREFIX.test(name)) stone.footprint = true;
+    if (fp?.steps) stone.steps = fp.steps;
     const builtin = BUILTIN_EFFECT[it.id];
     if (builtin) stone.builtin = builtin;
     out.push(stone);
