@@ -12,7 +12,7 @@ export function CostumeIcon({ item, className }: { item: Costume | Stone; classN
   // than by id: its id here is synthetic (this app assigns it — see
   // tools/sync-foreign-costumes.mjs), because the real one belongs to another
   // server's item table, so /icons/item/<id>.png is a guaranteed 404 for all
-  // 517 of them. ragassets serves these under /icons/costume?sprite= instead,
+  // 514 of them. ragassets serves these under /icons/costume?sprite= instead,
   // and has a picture for 637 of the 663 it extracted; the rest fall through to
   // the render below, which is where every one of them used to start.
   const foreign = "origin" in item && item.origin ? item : null;

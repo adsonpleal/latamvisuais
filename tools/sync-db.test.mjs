@@ -341,6 +341,18 @@ describe("buildStones — footprints", () => {
     const stones = buildStones(rawItems, new Map(), new Map([[1001907, { steps: trail }]]));
     expect(stones.find((s) => s.id === 25058)).not.toHaveProperty("footprint");
   });
+
+  it("reads the flag off the name when the footprints index hasn't caught up", () => {
+    // /effects/footprints.json can lag the item table: two Pegadas arrived in
+    // the 24/11/2026 client with no row there. Without the flag they read as
+    // effects the game keeps in its own code — the wrong explanation for a
+    // footprint that is only waiting on an extraction.
+    const stones = buildStones(rawItems, new Map(), new Map());
+    const stone = stones.find((s) => s.id === 1001907);
+    expect(stone.footprint).toBe(true);
+    expect(stone).not.toHaveProperty("steps");
+    expect(stones.find((s) => s.id === 25058)).not.toHaveProperty("footprint");
+  });
 });
 
 describe("buildStones — built-in effects", () => {

@@ -54,7 +54,7 @@ export type Costume = {
    *  renders it from -- whichever client the extraction found it cheapest to
    *  pull from. A costume twRO and iRO both ship belongs behind both chips,
    *  and before this existed the filter showed it under one and hid it from
-   *  the other. Absent on the 505 costumes only one server has; read it
+   *  the other. Absent on the 118 costumes only one server has; read it
    *  through `originsOf`, never directly. */
   origins?: string[];
   /** The costume's real item id in the clients' own tables -- the number the
@@ -62,7 +62,7 @@ export type Costume = {
    *  app's own invention for a foreign row (tools/sync-foreign-costumes.mjs)
    *  and means nothing to anyone outside it.
    *
-   *  Present alongside `origin` on 490 of the 517, chosen by the sync tool
+   *  Present alongside `origin` on 487 of the 514, chosen by the sync tool
    *  when the clients disagree. Absent on the 27 no client gives an id for,
    *  and those rows print no id at all rather than ours. Read it through
    *  `realItemId`, never directly, and never as the row's identity: equipping,

@@ -1,14 +1,14 @@
 {
  "version": 1,
- "generatedAt": "2026-11-20",
+ "generatedAt": "2026-11-23",
  "counts": {
   "iro": 306,
-  "twro": 286,
+  "krozero": 150,
+  "twro": 284,
   "twrozero": 109,
-  "kro": 188,
-  "jro": 387,
-  "krozero": 148,
-  "thro": 164
+  "kro": 187,
+  "jro": 384,
+  "thro": 162
  },
  "items": [
   {
@@ -33,6 +33,10 @@
    ],
    "viewKind": "headgear",
    "origin": "twro",
+   "origins": [
+    "krozero",
+    "twro"
+   ],
    "sprite": "_2019rtc_celeaura_tw",
    "nameOrigin": "twro",
    "itemId": 31768
@@ -1634,6 +1638,11 @@
    ],
    "viewKind": "headgear",
    "origin": "jro",
+   "origins": [
+    "iro",
+    "jro",
+    "krozero"
+   ],
    "sprite": "_20th_scarf_j",
    "nameOrigin": "jro",
    "itemId": 420205
@@ -2461,6 +2470,7 @@
     "iro",
     "jro",
     "kro",
+    "krozero",
     "thro",
     "twro"
    ],
@@ -2552,7 +2562,7 @@
    "name": "Costume Airy Two Side Up (White)",
    "view": 2028,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -2609,7 +2619,7 @@
    "name": "Costume Angler Dream",
    "view": 2868,
    "slots": [
-    "top"
+    "mid"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -2743,7 +2753,7 @@
    "name": "Costume Azure Flame Muffler",
    "view": 2752,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -2781,7 +2791,7 @@
    "name": "Costume Baby Seal",
    "view": 2653,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -2934,7 +2944,7 @@
    "name": "Costume Blinking White Sand Eyes",
    "view": 2649,
    "slots": [
-    "top"
+    "mid"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -3298,7 +3308,7 @@
    "name": "Costume Carabao",
    "view": 2557,
    "slots": [
-    "top"
+    "mid"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -3333,7 +3343,7 @@
    "name": "Costume Cat Mask",
    "view": 1934,
    "slots": [
-    "top"
+    "mid"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -3408,7 +3418,7 @@
    "name": "Costume Charisma Extension Twin",
    "view": 2567,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "kro",
@@ -3441,32 +3451,11 @@
    "itemId": 400898
   },
   {
-   "id": 10302380,
-   "name": "Costume Chic Peony",
-   "view": 2380,
-   "slots": [
-    "top"
-   ],
-   "viewKind": "headgear",
-   "origin": "krozero",
-   "origins": [
-    "iro",
-    "jro",
-    "kro",
-    "krozero",
-    "thro",
-    "twro"
-   ],
-   "sprite": "_chic_peony",
-   "nameOrigin": "iro",
-   "itemId": 400633
-  },
-  {
    "id": 10001854,
    "name": "Costume Chignon (Black)",
    "view": 1854,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -3485,7 +3474,7 @@
    "name": "Costume Chignon (Blonde)",
    "view": 1852,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -3504,7 +3493,7 @@
    "name": "Costume Chignon (Blue)",
    "view": 1850,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -3523,7 +3512,7 @@
    "name": "Costume Chignon (Brown)",
    "view": 1856,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -3542,7 +3531,7 @@
    "name": "Costume Chignon (Green)",
    "view": 1853,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -3561,7 +3550,7 @@
    "name": "Costume Chignon (Purple)",
    "view": 1857,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -3580,7 +3569,7 @@
    "name": "Costume Chignon (Red)",
    "view": 1851,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -3599,7 +3588,7 @@
    "name": "Costume Chignon (White)",
    "view": 1855,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -3916,7 +3905,7 @@
    "name": "Costume Elegant Wave",
    "view": 2011,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "twro",
@@ -3929,26 +3918,6 @@
    "sprite": "_c_elegant_wave",
    "nameOrigin": "iro",
    "itemId": 31944
-  },
-  {
-   "id": 10002790,
-   "name": "Costume Emperor Penguin",
-   "view": 2790,
-   "slots": [
-    "mid"
-   ],
-   "viewKind": "headgear",
-   "origin": "iro",
-   "origins": [
-    "iro",
-    "jro",
-    "krozero",
-    "thro",
-    "twro"
-   ],
-   "sprite": "_c_emperor_penguin",
-   "nameOrigin": "iro",
-   "itemId": 410556
   },
   {
    "id": 10001002,
@@ -4015,7 +3984,7 @@
    "name": "Costume Eye Mask",
    "view": 2524,
    "slots": [
-    "top"
+    "mid"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -4193,7 +4162,7 @@
    "name": "Costume Fluffy Semi Long",
    "view": 1874,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -4328,7 +4297,7 @@
    "name": "Costume Gear Monocle",
    "view": 2736,
    "slots": [
-    "top"
+    "mid"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -4635,7 +4604,7 @@
    "name": "Costume Holy Knight Pauldron",
    "view": 2715,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -4768,7 +4737,7 @@
    "name": "Costume Jade Dragon Aura",
    "view": 2539,
    "slots": [
-    "top"
+    "mid"
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
@@ -5001,7 +4970,7 @@
    "name": "Costume Low Pony (Black)",
    "view": 1617,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -5020,7 +4989,7 @@
    "name": "Costume Low Pony (Blue)",
    "view": 1613,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -5039,7 +5008,7 @@
    "name": "Costume Low Pony (Brown)",
    "view": 1619,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -5058,7 +5027,7 @@
    "name": "Costume Low Pony (Green)",
    "view": 1616,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -5077,7 +5046,7 @@
    "name": "Costume Low Pony (Purple)",
    "view": 1620,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -5096,7 +5065,7 @@
    "name": "Costume Low Pony (Red)",
    "view": 1614,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -5115,7 +5084,7 @@
    "name": "Costume Low Pony (White)",
    "view": 1618,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -5134,7 +5103,7 @@
    "name": "Costume Low Pony (Yellow)",
    "view": 1615,
    "slots": [
-    "mid"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -5168,23 +5137,6 @@
    "itemId": 480632
   },
   {
-   "id": 10050307,
-   "name": "Costume Magnus Dominus",
-   "view": 307,
-   "slots": [
-    "garment"
-   ],
-   "viewKind": "garment",
-   "origin": "iro",
-   "origins": [
-    "iro",
-    "jro"
-   ],
-   "sprite": "magnus_dominus",
-   "nameOrigin": "iro",
-   "itemId": 480810
-  },
-  {
    "id": 10002656,
    "name": "Costume Maid Frill",
    "view": 2656,
@@ -5209,7 +5161,7 @@
    "name": "Costume Majestic Fox",
    "view": 2742,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "krozero",
@@ -5341,7 +5293,7 @@
    "name": "Costume Midgard Integrity",
    "view": 2750,
    "slots": [
-    "top"
+    "mid"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -5359,7 +5311,7 @@
    "name": "Costume Mini Domovoi",
    "view": 2172,
    "slots": [
-    "top"
+    "mid"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -5376,7 +5328,7 @@
    "name": "Costume Mischievous Princess Wig",
    "view": 2824,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "krozero",
@@ -5475,7 +5427,7 @@
    "name": "Costume Oriental Black and Blue Wig",
    "view": 2661,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -5546,12 +5498,13 @@
    "name": "Costume Phigasia Scarf",
    "view": 2079,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
    "origins": [
     "iro",
+    "krozero",
     "thro"
    ],
    "sprite": "_c_phigasia_scarf_exe",
@@ -5791,7 +5744,7 @@
    "name": "Costume Rabbit Two Sides Up",
    "view": 1927,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -5940,7 +5893,7 @@
    "name": "Costume Red Aura Dragon",
    "view": 2540,
    "slots": [
-    "top"
+    "mid"
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
@@ -6054,7 +6007,7 @@
    "name": "Costume Rigel Hair",
    "view": 2666,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -6243,7 +6196,7 @@
    "name": "Costume Rose Wave (Silver Blue)",
    "view": 2454,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "jro",
@@ -6334,7 +6287,7 @@
    "name": "Costume Seyren Hair",
    "view": 2815,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -6779,6 +6732,7 @@
    "viewKind": "garment",
    "origin": "krozero",
    "origins": [
+    "iro",
     "kro",
     "krozero",
     "thro"
@@ -7327,7 +7281,7 @@
    "name": "Costume Whisper Candy Pouch",
    "view": 2579,
    "slots": [
-    "top"
+    "garment"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -7560,7 +7514,7 @@
    "name": "Costume Wishing Tree Hat",
    "view": 1270,
    "slots": [
-    "top"
+    "mid"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -7691,11 +7645,12 @@
    "name": "Costume Yellow Aura Dragon",
    "view": 2541,
    "slots": [
-    "top"
+    "mid"
    ],
    "viewKind": "headgear",
    "origin": "twrozero",
    "origins": [
+    "iro",
     "thro",
     "twrozero"
    ],
@@ -7912,7 +7867,7 @@
    "name": "Dragon Knight Eye Patch",
    "view": 1227,
    "slots": [
-    "top"
+    "mid"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -8294,7 +8249,7 @@
    "name": "Portable Support System",
    "view": 2414,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
@@ -8407,7 +8362,7 @@
    "name": "Sacred Lapel",
    "view": 2337,
    "slots": [
-    "top"
+    "low"
    ],
    "viewKind": "headgear",
    "origin": "iro",
