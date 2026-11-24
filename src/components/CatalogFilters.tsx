@@ -262,7 +262,11 @@ export function CatalogFilters({
                         <Chip
                           key={o}
                           label={name}
-                          tip={t.foreignOnlyServerTip(name)}
+                          // Every chip but one asks "what does that server have
+                          // that we don't". The `latam` chip asks the opposite
+                          // — what do we have and never gave out — so the
+                          // other sentence would read as nonsense on it.
+                          tip={o === "latam" ? t.foreignUnreleasedTip : t.foreignOnlyServerTip(name)}
                           active={originFilter === o}
                           onClick={() => onOriginFilterChange(originFilter === o ? null : o)}
                         />

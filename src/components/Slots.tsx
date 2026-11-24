@@ -16,7 +16,7 @@ import {
   type Slot,
   type Stone,
 } from "../core/db";
-import { t } from "../i18n";
+import { originsTip, t } from "../i18n";
 import { useAppState, useDispatch } from "../state/AppStateContext";
 import { CostumeIcon } from "./CostumeIcon";
 import { ClearX } from "./icons";
@@ -121,7 +121,7 @@ function wornTip(item: Costume | Stone): string {
   const head = realId === null ? item.name : `${item.name} (${realId})`;
   const servers = originsOf(item);
   if (!servers.length) return head;
-  return `${head} — ${t.foreignBadgeTip(servers.map((o) => t.foreignServerNames[o] ?? o))}`;
+  return `${head} — ${originsTip(servers)}`;
 }
 
 /**

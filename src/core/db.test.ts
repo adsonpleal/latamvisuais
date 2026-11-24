@@ -6,7 +6,9 @@ import {
   builtinInFront,
   builtinRisePx,
   hatSprite,
+  isUnreleasedHere,
   loadDb,
+  originsOf,
   realItemId,
   withHatEffects,
   type Costume,
@@ -257,5 +259,46 @@ describe("realItemId", () => {
   // search for an item that does not exist, and linking it is a 404.
   it("gives nothing for a foreign costume no client carries an id for", () => {
     expect(realItemId({ id: 10_101_871, origin: "jro" })).toBeNull();
+  });
+
+  // A visual this client never released has a synthetic id just the same, and
+  // it is the one row shape with no `origin` to recognize it by. Reading
+  // `origin` alone would print "#10600920" as though it were an item number —
+  // the exact lie this function exists to stop — for about 800 rows.
+  it("uses the client's id for a never-released visual, never ours", () => {
+    expect(realItemId({ id: 10_600_920, itemId: 5310, origins: ["latam", "iro"] })).toBe(5310);
+  });
+
+  it("gives nothing for a never-released visual no client numbers", () => {
+    expect(realItemId({ id: 10_600_930, origins: ["latam"] })).toBeNull();
+  });
+});
+
+describe("originsOf", () => {
+  it("reads origins when the row carries it, with or without an origin", () => {
+    expect(originsOf({ id: 1, name: "a", slots: [], origins: ["latam", "iro"] })).toEqual([
+      "latam",
+      "iro",
+    ]);
+  });
+
+  it("falls back to the single origin, for catalogues built before origins was always written", () => {
+    expect(originsOf({ id: 1, name: "a", slots: [], origin: "jro" })).toEqual(["jro"]);
+  });
+
+  it("answers nothing for a costume anybody here can buy", () => {
+    expect(originsOf({ id: 15858, name: "a", slots: [] })).toEqual([]);
+  });
+});
+
+describe("isUnreleasedHere", () => {
+  it("is true when this client has the art and never gave it out", () => {
+    expect(isUnreleasedHere({ id: 1, name: "a", slots: [], origins: ["latam", "iro"] })).toBe(true);
+  });
+
+  it("is false for another server's costume, whose art we do not have", () => {
+    expect(isUnreleasedHere({ id: 1, name: "a", slots: [], origin: "iro", origins: ["iro"] })).toBe(
+      false,
+    );
   });
 });

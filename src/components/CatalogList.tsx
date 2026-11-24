@@ -16,7 +16,7 @@ import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from 
 import { canPreview, originsOf, realItemId, type Costume, type Stone } from "../core/db";
 import { divinePrideUrl, marketUrl } from "../core/links";
 import { useServer } from "../core/server";
-import { t } from "../i18n";
+import { originsTip, t } from "../i18n";
 import { CostumeIcon } from "./CostumeIcon";
 import { Cart } from "./icons";
 
@@ -194,7 +194,7 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
                 aria-pressed={equipped}
                 aria-label={
                   names.length
-                    ? `${item.name}${realId ? ` (#${realId})` : ""} — ${t.foreignBadgeTip(names)}`
+                    ? `${item.name}${realId ? ` (#${realId})` : ""} — ${originsTip(servers)}`
                     : `${item.name} (#${item.id})`
                 }
                 onClick={(e) => onPick(item, e.currentTarget)}
@@ -231,7 +231,7 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
                       ? `${t.stoneLabel}${stoneNote(item)}`
                       : item.slots.map((s) => t.slotNames[s]).join(" + "))}
                   {names.map((name) => (
-                    <span key={name} className="catalog-origin" data-tip={t.foreignBadgeTip(names)}>
+                    <span key={name} className="catalog-origin" data-tip={originsTip(servers)}>
                       {name}
                     </span>
                   ))}

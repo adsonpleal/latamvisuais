@@ -113,7 +113,7 @@ describe("Catalog", () => {
       expect(tile("Chapéu A (#100)")).toBeVisible();
 
       await openFilters(user);
-      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      await user.click(screen.getByRole("checkbox", { name: /não dá para conseguir/i }));
 
       expect(foreignTile(/Chapéu Estrangeiro/)).toBeVisible();
       expect(foreignTile(/Capa Estrangeira/)).toBeVisible();
@@ -126,9 +126,9 @@ describe("Catalog", () => {
       renderCatalog();
 
       await openFilters(user);
-      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      await user.click(screen.getByRole("checkbox", { name: /não dá para conseguir/i }));
       await user.click(
-        within(screen.getByRole("group", { name: "Outros servidores" })).getByRole("button", {
+        within(screen.getByRole("group", { name: "Fora do catálogo" })).getByRole("button", {
           name: "twRO",
         }),
       );
@@ -154,8 +154,8 @@ describe("Catalog", () => {
       renderCatalog();
 
       await openFilters(user);
-      const servers = () => within(screen.getByRole("group", { name: "Outros servidores" }));
-      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      const servers = () => within(screen.getByRole("group", { name: "Fora do catálogo" }));
+      await user.click(screen.getByRole("checkbox", { name: /não dá para conseguir/i }));
 
       // The checkbox on its own is still additive: both catalogues, together.
       expect(tile("Chapéu A (#100)")).toBeVisible();
@@ -180,11 +180,11 @@ describe("Catalog", () => {
       renderCatalog();
 
       await openFilters(user);
-      expect(screen.queryByRole("group", { name: "Outros servidores" })).not.toBeInTheDocument();
+      expect(screen.queryByRole("group", { name: "Fora do catálogo" })).not.toBeInTheDocument();
 
-      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      await user.click(screen.getByRole("checkbox", { name: /não dá para conseguir/i }));
       expect(
-        within(screen.getByRole("group", { name: "Outros servidores" })).getByRole("button", {
+        within(screen.getByRole("group", { name: "Fora do catálogo" })).getByRole("button", {
           name: "iRO",
         }),
       ).toBeVisible();
@@ -195,8 +195,8 @@ describe("Catalog", () => {
       renderCatalog();
 
       await openFilters(user);
-      const box = () => screen.getByRole("checkbox", { name: /outros servidores/i });
-      const servers = () => within(screen.getByRole("group", { name: "Outros servidores" }));
+      const box = () => screen.getByRole("checkbox", { name: /não dá para conseguir/i });
+      const servers = () => within(screen.getByRole("group", { name: "Fora do catálogo" }));
       await user.click(box());
       await user.click(servers().getByRole("button", { name: "twRO" }));
       expect(tile("Chapéu A (#100)")).not.toBeVisible();
@@ -217,12 +217,69 @@ describe("Catalog", () => {
       expect(foreignTile(/Capa Estrangeira/)).toBeVisible();
     });
 
+    // The ~800 rows whose art already ships with this game. They were being
+    // thrown away by the sync tool for not being "another server's visuals",
+    // which read this filter as being about servers when it is about what a
+    // player can get. They sit behind the same box, and everything that says
+    // "não existe no Ragnarok LATAM" has to stop saying it about them.
+    it("shows the visuals this client has and never released, under their own chip", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      // Not obtainable, so not in the default view either.
+      expect(foreignTile(/Chapéu Nunca Lançado/)).not.toBeVisible();
+
+      await openFilters(user);
+      await user.click(screen.getByRole("checkbox", { name: /não dá para conseguir/i }));
+      expect(foreignTile(/Chapéu Nunca Lançado/)).toBeVisible();
+
+      const group = () => screen.getByRole("group", { name: "Fora do catálogo" });
+      // Its chip is first, and reads as what it selects rather than as this
+      // server's name: "LATAM" among chips that each mean "what they have and
+      // we don't" would read as the catalogue itself.
+      const chips = within(group())
+        .getAllByRole("button")
+        .map((b) => b.textContent);
+      expect(chips.slice(0, 2)).toEqual(["Todos", "Não lançado"]);
+
+      await user.click(within(group()).getByRole("button", { name: "Não lançado" }));
+      expect(foreignTile(/Chapéu Nunca Lançado/)).toBeVisible();
+      expect(foreignTile(/_brazilian_only_hat/)).toBeVisible();
+      // ...and only those: a genuine foreign costume is not in this answer.
+      expect(foreignTile(/Chapéu Estrangeiro/)).not.toBeVisible();
+      expect(tile("Chapéu A (#100)")).not.toBeVisible();
+    });
+
+    it("says the art is already here, not that the visual does not exist", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await openFilters(user);
+      await user.click(screen.getByRole("checkbox", { name: /não dá para conseguir/i }));
+
+      // The badge leads with this, because "iRO" on a hat whose sprite ships
+      // in this very client is the wrong headline.
+      const t = foreignTile(/Chapéu Nunca Lançado/);
+      expect(within(t).getByText("Não lançado")).toBeInTheDocument();
+      expect(t).toHaveAccessibleName(/já está no cliente do Ragnarok LATAM e nunca foi lançado/);
+      // The old sentence would have been false here: the art does exist.
+      expect(t).not.toHaveAccessibleName(/Não existe no Ragnarok LATAM/);
+      // And it still says who did release it, which is where the look is from.
+      expect(t).toHaveAccessibleName(/iRO lançou/);
+
+      // For the 17 that are ours alone there is nobody to name, and the
+      // sentence has to not trail off into an empty list.
+      expect(foreignTile(/_brazilian_only_hat/)).toHaveAccessibleName(
+        /não existe em nenhum outro servidor/,
+      );
+    });
+
     it("asks for the inventory icon by sprite name, not by its synthetic id", async () => {
       const user = userEvent.setup();
       renderCatalog();
 
       await openFilters(user);
-      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      await user.click(screen.getByRole("checkbox", { name: /não dá para conseguir/i }));
 
       // The id on these rows is this app's own invention — the real one belongs
       // to another server's item table — so /icons/item/<id>.png could only
@@ -232,6 +289,15 @@ describe("Catalog", () => {
       expect(foreignIcon).toHaveAttribute("src", expect.stringContaining("/icons/costume?"));
       expect(foreignIcon?.getAttribute("src")).toContain("sprite=_foreign_hat");
       expect(foreignIcon?.getAttribute("src")).not.toContain("/icons/item/");
+
+      // A never-released visual is asked the same way, and this is the one
+      // that used to go wrong: it has no `origin`, so the icon fell back to
+      // /icons/item/<synthetic id>.png — a guaranteed 404, then a rendered
+      // thumbnail, for every one of ~800 rows. The picture store is keyed by
+      // sprite with no origin dimension at all, so the same route answers it.
+      const localIcon = foreignTile(/Chapéu Nunca Lançado/).querySelector("img");
+      expect(localIcon?.getAttribute("src")).toContain("sprite=_unreleased_hat");
+      expect(localIcon?.getAttribute("src")).not.toContain("/icons/item/");
 
       // And a LATAM costume keeps the id route it has always used: the foreign
       // ones are the exception here, not a new rule for everything.
@@ -246,9 +312,9 @@ describe("Catalog", () => {
       renderCatalog();
 
       await openFilters(user);
-      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      await user.click(screen.getByRole("checkbox", { name: /não dá para conseguir/i }));
       const chip = (name: string) =>
-        within(screen.getByRole("group", { name: "Outros servidores" })).getByRole("button", {
+        within(screen.getByRole("group", { name: "Fora do catálogo" })).getByRole("button", {
           name,
         });
 
@@ -281,7 +347,7 @@ describe("Catalog", () => {
       renderCatalog();
 
       await openFilters(user);
-      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      await user.click(screen.getByRole("checkbox", { name: /não dá para conseguir/i }));
       await user.click(screen.getByRole("button", { name: "Lista" }));
       // Only the rows near the viewport mount, and jsdom lays nothing out.
       await user.type(screen.getByRole("searchbox"), "Estrangeiro");
@@ -311,7 +377,7 @@ describe("Catalog", () => {
       renderCatalog();
 
       await openFilters(user);
-      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      await user.click(screen.getByRole("checkbox", { name: /não dá para conseguir/i }));
 
       await user.type(screen.getByRole("searchbox"), "20123");
       expect(foreignTile(/Chapéu Estrangeiro/)).toBeVisible();
@@ -327,7 +393,7 @@ describe("Catalog", () => {
       renderCatalog();
 
       await openFilters(user);
-      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      await user.click(screen.getByRole("checkbox", { name: /não dá para conseguir/i }));
       expect(foreignTile(/Chapéu Estrangeiro/)).toBeVisible();
 
       await user.click(screen.getByRole("button", { name: "Limpar" }));
@@ -339,7 +405,7 @@ describe("Catalog", () => {
       renderCatalog();
 
       await openFilters(user);
-      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      await user.click(screen.getByRole("checkbox", { name: /não dá para conseguir/i }));
       await user.click(screen.getByRole("button", { name: "Lista" }));
       // The list mounts only the rows near the viewport, and jsdom lays
       // nothing out — so narrow to the one row this is about.

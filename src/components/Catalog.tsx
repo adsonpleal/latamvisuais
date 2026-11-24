@@ -32,7 +32,7 @@ import {
 import { hint } from "../core/hints";
 import { persisted } from "../core/prefs";
 import { fold } from "../core/text";
-import { t } from "../i18n";
+import { originsTip, t } from "../i18n";
 import { useAppState, useDb, useDispatch } from "../state/AppStateContext";
 import { CatalogFilters, type KindFilter } from "./CatalogFilters";
 import { CatalogList } from "./CatalogList";
@@ -139,7 +139,11 @@ export function Catalog({
   const origins = useMemo(() => {
     const seen = new Set<string>();
     for (const item of all) for (const o of originsOf(item)) seen.add(o);
-    return [...seen].sort();
+    // Alphabetical, except that the one chip which is not another server goes
+    // first: "Não lançado" sorted between kRO Zero and thRO reads like a
+    // server nobody has heard of.
+    const rest = [...seen].filter((o) => o !== "latam").sort();
+    return seen.has("latam") ? ["latam", ...rest] : rest;
   }, [all]);
   // The filtered items in display order. The list view windows over this, and
   // the arrow keys step through it; both need the same array, so it's built
@@ -313,9 +317,12 @@ export function Catalog({
               // server, so the badge never seems to contradict the filter.
               const origin = primaryOrigin(servers, originFilter);
               const server = origin ? (t.foreignServerNames[origin] ?? origin) : null;
-              // Every name, in chip order: the tile shows one and a "+3", so
-              // the tooltip is the only place that says which three.
-              const serverNames = servers.map((o) => t.foreignServerNames[o] ?? o);
+              // Every name, in chip order, folded into the one sentence that
+              // says which: the tile shows a single badge and a "+3", so the
+              // tooltip is the only place the rest are written out. Not the
+              // same sentence for a visual whose art is already in this
+              // client — see originsTip.
+              const serversTip = originsTip(servers);
               // The badge is on the tile, not only in the tooltip: once the
               // filter is on, foreign and LATAM costumes sit side by side in
               // one grid, and the only thing that tells them apart is this.
@@ -325,7 +332,7 @@ export function Catalog({
               const realId = realItemId(item);
               const shownId = realId === null ? "" : ` (#${realId})`;
               const label = server
-                ? `${item.name}${shownId} — ${t.foreignBadgeTip(serverNames)}`
+                ? `${item.name}${shownId} — ${serversTip}`
                 : `${item.name}${shownId}`;
               const cls = [
                 "catalog-item",

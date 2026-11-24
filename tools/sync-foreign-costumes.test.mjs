@@ -170,14 +170,39 @@ describe("toAppRow", () => {
     expect(toAppRow(hat()).sprite).toBe("_iro_hat");
   });
 
-  it("leaves origins out when it would only repeat origin", () => {
+  it("writes origins out even when it only repeats origin", () => {
+    // It used to be left out as redundant. It no longer is: a row with no
+    // origin has nothing to reconstruct it from, and the app now reads this
+    // field to know a row came from this catalogue at all.
     const row = toAppRow(hat());
     expect(row.origin).toBe("iro");
-    expect(row).not.toHaveProperty("origins");
+    expect(row.origins).toEqual(["iro"]);
   });
 
   it("carries origins when more than one server has the costume", () => {
     expect(toAppRow(hat({ origins: ["iro", "twro"] })).origins).toEqual(["iro", "twro"]);
+  });
+
+  it("names no tree for a visual whose art is this client's own", () => {
+    // The whole point of the LATAM rows: the renderer draws them from the bare
+    // view id, and `origin=latam` is a 500 at the gateway. `gearViews` reads
+    // `origin` and nothing else, so leaving it off is what keeps these rows
+    // from being sent down the foreign render path.
+    const row = toAppRow(hat({ origin: "latam", origins: ["latam", "iro"] }));
+    expect(row).not.toHaveProperty("origin");
+    expect(row.origins).toEqual(["latam", "iro"]);
+  });
+
+  it("puts latam first in origins, because the badge shows the first one", () => {
+    // "iRO" on a visual that ships in this very client is the wrong headline.
+    const row = toAppRow(hat({ origin: "latam", origins: ["iro", "latam", "twro"] }));
+    expect(row.origins).toEqual(["latam", "iro", "twro"]);
+  });
+
+  it("still carries the sprite with no origin, because the icon needs it", () => {
+    // /icons/costume?sprite= is keyed by sprite with no origin dimension, so
+    // these rows are asked for exactly like the foreign ones.
+    expect(toAppRow(hat({ origin: "latam", origins: ["latam"] })).sprite).toBe("_iro_hat");
   });
 
   it("names the costume in the best language its clients offer", () => {
@@ -248,22 +273,27 @@ describe("buildAppCatalogue", () => {
     costumes: [
       hat(),
       hat({ view: 2551, sprite: "_c_hat", origin: "twro", origins: ["iro", "twro"] }),
-      // A view this client has and the published catalogue happens to miss:
-      // a different question, and not behind a filter about other servers.
-      hat({ view: 7, origin: "latam", origins: ["latam"] }),
+      // A visual this client has the art for and never released. It was
+      // thrown away here for being "not another server's", which read the
+      // filter as being about servers rather than about what you can get.
+      hat({ view: 7, sprite: "_nunca_lancado", origin: "latam", origins: ["latam"] }),
     ],
   };
 
-  it("leaves the LATAM-sourced rows out", () => {
+  it("keeps the visuals this client has and never released", () => {
     const { doc: built, stats } = buildAppCatalogue(doc);
-    expect(built.items).toHaveLength(2);
-    expect(stats.skipped).toBe(1);
+    expect(built.items).toHaveLength(3);
+    expect(stats.unreleased).toBe(1);
+    expect(stats.foreign).toBe(2);
+    // ...and the one that stays carries no tree to render from.
+    expect(built.items.find((i) => i.view === 7)).not.toHaveProperty("origin");
   });
 
   it("counts a costume under every server that has it", () => {
     // What the chips show. Counting by `origin` instead would put the twRO
-    // costume behind one chip and hide it from iRO, which has it too.
-    expect(buildAppCatalogue(doc).doc.counts).toEqual({ iro: 2, twro: 1 });
+    // costume behind one chip and hide it from iRO, which has it too -- and
+    // the `latam` count is the chip for the never-released ones.
+    expect(buildAppCatalogue(doc).doc.counts).toEqual({ iro: 2, twro: 1, latam: 1 });
   });
 
   it("drops the costumes ragassets measured as drawing nothing", () => {
@@ -282,15 +312,29 @@ describe("buildAppCatalogue", () => {
   it("drops a costume whose sprite LATAM already sells under a name", () => {
     const localItems = [{ id: 2211, name: "Bandana", resourceName: "_IRO_Hat" }];
     const { doc: built, stats } = buildAppCatalogue(doc, { localItems });
-    expect(built.items.map((i) => i.view)).toEqual([2551]);
+    expect(built.items.map((i) => i.view).sort((a, b) => a - b)).toEqual([7, 2551]);
     expect(stats.localized).toBe(1);
   });
 
   it("keeps one LATAM has no name for, which is what unreleased looks like", () => {
     const localItems = [{ id: 2211, name: null, resourceName: "_IRO_Hat" }];
     const { doc: built, stats } = buildAppCatalogue(doc, { localItems });
-    expect(built.items).toHaveLength(2);
+    expect(built.items).toHaveLength(3);
     expect(stats.localized).toBe(0);
+  });
+
+  it("drops a never-released visual once an item here finally names it", () => {
+    // This is how a row leaves: the client releases the item, our own table
+    // names the sprite, and the claim "não dá para conseguir" stops being
+    // true. Three went this way between 2026-11-20 and 2026-11-23 (the Chapéu
+    // Multiclasse Azul, the Pinguim-Imperador and the Magnus Dominus), and
+    // they move to costumes.json, which is why both halves of the sync have to
+    // run together.
+    const localItems = [{ id: 400633, name: "[Visual] Nunca Lançado", resourceName: "Nunca_Lancado" }];
+    const { doc: built, stats } = buildAppCatalogue(doc, { localItems });
+    expect(built.items.map((i) => i.view)).not.toContain(7);
+    expect(stats.unreleased).toBe(0);
+    expect(stats.localized).toBe(1);
   });
 
   it("refuses two costumes that would land on one id", () => {

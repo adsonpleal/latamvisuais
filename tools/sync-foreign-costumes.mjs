@@ -1,6 +1,25 @@
 #!/usr/bin/env node
 // Rebuild public/db/foreign-costumes.json from ragassets' published catalogue of
-// the other official servers' costumes.
+// the costumes this client cannot give anybody.
+//
+// Two kinds of row live in it, and they are not the same thing:
+//
+//   - **Another server's costume.** The art is in that client and not in ours,
+//     so it renders out of a mirror ragassets keeps per server, named by the
+//     sprite. The row carries `origin` — which tree — and that is what makes
+//     the renderer read it from there.
+//   - **A visual this client has and never released.** The art is right here in
+//     the LATAM client: the accessory table has the view, the sprite ships in
+//     our own resources, and the renderer draws it from the plain view id. What
+//     is missing is an item — nothing in this client's item table names it, or
+//     the row exists with no name at all. These carry no `origin`, because
+//     there is no foreign tree to read: `origin=latam` is not a thing the
+//     gateway serves (it answers 500), and it would be a lie anyway.
+//
+// 745 of the second kind were sitting in the published catalogue being thrown
+// away here, by a filter that read them as "not another server's visuals, so
+// not this question". They are the same question — can I see this in the
+// simulator — and the answer was no for all of them.
 //
 // The extraction that produces that catalogue lives in ragassets, next to the
 // GRF reader and the Lua VM it needs (tools/multiserver/ there). It used to live
@@ -39,6 +58,15 @@ import { loadTable, parseArgs } from "./sync-db.mjs";
 const SOURCE = "foreign-costumes"; // /raw/foreign-costumes.json
 const LOCAL_ITEMS = "items"; // /raw/items.json -- this client's own item table
 const DEFAULT_OUT = "public/db";
+
+/** The origin that means "no foreign tree": the art is in this client's own
+ *  resources and the renderer draws it from the view id alone.
+ *
+ *  Measured against the live gateway (2026-11-23): all 12 sampled views draw
+ *  from a bare `headgear=`/`garment=`, and passing `origin=latam` with them is
+ *  an HTTP 500 — there is no "latam" entry in the foreign mirror, because the
+ *  LATAM resources are the gateway's own resource dir and not a mirror at all. */
+const LOCAL_ORIGIN = "latam";
 
 /** Frozen: an origin's position here is part of every id derived from it.
  *  Append only — reordering this renumbers costumes that are already shared,
@@ -208,6 +236,20 @@ export function slotsFor(c) {
   return c.kind === "robe" ? ["garment"] : ["top"];
 }
 
+/** Every server whose client has this art, `latam` first when it is one of
+ *  them and the rest in the order the published catalogue gives.
+ *
+ *  Order is not cosmetic here: the app badges a row with `origins[0]` and the
+ *  chips are listed in first-seen order, so this is what decides whether a
+ *  visual sitting unreleased in our own client introduces itself as that or as
+ *  somebody else's hat. */
+export function originsFirstLocal(c) {
+  const all = c.origins?.length ? c.origins : [c.origin];
+  return all.includes(LOCAL_ORIGIN)
+    ? [LOCAL_ORIGIN, ...all.filter((o) => o !== LOCAL_ORIGIN)]
+    : all;
+}
+
 /** The app's shape for one foreign costume. `viewKind` mirrors db.ts: a garment
  *  view and a headgear view live in different namespaces and must be sent as
  *  different params. */
@@ -222,12 +264,24 @@ export function toAppRow(c) {
     view: c.view,
     slots: slotsFor(c),
     viewKind: c.kind === "acc" ? "headgear" : "garment",
-    // The tree the gateway renders it from.
-    origin: c.origin,
-    // Every server that has it, when that is more than the one it is rendered
-    // from. Left out of the rows where the two say the same thing, so the file
-    // stays small; the app reads `origins ?? [origin]`.
-    ...(c.origins?.length > 1 ? { origins: c.origins } : {}),
+    // The foreign tree the gateway renders it from -- and nothing at all when
+    // the art is this client's own, because then there is no tree to name and
+    // the bare view id is the whole render. This absence is load-bearing twice
+    // over: `gearViews` notes an origin only when the row has one, so these
+    // rows never put `origin=`/`headgearSprite=` on a render URL, and the
+    // gateway would 500 if they did.
+    ...(c.origin === LOCAL_ORIGIN ? {} : { origin: c.origin }),
+    // Every server whose client has this art, this one included when it does.
+    // Written out in full rather than left to be reconstructed from `origin`:
+    // a row with no origin has nothing to reconstruct from, and this field is
+    // now what tells a reader the row came from this catalogue at all. Costs
+    // about a kilobyte across the file and removes a fallback rule.
+    //
+    // `latam` goes first where it appears, because the app's badge shows
+    // `origins[0]` and "iRO" on a visual whose art ships in this very client
+    // is the wrong headline: the thing worth saying about that row is that it
+    // was never released here.
+    origins: originsFirstLocal(c),
     // Lowercased here rather than in the app or the gateway: this is the one
     // place that knows it is naming a file in a mirror. It is also the key the
     // inventory icon is served under (/icons/costume?sprite=), which is why
@@ -248,21 +302,13 @@ export function toAppRow(c) {
   };
 }
 
-export function buildAppCatalogue(doc, { skipOrigins = ["latam"], localItems = [] } = {}) {
+export function buildAppCatalogue(doc, { localItems = [] } = {}) {
   const items = [];
-  const skipped = [];
   const empty = [];
   const localized = [];
   const here = localizedSprites(localItems);
   const seen = new Set();
   for (const c of doc.costumes) {
-    // LATAM-sourced rows are not "another server's visuals" — they are views
-    // this client has and the published catalogue happens not to list. They
-    // belong to a different question, so they do not go behind this filter.
-    if (skipOrigins.includes(c.origin)) {
-      skipped.push(c);
-      continue;
-    }
     // Costumes ragassets measured as drawing nothing — the sprite is a
     // placeholder for a .str effect, or the client shipped it incomplete. They
     // render as a 200 and a character wearing nothing, so shipping them means a
@@ -288,9 +334,11 @@ export function buildAppCatalogue(doc, { skipOrigins = ["latam"], localItems = [
   items.sort((a, b) => a.name.localeCompare(b.name, "pt-BR") || a.id - b.id);
 
   // Counted per server rather than per tree, because that is what the app's
-  // chips show: a costume three servers have is counted by all three.
+  // chips show: a costume three servers have is counted by all three. The
+  // `latam` count is the one chip that means something else -- art we have and
+  // never released -- and it is a real number, not a leak: see LOCAL_ORIGIN.
   const byOrigin = {};
-  for (const r of items) for (const o of r.origins ?? [r.origin]) byOrigin[o] = (byOrigin[o] ?? 0) + 1;
+  for (const r of items) for (const o of r.origins) byOrigin[o] = (byOrigin[o] ?? 0) + 1;
   // Which client ended up naming each costume, so a run says plainly whether
   // the priority above is getting anything to choose from.
   const byNameOrigin = {};
@@ -302,7 +350,10 @@ export function buildAppCatalogue(doc, { skipOrigins = ["latam"], localItems = [
     doc: { version: 1, generatedAt: doc.generatedAt, counts: byOrigin, items },
     stats: {
       items: items.length,
-      skipped: skipped.length,
+      // How the two kinds of row split, which is the number this run is about:
+      // one of them renders out of a mirror, the other out of our own client.
+      unreleased: items.filter((r) => !r.origin).length,
+      foreign: items.filter((r) => r.origin).length,
       blank: empty.length,
       localized: localized.length,
       byOrigin,
@@ -325,10 +376,12 @@ async function main(argv) {
   writeFileSync(dest, JSON.stringify(doc, null, 1) + "\n");
 
   console.log(`\n${stats.items} fantasias → ${dest}`);
+  console.log(`  ${String(stats.foreign).padStart(4)} de outro servidor (renderizam de um espelho)`);
+  console.log(`  ${String(stats.unreleased).padStart(4)} nao lancadas aqui (a arte e deste cliente)`);
+  console.log("");
   for (const [o, n] of Object.entries(stats.byOrigin).sort((a, b) => b[1] - a[1])) {
     console.log(`  ${o.padEnd(9)} ${String(n).padStart(4)}`);
   }
-  console.log(`  (${stats.skipped} de origem latam ficaram de fora — nao sao visuais de outro servidor)`);
   console.log(`  (${stats.blank} marcadas como blank pelo ragassets ficaram de fora — nao desenham nada)`);
   console.log(`  (${stats.localized} ficaram de fora — o LATAM ja tem um item com nome para esse sprite)`);
   console.log("");

@@ -4,6 +4,83 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [Unreleased]
+
+The visuals this client already carries and never released. 804 of them were
+sitting in ragassets' published catalogue being thrown away here, by a filter
+that read them as "not another server's visuals, so not this question". They
+are the same question — can I see this in the simulator — and the answer was
+no for every one.
+
+Not cut as a version here: the deploy workflow posts to Discord when the top
+`version:` in `src/changelog.ts` moves, so the release is its own commit.
+The three visuals that left this catalogue for `costumes.json` in 0.19.1 — the
+Chapéu Multiclasse Azul, the Pinguim-Imperador and the Magnus Dominus — are
+why this is stacked on that sync rather than standing beside it: shipping the
+rebuilt `foreign-costumes.json` without it would have made them vanish from
+the app entirely.
+
+### Added
+
+- **804 visuals the LATAM client has the art for and never released.** The
+  accessory table has the view, the sprite ships in our own resources, and
+  nothing in this client's item table names it. They sit behind the same
+  checkbox as the other servers' costumes and under a chip of their own,
+  "Não lançado", which is listed first. 792 are named by some client (543 by
+  iRO's English names, 155 jRO, 76 thRO, 16 twRO, 2 kRO) and 12 fall back to
+  the sprite's file name. 17 exist in no other official client at all — the
+  Brazilian flag hat, the old guild-recruiting hats — and no client gives them
+  an item id.
+- `isForeignRow` and `isUnreleasedHere` in `core/db.ts`, the two questions that
+  `origin` used to answer by accident.
+- `originsTip` in `i18n.ts`: one place builds the badge's sentence, called from
+  the grid tile, the list row and the worn-slot card.
+
+### Changed
+
+- **`origin` now means only "which foreign tree renders this"**, and the
+  unreleased rows carry none. That absence is the whole mechanism: `gearViews`
+  notes an origin only for a row that has one, so these render from a bare
+  `headgear=`/`garment=` with no `origin=` and no `headgearSprite=` — which is
+  also the only thing that works. Measured against the live gateway: all 12
+  sampled views draw from the plain view id, and adding `origin=latam` to them
+  is an HTTP 500, because the LATAM resources are the gateway's own resource
+  dir and not a mirror at all.
+- **`origins` is written on every row**, including the ones where it holds a
+  single name. It was left out as redundant with `origin`; a row with no origin
+  has nothing to reconstruct from, and this field is now what says a row came
+  from this catalogue. `latam` is listed first where it appears, because the
+  badge shows `origins[0]` and "iRO" on a hat whose sprite ships in this very
+  client is the wrong headline. Costs about a kilobyte and removes a fallback
+  rule.
+- `realItemId` keys on `origins`, not `origin`. Reading `origin` alone would
+  have printed "#10600920" — this app's own invention — as though it were an
+  item number, for all 804 rows. That is the exact lie the function exists to
+  stop.
+- `CostumeIcon` likewise: with no `origin`, these rows asked
+  `/icons/item/<synthetic id>.png`, a guaranteed 404 followed by a rendered
+  thumbnail. The picture store is keyed by sprite with no origin dimension, so
+  the same route answers them — 3,378 pictures covering 1,691 of 1,746 sprites.
+- The filter is "Visuais que não dá para conseguir" under the heading "Fora do
+  catálogo", not "Visuais de outros servidores". A majority of what sits behind
+  it is no longer another server's, and every string that said "não existe no
+  Ragnarok LATAM" would have been plainly false about art that ships with the
+  game.
+
+### Measured
+
+- Every one of the 804 draws. All 804 rows of `origin=latam` were rendered
+  against the live gateway and compared byte-for-byte with the bare body
+  (stable across three reference renders): 799 drew, 5 did not, and the 5 are
+  excluded here only in the sense that they are known — they are shipped.
+- The 5 are garments whose files were never fetched into any mirror
+  (`EXE_Backpack`, `BlackCatBag`, `C_Soldier_Backpack`, `C_BlackBear_Back_TW`,
+  `C_School_Bag_PU`); no foreign tree draws them either, checked against all of
+  theirs. They belong in ragassets' `blank` flag, which has never run over the
+  LATAM views: 0 of the 1,099 are marked. Until it does, they are 5 dead tiles
+  out of 1,318 (514 → 1,318 rows).
+- `origin=thro` is also a 500 at the gateway — there is no thRO tree — which
+  does not matter yet because nothing is rendered from one.
 ## [0.19.1] — 2026-11-23
 
 Data refresh: `public/db` rebuilt from ragassets' current client tables (the
