@@ -13,10 +13,10 @@
 // which it has to do arithmetically because the target row may not be mounted.
 
 import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent } from "react";
-import { canPreview, originsOf, realItemId, type Costume, type Stone } from "../core/db";
+import { canPreview, originsOf, realItemId, serversOf, type Costume, type Stone } from "../core/db";
 import { divinePrideUrl, marketUrl } from "../core/links";
 import { useServer } from "../core/server";
-import { originsTip, t } from "../i18n";
+import { originsTip, serverBadges, t } from "../i18n";
 import { CostumeIcon } from "./CostumeIcon";
 import { Cart } from "./icons";
 
@@ -168,8 +168,12 @@ export function CatalogList({ items, cursorId, isOn, onPick, pickSignal }: Props
           // for a foreign costume both of those are unfamiliar on purpose.
           // Unlike a tile, a row has room for all of them — and 70% of these
           // costumes are on more than one server.
-          const servers = originsOf(item);
-          const names = servers.map((o) => t.foreignServerNames[o] ?? o);
+          // serversOf, not originsOf: the origin that means "the art is in
+          // this client and no item ever gave it out" is not a server to name.
+          // `names` falls back to a generic badge for the rows that name none,
+          // so its emptiness still answers "is this row obtainable here".
+          const servers = serversOf(item);
+          const names = serverBadges(servers, originsOf(item).length > 0);
           // The id to show and to link, or null when the row has none: see
           // realItemId. Never item.id for a foreign row — that one is ours.
           const realId = realItemId(item);

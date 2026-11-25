@@ -193,10 +193,13 @@ describe("toAppRow", () => {
     expect(row.origins).toEqual(["latam", "iro"]);
   });
 
-  it("puts latam first in origins, because the badge shows the first one", () => {
-    // "iRO" on a visual that ships in this very client is the wrong headline.
+  it("leaves origins in the order the catalogue gave them", () => {
+    // No reordering to put `latam` up front: the app never names it. It reads
+    // the first *server*, and `serversOf` in core/db.ts has already dropped
+    // this one by then -- the badge says who released the costume, which is
+    // the only part of this a reader can do anything with.
     const row = toAppRow(hat({ origin: "latam", origins: ["iro", "latam", "twro"] }));
-    expect(row.origins).toEqual(["latam", "iro", "twro"]);
+    expect(row.origins).toEqual(["iro", "latam", "twro"]);
   });
 
   it("still carries the sprite with no origin, because the icon needs it", () => {

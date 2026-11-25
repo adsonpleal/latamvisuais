@@ -282,8 +282,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_18y_hat_tw",
@@ -488,9 +488,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -555,9 +555,9 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -707,9 +707,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_옐로우브레인햇",
@@ -777,10 +777,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_hunters_dinner",
@@ -796,9 +796,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -883,9 +883,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_블루브레인햇",
@@ -901,8 +901,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_artist_silk_hat",
@@ -935,8 +935,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_leopard_cat",
@@ -1182,10 +1182,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro"
    ],
    "sprite": "_c_g_s_captain_hat",
@@ -1201,10 +1201,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro"
    ],
    "sprite": "_핑크클로버",
@@ -1220,9 +1220,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_해신의수호",
    "nameOrigin": "iro",
@@ -1237,8 +1237,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "kro",
+    "latam",
     "thro"
    ],
    "sprite": "_black_rabbit_ear",
@@ -1274,11 +1274,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -1295,8 +1295,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_jirant_circlet",
    "nameOrigin": "jro",
@@ -1311,8 +1311,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_zilantnecklace",
    "nameOrigin": "jro",
@@ -1392,9 +1392,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_아프로가발_빨강",
    "nameOrigin": "jro",
@@ -1428,9 +1428,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_american_s_hair",
@@ -1446,10 +1446,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "kro"
+    "kro",
+    "latam"
    ],
    "sprite": "_언더림안경",
    "nameOrigin": "jro",
@@ -1518,8 +1518,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_intake_om",
@@ -1535,8 +1535,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -1553,8 +1553,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_intake_gn",
@@ -1570,8 +1570,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -1588,8 +1588,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -1606,8 +1606,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -1624,8 +1624,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -1642,9 +1642,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -1679,9 +1679,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_황금월계수",
    "nameOrigin": "jro",
@@ -1696,9 +1696,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_airy_two_side_up_sv",
@@ -1714,9 +1714,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_c_angelic_long_sv",
@@ -1732,9 +1732,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_c_angelic_long_bd",
@@ -1750,9 +1750,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_c_1st_evt_hat_msp",
    "nameOrigin": "jro",
@@ -1767,9 +1767,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_over_piamette_hood",
@@ -1785,9 +1785,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_아울바이카운트의실크햇",
@@ -1803,8 +1803,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -1821,8 +1821,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -1839,8 +1839,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -1857,8 +1857,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -1875,8 +1875,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -1893,8 +1893,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -1911,8 +1911,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -1929,8 +1929,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -1947,8 +1947,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_이즈루드의기념품",
@@ -1964,9 +1964,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_queen_headphone",
    "nameOrigin": "jro",
@@ -1998,9 +1998,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_그리폰의날개귀",
    "nameOrigin": "jro",
@@ -2015,9 +2015,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_kururinpa_hair_bd",
@@ -2053,9 +2053,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -2089,8 +2089,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_c_golden_violet",
    "nameOrigin": "jro",
@@ -2105,8 +2105,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_c_gothic_skull_ribbon",
    "nameOrigin": "jro",
@@ -2138,9 +2138,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_7주년기념모자_b",
@@ -2156,8 +2156,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_샬로시의헤드드레스",
@@ -2173,9 +2173,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -2192,8 +2192,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -2210,8 +2210,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_실버스나이퍼인형",
    "nameOrigin": "jro",
@@ -2394,8 +2394,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_타레교황사복모",
@@ -2427,8 +2427,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_체크패턴두건",
    "nameOrigin": "jro",
@@ -2443,8 +2443,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_bulgogi_tw",
@@ -2477,8 +2477,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_mushroom_hair",
@@ -2494,10 +2494,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -2570,9 +2570,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_나무늘보의모자",
    "nameOrigin": "jro",
@@ -2587,9 +2587,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_neev_barrette",
@@ -2605,9 +2605,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_로키와니드호그모자",
    "nameOrigin": "jro",
@@ -2622,9 +2622,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_ear_of_nyar_wh",
@@ -2640,11 +2640,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -2762,8 +2762,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -2797,8 +2797,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_halloween_cat_long",
@@ -2814,10 +2814,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_펌킨요리사모자",
    "nameOrigin": "jro",
@@ -2867,11 +2867,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "c_big_magic_book",
@@ -3015,9 +3015,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_c_nine_tail_fox_hair",
    "nameOrigin": "jro",
@@ -3032,10 +3032,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_petit_choco_hat",
@@ -3051,9 +3051,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_snug_nyar_hair",
@@ -3069,10 +3069,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_fluffy_semi_long_sv",
@@ -3088,9 +3088,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -3107,10 +3107,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -3127,9 +3127,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_fluffy_semi_long_jbl",
@@ -3145,9 +3145,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_fluffy_semi_long_wh",
@@ -3163,9 +3163,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_fluffy_semi_long_om",
@@ -3181,9 +3181,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -3200,9 +3200,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_fluffy_semi_long_bg",
@@ -3218,9 +3218,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -3237,9 +3237,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_volume_low_twin_cb",
@@ -3273,10 +3273,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "kro"
+    "kro",
+    "latam"
    ],
    "sprite": "_머메이드헤드폰",
    "nameOrigin": "jro",
@@ -3291,8 +3291,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_매직데코이인형",
@@ -3309,9 +3309,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_매드해터",
@@ -3327,9 +3327,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -3346,11 +3346,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twrozero"
    ],
    "sprite": "_갈색고양이귀",
@@ -3398,9 +3398,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_mn_hair_cb",
@@ -3416,9 +3416,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_mn_hair_lb",
@@ -3434,8 +3434,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_mn_hair_jbl",
@@ -3451,9 +3451,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_mn_hair_wh",
@@ -3469,8 +3469,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_mn_hair_om",
@@ -3486,9 +3486,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_mn_hair_lpp",
@@ -3589,10 +3589,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_yorker_hood",
@@ -3610,10 +3610,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_jormun_cape",
@@ -3629,9 +3629,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "kro"
+    "kro",
+    "latam"
    ],
    "sprite": "_c_traditors_low_tail",
    "nameOrigin": "jro",
@@ -3646,9 +3646,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_라즈베리무스햇",
@@ -3664,9 +3664,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_c_braids_wave",
@@ -3682,10 +3682,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_rk_hair_pk",
@@ -3701,10 +3701,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_rk_hair_om",
@@ -3720,10 +3720,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_rk_hair_pp",
@@ -3739,10 +3739,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_rk_hair_gn",
@@ -3758,11 +3758,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -3779,10 +3779,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_rk_hair_yl",
@@ -3798,11 +3798,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -3907,9 +3907,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -3926,9 +3926,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_롤트윈_갈",
@@ -3944,9 +3944,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_롤트윈_자",
@@ -3962,9 +3962,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_롤트윈_녹",
@@ -3980,9 +3980,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_롤트윈_적",
@@ -3998,9 +3998,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_롤트윈_청",
@@ -4016,9 +4016,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_롤트윈_황",
@@ -4034,9 +4034,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_롤트윈_흑",
@@ -4103,9 +4103,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_long_wave_sv",
@@ -4121,10 +4121,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -4141,10 +4141,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_c_long_wave_lbw",
    "nameOrigin": "jro",
@@ -4159,9 +4159,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_롱포니_갈",
@@ -4177,9 +4177,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_롱포니_자",
@@ -4195,9 +4195,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_롱포니_적",
@@ -4213,9 +4213,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_롱포니_청",
@@ -4231,9 +4231,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_롱포니_황",
@@ -4249,10 +4249,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -4322,9 +4322,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_wanderer_curl_wh",
@@ -4375,8 +4375,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_프레이야신도의모자",
@@ -4392,9 +4392,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_braid_headband_wh",
@@ -4410,8 +4410,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_braid_headband_om",
@@ -4427,8 +4427,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_braid_headband_pp",
@@ -4444,8 +4444,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_braid_headband_gn",
@@ -4461,8 +4461,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_braid_headband_rd",
@@ -4478,8 +4478,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_braid_headband_bu",
@@ -4495,8 +4495,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_braid_headband_yl",
@@ -4512,8 +4512,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_braid_headband_bl",
@@ -4529,9 +4529,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_c_braid_half_up_wh",
@@ -4547,9 +4547,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "kro"
+    "kro",
+    "latam"
    ],
    "sprite": "_c_braid_half_up_om",
    "nameOrigin": "jro",
@@ -4564,9 +4564,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "kro"
+    "kro",
+    "latam"
    ],
    "sprite": "_c_braid_half_up_pp",
    "nameOrigin": "jro",
@@ -4581,9 +4581,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "kro"
+    "kro",
+    "latam"
    ],
    "sprite": "_c_braid_half_up_gn",
    "nameOrigin": "jro",
@@ -4598,9 +4598,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_c_braid_half_up_rd",
@@ -4616,9 +4616,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_c_braid_half_up_bu",
@@ -4634,9 +4634,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_c_braid_half_up_yl",
@@ -4652,9 +4652,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_c_braid_half_up_bl",
@@ -4670,9 +4670,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -4705,10 +4705,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_sr_hair_pk",
@@ -4724,9 +4724,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_sr_hair_om",
@@ -4742,9 +4742,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_sr_hair_pp",
@@ -4760,9 +4760,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_sr_hair_rd",
@@ -4778,9 +4778,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_sr_hair_yl",
@@ -4796,9 +4796,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_sr_hair_bl",
@@ -4814,8 +4814,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_jirant_circlet",
@@ -4831,8 +4831,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_jirant_circlet_red",
@@ -4848,8 +4848,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_고대왕의왕관_",
    "nameOrigin": "jro",
@@ -4883,9 +4883,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c천사의베일",
@@ -4901,8 +4901,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -4938,9 +4938,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_fairy_poison_apple",
@@ -4972,8 +4972,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_c괴도2세모자",
    "nameOrigin": "jro",
@@ -4988,8 +4988,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_c_lunch_box",
    "nameOrigin": "jro",
@@ -5021,9 +5021,9 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -5090,9 +5090,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_흰토끼의귀",
@@ -5144,8 +5144,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_진홍색리본",
@@ -5161,10 +5161,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_wh_cat_eyes",
@@ -5265,10 +5265,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -5286,8 +5286,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_성스러운크로브크",
@@ -5360,8 +5360,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_rusroulette_hat",
@@ -5377,8 +5377,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_도사의장식",
    "nameOrigin": "jro",
@@ -5410,8 +5410,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_무성한콧수염",
    "nameOrigin": "jro",
@@ -5426,9 +5426,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_2012rmscno1",
    "nameOrigin": "thro",
@@ -5443,9 +5443,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_2012rmscno3",
    "nameOrigin": "thro",
@@ -5460,8 +5460,8 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -5478,8 +5478,8 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -5511,8 +5511,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_711니트모자",
    "unnamed": true
@@ -5526,10 +5526,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_9주년기념모자",
    "nameOrigin": "kro",
@@ -5544,9 +5544,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_입에무는주판",
    "nameOrigin": "iro",
@@ -5561,9 +5561,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_심연의투구",
    "nameOrigin": "iro",
@@ -5578,9 +5578,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -5597,9 +5597,9 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -5616,10 +5616,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -5637,10 +5637,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro"
    ],
    "sprite": "_엔젤링털모자",
@@ -5656,9 +5656,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_애니버서리별모자",
    "nameOrigin": "iro",
@@ -5673,9 +5673,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_아쿠아버니밴드",
    "nameOrigin": "iro",
@@ -5705,9 +5705,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_백양궁보관",
    "nameOrigin": "iro",
@@ -5722,8 +5722,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_호주국기모자",
    "nameOrigin": "iro",
@@ -5738,8 +5738,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_가을머리띠",
    "nameOrigin": "iro",
@@ -5754,9 +5754,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_에비에이터모자",
    "nameOrigin": "iro",
@@ -5771,9 +5771,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_아요타야모자",
    "nameOrigin": "iro",
@@ -5788,9 +5788,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_브라질베레모",
    "nameOrigin": "iro",
@@ -5820,8 +5820,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_곰돌이풍선",
@@ -5837,8 +5837,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_남친구함모자",
@@ -5870,8 +5870,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_bj_headsetb",
@@ -5887,9 +5887,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_검은요정의귀",
@@ -5905,10 +5905,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro"
    ],
    "sprite": "_검은토끼모자",
@@ -5924,8 +5924,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_까만리본머리띠",
    "nameOrigin": "iro",
@@ -5940,10 +5940,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -5960,9 +5960,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_블루토끼머리띠",
    "nameOrigin": "iro",
@@ -6008,10 +6008,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_빨간드레스햇",
    "nameOrigin": "iro",
@@ -6079,10 +6079,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_입안의연인",
@@ -6223,10 +6223,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -6243,8 +6243,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_거해궁왕관",
    "nameOrigin": "iro",
@@ -6259,8 +6259,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_입에무는막대사탕",
    "nameOrigin": "iro",
@@ -6275,8 +6275,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_마갈궁보관",
    "nameOrigin": "iro",
@@ -6291,11 +6291,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -6313,11 +6313,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -6349,10 +6349,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -6369,11 +6369,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twrozero"
    ],
    "sprite": "_입에무는치즈과자",
@@ -6390,9 +6390,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_봉관",
    "nameOrigin": "iro",
@@ -6407,9 +6407,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_입에문초코도넛",
    "nameOrigin": "iro",
@@ -6424,9 +6424,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro"
    ],
    "sprite": "_유자모자",
@@ -6442,8 +6442,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_코카콜라모자",
    "nameOrigin": "iro",
@@ -6458,8 +6458,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_아카데미신입생모자",
    "nameOrigin": "iro",
@@ -6474,10 +6474,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_clockwise",
    "nameOrigin": "iro",
@@ -6494,8 +6494,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_클로스헬멧",
    "nameOrigin": "iro",
@@ -6542,10 +6542,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -6681,9 +6681,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -6719,9 +6719,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -6738,10 +6738,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -6759,10 +6759,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -6779,10 +6779,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -6799,10 +6799,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_c_angelic_long_rbd",
@@ -6818,10 +6818,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro"
    ],
    "sprite": "_c_angelic_long_rsv",
@@ -6837,9 +6837,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_엔젤링풍선",
    "nameOrigin": "iro",
@@ -6854,9 +6854,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -6911,9 +6911,9 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -7047,9 +7047,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_노란야구모자",
    "nameOrigin": "iro",
@@ -7064,10 +7064,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7084,9 +7084,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "kro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -7104,9 +7104,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_아사라요정모자",
    "nameOrigin": "iro",
@@ -7121,10 +7121,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7160,10 +7160,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_아기드래곤",
    "nameOrigin": "iro",
@@ -7197,10 +7197,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7217,11 +7217,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7274,10 +7274,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -7295,11 +7295,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7334,11 +7334,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7355,11 +7355,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -7377,9 +7377,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7414,10 +7414,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_비기너마크",
@@ -7455,9 +7455,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c딸기왕자의왕관",
@@ -7473,10 +7473,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7514,11 +7514,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7535,9 +7535,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_새둥지",
@@ -7553,10 +7553,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7592,9 +7592,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -7612,10 +7612,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -7633,11 +7633,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7654,9 +7654,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7692,11 +7692,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7713,10 +7713,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_blessing_sky_lantern",
@@ -7732,10 +7732,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_c_blink_eyes_a_dragon",
    "nameOrigin": "iro",
@@ -7750,9 +7750,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -7770,9 +7770,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -7947,11 +7947,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -7968,10 +7968,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -8025,10 +8025,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_항룡나한가면",
    "nameOrigin": "iro",
@@ -8062,11 +8062,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_파란파자마모자",
@@ -8082,9 +8082,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "krozero",
+    "latam",
     "thro"
    ],
    "sprite": "_파란포링풍선",
@@ -8196,10 +8196,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_book_of_magic",
@@ -8215,9 +8215,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_문자책모자",
@@ -8233,9 +8233,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_bouquet_hat",
@@ -8251,11 +8251,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -8292,9 +8292,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_브라질트윈리본",
    "nameOrigin": "iro",
@@ -8361,9 +8361,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_말랑해적단모자",
@@ -8379,8 +8379,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -8397,10 +8397,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_cat_ears_cape_brown",
@@ -8434,8 +8434,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_고양이모자",
@@ -8451,10 +8451,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -8505,11 +8505,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_pgstone_knit_hat_gr",
@@ -8566,10 +8566,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -8605,11 +8605,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro"
    ],
    "sprite": "_챰오브프레임하트",
@@ -8625,10 +8625,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -8645,11 +8645,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -8684,10 +8684,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -8856,9 +8856,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_입에무는초코스틱",
    "nameOrigin": "iro",
@@ -8873,9 +8873,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "kro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_chocolat_rabbit_hair",
@@ -8891,9 +8891,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -8929,10 +8929,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -8949,10 +8949,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -8969,10 +8969,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_크로크카스캐트",
@@ -8988,9 +8988,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_성천사의간호모",
@@ -9006,9 +9006,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_늘어진판다",
    "nameOrigin": "iro",
@@ -9023,11 +9023,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9044,10 +9044,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "c_clock_rod",
@@ -9063,9 +9063,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9082,11 +9082,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -9104,9 +9104,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9179,11 +9179,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9200,10 +9200,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_manystars",
@@ -9219,10 +9219,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_젖소모자",
    "nameOrigin": "iro",
@@ -9237,8 +9237,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_카라다메구리차모자",
    "nameOrigin": "iro",
@@ -9289,8 +9289,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9307,11 +9307,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -9346,9 +9346,9 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9365,10 +9365,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_magic_helm",
@@ -9384,9 +9384,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -9422,9 +9422,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9480,9 +9480,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -9500,10 +9500,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9539,9 +9539,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro"
    ],
    "sprite": "_블러디천사날개귀",
@@ -9557,11 +9557,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9578,10 +9578,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9598,9 +9598,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_팝콘모자",
@@ -9616,11 +9616,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_diving_goggles",
@@ -9636,10 +9636,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_bj_headseta",
@@ -9655,9 +9655,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twrozero"
    ],
@@ -9674,9 +9674,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -9693,10 +9693,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "kro"
+    "kro",
+    "latam"
    ],
    "sprite": "_doram_head_hat",
    "nameOrigin": "iro",
@@ -9751,11 +9751,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twrozero"
    ],
@@ -9790,8 +9790,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9808,10 +9808,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9867,10 +9867,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro"
    ],
    "sprite": "_픽키알껍질",
@@ -9886,10 +9886,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -9906,10 +9906,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9926,10 +9926,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9946,9 +9946,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -9984,10 +9984,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_elephangel_th",
@@ -10024,9 +10024,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_악마의가면",
    "nameOrigin": "iro",
@@ -10060,10 +10060,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -10080,9 +10080,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_exotic_traditional_hat",
    "nameOrigin": "iro",
@@ -10118,10 +10118,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -10178,11 +10178,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -10199,10 +10199,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -10220,9 +10220,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_팔콘마스크",
@@ -10238,8 +10238,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_환상적인가발",
    "nameOrigin": "iro",
@@ -10254,9 +10254,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_fawn_ear",
@@ -10272,10 +10272,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro"
    ],
    "sprite": "_화려한하이캡",
@@ -10291,10 +10291,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -10311,11 +10311,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_feather_stola",
@@ -10331,9 +10331,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_black_feather",
@@ -10367,10 +10367,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro"
    ],
    "sprite": "_불꽃의텐겔론햇",
@@ -10427,10 +10427,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_물고기머리모자",
    "nameOrigin": "iro",
@@ -10445,9 +10445,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro"
    ],
    "sprite": "_기의가면",
@@ -10463,11 +10463,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -10484,9 +10484,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_날고싶은엔젤링",
@@ -10502,10 +10502,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -10522,10 +10522,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -10542,11 +10542,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_flower_l_knitting",
@@ -10598,9 +10598,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_fairy_long_bd",
@@ -10631,9 +10631,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_fairy_long_sv",
@@ -10649,9 +10649,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -10686,10 +10686,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -10765,11 +10765,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -10844,10 +10844,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_forest_guide",
@@ -10863,10 +10863,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_fox",
@@ -10882,9 +10882,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_여우귀방울리본",
@@ -10921,11 +10921,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -10961,8 +10961,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_친구구함모자",
    "nameOrigin": "iro",
@@ -10977,11 +10977,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -10998,11 +10998,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -11020,9 +11020,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11059,10 +11059,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_gatesofnetherworld",
@@ -11096,10 +11096,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_geisha_make",
@@ -11115,9 +11115,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_게르하르트폰데비",
@@ -11133,8 +11133,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11151,11 +11151,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -11306,9 +11306,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro"
    ],
    "sprite": "_아프로가발_노랑",
@@ -11324,10 +11324,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11344,9 +11344,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_용투구_금",
    "nameOrigin": "iro",
@@ -11361,9 +11361,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_금원보포링의모자",
@@ -11379,10 +11379,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "kro"
+    "kro",
+    "latam"
    ],
    "sprite": "_골든세비지모자",
    "nameOrigin": "iro",
@@ -11397,11 +11397,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -11516,11 +11516,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11537,8 +11537,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_길드원모집모자",
@@ -11554,8 +11554,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11572,9 +11572,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11591,9 +11591,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11610,8 +11610,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11628,8 +11628,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11646,8 +11646,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11664,10 +11664,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11684,10 +11684,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11704,10 +11704,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11724,11 +11724,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_half_rim_glasses",
@@ -11744,11 +11744,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11765,10 +11765,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_happy_rabbit_ribbon",
@@ -11784,9 +11784,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11803,9 +11803,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11822,9 +11822,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro"
    ],
    "sprite": "_eyes_of_illusion",
@@ -11840,9 +11840,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro"
    ],
    "sprite": "_천사의귀걸이",
@@ -11860,10 +11860,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -11920,10 +11920,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -11960,9 +11960,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro"
    ],
    "sprite": "_물먹는하마모자",
@@ -11998,9 +11998,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro"
    ],
    "sprite": "_성스러운로사리오",
@@ -12038,11 +12038,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12059,9 +12059,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12169,10 +12169,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_idun_green_apple",
    "nameOrigin": "iro",
@@ -12187,10 +12187,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12207,11 +12207,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12228,8 +12228,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -12247,9 +12247,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_이사벨라레드귀모자",
    "nameOrigin": "iro",
@@ -12264,9 +12264,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_이사벨라블루귀모자",
    "nameOrigin": "iro",
@@ -12320,9 +12320,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12339,11 +12339,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12360,10 +12360,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -12381,10 +12381,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_폴짝이는포링",
@@ -12418,10 +12418,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -12438,11 +12438,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_칸남모자",
    "nameOrigin": "iro",
@@ -12457,9 +12457,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12476,9 +12476,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_주전자모자",
    "nameOrigin": "iro",
@@ -12512,11 +12512,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twrozero"
    ],
    "sprite": "_king_headphone",
@@ -12532,9 +12532,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12592,10 +12592,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12612,9 +12612,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12631,10 +12631,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12651,10 +12651,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_행운의모자",
    "nameOrigin": "iro",
@@ -12669,11 +12669,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_lady_tanee",
@@ -12689,10 +12689,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twrozero"
    ],
    "sprite": "_타니아가씨인형",
@@ -12708,9 +12708,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_굶주린대어모자",
@@ -12726,11 +12726,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12747,11 +12747,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -12768,9 +12768,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -12788,10 +12788,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_l_ribbon_m_wh",
@@ -12880,10 +12880,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12900,11 +12900,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -12982,9 +12982,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_mermaid_wig",
@@ -13015,9 +13015,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_lolita_two_side_up",
@@ -13048,11 +13048,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_cat_ear_long",
@@ -13068,10 +13068,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_롱포니_백",
@@ -13087,10 +13087,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_long_twin_bl",
@@ -13106,10 +13106,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_long_twin_bu",
@@ -13125,10 +13125,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_long_twin_om",
@@ -13144,10 +13144,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_long_twin_gn",
@@ -13163,10 +13163,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_long_twin_pp",
@@ -13182,10 +13182,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_long_twin_rd",
@@ -13201,10 +13201,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_long_twin_wh",
@@ -13220,10 +13220,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_long_twin_yl",
@@ -13239,10 +13239,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_l_knitting_low_twin",
@@ -13258,11 +13258,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -13431,11 +13431,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -13472,8 +13472,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_마기스틴헤드드레스",
@@ -13489,9 +13489,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -13510,9 +13510,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -13568,9 +13568,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_메이저우로스의뿔",
@@ -13604,9 +13604,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -13642,9 +13642,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_mn_hair_bg",
@@ -13660,9 +13660,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_mn_hair_yl",
@@ -13678,9 +13678,9 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -13716,9 +13716,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_medium_wave",
@@ -13734,10 +13734,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_medium_wave_bd",
@@ -13793,11 +13793,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_c_mermaid_wig_peach",
    "nameOrigin": "iro",
@@ -13812,11 +13812,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -13887,10 +13887,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -13907,10 +13907,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -13927,10 +13927,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -13965,9 +13965,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_괴어의아가미",
    "nameOrigin": "iro",
@@ -13982,10 +13982,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -14041,11 +14041,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_악보머리띠",
@@ -14061,10 +14061,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -14082,11 +14082,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -14146,9 +14146,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_노블햇",
    "nameOrigin": "iro",
@@ -14163,8 +14163,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_초록이모자",
    "nameOrigin": "thro",
@@ -14179,9 +14179,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twrozero"
    ],
@@ -14198,10 +14198,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_nostalgiacherryblossom",
@@ -14218,9 +14218,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -14237,10 +14237,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -14257,10 +14257,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -14277,10 +14277,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -14298,10 +14298,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -14374,9 +14374,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_공작새깃털",
@@ -14407,9 +14407,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_c_penguin_cap_bu",
    "nameOrigin": "iro",
@@ -14424,9 +14424,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -14462,10 +14462,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_페르시카",
@@ -14517,9 +14517,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_크림힐트의왕관",
@@ -14554,11 +14554,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_piamette_roll_hair_sv",
@@ -14593,8 +14593,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -14611,10 +14611,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_벨의비둘기",
    "nameOrigin": "iro",
@@ -14629,10 +14629,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -14649,11 +14649,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -14671,11 +14671,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -14693,10 +14693,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -14749,9 +14749,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_포이즌스포아모자",
    "nameOrigin": "thro",
@@ -14766,9 +14766,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -14825,9 +14825,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c교황의리본",
@@ -14843,11 +14843,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -14864,10 +14864,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -14928,10 +14928,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_clay_poring_jar",
@@ -14947,9 +14947,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_포링편지",
@@ -14965,9 +14965,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -14984,9 +14984,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_poring_muffler",
@@ -15024,11 +15024,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "c_poring_syringe",
@@ -15044,9 +15044,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_poring_traffic_light",
@@ -15062,10 +15062,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -15100,8 +15100,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "thro",
     "twrozero"
    ],
@@ -15134,11 +15134,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_professor_miniglass",
@@ -15154,9 +15154,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -15174,9 +15174,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -15210,10 +15210,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro"
    ],
    "sprite": "_파란귀장식",
@@ -15380,10 +15380,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -15401,9 +15401,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -15420,9 +15420,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_빨간두건",
    "nameOrigin": "iro",
@@ -15439,9 +15439,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -15495,10 +15495,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_프리스트의모자",
    "nameOrigin": "iro",
@@ -15607,11 +15607,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -15745,9 +15745,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_랄프폰지게666세",
    "nameOrigin": "iro",
@@ -15798,8 +15798,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "thro"
    ],
    "sprite": "_장미카스캐트",
@@ -15815,10 +15815,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -15835,10 +15835,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_청나라머리장식",
    "nameOrigin": "iro",
@@ -15890,9 +15890,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_루돌프머리띠",
    "nameOrigin": "iro",
@@ -15944,8 +15944,8 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -16019,9 +16019,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_무속인의모자",
@@ -16037,9 +16037,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_상어모자",
@@ -16055,9 +16055,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -16074,9 +16074,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_면도용크림",
    "nameOrigin": "iro",
@@ -16171,9 +16171,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -16207,9 +16207,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_side_pigtail_bl",
@@ -16225,9 +16225,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_side_pigtail_bu",
@@ -16243,9 +16243,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_side_pigtail_om",
@@ -16261,9 +16261,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_side_pigtail_gn",
@@ -16279,9 +16279,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_side_pigtail_pp",
@@ -16297,9 +16297,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_side_pigtail_rd",
@@ -16315,9 +16315,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_side_pigtail_wh",
@@ -16333,9 +16333,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_side_pigtail_yl",
@@ -16351,9 +16351,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_side_tail_bl",
@@ -16369,9 +16369,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_side_tail_yl",
@@ -16387,9 +16387,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_side_tail_bu",
@@ -16405,9 +16405,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_side_tail_om",
@@ -16423,9 +16423,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_side_tail_gn",
@@ -16441,9 +16441,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_side_tail_pp",
@@ -16459,9 +16459,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_side_tail_rd",
@@ -16477,9 +16477,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_side_tail_wh",
@@ -16495,11 +16495,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -16516,10 +16516,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -16536,10 +16536,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -16557,10 +16557,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -16577,9 +16577,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -16597,9 +16597,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -16617,9 +16617,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -16637,10 +16637,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -16657,9 +16657,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_간판소녀모자",
@@ -16696,10 +16696,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -16734,9 +16734,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_eru_rava_hat",
@@ -16752,10 +16752,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -16790,11 +16790,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -16921,10 +16921,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -16941,8 +16941,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -16959,9 +16959,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -16978,8 +16978,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -16996,9 +16996,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -17015,9 +17015,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -17034,9 +17034,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -17053,10 +17053,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -17093,8 +17093,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_뱀모자",
    "nameOrigin": "iro",
@@ -17109,10 +17109,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -17129,11 +17129,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_snow_rabbit_wig",
@@ -17211,10 +17211,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -17232,9 +17232,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twrozero"
    ],
@@ -17251,9 +17251,9 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro"
    ],
    "sprite": "c_songkran_watergun",
@@ -17288,10 +17288,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "c_immortal_h_spear",
@@ -17362,10 +17362,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_찰랑모자",
    "nameOrigin": "iro",
@@ -17418,11 +17418,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twrozero"
    ],
@@ -17439,9 +17439,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -17476,11 +17476,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -17497,10 +17497,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -17540,10 +17540,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -17561,10 +17561,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_straight_long_bl",
@@ -17580,9 +17580,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -17599,9 +17599,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -17618,9 +17618,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -17637,9 +17637,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -17656,9 +17656,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_straight_long_jbl",
@@ -17674,10 +17674,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_straight_long_lpp",
@@ -17693,9 +17693,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_straight_long_pp",
@@ -17711,10 +17711,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_straight_long_rd",
@@ -17730,10 +17730,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_straight_long_wh",
@@ -17749,10 +17749,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_straight_long_yl",
@@ -17808,10 +17808,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_쌀가마니모자",
    "nameOrigin": "iro",
@@ -17846,10 +17846,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_suit_sollar",
@@ -17884,9 +17884,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_enchanted_dog",
@@ -17902,11 +17902,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_sweet_corone",
@@ -17922,10 +17922,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -17962,11 +17962,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -17983,10 +17983,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "c_tan_spear",
@@ -18002,9 +18002,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_알라딘의램프",
@@ -18076,10 +18076,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_눈물",
@@ -18095,11 +18095,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -18116,9 +18116,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_천구의두루마리",
    "nameOrigin": "iro",
@@ -18194,10 +18194,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_대못박힌스카프",
    "nameOrigin": "iro",
@@ -18213,8 +18213,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -18232,10 +18232,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_타이거마스크",
    "nameOrigin": "iro",
@@ -18250,10 +18250,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_tiger_muffler_msp",
@@ -18269,11 +18269,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -18290,10 +18290,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro"
    ],
    "sprite": "c_tris_sword",
@@ -18309,9 +18309,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_c_tv_hair_pk",
    "nameOrigin": "iro",
@@ -18344,9 +18344,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -18381,10 +18381,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -18420,9 +18420,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c트윈마가레트",
@@ -18459,10 +18459,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -18479,11 +18479,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -18500,10 +18500,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_twinkle_twin_b",
@@ -18519,11 +18519,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_twinkle_wave",
@@ -18558,10 +18558,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -18578,10 +18578,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -18617,9 +18617,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -18636,9 +18636,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_발렌타인모자",
    "nameOrigin": "iro",
@@ -18688,10 +18688,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_가루다햇",
    "nameOrigin": "iro",
@@ -18706,8 +18706,8 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
+    "latam",
     "thro"
    ],
    "sprite": "c_vietnam_flag_hood",
@@ -18738,9 +18738,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_volume_low_twin",
@@ -18771,10 +18771,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_volume_low_twin_wh",
@@ -18881,11 +18881,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_wanderer_grim_reaper",
@@ -18901,10 +18901,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_warm_cat_muffler",
@@ -18920,9 +18920,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_수련왕관",
    "nameOrigin": "iro",
@@ -18937,10 +18937,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -18957,11 +18957,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c_rk_hair_rd",
@@ -19059,11 +19059,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -19081,10 +19081,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_white_corone",
@@ -19100,9 +19100,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -19137,10 +19137,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_흰여우귀방울리본",
    "nameOrigin": "thro",
@@ -19235,10 +19235,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_white_rabbit",
@@ -19254,10 +19254,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -19294,9 +19294,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_하얀뱀모자",
    "nameOrigin": "iro",
@@ -19311,11 +19311,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -19332,10 +19332,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_sr_hair_gn",
@@ -19351,10 +19351,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_c_sr_hair_wh",
@@ -19370,9 +19370,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c수호자검은날개",
@@ -19426,10 +19426,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -19446,11 +19446,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -19468,10 +19468,10 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -19543,11 +19543,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_witchmanteau",
@@ -19563,10 +19563,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_wolf_officer_hat",
@@ -19750,9 +19750,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro"
    ],
    "sprite": "_노란스카프",
@@ -19768,9 +19768,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -19787,9 +19787,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_yinyang_earring_y",
    "nameOrigin": "iro",
@@ -19804,10 +19804,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_지르타스인형",
@@ -19823,11 +19823,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -19900,9 +19900,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_모치링모자",
    "nameOrigin": "iro",
@@ -19936,10 +19936,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -20016,9 +20016,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -20035,8 +20035,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
+    "latam",
     "thro"
    ],
    "sprite": "_왕관앵무",
@@ -20052,9 +20052,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_쿠루피라모자",
@@ -20070,8 +20070,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_죽은자의두건",
    "nameOrigin": "iro",
@@ -20120,9 +20120,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_무슬림여자모",
    "nameOrigin": "iro",
@@ -20137,8 +20137,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_악마의날개",
    "nameOrigin": "iro",
@@ -20153,9 +20153,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_주사위모자",
    "nameOrigin": "iro",
@@ -20186,9 +20186,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_도깨비뿔",
    "nameOrigin": "iro",
@@ -20203,10 +20203,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_입에문도넛",
    "nameOrigin": "iro",
@@ -20269,9 +20269,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_풀죽은엘리스모자",
    "nameOrigin": "iro",
@@ -20286,9 +20286,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_늘어진퍼머터",
    "nameOrigin": "iro",
@@ -20303,9 +20303,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_빵봉투1",
    "nameOrigin": "iro",
@@ -20351,8 +20351,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_exe_wing_cap",
@@ -20368,9 +20368,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_유노의눈",
    "nameOrigin": "iro",
@@ -20401,10 +20401,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_어부의모자",
    "nameOrigin": "iro",
@@ -20419,9 +20419,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -20438,8 +20438,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_화관",
    "nameOrigin": "iro",
@@ -20454,9 +20454,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "kro"
+    "kro",
+    "latam"
    ],
    "sprite": "_flowery_vision_th",
    "nameOrigin": "thro",
@@ -20471,10 +20471,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_집중의베레모",
@@ -20490,9 +20490,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -20524,10 +20524,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_c교황의관",
@@ -20545,10 +20545,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_퍼씰모자",
    "nameOrigin": "iro",
@@ -20585,9 +20585,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_쌍자궁보관",
    "nameOrigin": "iro",
@@ -20602,10 +20602,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -20639,8 +20639,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_장식용지오그래퍼",
    "nameOrigin": "iro",
@@ -20655,11 +20655,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -20676,10 +20676,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -20696,11 +20696,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -20717,9 +20717,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_골든버니밴드",
@@ -20735,9 +20735,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_금관모자",
    "nameOrigin": "thro",
@@ -20752,11 +20752,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -20774,8 +20774,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
+    "latam",
     "twro"
    ],
    "sprite": "_그랜드페코의머리띠",
@@ -20791,9 +20791,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_그레이버니밴드",
    "nameOrigin": "iro",
@@ -20808,8 +20808,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
+    "latam",
     "thro"
    ],
    "sprite": "_브라질국기두건",
@@ -20825,9 +20825,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_청사과모자",
    "nameOrigin": "iro",
@@ -20842,9 +20842,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_그린토끼머리띠",
    "nameOrigin": "iro",
@@ -20859,10 +20859,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -20895,8 +20895,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_추수의모자",
    "nameOrigin": "iro",
@@ -20911,8 +20911,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_낙엽",
    "nameOrigin": "iro",
@@ -20929,9 +20929,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_하타블랙",
    "nameOrigin": "thro",
@@ -20946,10 +20946,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_하트안대",
    "nameOrigin": "iro",
@@ -20964,11 +20964,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_하트리본머리띠",
    "nameOrigin": "iro",
@@ -20983,9 +20983,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_낙원의새장",
@@ -21002,8 +21002,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_암흑의투구",
    "nameOrigin": "iro",
@@ -21018,9 +21018,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_육각안경",
@@ -21052,9 +21052,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "thro"
    ],
    "sprite": "_돌풍의헌팅캡",
@@ -21086,9 +21086,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -21123,10 +21123,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twrozero"
    ],
    "sprite": "_부상자의안대",
@@ -21196,9 +21196,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -21215,10 +21215,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_왕새우모자",
    "nameOrigin": "iro",
@@ -21233,8 +21233,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_kings_crown_purple",
    "unnamed": true
@@ -21248,8 +21248,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_늘어진하얀고양이",
@@ -21297,8 +21297,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_월계수관",
    "nameOrigin": "iro",
@@ -21313,9 +21313,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_리프캣모자",
@@ -21331,9 +21331,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_legacy_of_wise_one_j",
    "nameOrigin": "iro",
@@ -21348,8 +21348,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_사자궁보관",
    "nameOrigin": "iro",
@@ -21364,9 +21364,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -21384,9 +21384,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_로키의어쌔신마스크",
    "nameOrigin": "iro",
@@ -21401,11 +21401,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_낙지풍선",
    "nameOrigin": "iro",
@@ -21420,10 +21420,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro",
     "twrozero"
    ],
@@ -21440,9 +21440,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -21459,8 +21459,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_리리카모자",
    "nameOrigin": "iro",
@@ -21475,8 +21475,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_아카데미1수료모자",
    "nameOrigin": "iro",
@@ -21491,9 +21491,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_식인꽃모자",
    "nameOrigin": "iro",
@@ -21508,9 +21508,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_마린의관",
    "nameOrigin": "iro",
@@ -21525,9 +21525,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_마룬버니밴드",
    "nameOrigin": "iro",
@@ -21542,8 +21542,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
+    "latam",
     "thro"
    ],
    "sprite": "_metal_pick",
@@ -21559,9 +21559,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_마이크모자",
    "nameOrigin": "iro",
@@ -21576,8 +21576,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_프로펠라_",
    "nameOrigin": "iro",
@@ -21627,10 +21627,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_모기향",
    "nameOrigin": "thro",
@@ -21645,9 +21645,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_mountain_helmet",
    "nameOrigin": "iro",
@@ -21662,11 +21662,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro"
    ],
    "sprite": "_해군사관모자",
@@ -21698,8 +21698,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_옵저버",
    "nameOrigin": "iro",
@@ -21714,9 +21714,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_핑크엔젤링풍선",
    "nameOrigin": "iro",
@@ -21731,8 +21731,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_오니의뿔",
    "nameOrigin": "iro",
@@ -21747,10 +21747,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro"
    ],
    "sprite": "_입에무는주먹밥",
@@ -21766,9 +21766,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_오렌지토끼머리띠",
    "nameOrigin": "iro",
@@ -21783,9 +21783,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_오렌지모자",
    "nameOrigin": "iro",
@@ -21800,9 +21800,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_입에무는오렌지",
    "nameOrigin": "iro",
@@ -21817,9 +21817,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_무법자모자",
    "nameOrigin": "iro",
@@ -21852,8 +21852,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_보손모형",
    "nameOrigin": "iro",
@@ -21868,8 +21868,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_파티구함모자",
    "nameOrigin": "iro",
@@ -21900,9 +21900,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_phantom_ear",
    "nameOrigin": "iro",
@@ -21917,9 +21917,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_봉황관",
@@ -21950,9 +21950,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_핑크토끼머리띠",
    "nameOrigin": "iro",
@@ -21967,9 +21967,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_해적의자존심",
    "nameOrigin": "iro",
@@ -21984,9 +21984,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_입에무는포커카드",
    "nameOrigin": "iro",
@@ -22036,10 +22036,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_handiness_telescope",
@@ -22055,8 +22055,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_고양이방울",
    "nameOrigin": "iro",
@@ -22088,10 +22088,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_까마귀모자",
    "nameOrigin": "thro",
@@ -22106,11 +22106,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_rebel_pocket_watch",
    "nameOrigin": "iro",
@@ -22125,10 +22125,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_붉은베레모",
    "nameOrigin": "iro",
@@ -22143,8 +22143,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_빨간안경",
    "nameOrigin": "iro",
@@ -22159,9 +22159,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_붉은학사모",
    "nameOrigin": "thro",
@@ -22192,10 +22192,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "twro"
    ],
    "sprite": "_pope_ribbon_r",
@@ -22211,10 +22211,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
+    "latam",
     "thro",
     "twrozero"
    ],
@@ -22283,9 +22283,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twrozero"
    ],
@@ -22302,9 +22302,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_신부의리본",
@@ -22320,10 +22320,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "kro"
+    "kro",
+    "latam"
    ],
    "sprite": "_주먹밥모자",
    "nameOrigin": "iro",
@@ -22355,8 +22355,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_바위손모형",
    "nameOrigin": "iro",
@@ -22371,11 +22371,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -22392,10 +22392,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_rwc승리의왕관_빨강",
    "nameOrigin": "iro",
@@ -22410,10 +22410,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "thro"
    ],
    "sprite": "_rwc승리의왕관_8강",
@@ -22429,10 +22429,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_rwc승리의왕관_파랑",
    "nameOrigin": "iro",
@@ -22447,10 +22447,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_rwc승리의왕관_검정",
    "nameOrigin": "iro",
@@ -22465,8 +22465,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_mvp농구모자",
    "nameOrigin": "iro",
@@ -22481,8 +22481,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_사치의모자",
    "nameOrigin": "iro",
@@ -22514,8 +22514,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_인마궁왕관",
    "nameOrigin": "iro",
@@ -22566,8 +22566,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_세일표지판",
    "nameOrigin": "iro",
@@ -22598,8 +22598,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_가위손모형",
    "nameOrigin": "iro",
@@ -22614,8 +22614,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_천헐궁왕관",
    "nameOrigin": "iro",
@@ -22630,8 +22630,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_바다캡틴모자",
    "nameOrigin": "iro",
@@ -22646,9 +22646,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_세도라의모자",
@@ -22664,9 +22664,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_독일축제모자",
@@ -22682,9 +22682,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_샤먼의머리장식",
    "nameOrigin": "iro",
@@ -22699,9 +22699,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "krozero",
+    "latam",
     "thro"
    ],
    "sprite": "_대지의실크햇",
@@ -22734,9 +22734,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_용투구_은",
    "nameOrigin": "iro",
@@ -22751,9 +22751,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_광휘의격노",
    "nameOrigin": "iro",
@@ -22768,8 +22768,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_하늘색왕관",
    "nameOrigin": "iro",
@@ -22799,8 +22799,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_무슬림남자모",
    "nameOrigin": "iro",
@@ -22815,9 +22815,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_sparkler_stick",
    "nameOrigin": "iro",
@@ -22849,9 +22849,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_샤워캡",
@@ -22867,10 +22867,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_새싹모자",
    "nameOrigin": "iro",
@@ -22901,9 +22901,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_딸기모자",
@@ -22954,11 +22954,11 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_선글라스야구모자",
@@ -22992,8 +22992,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_타키우스눈가리개",
    "nameOrigin": "thro",
@@ -23008,8 +23008,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_벌룬햇",
@@ -23044,10 +23044,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_복호나한가면",
    "nameOrigin": "iro",
@@ -23062,9 +23062,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro"
    ],
    "sprite": "_혓바닥부적",
@@ -23080,9 +23080,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro"
    ],
    "sprite": "_기동형투구",
@@ -23099,10 +23099,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_투칸모자",
@@ -23118,9 +23118,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_파란아라라모자",
@@ -23136,9 +23136,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "twrozero"
    ],
    "sprite": "_꼬북이모자",
@@ -23172,8 +23172,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_발키리깃털모자",
    "nameOrigin": "iro",
@@ -23188,8 +23188,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_아주평범한모자",
    "nameOrigin": "iro",
@@ -23204,9 +23204,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_바이올렛토끼머리띠",
    "nameOrigin": "iro",
@@ -23221,8 +23221,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
+    "latam",
     "twro"
    ],
    "sprite": "_쌍녀궁왕관",
@@ -23238,10 +23238,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_한입수박",
    "nameOrigin": "iro",
@@ -23256,10 +23256,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twrozero"
    ],
    "sprite": "_뮌헨소시지",
@@ -23277,8 +23277,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_위스퍼마스크",
    "nameOrigin": "iro",
@@ -23293,9 +23293,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_화이트페더",
    "nameOrigin": "iro",
@@ -23310,10 +23310,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_백무상모자",
    "nameOrigin": "iro",
@@ -23347,10 +23347,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_와일드로즈모자",
    "nameOrigin": "iro",
@@ -23366,10 +23366,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_날개헤드폰",
@@ -23385,11 +23385,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro",
     "twrozero"
@@ -23407,11 +23407,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -23447,10 +23447,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "krozero",
+    "latam",
     "twro"
    ],
    "sprite": "_work_cap",
@@ -23466,9 +23466,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_노란토끼머리띠",
    "nameOrigin": "iro",
@@ -23499,10 +23499,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_이그드라실왕관",
    "nameOrigin": "iro",
@@ -23549,8 +23549,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_버지볼보드",
    "unnamed": true
@@ -23564,8 +23564,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "iro"
+    "iro",
+    "latam"
    ],
    "sprite": "_브라질4주년모자",
    "unnamed": true
@@ -23666,11 +23666,11 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
     "kro",
     "krozero",
+    "latam",
     "thro",
     "twro"
    ],
@@ -23717,9 +23717,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_플립모자",
    "nameOrigin": "kro",
@@ -23865,9 +23865,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_분홍토끼머리띠",
    "nameOrigin": "jro",
@@ -23898,8 +23898,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_surpentarius_crown_j",
    "nameOrigin": "jro",
@@ -23914,9 +23914,9 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "iro",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_졸리로저",
    "nameOrigin": "jro",
@@ -24028,8 +24028,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_rebirth_circlet",
    "nameOrigin": "jro",
@@ -24044,8 +24044,8 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
-    "jro"
+    "jro",
+    "latam"
    ],
    "sprite": "_고대왕의왕관",
    "nameOrigin": "jro",
@@ -24076,9 +24076,9 @@
    ],
    "viewKind": "garment",
    "origins": [
-    "latam",
     "iro",
     "jro",
+    "latam",
     "thro",
     "twro"
    ],
@@ -24095,10 +24095,10 @@
    ],
    "viewKind": "headgear",
    "origins": [
-    "latam",
     "jro",
     "kro",
-    "krozero"
+    "krozero",
+    "latam"
    ],
    "sprite": "_whikebain_ears_gold",
    "nameOrigin": "twro",

@@ -210,39 +210,39 @@ export const t = {
   singleSlotLabel: "Só visuais de uma posição",
   singleSlotTip:
     "Esconde os visuais que ocupam mais de uma posição ao mesmo tempo (um conjunto de Topo + Meio, por exemplo), que ao equipar tiram o que estiver nas outras.",
-  // The costumes nobody here can get. Off by default, and the wording has to
-  // carry the one thing that matters: they are real, they draw, and you cannot
-  // get them in game.
+  // Costumes from the other official Ragnarok servers. Off by default, and the
+  // wording has to carry the one thing that matters: they are real, they draw,
+  // and you cannot get them here.
   //
-  // Two kinds sit behind this box and the difference is worth the words. Most
-  // are in another official server's client. About 800 are in *this* client —
-  // the art ships with the game, the accessory table has the view, and no item
-  // was ever released that gives it to anybody. Saying "não existe no Ragnarok
-  // LATAM" about those would be plainly false to anyone who knows the files,
-  // so nothing here says it.
-  foreignFilterLabel: "Fora do catálogo",
-  foreignLabel: "Visuais que não dá para conseguir",
+  // About 800 of the rows behind this box are a different fact underneath: the
+  // art ships in *this* client and no item was ever released that gives it to
+  // anybody. Nothing here says so, on purpose. Whether a sprite file happens
+  // to sit in our own resources is a fact about the files, not about what a
+  // player can get, and a reader has no way to act on it: outside this
+  // catalogue is outside this catalogue. So they are presented exactly like
+  // the rest, by whichever servers did release them.
+  foreignFilterLabel: "Outros servidores",
+  foreignLabel: "Visuais de outros servidores",
   foreignTip:
-    "Mostra os visuais que não dá para conseguir no Ragnarok LATAM: os que existem em outros servidores oficiais, e os que já estão no cliente daqui mas nunca foram lançados. Dá para vestir e ver na prévia.",
+    "Mostra visuais que existem em outros servidores oficiais e não no Ragnarok LATAM. Dá para vestir e ver na prévia, mas não dá para conseguir no jogo daqui.",
   foreignAllServers: "Todos",
   foreignAllServersTip:
-    "O catálogo do LATAM e, junto com ele, todos os visuais que não dá para conseguir.",
+    "O catálogo do LATAM e, junto com ele, os visuais de todos os outros servidores.",
   /** Each server chip answers one question — o que esse servidor tem que o
    *  LATAM não tem — e por isso tira o catálogo daqui da lista: misturado com
    *  1322 visuais que dá para conseguir, a resposta não é mais uma resposta. */
   foreignOnlyServerTip: (server: string) =>
     `Só os visuais que ${server} tem e o Ragnarok LATAM não. O catálogo daqui fica de fora da lista.`,
-  /** The one chip that is not about another server: the art is in this client
-   *  and no item ever gave it to anybody. */
-  foreignUnreleasedTip:
-    "Só os visuais que já estão no cliente do Ragnarok LATAM e nunca foram lançados aqui. O catálogo daqui fica de fora da lista.",
+  /** The badge for a row this catalogue names no server for: the 17 visuals no
+   *  other official client has either, which only our own carries and never
+   *  released. They still need a badge — in a mixed grid it is the one thing
+   *  that tells a costume you can get from one you cannot — and this is the
+   *  same words the tooltip has always used for a row with no server to name.
+   *  There is deliberately no `latam` chip beside the servers': what it would
+   *  select is not "a server that has something we don't", and naming it would
+   *  put a fact about our resource files in front of a player. */
+  foreignOtherServer: "Outro servidor",
   foreignServerNames: {
-    /** Not "LATAM": a chip reading the server's own name, among chips that each
-     *  mean "what this server has and we don't", would read as the catalogue
-     *  itself. What it selects is the visuals this client has and never gave
-     *  out, so that is what it says — singular, because the same string is the
-     *  badge on one tile. */
-    latam: "Não lançado",
     iro: "iRO",
     jro: "jRO",
     kro: "kRO",
@@ -268,14 +268,6 @@ export const t = {
         ? `Visual de outros servidores (${joinAnd(servers)})`
         : `Visual de outro servidor${servers.length ? ` (${servers[0]})` : ""}`
     }. Não existe no Ragnarok LATAM — dá para vestir e ver aqui, mas não dá para conseguir no jogo.`,
-  /** The same badge for a visual that is already in this client. `others` are
-   *  the servers that have it too, which is the part that says where the look
-   *  came from — and is empty for the 17 that are ours alone (a Brazilian flag
-   *  hat, the old guild-recruiting hats) and exist nowhere else. */
-  foreignUnreleasedBadgeTip: (others: string[]) =>
-    `Visual que já está no cliente do Ragnarok LATAM e nunca foi lançado aqui${
-      others.length ? ` — ${joinAnd(others)} ${others.length > 1 ? "lançaram" : "lançou"}` : ", e não existe em nenhum outro servidor"
-    }. Dá para vestir e ver aqui, mas não dá para conseguir no jogo.`,
   foreignUnnamedTip:
     "Sem nome: nenhum cliente que lemos tinha a linha de item desse visual, então o nome mostrado é o do arquivo do sprite.",
   foreignForeignNameTip: (server: string) =>
@@ -311,20 +303,21 @@ export const t = {
   footerSource: "Código no GitHub",
 };
 
-/** The badge tooltip for one row of the out-of-catalogue catalogue, from its
- *  raw `origins`.
+/** The names to badge a foreign row with, and the tooltip that spells them out.
  *
- *  Lives here, next to the strings, and is called from all three places that
- *  show the badge — the grid tile, the list row and the worn-slot card. It was
- *  three copies of `t.foreignBadgeTip(origins.map(name))` until a `latam`
- *  entry started meaning something else: the sentence for a visual that is
- *  already in this client is a different sentence, and a fourth copy of the
- *  branch is three chances to get it wrong.
+ *  Both live here, next to the strings, because all three places that show a
+ *  badge need the same two answers — the grid tile, the list row and the
+ *  worn-slot card — and both have to hold for a row that names no server at
+ *  all. `servers` comes from `serversOf`, so it is already free of the one
+ *  origin that is not a server (see core/db.ts); `foreign` is whether the row
+ *  belongs to this catalogue, which for those 17 is the only thing left saying
+ *  so.
  */
-export function originsTip(origins: string[]): string {
-  const name = (o: string) => t.foreignServerNames[o] ?? o;
-  if (origins.includes("latam")) {
-    return t.foreignUnreleasedBadgeTip(origins.filter((o) => o !== "latam").map(name));
-  }
-  return t.foreignBadgeTip(origins.map(name));
+export function serverBadges(servers: string[], foreign: boolean): string[] {
+  if (servers.length) return servers.map((o) => t.foreignServerNames[o] ?? o);
+  return foreign ? [t.foreignOtherServer] : [];
+}
+
+export function originsTip(servers: string[]): string {
+  return t.foreignBadgeTip(servers.map((o) => t.foreignServerNames[o] ?? o));
 }

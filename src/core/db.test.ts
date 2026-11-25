@@ -6,10 +6,10 @@ import {
   builtinInFront,
   builtinRisePx,
   hatSprite,
-  isUnreleasedHere,
   loadDb,
   originsOf,
   realItemId,
+  serversOf,
   withHatEffects,
   type Costume,
   type HatEffectRow,
@@ -291,14 +291,25 @@ describe("originsOf", () => {
   });
 });
 
-describe("isUnreleasedHere", () => {
-  it("is true when this client has the art and never gave it out", () => {
-    expect(isUnreleasedHere({ id: 1, name: "a", slots: [], origins: ["latam", "iro"] })).toBe(true);
+describe("serversOf", () => {
+  // `latam` in origins means the sprite ships in this client's resources. The
+  // app never says it: the item was never released, so the row is as out of
+  // reach as any other server's, and which of our files hold the art is not
+  // something a reader can act on.
+  it("drops this client from the servers it shows", () => {
+    expect(serversOf({ id: 1, name: "a", slots: [], origins: ["latam", "iro"] })).toEqual(["iro"]);
   });
 
-  it("is false for another server's costume, whose art we do not have", () => {
-    expect(isUnreleasedHere({ id: 1, name: "a", slots: [], origin: "iro", origins: ["iro"] })).toBe(
-      false,
-    );
+  it("leaves another server's costume alone", () => {
+    expect(serversOf({ id: 1, name: "a", slots: [], origin: "iro", origins: ["iro"] })).toEqual([
+      "iro",
+    ]);
+  });
+
+  // The 17 that are ours alone. They are still in the catalogue -- originsOf
+  // says so -- and the badge for them comes from serverBadges, not from here.
+  it("has nothing to name for a visual no other client has", () => {
+    expect(serversOf({ id: 1, name: "a", slots: [], origins: ["latam"] })).toEqual([]);
+    expect(originsOf({ id: 1, name: "a", slots: [], origins: ["latam"] })).toEqual(["latam"]);
   });
 });

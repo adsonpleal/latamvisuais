@@ -25,6 +25,7 @@ import {
   originsOf as dbOriginsOf,
   primaryOrigin,
   realItemId,
+  serversOf as dbServersOf,
   type Costume,
   type Slot,
   type Stone,
@@ -138,12 +139,13 @@ export function Catalog({
   // first seen, so the chips describe the data instead of a hard-coded list.
   const origins = useMemo(() => {
     const seen = new Set<string>();
-    for (const item of all) for (const o of originsOf(item)) seen.add(o);
-    // Alphabetical, except that the one chip which is not another server goes
-    // first: "Não lançado" sorted between kRO Zero and thRO reads like a
-    // server nobody has heard of.
-    const rest = [...seen].filter((o) => o !== "latam").sort();
-    return seen.has("latam") ? ["latam", ...rest] : rest;
+    // serversOf, not originsOf: `latam` is in the origins of the rows whose
+    // art this client carries and never released, and it is not a chip — there
+    // is no "what do they have that we don't" to ask about ourselves. Those
+    // rows answer to every other server's chip that has them, and to the
+    // checkbox alone for the 17 that answer to none.
+    for (const item of all) for (const o of serversOf(item)) seen.add(o);
+    return [...seen].sort();
   }, [all]);
   // The filtered items in display order. The list view windows over this, and
   // the arrow keys step through it; both need the same array, so it's built
@@ -312,16 +314,23 @@ export function Catalog({
           <div className="catalog-grid" role="list" ref={gridRef}>
             {all.map((item, i) => {
               const equipped = isOn(item);
-              const servers = originsOf(item);
+              const servers = serversOf(item);
+              // Whether the row is in that catalogue at all, which is not the
+              // same as having a server to name: 17 of them are in no other
+              // official client either, and a tile with no badge among tiles
+              // you can get is the one mistake this badge exists to prevent.
+              const foreign = originsOf(item).length > 0;
               // One name fits a tile. With a chip held down it is that chip's
               // server, so the badge never seems to contradict the filter.
               const origin = primaryOrigin(servers, originFilter);
-              const server = origin ? (t.foreignServerNames[origin] ?? origin) : null;
+              const server = origin
+                ? (t.foreignServerNames[origin] ?? origin)
+                : foreign
+                  ? t.foreignOtherServer
+                  : null;
               // Every name, in chip order, folded into the one sentence that
               // says which: the tile shows a single badge and a "+3", so the
-              // tooltip is the only place the rest are written out. Not the
-              // same sentence for a visual whose art is already in this
-              // client — see originsTip.
+              // tooltip is the only place the rest are written out.
               const serversTip = originsTip(servers);
               // The badge is on the tile, not only in the tooltip: once the
               // filter is on, foreign and LATAM costumes sit side by side in
@@ -338,7 +347,7 @@ export function Catalog({
                 "catalog-item",
                 equipped ? "is-equipped" : "",
                 isStone(item) ? "is-stone" : "",
-                origin ? "is-foreign" : "",
+                foreign ? "is-foreign" : "",
               ]
                 .filter(Boolean)
                 .join(" ");
@@ -418,4 +427,11 @@ export function originOf(item: Costume | Stone): string | null {
  *  answered as "none" rather than reaching into db.ts for an empty array. */
 function originsOf(item: Costume | Stone): string[] {
   return isStone(item) ? [] : dbOriginsOf(item);
+}
+
+/** The same, minus the one origin that is not a server to show anybody — see
+ *  serversOf in db.ts. This is the list the chips and the badges are built
+ *  from; `originsOf` above decides what is in the catalogue at all. */
+function serversOf(item: Costume | Stone): string[] {
+  return isStone(item) ? [] : dbServersOf(item);
 }

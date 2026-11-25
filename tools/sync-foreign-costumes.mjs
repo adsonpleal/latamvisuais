@@ -16,10 +16,15 @@
 //     there is no foreign tree to read: `origin=latam` is not a thing the
 //     gateway serves (it answers 500), and it would be a lie anyway.
 //
-// 745 of the second kind were sitting in the published catalogue being thrown
+// 804 of the second kind were sitting in the published catalogue being thrown
 // away here, by a filter that read them as "not another server's visuals, so
 // not this question". They are the same question — can I see this in the
 // simulator — and the answer was no for all of them.
+//
+// The difference is a fact about this client's files and stops at this file:
+// the app presents both kinds identically, as visuals you cannot get here,
+// named by whichever other servers have them. Only the render path cares, and
+// only because `origin` is what points it at a mirror.
 //
 // The extraction that produces that catalogue lives in ragassets, next to the
 // GRF reader and the Lua VM it needs (tools/multiserver/ there). It used to live
@@ -236,18 +241,17 @@ export function slotsFor(c) {
   return c.kind === "robe" ? ["garment"] : ["top"];
 }
 
-/** Every server whose client has this art, `latam` first when it is one of
- *  them and the rest in the order the published catalogue gives.
+/** Every server whose client has this art, in the order the published
+ *  catalogue gives, `latam` among them when ours is one.
  *
- *  Order is not cosmetic here: the app badges a row with `origins[0]` and the
- *  chips are listed in first-seen order, so this is what decides whether a
- *  visual sitting unreleased in our own client introduces itself as that or as
- *  somebody else's hat. */
-export function originsFirstLocal(c) {
-  const all = c.origins?.length ? c.origins : [c.origin];
-  return all.includes(LOCAL_ORIGIN)
-    ? [LOCAL_ORIGIN, ...all.filter((o) => o !== LOCAL_ORIGIN)]
-    : all;
+ *  Not reordered to put `latam` first: the app badges a row with the first
+ *  *server* it names, and `latam` is not one it ever names (`serversOf` in
+ *  core/db.ts drops it). Whether the sprite happens to ship in our resources
+ *  is a fact about the files — the item that would give the costume to
+ *  somebody was never released, so the row is out of reach exactly like
+ *  another server's, and the app says the one thing a reader can act on. */
+export function originsOf(c) {
+  return c.origins?.length ? c.origins : [c.origin];
 }
 
 /** The app's shape for one foreign costume. `viewKind` mirrors db.ts: a garment
@@ -276,12 +280,7 @@ export function toAppRow(c) {
     // a row with no origin has nothing to reconstruct from, and this field is
     // now what tells a reader the row came from this catalogue at all. Costs
     // about a kilobyte across the file and removes a fallback rule.
-    //
-    // `latam` goes first where it appears, because the app's badge shows
-    // `origins[0]` and "iRO" on a visual whose art ships in this very client
-    // is the wrong headline: the thing worth saying about that row is that it
-    // was never released here.
-    origins: originsFirstLocal(c),
+    origins: originsOf(c),
     // Lowercased here rather than in the app or the gateway: this is the one
     // place that knows it is naming a file in a mirror. It is also the key the
     // inventory icon is served under (/icons/costume?sprite=), which is why
@@ -335,8 +334,9 @@ export function buildAppCatalogue(doc, { localItems = [] } = {}) {
 
   // Counted per server rather than per tree, because that is what the app's
   // chips show: a costume three servers have is counted by all three. The
-  // `latam` count is the one chip that means something else -- art we have and
-  // never released -- and it is a real number, not a leak: see LOCAL_ORIGIN.
+  // `latam` entry is the one that is not a chip -- it counts the rows whose art
+  // this client carries and never released, which the app files under whichever
+  // other servers did release them (`serversOf` in core/db.ts).
   const byOrigin = {};
   for (const r of items) for (const o of r.origins) byOrigin[o] = (byOrigin[o] ?? 0) + 1;
   // Which client ended up naming each costume, so a run says plainly whether

@@ -53,7 +53,8 @@ export type Costume = {
    *  path. */
   origin?: string;
   /** Every official server whose client has this costume's art, `latam`
-   *  included when ours does.
+   *  included when ours does — which is not a server the app ever names: see
+   *  `serversOf`.
    *
    *  Not the same question as `origin`, which is the single tree the gateway
    *  renders it from -- whichever client the extraction found it cheapest to
@@ -265,15 +266,21 @@ export function isForeignRow(item: Costume | Stone): boolean {
 }
 
 /**
- * The art is in this client and the item never was.
+ * The servers to put in front of a reader: `originsOf` without `latam`.
  *
- * The other `origins` entries are servers that have the look too; this one says
- * the LATAM client ships the sprite, which is both why the row needs no asset
- * tree to render and why "não existe no Ragnarok LATAM" would be the wrong
- * thing to say about it. What is missing is an item that names it, not the art.
+ * `latam` in `origins` says the sprite ships in this client's own resources —
+ * true of about 800 rows, and the reason they render from a bare view id. It is
+ * a fact about our files, not about what a player can get: the item that would
+ * give the costume to somebody was never released, so the row is as out of
+ * reach as any other server's, and no chip, badge or sentence in the app draws
+ * the distinction. Every display path reads this; `originsOf` is for deciding
+ * membership and matching the chip filter.
+ *
+ * Leaves nothing at all for the 17 rows no other official client has either,
+ * which `serverBadges` in i18n.ts answers with the generic badge.
  */
-export function isUnreleasedHere(item: Costume | Stone): boolean {
-  return originsOf(item).includes("latam");
+export function serversOf(item: Costume | Stone): string[] {
+  return originsOf(item).filter((o) => o !== "latam");
 }
 
 /**

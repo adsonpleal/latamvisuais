@@ -11,6 +11,7 @@ import {
   canPreview,
   originsOf,
   realItemId,
+  serversOf,
   SLOTS,
   type Costume,
   type Slot,
@@ -119,9 +120,11 @@ function wornTip(item: Costume | Stone): string {
   // see realItemId. Never this app's own number for a foreign costume.
   const realId = realItemId(item);
   const head = realId === null ? item.name : `${item.name} (${realId})`;
-  const servers = originsOf(item);
-  if (!servers.length) return head;
-  return `${head} — ${originsTip(servers)}`;
+  // Keyed on origins, said with serversOf: a row whose art is in this client
+  // and whose item never shipped is in this catalogue and names no server, and
+  // it still has to say it cannot be had — the sentence handles an empty list.
+  if (!originsOf(item).length) return head;
+  return `${head} — ${originsTip(serversOf(item))}`;
 }
 
 /**
