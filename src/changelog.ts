@@ -14,6 +14,16 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.20.0",
+    date: "2026-11-24",
+    changes: [
+      "A lista de visuais de outros servidores mais que dobrou: de 514 para 1.318. São 804 visuais que a extração dos clientes já tinha encontrado e que não estavam chegando até aqui. Para ver, abra os Filtros e marque \"Visuais de outros servidores\" — o catálogo normal, o que dá para conseguir jogando, continua igual.",
+      "São 740 de cabeça (Topo, Meio ou Baixo) e 64 de Capa. 792 deles aparecem com nome — 543 em inglês, e os outros no idioma do servidor que nomeia a peça. Os 12 que nenhum cliente nomeia aparecem com o nome do arquivo, marcado como tal.",
+      "Os botões por servidor continuam valendo: cada visual aparece em todos os servidores que o têm. 17 dos novos não aparecem em nenhum botão e trazem só \"Outro servidor\" — nenhum outro servidor oficial tem essas peças.",
+      "Cinco das capas novas ainda não desenham nada no personagem: os arquivos delas não foram extraídos de nenhum cliente. Elas aparecem na lista, mas vestir não muda nada — é a mesma coisa que acontece com algumas Pedras de Pegada.",
+    ],
+  },
+  {
     version: "0.19.1",
     date: "2026-11-23",
     changes: [
