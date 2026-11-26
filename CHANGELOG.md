@@ -80,16 +80,19 @@ entirely had the rebuilt `foreign-costumes.json` shipped without that sync.
 
 ### Measured
 
-- Every one of the 804 draws. All 804 were rendered against the live gateway
-  and compared byte-for-byte with the bare body (stable across three reference
-  renders): 799 drew, 5 did not, and the 5 are excluded here only in the sense
-  that they are known — they are shipped.
-- The 5 are garments whose files were never fetched into any mirror
-  (`EXE_Backpack`, `BlackCatBag`, `C_Soldier_Backpack`, `C_BlackBear_Back_TW`,
-  `C_School_Bag_PU`); no foreign tree draws them either, checked against all of
-  theirs. They belong in ragassets' `blank` flag, which has never run over the
-  LATAM views: 0 of the 1,099 are marked. Until it does, they are 5 dead tiles
-  out of 1,318.
+- **Every one of the 804 draws.** All 804 were rendered against the live
+  gateway and compared byte-for-byte with the bare body (stable across three
+  reference renders).
+- That first pass said 799, and it was wrong about the other 5 — a one-pose
+  measurement, which is the one mistake this check is known to make. The 5 are
+  garments (`EXE_Backpack`, `BlackCatBag`, `C_Soldier_Backpack`,
+  `C_BlackBear_Back_TW`, `C_School_Bag_PU`), a garment is worn on the back, and
+  facing south the body hides it: byte-identical to the bare character
+  standing, unmistakable from behind. ragassets' own blank sweep tries ten
+  poses for exactly this reason, and
+  [#24](https://github.com/adsonpleal/ragassets/pull/24) extends it over the
+  LATAM views — 1,170 of them, swept for the first time, 2 blank, and neither
+  is in this catalogue. **No dead tiles in the 1,318.**
 - `origin=thro` is also a 500 at the gateway — there is no thRO tree — which
   does not matter yet because nothing is rendered from one.
 
