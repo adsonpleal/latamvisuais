@@ -40,41 +40,56 @@ export type Costume = {
    *  both, because the client's hat-effect table names a single resource file
    *  per costume and its extension is what decides which system plays it. */
   attachment?: BuiltinSprite;
-  /** Which other official server this costume comes from (`iro`, `twrozero`…).
+  /** Which other official server's asset tree renders this costume (`iro`,
+   *  `twrozero`…) -- and nothing else. Not "is it obtainable here": that is
+   *  `isForeignRow`, and this field stopped answering it.
    *
-   *  Absent for everything LATAM ships, which is the normal case and the only
-   *  thing the catalogue shows until the "outros servidores" filter is turned
-   *  on. Present means the costume is not obtainable here: it is shown so it
-   *  can be previewed, and the grid badges it so nobody mistakes it for
-   *  something they can wear in game. */
+   *  Absent on two quite different rows. An ordinary LATAM costume has no
+   *  origin because it is not in this catalogue at all. A visual this client
+   *  has the art for and never released has none because the renderer draws it
+   *  from the bare view id -- there is no tree to name, and the gateway serves
+   *  no `latam` one (it answers 500). `gearViews` reads this field and only
+   *  this field, which is exactly what keeps those rows off the foreign render
+   *  path. */
   origin?: string;
-  /** Every official server that has this costume, when more than one does.
+  /** Every official server whose client has this costume's art, `latam`
+   *  included when ours does — which is not a server the app ever names: see
+   *  `serversOf`.
    *
    *  Not the same question as `origin`, which is the single tree the gateway
    *  renders it from -- whichever client the extraction found it cheapest to
    *  pull from. A costume twRO and iRO both ship belongs behind both chips,
    *  and before this existed the filter showed it under one and hid it from
-   *  the other. Absent on the 118 costumes only one server has; read it
-   *  through `originsOf`, never directly. */
+   *  the other.
+   *
+   *  Written out in full on every row of this catalogue, including the ones
+   *  where it holds a single name, because it is also what says a row *is* from
+   *  this catalogue -- the one row shape with no `origin` would otherwise be
+   *  indistinguishable from a costume anybody can buy. Read it through
+   *  `originsOf`, never directly. */
   origins?: string[];
   /** The costume's real item id in the clients' own tables -- the number the
    *  screen shows and the search box matches, because `id` above is this
    *  app's own invention for a foreign row (tools/sync-foreign-costumes.mjs)
    *  and means nothing to anyone outside it.
    *
-   *  Present alongside `origin` on 487 of the 514, chosen by the sync tool
+   *  Present alongside `origin` on 490 of the 517, chosen by the sync tool
    *  when the clients disagree. Absent on the 27 no client gives an id for,
    *  and those rows print no id at all rather than ours. Read it through
    *  `realItemId`, never directly, and never as the row's identity: equipping,
    *  the keyboard cursor and a share link all still go by `id`, which is the
    *  only number unique across both catalogues. */
   itemId?: number;
-  /** What the sprite is called in that server's client, lowercased.
+  /** What the sprite is called in the client it was read from, lowercased.
    *
    *  Required alongside `origin`, and the reason both exist: a view id is one
    *  client's index into its own name table, so a foreign id usually means
    *  nothing here and occasionally means a *different* hat. The renderer is
-   *  told the name outright — see renderParams. */
+   *  told the name outright — see renderParams.
+   *
+   *  Carried by the rows with no origin too, where the renderer does not need
+   *  it (their view id is this client's own) but the inventory icon does: that
+   *  route is keyed by sprite name and has no origin dimension at all. */
   sprite?: string;
   /** The name is the sprite's file name, because no client we read had an item
    *  row for this costume (58 of them). Shown, but marked. */
@@ -231,8 +246,41 @@ export function hatSprite(key: string): BuiltinSprite {
  * the fallback.
  */
 export function originsOf(item: Costume | Stone): string[] {
-  if (!item.origin) return [];
-  return item.origins?.length ? item.origins : [item.origin];
+  if (item.origins?.length) return item.origins;
+  return item.origin ? [item.origin] : [];
+}
+
+/**
+ * Is this row one of the costumes nobody here can get -- from either catalogue
+ * of them?
+ *
+ * `origin` used to answer this, back when every such row had one. It no longer
+ * does: a visual this client has the art for and never released renders from
+ * the bare view id, so it carries no origin at all (see the sync tool), and
+ * reading `origin` would file those 800 rows as ordinary LATAM costumes --
+ * printing a made-up item number for each and asking for an icon under an id
+ * that cannot exist. `origins` is the field that is always there.
+ */
+export function isForeignRow(item: Costume | Stone): boolean {
+  return originsOf(item).length > 0;
+}
+
+/**
+ * The servers to put in front of a reader: `originsOf` without `latam`.
+ *
+ * `latam` in `origins` says the sprite ships in this client's own resources —
+ * true of about 800 rows, and the reason they render from a bare view id. It is
+ * a fact about our files, not about what a player can get: the item that would
+ * give the costume to somebody was never released, so the row is as out of
+ * reach as any other server's, and no chip, badge or sentence in the app draws
+ * the distinction. Every display path reads this; `originsOf` is for deciding
+ * membership and matching the chip filter.
+ *
+ * Leaves nothing at all for the 17 rows no other official client has either,
+ * which `serverBadges` in i18n.ts answers with the generic badge.
+ */
+export function serversOf(item: Costume | Stone): string[] {
+  return originsOf(item).filter((o) => o !== "latam");
 }
 
 /**
@@ -248,9 +296,14 @@ export function originsOf(item: Costume | Stone): string[] {
  * nothing. So the screen and the search box both come here, and both get `null`
  * for the 27 rows no client names a number for, which print no id rather than
  * ours.
+ *
+ * Keyed on `origins` rather than `origin`: a visual this client never released
+ * has a synthetic id just the same, and it is the one row shape that has no
+ * origin to be recognized by.
  */
-export function realItemId(item: { id: number; itemId?: number; origin?: string }): number | null {
-  return item.origin ? (item.itemId ?? null) : item.id;
+export function realItemId(item: { id: number; itemId?: number; origin?: string; origins?: string[] }): number | null {
+  const foreign = item.origins?.length ? true : Boolean(item.origin);
+  return foreign ? (item.itemId ?? null) : item.id;
 }
 
 /**

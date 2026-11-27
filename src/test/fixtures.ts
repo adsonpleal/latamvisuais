@@ -176,6 +176,34 @@ export function makeDb(): Db {
         origins: ["iro", "twro"],
         sprite: "_shared_hat",
       },
+      // A visual this client has the art for and never released. No `origin`
+      // at all: the renderer draws it from the bare view id, exactly like an
+      // ordinary LATAM costume, and `origin=latam` is a 500 at the gateway.
+      // `origins` is what says the row belongs to this catalogue — and it
+      // leads with `latam`, which is what the badge reads.
+      {
+        id: 10600920,
+        name: "Chapéu Nunca Lançado",
+        view: 920,
+        slots: ["top"],
+        viewKind: "headgear",
+        origins: ["latam", "iro"],
+        sprite: "_unreleased_hat",
+        itemId: 5310,
+      },
+      // ...and one that is ours alone: nobody else's client has it either.
+      // 17 rows look like this (a Brazilian flag hat, the old
+      // guild-recruiting hats) and no client gives them an item id.
+      {
+        id: 10600930,
+        name: "_brazilian_only_hat",
+        view: 930,
+        slots: ["low"],
+        viewKind: "headgear",
+        origins: ["latam"],
+        sprite: "_brazilian_only_hat",
+        unnamed: true,
+      },
     ],
     stones: [
       { id: 1100, name: "Pedra Gráfica: Brilho (Topo)", slot: "top", slots: ["top"], stone: true, effect: "glow" },

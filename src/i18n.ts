@@ -213,6 +213,14 @@ export const t = {
   // Costumes from the other official Ragnarok servers. Off by default, and the
   // wording has to carry the one thing that matters: they are real, they draw,
   // and you cannot get them here.
+  //
+  // About 800 of the rows behind this box are a different fact underneath: the
+  // art ships in *this* client and no item was ever released that gives it to
+  // anybody. Nothing here says so, on purpose. Whether a sprite file happens
+  // to sit in our own resources is a fact about the files, not about what a
+  // player can get, and a reader has no way to act on it: outside this
+  // catalogue is outside this catalogue. So they are presented exactly like
+  // the rest, by whichever servers did release them.
   foreignFilterLabel: "Outros servidores",
   foreignLabel: "Visuais de outros servidores",
   foreignTip:
@@ -225,6 +233,15 @@ export const t = {
    *  1322 visuais que dá para conseguir, a resposta não é mais uma resposta. */
   foreignOnlyServerTip: (server: string) =>
     `Só os visuais que ${server} tem e o Ragnarok LATAM não. O catálogo daqui fica de fora da lista.`,
+  /** The badge for a row this catalogue names no server for: the 17 visuals no
+   *  other official client has either, which only our own carries and never
+   *  released. They still need a badge — in a mixed grid it is the one thing
+   *  that tells a costume you can get from one you cannot — and this is the
+   *  same words the tooltip has always used for a row with no server to name.
+   *  There is deliberately no `latam` chip beside the servers': what it would
+   *  select is not "a server that has something we don't", and naming it would
+   *  put a fact about our resource files in front of a player. */
+  foreignOtherServer: "Outro servidor",
   foreignServerNames: {
     iro: "iRO",
     jro: "jRO",
@@ -285,3 +302,22 @@ export const t = {
   footerCopyright: "© Gravity Interactive, Inc. All Rights Reserved.",
   footerSource: "Código no GitHub",
 };
+
+/** The names to badge a foreign row with, and the tooltip that spells them out.
+ *
+ *  Both live here, next to the strings, because all three places that show a
+ *  badge need the same two answers — the grid tile, the list row and the
+ *  worn-slot card — and both have to hold for a row that names no server at
+ *  all. `servers` comes from `serversOf`, so it is already free of the one
+ *  origin that is not a server (see core/db.ts); `foreign` is whether the row
+ *  belongs to this catalogue, which for those 17 is the only thing left saying
+ *  so.
+ */
+export function serverBadges(servers: string[], foreign: boolean): string[] {
+  if (servers.length) return servers.map((o) => t.foreignServerNames[o] ?? o);
+  return foreign ? [t.foreignOtherServer] : [];
+}
+
+export function originsTip(servers: string[]): string {
+  return t.foreignBadgeTip(servers.map((o) => t.foreignServerNames[o] ?? o));
+}

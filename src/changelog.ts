@@ -14,6 +14,16 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.20.0",
+    date: "2026-11-24",
+    changes: [
+      "A lista de visuais de outros servidores mais que dobrou: de 514 para 1.318. São 804 visuais que a extração dos clientes já tinha encontrado e que não estavam chegando até aqui. Para ver, abra os Filtros e marque \"Visuais de outros servidores\" — o catálogo normal, o que dá para conseguir jogando, continua igual.",
+      "São 740 de cabeça (Topo, Meio ou Baixo) e 64 de Capa. 792 deles aparecem com nome — 543 em inglês, e os outros no idioma do servidor que nomeia a peça. Os 12 que nenhum cliente nomeia aparecem com o nome do arquivo, marcado como tal.",
+      "Os botões por servidor continuam valendo: cada visual aparece em todos os servidores que o têm. 17 dos novos não aparecem em nenhum botão e trazem só \"Outro servidor\" — nenhum outro servidor oficial tem essas peças.",
+      "Todos os 804 desenham no personagem. As capas novas, como qualquer capa, ficam nas costas: de frente o corpo tampa elas, então use as setas ao lado da prévia para girar o personagem e ver.",
+    ],
+  },
+  {
     version: "0.19.1",
     date: "2026-11-23",
     changes: [
@@ -35,6 +45,7 @@ export const CHANGELOG: ChangelogEntry[] = [
       "Os nomes saem em português ou inglês sempre que algum desses clientes nomeia a peça — 328 dos 517 já aparecem em inglês. E o número ao lado do nome é o número de verdade do item: tocar nele abre a página no Divine-Pride, e buscar por ele no campo de busca encontra o visual.",
       "Correção: depois de uma atualização, o site podia continuar mostrando a versão anterior por até uma hora. Agora a versão nova aparece assim que a página é recarregada.",
     ],
+    credit: "Obrigado a PazzoLino, que sugeriu mostrar os visuais dos outros servidores.",
   },
   {
     version: "0.18.0",

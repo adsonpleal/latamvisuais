@@ -4,6 +4,98 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.20.0] — 2026-11-24
+
+The out-of-catalogue list goes 514 → **1,318**. The 804 new rows were sitting
+in ragassets' published catalogue being thrown away here, by a filter that read
+them as "not another server's visuals, so not this question". They are the same
+question — can I see this in the simulator — and the answer was no for every
+one.
+
+What makes them a different kind of row is a fact about this client's own
+files: the art ships here (the accessory table has the view, the sprite is in
+our resources) and no item was ever released that names it. **Nothing the
+reader sees says that.** The part anybody can act on is that there is no item,
+which is exactly the position another server's costume is in, so they are
+presented identically — the same checkbox, the same badge, named by whichever
+servers did release them. The distinction stops at the sync tool and the render
+path, which is the only place it has consequences.
+
+Stacked on 0.19.1 rather than standing beside it: the three visuals that left
+this catalogue for `costumes.json` there — the Chapéu Multiclasse Azul, the
+Pinguim-Imperador and the Magnus Dominus — would have vanished from the app
+entirely had the rebuilt `foreign-costumes.json` shipped without that sync.
+
+### Added
+
+- **804 visuals whose art the LATAM client carries and whose item it never
+  released.** They sit behind the same checkbox as the other servers' costumes
+  and answer to the chips of the servers that do have them. 792 are named by
+  some client (543 by iRO's English names, 155 jRO, 76 thRO, 16 twRO, 2 kRO)
+  and 12 fall back to the sprite's file name. 17 are in no other official
+  client at all — the Brazilian flag hat, the old guild-recruiting hats — so
+  they answer to no chip and no client gives them an item id.
+- `isForeignRow` and `serversOf` in `core/db.ts`: is this row out of reach, and
+  which servers may be named for it. The first is the question `origin` used to
+  answer by accident; the second is the one place `latam` is dropped, so no
+  display path can leak it.
+- `originsTip` and `serverBadges` in `i18n.ts`, next to the strings: the badge
+  sentence and the badge names, built once and called from the grid tile, the
+  list row and the worn-slot card.
+- `t.foreignOtherServer` ("Outro servidor"), the badge for a row with no server
+  to name. Those 17 rows would otherwise have carried no badge at all, and an
+  unbadged tile beside obtainable ones is the costume somebody goes shopping
+  for.
+
+### Changed
+
+- **`origin` now means only "which foreign tree renders this"**, and the new
+  rows carry none. That absence is the whole mechanism: `gearViews` notes an
+  origin only for a row that has one, so these render from a bare
+  `headgear=`/`garment=` with no `origin=` and no `headgearSprite=` — which is
+  also the only thing that works. Measured against the live gateway: all 12
+  sampled views draw from the plain view id, and adding `origin=latam` to them
+  is an HTTP 500, because the LATAM resources are the gateway's own resource
+  dir and not a mirror at all.
+- **`origins` is written on every row**, including the ones where it holds a
+  single name. It was left out as redundant with `origin`; a row with no origin
+  has nothing to reconstruct from, and this field is now what says a row came
+  from this catalogue. Left in the order the published catalogue gives, `latam`
+  among the rest: the app reads the first *server*, by which point `serversOf`
+  has dropped that one. Costs about a kilobyte and removes a fallback rule.
+- `realItemId` keys on `origins`, not `origin`. Reading `origin` alone would
+  have printed "#10600920" — this app's own invention — as though it were an
+  item number, for all 804 rows. That is the exact lie the function exists to
+  stop.
+- `CostumeIcon` likewise: with no `origin`, these rows asked
+  `/icons/item/<synthetic id>.png`, a guaranteed 404 followed by a rendered
+  thumbnail. The picture store is keyed by sprite with no origin dimension, so
+  the same route answers them — 3,378 pictures covering 1,691 of 1,746 sprites.
+- The filter keeps its name, "Visuais de outros servidores", and every string
+  behind it is unchanged — including "não existe no Ragnarok LATAM", which is
+  about the item and not about the art. A chip for this client was built and
+  then removed: it would have put our own resource layout in front of a player
+  who can do nothing with it, among chips that each mean "what that server has
+  and we don't".
+
+### Measured
+
+- **Every one of the 804 draws.** All 804 were rendered against the live
+  gateway and compared byte-for-byte with the bare body (stable across three
+  reference renders).
+- That first pass said 799, and it was wrong about the other 5 — a one-pose
+  measurement, which is the one mistake this check is known to make. The 5 are
+  garments (`EXE_Backpack`, `BlackCatBag`, `C_Soldier_Backpack`,
+  `C_BlackBear_Back_TW`, `C_School_Bag_PU`), a garment is worn on the back, and
+  facing south the body hides it: byte-identical to the bare character
+  standing, unmistakable from behind. ragassets' own blank sweep tries ten
+  poses for exactly this reason, and
+  [#24](https://github.com/adsonpleal/ragassets/pull/24) extends it over the
+  LATAM views — 1,170 of them, swept for the first time, 2 blank, and neither
+  is in this catalogue. **No dead tiles in the 1,318.**
+- `origin=thro` is also a 500 at the gateway — there is no thRO tree — which
+  does not matter yet because nothing is rendered from one.
+
 ## [0.19.1] — 2026-11-23
 
 Data refresh: `public/db` rebuilt from ragassets' current client tables (the
@@ -71,6 +163,10 @@ costume preview re-verified.
   `src/core/db.ts`. That is a feature, not a data refresh.
 
 ## [0.19.0] — 2026-11-20
+
+Suggested by PazzoLino, who asked for the other servers' costumes to be
+visible here. Credited in `src/changelog.ts` from 2026-11-22 — the release
+shipped without a credit line, which was an oversight and not a missing author.
 
 ### Added
 

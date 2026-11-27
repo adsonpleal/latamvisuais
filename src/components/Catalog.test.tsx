@@ -217,6 +217,64 @@ describe("Catalog", () => {
       expect(foreignTile(/Capa Estrangeira/)).toBeVisible();
     });
 
+    // The ~800 rows whose art already ships with this game. They were being
+    // thrown away by the sync tool for not being "another server's visuals",
+    // which read this filter as being about servers when it is about what a
+    // player can get. They sit behind the same box as the rest and are
+    // presented the same way: the sprite being in our own resources is a fact
+    // about our files, and the item that would hand the costume to somebody
+    // was never released either way.
+    it("shows the visuals this client has and never released, as any other", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      // Not obtainable, so not in the default view.
+      expect(foreignTile(/Chapéu Nunca Lançado/)).not.toBeVisible();
+
+      await openFilters(user);
+      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+      expect(foreignTile(/Chapéu Nunca Lançado/)).toBeVisible();
+
+      const group = () => screen.getByRole("group", { name: "Outros servidores" });
+      // No chip for this client: "LATAM", among chips that each mean "what
+      // they have and we don't", would read as the catalogue itself — and it
+      // is not a question anybody can act on.
+      const chips = within(group())
+        .getAllByRole("button")
+        .map((b) => b.textContent);
+      expect(chips).toEqual(["Todos", "iRO", "twRO"]);
+
+      // It answers to the chip of a server that did release it, beside that
+      // server's own costumes.
+      await user.click(within(group()).getByRole("button", { name: "iRO" }));
+      expect(foreignTile(/Chapéu Nunca Lançado/)).toBeVisible();
+      expect(foreignTile(/Chapéu Estrangeiro/)).toBeVisible();
+      expect(tile("Chapéu A (#100)")).not.toBeVisible();
+    });
+
+    it("badges a visual no other server has, so it never passes for obtainable", async () => {
+      const user = userEvent.setup();
+      renderCatalog();
+
+      await openFilters(user);
+      await user.click(screen.getByRole("checkbox", { name: /outros servidores/i }));
+
+      // Named by the server that released it, not by the client the art is in.
+      const hat = foreignTile(/Chapéu Nunca Lançado/);
+      expect(within(hat).getByText("iRO")).toBeInTheDocument();
+      expect(hat).toHaveAccessibleName(/Visual de outro servidor \(iRO\)/);
+      // Nothing on screen mentions this client having the art.
+      expect(hat).not.toHaveAccessibleName(/nunca foi lançado/);
+
+      // The 17 that are ours alone have no server to name — and a tile with no
+      // badge in a mixed grid is exactly the costume somebody goes shopping
+      // for. It gets the generic one instead.
+      const ours = foreignTile(/_brazilian_only_hat/);
+      expect(within(ours).getByText("Outro servidor")).toBeInTheDocument();
+      expect(ours).toHaveAccessibleName(/Não existe no Ragnarok LATAM/);
+      expect(ours.className).toContain("is-foreign");
+    });
+
     it("asks for the inventory icon by sprite name, not by its synthetic id", async () => {
       const user = userEvent.setup();
       renderCatalog();
@@ -232,6 +290,15 @@ describe("Catalog", () => {
       expect(foreignIcon).toHaveAttribute("src", expect.stringContaining("/icons/costume?"));
       expect(foreignIcon?.getAttribute("src")).toContain("sprite=_foreign_hat");
       expect(foreignIcon?.getAttribute("src")).not.toContain("/icons/item/");
+
+      // A never-released visual is asked the same way, and this is the one
+      // that used to go wrong: it has no `origin`, so the icon fell back to
+      // /icons/item/<synthetic id>.png — a guaranteed 404, then a rendered
+      // thumbnail, for every one of ~800 rows. The picture store is keyed by
+      // sprite with no origin dimension at all, so the same route answers it.
+      const localIcon = foreignTile(/Chapéu Nunca Lançado/).querySelector("img");
+      expect(localIcon?.getAttribute("src")).toContain("sprite=_unreleased_hat");
+      expect(localIcon?.getAttribute("src")).not.toContain("/icons/item/");
 
       // And a LATAM costume keeps the id route it has always used: the foreign
       // ones are the exception here, not a new rule for everything.

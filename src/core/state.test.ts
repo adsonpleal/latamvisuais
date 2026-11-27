@@ -92,6 +92,32 @@ describe("imageUrl", () => {
       `${BASE}/image?job=0&gender=male&head=1&action=0&headdir=0${V}`,
     );
   });
+
+  it("addresses another server's costume by tree and sprite name", () => {
+    const state: State = { ...initialState(db), equipped: { top: item(10000900) } };
+    const p = new URL(imageUrl(state)).searchParams;
+    expect(p.get("headgear")).toBe("900");
+    expect(p.get("origin")).toBe("iro");
+    expect(p.get("headgearSprite")).toBe("900:_foreign_hat");
+  });
+
+  it("sends a never-released LATAM visual as a plain view id", () => {
+    // Measured against the live gateway on 2026-11-23: these views draw from a
+    // bare `headgear=`, and adding `origin=latam` to them is an HTTP 500 —
+    // there is no "latam" mirror, because these resources are the gateway's
+    // own. So the one thing this must not do is name a tree.
+    const state: State = { ...initialState(db), equipped: { top: item(10600920) } };
+    const url = imageUrl(state);
+    expect(new URL(url).searchParams.get("headgear")).toBe("920");
+    expect(url).not.toContain("origin=");
+    expect(url).not.toContain("headgearSprite=");
+    // Same for the probe that reads an animated costume's frame count: an
+    // unresolved origin there would silently time the pose as if nothing were
+    // worn.
+    const probe = frameCountProbeUrl(state);
+    expect(new URL(probe).searchParams.get("headgear")).toBe("920");
+    expect(probe).not.toContain("origin=");
+  });
 });
 
 describe("mounts", () => {
@@ -196,6 +222,32 @@ describe("gearViews", () => {
       equipped: { top: item(100), mid: item(200), low: item(300), garment: item(700) },
     };
     expect(gearViews(state)).toEqual({ headgear: [10, 20, 30], garment: null, ...NO_FOREIGN });
+  });
+
+  it("names no tree for a visual this client never released", () => {
+    // The ~800 rows whose art ships with this very game. They are in the
+    // out-of-catalogue list and they badge as "Não lançado", but the renderer
+    // must treat them exactly like an ordinary costume: their view id is this
+    // client's own index, and `origin=latam` is a 500 at the gateway. The
+    // empty foreign fields here are the whole mechanism.
+    const state: State = { ...initialState(db), equipped: { top: item(10600920) } };
+    expect(gearViews(state)).toEqual({ headgear: [920], garment: null, ...NO_FOREIGN });
+  });
+
+  it("still layers a real foreign tree when both kinds are worn at once", () => {
+    // One unreleased LATAM view and one genuine iRO hat: only the second may
+    // put an origin on the request, and only its sprite may travel.
+    const state: State = {
+      ...initialState(db),
+      equipped: { top: item(10600920), mid: item(10000900) },
+    };
+    expect(gearViews(state)).toEqual({
+      headgear: [920, 900],
+      garment: null,
+      origins: ["iro"],
+      headgearSprites: ["900:_foreign_hat"],
+      garmentSprites: [],
+    });
   });
 });
 
