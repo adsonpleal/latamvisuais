@@ -52,7 +52,10 @@ costume in both lists, once as a LATAM row and once badged as another server's.
 
 **Step 2 is not optional.** `sync:db` writes every costume that has a view;
 `verify-previews.mjs` renders each one against the live server and deletes the
-ones that draw nothing (idle, sit *and* dead) — roughly 15 of ~1500. Committing
+ones that draw in **none** of the 104 frames the preview can show (13 poses × 8
+directions) — roughly a dozen of ~1300. Looking at fewer frames is how the
+catalogue lost the Valsa da Primavera, whose sprite exists only in the walk
+animation. Committing
 after step 1 alone puts blank costumes back in the catalogue. It takes a few
 minutes; ragassets caches the render bytes, so re-runs are fast. `--dry-run`
 reports without writing.

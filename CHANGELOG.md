@@ -4,6 +4,55 @@ All notable changes to this project are documented here. The format is loosely
 based on [Keep a Changelog](https://keepachangelog.com/); versioning is informal
 while pre-1.0.
 
+## [0.20.1] — 2026-11-27
+
+Two costumes the catalogue was throwing away are back: **[Visual] Valsa da
+Primavera** (20487, Baixo) and **[Visual] Parafuso de Corda** (20989, Capa).
+Both resolve a sprite view and both render perfectly well — just not face-on
+and standing still, which was the only question `verify-previews.mjs` knew how
+to ask.
+
+The tool renders each costume on the reference character and drops the ones
+that change nothing, and it was measuring idle, then sit and dead, all facing
+south. That is three of the 104 frames the preview can show, and the client
+ships costumes whose art exists in one animation and genuinely does not exist
+in the others. Valsa da Primavera is drawn only while walking — the item says
+so: *"Ao andar, flores e melodias brotarão dos seus pés como mágica!"* — and
+Parafuso de Corda is a Capa, worn on the back, where the body hides it from the
+front. Measured against the production gateway, both are byte-for-byte
+identical to the bare character in all three frames the tool was looking at.
+
+This is the same measurement error 0.20.0 already ran into with the five
+garments that only show from behind, and the reason ragassets' own sweep tries
+ten poses.
+
+### Fixed
+
+- `tools/verify-previews.mjs` sweeps every animation `ACTIONS` offers crossed
+  with all eight body directions, and stops at the first frame that draws.
+  Costumes visible in the frame the preview opens on — all but fifteen — still
+  cost one render each; only the rest pay for the sweep. The report now names
+  the frame each costume was kept by, which is the list to read when the
+  catalogue gains or loses one.
+- `public/db/costumes.json` goes 1,278 → **1,280**. Nothing else moved: the
+  other 1,278 rows are unchanged and in the same order, and `classes.json`,
+  `hair.json`, `stones.json` and `foreign-costumes.json` are byte-identical
+  after a full re-sync. The direction half of the sweep changes no row on its
+  own — the eleven costumes still dropped were rendered in all 104 frames and
+  are blank in every one — and it is in because the back-worn case is the same
+  bug one axis over, already paid for once.
+
+### Added
+
+- `tools/verify-previews.test.mjs` — the sweep against a stubbed renderer,
+  including both costumes above and a back-worn one, plus checks that `POSES`
+  still mirrors `ACTIONS` and `equipFrag` still agrees with `viewKindOf` in
+  `src/core/db.ts`. The tool grew a `main()` guard and four exports so it could
+  be imported at all.
+
+Reported on the public board
+([ELvnjbOofeovcVeLRJjz](https://issues.latam-tools.com.br/t/ELvnjbOofeovcVeLRJjz)).
+
 ## [0.20.0] — 2026-11-24
 
 The out-of-catalogue list goes 514 → **1,318**. The 804 new rows were sitting
