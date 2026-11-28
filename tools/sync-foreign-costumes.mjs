@@ -314,6 +314,13 @@ export function buildAppCatalogue(doc, { localItems = [] } = {}) {
     // grid of dead tiles. The sweep that finds them lives with the renderer it
     // measures (tools/multiserver/find-blank-visuals.mjs in ragassets); this
     // side only reads the flag.
+    //
+    // Which means "blank" here is upstream's ten poses, not the 13 × 8 frames
+    // tools/verify-previews.mjs sweeps for the LATAM catalogue. A foreign
+    // costume visible only in the animations that sweep skips is dropped for
+    // exactly the reason the Valsa da Primavera used to be — and there is no
+    // fixing it from this side, because these views render out of a mirror this
+    // repo cannot measure against. Closing the gap is an upstream change.
     if (c.blank) {
       empty.push(c);
       continue;

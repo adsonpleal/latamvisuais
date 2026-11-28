@@ -185,9 +185,17 @@ node tools/verify-previews.mjs
 ```
 
 after `sync:db`. It renders every remaining costume on the reference character
-against ragassets and **removes** any that draw nothing in idle, sit *and* dead.
-Re-run it whenever `costumes.json` is regenerated (`sync:db` can't know what
-zrenderer actually draws). Use `--dry-run` to report without writing.
+against ragassets and **removes** any that draw nothing. "Nothing" is measured
+over every frame the preview can show — all thirteen animations crossed with
+all eight directions — rather than the one it opens on: the client ships
+costumes whose art exists in a single animation and is genuinely absent from
+the others (the Valsa da Primavera only draws while the character walks), and a
+costume worn on the back is hidden by the body from the front. Both used to be
+read as blank and thrown out of the catalogue. The sweep stops at the first
+frame that draws, so the costumes visible head-on and standing still — all but
+fifteen — still cost one render each. Re-run it whenever `costumes.json` is
+regenerated (`sync:db` can't know what zrenderer actually draws). Use
+`--dry-run` to report without writing.
 
 ## Credits
 

@@ -14,6 +14,14 @@ export type ChangelogEntry = {
 
 export const CHANGELOG: ChangelogEntry[] = [
   {
+    version: "0.20.1",
+    date: "2026-11-27",
+    changes: [
+      "Dois visuais que faltavam no catálogo entraram: a Valsa da Primavera, de Baixo, e o Parafuso de Corda, de Capa. Os dois estavam sendo descartados por engano, porque a checagem que tira do catálogo os visuais que não desenham nada só olhava o personagem de frente, parado, sentado ou morto — e nenhum dos dois aparece aí.",
+      "A Valsa da Primavera só aparece quando o personagem anda, e é assim no jogo: as flores e as notas musicais brotam dos pés a cada passo. Escolha \"Andar\" em Ação para ver. Já o Parafuso de Corda fica nas costas, como toda Capa, e de frente o corpo tampa — gire o personagem com as setas ao lado da prévia.",
+    ],
+  },
+  {
     version: "0.20.0",
     date: "2026-11-24",
     changes: [
